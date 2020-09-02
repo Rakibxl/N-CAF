@@ -1,0 +1,35 @@
+<div class="card-shadow-warning border mb-3 card card-body border-warning">
+    <h5 class="card-title"><strong>User Type:</strong> {{user.userRoleDisplayName}} </h5>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <p><span><strong>Full Name:</strong></span> {{user.fullName}}</p>
+            </div>
+            <div class="col-sm-6">
+                <p><span><strong>Date of Birth:</strong></span> {{user.dateOfBirth | date: 'mediumDate' }}</p>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-6">
+                <p><span><strong>Email:</strong></span> {{user.email}}</p>
+            </div>
+            <div class="col-sm-6">
+                <p><span><strong>Phone Number:</strong></span> {{user.phoneNumber}}</p>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-6">
+                <p><span><strong>Gender:</strong></span> {{user.gender}}</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="d-flex justify-content-end">
+        <button type="button" class="mb-2 mr-2 btn-hover-shine btn btn-dark" (click)="backToTheList()"><i
+                class="pe-7s-back pr-1"></i> Back </button>
+    </div>
+</div>

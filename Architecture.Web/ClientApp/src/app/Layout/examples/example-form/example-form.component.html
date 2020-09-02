@@ -1,0 +1,80 @@
+
+<div class="main-card mb-3 card">
+    <div class="card-header sticky-card d-flex justify-content-between align-items-center">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">{{getComponentTitle()}}</div>
+        <!-- <div class="btn-actions-pane-right">
+            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" (click)="fnRouteProdList()">
+                <fa class="mr-2" name="list"></fa>
+                Back to list
+            </button>
+        </div> -->
+    </div>
+    <div class="card-body">
+        <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">Name</label>
+                        <input type="text" autocomplete="off" class="form-control" formControlName="name"
+                               [ngClass]="{'is-valid':formControls.name.touched && !formControls.name.errors,
+                               'is-invalid':formControls.name.touched && formControls.name.errors }" />
+                        <small class="text-danger" *ngIf="formControls.name.touched && formControls.name.errors">
+                            <span *ngIf="formControls.name.errors.required">Name is <strong>required</strong></span>
+                            <span *ngIf="formControls.name.errors.pattern">Please, Enter valid characters (not only spaces)</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">Sequence</label>
+                        <input type="text" autocomplete="off" class="form-control" formControlName="sequence"
+                               [ngClass]="{'is-valid':formControls.sequence.touched && !formControls.sequence.errors,
+                               'is-invalid':formControls.sequence.touched && formControls.sequence.errors }" />
+                        <small class="text-danger" *ngIf="formControls.sequence.touched && formControls.sequence.errors">
+                            <span *ngIf="formControls.sequence.errors.required">Sequence is <strong>required</strong></span>
+                            <span *ngIf="formControls.sequence.errors.pattern">Please, Enter valid number</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div class="position-relative form-group">
+                        <label class="">Description</label>
+                        <textarea autocomplete="off" class="form-control" formControlName="description"
+                               [ngClass]="{'is-valid':formControls.description.touched && !formControls.description.errors,
+                               'is-invalid':formControls.description.touched && formControls.description.errors }"></textarea>
+                        <small class="text-danger" *ngIf="formControls.description.touched && formControls.description.errors">
+                            <span *ngIf="formControls.description.errors.required">Description is <strong>required</strong></span>
+                            <span *ngIf="formControls.description.errors.pattern">Please, Enter valid description</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <app-image-uploader (onChangeFile)="onChangeFile($event)" [url]="example.imageUrl" 
+                            [title]="'Promotional Banner Image'" [width]="'300px'" [height]="'180px'" [removable]="true">
+                        </app-image-uploader>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <div class="custom-checkbox custom-control custom-control-inline">
+                            <input type="checkbox" id="isActive" formControlName="isActive" class="custom-control-input" />
+                            <label for="isActive" class="custom-control-label">Active</label>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="button" class="mb-2 mr-2 btn-hover-shine btn btn-dark" (click)="goBack()"><i class="pe-7s-back pr-1"></i> Back </button>
+                <button type="submit" [disabled]="exampleForm.invalid" class="mb-2 btn btn-primary"><i class="fa fa-save pr-1"></i> Save </button>
+            </div>
+        </form>
+    </div>
+</div>

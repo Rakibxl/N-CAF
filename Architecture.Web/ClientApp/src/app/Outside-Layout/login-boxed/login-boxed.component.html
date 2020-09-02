@@ -1,0 +1,75 @@
+<div class="h-100 bg-plum-plate bg-animation">
+  <div class="d-flex h-100 justify-content-center align-items-center">
+    <div class="mx-auto app-login-box col-md-8">
+      <div class="modal-dialog my-auto w-100 mx-auto">
+        <div class="modal-content">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="text-center">
+              <img class="logo-img" src="./assets/images/logo.png" alt="Logo" width="150" height="110">
+            </div>
+            <div class="h5 modal-title text-center">
+              <h4 class="mt-2">
+                <div>Welcome back,</div>
+                <span>Please login to your account below.</span>
+              </h4>
+            </div>
+            <div *ngIf="errorMessage" class="text-danger font-weight-bold">{{errorMessage}}</div>
+            <div class="position-relative form-group form-group-berger">
+                <label class="required mb-0">Email</label>
+                <input type="text" autocomplete="off" class="form-control form-control-berger" formControlName="email" placeholder="Enter your email"
+                       [ngClass]="{'is-valid':ufControls.email.touched && !ufControls.email.errors,
+                       'is-invalid':ufControls.email.touched && ufControls.email.errors }" />
+                <small class="text-danger" *ngIf="ufControls.email.touched && ufControls.email.errors">
+                    <span *ngIf="ufControls.email.errors.required">Email is <strong>required</strong></span>
+                    <span *ngIf="ufControls.email.errors.email"><strong>Invalid</strong> email</span>
+                </small>
+            </div>
+            <div class="position-relative form-group  form-group-berger">
+                <label class="required mb-0">Password</label>
+                <div class="input-group">
+                  <input [type]="passwordTextType ? 'text' : 'password'" autocomplete="off" class="form-control form-control-berger" formControlName="password" placeholder="Enter Your Password"
+                      [ngClass]="{'is-valid':ufControls.password.touched && !ufControls.password.errors,
+                      'is-invalid':ufControls.password.touched && ufControls.password.errors }" />
+                    <!-- <div class="input-group-append" (click)="togglePasswordTextType()">
+                        <span class="input-group-text">
+                            <i class="fa" [ngClass]="{ 'fa-eye-slash': !passwordTextType, 'fa-eye': passwordTextType }"></i>
+                        </span>
+                    </div> -->
+                </div>
+                <small class="text-danger" *ngIf="ufControls.password.touched && ufControls.password.errors">
+                    <span *ngIf="ufControls.password.errors.required">Password is <strong>required</strong></span>
+                </small>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <div class="position-relative form-group form-group-berger">
+                <div class="custom-checkbox custom-control custom-control-inline">
+                    <input type="checkbox" id="rememberMe" formControlName="rememberMe" class="custom-control-input" />
+                    <label for="rememberMe" class="custom-control-label login-checkbox">
+                      Keep me logged in
+                    </label>
+                </div>
+              </div>
+             
+            </div>
+            <div class="text-center my-3">
+              <button type="submit" [disabled]="isLoading || loginForm.invalid" class="btn btn-lg btn-primary">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+                {{isLoading?'Loading...':'Login To Dashboard'}}
+              </button>
+            </div>
+            <div class="text-center">
+              <a [routerLink]="['/auth/forgot-password']" class="btn btn-recover">Recover Password?</a>
+            </div>
+            
+          </div>
+        </form>
+        </div>
+      </div>
+      <div class="text-center text-white opacity-8 mt-3">
+          Copyright © Architecture
+      </div>
+    </div>
+  </div>
+</div>

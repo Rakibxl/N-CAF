@@ -1,0 +1,14 @@
+﻿using Architecture.Core.Repository.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Architecture.Core.Repository.Interfaces
+{
+    public interface IExampleUnitOfWork : IUnitOfWork
+    {
+        public IExampleRepository ExampleRepository { get; set; }
+    }
+}

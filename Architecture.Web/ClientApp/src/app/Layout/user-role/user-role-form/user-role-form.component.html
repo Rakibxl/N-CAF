@@ -1,0 +1,52 @@
+<form>
+    <div class="modal-header">
+        <h4 class="modal-title">{{getRoleName()}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="position-relative form-group">
+            <label for="name">Role Name</label>
+            <input required name="name" #name="ngModel" id="name" placeholder="Enter Role Name"
+                type="text" class="form-control"
+                [ngClass]="{'is-valid':name.valid,'is-invalid':name.invalid && name.touched }"
+                [(ngModel)]="userRole.name" />
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">
+                Name is Required
+            </small>
+        </div>
+            
+        <h5> Permissions: </h5>
+        <div class="position-relative form-group">
+            <!-- <div class=""> -->
+                <div *ngFor="let _rootRole of rolePermissions;let ri=index;" class="mb-1">
+                    <div class="border-bottom py-1">
+                        <!-- <span class=""> -->
+                            <div class="custom-checkbox custom-control">
+                                <input type="checkbox" id="{{'rootchk_'+ri}}" name="{{'rootchk_'+ri}}" class="custom-control-input" [(ngModel)]="_rootRole.isSelected"
+                                (change)="isSelectedChanged($event, _rootRole)">
+                                <label for="{{'rootchk_'+ri}}" class="custom-control-label">{{ _rootRole.title }}</label>
+                            </div>
+                        <!-- </span> -->
+                    </div>
+                    <div class="py-1 pl-1">
+                        <div class="mr-2 custom-control-inline" *ngFor="let _childRole of _rootRole._children;let ci=index;">
+                            <!-- <span class=""> -->
+                                <div class="custom-checkbox custom-control">
+                                    <input type="checkbox" id="{{'childchk_'+ri+ci}}" name="{{'childchk_'+ri+ci}}" class="custom-control-input" [(ngModel)]="_childRole.isSelected"
+                                    (change)="isSelectedChanged($event, _childRole)">
+                                    <label for="{{'childchk_'+ri+ci}}" class="custom-control-label">{{ _childRole.title }}</label>
+                                </div>
+                            <!-- </span> -->
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isRoleNameValid()">Save</button>
+    </div>
+</form>

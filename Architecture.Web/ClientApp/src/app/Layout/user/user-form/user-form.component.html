@@ -1,0 +1,125 @@
+
+<div class="main-card mb-3 card">
+    <div class="card-header sticky-card d-flex justify-content-between align-items-center">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">{{getComponentTitle()}}</div>
+        <div class="btn-actions-pane-right">
+            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" (click)="fnRouteProdList()">
+                <fa class="mr-2" name="list"></fa>
+                Back to list
+            </button>-->
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">Full Name</label>
+                        <input type="text" autocomplete="off" class="form-control" formControlName="fullName"
+                               [ngClass]="{'is-valid':ufControls.fullName.touched && !ufControls.fullName.errors,
+                               'is-invalid':ufControls.fullName.touched && ufControls.fullName.errors }" />
+                        <small class="text-danger" *ngIf="ufControls.fullName.touched && ufControls.fullName.errors">
+                            <span *ngIf="ufControls.fullName.errors.required">Name is <strong>required</strong></span>
+                            <span *ngIf="ufControls.fullName.errors.pattern">Please, Enter valid characters (not only spaces)</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">Email</label>
+                        <input type="text" autocomplete="off" class="form-control" formControlName="email"
+                               [ngClass]="{'is-valid':ufControls.email.touched && !ufControls.email.errors,
+                               'is-invalid':ufControls.email.touched && ufControls.email.errors }" />
+                        <small class="text-danger" *ngIf="ufControls.email.touched && ufControls.email.errors">
+                            <span *ngIf="ufControls.email.errors.required">Email is <strong>required</strong></span>
+                            <span *ngIf="ufControls.email.errors.email">Please, Enter valid email</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">Phone Number</label>
+                        <input type="text" autocomplete="off" class="form-control" formControlName="phoneNumber"
+                               [ngClass]="{'is-valid':ufControls.phoneNumber.touched && !ufControls.phoneNumber.errors,
+                               'is-invalid':ufControls.phoneNumber.touched && ufControls.phoneNumber.errors }" />
+                        <small class="text-danger" *ngIf="ufControls.phoneNumber.touched && ufControls.phoneNumber.errors">
+                            <span *ngIf="ufControls.phoneNumber.errors.required">Phone Number is <strong>required</strong></span>
+                            <span *ngIf="ufControls.phoneNumber.errors.pattern">Please, Enter 11 digit phone number</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="required">User Role</label>
+                        <ng-select formControlName="userRoleId">
+                            <!-- <ng-option>--Select--</ng-option> -->
+                            <ng-option *ngFor="let ur of userRoles;" [value]="ur.value">{{ur.text}}</ng-option>
+                        </ng-select>
+                        <small class="text-danger" *ngIf="ufControls.userRoleId.touched && ufControls.userRoleId.errors">
+                            <span *ngIf="ufControls.userRoleId.errors.required">Role is <strong>required</strong></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="">Address</label>
+                        <textarea autocomplete="off" class="form-control" formControlName="address"
+                               [ngClass]="{'is-valid':ufControls.address.touched && !ufControls.address.errors,
+                               'is-invalid':ufControls.address.touched && ufControls.address.errors }"></textarea>
+                        <small class="text-danger" *ngIf="ufControls.address.touched && ufControls.address.errors">
+                            <span *ngIf="ufControls.address.errors.required">Address is <strong>required</strong></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="">Gender</label>
+                        <ng-select formControlName="gender">
+                            <!-- <ng-option>--Select--</ng-option> -->
+                            <ng-option value="Male">Male</ng-option>
+                            <ng-option value="Female">Female</ng-option>
+                        </ng-select>
+                        <small class="text-danger" *ngIf="ufControls.gender.touched && ufControls.gender.errors">
+                            <span *ngIf="ufControls.gender.errors.required">Gender is <strong>required</strong></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="">Date Of Birth</label>
+                        <div class="input-group w-100">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dateOfBirth" 
+                                ngbDatepicker #d="ngbDatepicker" [startDate]="{month: 1, year: 1990}" [minDate]="{year: 1970, month: 1, day: 1}"
+                                [maxDate]="{year: 2040, month: 12, day: 31}" [placement]="'bottom'">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf="ufControls.dateOfBirth.touched && ufControls.dateOfBirth.errors">
+                            <span *ngIf="ufControls.dateOfBirth.errors.required">Date Of Birth is <strong>required</strong></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="custom-checkbox custom-control">
+                        <input type="checkbox" id="isUnderAmbassadorCampaign" formControlName="isUnderAmbassadorCampaign" class="custom-control-input">
+                        <label for="isUnderAmbassadorCampaign" class="custom-control-label">Is Under Ambassador Campaign</label>
+                    </div>
+                </div>
+                
+            </div> -->
+            <div class="d-flex justify-content-end">
+                <button type="button" class="mb-2 mr-2 btn-hover-shine btn btn-dark" (click)="goBack()"><i class="pe-7s-back pr-1"></i> Back </button>
+                <button type="submit" [disabled]="userForm.invalid" class="mb-2 btn btn-primary"><i class="fa fa-save pr-1"></i> Save </button>
+            </div>
+        </form>
+    </div>
+</div>
