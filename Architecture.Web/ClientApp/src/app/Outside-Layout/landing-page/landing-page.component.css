@@ -1,0 +1,22 @@
+.main-container {
+    height    : calc(100vh - 50px);
+    padding-top   : 60px;
+}
+
+.main-container .row {
+    min-height: 100%;
+}
+
+.main-container .sidebar {
+    height    : 100%;
+}
+
+.footer-area {
+    height    : 50px;
+    text-align: center;
+}
+
+.footer-area p {
+    margin: 0;
+}
+
