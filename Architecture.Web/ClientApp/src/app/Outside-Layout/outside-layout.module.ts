@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotPasswordConfirmationBoxedComponent } from './forgot-password-confirmation-boxed/forgot-password-confirmation-boxed.component';
 import { ResetPasswordBoxedComponent } from './reset-password-boxed/reset-password-boxed.component';
 import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confirmation-boxed copy/reset-password-confirmation-boxed.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confir
     ForgotPasswordConfirmationBoxedComponent,
     ResetPasswordBoxedComponent,
     ResetPasswordConfirmationBoxedComponent,
+    LandingPageComponent,
     // LoginComponent,
   ],
   imports: [
