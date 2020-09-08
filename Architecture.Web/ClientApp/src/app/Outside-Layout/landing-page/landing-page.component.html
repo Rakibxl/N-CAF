@@ -5,8 +5,8 @@
                 <div>Logo</div>
                 <nav>
                     <ul class="list-unstyled d-flex">
-                        <li class="nav-item ml-2"><a href="#">Regristration</a></li>
-                        <li class="nav-item ml-2"><a href="#">Login</a></li>
+                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': regOpen == 'in'}" (click)="toggleRegClick()">Regristration</button></li>
+                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': menuState == 'in'}" (click)="toggleClick()">Login</button></li>
                     </ul>
                 </nav>
             </div>
@@ -16,9 +16,15 @@
 
 <div class="container-fluid">
     <div class="main-container">
-        <app-right-site-panel>
+
+        <app-right-site-panel [@animationRightToggle]="regOpen">
+            <app-user-registration></app-user-registration>
+        </app-right-site-panel>
+
+        <app-right-site-panel [@animationRightToggle]="menuState">
             <app-user-login></app-user-login>
         </app-right-site-panel>
+
         <div class="row">
             <div class="col-sm-4 bg-plum-plate d-flex align-items-center">
                 <div class="unauthorize-carousel w-100">

@@ -1,14 +1,35 @@
-.right-panel {
+:host {
     position  : absolute;
+    left      : auto;
     right     : 0;
     top       : 0;
     width     : 450px;
     height    : 100%;
-    overflow  : auto;
     min-height: 350px;
     z-index   : 10;
-    // background: #fff linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
     padding   : 15px 0;
+    overflow-x: visiable;
+}
 
+.right-panel {
+    position: relative;
+    height: 100%;
+
+    .scroller-area {
+        max-height: 100%;
+        overflow: auto;
+    }
+
+    .hamburger {
+        position     : absolute;
+        top          : 0;
+        right        : 100%;
+        left         : auto;
+        background   : #eeeeee;
+        box-shadow   : 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        padding      : 10px 5px 7px 5px;
+        border-radius: 5px 0 0 5px;
+    }
 }
