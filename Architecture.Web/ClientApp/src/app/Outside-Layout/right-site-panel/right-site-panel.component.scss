@@ -1,0 +1,14 @@
+.right-panel {
+    position  : absolute;
+    right     : 0;
+    top       : 0;
+    width     : 450px;
+    height    : 100%;
+    overflow  : auto;
+    min-height: 350px;
+    z-index   : 10;
+    // background: #fff linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    padding   : 15px 0;
+
+}

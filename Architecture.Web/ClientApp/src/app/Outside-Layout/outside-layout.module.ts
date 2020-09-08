@@ -15,6 +15,9 @@ import { ForgotPasswordConfirmationBoxedComponent } from './forgot-password-conf
 import { ResetPasswordBoxedComponent } from './reset-password-boxed/reset-password-boxed.component';
 import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confirmation-boxed copy/reset-password-confirmation-boxed.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { RightSitePanelComponent } from './right-site-panel/right-site-panel.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -28,6 +31,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ResetPasswordBoxedComponent,
     ResetPasswordConfirmationBoxedComponent,
     LandingPageComponent,
+    UserLoginComponent,
+    UserRegistrationComponent,
+    RightSitePanelComponent,
     // LoginComponent,
   ],
   imports: [
