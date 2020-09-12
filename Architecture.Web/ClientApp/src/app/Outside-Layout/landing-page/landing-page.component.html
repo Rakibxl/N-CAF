@@ -1,8 +1,8 @@
 <div class="container-fluid ">
     <div class="row">
         <header class="app-header header-shadow">
-            <div class="col-12 d-flex flex-wrap justify-content-between">
-                <div>Logo</div>
+            <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                <div class="logo"><img class="logo-img" src="./assets/images/app-logo.jpg" alt="Logo" width="150" height="110"></div>
                 <nav>
                     <ul class="list-unstyled d-flex">
                         <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': regOpen == 'in'}" (click)="toggleRegClick()">Regristration</button></li>
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid p-0">
     <div class="main-container">
 
         <app-right-site-panel [@animationRightToggle]="regOpen">
@@ -25,43 +25,16 @@
             <app-user-login></app-user-login>
         </app-right-site-panel>
 
-        <div class="row">
-            <div class="col-sm-4 bg-plum-plate d-flex align-items-center">
-                <div class="unauthorize-carousel w-100">
-                    <ngb-carousel [showNavigationArrows]="false">
-                        <ng-template ngbSlide>
-                            <div class="carousel-content">
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbSlide>
-                            <div class="carousel-content">
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbSlide>
-                            <div class="carousel-content">
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
-                        </ng-template>
-                    </ngb-carousel>
-                </div>
+        <div class="row m-0">
+            <div class="col-md-4 px-0 m-0 bg-plum-plate d-flex align-items-center">
+                <app-unauth-slide></app-unauth-slide>
             </div>
 
-            <div class="col-lg-8">
-                <div class="content">
-                    <div class="p-table-content">
-                        <div class="panel panel-default">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h2>Top Offer</h2>
-                                </div>
-                                <div></div>
-                            </div>
-                        </div>
+            <div class="col-md-8 ">
+                <div class="content h-100 py-4">
+                    <div class="content-inner">
+
+                        <app-top-offers></app-top-offers>
                     </div>
                 </div>
             </div>
@@ -72,8 +45,8 @@
 <div class="footer-area">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <p>©2020 helloorg, All rights reserved.</p>
+            <div class="col-12 text-center py-2">
+                <p class="m-0">©2020 helloorg, All rights reserved.</p>
             </div>
         </div>
     </div>

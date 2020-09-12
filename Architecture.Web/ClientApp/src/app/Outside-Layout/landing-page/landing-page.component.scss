@@ -1,0 +1,46 @@
+.app-header {
+    position: relative;
+    z-index : 99;
+
+    .logo {
+
+        img {
+            max-width: 80px;
+            height   : auto;
+        }
+    }
+}
+
+.main-container {
+    overflow: hidden;
+    height  : calc(100vh - 110px);
+    position: relative;
+
+    @media screen and (max-height: 768px) {
+        height    : auto;
+        min-height: calc(100vh - 110px);
+    }
+
+    .content {
+        padding-top   : 50px;
+        padding-bottom: 50px;
+
+        &-inner {
+            max-height: 100%;
+            overflow  : auto;
+        }
+    }
+
+    .row {
+        min-height: 100%;
+    }
+
+    .sidebar {
+        height: 100%;
+    }
+
+    .footer-area {
+        height    : 50px;
+        text-align: center;
+    }
+}

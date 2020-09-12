@@ -18,6 +18,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { RightSitePanelComponent } from './right-site-panel/right-site-panel.component';
+import { UnauthSlideComponent } from './unauth-slide/unauth-slide.component';
+import { TopOffersComponent } from './top-offers/top-offers.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -34,6 +36,8 @@ import { RightSitePanelComponent } from './right-site-panel/right-site-panel.com
     UserLoginComponent,
     UserRegistrationComponent,
     RightSitePanelComponent,
+    UnauthSlideComponent,
+    TopOffersComponent,
     // LoginComponent,
   ],
   imports: [

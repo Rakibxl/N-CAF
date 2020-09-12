@@ -1,0 +1,30 @@
+:host {
+    width: 100%;
+}
+
+.unauthorize-carousel {
+    width: 100%;
+    color: #fff;
+
+    .carousel {
+        padding-bottom: 70px;
+        width         : 100%;
+
+        &-item {
+            display   : block !important;
+            z-index   : 1;
+            position  : absolute;
+            transition: opacity 1.5s easy-in-out, visibility 1s;
+            opacity   : 0;
+            visibility: hidden;
+
+            &.active {
+                position: relative;
+                transition: opacity 1.5s easy-in-out,
+                    visibility 1s;
+                visibility: visible;
+                opacity   : 1;
+            }
+        }
+    }
+}

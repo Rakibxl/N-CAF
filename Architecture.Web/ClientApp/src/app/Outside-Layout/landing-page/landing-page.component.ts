@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { animationRightToggle } from 'src/app/Shared/Modules/animations/animationRightToggle';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css'],
   animations: [animationRightToggle]
 })
 export class LandingPageComponent implements OnInit {
@@ -26,5 +25,11 @@ export class LandingPageComponent implements OnInit {
     this.menuState = 'out';
     this.regOpen = this.regOpen === 'out' ? 'in' : 'out';
   }
+
+  closeFnPanel() {
+    this.menuState = 'out';
+    this.regOpen = 'out';
+  }
+  
 
 }

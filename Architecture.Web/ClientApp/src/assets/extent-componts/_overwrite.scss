@@ -1,0 +1,32 @@
+.form-group {
+    label {
+        font-weight   : 700;
+        letter-spacing: 0.5px;
+        color         : $primary;
+    }
+
+    .form-control {
+        @media screen and (min-width: 1399px) {
+            height: calc(42px);
+        }
+    }
+}
+
+.carousel {
+
+outline   : 0;
+box-shadow: none;
+border    : 0;
+
+    .carousel-indicators {}
+
+
+    .carousel-inner {
+        
+        .carousel-item,
+        .carousel-content,
+        &:focus {
+            // lkkk
+        }
+    }
+}
