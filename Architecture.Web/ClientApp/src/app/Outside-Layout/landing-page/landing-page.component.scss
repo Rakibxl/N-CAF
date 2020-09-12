@@ -12,9 +12,8 @@
 }
 
 .main-container {
-    overflow: hidden;
-    height  : calc(100vh - 110px);
-    position: relative;
+    min-height: calc(100vh - 110px);
+    position  : relative;
 
     @media screen and (max-height: 768px) {
         height    : auto;
@@ -23,8 +22,8 @@
 
     .content {
         &-inner {
-            max-height    : 100%;
-            overflow      : auto;
+            max-height: 100%;
+            overflow  : auto;
         }
     }
 

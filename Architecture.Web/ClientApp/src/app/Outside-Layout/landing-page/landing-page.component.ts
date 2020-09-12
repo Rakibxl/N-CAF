@@ -26,7 +26,7 @@ export class LandingPageComponent implements OnInit {
     this.regOpen = this.regOpen === 'out' ? 'in' : 'out';
   }
 
-  closeFnPanel() {
+  closePanel() {
     this.menuState = 'out';
     this.regOpen = 'out';
   }

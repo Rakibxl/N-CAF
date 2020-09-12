@@ -10,7 +10,7 @@ export class RightSitePanelComponent implements OnInit {
   constructor() { }
 
 
-  @Output() closePanel = new EventEmitter<String>();
+  @Output() closePanel:EventEmitter<any> = new EventEmitter<any>();
 
   closeFnPanel(status) {
     this.closePanel.emit(status);
