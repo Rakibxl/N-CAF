@@ -22,12 +22,9 @@
     }
 
     .content {
-        padding-top   : 50px;
-        padding-bottom: 50px;
-
         &-inner {
-            max-height: 100%;
-            overflow  : auto;
+            max-height    : 100%;
+            overflow      : auto;
         }
     }
 
