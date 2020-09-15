@@ -1,6 +1,8 @@
 .app-header {
-    position: relative;
-    z-index : 99;
+    &.landing-header {
+        background: #fff;
+        z-index   : 99;
+    }
 
     .logo {
 

@@ -1,6 +1,15 @@
 <!-- <app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title> -->
 
-<div class="row form-row">
+
+<div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+  <div>
+    <h2>This site are under construction on UI department</h2>
+
+  </div>
+</div>
+
+
+<!-- <div class="row form-row">
   <div class="col-md-3">
     <div class="card-berger bg-orange">
       <div class="flex-left"><span class="card-number">{{dashboard.serviceRequestCurrentDay}}</span></div>
@@ -30,7 +39,6 @@
   <ngb-tabset type="pills">
     <ngb-tab title="Service Request">
       <ng-template ngbTabContent>
-        <!-- <img src="./assets/images/graph1.png" alt="Tab image"> -->
         <highcharts-chart [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="serviceRequestChartOptions"
           [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag"
           [runOutsideAngular]="runOutsideAngularFlag" style="width: 100%; height: 400px; display: block;">
@@ -39,7 +47,6 @@
     </ngb-tab>
     <ngb-tab title="New App Users Registrations">
       <ng-template ngbTabContent>
-        <!-- <img src="./assets/images/graph2.png" alt="Tab image"> -->
         <highcharts-chart [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="newAppUserRegisterChartOptions"
           [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag"
           [runOutsideAngular]="runOutsideAngularFlag" style="width: 100%; height: 400px; display: block;">
@@ -71,4 +78,4 @@
   <div class="d-flex justify-content-center">
     <a class="btn btn-info px-4 text-white" (click)="viewAppUserReports()">View Reports</a>
   </div>
-</div>
+</div> -->

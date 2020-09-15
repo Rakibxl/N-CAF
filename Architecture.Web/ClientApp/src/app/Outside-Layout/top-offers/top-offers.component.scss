@@ -16,10 +16,11 @@
         @extend .d-flex;
         @extend .align-items-center;
         @extend .justify-content-center;
-        width    : 120px;
+        min-width: 60px;
+        max-width: 60px;
         padding  : 15px;
         color    : #ffffff;
-        font-size: 80px;
+        font-size: 40px;
 
         a {
             color  : currentColor;
@@ -38,21 +39,22 @@
 
     .btn-more {
         @extend .bg-plum-plate;
-        color: #ffffff;
+        color        : #ffffff;
         border-radius: 20px;
-        box-shadow: $card-shadow;
+        box-shadow   : $card-shadow;
 
         &:hover {
             color: #222;
         }
     }
+
     &_cetagory {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 300;
-        margin-bottom: 10px;
+        display       : inline-block;
+        font-size     : 12px;
+        font-weight   : 700;
+        margin-bottom : 10px;
         letter-spacing: 2px;
         text-transform: uppercase;
-        @extend .text-info;
+        @extend .text-primary;
     }
 }

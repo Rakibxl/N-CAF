@@ -65,7 +65,7 @@ $search-box-size: 42px;
           left: 9px;
           top: 13px;
           border-radius: 2px;
-          background: $primary;
+          background: #ffffff;
         }
 
         &::after {
@@ -74,7 +74,7 @@ $search-box-size: 42px;
           left: 4px;
           top: 0;
           border-radius: 16px;
-          border: 2px solid $primary;
+          border: 2px solid #ffffff;
         }
       }
     }
