@@ -1,7 +1,14 @@
 $card-shadow : 0 0 15px rgba(0,0,0,0.3);
 $card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
 
-
+.caf-card {
+    padding-top   : 15px;
+    padding-bottom: 15px;
+    background    : #fff;
+    margin-bottom : 20px;
+    border-top    : 5px solid #00ADEF;
+    border-radius : 5px;   
+}
 .form-group {
     label {
         font-weight   : 700;
