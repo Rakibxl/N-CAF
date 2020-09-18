@@ -1,0 +1,50 @@
+.caf-jobs {
+    @extend .list-unstyled;
+    @extend .d-table;
+    @extend .w-100;
+    
+    &-item {
+        @extend .d-table-row;
+        white-space: nowrap;
+        overflow: hidden;
+        position: relative;
+
+        transition: background 0.3s, box-shadow 0.3s;
+        
+        &:nth-of-type(2n+1){   
+            @extend .bg-light;
+        }
+        
+        &-icon,
+        &-title,
+        &-time {
+            @extend .d-table-cell;
+            vertical-align: middle;
+            @extend .p-3;
+        }
+        
+        &-title {
+            max-width: 60%;
+            overflow: hidden;
+        }
+
+        &-actions {
+            font-family: 30px;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            right: 0;
+            z-index: 3;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        &:hover {
+            &-actions {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}

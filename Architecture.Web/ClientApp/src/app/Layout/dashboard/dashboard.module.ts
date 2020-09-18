@@ -13,12 +13,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoModule } from '../DemoPages/demo.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.component';
 
 
 @NgModule({
   declarations: [
-    CommonComponent   
-  
+    CommonComponent,   
+    JoblistComponent
   
   
   ],

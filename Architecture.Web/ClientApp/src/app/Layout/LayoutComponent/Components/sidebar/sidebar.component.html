@@ -16,7 +16,7 @@
             <perfect-scrollbar style="max-width: 600px; max-height: 95vh;" [autoPropagation]="true" [config]="config$">
                 <div class="v-sidebar-menu caf-sidebar-menus vsm-default">
                     <div class="vsm-list">
-                        <ngb-accordion  [activeIds]="[acc1]" >
+                        <ngb-accordion [activeIds]="[acc1]">
 
                             <div *ngFor="let menu of menuList">
                                 <ngb-panel>
@@ -58,22 +58,24 @@
                                 </ngb-panel>
                             </div>
 
+
+
+                            <ngb-panel>
+                                <ng-template ngbPanelHeader>
+                                    <div class="vsm-item">
+                                        <a routerLink="/dashboard" routerLinkActive="active-item" class="vsm-link">
+                                            <!-- <i class="vsm-icon pe-7s-home"></i> -->
+                                            <span class="vsm-title">User Dashboard</span>
+                                        </a>
+                                    </div>
+                                </ng-template>
+                            </ngb-panel>
+
                             <ngb-panel>
                                 <ng-template ngbPanelHeader>
                                     <div class="vsm-header">Profile Information</div>
                                 </ng-template>
                             </ngb-panel>
-
-                            <!-- <ngb-panel>
-                                <ng-template ngbPanelHeader>
-                                    <div class="vsm-item">
-                                        <a routerLink="/dashboard" routerLinkActive="active-item" class="vsm-link">
-                                            <i class="vsm-icon pe-7s-home"></i>
-                                            <span class="vsm-title">Profile Information</span>
-                                        </a>
-                                    </div>
-                                </ng-template>
-                            </ngb-panel> -->
 
                             <ngb-panel id="acc1">
                                 <ng-template ngbPanelHeader>
@@ -110,7 +112,7 @@
                                     <div class="vsm-dropdown">
                                         <div class="vsm-list">
                                             <div class="vsm-item">
-                                                <a routerLinkActive="active-item"  class="vsm-link text-warning">
+                                                <a routerLinkActive="active-item" class="vsm-link text-warning">
                                                     <strong class="vsm-title">Job Type: </strong>
                                                     <div>Full Time</div>
                                                 </a>
@@ -120,7 +122,7 @@
                                 </ng-template>
                             </ngb-panel>
                         </ngb-accordion>
-                        
+
                     </div>
                 </div>
             </perfect-scrollbar>

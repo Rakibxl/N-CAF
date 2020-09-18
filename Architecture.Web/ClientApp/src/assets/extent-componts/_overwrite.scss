@@ -28,3 +28,9 @@ $card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
     box-shadow: none;
     border    : 0;
 }
+
+.text-overflow-ellips {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
