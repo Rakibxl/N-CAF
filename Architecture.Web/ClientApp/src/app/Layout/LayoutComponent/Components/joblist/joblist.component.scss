@@ -1,48 +1,113 @@
 .caf-jobs {
     @extend .list-unstyled;
-    @extend .d-table;
-    @extend .w-100;
-    
+
     &-item {
-        @extend .d-table-row;
+        display    : flex;
         white-space: nowrap;
-        overflow: hidden;
-        position: relative;
+        align-items: center;
+        position   : relative;
 
         transition: background 0.3s, box-shadow 0.3s;
-        
-        &:nth-of-type(2n+1){   
-            @extend .bg-light;
-        }
-        
+        @extend .border-bottom;
+        @extend .py-3;
+        @extend .pr-2;
+        @extend .pl-3;
+
+
         &-icon,
         &-title,
         &-time {
-            @extend .d-table-cell;
-            vertical-align: middle;
-            @extend .p-3;
+            @extend .px-1;
         }
-        
+
+        &-icon {
+            @include media-breakpoint-up(md) {
+                max-width: 50px;
+                min-width: 50px;
+                font-size: 25px;
+            }
+
+            @include media-breakpoint-down(sm) {
+                max-width: 20px;
+                min-width: 20px;
+                font-size: 16px;
+            }
+
+            display    : flex;
+            align-items: center;
+        }
+
+        &-time {
+            margin-left: auto;
+            transition : 0.3s;
+            text-align : center;
+
+            @include media-breakpoint-up(md) {
+                max-width: 100px;
+                min-width: 100px;
+            }
+
+            @include media-breakpoint-down(sm) {
+                max-width: 75px;
+                min-width: 75px;
+            }
+        }
+
         &-title {
-            max-width: 60%;
-            overflow: hidden;
+            flex     : 1 0 auto;
+            position : relative;
+            font-size: 16px;
+
+            @include media-breakpoint-up(md) {
+                max-width: calc(100% - 150px);
+            }
+
+            @include media-breakpoint-down(sm) {
+                max-width: calc(100% - 80px);
+            }
+
+            * {
+                margin        : 0;
+                padding-bottom: 0;
+                padding-top   : 0;
+            }
         }
 
         &-actions {
-            font-family: 30px;
-            opacity: 0;
+            padding   : 5px 20px;
+            font-size : 25px;
+            opacity   : 0;
             visibility: hidden;
-            position: absolute;
-            right: 0;
-            z-index: 3;
-            top: 50%;
-            transform: translateY(-50%);
+            position  : absolute;
+            right     : 0;
+            z-index   : 3;
+            top       : 50%;
+            transform : translateY(-50%);
             transition: opacity 0.3s, visibility 0.3s;
+
+            @include media-breakpoint-down(sm) {
+                padding-right: 5px;
+                font-size    : 22px;
+            }
+
+            span {
+                font-size  : inherit;
+                display    : inline-block;
+                cursor     : pointer;
+                margin-left: 5px;
+            }
         }
 
         &:hover {
-            &-actions {
-                opacity: 1;
+            background: rgba(0, 0, 0, 0.1);
+
+            .caf-jobs-item-time {
+                opacity   : 0;
+                visibility: hidden;
+            }
+
+            .caf-jobs-item-actions {
+                opacity   : 1;
                 visibility: visible;
             }
         }
