@@ -4,7 +4,9 @@
     <div class="caf-card caf-card-profile">
       <div class="px-4">
         <h4>Profile tree</h4>
-        <app-profile-tree></app-profile-tree>
+        <perfect-scrollbar style="max-height: 80vh;" [autoPropagation]="true" >
+          <app-profile-tree></app-profile-tree>
+        </perfect-scrollbar>
       </div>
     </div>
   </div>
