@@ -78,6 +78,7 @@ import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-maste
     //UserInfoListComponent,
     FooterComponent,
 
+    
 
   ],
   imports: [

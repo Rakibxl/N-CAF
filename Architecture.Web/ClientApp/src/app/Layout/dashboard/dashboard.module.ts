@@ -14,19 +14,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoModule } from '../DemoPages/demo.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.component';
+import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree/profile-tree.component';
 
 
 @NgModule({
   declarations: [
     CommonComponent,   
-    JoblistComponent
-  
-  
+    JoblistComponent,
+    ProfileTreeComponent
   ],
+  
   imports: [
     CommonModule,
     DashboardRoutingModule,
-DemoModule,
+    DemoModule,
     NgSelectModule,
     
     DemoRoutingModule,
