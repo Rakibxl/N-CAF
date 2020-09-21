@@ -25,6 +25,7 @@ import { PermissionGuard } from './Shared/Guards/permission.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { IAuthUser } from './Shared/Entity/Users/auth';
 import { MustMatchDirective } from './Shared/Directive/mustmatch.directive';
+import { PDFModifyComponent } from './pdfmodify/pdfmodify.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -33,14 +34,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 export function tokenGetter(): string {
-	const authUser = JSON.parse(localStorage.getItem("currentUser")) as IAuthUser;
-	return authUser ? authUser.token : "";
+    const authUser = JSON.parse(localStorage.getItem("currentUser")) as IAuthUser;
+    return authUser ? authUser.token : "";
 }
 
 @NgModule({
     declarations: [
         AppComponent,
-        MustMatchDirective
+        MustMatchDirective,
+        PDFModifyComponent
     ],
     imports: [
         BrowserModule,
@@ -57,11 +59,11 @@ export function tokenGetter(): string {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-		JwtModule.forRoot({
-			config: {
-				tokenGetter: tokenGetter
-			}
-		})
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter
+            }
+        })
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
