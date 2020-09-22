@@ -17,3 +17,21 @@ export const animationRightToggle =
         transition('in => out', animate('550ms ease-in-out')),
         transition('out => in', animate('550ms ease-in-out'))
     ]);
+
+export const scaleAnimation =
+    trigger('scaleAnimation', [
+        state('in', style({
+            opacity: '1',
+            visibility: 'visiable'
+        })),
+        state('out', style({
+            height: '0',
+            width: '0',
+            transform: 'translate(0)',
+            opacity: '0',
+            overflow: 'hidden',
+            visibility: 'hidden'
+        })),
+        transition('in => out', animate('550ms ease-in-out')),
+        transition('out => in', animate('550ms ease-in-out'))
+    ]);
