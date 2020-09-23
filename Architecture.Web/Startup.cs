@@ -71,6 +71,7 @@ namespace Architecture.Web
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();
+            services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
@@ -195,10 +196,11 @@ namespace Architecture.Web
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
-
+                //spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(1000);
                 }
             });
         }
