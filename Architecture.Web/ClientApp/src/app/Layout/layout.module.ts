@@ -42,6 +42,7 @@ import { LogoComponent } from './LayoutComponent/Components/sidebar/elements/log
 import { FooterComponent } from './LayoutComponent/Components/footer/footer.component';
 import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-master.module';
 
+
 //import { UserInfoListComponent } from './user-info/user-info-list/user-info-list.component';
 //import { UserInfoInsertComponent } from './user-info/user-info-insert/user-info-insert.component';
 //import { UserInfoComponent } from './user-details/user-info/user-info.component';
