@@ -32,7 +32,7 @@ namespace Architecture.BLL.Services.Implements
             using (FileStream outFile = new FileStream("result.pdf", FileMode.Create))
             {
                 PdfReader pdfReader = new PdfReader(@"E:\Projects\Angular Projects\N-CAF\Sample PDF\file.pdf", null);
-                //PdfReader.unethicalreading = true;
+                PdfReader.unethicalreading = true;
 
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
                 AcroFields fields = pdfStamper.AcroFields;

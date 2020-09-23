@@ -200,7 +200,7 @@ namespace Architecture.Web
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(2000);
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(1000);
                 }
             });
         }
