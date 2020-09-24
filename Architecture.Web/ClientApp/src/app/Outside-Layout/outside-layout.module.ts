@@ -14,6 +14,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotPasswordConfirmationBoxedComponent } from './forgot-password-confirmation-boxed/forgot-password-confirmation-boxed.component';
 import { ResetPasswordBoxedComponent } from './reset-password-boxed/reset-password-boxed.component';
 import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confirmation-boxed copy/reset-password-confirmation-boxed.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { RightSitePanelComponent } from './right-site-panel/right-site-panel.component';
+import { UnauthSlideComponent } from './unauth-slide/unauth-slide.component';
+import { TopOffersComponent } from './top-offers/top-offers.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -26,6 +32,12 @@ import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confir
     ForgotPasswordConfirmationBoxedComponent,
     ResetPasswordBoxedComponent,
     ResetPasswordConfirmationBoxedComponent,
+    LandingPageComponent,
+    UserLoginComponent,
+    UserRegistrationComponent,
+    RightSitePanelComponent,
+    UnauthSlideComponent,
+    TopOffersComponent,
     // LoginComponent,
   ],
   imports: [

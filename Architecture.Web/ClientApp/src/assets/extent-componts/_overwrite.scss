@@ -1,0 +1,42 @@
+$card-shadow : 0 0 15px rgba(0,0,0,0.3);
+$card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
+
+.caf-card {
+    padding-top   : 15px;
+    padding-bottom: 15px;
+    background    : #fff;
+    margin-bottom : 20px;
+    border-top    : 5px solid #00ADEF;
+    border-radius : 5px;   
+}
+.form-group {
+    label {
+        font-weight   : 700;
+        letter-spacing: 0.5px;
+        color         : $primary;
+    }
+
+    .form-control {
+        @media screen and (min-width: 1399px) {
+            height: calc(42px);
+        }
+    }
+}
+
+.carousel {
+    outline   : 0;
+    box-shadow: none;
+    border    : 0;
+}
+
+.text-overflow-ellips {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.header-profile-dropdown, 
+.notifications-dropdown {
+    @include media-breakpoint-up(lg) {
+        min-width: 310px;
+    }
+}

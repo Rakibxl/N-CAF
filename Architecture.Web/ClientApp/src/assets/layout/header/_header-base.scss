@@ -1,14 +1,14 @@
 // Header Base
 
 .app-header {
-  height: $app-header-height;
-  display: flex;
-  align-items: center;
+  height       : $app-header-height;
+  display      : flex;
+  align-items  : center;
   align-content: center;
-  z-index: 10;
-  transition: all .2s;
-  position: fixed;
-  width: 100%;
+  z-index      : 10;
+  transition   : all .2s;
+  position     : fixed;
+  width        : 100%;
 
   .logo-src {
     display: none;
@@ -19,35 +19,66 @@
   }
 
   .app-header__content {
-    display: flex;
-    align-items: center;
+    display      : flex;
+    align-items  : center;
     align-content: center;
-    flex: 1;
-    padding-left: $app-sidebar-width;
-    height: $app-header-height;
-    transition: all .2s;
+    flex         : 1;
+    padding-left : $app-sidebar-width;
+    height       : $app-header-height;
+    transition   : all .2s;
 
     .app-header-left {
-      display: flex;
+      display    : flex;
       align-items: center;
-      padding: 0 0 0 $layout-spacer-x;
+      padding    : 0 0 0 $layout-spacer-x;
     }
 
     .app-header-right {
       align-items: center;
-      display: flex;
+      display    : flex;
       margin-left: auto;
-      padding: 0 $layout-spacer-x 0 0;
+      padding    : 0 $layout-spacer-x 0 0;
+
+      .group-buttons {
+
+        
+
+        .dropdown-toggle {
+          font-size: 25px;
+
+          .icon-wrapper {
+            width: 45px;
+            height: 45px;
+            @extend .rounded-circle;
+            &-bg {
+              &.bg-danger {
+                // opacity: 0.3;
+              }
+            }
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+
+        .notify-dropdown {
+          .icon-wrapper {
+            color: $danger;
+          }
+        }
+      }
     }
   }
 
   .header-user-info {
-    & > .widget-heading,
-    & > .widget-subheading {
+
+    &>.widget-heading,
+    &>.widget-subheading {
       white-space: nowrap;
     }
 
-    & > .widget-subheading {
+    &>.widget-subheading {
       font-size: $font-size-xs;
     }
   }
@@ -55,9 +86,9 @@
 
 .app-header__menu,
 .app-header__mobile-menu {
-  display: none;
-  padding: 0 $layout-spacer-x;
-  height: $app-header-height;
+  display    : none;
+  padding    : 0 $layout-spacer-x;
+  height     : $app-header-height;
   align-items: center;
 }
 

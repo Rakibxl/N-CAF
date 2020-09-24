@@ -1,0 +1,22 @@
+
+.right-panel {
+    
+    padding   : 80px 0 15px 0;
+    overflow-x: visiable;
+
+    .scroller-area {
+        max-height: 100%;
+        overflow: auto;
+    }
+
+    .hamburger {
+        position     : absolute;
+        top          : 0;
+        right        : 100%;
+        left         : auto;
+        background   : #eeeeee;
+        box-shadow   : 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        padding      : 10px 5px 7px 5px;
+        border-radius: 5px 0 0 5px;
+    }
+}

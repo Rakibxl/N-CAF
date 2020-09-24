@@ -1,0 +1,45 @@
+.app-header {
+    &.landing-header {
+        background: #fff;
+        z-index   : 99;
+    }
+
+    .logo {
+
+        img {
+            max-width: 80px;
+            height   : auto;
+        }
+    }
+}
+
+.main-container {
+    min-height : calc(100vh - 110px);
+    position   : relative;
+    padding-top: 80px;
+
+    @media screen and (max-height: 768px) {
+        height    : auto;
+        min-height: calc(100vh - 110px);
+    }
+
+    .content {
+        &-inner {
+            max-height: 100%;
+            overflow  : auto;
+        }
+    }
+
+    .row {
+        min-height: 100%;
+    }
+
+    .sidebar {
+        height: 100%;
+    }
+
+    .footer-area {
+        height    : 50px;
+        text-align: center;
+    }
+}

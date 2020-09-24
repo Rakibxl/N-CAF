@@ -8,6 +8,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ForgotPasswordConfirmationBoxedComponent } from './forgot-password-confirmation-boxed/forgot-password-confirmation-boxed.component';
 import { ResetPasswordBoxedComponent } from './reset-password-boxed/reset-password-boxed.component';
 import { ResetPasswordConfirmationBoxedComponent } from './reset-password-confirmation-boxed copy/reset-password-confirmation-boxed.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [{
   path: '',
   component: PagesLayoutComponent,
   children: [
-   {path:'', redirectTo:"login"},
+   { path: '', redirectTo:"landingpage"},
+   { path: 'landingpage', component: LandingPageComponent, data: { extraParameter: 'dashboardsMenu'} },
    { path: 'forgot-password', component: ForgotPasswordBoxedComponent,data: {extraParameter: 'dashboardsMenu'} },
    { path: 'forgot-password-confirmation', component: ForgotPasswordConfirmationBoxedComponent,data: {extraParameter: 'dashboardsMenu'} },
    { path: 'reset-password', component: ResetPasswordBoxedComponent,data: {extraParameter: 'dashboardsMenu'} },

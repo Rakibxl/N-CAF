@@ -1,0 +1,50 @@
+.caf-card-profile {
+    @include media-breakpoint-up(md) {
+        height: 100%;
+    }
+}
+
+.tree-list {
+    @extend .list-unstyled;
+    @extend .pt-3;
+
+    li {
+        font-size     : 16px;
+        margin-bottom : 10px;
+        position      : relative;
+        font-weight   : 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    ul {
+        @extend .list-unstyled;
+        margin      : 10px 0 20px 10px;
+        padding-left: 5px;
+
+        li {
+            font-size     : 16px;
+            font-weight   : 400;
+            letter-spacing: normal;
+            text-transform: none;
+
+            a {
+                color: currentColor;
+            }
+
+            &:before {
+                content      : '';
+                display      : block;
+                float        : left;
+                border       : 2px solid currentColor;
+                margin-top   : 10px;
+                margin-right : 5px;
+                height       : 2px;
+                width        : 10px;
+                border-radius: 1px;
+                margin-top   : 10px;
+            }
+        }
+
+    }
+}

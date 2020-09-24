@@ -1,0 +1,51 @@
+<div class="container-fluid ">
+    <div class="row">
+        <header class="app-header header-shadow landing-header">
+            <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                <div class="logo"><img class="logo-img" src="./assets/images/app-logo.jpg" alt="Logo" width="150" height="110"></div>
+                <nav>
+                    <ul class="list-unstyled d-flex">
+                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': regOpen == 'in'}" (click)="toggleRegClick()">Regristration</button></li>
+                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': menuState == 'in'}" (click)="toggleClick()">Login</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="main-container">
+        <app-right-site-panel [@animationRightToggle]="regOpen" (closePanel)="closePanel($event)">
+            <app-user-registration></app-user-registration>
+        </app-right-site-panel>
+
+        <app-right-site-panel [@animationRightToggle]="menuState" (closePanel)="closePanel($event)">
+            <app-user-login></app-user-login>
+        </app-right-site-panel>
+
+        <div class="row m-0">
+            <div class="col-md-4 m-0 d-flex align-items-center">
+                <app-unauth-slide></app-unauth-slide>
+            </div>
+
+            <div class="col-md-8 pb-4">
+                <div class="content">
+                    <div class="content-inner">
+                        <app-top-offers></app-top-offers>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center py-2">
+                <p class="m-0">©2020 helloorg, All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
