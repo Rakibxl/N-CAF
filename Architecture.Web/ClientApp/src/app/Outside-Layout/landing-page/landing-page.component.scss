@@ -14,8 +14,9 @@
 }
 
 .main-container {
-    min-height: calc(100vh - 110px);
-    position  : relative;
+    min-height : calc(100vh - 110px);
+    position   : relative;
+    padding-top: 80px;
 
     @media screen and (max-height: 768px) {
         height    : auto;
