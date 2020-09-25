@@ -1,6 +1,10 @@
 $card-shadow : 0 0 15px rgba(0,0,0,0.3);
 $card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
 
+$treeTitleBg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$treeLeftBorderColor: #eee;
+$treeWarningBg: #f8513e;
+
 .caf-card {
     padding-top   : 15px;
     padding-bottom: 15px;
