@@ -1,11 +1,10 @@
 .app-header {
     &.landing-header {
-        background: #fff;
+        background: $landingHeaderBg;
         z-index   : 99;
     }
 
     .logo {
-
         img {
             max-width: 80px;
             height   : auto;
@@ -16,7 +15,7 @@
 .main-container {
     min-height : calc(100vh - 110px);
     position   : relative;
-    padding-top: 80px;
+    padding-top: 60px;
 
     @media screen and (max-height: 768px) {
         height    : auto;

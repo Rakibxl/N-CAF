@@ -2,11 +2,16 @@
     <div class="row">
         <header class="app-header header-shadow landing-header">
             <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
-                <div class="logo"><img class="logo-img" src="./assets/images/app-logo.jpg" alt="Logo" width="150" height="110"></div>
+                <div class="logo"><img class="logo-img" src="./assets/images/app-logo.jpg" alt="Logo" width="150"
+                        height="110"></div>
                 <nav>
                     <ul class="list-unstyled d-flex">
-                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': regOpen == 'in'}" (click)="toggleRegClick()">Regristration</button></li>
-                        <li class="nav-item ml-2"><button class="btn btn-link" [ngClass]="{'text-light': menuState == 'in'}" (click)="toggleClick()">Login</button></li>
+                        <li class="nav-item ml-2"><button class="btn btn-link"
+                                [ngClass]="{'text-light': regOpen == 'in'}"
+                                (click)="toggleRegClick()">Regristration</button></li>
+                        <li class="nav-item ml-2"><button class="btn btn-link"
+                                [ngClass]="{'text-light': menuState == 'in'}" (click)="toggleClick()">Login</button>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -14,7 +19,7 @@
     </div>
 </div>
 
-<div class="container-fluid p-0">
+<div class="container-fluid">
     <div class="main-container">
         <app-right-site-panel [@animationRightToggle]="regOpen" (closePanel)="closePanel($event)">
             <app-user-registration></app-user-registration>
@@ -24,15 +29,106 @@
             <app-user-login></app-user-login>
         </app-right-site-panel>
 
-        <div class="row m-0">
-            <div class="col-md-4 m-0 d-flex align-items-center">
-                <app-unauth-slide></app-unauth-slide>
+        <div class="row">
+            <div class="col-12 px-0">
+                <app-banner-slider></app-banner-slider>
             </div>
+        </div>
 
-            <div class="col-md-8 pb-4">
-                <div class="content">
-                    <div class="content-inner">
-                        <app-top-offers></app-top-offers>
+        <div class="row py-5">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <app-top-offers></app-top-offers>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Notice latest</h3>
+                            <div
+                                class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                <div class="dot-danger vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">All Hands Meeting</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-warning vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <p>Yet another one, at <span class="text-success">15:00 PM</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-success vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">Build the production release <div class="badge badge-danger ml-2">NEW</div>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-primary vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title"> Something not important
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-warning vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <p>Yet another one, at <span class="text-success">15:00 PM</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-success vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">Build the production release <div class="badge badge-danger ml-2">NEW</div>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-info vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">This dot has an info state</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-dark vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">This dot has a dark state</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-danger vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">All Hands Meeting</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-warning vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <p>Yet another one, at <span class="text-success">15:00 PM</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dot-success vertical-timeline-element">
+                                    <div><span class="vertical-timeline-element-icon bounce-in"></span>
+                                        <div class="vertical-timeline-element-content bounce-in">
+                                            <h3 class="timeline-title">Build the production release <div class="badge badge-danger ml-2">NEW</div>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,26 @@
+.banner-slider {
+    background: $bannerBg;
+    background-repeat: no-repeat;
+    background-size: cover ;
+    background-position: 0 0;
+    background-attachment: fixed;
+    width: 100%;
+
+    .carousel-content {
+        margin: 0 auto;
+        @media screen and (min-width: 1367px) {
+            max-width: 1450px;
+        }
+    }
+    .carousel-item {
+        .carousel-row-item {
+            display: flex;
+            align-items: center;
+            padding: 50px 15px;
+
+            @media screen and (min-width: 1367px){
+                min-height: 650px;
+            }
+        }
+    }
+}

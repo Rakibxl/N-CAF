@@ -20,6 +20,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { RightSitePanelComponent } from './right-site-panel/right-site-panel.component';
 import { UnauthSlideComponent } from './unauth-slide/unauth-slide.component';
 import { TopOffersComponent } from './top-offers/top-offers.component';
+import { BannerSliderComponent } from './banner-slider/banner-slider.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { TopOffersComponent } from './top-offers/top-offers.component';
     RightSitePanelComponent,
     UnauthSlideComponent,
     TopOffersComponent,
+    BannerSliderComponent,
     // LoginComponent,
   ],
   imports: [
