@@ -29,6 +29,10 @@
         bottom    : 0;
         width     : 450px;
         background: $white;
+        .card-header {
+           background: $chatHeaderBg;
+           color: $chatHeaderTextColor;
+        }
     }
 
     .card-header-tab {
@@ -71,7 +75,7 @@
             box-shadow: 0 0 0 transparent;
             position  : relative;
             opacity   : 1;
-            background: $dropdown-link-hover-bg;
+            background: $chatLeftBg;
             border    : 0;
             padding   : ($layout-spacer-x / 2) $layout-spacer-x;
 
@@ -96,6 +100,7 @@
 
             .chat-box {
                 @include border-radius(30px);
+                background: $chatRightBg;
                 border-top-left-radius : 30px;
                 border-top-right-radius: $border-radius;
                 margin-left            : auto;
