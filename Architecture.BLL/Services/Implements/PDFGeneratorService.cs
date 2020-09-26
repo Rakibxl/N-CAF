@@ -27,11 +27,13 @@ namespace Architecture.BLL.Services.Implements
 
         }
 
-        public async Task<string> GetAllAsync()
+        public string GeneratePDF()
         {
-            using (FileStream outFile = new FileStream("result.pdf", FileMode.Create))
+            var srcPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Input PDF", "Bonus Baby.pdf");
+            var destPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Generated PDF", "Bonus Baby_" + "1001" + ".pdf");
+            using (FileStream outFile = new FileStream(destPath, FileMode.Create, FileAccess.Write))
             {
-                PdfReader pdfReader = new PdfReader(@"E:\Projects\Angular Projects\N-CAF\Sample PDF\file.pdf", null);
+                PdfReader pdfReader = new PdfReader(srcPath);
                 PdfReader.unethicalreading = true;
 
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
@@ -46,7 +48,7 @@ namespace Architecture.BLL.Services.Implements
                 pdfStamper.Close();
                 pdfReader.Close();
             }
-            return "Ok";
+            return destPath;
         }
     }
 }
