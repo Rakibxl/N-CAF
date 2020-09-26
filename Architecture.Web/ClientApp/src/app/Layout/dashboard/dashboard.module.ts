@@ -13,19 +13,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoModule } from '../DemoPages/demo.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.component';
+import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree/profile-tree.component';
+import { ChatBoxPopupComponent } from '../LayoutComponent/Components/chat-box-popup/chat-box-popup.component';
 
 
 @NgModule({
   declarations: [
-    CommonComponent   
-  
-  
-  
+    CommonComponent,   
+    JoblistComponent,
+    ProfileTreeComponent,
+    ChatBoxPopupComponent
   ],
+  
   imports: [
     CommonModule,
     DashboardRoutingModule,
-DemoModule,
+    DemoModule,
     NgSelectModule,
     
     DemoRoutingModule,

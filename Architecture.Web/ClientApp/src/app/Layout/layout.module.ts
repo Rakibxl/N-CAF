@@ -41,6 +41,8 @@ import { LogoComponent } from './LayoutComponent/Components/sidebar/elements/log
 
 import { FooterComponent } from './LayoutComponent/Components/footer/footer.component';
 import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-master.module';
+import { HeaderNotificationComponent } from './LayoutComponent/Components/header/elements/header-notification/header-notification.component';
+
 
 //import { UserInfoListComponent } from './user-info/user-info-list/user-info-list.component';
 //import { UserInfoInsertComponent } from './user-info/user-info-insert/user-info-insert.component';
@@ -78,6 +80,9 @@ import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-maste
     //UserInfoListComponent,
     FooterComponent,
 
+    HeaderNotificationComponent,
+
+    
 
   ],
   imports: [

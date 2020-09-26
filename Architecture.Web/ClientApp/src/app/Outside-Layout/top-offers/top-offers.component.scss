@@ -1,0 +1,44 @@
+.offer-card {
+    @extend .my-4;
+    @extend .d-flex;
+    @extend .rounded;
+    box-shadow: $card-shadow;
+    overflow  : hidden;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+        box-shadow: $card-shadow-bover;
+    }
+
+    &-img {
+        background: $appGradientPrimary1;
+        @extend .d-flex;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+        min-width: 60px;
+        max-width: 60px;
+        padding  : 15px;
+        color    : $primary;
+        font-size: 40px;
+
+        a {
+            color  : currentColor;
+            display: inline-flex;
+        }
+    }
+
+    &-content {
+        padding: 20px;
+        flex   : auto;
+
+        .readmore_link {
+            color          : $primary;
+            font-weight    : 500;
+            text-decoration: underline;
+        }
+
+        .btn {
+            min-width: 150px;
+        }
+    }
+}

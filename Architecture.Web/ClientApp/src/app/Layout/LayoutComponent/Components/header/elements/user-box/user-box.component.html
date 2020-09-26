@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="header-btn-lg pr-0">
+  <div class="header-btn-lg pr-0 ml-0">
     <div class="widget-content p-0">
       <div class="widget-content-wrapper">
         <div class="widget-content-left">
@@ -11,15 +11,59 @@
                 </div>
               </span>
             </button>
-            <div ngbDropdownMenu>
-              <!-- <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button> -->
+            <div ngbDropdownMenu class="header-profile-dropdown">
+              <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                  <i class="header-icon lnr-lighter icon-gradient bg-amy-crisp"></i>
+                  <div class="d-flex justify-content-between">
+                    <strong>Lura Profile</strong>
+                    <div class="border-left border-primary pl-3 ml-2">$0.00<small><sup>USD</sup></small></div>
+                  </div>
+                </div>
+              </div>
 
-              <h6 class="dropdown-header">{{user?.fullName}}</h6>
-              <!-- <button class="dropdown-item">Actions</button> -->
-              <div class="dropdown-divider"></div>
-              <button class="mb-2 mr-2 btn btn-warning ml-4 " (click)="logout()">Logout</button>
+              <perfect-scrollbar auto-propagation="true">
+                <div class="ps-content p-2">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/architectui-angular-pro/">Chat
+                        <div class="ml-auto badge badge-pill badge-info">8</div>
+                      </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/architectui-angular-pro/">Recover Password</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/architectui-angular-pro/">Account Settings <div
+                          class="ml-auto badge badge-success">New</div></a></li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/architectui-angular-pro/">Messages <div
+                          class="ml-auto badge badge-warning">512</div></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <strong>
+                          Logout 
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                            <path fill-rule="evenodd"
+                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                          </svg>
+                        </strong>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </perfect-scrollbar>
+
             </div>
           </div>
+        </div>
+
+        <div class="widget-content-left ml-1 header-user-info">
+          <div class="widget-heading">LURA</div>
         </div>
       </div>
     </div>

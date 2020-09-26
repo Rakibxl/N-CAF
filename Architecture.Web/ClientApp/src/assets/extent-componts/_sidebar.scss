@@ -1,0 +1,25 @@
+.caf-sidebar-menus {
+    .vsm-list {
+        .vsm-item {
+            .vsm-link {
+                height     : auto;
+                line-height: 18px;
+                padding    : 5px;
+                background : transparent;
+            }
+        }
+    }
+}
+
+.carousel {
+    font-size: 16px;
+
+    .carousel-indicators {
+        li {
+            width : 16px;
+            height: 16px;
+            @extend .bg-plum-plate;
+            border-radius: 50%;
+        }
+    }
+}

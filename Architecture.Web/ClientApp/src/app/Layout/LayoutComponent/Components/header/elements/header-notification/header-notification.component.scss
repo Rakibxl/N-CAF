@@ -1,0 +1,24 @@
+.notify-dropdown {
+
+    .icon-wrapper-bg,
+    button {
+        border-radius: 50%;
+    }
+}
+
+.notify-counter {
+    position     : absolute;
+    top          : -4px;
+    right        : -4px;
+    display      : inline-block;
+    color        : $white;
+    font-size    : 12px;
+    background   : $danger;
+    border-radius: 50%;
+    padding      : 1px 4px;
+    font-weight  : 700;
+}
+
+.overflow-visiable {
+    overflow: visible;
+}

@@ -1,0 +1,67 @@
+.caf-card-profile {
+    @include media-breakpoint-up(md) {
+        height: 100%;
+    }
+}
+
+.tree-list {
+    @extend .list-unstyled;
+    @extend .pt-3;
+
+    li {
+        margin-bottom : 10px;
+        position      : relative;
+        letter-spacing: 0.5px;
+        border-left   : 2px solid $treeLeftBorderColor;
+        margin-bottom : 15px;
+
+        .title {
+            color        : $treeTextColor;
+            font-weight  : 500;
+            padding      : 5px 10px 5px 25px;
+            border-radius: 0 5px 5px 30px;
+            margin-left: 10px;
+
+            &:not(.title-warning) {
+                background: $treeTitleBg;
+            }
+
+            &-warning {
+                background: $treeTitleBgDanger;
+            }
+
+            a {
+                color: inherit;
+            }
+        }
+    }
+
+    ul {
+        @extend .list-unstyled;
+        padding: 10px 0 0 0;
+
+        li {
+            border-left  : 0;
+            padding      : 5px 0 5px 15px;
+            margin-bottom: 0;
+            position     : relative;
+
+            a {
+                color: currentColor;
+            }
+
+            &:before {
+                content      : '';
+                display      : block;
+                position     : absolute;
+                left         : 0;
+                top          : 15px;
+                border       : 1px solid $treeLeftBorderColor;
+                height       : 2px;
+                width        : 10px;
+                border-radius: 1px;
+            }
+        }
+
+    }
+}
