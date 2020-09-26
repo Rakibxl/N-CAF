@@ -1,11 +1,10 @@
 .app-header {
     &.landing-header {
-        background: #fff;
+        background: $landingHeaderBg;
         z-index   : 99;
     }
 
     .logo {
-
         img {
             max-width: 80px;
             height   : auto;
@@ -16,7 +15,7 @@
 .main-container {
     min-height : calc(100vh - 110px);
     position   : relative;
-    padding-top: 80px;
+    padding-top: 60px;
 
     @media screen and (max-height: 768px) {
         height    : auto;
@@ -41,5 +40,78 @@
     .footer-area {
         height    : 50px;
         text-align: center;
+    }
+}
+
+.our-status-container {
+    background: $appGradientPrimary1;
+    text-align: center;
+
+    .icon {
+        font-size     : 50px;
+        max-width     : 75px;
+        margin        : 0 auto;
+        padding-bottom: 20px;
+
+        svg,
+        img {
+            display  : block;
+            max-width: 100%;
+            height   : auto;
+            margin   : 0 auto;
+        }
+    }
+
+    .content {
+        .counter-label {
+            font-size  : 40px;
+            font-weight: 700;
+            color      : $primary;
+        }
+    }
+
+}
+
+
+.client-feedback {
+    // background: $appGradientPrimary1;
+    text-align: center;
+
+    .client-image {
+        border       : 2px dashed $primary;
+        width        : 200px;
+        height       : 200px;
+        padding      : 10px;
+        border-radius: 50%;
+        margin       : 0 auto;
+        box-shadow   : 1px 3px 11px 1px rgba(0, 0, 0, 0.2);
+        background   : #fff;
+
+        img,
+        svg {
+            width    : 200px;
+            height   : 200px;
+            clip-path: circle(85px at center);
+            display  : block;
+            max-width: 100%;
+            height   : auto;
+            margin   : 0 auto;
+
+        }
+    }
+
+    .content {
+        padding-top: 20px;
+    }
+}
+
+.contact-us {
+    min-height         : 550px;
+    background-repeat  : no-repeat;
+    background-position: 0 0;
+    background-size    : cover;
+    .card {
+        max-width: 450px;
+        margin: auto;
     }
 }

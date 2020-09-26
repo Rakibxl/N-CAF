@@ -9,24 +9,42 @@
     @extend .pt-3;
 
     li {
-        font-size     : 16px;
         margin-bottom : 10px;
         position      : relative;
-        font-weight   : 600;
         letter-spacing: 0.5px;
-        text-transform: uppercase;
+        border-left   : 2px solid $treeLeftBorderColor;
+        margin-bottom : 15px;
+
+        .title {
+            color        : $treeTextColor;
+            font-weight  : 500;
+            padding      : 5px 10px 5px 25px;
+            border-radius: 0 5px 5px 30px;
+            margin-left: 10px;
+
+            &:not(.title-warning) {
+                background: $treeTitleBg;
+            }
+
+            &-warning {
+                background: $treeTitleBgDanger;
+            }
+
+            a {
+                color: inherit;
+            }
+        }
     }
 
     ul {
         @extend .list-unstyled;
-        margin      : 10px 0 20px 10px;
-        padding-left: 5px;
+        padding: 10px 0 0 0;
 
         li {
-            font-size     : 16px;
-            font-weight   : 400;
-            letter-spacing: normal;
-            text-transform: none;
+            border-left  : 0;
+            padding      : 5px 0 5px 15px;
+            margin-bottom: 0;
+            position     : relative;
 
             a {
                 color: currentColor;
@@ -35,14 +53,13 @@
             &:before {
                 content      : '';
                 display      : block;
-                float        : left;
-                border       : 2px solid currentColor;
-                margin-top   : 10px;
-                margin-right : 5px;
+                position     : absolute;
+                left         : 0;
+                top          : 15px;
+                border       : 1px solid $treeLeftBorderColor;
                 height       : 2px;
                 width        : 10px;
                 border-radius: 1px;
-                margin-top   : 10px;
             }
         }
 
