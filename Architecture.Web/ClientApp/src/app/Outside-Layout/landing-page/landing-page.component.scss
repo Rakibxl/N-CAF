@@ -42,3 +42,32 @@
         text-align: center;
     }
 }
+
+.our-status-container {
+    background: $appGradientPrimary1;
+    text-align: center;
+
+    .icon {
+        font-size: 50px;
+        max-width: 75px;
+        margin: 0 auto;
+        padding-bottom: 20px;
+
+        svg,
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+    }
+
+    .content {
+        .counter-label {
+            font-size: 40px;
+            font-weight: 700;
+            color: $primary;
+        }
+    }
+
+}
