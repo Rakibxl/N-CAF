@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./Outside-Layout/outside-layout.module').then(m => m.OutsideLayoutModule) },
   { path: '', loadChildren: () => import('./Layout/layout.module').then(m => m.LayoutModule) },
   { path: 'pdf-modify', component: PDFModifyComponent },
-  { path: '**', redirectTo: '' }
+  // { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
