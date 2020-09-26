@@ -42,18 +42,18 @@ export class PDFModifyComponent implements OnInit {
     // doc.save('Test.pdf');
 
 
-    // const doc = new jsPDF();
-    // const specialElementHandlers = {
-    //   '#editor': function (element, renderer) {
-    //     return true;
-    //   }
-    // };
-    // const content = this.content.nativeElement;
-    // doc.fromHTML(content.innerHTML, 15, 15, {
-    //   width: 190,
-    //   'elementHandlers': specialElementHandlers
-    // });
-    // doc.save('fileName.pdf');
+    const doc = new jsPDF();
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+    const content = this.content.nativeElement;
+    doc.fromHTML(content.innerHTML, 15, 15, {
+      width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+    doc.save('fileName.pdf');
 
 
 

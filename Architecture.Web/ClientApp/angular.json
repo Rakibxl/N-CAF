@@ -31,6 +31,7 @@
               "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [
+			  "../node_modules/jspdf/dist/jspdf.min.js" 
             ],
             "es5BrowserSupport": true
           },
