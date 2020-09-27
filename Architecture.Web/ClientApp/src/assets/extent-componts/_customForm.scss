@@ -1,0 +1,55 @@
+.caf-input-group {
+    @extend .form-group;
+    position   : relative;
+    padding-top: 5px;
+
+    .label {
+        position   : absolute;
+        top        : 4px;
+        transform  : translateY(-50%);
+        background : $white;
+        left       : 10px;
+        line-height: 7px;
+        padding    : 0 2px;
+    }
+
+    textarea.form-control {
+        min-height: 70px;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+
+.caf-btn {
+    &-primary-outline {
+        @extend .btn;
+        border     : 2px solid $primary;
+        font-weight: 500;
+        padding: 10px;
+
+        &:hover {
+            background: $primary;
+            color     : $white;
+        }
+    }
+
+    &-primary-fill {
+        @extend .btn;
+        border    : 2px solid $primary;
+        background: $primary;
+        color     : $white;
+        padding: 10px;
+
+        &:hover {
+            background: $white;
+            color     : $primary;
+        }
+
+    }
+}
