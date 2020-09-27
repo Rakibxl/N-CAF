@@ -3,8 +3,8 @@ $appGradientPrimary2: linear-gradient(135deg, #ffffff 0%, #d1f3ff 100%);
 $appGradientSecondary1: linear-gradient(135deg, #f8513e 0%, #ffffff 100%);
 $appGradientSecondary2: linear-gradient(135deg, #ffffff 0%, #f8513e 100%);
 $appColor: #d1f3ff;
-
 $card-shadow : 0 0 5px 1px rgba(0,0,0,0.05);
+$card-shadow2 : 0 0 10px 5px rgba(92, 206, 255, 0.5);
 $card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
 
 $cardTopBorderBg: $appGradientPrimary1;
@@ -30,6 +30,9 @@ $chatLeftBg: $appGradientPrimary1;
 $chatRightBg: $appGradientPrimary2;
 
 
+.card-shadow {
+    box-shadow: $card-shadow2;
+}
 
 .caf-card {
     padding-top   : 20px;
