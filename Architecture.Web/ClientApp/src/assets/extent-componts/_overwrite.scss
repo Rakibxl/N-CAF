@@ -2,6 +2,7 @@ $appGradientPrimary1: linear-gradient(135deg, #d1f3ff 0%, #ffffff 100%);
 $appGradientPrimary2: linear-gradient(135deg, #ffffff 0%, #d1f3ff 100%);
 $appGradientSecondary1: linear-gradient(135deg, #f8513e 0%, #ffffff 100%);
 $appGradientSecondary2: linear-gradient(135deg, #ffffff 0%, #f8513e 100%);
+$appColor: #d1f3ff;
 
 $card-shadow : 0 0 5px 1px rgba(0,0,0,0.05);
 $card-shadow-bover : 0 5px 15px rgba(0,0,0,0.5);
@@ -53,8 +54,7 @@ $chatRightBg: $appGradientPrimary2;
 }
 .form-group {
     label {
-        font-weight   : 700;
-        letter-spacing: 0.5px;
+        font-weight   : 500;
         color         : $primary;
     }
 
@@ -82,3 +82,4 @@ $chatRightBg: $appGradientPrimary2;
         min-width: 310px;
     }
 }
+

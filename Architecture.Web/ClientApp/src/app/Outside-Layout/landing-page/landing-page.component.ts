@@ -8,7 +8,7 @@ import { animationRightToggle } from 'src/app/Shared/Modules/animations/animatio
 })
 export class LandingPageComponent implements OnInit {
 
-  menuState: string = 'out';
+  menuState: string = 'in';
   regOpen: string = 'out';
 
   constructor() { }
