@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-login.component.html',
 })
 export class UserLoginComponent implements OnInit {
-
+    
   constructor() { }
 
   ngOnInit() {
