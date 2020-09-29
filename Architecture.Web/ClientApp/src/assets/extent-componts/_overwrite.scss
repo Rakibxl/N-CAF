@@ -79,6 +79,7 @@ $chatRightBg: $appGradientPrimary2;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .header-profile-dropdown, 
 .notifications-dropdown {
     @include media-breakpoint-up(lg) {
