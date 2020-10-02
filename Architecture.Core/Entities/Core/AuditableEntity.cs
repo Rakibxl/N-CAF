@@ -10,10 +10,10 @@ namespace Architecture.Core.Entities.Core
     {
         public Guid? CreatedBy { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
-        public Guid? LastModifiedBy { get; set; }
+        public Guid? ModifiedBy { get; set; }
 
-        public DateTime? LastModified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 }
