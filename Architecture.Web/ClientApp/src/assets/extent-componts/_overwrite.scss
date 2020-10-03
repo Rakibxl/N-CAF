@@ -34,6 +34,18 @@ $chatRightBg: $appGradientPrimary2;
     box-shadow: $card-shadow2;
 }
 
+.card-footer {
+    background: rgba( $appColor, 1);
+    padding: 8px;
+    border-radius: 5px !important;
+    .caf-btn-primary-outline {
+        min-width: 130px;
+    }
+}
+.card-border-top {
+    border-top: 5px solid $primary;
+}
+
 .caf-card {
     padding-top   : 20px;
     padding-bottom: 15px;
