@@ -109,8 +109,8 @@ namespace Architecture.BLL.Services.Implements
             existingEntity.IsActive = entity.IsActive;
             existingEntity.ImageUrl = string.IsNullOrWhiteSpace(entity.ImageUrl) ? existingEntity.ImageUrl : entity.ImageUrl;
 
-            existingEntity.LastModified = _dateTime.Now;
-            existingEntity.LastModifiedBy = _currentUserService.UserId;
+            existingEntity.Modified = _dateTime.Now;
+            existingEntity.ModifiedBy = _currentUserService.UserId;
 
             await _exampleUnitOfWork.ExampleRepository.UpdateAsync(existingEntity);
             var result = await _exampleUnitOfWork.SaveChangesAsync();

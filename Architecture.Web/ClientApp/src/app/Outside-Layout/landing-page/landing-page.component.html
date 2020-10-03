@@ -7,10 +7,9 @@
                 <nav>
                     <ul class="list-unstyled d-flex m-0 pb-1">
                         <li class="nav-item ml-2"><button class="btn btn-link"
-                                [ngClass]="{'text-light': regOpen == 'in'}"
-                                (click)="toggleRegClick()">Regristration</button></li>
+                                [ngClass]="{'text-light': regOpen == 'in'}" (click)="showRegForm()">Regristration</button></li>
                         <li class="nav-item ml-2"><button class="btn btn-link"
-                                [ngClass]="{'text-light': menuState == 'in'}" (click)="toggleClick()">Login</button>
+                                [ngClass]="{'text-light': openLogin == 'in'}" (click)="showLoginForm()">Login</button>
                         </li>
                     </ul>
                 </nav>
@@ -22,11 +21,15 @@
 <div class="container-fluid">
     <div class="main-container">
         <app-right-site-panel [@animationRightToggle]="regOpen" (closePanel)="closePanel($event)">
-            <app-user-registration ></app-user-registration>
+            <app-user-registration (OnClickChange)="fnOnClickRegComponent($event)"></app-user-registration>
         </app-right-site-panel>
 
-        <app-right-site-panel [@animationRightToggle]="menuState" (closePanel)="closePanel($event)">
-            <app-user-login ></app-user-login>
+        <app-right-site-panel [@animationRightToggle]="openLogin" (closePanel)="closePanel($event)">
+            <app-user-login  (OnClickChange)="fnOnClickLoginComponent($event)"></app-user-login>
+        </app-right-site-panel>
+
+        <app-right-site-panel [@animationRightToggle]="openResetPass" (closePanel)="closePanel($event)">
+            <app-reset-password-boxed ></app-reset-password-boxed>
         </app-right-site-panel>
 
         <!-- <app-chat-box-popup></app-chat-box-popup> -->
