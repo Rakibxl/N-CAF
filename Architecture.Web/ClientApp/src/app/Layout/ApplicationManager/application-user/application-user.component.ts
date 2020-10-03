@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPTableSetting } from '../../../Shared/Modules/p-table/p-table.component';
 import { Router } from '@angular/router';
-import { debug } from 'console';
-
 @Component({
   selector: 'app-application-user',
   templateUrl: './application-user.component.html',
