@@ -30,7 +30,8 @@ namespace Architecture.BLL.Services.Implements
         public string GeneratePDF()
         {
             var srcPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Input PDF", "Bonus Baby.pdf");
-            var destPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Generated PDF", "Bonus Baby_" + "1001" + ".pdf");
+            var pdfName = "Bonus Baby_" + "1001" + ".pdf";
+            var destPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Generated PDF", pdfName);
             using (FileStream outFile = new FileStream(destPath, FileMode.Create, FileAccess.Write))
             {
                 PdfReader pdfReader = new PdfReader(srcPath);
@@ -42,13 +43,13 @@ namespace Architecture.BLL.Services.Implements
                 var val = 1;
                 foreach (string key in fields.Fields.Keys)
                 {
-                    fields.SetField(key, "Test" + val++);
+                    fields.SetField(key, "Data" + val++);
                 }
 
                 pdfStamper.Close();
                 pdfReader.Close();
             }
-            return destPath;
+            return pdfName;
         }
     }
 }

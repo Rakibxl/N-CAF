@@ -17,7 +17,8 @@ const routes: Routes = [
             { path: 'examples', loadChildren: () => import('./examples/example.module').then(m => m.ExampleModule) },
             { path: 'client-profile', loadChildren: () => import('./ClientProfile/client-profle.module').then(m => m.ClientProfleModule) },
             { path: 'manager', loadChildren: () => import('./ApplicationManager/application-manager.module').then(m => m.ApplicationManagerModule) },
-            { path: 'job', loadChildren: () => import('./JobInformation/job-information.module').then(m => m.JobInformationModule) }
+            { path: 'job', loadChildren: () => import('./JobInformation/job-information.module').then(m => m.JobInformationModule) },
+            { path: 'generate-pdf', loadChildren: () => import('./generate-pdf/generate-pdf.module').then(m => m.GeneratePdfModule) }
         ]
     }
 ];
