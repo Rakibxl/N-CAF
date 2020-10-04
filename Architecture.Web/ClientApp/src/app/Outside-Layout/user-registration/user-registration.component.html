@@ -1,25 +1,29 @@
 <form class="user-form">
     <div class="container">
+        <div class="form-row pb-3">
+            <h3> <span class="bordered-title">User Regristration</span></h3>
+        </div>
+
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">First Name</label>
+                <div class="caf-input-group">
+                    <label class="label">First Name</label>
                     <input type="text" autocomplete="off" class="form-control" placeholder="First name" />
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">Last Name</label>
+                <div class="caf-input-group">
+                    <label class="label">Last Name</label>
                     <input type="text" autocomplete="off" class="form-control" placeholder="Last name" />
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">Email</label>
+                <div class="caf-input-group">
+                    <label class="label">Email</label>
                     <input type="email" autocomplete="off" class="form-control" placeholder="Email" />
                 </div>
             </div>
@@ -27,19 +31,19 @@
 
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">About</label>
-                    <textarea class="form-control" name=""  rows="3" placeholder="about"></textarea>
+                <div class="caf-input-group">
+                    <label class="label">About</label>
+                    <textarea class="form-control" name="" rows="3" placeholder="about"></textarea>
                 </div>
             </div>
         </div>
 
-        
+
 
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">Country</label>
+                <div class="caf-input-group">
+                    <label class="label">Country</label>
                     <select class="form-control">
                         <option>Country Select</option>
                         <option>Bangladesh</option>
@@ -50,8 +54,8 @@
 
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    
+                <div class="caf-input-group">
+
                     <div class="custom-checkbox custom-control">
                         <input class="custom-control-input" id="exampleCustomCheckbox" type="checkbox">
                         <label class="custom-control-label" for="exampleCustomCheckbox">
@@ -64,28 +68,57 @@
 
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">Gender</label>
+                <div class="caf-input-group">
+                    <label>Gender</label>
                     <br />
                     <div class="position-relative form-check d-inline-block pr-2">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="radio1" type="radio" /> 
+                            <input class="form-check-input" name="radio1" type="radio" />
                             Male
                         </label>
                     </div>
                     <div class="position-relative form-check d-inline-block pr-2">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="radio1" type="radio" /> 
+                            <input class="form-check-input" name="radio1" type="radio" />
                             FeMale
                         </label>
                     </div>
                     <div class="position-relative form-check d-inline-block pr-2">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="radio1" type="radio" /> 
+                            <input class="form-check-input" name="radio1" type="radio" />
                             Others
                         </label>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12">
+                <div class="caf-input-group">
+                    <div class="custom-checkbox custom-control">
+                        <input class="custom-control-input" type="checkbox" id="org" />
+                        <label class="custom-control-label" for="org" >
+                            Are you login with your organization?
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12 pb-4">
+
+                <div class="caf-input-group">
+                    <label class="label">Organization</label>
+                    <select class="form-control">
+                        <option>Organization?</option>
+                        <option>Organization 1</option>
+                        <option>Organization 2</option>
+                        <option>Organization 3</option>
+                    </select>
+                </div>
+                
+                <!-- <ng-select [options]="myOptions"></ng-select> -->
             </div>
         </div>
 
@@ -99,7 +132,7 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="position-relative form-group text-center">
-                    <p>Already have an account <a href="#">Login </a></p>
+                    <p>Already have an account <a href="javascript:void(0)" (click)="showingLoginForm()">Login </a></p>
                 </div>
             </div>
         </div>

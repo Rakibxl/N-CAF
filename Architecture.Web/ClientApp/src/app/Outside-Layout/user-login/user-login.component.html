@@ -1,34 +1,40 @@
 <form class="user-form">
     <div class="container">
+        <div class="form-row pb-3">
+            <h3><span class="bordered-title">User Login</span></h3>
+        </div>
+        
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">User Name</label>
-                    <input type="text" autocomplete="off" class="form-control"  placeholder="User name" />
+                <div class="caf-input-group">
+                    <label class="label">Email</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Enter email" required />
+                    <p class="text-info">This input contain only text nor a number</p>
                 </div>
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-12">
-                <div class="position-relative form-group">
-                    <label class="required">Password</label>
-                    <input type="password" autocomplete="off" placeholder="Password" class="form-control"  />
+                <div class="caf-input-group">
+                    <label class="label">Password</label>
+                    <input type="password" autocomplete="off" placeholder="Password" class="form-control" required />
+                    <p class="text-danger">This input contain only text nor a number</p>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="position-relative form-group text-center">
-                    <button type="Submit" class="btn btn-primary btn-lg w-50">Loign</button>
-                </div>
+                    <button type="Submit" class="caf-btn-primary-outline btn-sm w-100">Loign</button>
+                </div>               
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="position-relative form-group text-center">
-                    <p><a href="#" >Forgot your password</a></p>
-                    <p><a href="#" >Or Regrister</a></p>
+                    <p><a href="javascript:void(0)" (click)="fnForgotPassword()">Forgot your password</a></p>
+                    <p><a href="javascript:void(0)" (click)="fnRegistration()">Or Regrister</a></p>
                 </div>
             </div>
         </div>

@@ -27,6 +27,7 @@ import { IAuthUser } from './Shared/Entity/Users/auth';
 import { MustMatchDirective } from './Shared/Directive/mustmatch.directive';
 import { PDFModifyComponent } from './pdfmodify/pdfmodify.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { SelectModule } from 'ng-select';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -61,6 +62,7 @@ export function tokenGetter(): string {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        SelectModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter
