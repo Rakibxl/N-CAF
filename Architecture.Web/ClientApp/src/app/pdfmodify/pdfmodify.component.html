@@ -3,9 +3,15 @@
     <input type="button" (click)="getPDF()" value="Generate PDF">
 </div>
 
-<div *ngIf="pdfSrc" style="margin: 50px;">
+<div style="margin: 50px;">
+    <!-- *ngIf="pdfSrc" -->
     <input type="button" style="float: right;margin-bottom: 10px;" (click)="downloadPDF(pdfData, $event)" value="Download PDF">
     <!-- <embed src="https://www.liveincaredirect.org/files/Bonus%20Baby_1001.pdf" width="800px" height="2100px" /> -->
-    <object #pdfData id="pdfData" data="https://www.liveincaredirect.org/files/Bonus%20Baby_1001.pdf" type="application/pdf" style="width:100%;height:400px"></object>
-    <!-- <iframe #pdfData id="pdfData" [src]="pdfSrc" style="width:100%;height:400px"></iframe> -->
+    <!-- <object #pdfData id="pdfData" data="https://localhost:44357/Generated PDF/Bonus Baby_1001.pdf" type="application/pdf" style="width:100%;height:400px"></object> -->
+    <!-- <embed #pdfData id="pdfData" src="https://localhost:44357/Generated PDF/Bonus Baby_1001.pdf" type="application/pdf" id="pdf" width="100%" height="100%"> -->
+    <iframe #pdfData id="pdfData" (load)="onLoad(pdfData)" src="https://localhost:44357/Generated PDF/Bonus Baby_1001.pdf" style="width:100%;height:400px"></iframe>
 </div>
+
+<!-- <pdf-viewer src="https://localhost:44357/Generated PDF/Bonus Baby_1001.pdf" [render-text]="true" style="display: block;"></pdf-viewer> -->
+
+<!-- <img src="https://localhost:44357/favicon.ico"> -->

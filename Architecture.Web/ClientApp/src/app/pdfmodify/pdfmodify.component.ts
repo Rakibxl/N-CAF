@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PDFModifyService } from './services/pdfmodify.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+declare var $: any;
 
 @Component({
   selector: 'app-pdfmodify',
@@ -12,7 +14,11 @@ export class PDFModifyComponent implements OnInit {
   pdfSrc: any = '';
   @ViewChild('pdfData', { static: false }) content: ElementRef;
 
-  constructor(private pdfModifyService: PDFModifyService, private sanitizer: DomSanitizer) { }
+  constructor(private pdfModifyService: PDFModifyService, private sanitizer: DomSanitizer) {
+    // $('#pdfData').load(function () {
+    //   $('#pdfData').contents().find("#toolbarViewerRight").hide();
+    // });
+  }
 
   ngOnInit() {
 
@@ -33,39 +39,34 @@ export class PDFModifyComponent implements OnInit {
     });
   }
 
+  onLoad(iframe) {
+    console.log(iframe)
+  }
+
   downloadPDF(pdfData, event) {
-    // var doc = new jsPDF();
-    // doc.text(20, 20, 'Hello world!');
-    // doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
-    // doc.addPage();
-    // doc.text(20, 20, 'Do you like that?');
-    // doc.save('Test.pdf');
+    var iframe = document.getElementById('pdfData');
+    //var iframe = document.querySelector('iframe[id="pdfData"]');
 
+    //var element = iframe.contentWindow.document.querySelector('button');
+    //console.log(element)
 
-    const doc = new jsPDF();
-    const specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-    const content = this.content.nativeElement;
-    doc.fromHTML(content.innerHTML, 15, 15, {
-      width: 190,
-      'elementHandlers': specialElementHandlers
-    });
-    doc.save('fileName.pdf');
+    // var div1 = document.createElement("div");
+    // var frame1 = document.createElement("iframe");
+    // frame1.id = "frame1";
+    // frame1.onload = function () {
+    //   alert("loaded");
 
+    //   var iframe = document.getElementById("pdfData");
+    //   var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
+    //   var button = iframeDocument.getElementById("downloadMenu");
 
-
-    // const doc = new jsPDF('l')
-    // const ta = document.getElementById('pdfData');
-    // doc.fromHTML(ta, 0, 0);
-    // doc.save('demo.pdf');
-
-    // window.open(data)
-    // console.log(event)
-
-    // this.pdfModifyService.download(data);
+    //   if (button == null) {
+    //     alert("button is null");
+    //   }
+    // };
+    // frame1.src = "https://localhost:44357/Generated PDF/Bonus Baby_1001.pdf";
+    // div1.appendChild(frame1);
+    // document.body.appendChild(div1);
   }
 }
