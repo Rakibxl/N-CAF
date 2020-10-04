@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'roles', loadChildren: () => import('./user-role/user-role.module').then(m => m.UserRoleModule) },
             { path: 'examples', loadChildren: () => import('./examples/example.module').then(m => m.ExampleModule) },
             { path: 'client-profile', loadChildren: () => import('./ClientProfile/client-profle.module').then(m => m.ClientProfleModule) },
-            { path: 'manager', loadChildren: () => import('./ApplicationManager/application-manager.module').then(m => m.ApplicationManagerModule) }
+            { path: 'manager', loadChildren: () => import('./ApplicationManager/application-manager.module').then(m => m.ApplicationManagerModule) },
+            { path: 'job', loadChildren: () => import('./JobInformation/job-information.module').then(m => m.JobInformationModule) }
         ]
     }
 ];
