@@ -48,6 +48,7 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Logs\" />
+    <Folder Include="wwwroot\Generated PDF\" />
   </ItemGroup>
   
   <ItemGroup>
