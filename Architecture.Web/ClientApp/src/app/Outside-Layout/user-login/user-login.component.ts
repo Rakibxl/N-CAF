@@ -8,15 +8,18 @@ export class UserLoginComponent implements OnInit {
     @Output() OnClickChange = new EventEmitter() || null;
   constructor() { }
 
+  otpEnable: boolean = false;
+
   ngOnInit() {
   }
 
-    public fnForgotPassword() {
-        this.OnClickChange.emit("forgotPassword");
+  toggleOptEnable = () => this.otpEnable = !this.otpEnable;
 
-    }
+  public fnForgotPassword() {
+      this.OnClickChange.emit("forgotPassword");
+  }
 
-    public fnRegistration() {
-        this.OnClickChange.emit("registration");
-    }
+  public fnRegistration() {
+      this.OnClickChange.emit("registration");
+  }
 }
