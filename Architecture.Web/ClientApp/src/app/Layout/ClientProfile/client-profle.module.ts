@@ -33,12 +33,14 @@ import { MovementInformationFormComponent } from './movement-information-form/mo
 import { OccupationHistoryFormComponent } from './occupation-history-form/occupation-history-form.component';
 import { WorkerInformationFormComponent } from './worker-information-form/worker-information-form.component';
 import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
+import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-master.module';
 
 
 @NgModule({
     declarations: [BasicInformationComponent,OccupationHistoryComponent,FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, AssetInformationFormComponent, BankInformationFormComponent, DeligationInformationFormComponent, DocumentInformationFormComponent, EducationalInformationFormComponent, FamilyInformationFormComponent, HouseRentInformationFormComponent, IncomeInformationFormComponent, InsuranceInformationFormComponent, IseeInformationFormComponent, LegalInformationFormComponent, MovementInformationFormComponent, OccupationHistoryFormComponent, WorkerInformationFormComponent, AddressInformationFormComponent],
   imports: [
-    CommonModule,
+      CommonModule,
+      SharedMasterModule,
     ClientProfleRoutingModule
   ]
 })
