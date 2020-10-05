@@ -15,7 +15,7 @@ import { DemoModule } from '../DemoPages/demo.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.component';
 import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree/profile-tree.component';
-import { ChatBoxPopupComponent } from '../LayoutComponent/Components/chat-box-popup/chat-box-popup.component';
+import { ChatBoxPopupComponent } from 'src/app/Shared/share-component/chat-box-popup/chat-box-popup.component';
 
 
 @NgModule({
