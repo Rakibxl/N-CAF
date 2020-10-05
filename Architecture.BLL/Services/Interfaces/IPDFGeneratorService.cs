@@ -11,6 +11,6 @@ namespace Architecture.BLL.Services.Interfaces
 {
     public interface IPDFGeneratorService
     {
-        Task<string> GetAllAsync();
+        string GeneratePDF();
     }
 }

@@ -27,11 +27,14 @@ namespace Architecture.BLL.Services.Implements
 
         }
 
-        public async Task<string> GetAllAsync()
+        public string GeneratePDF()
         {
-            using (FileStream outFile = new FileStream("result.pdf", FileMode.Create))
+            var srcPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Input PDF", "Bonus Baby.pdf");
+            var pdfName = "Bonus Baby_" + "1001" + ".pdf";
+            var destPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Generated PDF", pdfName);
+            using (FileStream outFile = new FileStream(destPath, FileMode.Create, FileAccess.Write))
             {
-                PdfReader pdfReader = new PdfReader(@"E:\Projects\Angular Projects\N-CAF\Sample PDF\file.pdf", null);
+                PdfReader pdfReader = new PdfReader(srcPath);
                 PdfReader.unethicalreading = true;
 
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
@@ -40,13 +43,33 @@ namespace Architecture.BLL.Services.Implements
                 var val = 1;
                 foreach (string key in fields.Fields.Keys)
                 {
-                    fields.SetField(key, "Test" + val++);
+                    String[] checkboxstates = fields.GetAppearanceStates(key);
+                    var type = fields.GetFieldType(key);
+                    if (type == AcroFields.FIELD_TYPE_CHECKBOX)
+                    {
+                        //fields.SetField(key, "true");
+                        //fields.SetField(key, "Yes");
+                        //fields.SetField(key, checkboxstates[0]);
+
+                        fields.SetField(key, "1");
+                        continue;
+                    }
+                    if (type == AcroFields.FIELD_TYPE_RADIOBUTTON)
+                    {
+                        //fields.SetField(key, "true");
+                        //fields.SetField(key, "Yes");
+                        //fields.SetField(key, checkboxstates[0]);
+
+                        fields.SetField(key, "Yes");
+                        continue;
+                    }
+                    fields.SetField(key, "Data" + val++);
                 }
 
                 pdfStamper.Close();
                 pdfReader.Close();
             }
-            return "Ok";
+            return pdfName;
         }
     }
 }
