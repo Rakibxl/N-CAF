@@ -26,6 +26,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { IAuthUser } from './Shared/Entity/Users/auth';
 import { MustMatchDirective } from './Shared/Directive/mustmatch.directive';
 import { PDFModifyComponent } from './pdfmodify/pdfmodify.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SelectModule } from 'ng-select';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -49,6 +50,7 @@ export function tokenGetter(): string {
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        PdfViewerModule,
         NgReduxModule,
         CommonModule,
         LoadingBarRouterModule,

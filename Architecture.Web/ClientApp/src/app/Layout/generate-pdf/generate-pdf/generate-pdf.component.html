@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <input type="button" style="float: right;margin-bottom: 10px;" (click)="downloadPDF(pdfData, $event)" value="Download PDF"> -->
+            <iframe #pdfData id="pdfData" (load)="onLoad(pdfData)" [src]="pdfSrc" style="width:100%;min-height:500px"></iframe>
+        </div>
+    </div>
+</div>

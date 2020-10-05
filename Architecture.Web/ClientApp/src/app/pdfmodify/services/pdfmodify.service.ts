@@ -24,6 +24,18 @@ export class PDFModifyService {
     return this.http.get<APIResponse>(`${this.usersEndpoint}`);
   }
 
+  download(data) {
+    // this.http.get(targetUrl, { responseType: any })
+    //   .catch((err) => { return [do yourself] })
+    //   .subscribe((res: Response) => {
+    //     var a = document.createElement("a");
+    //     a.href = URL.createObjectURL(res.blob());
+    //     a.download = fileName;
+    //     // start download
+    //     a.click();
+    //   });
+  }
+
   // getUsers(filter?) {
   //   return this.http.get<APIResponse>(`${this.usersEndpoint}?${this.commonService.toQueryString(filter)}`);
   // }

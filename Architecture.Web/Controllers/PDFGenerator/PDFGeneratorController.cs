@@ -34,11 +34,11 @@ namespace Architecture.Web.Controllers.PDFGenerator
 
         [HttpGet("get-pdf")]
         //[Authorize(Permissions.Users.ListView)]
-        public async Task<IActionResult> GetPDF()
+        public IActionResult GeneratePDF()
         {
             try
             {
-                var result = await _pdfGeneratorService.GetAllAsync();
+                var result = _pdfGeneratorService.GeneratePDF();
                 return OkResult(result);
             }
             catch (Exception ex)
