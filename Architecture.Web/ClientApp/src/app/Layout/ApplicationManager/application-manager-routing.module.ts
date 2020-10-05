@@ -19,7 +19,7 @@ const routes: Routes = [
             { path: 'branch-info-new', component: BranchInformationFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info-new', component: ApplicationUserFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info', component: ApplicationUserComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role-new', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },
+            { path: 'user-role/:id', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role', component: ApplicationUserRoleComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role-mapping', component: ApplicationUserRoleMappingComponent, data: { extraParameter: 'analytics' } },
             { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } }           

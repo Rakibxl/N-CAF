@@ -20,8 +20,10 @@ export class ApplicationUserComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
+        let id = 0;
         if (event.action == "new-record") {
-            this.router.navigate(['/manager/user-info-new']);
+            debugger;
+            this.router.navigate(['../manager/user-info',id]);
         }
         else if (event.action == "edit-item") {
             this.router.navigate(['/manager/user-info-new']);

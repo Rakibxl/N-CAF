@@ -18,10 +18,25 @@ import { WorkerInformationComponent } from './worker-information/worker-informat
 import { AssetInformationComponent } from './asset-information/asset-information.component';
 import { DeligationInformationComponent } from './deligation-information/deligation-information.component';
 import { IseeInformationComponent } from './isee-information/isee-information.component';
+import { AssetInformationFormComponent } from './asset-information-form/asset-information-form.component';
+import { BankInformationFormComponent } from './bank-information-form/bank-information-form.component';
+import { DeligationInformationFormComponent } from './deligation-information-form/deligation-information-form.component';
+import { DocumentInformationFormComponent } from './document-information-form/document-information-form.component';
+import { EducationalInformationFormComponent } from './educational-information-form/educational-information-form.component';
+import { FamilyInformationFormComponent } from './family-information-form/family-information-form.component';
+import { HouseRentInformationFormComponent } from './house-rent-information-form/house-rent-information-form.component';
+import { IncomeInformationFormComponent } from './income-information-form/income-information-form.component';
+import { InsuranceInformationFormComponent } from './insurance-information-form/insurance-information-form.component';
+import { IseeInformationFormComponent } from './isee-information-form/isee-information-form.component';
+import { LegalInformationFormComponent } from './legal-information-form/legal-information-form.component';
+import { MovementInformationFormComponent } from './movement-information-form/movement-information-form.component';
+import { OccupationHistoryFormComponent } from './occupation-history-form/occupation-history-form.component';
+import { WorkerInformationFormComponent } from './worker-information-form/worker-information-form.component';
+import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
 
 
 @NgModule({
-    declarations: [BasicInformationComponent,OccupationHistoryComponent,FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent],
+    declarations: [BasicInformationComponent,OccupationHistoryComponent,FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, AssetInformationFormComponent, BankInformationFormComponent, DeligationInformationFormComponent, DocumentInformationFormComponent, EducationalInformationFormComponent, FamilyInformationFormComponent, HouseRentInformationFormComponent, IncomeInformationFormComponent, InsuranceInformationFormComponent, IseeInformationFormComponent, LegalInformationFormComponent, MovementInformationFormComponent, OccupationHistoryFormComponent, WorkerInformationFormComponent, AddressInformationFormComponent],
   imports: [
     CommonModule,
     ClientProfleRoutingModule
