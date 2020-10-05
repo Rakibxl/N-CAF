@@ -22,7 +22,7 @@ export class JobListComponent implements OnInit {
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
         if (event.action == "new-record") {
-            this.router.navigate(['/manager/user-info-new']);
+            this.router.navigate(['/job/job-info-new']);
         }
         else if (event.action == "edit-item") {
             this.router.navigate(['/manager/user-info-new']);
@@ -32,7 +32,7 @@ export class JobListComponent implements OnInit {
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
-        tableName: 'Application User List',
+        tableName: 'Job List',
         tableRowIDInternalName: "employeeId",
         tableColDef: [
             { headerName: 'Employee Id', width: '10%', internalName: 'employeeId', sort: true, type: "" },
