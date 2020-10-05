@@ -23,7 +23,8 @@ export class ApplicationUserComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['../manager/user-info',id]);
+            this.router.navigate(['../manager/user-info/0']);
+            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate(['/manager/user-info-new']);
