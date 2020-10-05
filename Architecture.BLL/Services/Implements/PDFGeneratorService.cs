@@ -43,6 +43,26 @@ namespace Architecture.BLL.Services.Implements
                 var val = 1;
                 foreach (string key in fields.Fields.Keys)
                 {
+                    String[] checkboxstates = fields.GetAppearanceStates(key);
+                    var type = fields.GetFieldType(key);
+                    if (type == AcroFields.FIELD_TYPE_CHECKBOX)
+                    {
+                        //fields.SetField(key, "true");
+                        //fields.SetField(key, "Yes");
+                        //fields.SetField(key, checkboxstates[0]);
+
+                        fields.SetField(key, "1");
+                        continue;
+                    }
+                    if (type == AcroFields.FIELD_TYPE_RADIOBUTTON)
+                    {
+                        //fields.SetField(key, "true");
+                        //fields.SetField(key, "Yes");
+                        //fields.SetField(key, checkboxstates[0]);
+
+                        fields.SetField(key, "Yes");
+                        continue;
+                    }
                     fields.SetField(key, "Data" + val++);
                 }
 
