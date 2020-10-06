@@ -265,3 +265,11 @@ input:-webkit-autofill:active {
         margin       : 5px auto 0 auto;
     }
 }
+
+// scroll bar customize 
+.ps__thumb-y {
+    background-color: $primary !important;
+}
+perfect-scrollbar .ps__rail-y {
+    background: rgba($appColor, 0.6) !important;
+}

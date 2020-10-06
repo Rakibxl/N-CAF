@@ -9,7 +9,6 @@ declare var jQuery: any;
   selector: 'app-p-table',
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './p-table.component.html',
-  styleUrls: ['./p-table.component.css'],
   providers: [PagerService],
 
 })
