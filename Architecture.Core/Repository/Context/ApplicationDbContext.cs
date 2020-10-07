@@ -67,7 +67,7 @@ namespace Architecture.Core.Repository.Context
             // Prof Basic Info
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-
+            #region Lookup mapping
             modelBuilder.Entity<Gender>().ToTable("LU_Gender");
             modelBuilder.Entity<Gender>(gender => {
                 gender.HasKey(g => g.GenderId);
@@ -242,7 +242,7 @@ namespace Architecture.Core.Repository.Context
                 );
             });
 
-
+            #endregion
 
 
         }

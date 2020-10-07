@@ -7,9 +7,9 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Email</label>
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Enter email" required />
-                    <p class="text-info">This input contain only text nor a number</p>
+                    <label class="label">Email Or Phone Number</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Enter email  or phone number" required />
+                    <p class="text-info"></p>
                 </div>
             </div>
         </div>
@@ -19,14 +19,40 @@
                 <div class="caf-input-group">
                     <label class="label">Password</label>
                     <input type="password" autocomplete="off" placeholder="Password" class="form-control" required />
-                    <p class="text-danger">This input contain only text nor a number</p>
+                    <p class="text-danger"></p>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
+                <div class="caf-input-group">
+                    <div class="custom-checkbox custom-control">
+                        <input class="custom-control-input" type="checkbox" id="org" name="hasBranch"  [(ngModel)]="hasBranch" />
+                        <label class="custom-control-label" for="org">
+                            Login with your Branch?
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="hasBranch">
+            <div class="col-12 pb-4">
+                <div class="caf-input-group">
+                    <label class="label">Branch Name</label>
+                    <select class="form-control">
+                        <option>Organization?</option>
+                        <option>Organization 1</option>
+                        <option>Organization 2</option>
+                        <option>Organization 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12">
                 <div class="position-relative form-group text-center">
-                    <button type="button" class="caf-btn-primary-outline btn-sm w-100" (click)="toggleOptEnable()">Loign</button>
+                    <button type="button" class="caf-btn-primary-outline btn-sm w-100" (click)="fnLogin()">Loign</button>
                 </div>
             </div>
         </div>
@@ -41,35 +67,3 @@
     </div>
 </form>
 
-<form action="#" class="opt-form" *ngIf="otpEnable">
-    <div class="container py-5">
-        <div class="form-row pb-3 d-flex justify-content-center">
-            <h3><span class="bordered-title">OTP Verify</span></h3>
-            <div class="w-100"></div>
-            <h6>Please check your inbox in 0171*******67</h6>
-        </div>
-
-        <div class="form-row">
-            <div class="col-12">
-                <div class="caf-input-group">
-                    <label class="label">OTP</label>
-                    <input type="text" autocomplete="off" class="form-control" placeholder="OTP code ?" required />
-                    <p class="text-danger d-none">Enter your valid OTP</p>
-                </div>
-            </div>
-            <div class="col-12 d-flex justify-content-center text-center">
-                <div>
-                    <p><strong>You are not inbox any OTP? <a href="">Re Send</a></strong></p>
-
-                    <button type="submit" class="caf-btn-primary-outline w-100 mx-3 my-2">
-                        Verify Now
-                    </button>
-
-                    <p class="py-2 mb-0"><strong> <a href="" (click)="toggleOptEnable()"><i class="pe-7s-back pr-1"></i>Back to login</a></strong></p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</form>
