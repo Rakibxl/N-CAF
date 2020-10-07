@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Architecture.Core.Entities.LU
 {
-    public class MeriatalStatus
+    public class HouseCategory
     {
-        public int MeritalStatusId { get; set; }
-        public string Name { get; set; }
+        public int HouseCategoryId { get; set; }
+        public string HouseCategoryName { get; set; }
         public bool IsActive { get; set; } = true;
     }
 }

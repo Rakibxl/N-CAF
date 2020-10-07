@@ -5,12 +5,10 @@ using System.Text;
 
 namespace Architecture.Core.Entities.LU
 {
-    public class GenderType
+    public class Gender
     {
-        [Key]
-        public int GenderTypeId { get; set; }
-        [StringLength(150)]
+        public int GenderId { get; set; }
         public string Name { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
