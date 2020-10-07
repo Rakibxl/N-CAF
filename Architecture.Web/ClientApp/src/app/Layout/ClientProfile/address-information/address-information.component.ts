@@ -24,10 +24,11 @@ export class AddressInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['../client-profile/address-new', id]);
+            this.router.navigate(['/client-profile/address-new']);
+            debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/manager/user-info-new']);
+            this.router.navigate(['/client-profile/address-new']);
         }
     }
 
@@ -37,15 +38,18 @@ export class AddressInformationComponent implements OnInit {
         tableName: 'Address List',
         tableRowIDInternalName: "userId",
         tableColDef: [
-            { headerName: 'User Id', width: '10%', internalName: 'userId', sort: true, type: "" },
-            { headerName: 'User Name ', width: '10%', internalName: 'username', sort: true, type: "" },
-            { headerName: 'User Type ', width: '15%', internalName: 'usertype', sort: true, type: "" },
-            { headerName: 'Branch Location', width: '15%', internalName: 'branchlocation', sort: true, type: "" },
-            { headerName: 'Contact Number', width: '10%', internalName: 'contactnumber', sort: true, type: "" },
-            { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "" },
-            { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "" },
-            { headerName: 'IsLocked', width: '10%', internalName: 'islocked', sort: true, type: "" },
-            { headerName: 'Status', width: '20%', internalName: 'status', sort: true, type: "" },
+            { headerName: 'Address Id', width: '10%', internalName: 'userId', sort: true, type: "" },
+            { headerName: 'AddressType', width: '20%', internalName: 'addresstype', sort: true, type: "" },
+            { headerName: 'Road Name ', width: '10%', internalName: 'roadname', sort: true, type: "" },
+            { headerName: 'Road Number ', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
+            { headerName: 'Building Number', width: '15%', internalName: 'buildingnumber', sort: true, type: "" },
+            { headerName: 'Floor Number', width: '10%', internalName: 'floornumber', sort: true, type: "" },
+            { headerName: 'Appartment Number', width: '10%', internalName: 'appartmentnumber', sort: true, type: "" },
+            { headerName: 'Province', width: '20%', internalName: 'province', sort: true, type: "" },
+            { headerName: 'City Name', width: '10%', internalName: 'cityname', sort: true, type: "" },
+            { headerName: 'Postal Code', width: '10%', internalName: 'postalcode', sort: true, type: "" },
+            { headerName: 'Start Date', width: '10%', internalName: 'startdate', sort: true, type: "" },
+            { headerName: 'End Date', width: '10%', internalName: 'enddate', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -79,32 +83,33 @@ export class AddressInformationComponent implements OnInit {
     };
 
     public employeeList = [
-        { userId: "NC-120", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-121", username: "mustafiz@gmail.com", usertype: "Branch User", branchlocation: "Firenze", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-122", username: "zaman@gmail.com", usertype: "Operator User", branchlocation: "Rome", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-123", username: "rakibh@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-124", username: "pial@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-125", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-126", username: "palash@gmail.coml", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-127", username: "palash@gmail.com ", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-128", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Firenze", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-129", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-130", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-131", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-132", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-133", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-134", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-135", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-136", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-137", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Rome", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-138", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Como", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-139", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-140", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-151", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-152", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Bergamo", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-153", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Venice", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-154", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-155", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
+        { userId: "AD-120", addresstype: "Guest", roadname: "Via Torino", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",        startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-121", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "7", buildingnumber: "2", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-122", addresstype: "Permanent", roadname: "Via Milano", roadnumber: "4", buildingnumber: "2", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-123", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "2", buildingnumber: "2", floornumber: "4", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100", startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-124", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-125", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-126", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "7", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",  startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-127", addresstype: "Guest ", roadname: "Via Torino", roadnumber: "9", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",        startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-128", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "1", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-129", addresstype: "Guest", roadname: "Via Milano", roadnumber: "2", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-131", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-130", addresstype: "Guest", roadname: "Via Torino", roadnumber: "4", buildingnumber: "6", floornumber: "3", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",         startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-131", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-132", addresstype: "Guest", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-133", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "4", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",   startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-134", addresstype: "Guest", roadname: "Via Milano", roadnumber: "3", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-135", addresstype: "Guest", roadname: "Via Torino", roadnumber: "2", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",           startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-136", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "4", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",  startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-137", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "8", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-138", addresstype: "Guest", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "4", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-139", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "4", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-140", addresstype: "Permanent", roadname: "Via Milano", roadnumber: "7", buildingnumber: "4", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-151", addresstype: "Guest", roadname: "Via Torino", roadnumber: "4", buildingnumber: "4", floornumber: "4", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-152", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "2", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-153", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "4", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-154", addresstype: "Guest", roadname: "Via Milano", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",           startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
+        { userId: "AD-155", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "3", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
     ];
 
 }
