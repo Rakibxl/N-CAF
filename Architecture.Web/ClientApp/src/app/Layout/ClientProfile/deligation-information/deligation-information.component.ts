@@ -24,11 +24,11 @@ export class DeligationInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/deligation-info-new']);
+            this.router.navigate(['/client-profile/deligation-info/0']);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/deligation-info-new']);
+            this.router.navigate(['/client-profile/deligation-info/0']);
         }
     }
 

@@ -24,11 +24,11 @@ export class HouseRentInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/house-rent-new']);
+            this.router.navigate(['/client-profile/house-rent/0']);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/house-rent-new']);
+            this.router.navigate(['/client-profile/house-rent/0']);
         }
     }
 
