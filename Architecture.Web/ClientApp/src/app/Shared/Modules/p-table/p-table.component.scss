@@ -1,5 +1,5 @@
 .p-table thead {
-    background-color: #00ADEF;
+    background-color: $appColor;
 }
 
 .p-table-header,
@@ -8,7 +8,7 @@
     padding: 5px;
 }
 .p-table-header {
-    border-bottom: 1px solid rgba(44, 66, 64, 0.125);
+    border-bottom: 1px solid rgba($dark, 0.6);
     margin-bottom: 7px;
 }
 
@@ -19,9 +19,9 @@
 .p-table-content {
     padding-top: 15px;
     padding-bottom: 15px;
-    background: #fff;
+    background: $white;
     margin-bottom: 20px;
-    border-top: 5px solid #00ADEF;
+    border-top: 5px solid $appColor;
     border-radius: 5px;
 }
 
@@ -51,8 +51,8 @@
 }
 
 .search-table {
-    margin-right: 0px!important;
-    padding: 5px 0px 5px 0px!important;
+    background: rgba($light, 1);
+    border-radius: 5px 5px 0 0;
 }
 
 .p-table-content .p-table-footer .p-table-aro-first {
@@ -100,6 +100,11 @@
 
 }
 
+app-p-table .search-wrapper.active .input-holder {
+    border: 1px solid rgba($primary,1);
+    border-right: 0;
+}
+
 .btn-column-setting {
     background-color: transparent;
     cursor: pointer;
@@ -108,6 +113,7 @@
     border-radius: 5px;
     color: #00ADEF;
     transition:all 0.3s;
+    padding: 10px 12px;
 }
 
 .btn-column-setting:hover {
@@ -153,14 +159,14 @@ span.sort-icon {
 
 .p-table-footer .pagination>li>a,
 .p-table-footer .pagination>li>span {
-    padding: 6px 10px !important;
+    padding: 10px 12px !important;
 }
 
 
 /*p-table header default color set*/
 
 .p-table-body .p-table thead tr {
-    background: linear-gradient(143.88deg, #00ACF3 10.16%, #03EAA2 141.14%);
+    background: rgba($primary,1);
 }
 .p-table-body .p-table thead th {
     color: #fff;
@@ -171,6 +177,9 @@ span.sort-icon {
     border-right: 1px solid #fff;
     text-align: center;
     font-size: 12px;
+    &:last-child {
+        border: 0;
+    }
 }
 
 .p-table-overflow-x {
@@ -213,6 +222,17 @@ span.sort-icon {
 
 /*end of Individual record color css*/
 
+.p-table-body .p-table tbody tr {
+    transition: box-shadow 0.4s, background-color 0.3s;
+    &:hover {
+        box-shadow      : 0 0 15px 5px rgba($dark, 0.2);
+        background-color: $white;
+    }
+    td {
+        padding       : 5px !important;
+        vertical-align: middle;
+    }
+}
 
 /*   for column resize    */
 

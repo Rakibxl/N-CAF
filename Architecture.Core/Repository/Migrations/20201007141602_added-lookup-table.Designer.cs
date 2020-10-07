@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201007141602_added-lookup-table")]
+    partial class addedlookuptable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,7 +250,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.HasKey("ContractTypeId");
 
@@ -287,7 +291,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.HasKey("DocumentTypeId");
 
@@ -314,45 +320,6 @@ namespace Architecture.Core.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Architecture.Core.Entities.LU.EyeColor", b =>
-                {
-                    b.Property<int>("EyeColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("EyeColorId");
-
-                    b.ToTable("LU_EyeColor");
-
-                    b.HasData(
-                        new
-                        {
-                            EyeColorId = 1,
-                            Description = "Red",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            EyeColorId = 2,
-                            Description = "Blue",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            EyeColorId = 3,
-                            Description = "Normal",
-                            IsActive = true
-                        });
-                });
-
             modelBuilder.Entity("Architecture.Core.Entities.LU.Gender", b =>
                 {
                     b.Property<int>("GenderId")
@@ -361,7 +328,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)")
@@ -392,7 +361,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.HasKey("HouseCategoryId");
 
@@ -431,7 +402,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.HasKey("HouseTypeId");
 
@@ -470,7 +443,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.HasKey("IncomeTypeId");
 
@@ -505,7 +480,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("JobTypeName")
                         .HasColumnType("nvarchar(100)")
@@ -544,7 +521,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("LoanInterestTypeName")
                         .HasColumnType("nvarchar(100)")
@@ -583,7 +562,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)")
@@ -622,7 +603,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("NationalIdTypeName")
                         .HasColumnType("nvarchar(100)")
@@ -661,7 +644,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("NationalityName")
                         .HasColumnType("nvarchar(100)")
@@ -700,7 +685,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("OccupationPositionName")
                         .HasColumnType("nvarchar(100)")
@@ -739,7 +726,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("OccupationTypeName")
                         .HasColumnType("nvarchar(100)")
@@ -778,7 +767,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("RelationTypeName")
                         .HasColumnType("nvarchar(100)")
@@ -817,7 +808,9 @@ namespace Architecture.Core.Repository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("ResidenceScopeName")
                         .HasColumnType("nvarchar(100)")
