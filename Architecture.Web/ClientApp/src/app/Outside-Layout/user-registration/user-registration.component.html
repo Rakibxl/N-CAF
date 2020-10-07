@@ -7,16 +7,24 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">First Name</label>
-                    <input type="text" autocomplete="off" class="form-control" placeholder="First name" />
+                    <label class="label">Name</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Enter name" />
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Last Name</label>
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Last name" />
+                    <label class="label">SurName</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Enter surname" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                <div class="caf-input-group">
+                    <label class="label">User Id</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="User Id" />
                 </div>
             </div>
         </div>
@@ -32,40 +40,28 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">About</label>
-                    <textarea class="form-control" name="" rows="3" placeholder="about"></textarea>
+                    <label class="label">Phone Number</label>
+                    <input type="text" class="form-control" name="" placeholder="Phone number" />
                 </div>
             </div>
         </div>
-
-
-
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Country</label>
-                    <select class="form-control">
-                        <option>Country Select</option>
-                        <option>Bangladesh</option>
-                    </select>
+                    <label class="label">Password</label>
+                    <input type="password" class="form-control" name="" placeholder="Enter password" />
                 </div>
             </div>
         </div>
-
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-
-                    <div class="custom-checkbox custom-control">
-                        <input class="custom-control-input" id="exampleCustomCheckbox" type="checkbox">
-                        <label class="custom-control-label" for="exampleCustomCheckbox">
-                            Check this custom checkbox
-                        </label>
-                    </div>
+                    <label class="label">Confirm Password</label>
+                    <input type="password" class="form-control" name="" placeholder="Enter password again" />
                 </div>
             </div>
-        </div>
-
+        </div> 
+        
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
@@ -95,37 +91,8 @@
 
         <div class="form-row">
             <div class="col-12">
-                <div class="caf-input-group">
-                    <div class="custom-checkbox custom-control">
-                        <input class="custom-control-input" type="checkbox" id="org" />
-                        <label class="custom-control-label" for="org" >
-                            Are you login with your organization?
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-12 pb-4">
-
-                <div class="caf-input-group">
-                    <label class="label">Organization</label>
-                    <select class="form-control">
-                        <option>Organization?</option>
-                        <option>Organization 1</option>
-                        <option>Organization 2</option>
-                        <option>Organization 3</option>
-                    </select>
-                </div>
-                
-                <!-- <ng-select [options]="myOptions"></ng-select> -->
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-12">
                 <div class="position-relative form-group text-center">
-                    <button type="Submit" class="btn btn-primary btn-lg w-50">Regrister</button>
+                    <button type="button" class="btn btn-primary btn-lg w-50" (click)="toggleOptEnable()">Regrister</button>
                 </div>
             </div>
         </div>
@@ -136,5 +103,38 @@
                 </div>
             </div>
         </div>
+    </div>
+</form>
+
+<form action="#" class="opt-form" *ngIf="otpEnable">
+    <div class="container py-5">
+        <div class="form-row pb-3 d-flex justify-content-center">
+            <h3><span class="bordered-title">OTP Verify</span></h3>
+            <div class="w-100"></div>
+            <h6>Please check your inbox in 0171*******67</h6>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12">
+                <div class="caf-input-group">
+                    <label class="label">OTP</label>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="OTP code ?" required />
+                    <p class="text-danger d-none">Enter your valid OTP</p>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center text-center">
+                <div>
+                    <p><strong>You are not inbox any OTP? <a href="">Re Send</a></strong></p>
+
+                    <button type="button" class="caf-btn-primary-outline w-100 mx-3 my-2" (click)="fnLogin()">
+                        Verify Now
+                    </button>
+
+                    <p class="py-2 mb-0"><strong> <a href="" (click)="toggleOptEnable()"><i class="pe-7s-back pr-1"></i>Back to login</a></strong></p>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </form>

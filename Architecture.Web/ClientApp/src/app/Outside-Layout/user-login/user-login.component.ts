@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -6,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class UserLoginComponent implements OnInit {
     @Output() OnClickChange = new EventEmitter() || null;
-  constructor() { }
+    constructor(private router: Router) { }
 
   otpEnable: boolean = false;
 
@@ -21,5 +22,12 @@ export class UserLoginComponent implements OnInit {
 
   public fnRegistration() {
       this.OnClickChange.emit("registration");
-  }
+    }
+
+    public fnLogin() {
+        console.log("successfully login...");
+        this.router.navigate(["/dashboard/common"]);
+    }
+
+    public hasBranch: boolean = false;
 }
