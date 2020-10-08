@@ -7,14 +7,13 @@
                     <div class="col col-xs-8 d-flex flex-wrap justify-content-between">
                         <h3><span class="bordered-title">{{pTableSetting.tableName}}</span></h3>
                         <div class="d-flex pl-md-4 d-flex flex-wrap">
-
-                            <div class="search-wrapper active mr-0 mr-md-2 pb-2 pb-md-0">
+                            <div [ngClass]="{'active':tableSearchIsOpen}" class="search-wrapper mr-0 mr-md-2 pb-2 pb-md-0">
                                 <div class="input-holder">
                                     <input type="text" class="search-input" id="inputValidation" #search placeholder="Search"
                                         [(ngModel)]="globalSearchValue" (keyup)="fnFilterPTable(search.value)" />
-                                    <button class="search-icon bg-plum-plate"><span></span></button>
+                                    <button class="search-icon bg-plum-plate" (click)="closeTableSearch()"><span></span></button>
                                 </div>
-                                <button class="close"></button>
+                                <button class="close" (click)="closeTableSearch()"></button>
                             </div>
 
                             <div *ngIf="pTableSetting.enabledRecordCreateBtn==true">

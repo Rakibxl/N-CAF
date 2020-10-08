@@ -68,6 +68,8 @@ export class PTableComponent implements OnInit, DoCheck {
   }
 
 
+  tableSearchIsOpen: boolean = false;
+
   ngOnInit() {
     if (this.pTableSetting == null) {//to return without values
       return false;
@@ -160,6 +162,11 @@ export class PTableComponent implements OnInit, DoCheck {
       return;
     }
 
+  }
+
+
+  closeTableSearch() {
+    this.tableSearchIsOpen = !this.tableSearchIsOpen;
   }
 
   fnSaveModalInfo() {
