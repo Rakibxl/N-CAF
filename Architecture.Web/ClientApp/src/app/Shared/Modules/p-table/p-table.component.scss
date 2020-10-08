@@ -113,7 +113,7 @@ app-p-table .search-wrapper.active .input-holder {
     border-radius: 5px;
     color: #00ADEF;
     transition:all 0.3s;
-    padding: 10px 12px;
+    padding: 5px 12px;
 }
 
 .btn-column-setting:hover {
@@ -582,4 +582,37 @@ select {
     padding: 3px 10px;
     border: 1px solid #00ADEF;
     color: #00ADEF;
+}
+
+
+app-p-table {
+    .search-wrapper {
+        .input-holder {
+            height: 33px;
+            .search-input {
+                padding: 0 55px 0 12px;
+            }
+        }
+
+        &.active .input-holder .search-input {
+            transform: translate(0, 5px);
+        }
+
+        &.active .input-holder .search-icon,
+        .input-holder .search-icon {
+            width        : 33px !important;
+            height       : 33px !important;
+            margin       : 0;
+            border-radius: 50%;
+        }
+
+        .input-holder .search-icon span,
+        &.active .input-holder .search-icon span {
+          transform: rotate(-45deg) scale(0.7)
+        }
+
+        .close {
+            margin-top: -18px;
+        }
+    }
 }
