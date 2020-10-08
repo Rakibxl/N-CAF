@@ -32,9 +32,9 @@ export const slideInOutAnimation =
         // route 'leave' transition
         transition(':leave', [
             // animation and styles at end of transition
-            animate('.6s ease-in-out', style({
+            animate('.10s ease-in-out', style({
                 // transition the right position to -400% which slides the content out of view
-                right: '-400%',
+                right: '-800%',
 
                 // transition the background opacity to 0 to fade it out
                 backgroundColor: 'rgba(0, 0, 0, 0)'

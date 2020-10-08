@@ -20,7 +20,8 @@ namespace Architecture.Core.Repository.Context
     {
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
-        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
+        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; } 
+        public DbSet<ProfFamilyInfo> ProfFamilyInfos { get; set; }
 
 
         #region Lookup Table
@@ -64,10 +65,12 @@ namespace Architecture.Core.Repository.Context
                     .IsRequired();
             });
 
+           // modelBuilder.Entity<ProfFamilyInfo>().Hasfor
+
             // Prof Basic Info
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-
+            #region Lookup mapping
             modelBuilder.Entity<Gender>().ToTable("LU_Gender");
             modelBuilder.Entity<Gender>(gender => {
                 gender.HasKey(g => g.GenderId);
@@ -242,7 +245,7 @@ namespace Architecture.Core.Repository.Context
                 );
             });
 
-
+            #endregion
 
 
         }

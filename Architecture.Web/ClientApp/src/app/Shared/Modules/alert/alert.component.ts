@@ -16,7 +16,7 @@ export class AlertComponent implements OnInit {
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-    //this function waits for a message from alert service, it gets 
+      //this function waits for a message from alert service, it gets 
     this.alertService.getMessage().subscribe(message => {
       if ((message!=null?message.type:'undefine') == 'loading') {
         if (message.text == "true") {
@@ -53,7 +53,8 @@ export class AlertComponent implements OnInit {
         }, 300000);
       }
       this.message = message;
-    },err=>{
+    }, err => {
+            debugger;
       console.log("Error in Alert Service: ", err);
     });
 

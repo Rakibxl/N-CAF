@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { JobFormComponent } from './job-form/job-form.component';
-import { JobListComponent } from './job-list/job-list.component';
+import { JobCollectionComponent } from './job-collection/job-collection.component';
 
 
 const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'job-info' },
-            { path: 'job-info', component: JobListComponent, data: { extraParameter: 'analytics' } },
-            { path: 'job-info-new', component: JobFormComponent, data: { extraParameter: 'analytics' } }
+            { path: '', redirectTo: 'job-list' },
+            { path: 'job-list', component: JobCollectionComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'job-list/:id', component: JobFormComponent, data: { extraParameter: 'dashboard' } },
+
         ]
-    }];
+    }
+    //{
+    //    path: '',
+    //    children: [
+    //        { path: '', redirectTo: 'jobs' },
+    //        { path: 'jobs', component: JobCollectionComponent, data: { extraParameter: 'analytics' } },
+    //        { path: 'jobs/:id', component: JobFormComponent, data: { extraParameter: 'analytics' } }
+    //    ]
+    //}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
