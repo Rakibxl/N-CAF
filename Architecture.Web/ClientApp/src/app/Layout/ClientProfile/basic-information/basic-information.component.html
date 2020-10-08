@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form [formGroup]="basicInfoForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
@@ -16,8 +16,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Name</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter name"
-                                   required />
+                            <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="Enter name" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -26,8 +25,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SurName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter sur name"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter sur name" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -36,8 +34,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DateOfBirth</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter date of birth"
-                                   required />
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter date of birth" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -46,8 +43,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">TaxCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter tax code"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter tax code" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -75,8 +71,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PhoneNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter phone number"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter phone number" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -116,8 +111,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Email Address</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter address"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter address" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -125,8 +119,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PostalElectronicCertificate</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter postal electronic certificate"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter postal electronic certificate" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -135,8 +128,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">BirthPlace(Municipality)/BirthCity</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter birth city"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter birth city" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -144,8 +136,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StateOfBirth</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter state of birth"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter state of birth" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -153,8 +144,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">BirthStateCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter birth state code"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter birth state code" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -162,8 +152,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Nationality</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter nationality"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter nationality" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -187,8 +176,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Height(in)CM</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter height"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter height" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -212,8 +200,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CityOfResidence</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter city of residence"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter city of residence" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -221,8 +208,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StateOfResidence</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter state of residence"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter state of residence" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -319,8 +305,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">HowManyHouseHasRent</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="has rent"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="has rent" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -343,8 +328,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">HouseCountryName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter house country name"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter house country name" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -353,8 +337,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">HouseCityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter house city name"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter house city name" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -374,8 +357,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CarSerialNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter car serial number"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter car serial number" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -383,13 +365,12 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CarNumberPlate</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter car number plate"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter car number plate" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-                    
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">HasInsurance</label>
@@ -427,8 +408,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DigitalVatCode</label>
-                            <input type="number" autocomplete="off" class="form-control" placeholder="Enter digital vat code"
-                                   required />
+                            <input type="number" autocomplete="off" class="form-control" placeholder="Enter digital vat code" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
