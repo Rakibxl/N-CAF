@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject,Observable } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class AlertService {
-    public subject = new Subject<any>();
+    public subjectObj = new Subject<any>();
     private loadingFlag: boolean = false;
     constructor() {}
     confirm(message: string, siFn: () => void, noFn: () => void, type: string = 'confirm') {
@@ -46,24 +46,24 @@ export class AlertService {
 
     setConfirmation(message: string, siFn: () => void, noFn: () => void, type: string, alertType:string="success") {   
         let that = this;
-        this.subject.next({
+        this.subjectObj.next({
             type: type,
             text: message,
             alertType:alertType,
             siFn:
                 function () {
-                    that.subject.next(); //this will close the modal
+                    that.subjectObj.next(); //this will close the modal
                     siFn();
                 },
             noFn: function () {
-                that.subject.next();
+                that.subjectObj.next();
                 noFn();
             }
         });
 
         if (type == "alert-terminated") {
             setTimeout(() => {
-                this.subject.next();
+                this.subjectObj.next();
             }, 3000);
         }
 
@@ -85,7 +85,7 @@ export class AlertService {
 //#endregion toster
 
 //#region  
-titleTosterSuccess(message: string, noFn: () => void = this.closeFn, type: string = 'title-toster') {
+    titleTosterSuccess(message: string, noFn: () => void = this.closeFn, type: string = 'title-toster') {
     this.setConfirmation(message, this.closeFn, noFn, type,"success");
 }
 titleTosterDanger(message: string, noFn: () => void = this.closeFn, type: string = 'title-toster') {
@@ -99,8 +99,8 @@ titleTosterInfo(message: string, noFn: () => void = this.closeFn, type: string =
 }
 //#endregion toster
 
-   public getMessage(): Observable<any> {
-        return this.subject.asObservable();
+    public getMessage(): Observable<any> {
+        return this.subjectObj.asObservable();
     }
 
     

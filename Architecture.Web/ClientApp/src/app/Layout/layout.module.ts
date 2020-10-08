@@ -80,9 +80,7 @@ import { HeaderNotificationComponent } from './LayoutComponent/Components/header
     //UserInfoListComponent,
     FooterComponent,
 
-    HeaderNotificationComponent,
-
-    
+    HeaderNotificationComponent,   
 
   ],
   imports: [
