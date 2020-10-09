@@ -7,27 +7,28 @@
 .p-table-footer {
     padding: 5px;
 }
+
 .p-table-header {
     border-bottom: 1px solid rgba($dark, 0.6);
     margin-bottom: 7px;
 }
 
 .p-table-body {
-    padding: 0px!important;
+    padding: 0px !important;
 }
 
 .p-table-content {
-    padding-top: 15px;
+    padding-top   : 15px;
     padding-bottom: 15px;
-    background: $white;
-    margin-bottom: 20px;
-    border-top: 5px solid $appColor;
-    border-radius: 5px;
+    background    : $white;
+    margin-bottom : 20px;
+    border-top    : 5px solid $appColor;
+    border-radius : 5px;
 }
 
 .p-table {
-    margin-bottom: 0px!important;
-    width: 100%;
+    margin-bottom: 0px !important;
+    width        : 100%;
 }
 
 .p-table .p-table-body .table-bordered>tbody>tr>td {
@@ -35,7 +36,7 @@
 }
 
 .table td {
-    padding: 0.30rem!important;
+    padding: 0.30rem !important;
 }
 
 .p-table {
@@ -47,11 +48,11 @@
 }
 
 .p-table-footer .pagination {
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
 .search-table {
-    background: rgba($light, 1);
+    background   : rgba($light, 1);
     border-radius: 5px 5px 0 0;
 }
 
@@ -69,30 +70,30 @@
 
 .p-table th.p-table-row-checkbox {
     /*width:60px !important;*/
-    min-width: 5% !important;
+    min-width : 5% !important;
     text-align: center;
 }
 
 .col-setting-title {
     padding: 2px;
-    margin: 5px;
+    margin : 5px;
 }
 
 .p-table-column-up-arrow {
-    color: #00ADEF!important;
+    color    : #00ADEF !important;
     font-size: 16px;
-    cursor: pointer;
+    cursor   : pointer;
 }
 
 .p-table-column-down-arrow {
-    color: #00ADEF;
+    color    : #00ADEF;
     font-size: 1px;
-    cursor: pointer;
+    cursor   : pointer;
 }
 
 .p-table thead th {
     vertical-align: middle;
-    padding-left: 5px!important;
+    padding-left  : 5px !important;
 }
 
 .p-table-action-button {
@@ -101,53 +102,59 @@
 }
 
 app-p-table .search-wrapper.active .input-holder {
-    border: 1px solid rgba($primary,1);
+    border      : 1px solid rgba($primary, 1);
     border-right: 0;
+}
+
+.search-wrapper .caf-btn-primary-outline {
+    padding     : 5px !important;
+    min-width   : 40px !important;
+    margin-right: 2px;
 }
 
 .btn-column-setting {
     background-color: transparent;
-    cursor: pointer;
-    border: 1px solid #00ADEF;
-    margin-right: 5px;
-    border-radius: 5px;
-    color: #00ADEF;
-    transition:all 0.3s;
-    padding: 5px 12px;
+    cursor          : pointer;
+    border          : 1px solid #00ADEF;
+    margin-right    : 5px;
+    border-radius   : 5px;
+    color           : #00ADEF;
+    transition      : all 0.3s;
+    padding         : 5px 12px;
 }
 
 .btn-column-setting:hover {
     background: #00ADEF;
-    color: #fff;
+    color     : #fff;
 }
 
 span.sort-icon {
-    display: block;
+    display : block;
     position: absolute;
-    top: 33%;
-    right: -4px;
-    margin: 0;
-    width: 18px;
-    height: 18px;
-    padding: 0;
+    top     : 33%;
+    right   : -4px;
+    margin  : 0;
+    width   : 18px;
+    height  : 18px;
+    padding : 0;
 }
 
 .p-table thead th.sorting span.sort-icon {
-    background-image: url("/assets/images/sort_both.png") !important;
-    background-repeat: no-repeat !important;
-    background-position: center right!important;
+    background-image   : url("/assets/images/sort_both.png") !important;
+    background-repeat  : no-repeat !important;
+    background-position: center right !important;
 }
 
 .p-table thead th.sorting-up span.sort-icon {
-    background-image: url("/assets/images/sort_asc.png")!important;
-    background-repeat: no-repeat!important;
-    background-position: center right!important;
+    background-image   : url("/assets/images/sort_asc.png") !important;
+    background-repeat  : no-repeat !important;
+    background-position: center right !important;
 }
 
 .p-table thead th.sorting-down span.sort-icon {
-    background-image: url("/assets/images/sort_desc.png")!important;
-    background-repeat: no-repeat!important;
-    background-position: center right!important;
+    background-image   : url("/assets/images/sort_desc.png") !important;
+    background-repeat  : no-repeat !important;
+    background-position: center right !important;
 }
 
 .p-table-content .panel-title {
@@ -166,17 +173,19 @@ span.sort-icon {
 /*p-table header default color set*/
 
 .p-table-body .p-table thead tr {
-    background: rgba($primary,1);
+    background: rgba($primary, 1);
 }
+
 .p-table-body .p-table thead th {
-    color: #fff;
-    border: none;
-    padding: 0px;
-    padding-top: 9px;
+    color         : #fff;
+    border        : none;
+    padding       : 0px;
+    padding-top   : 9px;
     padding-bottom: 8px;
-    border-right: 1px solid #fff;
-    text-align: center;
-    font-size: 12px;
+    border-right  : 1px solid #fff;
+    text-align    : center;
+    font-size     : 12px;
+
     &:last-child {
         border: 0;
     }
@@ -224,10 +233,12 @@ span.sort-icon {
 
 .p-table-body .p-table tbody tr {
     transition: box-shadow 0.4s, background-color 0.3s;
+
     &:hover {
         box-shadow      : 0 0 15px 5px rgba($dark, 0.2);
         background-color: $white;
     }
+
     td {
         padding       : 5px !important;
         vertical-align: middle;
@@ -241,16 +252,16 @@ span.sort-icon {
 }
 
 span.p-table-column-resizer {
-    display: block;
+    display : block;
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    width: 8px;
-    height: 100%;
-    padding: 0;
-    cursor: col-resize;
-    border: 1px solid transparent;
+    top     : 0;
+    right   : 0;
+    margin  : 0;
+    width   : 8px;
+    height  : 100%;
+    padding : 0;
+    cursor  : col-resize;
+    border  : 1px solid transparent;
 }
 
 
@@ -260,34 +271,34 @@ span.p-table-column-resizer {
 /*    for custom filter */
 
 .p-table-custom-column-filter {
-    position: absolute;
-    /* position: fixed; */
-    /*height: 340px;*/
-    min-height: 225px;
-    max-height: 349px;
-    width: 288px;
+    position        : absolute;
+    /* position     : fixed; */
+    /*height        : 340px;*/
+    min-height      : 225px;
+    max-height      : 349px;
+    width           : 288px;
     background-color: #fff;
-    display: none;
-    z-index: 999999999;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 6px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    display         : none;
+    z-index         : 999999999;
+    border          : 1px solid rgba(0, 0, 0, .2);
+    border-radius   : 6px;
+    box-shadow      : 0 5px 10px rgba(0, 0, 0, .2);
 }
 
 .p-table-column-filter-title {
-    padding: 8px 10px;
-    margin: 0;
-    font-size: 14px;
+    padding         : 8px 10px;
+    margin          : 0;
+    font-size       : 14px;
     background-color: #e2ede4;
-    border-bottom: 1px solid #ebebeb;
-    border-radius: 5px 5px 0 0;
-    margin-bottom: 5px;
-    margin-top: 1px;
-    height: 32px;
+    border-bottom   : 1px solid #ebebeb;
+    border-radius   : 5px 5px 0 0;
+    margin-bottom   : 5px;
+    margin-top      : 1px;
+    height          : 32px;
 }
 
 .p-table-column-filter-footer {
-    padding-top: 1px;
+    padding-top   : 1px;
     padding-bottom: 5px;
 }
 
@@ -296,28 +307,28 @@ label.checkbox-inline {
 }
 
 .filterd-data {
-    margin-top: 5px;
-    margin-right: 5px;
+    margin-top   : 5px;
+    margin-right : 5px;
     margin-bottom: 5px;
-    min-height: 85px !important;
-    max-height: 215px !important;
-    overflow-y: auto;
-    overflow-x: auto;
+    min-height   : 85px !important;
+    max-height   : 215px !important;
+    overflow-y   : auto;
+    overflow-x   : auto;
 }
 
 .filter-popup-remove-icon {
-    color: red;
-    font-size: 11px;
+    color      : red;
+    font-size  : 11px;
     margin-left: -9px !important;
 }
 
 li.dragable {
-    font-weight: 500;
+    font-weight     : 500;
     background-color: #e7e7e7;
-    padding: 5px;
-    width: 200px;
-    list-style: none;
-    cursor: move;
+    padding         : 5px;
+    width           : 200px;
+    list-style      : none;
+    cursor          : move;
 }
 
 li.dragable:hover {
@@ -333,35 +344,35 @@ ul.ul-dragable {
 }
 
 .p-table-custom-column-filter .arrow_box {
-    position: relative;
-    border: 4px solid #E8F5E9!important;
+    position     : relative;
+    border       : 4px solid #E8F5E9 !important;
     border-radius: 5px 5px 0 0;
 }
 
 .p-table-custom-column-filter .arrow_box:after,
 .p-table-custom-column-filter .arrow_box:before {
-    bottom: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
+    bottom        : 100%;
+    left          : 50%;
+    border        : solid transparent;
+    content       : " ";
+    height        : 0;
+    width         : 0;
+    position      : absolute;
     pointer-events: none;
 }
 
 .p-table-custom-column-filter .arrow_box:after {
-    border-color: rgba(136, 183, 213, 0);
-    border-bottom-color: #E8F5E9!important;
-    background-color: transparent;
-    border-width: 20px;
-    margin-left: -20px;
+    border-color       : rgba(136, 183, 213, 0);
+    border-bottom-color: #E8F5E9 !important;
+    background-color   : transparent;
+    border-width       : 20px;
+    margin-left        : -20px;
 }
 
 .p-table-custom-column-filter .arrow_box:before {
     border-color: rgba(194, 225, 245, 0);
     border-width: 36px;
-    margin-left: -36px;
+    margin-left : -36px;
 }
 
 
@@ -371,30 +382,30 @@ ul.ul-dragable {
 /* start of  reflow */
 
 .reflow-modal {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    position  : fixed;
+    width     : 100%;
+    height    : 100%;
     background: white;
-    top: 0px;
-    left: 0px;
+    top       : 0px;
+    left      : 0px;
     transition: 0.7s;
-    z-index: 99999;
+    z-index   : 99999;
 }
 
 .reflow-content {
-    margin: 1em auto;
+    margin  : 1em auto;
     overflow: visible;
 }
 
 .reflow-icon {
-    color: #00ADEF;
+    color      : #00ADEF;
     font-weight: bold;
 }
 
 .reflow-btn {
     background-color: transparent;
-    border-radius: 10px;
-    margin-left: 5px;
+    border-radius   : 10px;
+    margin-left     : 5px;
 }
 
 
@@ -405,37 +416,36 @@ ul.ul-dragable {
 }
 
 .p-table-content .nav>li>a {
-    padding: 3px 3px;
+    padding    : 3px 3px;
     font-weight: bold;
 }
 
 .p-table-edit-icon {
-    font-size: 18px;
-    padding: 3px;
+    font-size       : 18px;
+    padding         : 3px;
     background-color: transparent;
-    padding-right: 8px;
-    cursor: pointer;
+    padding-right   : 8px;
+    cursor          : pointer;
 }
 
 .p-table-delete-icon {
-    font-size: 18px;
-    color: #da9297!important;
+    font-size       : 18px;
+    color           : #da9297 !important;
     background-color: transparent;
-    padding: 3px;
-    cursor: pointer;
+    padding         : 3px;
+    cursor          : pointer;
 }
+
 .p-table .page-item.active .page-link
-
-
 /* checkbox- switch*/
 
 .p-table-scroll-body .switch {
     position: relative;
-    display: inline-block;
-    width: 48px;
-    height: 22px;
-    padding: 0px;
-    margin: 0px;
+    display : inline-block;
+    width   : 48px;
+    height  : 22px;
+    padding : 0px;
+    margin  : 0px;
 }
 
 .p-table-scroll-body .switch input {
@@ -443,27 +453,27 @@ ul.ul-dragable {
 }
 
 .p-table-scroll-body .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
+    position          : absolute;
+    cursor            : pointer;
+    top               : 0;
+    left              : 0;
+    right             : 0;
+    bottom            : 0;
+    background-color  : #ccc;
     -webkit-transition: .4s;
-    transition: .4s;
+    transition        : .4s;
 }
 
 .p-table-scroll-body .slider:before {
-    position: absolute;
-    content: "";
-    height: 17px;
-    width: 17px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
+    position          : absolute;
+    content           : "";
+    height            : 17px;
+    width             : 17px;
+    left              : 4px;
+    bottom            : 4px;
+    background-color  : white;
     -webkit-transition: .4s;
-    transition: .4s;
+    transition        : .4s;
 }
 
 .p-table-scroll-body input:checked+.slider {
@@ -476,8 +486,8 @@ ul.ul-dragable {
 
 .p-table-scroll-body input:checked+.slider:before {
     -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -ms-transform    : translateX(26px);
+    transform        : translateX(26px);
 }
 
 
@@ -527,33 +537,33 @@ ul.ul-dragable {
 }
 
 .p-table-custom-button {
-    padding: 0.037rem 0.75rem!important;
-    cursor: pointer;
+    padding: 0.037rem 0.75rem !important;
+    cursor : pointer;
 }
 
 .p-table-href-link {
-    color: #005A9C!important;
+    color      : #005A9C !important;
     font-weight: bold;
-    font-size: 13px;
+    font-size  : 13px;
 }
 
 .p-table-href-link:hover {
-    color: #005A9C!important;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: underline!important;
-    cursor: pointer;
+    color          : #005A9C !important;
+    font-weight    : bold;
+    font-size      : 15px;
+    text-decoration: underline !important;
+    cursor         : pointer;
 }
 
 select {
     background: #00ADEF;
-    color: #fff;
-    border: 1px solid #00ADEF;
+    color     : #fff;
+    border    : 1px solid #00ADEF;
 }
 
 @media only screen and (max-width: 576px) {
     .p-table-scroll-body {
-        overflow-y: scroll!important;
+        overflow-y: scroll !important;
     }
 }
 
@@ -561,27 +571,30 @@ select {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 
 .styletable {
-    width: 100%;
+    width   : 100%;
     overflow: auto !important;
 }
 
 @media only screen and (max-width: 576px) {
     .p-table-scroll-body {
-        overflow-y: scroll!important;
+        overflow-y: scroll !important;
     }
 }
+
 .table.p-table td {
     border: 1px solid #ffffff;
 }
+
 .p-table-footer .page-item.active .page-link {
     background-color: #00ADEF;
-    border-color: #00ADEF;
+    border-color    : #00ADEF;
 }
-.filter-button{
+
+.filter-button {
     border-radius: 0;
-    padding: 3px 10px;
-    border: 1px solid #00ADEF;
-    color: #00ADEF;
+    padding      : 3px 10px;
+    border       : 1px solid #00ADEF;
+    color        : #00ADEF;
 }
 
 
@@ -589,6 +602,7 @@ app-p-table {
     .search-wrapper {
         .input-holder {
             height: 33px;
+
             .search-input {
                 padding: 0 55px 0 12px;
             }
@@ -608,7 +622,7 @@ app-p-table {
 
         .input-holder .search-icon span,
         &.active .input-holder .search-icon span {
-          transform: rotate(-45deg) scale(0.7)
+            transform: rotate(-45deg) scale(0.7)
         }
 
         .close {
