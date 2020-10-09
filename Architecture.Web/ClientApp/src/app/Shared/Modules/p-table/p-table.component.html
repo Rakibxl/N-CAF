@@ -17,14 +17,14 @@
                             </div>
 
                             <div *ngIf="pTableSetting.enabledRecordCreateBtn==true">
-                                <button type="button" class="btn-column-setting" [title]="pTableSetting.newRecordButtonText||'New Record'"
+                                <button type="button" class="caf-btn-primary-outline" [title]="pTableSetting.newRecordButtonText||'New Record'"
                                     (click)="fnCreateNewRecord()"> <i class="fa fa-plus"></i> 
                                     {{pTableSetting.newRecordButtonText||'New Record'}}
                                 </button>
                             </div>
 
                             <div *ngIf="pTableSetting.enabledColumnSetting">
-                                <button type="button" class="btn-column-setting"
+                                <button type="button" class="caf-btn-primary-outline"
                                     [ngbPopover]="pTableColumnSelection" placement="bottom" [autoClose]="'outside'"
                                     popoverTitle="Column customization" ipple-radius>
                                     Columns <span class="fa fa-cog"></span>
@@ -99,23 +99,23 @@
                                 </ng-template>
                             </div>
                             <div *ngIf="pTableSetting.enabledPdfDownload==true">
-                                <button type="button" class="btn-column-setting" title="PDF Download"
+                                <button type="button" class="caf-btn-primary-outline" title="PDF Download"
                                     (click)="fnDownloadPDF()"> <i class="fa fa-file-pdf-o p-table-action-button"></i>
                                 </button>
                             </div>
                             <div *ngIf="pTableSetting.enabledExcelDownload==true">
-                                <button type="button" class="btn-column-setting" title="Excel Export"
+                                <button type="button" class="caf-btn-primary-outline" title="Excel Export"
                                     (click)="fnExeclDownload()"> <i
                                         class="fa fa-file-excel-o p-table-action-button"></i></button>
                             </div>
                             <div *ngIf="pTableSetting.enabledPrint==true">
-                                <button type="button" class="btn-column-setting" title="Print"
+                                <button type="button" class="caf-btn-primary-outline" title="Print"
                                     (click)="fnPrintPTable()"> <i
                                         class="fa fa-print p-table-action-button"></i></button>
                             </div>
                             <div *ngIf="pTableSetting.enabledCustomReflow==true || pTableSetting.enabledReflow==true"
                                 class="">
-                                <button type="button" class="btn-column-setting mr-0" (click)="fnReflowTable()"
+                                <button type="button" class="caf-btn-primary-outline mr-0" (click)="fnReflowTable()"
                                     ripple-radius>
                                     <span class="fa fa-arrows glyphicon-fullscreen reflow-icon"
                                         *ngIf="activeReflow==false && customReflowActive==false"></span>
