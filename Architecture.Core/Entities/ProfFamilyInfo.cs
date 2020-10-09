@@ -10,9 +10,9 @@ namespace Architecture.Core.Entities
     {
         public int FamilyInfoId { get; set; }
         public int ProfileId { get; set; }
-        public ProfBasicInfo ProfBasicInfo { get; set; }
+        public virtual ProfBasicInfo ProfBasicInfo { get; set; }
         public int? RelationTypeId { get; set; }
-        public RelationType RelationType { get; set; }
+        public virtual RelationType RelationType { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public string TaxCode { get; set; }
@@ -20,12 +20,12 @@ namespace Architecture.Core.Entities
         public string PlaceOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public int? OccupationTypeId { get; set; }
-        public OccupationType OccupationType { get; set; }
+        public virtual OccupationType OccupationType { get; set; }
         public int? NationlityId { get; set; }
-        public Nationality Nationality { get; set; }
+        public virtual Nationality Nationality { get; set; }
         public string PreviousNationality { get; set; }
         public int? ResidenceScopeId { get; set; }
-        public ResidenceScope ResidenceScope { get; set; }
+        public virtual ResidenceScope ResidenceScope { get; set; }
         public bool IsDependent { get; set; } = false;
         public decimal DependentPercentage { get; set; }
         public bool IsDisabled { get; set; }

@@ -51,6 +51,7 @@ namespace Architecture.Core.Entities
         public string DigitalVatCode { get; set; }
         public bool HasAppliedForCitizenship { get; set; }
         public int? BranchId { get; set; }
+        public virtual ICollection<ProfFamilyInfo> ProfFamilyInfos { get; set; }
         #endregion
 
     }
