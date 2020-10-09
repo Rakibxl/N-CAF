@@ -101,16 +101,6 @@
 
 }
 
-app-p-table .search-wrapper.active .input-holder {
-    border      : 1px solid rgba($primary, 1);
-    border-right: 0;
-}
-
-.search-wrapper .caf-btn-primary-outline {
-    padding     : 5px !important;
-    min-width   : 40px !important;
-    margin-right: 2px;
-}
 
 .btn-column-setting {
     background-color: transparent;
@@ -166,7 +156,7 @@ span.sort-icon {
 
 .p-table-footer .pagination>li>a,
 .p-table-footer .pagination>li>span {
-    padding: 10px 12px !important;
+    padding: 5px 10px !important;
 }
 
 
@@ -177,7 +167,7 @@ span.sort-icon {
 }
 
 .p-table-body .p-table thead th {
-    color         : #fff;
+    color         : rgb(248, 196, 196);
     border        : none;
     padding       : 0px;
     padding-top   : 9px;
@@ -390,10 +380,14 @@ ul.ul-dragable {
     left      : 0px;
     transition: 0.7s;
     z-index   : 99999;
+
+    .myscroll {
+        max-height: 78vh !important;
+    }
 }
 
 .reflow-content {
-    margin  : 1em auto;
+    width: 100%;
     overflow: visible;
 }
 
@@ -602,6 +596,7 @@ app-p-table {
     .search-wrapper {
         .input-holder {
             height: 33px;
+            background: $white !important;
 
             .search-input {
                 padding: 0 55px 0 12px;
@@ -618,15 +613,73 @@ app-p-table {
             height       : 33px !important;
             margin       : 0;
             border-radius: 50%;
+            background: transparent !important;
+            border: 1px solid $primary;
+            span {
+                &:before {
+                    background-color: $primary;
+                }
+                &:after {
+                    border-color: $primary;
+                }
+            }
+        }
+
+        &.active .input-holder {
+            border : 1px solid rgba($primary, 1);
+            .search-icon {
+                border: 0;
+            }
         }
 
         .input-holder .search-icon span,
         &.active .input-holder .search-icon span {
-            transform: rotate(-45deg) scale(0.7)
+            transform: rotate(-45deg) scale(0.8)
         }
 
         .close {
             margin-top: -18px;
         }
     }
+    .caf-input-group {
+        .form-control {
+            padding: 0 10px;
+            height: 29px;
+            line-height: 29px;
+        }
+    }
+}
+
+.app-main__inner {
+    .caf-btn-primary-outline {
+        padding     : 4px !important;
+        min-width   : 35px !important;
+        margin-right: 2px;
+    }
+}
+
+
+.pagination {
+    .page-link {
+        border: 2px solid rgba($primary, 1);
+        &.disabled {
+            opacity: 0.5;
+        }
+        &:not(.disabled):hover {
+            background: $primary;
+            color: $white;
+        }
+    }
+    .active {
+        .page-link {
+            &:not(.disabled):hover {
+                background: $primary;
+            }
+        }
+    }
+}
+
+.table-full-width .app-main__outer {
+    position: relative;
+    z-index: 20;
 }
