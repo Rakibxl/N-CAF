@@ -20,7 +20,8 @@ namespace Architecture.Core.Repository.Context
     {
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
-        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
+        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; } 
+        public DbSet<ProfFamilyInfo> ProfFamilyInfos { get; set; }
 
 
         #region Lookup Table
@@ -63,6 +64,8 @@ namespace Architecture.Core.Repository.Context
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
             });
+
+           // modelBuilder.Entity<ProfFamilyInfo>().Hasfor
 
             // Prof Basic Info
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
