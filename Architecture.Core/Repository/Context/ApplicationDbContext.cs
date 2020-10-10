@@ -20,13 +20,12 @@ namespace Architecture.Core.Repository.Context
     {
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
-        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; } 
-        public DbSet<ProfFamilyInfo> ProfFamilyInfos { get; set; }
+        public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
 
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
-        public DbSet<MeriatalStatus> MeriatalStatus { get; set; }
+        public DbSet<MaritalStatus> MeriatalStatus { get; set; }
         public DbSet<DocumentType> DocumentType { get; set; }
         public DbSet<OccupationPosition> OccupationPosition { get; set; }
         public DbSet<JobType> JobType { get; set; }
@@ -65,12 +64,10 @@ namespace Architecture.Core.Repository.Context
                     .IsRequired();
             });
 
-           // modelBuilder.Entity<ProfFamilyInfo>().Hasfor
-
             // Prof Basic Info
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            #region Lookup mapping
+
             modelBuilder.Entity<Gender>().ToTable("LU_Gender");
             modelBuilder.Entity<Gender>(gender => {
                 gender.HasKey(g => g.GenderId);
@@ -80,14 +77,14 @@ namespace Architecture.Core.Repository.Context
                 );
             });
 
-            modelBuilder.Entity<MeriatalStatus>().ToTable("LU_MeriatalStatus");
-            modelBuilder.Entity<MeriatalStatus>(ms => {
+            modelBuilder.Entity<MaritalStatus>().ToTable("LU_MeriatalStatus");
+            modelBuilder.Entity<MaritalStatus>(ms => {
                 ms.HasKey(g => g.MeritalStatusId);
                 ms.Property(g => g.Name).HasMaxLength(100);
                 ms.HasData(
-                    new MeriatalStatus { MeritalStatusId = 1, Name = "Single", IsActive = true },
-                    new MeriatalStatus { MeritalStatusId = 2, Name = "Marrid", IsActive = true },
-                    new MeriatalStatus { MeritalStatusId = 3, Name = "Divorce", IsActive = true }
+                    new MaritalStatus { MeritalStatusId = 1, Name = "Single", IsActive = true },
+                    new MaritalStatus { MeritalStatusId = 2, Name = "Marrid", IsActive = true },
+                    new MaritalStatus { MeritalStatusId = 3, Name = "Divorce", IsActive = true }
                 );
             });
 
@@ -245,7 +242,7 @@ namespace Architecture.Core.Repository.Context
                 );
             });
 
-            #endregion
+
 
 
         }
