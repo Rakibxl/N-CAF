@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace Architecture.Core.Entities.LU
+﻿namespace Architecture.Core.Entities.LU
 {
     public class OccupationType
     {

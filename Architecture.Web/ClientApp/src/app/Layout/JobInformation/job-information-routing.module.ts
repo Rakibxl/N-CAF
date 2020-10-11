@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { JobFormComponent } from './job-form/job-form.component';
 import { JobCollectionComponent } from './job-collection/job-collection.component';
+import { JobListComponent } from './job-list/job-list.component';
 
 
 const routes: Routes = [
@@ -9,8 +10,9 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: 'job-list' },
-            { path: 'job-list', component: JobCollectionComponent, data: { extraParameter: 'dashboard' } },
-            { path: 'job-list/:id', component: JobFormComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'job-list', component: JobListComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'job-info-new', component: JobFormComponent, data: { extraParameter: 'analytics' } },
+
 
         ]
     }
