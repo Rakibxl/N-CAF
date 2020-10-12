@@ -135,7 +135,7 @@
                 
                     <div class="p-table-scroll-body" [id]="'p-table-scroll-'+pTableSetting.tableID"
                         [style.width]="pTableSetting.pTableStyle?.overflowContentWidth">
-                        <perfect-scrollbar [style.max-height]="pTableSetting.pTableStyle?.overflowContentHeight" [autoPropagation]="true">
+                        <perfect-scrollbar class="myscroll" [style.max-height]="pTableSetting.pTableStyle?.overflowContentHeight" [autoPropagation]="true">
 
                             <div class="panel-body p-table-body" style="position:relative;">
                                 <table class="p-table table table-hover table-striped table-bordered table-list"
@@ -390,13 +390,13 @@
                         <div
                             *ngIf="pTableSetting.tableFooterVisibility==true ||pTableSetting.tableFooterVisibility==null">
                             <div class="p-table-footer pt-3" *ngIf="pTableDatalength>0">
-                                <div class="row d-flex align-items-center justify-content-between flex-wrap">
+                                <div class="row m-0 d-flex align-items-center justify-content-between flex-wrap">
                                     <div class="col-xs-4">
                                         <div [innerHTML]="showingPageDetails"></div>
                                     </div>
 
                                     <div class="col-xs-8 d-flex align-items-center flex-wrap">
-                                        <div *ngIf="pTableSetting.enabledDataLength" class="pr-3">
+                                        <div *ngIf="pTableSetting.enabledDataLength" class="caf-input-group mb-0 pr-3">
                                             <select class="form-control" name="slct" id="slct" (change)="fnChangePTableRowLength($event.target.value)">
                                                 <option *ngFor="let rowlimit of rowLimitArray" [value]="rowlimit">{{rowlimit}}
                                                     records</option>

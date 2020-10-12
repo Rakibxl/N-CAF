@@ -12,9 +12,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         public void Configure(EntityTypeBuilder<ProfFamilyInfo> familyInfo)
         {
             // Prof Family Info
-            //familyInfo.hasf
-            //.HasForeignKey(p => p.AuthorFK);
-            familyInfo.HasKey(bs => bs.FamilyInfoId);
+                familyInfo.HasKey(bs => bs.FamilyInfoId);
+                familyInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfFamilyInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
                 familyInfo.Property(bs => bs.Name).HasMaxLength(100).IsRequired();
                 familyInfo.Property(bs => bs.SurName).HasMaxLength(100).IsRequired();
