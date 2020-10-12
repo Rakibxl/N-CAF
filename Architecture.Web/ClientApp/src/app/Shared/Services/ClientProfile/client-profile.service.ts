@@ -15,6 +15,5 @@ export class ClientProfileService {
 
   saveBasicInfo(data) {
     return this.http.post<APIResponse>(this.baseUrl + 'ClientProfile/save-basic-info', data);
-    // return this.http.post(this.baseUrl + 'v1/dashboard', data);
   }
 }
