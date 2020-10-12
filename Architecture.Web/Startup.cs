@@ -25,6 +25,10 @@ using Architecture.Core.Repository.Interfaces;
 using System;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Architecture.BLL.Services.Notification;
+using Architecture.BLL.Services.ClientProfile.Interfaces;
+using Architecture.BLL.Services.ClientProfile.Implements;
+using Architecture.Core.Repository.Interfaces.ClientProfile;
+using Architecture.Core.Repository.Implements.ClientProfile;
 
 namespace Architecture.Web
 {
@@ -58,6 +62,7 @@ namespace Architecture.Web
             #region Repository and UnitOfWork
             services.AddScoped<IExampleRepository, ExampleRepository>();
             services.AddScoped<IExampleUnitOfWork, ExampleUnitOfWork>();
+            services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
             #endregion
 
             services.AddHttpContextAccessor();
@@ -72,6 +77,7 @@ namespace Architecture.Web
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();
             services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
+            services.AddTransient<IClientProfileService, ClientProfileService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
@@ -93,6 +99,8 @@ namespace Architecture.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddMemoryCache();
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

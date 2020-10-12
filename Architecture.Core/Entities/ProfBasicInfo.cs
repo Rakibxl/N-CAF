@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Architecture.Core.Entities.Core;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Architecture.Core.Entities
 {
    public class ProfBasicInfo: Auditable
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Column(Order = 0)]
         public int ProfileId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }

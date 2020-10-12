@@ -13,7 +13,8 @@ export class ClientProfileService {
     this.baseUrl = baseUrl + 'api/';
   }
 
-  getDashboardData() {
-    return this.http.get<APIResponse>(this.baseUrl + 'v1/dashboard');
+  saveBasicInfo(data) {
+    return this.http.post<APIResponse>(this.baseUrl + 'ClientProfile/save-basic-info', data);
+    // return this.http.post(this.baseUrl + 'v1/dashboard', data);
   }
 }
