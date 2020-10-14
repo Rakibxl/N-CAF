@@ -171,7 +171,7 @@
                                                     *ngIf="pTableSetting.enabledColumnFilter && (head.applyColFilter==null ||head.applyColFilter=='Apply')"
                                                     (click)="$event.stopPropagation();fnIndividualColumnFilterContext(head,$event);p.open()"
                                                     class="column-filter-active pull-left" popoverTitle="Pop title"
-                                                    [autoClose]="'outside'" triggers="manual" [ngbPopover]="columnFilter"
+                                                    [autoClose]="'outside'" triggers="manual" container="body" [ngbPopover]="columnFilter"
                                                     #p="ngbPopover">
                                                     <i class="fa fa-filter" style="cursor: pointer"
                                                         id="filter-icon-{{head.internalName}}" aria-hidden="true">
@@ -211,7 +211,10 @@
                                                                             id="basic-addon2"></span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="filterd-data" style="width:100%">
+
+                                                                <perfect-scrollbar class="filterd-data" style="width:100%"
+                                                                    [autoPropagation]="true">
+
                                                                     <div>
                                                                         <label class="checkbox-inline"
                                                                             style="margin-bottom:0px;"><input type="checkbox"
@@ -225,14 +228,15 @@
                                                                                     [(ngModel)]="uniqueRecord.checked">{{uniqueRecord.data}}
                                                                             </label><br /></div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="footer-buttons d-flex justify-content-end"
+                                                                </perfect-scrollbar>
+                                                                
+                                                                <div class="footer-buttons pt-2 d-flex"
                                                                     style="width:100%; text-align: right;">
                                                                     <button type="button"
-                                                                        class="btn btn-sm btn-outline-success mr-2"
+                                                                        class="caf-btn-primary-outline w-50 py-1  mr-2"
                                                                         (click)="fnApplyCustomFilter()"
                                                                         style="padding-left:20px;padding-right:20px;">Ok</button>
-                                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                                    <button type="button" class="caf-btn-primary-outline back text-danger py-1 w-50"
                                                                         (click)="fnCloseCustomFilter();">Cancel</button>
                                                                 </div>
 
