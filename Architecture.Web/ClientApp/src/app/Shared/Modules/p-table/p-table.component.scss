@@ -688,3 +688,9 @@ app-p-table {
     position: relative;
     z-index: 20;
 }
+
+.table-full-width .p-table-overflow-y {
+    transition: width 0.3s, height 0.3s;
+    max-height: 80vh !important;
+    max-height: calc(100vh - 90px) !important;
+}
