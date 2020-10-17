@@ -6,11 +6,13 @@ using AutoMapper;
 using Architecture.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Architecture.Web.Controllers.Common
 {
     [ApiVersion("1")]
     [Route("api/v{v:apiVersion}/dashboard")]
+    [Authorize]
     public class DashboardController : BaseController
     {
         private readonly IDashboardService _dashboardService;

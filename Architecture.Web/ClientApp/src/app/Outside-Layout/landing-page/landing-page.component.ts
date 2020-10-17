@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { animationRightToggle } from '../../Shared/Modules/animations/animationRightToggle';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Shared/Services/Users/auth.service';
 
 @Component({
     selector: 'app-landing-page',
@@ -12,7 +14,11 @@ export class LandingPageComponent implements OnInit {
     public regOpen: string = 'out';
     public openResetPass: string = "out";
 
-    constructor() { }
+    constructor(private authService: AuthService, private router: Router) {
+        if (this.authService.isLoggedIn && !this.authService.isTokenExpired) {
+            this.router.navigate(['/dashboard/common']);
+        }
+    }
 
     ngOnInit() {
     }

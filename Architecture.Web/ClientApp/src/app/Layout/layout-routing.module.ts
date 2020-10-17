@@ -7,7 +7,7 @@ const routes: Routes = [
     {
         path: '',
         component: BaseLayoutComponent,
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             { path: '', redirectTo: 'dashboard' },
             { path: 'demo', loadChildren: () => import('./DemoPages/demo.module').then(m => m.DemoModule) },

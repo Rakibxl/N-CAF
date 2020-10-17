@@ -1,48 +1,48 @@
 <div class="d-flex">
-  <div class="header-btn-lg pr-0 ml-0">
-    <div class="widget-content p-0">
-      <div class="widget-content-wrapper">
-        <div class="widget-content-left">
-          <div class="btn-group" ngbDropdown placement="bottom-right">
-            <button type="button" class="btn btn-link p-0 mr-2" ngbDropdownToggle>
+    <div class="header-btn-lg pr-0 ml-0">
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left">
+                    <div class="btn-group" ngbDropdown placement="bottom-right">
+                        <button type="button" class="btn btn-link p-0 mr-2" ngbDropdownToggle>
               <span>
                 <div class="icon-wrapper icon-wrapper-alt rounded-circle">
                   <img width="42" src="./assets/images/avatars/1.jpg" alt="" class="rounded-circle">
                 </div>
               </span>
             </button>
-            <div ngbDropdownMenu class="header-profile-dropdown">
-              <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                  <i class="header-icon lnr-lighter icon-gradient bg-amy-crisp"></i>
-                  <div class="d-flex justify-content-between">
-                    <strong>Lura Profile</strong>
-                    <div class="border-left border-primary pl-3 ml-2"><a href="/accounts/accounts-history" >$0.00<small><sup>USD</sup></small></a></div>
-                  </div>
-                </div>
-              </div>
+                        <div ngbDropdownMenu class="header-profile-dropdown">
+                            <div class="card-header-tab card-header">
+                                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                    <i class="header-icon lnr-lighter icon-gradient bg-amy-crisp"></i>
+                                    <div class="d-flex justify-content-between">
+                                        <strong>{{ user.fullName }} Profile</strong>
+                                        <div class="border-left border-primary pl-3 ml-2"><a href="/accounts/accounts-history">$0.00<small><sup>USD</sup></small></a></div>
+                                    </div>
+                                </div>
+                            </div>
 
-              <perfect-scrollbar auto-propagation="true">
-                <div class="ps-content p-2">
-                  <ul class="nav flex-column">
-                    <li class="nav-item">
-                      <a class="nav-link" href="/architectui-angular-pro/">Chat
+                            <perfect-scrollbar auto-propagation="true">
+                                <div class="ps-content p-2">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/architectui-angular-pro/">Chat
                         <div class="ml-auto badge badge-pill badge-info">8</div>
                       </a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/profile/change-password">Change Password</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/profile/view">Account Settings <div
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="/profile/change-password">Change Password</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="/profile/view">Account Settings <div
                           class="ml-auto badge badge-success">New</div></a></li>
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="/architectui-angular-pro/">Messages <div
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/architectui-angular-pro/">Messages <div
                           class="ml-auto badge badge-warning">512</div></a>
-                    </li>
+                                        </li>
 
-                    <li class="nav-item">
-                      <a class="nav-link" href="javascript:void(0)" (click)="logout()">
-                        <strong>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="javascript:void(0)" (click)="logout()">
+                                                <strong>
                           Logout 
                           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -52,20 +52,20 @@
                               d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                           </svg>
                         </strong>
-                      </a>
-                    </li>
-                  </ul>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </perfect-scrollbar>
+
+                        </div>
+                    </div>
                 </div>
-              </perfect-scrollbar>
 
+                <div class="widget-content-left ml-1 header-user-info">
+                    <div class="widget-heading">{{ user.fullName }}</div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="widget-content-left ml-1 header-user-info">
-          <div class="widget-heading">LURA</div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
