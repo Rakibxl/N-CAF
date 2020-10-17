@@ -591,12 +591,24 @@ export class PTableComponent implements OnInit, DoCheck {
     // this.setPage(1);
   }
 
+  fullscreen: boolean = false;
+
   fnReflowTable() {
+
+    if (!this.fullscreen) {
+      document.getElementsByTagName('body')[0].classList.add('table-full-width');
+      this.fullscreen = true;
+    } else {
+      document.getElementsByTagName('body')[0].classList.remove('table-full-width');
+      this.fullscreen = false;
+    }
+    
     if (this.pTableSetting.enabledCustomReflow) {
       if (this.customReflowActive) {
         this.customReflowActive = false;
         this.fnResetStyle("retrive");
       } else {
+        
         this.customReflowActive = true;
         this.fnResetStyle("reset");
       }

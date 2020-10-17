@@ -306,6 +306,11 @@ label.checkbox-inline {
     overflow-x   : auto;
 }
 
+.popover {
+    box-shadow: 0px 9px 15px 4px rgba(0, 0, 0, 0.3);
+}
+input[type=checkbox]  { margin-right: 8px; }
+
 .filter-popup-remove-icon {
     color      : red;
     font-size  : 11px;
@@ -682,4 +687,10 @@ app-p-table {
 .table-full-width .app-main__outer {
     position: relative;
     z-index: 20;
+}
+
+.table-full-width .p-table-overflow-y {
+    transition: width 0.3s, height 0.3s;
+    max-height: 80vh !important;
+    max-height: calc(100vh - 90px) !important;
 }
