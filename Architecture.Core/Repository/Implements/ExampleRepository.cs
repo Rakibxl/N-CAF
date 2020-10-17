@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Implements
 {
-    public class ExampleRepository : Repository<Example, int, ApplicationDbContext>, IExampleRepository
+    public class ExampleRepository : Repository<Example>, IExampleRepository
     {
         public ExampleRepository(ApplicationDbContext dbContext) : base(dbContext)
         {

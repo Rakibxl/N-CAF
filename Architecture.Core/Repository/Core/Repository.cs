@@ -14,16 +14,15 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Core
 {
-    public abstract class Repository<TEntity, TKey, TContext>
-        : IRepository<TEntity, TKey, TContext>
+    public abstract class Repository<TEntity>
+        : IRepository<TEntity>
         where TEntity : class
-        where TContext : DbContext
     {
         #region CONFIG
-        protected TContext _dbContext;
+        protected ApplicationDbContext _dbContext;
         protected DbSet<TEntity> _dbSet;
 
-        public Repository(TContext dbContext)
+        public Repository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<TEntity>();
@@ -56,7 +55,7 @@ namespace Architecture.Core.Repository.Core
             return result;
         }
 
-        public virtual async Task<(IList<TResult> Items, int Total, int TotalFilter)> GetAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
+        public virtual async Task<(IList<TResult> Items, int Total, int TotalFilter)> GetWithFilterAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
                             Expression<Func<TEntity, bool>> predicate = null,
                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
@@ -133,9 +132,10 @@ namespace Architecture.Core.Repository.Core
             return await query.AnyAsync(predicate);
         }
 
-        public virtual async Task AddAsync(TEntity entity)
+        public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
+            return entity;
         }
 
         public virtual async Task AddRangeAsync(IList<TEntity> entities)
@@ -143,10 +143,11 @@ namespace Architecture.Core.Repository.Core
             await _dbSet.AddRangeAsync(entities);
         }
 
-        public virtual async Task UpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+            return entity;
         }
 
         public virtual async Task UpdateRangeAsync(IList<TEntity> entities)
@@ -171,7 +172,7 @@ namespace Architecture.Core.Repository.Core
             _dbSet.Remove(entity);
         }
 
-        public virtual async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
         {
             var query = _dbSet.AsQueryable().Where(predicate);
 
@@ -179,6 +180,8 @@ namespace Architecture.Core.Repository.Core
             {
                 _dbSet.RemoveRange(query);
             }
+
+            return 1;
         }
 
         public virtual async Task DeleteRangeAsync(IList<TEntity> entities)

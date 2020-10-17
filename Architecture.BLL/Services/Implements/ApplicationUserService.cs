@@ -44,7 +44,7 @@ namespace Architecture.BLL.Services.Implements
 
             var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
             {
-                ["fullName"] = v => v.FullName,
+                ["Name"] = v => v.Name,
                 ["userName"] = v => v.UserName,
                 ["email"] = v => v.Email
             };
@@ -52,9 +52,8 @@ namespace Architecture.BLL.Services.Implements
             var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
             result.Total = await query.CountAsync();
 
-            query = query.Where(x => !x.IsDeleted &&
-                x.Status != EnumApplicationUserStatus.SuperAdmin &&
-                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.FullName.Contains(queryObj.FullName)) &&
+            query = query.Where(x => !x.IsLocked &&
+                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.Name.Contains(queryObj.FullName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
                 (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
@@ -73,7 +72,7 @@ namespace Architecture.BLL.Services.Implements
 
             var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
             {
-                ["fullName"] = v => v.FullName,
+                ["Name"] = v => v.Name,
                 ["userName"] = v => v.UserName,
                 ["email"] = v => v.Email
             };
@@ -81,10 +80,9 @@ namespace Architecture.BLL.Services.Implements
             var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
             result.Total = await query.CountAsync();
 
-            query = query.Where(x => !x.IsDeleted &&
-                x.Status != EnumApplicationUserStatus.SuperAdmin && 
+            query = query.Where(x => !x.IsLocked &&
                 !x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) && 
-                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.FullName.Contains(queryObj.FullName)) &&
+                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.Name.Contains(queryObj.FullName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
                 (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
@@ -103,7 +101,7 @@ namespace Architecture.BLL.Services.Implements
 
             var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
             {
-                ["fullName"] = v => v.FullName,
+                ["Name"] = v => v.Name,
                 ["userName"] = v => v.UserName,
                 ["email"] = v => v.Email
             };
@@ -111,10 +109,8 @@ namespace Architecture.BLL.Services.Implements
             var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
             result.Total = await query.CountAsync();
 
-            query = query.Where(x => !x.IsDeleted &&
-                x.Status != EnumApplicationUserStatus.SuperAdmin &&
+            query = query.Where(x => !x.IsLocked &&
                 x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) &&
-                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.FullName.Contains(queryObj.FullName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
                 (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
                 (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
@@ -167,7 +163,6 @@ namespace Architecture.BLL.Services.Implements
                         throw new DuplicationException(nameof(entity.Email));
                     }
 
-                    entity.Status = EnumApplicationUserStatus.GeneralUser;
                     entity.Created = _dateTime.Now;
                     entity.CreatedBy = _currentUserService.UserId;
 
@@ -225,16 +220,13 @@ namespace Architecture.BLL.Services.Implements
                         throw new DuplicationException(nameof(entity.Email));
                     }
 
-                    user.FullName = entity.FullName;
+                    user.Name = entity.Name;
                     user.UserName = entity.UserName;
                     user.Email = entity.Email;
                     user.PhoneNumber = entity.PhoneNumber;
-                    user.Address = entity.Address;
-                    user.DateOfBirth = entity.DateOfBirth;
-                    user.Gender = entity.Gender;
                     user.ImageUrl = entity.ImageUrl ?? user.ImageUrl;
-                    user.LastModified = _dateTime.Now;
-                    user.LastModifiedBy = _currentUserService.UserId;
+                    user.Modified = _dateTime.Now;
+                    user.ModifiedBy = _currentUserService.UserId;
 
                     var userSaveResult = await _userManager.UpdateAsync(user);
 
@@ -330,7 +322,7 @@ namespace Architecture.BLL.Services.Implements
                         throw new NotFoundException(nameof(ApplicationUser), id);
                     }
 
-                    user.IsActive = !user.IsActive;
+                    user.IsLocked = !user.IsLocked;
                     var result = await _userManager.UpdateAsync(user);
 
                     if (!result.Succeeded)
@@ -352,19 +344,19 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<IList<KeyValuePairObject>> GetAllForSelectAsync()
         {
-            return await _userManager.Users.Where(x => x.IsActive && !x.IsDeleted && x.Status != EnumApplicationUserStatus.SuperAdmin).OrderBy(x => x.FullName)
-                                .Select(s => new KeyValuePairObject { Value = s.Id.ToString().ToLower(), Text = s.FullName }).ToListAsync();
+            return await _userManager.Users.Where(x => !x.IsLocked ).OrderBy(x => x.Name)
+                                .Select(s => new KeyValuePairObject { Value = s.Id.ToString().ToLower(), Text = s.Name }).ToListAsync();
         }
 
         public async Task<bool> IsExistsUserNameAsync(string name, Guid id)
         {
-            var result = await _userManager.Users.AnyAsync(x => x.UserName.ToLower() == name.ToLower() && x.Id != id && !x.IsDeleted);
+            var result = await _userManager.Users.AnyAsync(x => x.UserName.ToLower() == name.ToLower() && x.Id != id );
             return result;
         }
 
         public async Task<bool> IsExistsEmailAsync(string email, Guid id)
         {
-            var result = await _userManager.Users.AnyAsync(x => x.Email.ToLower() == email.ToLower() && x.Id != id && !x.IsDeleted);
+            var result = await _userManager.Users.AnyAsync(x => x.Email.ToLower() == email.ToLower() && x.Id != id && !x.IsLocked);
             return result;
         }
 

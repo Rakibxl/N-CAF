@@ -31,8 +31,6 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
                 familyInfo.Property(bs => bs.ApplicationFileNumber).HasMaxLength(100);               
                 familyInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
                 familyInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
-
-            //RelationTypeId  OccupationTypeId   NationlityId  ResidenceScopeId
         }
     }
 }

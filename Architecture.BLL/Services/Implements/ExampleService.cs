@@ -42,7 +42,7 @@ namespace Architecture.BLL.Services.Implements
                 ["name"] = v => v.Name,
             };
 
-            var result = await _exampleUnitOfWork.ExampleRepository.GetAsync(x => x,
+            var result = await _exampleUnitOfWork.ExampleRepository.GetWithFilterAsync(x => x,
                             x => (string.IsNullOrEmpty(queryObj.Name) || x.Name.Contains(queryObj.Name)),
                             x => x.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending),
                             null, queryObj.Page, queryObj.PageSize);           

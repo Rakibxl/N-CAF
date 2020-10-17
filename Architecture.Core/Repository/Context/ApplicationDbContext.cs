@@ -39,6 +39,8 @@ namespace Architecture.Core.Repository.Context
         public DbSet<HouseCategory> HouseCategory { get; set; }
         public DbSet<OccupationType> OccupationType { get; set; }
         public DbSet<EyeColor> EyeColor { get; set; }
+        public DbSet<AppUserType> AppUserType { get; set; }
+        public DbSet<AppUserStatus> AppUserStatus { get; set; }
         #endregion 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -231,7 +233,7 @@ namespace Architecture.Core.Repository.Context
                 );
             });
 
-             modelBuilder.Entity<EyeColor>().ToTable("LU_EyeColor");
+            modelBuilder.Entity<EyeColor>().ToTable("LU_EyeColor");
             modelBuilder.Entity<EyeColor>(ms => {
                 ms.HasKey(g => g.EyeColorId);
                 ms.Property(g => g.Description).HasMaxLength(100);
@@ -239,6 +241,26 @@ namespace Architecture.Core.Repository.Context
                     new EyeColor { EyeColorId = 1, Description = "Red", IsActive = true },
                     new EyeColor { EyeColorId = 2, Description = "Blue", IsActive = true },
                     new EyeColor { EyeColorId = 3, Description = "Normal", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<AppUserStatus>().ToTable("LU_AppUserStatus");
+            modelBuilder.Entity<AppUserStatus>(ms => {
+                ms.HasKey(g => g.AppUserStatusId);
+                ms.Property(g => g.AppUserStatusTitle).HasMaxLength(100);
+                ms.HasData(
+                    new AppUserStatus { AppUserStatusId = 1, AppUserStatusTitle = "Approved", IsActive = true },
+                    new AppUserStatus { AppUserStatusId = 2, AppUserStatusTitle = "Rejected", IsActive = true },
+                    new AppUserStatus { AppUserStatusId = 3, AppUserStatusTitle = "Request For Approval", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<AppUserType>().ToTable("LU_AppAppUserType");
+            modelBuilder.Entity<AppUserType>(ms => {
+                ms.HasKey(g => g.AppUserTypeId);
+                ms.Property(g => g.AppUserTypeTitle).HasMaxLength(100);
+                ms.HasData(
+                    new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Client", IsActive = true },
+                    new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
+                    new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Other", IsActive = true }
                 );
             });
 
