@@ -20,7 +20,7 @@ namespace Architecture.Web.Models.IdentityModels
             var principal = await base.CreateAsync(user);
 
             ((ClaimsIdentity)principal.Identity).AddClaims(new[] {
-                new Claim("FullName", user.FullName ?? string.Empty),
+                new Claim("Name", user.Name ?? string.Empty),
                 new Claim("ImageUrl", user.ImageUrl ?? string.Empty)
             });
 

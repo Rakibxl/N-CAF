@@ -30,6 +30,6 @@ export class GeneratePdfComponent implements OnInit {
   }
 
   onLoad(pdfData) {
-
+      console.log('pdfData: ', pdfData);
   }
 }

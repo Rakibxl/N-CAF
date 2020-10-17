@@ -2,15 +2,15 @@ import { Entity } from './entity';
 
 export class Auditable extends Entity {
     created: Date;
-    lastModified: Date;
+    modified: Date;
     createdBy: string;
-    lastModifiedBy: string;
+    modifiedBy: string;
 
     clear() {
         super.clear();
         this.created = null;
-        this.lastModified = null;
+        this.modified = null;
         this.createdBy = '';
-        this.lastModifiedBy = '';
+        this.modifiedBy = '';
     }
 }

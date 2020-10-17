@@ -48,7 +48,7 @@ namespace Architecture.Models
             profile.CreateMap<ApiAppRegistrationModel, ApplicationUser>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.PhoneNumber.Trim()))
                 .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber.Trim()))
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName.Trim()))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FullName.Trim()))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.Trim()));
         }
     }

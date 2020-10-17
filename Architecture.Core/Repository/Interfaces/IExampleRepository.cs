@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Interfaces
 {
-    public interface IExampleRepository : IRepository<Example, int, ApplicationDbContext>
+    public interface IExampleRepository : IRepository<Example>
     {
         
     }

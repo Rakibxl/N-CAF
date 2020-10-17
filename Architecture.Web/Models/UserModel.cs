@@ -51,11 +51,10 @@ namespace Architecture.Web.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string FullName { get; set; }
-        public string Address { get; set; }
-        public string Gender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
+        public string Name { get; set; }
         //public string ImageUrl { get; set; }
+        public string SurName { get; set; }
+        public int? GenderId { get; set; }
 
         [Required]
         public Guid UserRoleId { get; set; }
@@ -66,7 +65,7 @@ namespace Architecture.Web.Models
             profile.CreateMap<SaveUserModel, ApplicationUser>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(s => s.Email.Trim()))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(s => s.Email.Trim()))
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(s => s.FullName.Trim()))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.Name.Trim()))
                 .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(s => s.PhoneNumber.Trim()));
             profile.CreateMap<ApplicationUser, SaveUserModel>()
                 .ForMember(dest => dest.UserRoleId, opt => opt.MapFrom(s => s.UserRoles.Any() ? 

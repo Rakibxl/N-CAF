@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Core
 {
-    public interface IRepository<TEntity, TKey, TContext>
+    public interface IRepository<TEntity>
         where TEntity : class
-        where TContext : DbContext
     {
         #region LINQ Async
         Task<IList<TResult>> GetAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
@@ -21,7 +20,7 @@ namespace Architecture.Core.Repository.Core
                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                             bool disableTracking = true);
-        Task<(IList<TResult> Items, int Total, int TotalFilter)> GetAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
+        Task<(IList<TResult> Items, int Total, int TotalFilter)> GetWithFilterAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
                             Expression<Func<TEntity, bool>> predicate = null,
                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
@@ -34,13 +33,13 @@ namespace Architecture.Core.Repository.Core
         Task<TEntity> GetByIdAsync(object id);
         Task<int> GetCountAsync(Expression<Func<TEntity, bool>> predicate = null);
         Task<bool> IsExistsAsync(Expression<Func<TEntity, bool>> predicate);
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         Task AddRangeAsync(IList<TEntity> entities);
-        Task UpdateAsync(TEntity entity);
+        Task<TEntity> UpdateAsync(TEntity entity);
         Task UpdateRangeAsync(IList<TEntity> entities);
         Task DeleteAsync(object id);
         Task DeleteAsync(TEntity entity);
-        Task DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
         Task DeleteRangeAsync(IList<TEntity> entities);
         #endregion
 

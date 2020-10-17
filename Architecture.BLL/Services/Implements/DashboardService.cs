@@ -110,8 +110,7 @@ namespace Architecture.BLL.Services.Implements
 
         private async Task<IList<(DateTime DateTime, int TotalAppRegisterUser)>> GetNewAppRegisterUserCountWithDateAsync(DateTime fromDate, DateTime toDate)
         {
-            var result = (await _applicationUserService.GetAsync(x => new { x.Created }, x => !x.IsDeleted && x.IsActive &&
-                                                            x.Status != EnumApplicationUserStatus.SuperAdmin &&
+            var result = (await _applicationUserService.GetAsync(x => new { x.Created }, x => !x.IsLocked && 
                                                             x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) &&
                                                             x.Created.Date >= fromDate.Date && x.Created.Date <= toDate.Date,
                                                             x => x.OrderBy(o => o.Created), 
@@ -123,8 +122,7 @@ namespace Architecture.BLL.Services.Implements
 
         private async Task<int> GetNewAppRegisterUserCountAsync(DateTime fromDate, DateTime toDate)
         {
-            var result = (await _applicationUserService.GetAsync(x => x, x => !x.IsDeleted && x.IsActive &&
-                                                            x.Status != EnumApplicationUserStatus.SuperAdmin &&
+            var result = (await _applicationUserService.GetAsync(x => x, x => !x.IsLocked &&
                                                             x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) &&
                                                             x.Created.Date >= fromDate.Date && x.Created.Date <= toDate.Date,
                                                             null, null, true)).Count();

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { animationRightToggle } from 'src/app/Shared/Modules/animations/animationRightToggle';
+import { animationRightToggle } from '../../Shared/Modules/animations/animationRightToggle';
 
 @Component({
     selector: 'app-landing-page',
