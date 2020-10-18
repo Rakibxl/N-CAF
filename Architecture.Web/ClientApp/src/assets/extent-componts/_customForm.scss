@@ -1,3 +1,60 @@
+.ng-select-container {
+    @extend .form-control;
+
+    .ng-dropdown-panel {
+        z-index: 6;
+    }
+
+    &:after {
+        position           : absolute;
+        right              : 10px;
+        top                : 50%;
+        content            : "";
+        width              : 7px;
+        height             : 7px;
+        border             : 1.5px solid #222;
+        border-left-color  : transparent;
+        border-bottom-color: transparent;
+        transform          : rotate(135deg) translateY(-50%);
+        z-index            : 6;
+        margin-top: -7px;
+    }
+}
+
+.ng-select {
+    border       : 0px;
+    min-height   : 0px;
+    border-radius: 0;
+
+    .ng-input {
+        input {
+            padding-left : 10px;
+            padding-right: 10px;
+        }
+    }
+    &.ng-select-opened {
+        .ng-select-container {
+            border-top: 0;
+            background: transparent;
+        }
+    }
+}
+
+.ng-dropdown-panel-items {
+    background: $white;
+    box-shadow: 0 0 5px rgba($dark, 0.3);
+
+    .ng-option {
+        transition: 0.3s;
+        padding   : 5px 15px;
+        &.ng-option-selected,
+        &:hover {
+            background: $light;
+        }
+    }
+}
+
+
 .caf-input-group {
     @extend .form-group;
     position   : relative;
@@ -11,6 +68,7 @@
         left       : 10px;
         line-height: 7px;
         padding    : 0 2px;
+        z-index: 2;
     }
 
     .switch {
@@ -29,23 +87,25 @@ input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+
 .caf-btn {
     &-primary-outline {
         @extend .btn;
         border     : 2px solid $primary;
         font-weight: 500;
         padding    : 10px;
-        min-width: 100px;
+        min-width  : 100px;
 
         &:hover {
             background: $primary;
             color     : $white;
         }
+
         &.back {
             &:hover {
                 background-color: $secondary;
-                border-color: $secondary;
-                color: $primary;
+                border-color    : $secondary;
+                color           : $primary;
             }
         }
     }
@@ -270,6 +330,7 @@ input:-webkit-autofill:active {
 .ps__thumb-y {
     background-color: $primary !important;
 }
+
 perfect-scrollbar .ps__rail-y {
     background: rgba($appColor, 0.6) !important;
 }
