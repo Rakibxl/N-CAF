@@ -256,16 +256,17 @@
                                                 <div *ngIf="head.type=='checkbox-all'"><input type="checkbox"
                                                         (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,'p-table-select-all',head.onClick,head)" />{{head.headerName}}
                                                 </div>
-                                                <div
+
+                                                <!-- <div
                                                     *ngIf="head.type=='checkbox-switch'|| head.type=='battery-level'|| head.type=='button' || head.type=='custom-button' || head.type=='hrefLink'">
-                                                    {{head.headerName}}</div>
+                                                    {{head.headerName}}</div> -->
                                                 <!-- </div> -->
                                             </th>
-                                            <th *ngIf="pTableSetting.enabledEditDeleteBtn ||pTableSetting.enabledEditBtn||pTableSetting.enabledDeleteBtn" class="setting-update" style="width:78px; display:block;">
+                                            <!-- <th *ngIf="pTableSetting.enabledEditDeleteBtn ||pTableSetting.enabledEditBtn||pTableSetting.enabledDeleteBtn" class="setting-update" style="width:78px; display:block;">
                                                 <span *ngIf="pTableSetting.enabledColumnResize" class="p-table-column-resizer"
                                                     (mousedown)="fnResizeColumn($event)"></span>
                                                 <em class="fa fa-cog"></em>
-                                            </th>
+                                            </th> -->
                                         </tr>
                                     </thead>
 
@@ -308,11 +309,26 @@
                                                         [style.color]="this.Math.round(+body[dispCol.internalName]*100)<10?'red':this.Math.round(+body[dispCol.internalName]*100)<30?'#a7a776':'green'"></i>
                                                     <span> {{this.Math.round(+body[dispCol.internalName]*100)}}% </span>
                                                 </div>
-                                                <div *ngIf="dispCol.type=='button'" style="text-align:center;">
-                                                    <button class="btn-transition btn btn-sm btn-outline-primary d-flex align-items-center"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
-                                                        <i class="pr-2 {{dispCol.innerBtnIcon}}" *ngIf="(dispCol.innerBtnIcon||'')!=''"> </i> {{body[dispCol.internalName]}}
-                                                    </button>
+
+
+
+                                                <div class="d-flex align-items-center" *ngIf="dispCol.type=='button'" style="text-align:center;">
+                                                    
+                                                    
+                                                    <div class="action-inline-popup d-flex flex-nowrap" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
+                                                        <a  class="btn text-link d-flex align-items-center"
+                                                            (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                            <i class="pr-2 {{dispCol.innerBtnIcon}}" *ngIf="(dispCol.innerBtnIcon||'')!=''"> </i> {{body[dispCol.internalName]}}
+                                                        </a>
+                                                        <a class="btn"><em class="fa fa-info-circle"></em></a>
+                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" 
+                                                            (click)="fnActivityOnRecord('edit-item',body)"><em class="fa fa-edit"></em></a>
+                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledDeleteBtn" 
+                                                            (click)="fnActivityOnRecord('delete-item',body)"><em class="fa fa-trash"></em></a>
+                                                    </div>
+
+
+
                                                 </div>
                                                 <div *ngIf="dispCol.type=='hrefLink' && dispCol.displayType=='number'"
                                                     style="text-align:center;">
@@ -349,14 +365,16 @@
                                                     *ngIf="(dispCol.type=='' || dispCol.type==null)&& dispCol.displayType!='number'">
                                                     {{body[dispCol.internalName]}}
                                                 </div>
+
+                                                
                                             </td>
-                                            <td align="center" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
+                                            <!-- <td align="center" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
                                                 <a *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" class="p-table-edit-icon" (click)="fnActivityOnRecord('edit-item',body)"><em
                                                         class="fa fa-edit"></em></a>
                                                 <a *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledDeleteBtn" class=" p-table-delete-icon"
                                                     (click)="fnActivityOnRecord('delete-item',body)"><em
                                                         class="fa fa-trash"></em></a>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <tr *ngIf="pTableSetting.enabledTotal&&pTableDatalength>1" class="ptable-total-row">
                                             <td *ngIf="pTableSetting.enabledSerialNo">

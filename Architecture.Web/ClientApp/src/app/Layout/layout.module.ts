@@ -21,6 +21,7 @@ import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 
+
 // LAYOUT
 
 import { BaseLayoutComponent } from './LayoutComponent/base-layout/base-layout.component';
@@ -97,7 +98,7 @@ import { HeaderNotificationComponent } from './LayoutComponent/Components/header
     FormsModule,
     ReactiveFormsModule,
     // HttpClientModule,
-    SharedMasterModule
+    SharedMasterModule,
   ]
 })
 export class LayoutModule { }

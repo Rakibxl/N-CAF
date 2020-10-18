@@ -34,12 +34,16 @@ import { OccupationHistoryFormComponent } from './occupation-history-form/occupa
 import { WorkerInformationFormComponent } from './worker-information-form/worker-information-form.component';
 import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
 import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-master.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [BasicInformationComponent,OccupationHistoryComponent,FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, AssetInformationFormComponent, BankInformationFormComponent, DeligationInformationFormComponent, DocumentInformationFormComponent, EducationalInformationFormComponent, FamilyInformationFormComponent, HouseRentInformationFormComponent, IncomeInformationFormComponent, InsuranceInformationFormComponent, IseeInformationFormComponent, LegalInformationFormComponent, MovementInformationFormComponent, OccupationHistoryFormComponent, WorkerInformationFormComponent, AddressInformationFormComponent],
   imports: [
       CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      NgSelectModule,
       SharedMasterModule,
     ClientProfleRoutingModule
   ]

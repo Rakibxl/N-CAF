@@ -41,6 +41,12 @@ namespace Architecture.Core.Repository.Context
         public DbSet<EyeColor> EyeColor { get; set; }
         public DbSet<AppUserType> AppUserType { get; set; }
         public DbSet<AppUserStatus> AppUserStatus { get; set; }
+        public DbSet<WorkerType> WorkerType { get; set; }
+        public DbSet<AssetType> AssetType { get; set; }
+        public DbSet<OwnerType> OwnerType { get; set; }
+        public DbSet<ISEEClassType> ISEEClassType { get; set; }
+        public DbSet<JobDeliveryType> JobDeliveryType { get; set; }
+        public DbSet<MotiveType> MotiveType { get; set; }
         public DbSet<AddressType> AddressType { get; set; }
         #endregion 
 
@@ -262,6 +268,63 @@ namespace Architecture.Core.Repository.Context
                     new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Client", IsActive = true },
                     new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
                     new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Other", IsActive = true }
+                );
+            });
+             modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");
+            modelBuilder.Entity<WorkerType>(ms => {
+                ms.HasKey(g => g.WorkerTypeId);
+                ms.Property(g => g.WorkerTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new WorkerType { WorkerTypeId = 1, WorkerTypeName = "Company Worker", IsActive = true },
+                    new WorkerType { WorkerTypeId = 2, WorkerTypeName = "Domestic Worker", IsActive = true }
+                );
+            });
+             modelBuilder.Entity<AssetType>().ToTable("LU_AssetType");
+            modelBuilder.Entity<AssetType>(ms => {
+                ms.HasKey(g => g.AssetTypeId);
+                ms.Property(g => g.AssetTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new AssetType { AssetTypeId = 1, AssetTypeName = "House", IsActive = true },
+                    new AssetType { AssetTypeId = 2, AssetTypeName = "Car", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<OwnerType>().ToTable("LU_OwnerType");
+            modelBuilder.Entity<OwnerType>(ms => {
+                ms.HasKey(g => g.OwnerTypeId);
+                ms.Property(g => g.OwnerTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new OwnerType { OwnerTypeId = 1, OwnerTypeName = "By Birth", IsActive = true },
+                    new OwnerType { OwnerTypeId = 2, OwnerTypeName = "Buy", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<ISEEClassType>().ToTable("LU_ISEEClassType");
+            modelBuilder.Entity<ISEEClassType>(ms => {
+                ms.HasKey(g => g.ISEEClassTypeId);
+                ms.Property(g => g.ISEEClassTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new ISEEClassType { ISEEClassTypeId = 1, ISEEClassTypeName = "High", IsActive = true },
+                    new ISEEClassType { ISEEClassTypeId = 2, ISEEClassTypeName = "Middle", IsActive = true },
+                    new ISEEClassType { ISEEClassTypeId = 3, ISEEClassTypeName = "Low", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<JobDeliveryType>().ToTable("LU_JobDeliveryType");
+            modelBuilder.Entity<JobDeliveryType>(ms => {
+                ms.HasKey(g => g.JobDeliveryTypeId);
+                ms.Property(g => g.JobDeliveryTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new JobDeliveryType { JobDeliveryTypeId = 1, JobDeliveryTypeName = "Quick", IsActive = true },
+                    new JobDeliveryType { JobDeliveryTypeId = 2, JobDeliveryTypeName = "Urgent", IsActive = true },
+                    new JobDeliveryType { JobDeliveryTypeId = 3, JobDeliveryTypeName = "Normal", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<MotiveType>().ToTable("LU_MotiveType");
+            modelBuilder.Entity<MotiveType>(ms => {
+                ms.HasKey(g => g.MotiveTypeId);
+                ms.Property(g => g.MotiveTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new MotiveType { MotiveTypeId = 1, MotiveTypeName = "Occupation", IsActive = true },
+                    new MotiveType { MotiveTypeId = 2, MotiveTypeName = "Family", IsActive = true },
+                    new MotiveType { MotiveTypeId = 3, MotiveTypeName = "Worker", IsActive = true }
                 );
             });
             modelBuilder.Entity<AddressType>().ToTable("LU_AddressType");

@@ -25,54 +25,54 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  
+
   public get currentUserValue(): IAuthUser {
     return this.currentUserSubject.value;
   }
 
   public get isLoggedIn(): boolean {
-      return this.currentUserSubject.value !== null;
+    return this.currentUserSubject.value !== null;
   }
 
   public get isTokenExpired(): boolean {
-    if(!this.isLoggedIn) return true;
+    if (!this.isLoggedIn) return true;
     const token = this.currentUserSubject.value.token;
     return this.jwtHelper.isTokenExpired(token);
   }
 
   public get currentUserToken(): string {
-    if(!this.isLoggedIn) return "";
+    if (!this.isLoggedIn) return "";
     const token = this.currentUserSubject.value.token;
     return token;
   }
 
   private get getPermissions(): any[] {
-    if(!this.isLoggedIn) return [];
+    if (!this.isLoggedIn) return [];
     const token = this.currentUserSubject.value.token;
     const decodedToken = this.jwtHelper.decodeToken(token);
     const permissions = decodedToken.Permission as any[];
-    if(Array.isArray(permissions))  return permissions; 
-    else  return [permissions];
+    if (Array.isArray(permissions)) return permissions;
+    else return [permissions];
   }
 
-  hasPermission(per: string | string[]) : boolean {
+  hasPermission(per: string | string[]): boolean {
     var permission = [];
-    if(Array.isArray(per)) permission = per;
+    if (Array.isArray(per)) permission = per;
     else permission = [per];
     return !_.isEmpty(_.intersection(this.getPermissions, permission));
   }
 
   login(login: Login) {
     return this.http.post<APIResponse>(`${this.authEndpoint}/login`, login)
-        .pipe(map((res: APIResponse) => {
-            const authUser = res && res.data;
-            if (authUser && authUser.token) {
-                localStorage.setItem('currentUser', JSON.stringify(authUser));
-                this.currentUserSubject.next(authUser);
-                // this.ngxPermissionsService.loadPermissions(this.getPermissions);
-            }
-            return authUser;
-        }));
+      .pipe(map((res: APIResponse) => {
+        const authUser = res && res.data;
+        if (authUser && authUser.token) {
+          localStorage.setItem('currentUser', JSON.stringify(authUser));
+          this.currentUserSubject.next(authUser);
+          // this.ngxPermissionsService.loadPermissions(this.getPermissions);
+        }
+        return authUser;
+      }));
   }
 
   forgotPassword(email: string) {
