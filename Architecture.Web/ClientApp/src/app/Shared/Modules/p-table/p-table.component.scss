@@ -598,6 +598,7 @@ select {
 
 
 app-p-table {
+
     .search-wrapper {
         .input-holder {
             height: 33px;
@@ -679,6 +680,47 @@ app-p-table {
         .page-link {
             &:not(.disabled):hover {
                 background: $primary;
+            }
+        }
+    }
+}
+
+.action-inline-popup {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    z-index: 3;
+    background: rgba($white, 0.6);
+    border-radius: 10px;
+    border: 1px solid $light;
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s, opacity 0.3s;
+    padding: 2px;
+
+    .btn {
+        padding: 0 5px;
+        border-radius: 12px;
+
+        &:hover {
+            background: $light;
+        }
+    }
+}
+
+app-p-table {
+    tr td,
+    tr {
+        position: relative;
+    }
+
+    tr {
+        &:hover {
+            .action-inline-popup {
+                opacity: 1;
+                visibility: visible;
             }
         }
     }
