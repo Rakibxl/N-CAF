@@ -210,8 +210,7 @@ namespace Architecture.Web.Controllers.Users
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(1),
-                //Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
+                Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
