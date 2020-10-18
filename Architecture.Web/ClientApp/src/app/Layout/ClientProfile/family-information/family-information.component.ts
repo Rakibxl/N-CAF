@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyInfo';
 
 @Component({
   selector: 'app-family-information',
@@ -8,9 +9,9 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
   styleUrls: ['./family-information.component.css']
 })
 export class FamilyInformationComponent implements OnInit {
-
-  constructor(private router: Router) { }
-
+    public familyInfos: ProfFamilyInfo[] = [];
+    constructor(private router: Router) { }
+    
   ngOnInit() {
     }
 

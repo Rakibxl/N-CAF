@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #familyInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Family Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -15,20 +15,20 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Name</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter name"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Name"
+                                   required name="name" [(ngModel)]="familyInfoForm.name" #name="ngModel"/>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SurName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter surName"
+                            <required type="text"  autocomplete="off" class="form-control" name="surmane" #surName="ngModel" [(ngModel)]="familyInfoForm.surName" placeholder="Enter SurName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-Name is required.</p>
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                             <input type="date" autocomplete="off" class="form-control" placeholder="Enter dateofbirth"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-Name is required.</p>
                         </div>
                     </div>
 
@@ -301,7 +301,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!familyInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>
