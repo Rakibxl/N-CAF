@@ -34,7 +34,7 @@ import { OccupationHistoryFormComponent } from './occupation-history-form/occupa
 import { WorkerInformationFormComponent } from './worker-information-form/worker-information-form.component';
 import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
 import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-master.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -42,6 +42,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   imports: [
       CommonModule,
       FormsModule,
+      ReactiveFormsModule,
       NgSelectModule,
       SharedMasterModule,
     ClientProfleRoutingModule
