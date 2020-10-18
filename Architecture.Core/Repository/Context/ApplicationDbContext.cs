@@ -41,6 +41,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<EyeColor> EyeColor { get; set; }
         public DbSet<AppUserType> AppUserType { get; set; }
         public DbSet<AppUserStatus> AppUserStatus { get; set; }
+        public DbSet<AddressType> AddressType { get; set; }
         #endregion 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -261,6 +262,16 @@ namespace Architecture.Core.Repository.Context
                     new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Client", IsActive = true },
                     new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
                     new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Other", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<AddressType>().ToTable("LU_AddressType");
+            modelBuilder.Entity<AddressType>(ms => {
+                ms.HasKey(g => g.AddressTypeId);
+                ms.Property(g => g.AddressTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new AddressType { AddressTypeId = 1, AddressTypeName = "Permanent", IsActive = true },
+                    new AddressType { AddressTypeId = 2, AddressTypeName = "Temporary", IsActive = true },
+                    new AddressType { AddressTypeId = 3, AddressTypeName = "Previous Permanent", IsActive = true }
                 );
             });
 
