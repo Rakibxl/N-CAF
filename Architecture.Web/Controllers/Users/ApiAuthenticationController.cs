@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Architecture.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -90,6 +91,27 @@ namespace Architecture.Web.Controllers.Users
                 return ExceptionResult(ex);
             }
         }
+
+        //[HttpPost]
+        //[Route("register")]
+        //public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
+        //{
+        //    var userExists = await _userManager.FindByNameAsync(model.Email);
+        //    if (userExists != null)
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+
+        //    ApplicationUser user = new ApplicationUser()
+        //    {
+        //        Email = model.Email,
+        //        SecurityStamp = Guid.NewGuid().ToString(),
+        //        FullName = model.FullName
+        //    };
+        //    var result = await _userManager.CreateAsync(user, model.Password);
+        //    if (!result.Succeeded)
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+
+        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+        //}
 
         [AllowAnonymous]
         [HttpGet("forgot-password/{email}")]
@@ -188,7 +210,8 @@ namespace Architecture.Web.Controllers.Users
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
+                Expires = DateTime.UtcNow.AddMinutes(1),
+                //Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
