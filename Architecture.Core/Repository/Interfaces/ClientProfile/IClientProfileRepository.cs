@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Interfaces.ClientProfile
 {
-    public interface IClientProfileRepository : IRepository<ProfBasicInfo, int, ApplicationDbContext>
+    public interface IClientProfileRepository : IRepository<ProfBasicInfo>
     {
         
     }

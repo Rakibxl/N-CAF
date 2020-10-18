@@ -16,4 +16,8 @@ export class FamilyInformationFormComponent implements OnInit {
     public onSubmit() {
         console.table(this.familyInfoForm);
     }
+
+    public fnBackToList() {
+
+    }
 }

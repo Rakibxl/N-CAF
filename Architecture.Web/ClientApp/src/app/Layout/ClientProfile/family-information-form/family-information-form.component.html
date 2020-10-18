@@ -25,7 +25,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SurName</label>
-                            <required type="text"  autocomplete="off" class="form-control" name="surmane" #surName="ngModel" [(ngModel)]="familyInfoForm.surName" placeholder="Enter SurName"
+                            <input type="text"  autocomplete="off" class="form-control" name="surmane" #surName="ngModel" [(ngModel)]="familyInfoForm.surName" placeholder="Enter SurName"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-Name is required.</p>

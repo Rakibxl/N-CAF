@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Repository.Implements.ClientProfile
 {
-    public class ClientProfileRepository : Repository<ProfBasicInfo, int, ApplicationDbContext>, IClientProfileRepository
+    public class ClientProfileRepository : Repository<ProfBasicInfo>, IClientProfileRepository
     {
         //public IClientProfileRepository _clientProfileRepository { get; set; }
 
