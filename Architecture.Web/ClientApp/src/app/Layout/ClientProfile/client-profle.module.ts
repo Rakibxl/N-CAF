@@ -44,7 +44,6 @@ import { FormsModule } from '@angular/forms';
     SharedMasterModule,
     NgSelectModule,
     FormsModule,
-    NgOptionHighlightModule,
     ClientProfleRoutingModule
   ]
 })
