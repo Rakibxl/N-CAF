@@ -21,6 +21,7 @@ import { RightSitePanelComponent } from './right-site-panel/right-site-panel.com
 import { UnauthSlideComponent } from './unauth-slide/unauth-slide.component';
 import { TopOffersComponent } from './top-offers/top-offers.component';
 import { BannerSliderComponent } from './banner-slider/banner-slider.component';
+import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-master.module';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { BannerSliderComponent } from './banner-slider/banner-slider.component';
     LoadingBarRouterModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule,
+      ReactiveFormsModule,
+      SharedMasterModule
   ]
 })
 export class OutsideLayoutModule { }

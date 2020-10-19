@@ -17,7 +17,7 @@ export class AppInterceptorService implements HttpInterceptor {
     handleError = (error: HttpErrorResponse, request?, next?) => {
         console.log("api error:", error);
         setTimeout(() => {
-            //this.alertService.fnLoading(false);   
+            this.alertService.fnLoading(false);   
             let statusCode = error.status;
             let errorMsg = error.error.message || "";
             if (statusCode == 0) {
@@ -43,6 +43,7 @@ export class AppInterceptorService implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        debugger
         this.alertService.fnLoading(true);
         console.log('processing request', request);
         console.log('url', request.url);
@@ -69,6 +70,7 @@ export class AppInterceptorService implements HttpInterceptor {
                 }),
                 finalize(() => {
                     setTimeout(() => {
+                        debugger;
                         this.alertService.fnLoading(false);
                     }, 1000);
                 })

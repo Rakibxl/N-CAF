@@ -21,6 +21,8 @@ namespace Architecture.Core.Repository.Context
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
         public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
+        public DbSet<ProfFamilyInfo> ProfFamilyInfo { get; set; }
+        public DbSet<ProfDocumentInfo> ProfDocumentInfo { get; set; }
 
 
         #region Lookup Table
