@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Shared/Services/Users/auth.service';
+import { AlertService } from '../../Shared/Modules/alert/alert.service';
 
 @Component({
   selector: 'app-user-login',
@@ -14,7 +15,7 @@ export class UserLoginComponent implements OnInit {
     branch: '',
   };
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private alertService: AlertService) { }
 
   otpEnable: boolean = false;
 
@@ -32,10 +33,12 @@ export class UserLoginComponent implements OnInit {
   }
 
   public fnLogin() {
+    this.alertService.fnLoading(true);
     this.authService.login(this.loginModel).subscribe(res => {
       console.log("successfully login...");
       console.log(res)
       this.router.navigate(["/dashboard/common"]);
+      this.alertService.fnLoading(false);
     }, error => {
 
     });

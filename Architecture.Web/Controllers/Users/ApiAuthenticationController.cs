@@ -62,7 +62,7 @@ namespace Architecture.Web.Controllers.Users
                 if (!ModelState.IsValid)
                     return ValidationResult(ModelState);
 
-                var user = await this._userManager.FindByNameAsync(model.Email);
+                var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Email or password is invalid.");
@@ -92,26 +92,38 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
-        //[HttpPost]
-        //[Route("register")]
-        //public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
-        //{
-        //    var userExists = await _userManager.FindByNameAsync(model.Email);
-        //    if (userExists != null)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
+        {
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            if (userExists != null)
+            {
+                ModelState.AddModelError("", "User email already exists!");
+                return ValidationResult(ModelState);
+            }
+            //return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
-        //    ApplicationUser user = new ApplicationUser()
-        //    {
-        //        Email = model.Email,
-        //        SecurityStamp = Guid.NewGuid().ToString(),
-        //        FullName = model.FullName
-        //    };
-        //    var result = await _userManager.CreateAsync(user, model.Password);
-        //    if (!result.Succeeded)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            ApplicationUser user = new ApplicationUser()
+            {
+                Name = model.Name,
+                SurName = model.SurName,
+                UserName = model.UserId,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                GenderId = model.GenderId
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
+                return ValidationResult(ModelState);
+            }
+            //return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-        //}
+            return Ok(new { Status = "Success", Message = "User created successfully!" });
+        }
 
         [AllowAnonymous]
         [HttpGet("forgot-password/{email}")]
