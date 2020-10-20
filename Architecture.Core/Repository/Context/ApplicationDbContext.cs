@@ -21,6 +21,7 @@ namespace Architecture.Core.Repository.Context
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
         public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
+        public DbSet<ProfAssetInfo> ProfAssetInfos { get; set; }
 
 
         #region Lookup Table
@@ -48,6 +49,9 @@ namespace Architecture.Core.Repository.Context
         public DbSet<JobDeliveryType> JobDeliveryType { get; set; }
         public DbSet<MotiveType> MotiveType { get; set; }
         public DbSet<AddressType> AddressType { get; set; }
+        public DbSet<OccupationPositionType> OccupationPositionType { get; set; }
+        public DbSet<DegreeType> DegreeType { get; set; }
+        public DbSet<LoanStatusType> LoanStatusType { get; set; }
         #endregion 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -335,6 +339,36 @@ namespace Architecture.Core.Repository.Context
                     new AddressType { AddressTypeId = 1, AddressTypeName = "Permanent", IsActive = true },
                     new AddressType { AddressTypeId = 2, AddressTypeName = "Temporary", IsActive = true },
                     new AddressType { AddressTypeId = 3, AddressTypeName = "Previous Permanent", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<OccupationPositionType>().ToTable("LU_OccupationPositionType");
+            modelBuilder.Entity<OccupationPositionType>(ms => {
+                ms.HasKey(g => g.OccupationPositionId);
+                ms.Property(g => g.Description).HasMaxLength(100);
+                ms.HasData(
+                    new OccupationPositionType { OccupationPositionId = 1, Description = "Manager", IsActive = true },
+                    new OccupationPositionType { OccupationPositionId = 2, Description = "Worker", IsActive = true },
+                    new OccupationPositionType { OccupationPositionId = 3, Description = "Employee", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<DegreeType>().ToTable("LU_DegreeType");
+            modelBuilder.Entity<DegreeType>(ms => {
+                ms.HasKey(g => g.DegreeTypeId);
+                ms.Property(g => g.DegreeTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new DegreeType { DegreeTypeId = 1, DegreeTypeName = "Bachelor", IsActive = true },
+                    new DegreeType { DegreeTypeId = 2, DegreeTypeName = "Masters", IsActive = true },
+                    new DegreeType { DegreeTypeId = 3, DegreeTypeName = "High School", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<LoanStatusType>().ToTable("LU_LoanStatusType");
+            modelBuilder.Entity<LoanStatusType>(ms => {
+                ms.HasKey(g => g.LoanStatusTypeId);
+                ms.Property(g => g.LoanStatusTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new LoanStatusType { LoanStatusTypeId = 1, LoanStatusTypeName = "Pending", IsActive = true },
+                    new LoanStatusType { LoanStatusTypeId = 2, LoanStatusTypeName = "Active", IsActive = true },
+                    new LoanStatusType { LoanStatusTypeId = 3, LoanStatusTypeName = "Past Due", IsActive = true }
                 );
             });
 
