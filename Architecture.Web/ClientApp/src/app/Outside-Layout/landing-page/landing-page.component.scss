@@ -36,11 +36,12 @@
     .sidebar {
         height: 100%;
     }
+}
 
-    .footer-area {
-        height    : 50px;
-        text-align: center;
-    }
+.footer-area {
+    background: $primary;
+    color     : $white;
+    padding: 50px 0 0 0;
 }
 
 .our-status-container {
