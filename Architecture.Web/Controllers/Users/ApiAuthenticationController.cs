@@ -65,6 +65,9 @@ namespace Architecture.Web.Controllers.Users
                 var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
+                    user.AccessFailedCount += 1;
+                    await _userManager.UpdateAsync(user);
+
                     ModelState.AddModelError("", "Email or password is invalid.");
                     return ValidationResult(ModelState);
                 }
@@ -73,7 +76,7 @@ namespace Architecture.Web.Controllers.Users
                 if (!isValidUser)
                 {
                     user.AccessFailedCount += 1;
-                    var result = await _userManager.UpdateAsync(user);
+                    await _userManager.UpdateAsync(user);
 
                     ModelState.AddModelError("", "Email or password is invalid.");
                     return ValidationResult(ModelState);
@@ -83,6 +86,10 @@ namespace Architecture.Web.Controllers.Users
 
                 // authentication successful so generate jwt token
                 authUser.Token = await this.BuildToken(user);
+
+                //Reset faild login attempt flag
+                user.AccessFailedCount = 0;
+                await _userManager.UpdateAsync(user);
 
                 return OkResult(authUser);
             }
@@ -102,17 +109,16 @@ namespace Architecture.Web.Controllers.Users
                 ModelState.AddModelError("", "User email already exists!");
                 return ValidationResult(ModelState);
             }
-            //return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
             ApplicationUser user = new ApplicationUser()
             {
                 Name = model.Name,
                 SurName = model.SurName,
-                UserName = model.UserId,
+                UserName = model.PhoneNumber,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                GenderId = model.GenderId
+                GenderId = model.GenderId,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -120,7 +126,6 @@ namespace Architecture.Web.Controllers.Users
                 ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
                 return ValidationResult(ModelState);
             }
-            //return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             return Ok(new { Status = "Success", Message = "User created successfully!" });
         }

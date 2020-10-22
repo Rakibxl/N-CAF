@@ -28,12 +28,12 @@ export class UserRegistrationComponent implements OnInit {
     this.userRegistrationForm = this.fb.group({
       name: [null, Validators.required],
       surName: [null],
-      userId: [null],
+      // userId: [null],
       email: [null, Validators.required],
-      phoneNumber: [null],
+      phoneNumber: [null, Validators.required],
       password: [null, Validators.required],
       confirm_password: [null, Validators.required],
-      genderId: [null]
+      genderId: [null, Validators.required]
     });
   }
 
@@ -51,8 +51,23 @@ export class UserRegistrationComponent implements OnInit {
     this.otpEnable = !this.otpEnable;
 
     let formData = this.userRegistrationForm.value;
+    if (formData.password != formData.confirm_password) {
+      alert('Password not matched!');
+      return;
+    }
+    formData.genderId = formData.genderId ? parseInt(formData.genderId) : null;
+
+    this.alertService.fnLoading(true);
     this.authService.register(formData).subscribe(res => {
-      console.log(res)
+      this.alertService.fnLoading(false);
+      //console.log(res)
+    }, err => {
+      this.alertService.fnLoading(false);
+      if (err.status == 400) {
+        let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
+          + err.error.errors[0].errorList[0];
+        this.alertService.tosterDanger(errorMsg);
+      }
     });
   }
 }

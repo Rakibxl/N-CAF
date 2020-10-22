@@ -39,8 +39,13 @@ export class UserLoginComponent implements OnInit {
       console.log(res)
       this.router.navigate(["/dashboard/common"]);
       this.alertService.fnLoading(false);
-    }, error => {
-
+    }, err => {
+      this.alertService.fnLoading(false);
+      if (err.status == 400) {
+        let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
+          + err.error.errors[0].errorList[0];
+        this.alertService.tosterDanger(errorMsg);
+      }
     });
   }
 
