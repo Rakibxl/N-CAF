@@ -28,7 +28,10 @@ namespace Architecture.Models
     public class ApiAppRegistrationModel : IMapFrom<ApplicationUser>
     {
         [Required]
+        public string Name { get; set; }
+        public string SurName { get; set; }
         public string FullName { get; set; }
+        public string UserId { get; set; }
         public string Email { get; set; }
         [Required]
         [RegularExpression("^(01[0-9]{9})$", ErrorMessage = "Please, Provide 11 digit phone number")]
@@ -36,6 +39,7 @@ namespace Architecture.Models
         [Required]
         public string Password { get; set; }
         public string Address { get; set; }
+        public int? GenderId { get; set; }
         public string Gender { get; set; }
         public DateTime? DateOfBirth { get; set; }
         [Required]
@@ -65,7 +69,8 @@ namespace Architecture.Models
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ApplicationUser, ApiAuthenticateUserModel>();
+            profile.CreateMap<ApplicationUser, ApiAuthenticateUserModel>()
+                .ForMember(dest => dest.FullName, src => src.MapFrom(s => s.SurName != "" ? s.Name + " " + s.SurName : s.Name));
         }
     }
 }

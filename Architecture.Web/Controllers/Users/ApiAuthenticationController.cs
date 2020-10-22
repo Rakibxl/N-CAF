@@ -62,9 +62,12 @@ namespace Architecture.Web.Controllers.Users
                 if (!ModelState.IsValid)
                     return ValidationResult(ModelState);
 
-                var user = await this._userManager.FindByNameAsync(model.Email);
+                var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
+                    user.AccessFailedCount += 1;
+                    await _userManager.UpdateAsync(user);
+
                     ModelState.AddModelError("", "Email or password is invalid.");
                     return ValidationResult(ModelState);
                 }
@@ -73,7 +76,7 @@ namespace Architecture.Web.Controllers.Users
                 if (!isValidUser)
                 {
                     user.AccessFailedCount += 1;
-                    var result = await _userManager.UpdateAsync(user);
+                    await _userManager.UpdateAsync(user);
 
                     ModelState.AddModelError("", "Email or password is invalid.");
                     return ValidationResult(ModelState);
@@ -84,6 +87,10 @@ namespace Architecture.Web.Controllers.Users
                 // authentication successful so generate jwt token
                 authUser.Token = await this.BuildToken(user);
 
+                //Reset faild login attempt flag
+                user.AccessFailedCount = 0;
+                await _userManager.UpdateAsync(user);
+
                 return OkResult(authUser);
             }
             catch (Exception ex)
@@ -92,26 +99,36 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
-        //[HttpPost]
-        //[Route("register")]
-        //public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
-        //{
-        //    var userExists = await _userManager.FindByNameAsync(model.Email);
-        //    if (userExists != null)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
+        {
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            if (userExists != null)
+            {
+                ModelState.AddModelError("", "User email already exists!");
+                return ValidationResult(ModelState);
+            }
 
-        //    ApplicationUser user = new ApplicationUser()
-        //    {
-        //        Email = model.Email,
-        //        SecurityStamp = Guid.NewGuid().ToString(),
-        //        FullName = model.FullName
-        //    };
-        //    var result = await _userManager.CreateAsync(user, model.Password);
-        //    if (!result.Succeeded)
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            ApplicationUser user = new ApplicationUser()
+            {
+                Name = model.Name,
+                SurName = model.SurName,
+                UserName = model.PhoneNumber,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                GenderId = model.GenderId,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
+                return ValidationResult(ModelState);
+            }
 
-        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-        //}
+            return Ok(new { Status = "Success", Message = "User created successfully!" });
+        }
 
         [AllowAnonymous]
         [HttpGet("forgot-password/{email}")]
