@@ -6,9 +6,9 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
 {
     public interface IAssetInfoService
     {
-        public Task<ProfAssetInfo> AddOrUpdate(ProfAssetInfo familyInfo);
-        public Task<ProfAssetInfo> GetById(int familyInfoId);
-        public Task<int> Delete(int familyInfoId);
+        public Task<ProfAssetInfo> AddOrUpdate(ProfAssetInfo assetInfo);
+        public Task<ProfAssetInfo> GetById(int assetInfoId);
+        public Task<int> Delete(int assetInfoId);
         public Task<IEnumerable<ProfAssetInfo>> GetAll(int profileId);
     }
 }
