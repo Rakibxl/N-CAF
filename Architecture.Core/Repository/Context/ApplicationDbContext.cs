@@ -23,7 +23,18 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
         public DbSet<ProfFamilyInfo> ProfFamilyInfo { get; set; }
         public DbSet<ProfDocumentInfo> ProfDocumentInfo { get; set; }
-
+        public DbSet<ProfAddressInfo> ProfAddressInfos { get; set; }
+        public DbSet<ProfAssetInfo> ProfAssetInfos { get; set; }
+        public DbSet<ProfBankInfo> ProfBankInfos { get; set; }
+        public DbSet<ProfLegalInfo> ProfLegalInfos { get; set; }
+        public DbSet<ProfInsuranceInfo> ProfInsuranceInfos { get; set; }
+        public DbSet<ProfWorkerInfo> ProfWorkerInfos { get; set; }
+        public DbSet<ProfDelegationInfo> ProfDelegationInfos { get; set; }
+        public DbSet<ProfISEEInfo> ProfISEEInfos { get; set; }
+        public DbSet<ProfMovementInfo> ProfMovementInfos { get; set; }
+        public DbSet<ProfDocumentInfo> ProfDocumentInfos { get; set; }
+        public DbSet<ProfEducationInfo> ProfEducationInfos { get; set; }
+        public DbSet<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
@@ -49,6 +60,14 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ISEEClassType> ISEEClassType { get; set; }
         public DbSet<JobDeliveryType> JobDeliveryType { get; set; }
         public DbSet<MotiveType> MotiveType { get; set; }
+        public DbSet<AddressType> AddressType { get; set; }
+        public DbSet<OccupationPositionType> OccupationPositionType { get; set; }
+        public DbSet<DegreeType> DegreeType { get; set; }
+        public DbSet<LoanStatusType> LoanStatusType { get; set; }
+        public DbSet<BankName> BankName { get; set; }
+        public DbSet<CountryName> CountryName { get; set; }
+        public DbSet<InsuranceType> InsuranceType { get; set; }
+
         #endregion 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -79,7 +98,8 @@ namespace Architecture.Core.Repository.Context
 
 
             modelBuilder.Entity<Gender>().ToTable("LU_Gender");
-            modelBuilder.Entity<Gender>(gender => {
+            modelBuilder.Entity<Gender>(gender =>
+            {
                 gender.HasKey(g => g.GenderId);
                 gender.Property(g => g.Name).HasMaxLength(100);
                 gender.HasData(
@@ -88,7 +108,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<MaritalStatus>().ToTable("LU_MeriatalStatus");
-            modelBuilder.Entity<MaritalStatus>(ms => {
+            modelBuilder.Entity<MaritalStatus>(ms =>
+            {
                 ms.HasKey(g => g.MeritalStatusId);
                 ms.Property(g => g.Name).HasMaxLength(100);
                 ms.HasData(
@@ -99,7 +120,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<DocumentType>().ToTable("LU_DocumentType");
-            modelBuilder.Entity<DocumentType>(ms => {
+            modelBuilder.Entity<DocumentType>(ms =>
+            {
                 ms.HasKey(g => g.DocumentTypeId);
                 ms.Property(g => g.DocumentName).HasMaxLength(100);
                 ms.HasData(
@@ -110,7 +132,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<OccupationPosition>().ToTable("LU_OccupationPosition");
-            modelBuilder.Entity<OccupationPosition>(ms => {
+            modelBuilder.Entity<OccupationPosition>(ms =>
+            {
                 ms.HasKey(g => g.OccupationPositionId);
                 ms.Property(g => g.OccupationPositionName).HasMaxLength(100);
                 ms.HasData(
@@ -121,7 +144,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<JobType>().ToTable("LU_JobType");
-            modelBuilder.Entity<JobType>(ms => {
+            modelBuilder.Entity<JobType>(ms =>
+            {
                 ms.HasKey(g => g.JobTypeId);
                 ms.Property(g => g.JobTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -132,7 +156,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<ContractType>().ToTable("LU_ContractType");
-            modelBuilder.Entity<ContractType>(ms => {
+            modelBuilder.Entity<ContractType>(ms =>
+            {
                 ms.HasKey(g => g.ContractTypeId);
                 ms.Property(g => g.ContractTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -143,7 +168,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<HouseType>().ToTable("LU_HouseType");
-            modelBuilder.Entity<HouseType>(ms => {
+            modelBuilder.Entity<HouseType>(ms =>
+            {
                 ms.HasKey(g => g.HouseTypeId);
                 ms.Property(g => g.HouseTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -154,7 +180,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<LoanInterestType>().ToTable("LU_LoanInterestType");
-            modelBuilder.Entity<LoanInterestType>(ms => {
+            modelBuilder.Entity<LoanInterestType>(ms =>
+            {
                 ms.HasKey(g => g.LoanInterestTypeId);
                 ms.Property(g => g.LoanInterestTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -165,7 +192,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<ResidenceScope>().ToTable("LU_ResidenceScope");
-            modelBuilder.Entity<ResidenceScope>(ms => {
+            modelBuilder.Entity<ResidenceScope>(ms =>
+            {
                 ms.HasKey(g => g.ResidenceScopeId);
                 ms.Property(g => g.ResidenceScopeName).HasMaxLength(100);
                 ms.HasData(
@@ -176,7 +204,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<RelationType>().ToTable("LU_RelationType");
-            modelBuilder.Entity<RelationType>(ms => {
+            modelBuilder.Entity<RelationType>(ms =>
+            {
                 ms.HasKey(g => g.RelationTypeId);
                 ms.Property(g => g.RelationTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -187,7 +216,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<NationalIdType>().ToTable("LU_NationalIdType");
-            modelBuilder.Entity<NationalIdType>(ms => {
+            modelBuilder.Entity<NationalIdType>(ms =>
+            {
                 ms.HasKey(g => g.NationalIdTypeId);
                 ms.Property(g => g.NationalIdTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -198,7 +228,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<IncomeType>().ToTable("LU_IncomeType");
-            modelBuilder.Entity<IncomeType>(ms => {
+            modelBuilder.Entity<IncomeType>(ms =>
+            {
                 ms.HasKey(g => g.IncomeTypeId);
                 ms.Property(g => g.IncomeTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -209,7 +240,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<HouseCategory>().ToTable("LU_HouseCategory");
-            modelBuilder.Entity<HouseCategory>(ms => {
+            modelBuilder.Entity<HouseCategory>(ms =>
+            {
                 ms.HasKey(g => g.HouseCategoryId);
                 ms.Property(g => g.HouseCategoryName).HasMaxLength(100);
                 ms.HasData(
@@ -220,7 +252,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<Nationality>().ToTable("LU_Nationality");
-            modelBuilder.Entity<Nationality>(ms => {
+            modelBuilder.Entity<Nationality>(ms =>
+            {
                 ms.HasKey(g => g.NationalityId);
                 ms.Property(g => g.NationalityName).HasMaxLength(100);
                 ms.HasData(
@@ -231,7 +264,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<OccupationType>().ToTable("LU_OccupationType");
-            modelBuilder.Entity<OccupationType>(ms => {
+            modelBuilder.Entity<OccupationType>(ms =>
+            {
                 ms.HasKey(g => g.OccupationTypeId);
                 ms.Property(g => g.OccupationTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -242,7 +276,8 @@ namespace Architecture.Core.Repository.Context
             });
 
             modelBuilder.Entity<EyeColor>().ToTable("LU_EyeColor");
-            modelBuilder.Entity<EyeColor>(ms => {
+            modelBuilder.Entity<EyeColor>(ms =>
+            {
                 ms.HasKey(g => g.EyeColorId);
                 ms.Property(g => g.Description).HasMaxLength(100);
                 ms.HasData(
@@ -252,7 +287,8 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<AppUserStatus>().ToTable("LU_AppUserStatus");
-            modelBuilder.Entity<AppUserStatus>(ms => {
+            modelBuilder.Entity<AppUserStatus>(ms =>
+            {
                 ms.HasKey(g => g.AppUserStatusId);
                 ms.Property(g => g.AppUserStatusTitle).HasMaxLength(100);
                 ms.HasData(
@@ -262,7 +298,8 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<AppUserType>().ToTable("LU_AppAppUserType");
-            modelBuilder.Entity<AppUserType>(ms => {
+            modelBuilder.Entity<AppUserType>(ms =>
+            {
                 ms.HasKey(g => g.AppUserTypeId);
                 ms.Property(g => g.AppUserTypeTitle).HasMaxLength(100);
                 ms.HasData(
@@ -271,8 +308,9 @@ namespace Architecture.Core.Repository.Context
                     new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Other", IsActive = true }
                 );
             });
-             modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");
-            modelBuilder.Entity<WorkerType>(ms => {
+            modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");
+            modelBuilder.Entity<WorkerType>(ms =>
+            {
                 ms.HasKey(g => g.WorkerTypeId);
                 ms.Property(g => g.WorkerTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -280,8 +318,9 @@ namespace Architecture.Core.Repository.Context
                     new WorkerType { WorkerTypeId = 2, WorkerTypeName = "Domestic Worker", IsActive = true }
                 );
             });
-             modelBuilder.Entity<AssetType>().ToTable("LU_AssetType");
-            modelBuilder.Entity<AssetType>(ms => {
+            modelBuilder.Entity<AssetType>().ToTable("LU_AssetType");
+            modelBuilder.Entity<AssetType>(ms =>
+            {
                 ms.HasKey(g => g.AssetTypeId);
                 ms.Property(g => g.AssetTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -290,7 +329,8 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<OwnerType>().ToTable("LU_OwnerType");
-            modelBuilder.Entity<OwnerType>(ms => {
+            modelBuilder.Entity<OwnerType>(ms =>
+            {
                 ms.HasKey(g => g.OwnerTypeId);
                 ms.Property(g => g.OwnerTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -299,7 +339,8 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<ISEEClassType>().ToTable("LU_ISEEClassType");
-            modelBuilder.Entity<ISEEClassType>(ms => {
+            modelBuilder.Entity<ISEEClassType>(ms =>
+            {
                 ms.HasKey(g => g.ISEEClassTypeId);
                 ms.Property(g => g.ISEEClassTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -309,7 +350,8 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<JobDeliveryType>().ToTable("LU_JobDeliveryType");
-            modelBuilder.Entity<JobDeliveryType>(ms => {
+            modelBuilder.Entity<JobDeliveryType>(ms =>
+            {
                 ms.HasKey(g => g.JobDeliveryTypeId);
                 ms.Property(g => g.JobDeliveryTypeName).HasMaxLength(100);
                 ms.HasData(
@@ -319,13 +361,91 @@ namespace Architecture.Core.Repository.Context
                 );
             });
             modelBuilder.Entity<MotiveType>().ToTable("LU_MotiveType");
-            modelBuilder.Entity<MotiveType>(ms => {
+            modelBuilder.Entity<MotiveType>(ms =>
+            {
                 ms.HasKey(g => g.MotiveTypeId);
                 ms.Property(g => g.MotiveTypeName).HasMaxLength(100);
                 ms.HasData(
                     new MotiveType { MotiveTypeId = 1, MotiveTypeName = "Occupation", IsActive = true },
                     new MotiveType { MotiveTypeId = 2, MotiveTypeName = "Family", IsActive = true },
                     new MotiveType { MotiveTypeId = 3, MotiveTypeName = "Worker", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<AddressType>().ToTable("LU_AddressType");
+            modelBuilder.Entity<AddressType>(ms =>
+            {
+                ms.HasKey(g => g.AddressTypeId);
+                ms.Property(g => g.AddressTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new AddressType { AddressTypeId = 1, AddressTypeName = "Permanent", IsActive = true },
+                    new AddressType { AddressTypeId = 2, AddressTypeName = "Temporary", IsActive = true },
+                    new AddressType { AddressTypeId = 3, AddressTypeName = "Previous Permanent", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<OccupationPositionType>().ToTable("LU_OccupationPositionType");
+            modelBuilder.Entity<OccupationPositionType>(ms =>
+            {
+                ms.HasKey(g => g.OccupationPositionId);
+                ms.Property(g => g.Description).HasMaxLength(100);
+                ms.HasData(
+                    new OccupationPositionType { OccupationPositionId = 1, Description = "Manager", IsActive = true },
+                    new OccupationPositionType { OccupationPositionId = 2, Description = "Worker", IsActive = true },
+                    new OccupationPositionType { OccupationPositionId = 3, Description = "Employee", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<DegreeType>().ToTable("LU_DegreeType");
+            modelBuilder.Entity<DegreeType>(ms =>
+            {
+                ms.HasKey(g => g.DegreeTypeId);
+                ms.Property(g => g.DegreeTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new DegreeType { DegreeTypeId = 1, DegreeTypeName = "Bachelor", IsActive = true },
+                    new DegreeType { DegreeTypeId = 2, DegreeTypeName = "Masters", IsActive = true },
+                    new DegreeType { DegreeTypeId = 3, DegreeTypeName = "High School", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<LoanStatusType>().ToTable("LU_LoanStatusType");
+            modelBuilder.Entity<LoanStatusType>(ms =>
+            {
+                ms.HasKey(g => g.LoanStatusTypeId);
+                ms.Property(g => g.LoanStatusTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new LoanStatusType { LoanStatusTypeId = 1, LoanStatusTypeName = "Pending", IsActive = true },
+                    new LoanStatusType { LoanStatusTypeId = 2, LoanStatusTypeName = "Active", IsActive = true },
+                    new LoanStatusType { LoanStatusTypeId = 3, LoanStatusTypeName = "Past Due", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<BankName>().ToTable("LU_BankName");
+            modelBuilder.Entity<BankName>(ms =>
+            {
+                ms.HasKey(g => g.BankNameId);
+                ms.Property(g => g.BankDescription).HasMaxLength(100);
+                ms.HasData(
+                    new BankName { BankNameId = 1, BankDescription = "UniCredit Bank", IsActive = true },
+                    new BankName { BankNameId = 2, BankDescription = "Intesa San Paolo", IsActive = true },
+                    new BankName { BankNameId = 3, BankDescription = "UBI Bank", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<CountryName>().ToTable("LU_CountryName");
+            modelBuilder.Entity<CountryName>(ms =>
+            {
+                ms.HasKey(g => g.CountryNameId);
+                ms.Property(g => g.CountryDescription).HasMaxLength(100);
+                ms.HasData(
+                    new CountryName { CountryNameId = 1, CountryDescription = "Italy", IsActive = true },
+                    new CountryName { CountryNameId = 2, CountryDescription = "Bangladesh", IsActive = true },
+                    new CountryName { CountryNameId = 3, CountryDescription = "Germany", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<InsuranceType>().ToTable("LU_InsuranceType");
+            modelBuilder.Entity<InsuranceType>(ms =>
+            {
+                ms.HasKey(g => g.InsuranceTypeId);
+                ms.Property(g => g.Description).HasMaxLength(100);
+                ms.HasData(
+                    new InsuranceType { InsuranceTypeId = 1, Description = "Car Insurance", IsActive = true },
+                    new InsuranceType { InsuranceTypeId = 2, Description = "Home Insurance", IsActive = true },
+                    new InsuranceType { InsuranceTypeId = 3, Description = "Health Insurance", IsActive = true }
                 );
             });
 

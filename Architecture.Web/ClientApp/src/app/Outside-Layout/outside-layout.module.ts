@@ -5,6 +5,8 @@ import { OutsideLayoutRoutingModule } from './outside-layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // // Pages
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
 import { ForgotPasswordBoxedComponent } from './forgot-password-boxed/forgot-password-boxed.component';
 import { LoginBoxedComponent } from './login-boxed/login-boxed.component';
 import { RegisterBoxedComponent } from './register-boxed/register-boxed.component';
@@ -47,6 +49,7 @@ import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-maste
     CommonModule,
     OutsideLayoutRoutingModule,
     LoadingBarRouterModule,
+    PerfectScrollbarModule,
     FormsModule,
     NgbModule,
       ReactiveFormsModule,

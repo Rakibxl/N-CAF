@@ -237,6 +237,45 @@ namespace Architecture.Core.Repository.Migrations
                     b.ToTable("Examples");
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.LU.AddressType", b =>
+                {
+                    b.Property<int>("AddressTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressTypeName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("AddressTypeId");
+
+                    b.ToTable("LU_AddressType");
+
+                    b.HasData(
+                        new
+                        {
+                            AddressTypeId = 1,
+                            AddressTypeName = "Permanent",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            AddressTypeId = 2,
+                            AddressTypeName = "Temporary",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            AddressTypeId = 3,
+                            AddressTypeName = "Previous Permanent",
+                            IsActive = true
+                        });
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.LU.AppUserStatus", b =>
                 {
                     b.Property<int>("AppUserStatusId")
@@ -348,6 +387,45 @@ namespace Architecture.Core.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.LU.BankName", b =>
+                {
+                    b.Property<int>("BankNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BankDescription")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("BankNameId");
+
+                    b.ToTable("LU_BankName");
+
+                    b.HasData(
+                        new
+                        {
+                            BankNameId = 1,
+                            BankDescription = "UniCredit Bank",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            BankNameId = 2,
+                            BankDescription = "Intesa San Paolo",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            BankNameId = 3,
+                            BankDescription = "UBI Bank",
+                            IsActive = true
+                        });
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.LU.ContractType", b =>
                 {
                     b.Property<int>("ContractTypeId")
@@ -383,6 +461,84 @@ namespace Architecture.Core.Repository.Migrations
                         {
                             ContractTypeId = 3,
                             ContractTypeName = "Occational",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.CountryName", b =>
+                {
+                    b.Property<int>("CountryNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CountryDescription")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CountryNameId");
+
+                    b.ToTable("LU_CountryName");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryNameId = 1,
+                            CountryDescription = "Italy",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            CountryNameId = 2,
+                            CountryDescription = "Bangladesh",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            CountryNameId = 3,
+                            CountryDescription = "Germany",
+                            IsActive = true
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.DegreeType", b =>
+                {
+                    b.Property<int>("DegreeTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DegreeTypeName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("DegreeTypeId");
+
+                    b.ToTable("LU_DegreeType");
+
+                    b.HasData(
+                        new
+                        {
+                            DegreeTypeId = 1,
+                            DegreeTypeName = "Bachelor",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            DegreeTypeId = 2,
+                            DegreeTypeName = "Masters",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            DegreeTypeId = 3,
+                            DegreeTypeName = "High School",
                             IsActive = true
                         });
                 });
@@ -648,6 +804,45 @@ namespace Architecture.Core.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.LU.InsuranceType", b =>
+                {
+                    b.Property<int>("InsuranceTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("InsuranceTypeId");
+
+                    b.ToTable("LU_InsuranceType");
+
+                    b.HasData(
+                        new
+                        {
+                            InsuranceTypeId = 1,
+                            Description = "Car Insurance",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            InsuranceTypeId = 2,
+                            Description = "Home Insurance",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            InsuranceTypeId = 3,
+                            Description = "Health Insurance",
+                            IsActive = true
+                        });
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.LU.JobDeliveryType", b =>
                 {
                     b.Property<int>("JobDeliveryTypeId")
@@ -762,6 +957,45 @@ namespace Architecture.Core.Repository.Migrations
                             LoanInterestTypeId = 3,
                             IsActive = true,
                             LoanInterestTypeName = "No Interest"
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.LoanStatusType", b =>
+                {
+                    b.Property<int>("LoanStatusTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LoanStatusTypeName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("LoanStatusTypeId");
+
+                    b.ToTable("LU_LoanStatusType");
+
+                    b.HasData(
+                        new
+                        {
+                            LoanStatusTypeId = 1,
+                            IsActive = true,
+                            LoanStatusTypeName = "Pending"
+                        },
+                        new
+                        {
+                            LoanStatusTypeId = 2,
+                            IsActive = true,
+                            LoanStatusTypeName = "Active"
+                        },
+                        new
+                        {
+                            LoanStatusTypeId = 3,
+                            IsActive = true,
+                            LoanStatusTypeName = "Past Due"
                         });
                 });
 
@@ -957,6 +1191,45 @@ namespace Architecture.Core.Repository.Migrations
                             OccupationPositionId = 3,
                             IsActive = true,
                             OccupationPositionName = "Shareholder"
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.OccupationPositionType", b =>
+                {
+                    b.Property<int>("OccupationPositionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("OccupationPositionId");
+
+                    b.ToTable("LU_OccupationPositionType");
+
+                    b.HasData(
+                        new
+                        {
+                            OccupationPositionId = 1,
+                            Description = "Manager",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            OccupationPositionId = 2,
+                            Description = "Worker",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            OccupationPositionId = 3,
+                            Description = "Employee",
+                            IsActive = true
                         });
                 });
 
@@ -1161,6 +1434,239 @@ namespace Architecture.Core.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.ProfAddressInfo", b =>
+                {
+                    b.Property<int>("AddressInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AddressTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppartmentNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("FloorNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoadName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("RoadNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("AddressInfoId");
+
+                    b.HasIndex("AddressTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfAddressInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfAssetInfo", b =>
+                {
+                    b.Property<int>("AssetInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AnyRestrictionByGovt")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("AssetTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CityName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("EquivalentMoneyMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquivalentMoneyMin")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("MoneyAverage")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfAsset")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("OwnerFromDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.Property<int>("OwnerTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("OwnershipPercentage")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("RentAmount")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("TaxAmount")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("UseAblePercentage")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.HasKey("AssetInfoId");
+
+                    b.HasIndex("AssetTypeId");
+
+                    b.HasIndex("OwnerTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfAssetInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfBankInfo", b =>
+                {
+                    b.Property<int>("BankInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BankNameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BranchName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SwiftNumber")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("BankInfoId");
+
+                    b.HasIndex("BankNameId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfBankInfos");
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.ProfBasicInfo", b =>
                 {
                     b.Property<int>("ProfileId")
@@ -1360,6 +1866,208 @@ namespace Architecture.Core.Repository.Migrations
                     b.ToTable("ProfBasicInfos");
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.ProfDelegationInfo", b =>
+                {
+                    b.Property<int>("DelegationInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("DocumentIssueDate")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("IssuedBy")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Purpose")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RefNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("TaxCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("DelegationInfoId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfDelegationInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfDocumentInfo", b =>
+                {
+                    b.Property<int>("DocumentInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("IssuedBy")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PurposeofDocument")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DocumentInfoId");
+
+                    b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfDocumentInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfEducationInfo", b =>
+                {
+                    b.Property<int>("EducationInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ActivitiesAndSocieties")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DegreeTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndYear")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("InstitutionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Result")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("StartYear")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("UniversityAddress")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.HasKey("EducationInfoId");
+
+                    b.HasIndex("DegreeTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfEducationInfos");
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.ProfFamilyInfo", b =>
                 {
                     b.Property<int>("FamilyInfoId")
@@ -1496,6 +2204,693 @@ namespace Architecture.Core.Repository.Migrations
                     b.ToTable("ProfFamilyInfo");
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.ProfHouseRentInfo", b =>
+                {
+                    b.Property<int>("HouseRentInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Consistenza")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("ContractDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.Property<int?>("ContractTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("FoglioNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool?>("HasLoan")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("HouseCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HouseTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsJoined")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRentByOwner")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("LoanAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int>("LoanInterestTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LoanPeriod")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LoanStartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("LoanStatusTypeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MicroZona")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("MonthlyRentAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("NotaioInfo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("PartiocellaNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegistrationCity")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("RegistrationCode")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("RegistrationDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("RegistrationInfo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("RegistrationNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("RegistrationOffice")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Rendita")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("RentAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("SectionNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("ServiceChargeAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<decimal>("SharePercent")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("SubNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("SuperficieCatastale")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Zona")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("HouseRentInfoId");
+
+                    b.HasIndex("ContractTypeId");
+
+                    b.HasIndex("HouseCategoryId");
+
+                    b.HasIndex("HouseTypeId");
+
+                    b.HasIndex("LoanInterestTypeId");
+
+                    b.HasIndex("LoanStatusTypeID");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfHouseRentInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfISEEInfo", b =>
+                {
+                    b.Property<int>("ISEEInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("Date");
+
+                    b.Property<decimal>("ISEAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int?>("ISEEClassTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ISEEFamilyIncome")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("ISEEValue")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<decimal>("ISPAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<decimal>("ISRAmount")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("IdentificationNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Point")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SumittedDate")
+                        .HasColumnType("Date");
+
+                    b.HasKey("ISEEInfoId");
+
+                    b.HasIndex("ISEEClassTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfISEEInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfIncomeInfo", b =>
+                {
+                    b.Property<int>("IncomeInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Document")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("IncomeTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Month")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("MontlyIncome")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("YearlyIncome")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.HasKey("IncomeInfoId");
+
+                    b.HasIndex("IncomeTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfIncomeInfo");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfInsuranceInfo", b =>
+                {
+                    b.Property<int>("InsuranceInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.Property<decimal>("InsuranceAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(8,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("InsuranceReturnPercentage")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("InsuranceTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("InsuranceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.HasKey("InsuranceInfoId");
+
+                    b.HasIndex("InsuranceTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfInsuranceInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfLegalInfo", b =>
+                {
+                    b.Property<int>("LegalInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("CountryNameId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<bool?>("IsAnyCase")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RefNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.HasKey("LegalInfoId");
+
+                    b.HasIndex("CountryNameId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfLegalInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfMovementInfo", b =>
+                {
+                    b.Property<int>("MovementInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CountryNameId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Purpose")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("MovementInfoId");
+
+                    b.HasIndex("CountryNameId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfMovementInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfOccupationInfo", b =>
+                {
+                    b.Property<int>("OccupationInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ATECONo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("BranchAddress")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("ChamberOfCommerceCityName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ChamberOfCommerceRegNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CompanyRepresentative")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("ContractEndDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime?>("ContractStartDate")
+                        .IsRequired()
+                        .HasColumnType("Date");
+
+                    b.Property<int?>("ContractTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("IsShareHolder")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("JobHour")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int?>("JobTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LegalCompanyAddress")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NotaioInfo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("OfficeAddress")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<decimal>("PercentageOfShare")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("REANo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SCIACityName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("SCIANo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("VATNo")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("OccupationInfoId");
+
+                    b.HasIndex("ContractTypeId");
+
+                    b.HasIndex("JobTypeId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("ProfOccupationInfo");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfWorkerInfo", b =>
+                {
+                    b.Property<int>("WorkerInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContractNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime?>("Modified")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("MonthlySalary")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("TaxCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("WorkerTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WorkerInfoId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.HasIndex("WorkerTypeId");
+
+                    b.ToTable("ProfWorkerInfos");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
@@ -1608,8 +3003,112 @@ namespace Architecture.Core.Repository.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.ProfAddressInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.AddressType", "AddressType")
+                        .WithMany()
+                        .HasForeignKey("AddressTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfAddressInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfAssetInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.AssetType", "AssetType")
+                        .WithMany()
+                        .HasForeignKey("AssetTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.OwnerType", "OwnerType")
+                        .WithMany()
+                        .HasForeignKey("OwnerTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfAssetInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfBankInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.BankName", "BankName")
+                        .WithMany()
+                        .HasForeignKey("BankNameId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfBankInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.ProfBasicInfo", b =>
                 {
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfDelegationInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfDelegationInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfDocumentInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.DocumentType", "DocumentType")
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfDocumentInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfEducationInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.DegreeType", "DegreeType")
+                        .WithMany()
+                        .HasForeignKey("DegreeTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfEducationInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
                         .HasForeignKey("RecordStatusId");
@@ -1642,6 +3141,166 @@ namespace Architecture.Core.Repository.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.ResidenceScope", "ResidenceScope")
                         .WithMany()
                         .HasForeignKey("ResidenceScopeId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfHouseRentInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.ContractType", "ContractType")
+                        .WithMany()
+                        .HasForeignKey("ContractTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.HouseCategory", "HouseCategory")
+                        .WithMany()
+                        .HasForeignKey("HouseCategoryId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.HouseType", "HouseType")
+                        .WithMany()
+                        .HasForeignKey("HouseTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.LoanInterestType", "LoanInterestType")
+                        .WithMany()
+                        .HasForeignKey("LoanInterestTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.LoanStatusType", "LoanStatusType")
+                        .WithMany()
+                        .HasForeignKey("LoanStatusTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfHouseRentInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfISEEInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.ISEEClassType", "ISEEClassType")
+                        .WithMany()
+                        .HasForeignKey("ISEEClassTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfISEEInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfIncomeInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.IncomeType", "IncomeType")
+                        .WithMany()
+                        .HasForeignKey("IncomeTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfIncomeInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfInsuranceInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.InsuranceType", "InsuranceType")
+                        .WithMany()
+                        .HasForeignKey("InsuranceTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfInsuranceInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfLegalInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.CountryName", "CountryName")
+                        .WithMany()
+                        .HasForeignKey("CountryNameId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfLegalInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfMovementInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.CountryName", "CountryName")
+                        .WithMany()
+                        .HasForeignKey("CountryNameId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfMovementInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfOccupationInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.ContractType", "ContractType")
+                        .WithMany()
+                        .HasForeignKey("ContractTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.JobType", "JobType")
+                        .WithMany()
+                        .HasForeignKey("JobTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfOccupationInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.ProfWorkerInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany("ProfWorkerInfos")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.WorkerType", "WorkerType")
+                        .WithMany()
+                        .HasForeignKey("WorkerTypeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

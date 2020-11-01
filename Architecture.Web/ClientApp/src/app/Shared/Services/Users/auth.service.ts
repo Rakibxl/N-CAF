@@ -75,6 +75,13 @@ export class AuthService {
       }));
   }
 
+  register(userRegister: any) {
+    return this.http.post<APIResponse>(`${this.authEndpoint}/register`, userRegister)
+      .pipe(map((res: APIResponse) => {
+
+      }));
+  }
+
   forgotPassword(email: string) {
     return this.http.get<APIResponse>(`${this.authEndpoint}/forgot-password/${email}`);
   }

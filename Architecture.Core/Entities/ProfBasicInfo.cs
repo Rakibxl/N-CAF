@@ -55,6 +55,21 @@ namespace Architecture.Core.Entities
         public bool HasAppliedForCitizenship { get; set; }
         public int? BranchId { get; set; }
         public virtual ICollection<ProfFamilyInfo> ProfFamilyInfos { get; set; }
+        public virtual ICollection<ProfAddressInfo> ProfAddressInfos { get; set; }
+        public virtual ICollection<ProfAssetInfo> ProfAssetInfos { get; set; }
+        public virtual ICollection<ProfBankInfo> ProfBankInfos { get; set; }
+        public virtual ICollection<ProfLegalInfo> ProfLegalInfos { get; set; }
+        public virtual ICollection<ProfInsuranceInfo> ProfInsuranceInfos { get; set; }
+        public virtual ICollection<ProfWorkerInfo> ProfWorkerInfos { get; set; }
+        public virtual ICollection<ProfDelegationInfo> ProfDelegationInfos { get; set; }
+        public virtual ICollection<ProfISEEInfo> ProfISEEInfos { get; set; }
+        public virtual ICollection<ProfIncomeInfo> ProfIncomeInfos { get; set; }
+        public virtual ICollection<ProfMovementInfo> ProfMovementInfos { get; set; }
+        public virtual ICollection<ProfDocumentInfo> ProfDocumentInfos { get; set; }
+        public virtual ICollection<ProfEducationInfo> ProfEducationInfos { get; set; }
+        public virtual ICollection<ProfOccupationInfo> ProfOccupationInfos { get; set; }
+        public virtual ICollection<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
+
         #endregion
 
     }
