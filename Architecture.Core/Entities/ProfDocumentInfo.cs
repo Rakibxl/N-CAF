@@ -8,7 +8,7 @@ namespace Architecture.Core.Entities
 {
     public class ProfDocumentInfo : Auditable
     {
-        public int DocumentId { get; set; }
+        public int DocumentInfoId { get; set; }
         public int ProfileId { get; set; }
         public virtual ProfBasicInfo ProfBasicInfo { get; set; }
         public int? DocumentTypeId { get; set; }
