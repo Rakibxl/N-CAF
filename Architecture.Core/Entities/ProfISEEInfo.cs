@@ -18,7 +18,7 @@ namespace Architecture.Core.Entities
         public decimal ISEAmount { get; set; }
         public decimal ISRAmount { get; set; }
         public string IdentificationNumber { get; set; }
-        public DateTime SumittedDate { get; set; }
+        public DateTime SubmittedDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public DateTime ExpiryDate { get; set; }
     }

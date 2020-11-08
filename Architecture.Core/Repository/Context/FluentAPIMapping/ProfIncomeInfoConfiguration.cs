@@ -13,7 +13,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             incomeInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfIncomeInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
             incomeInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(8,2)").IsRequired();
-            incomeInfo.Property(bs => bs.MontlyIncome).HasColumnType("decimal(8,2)").IsRequired();
+            incomeInfo.Property(bs => bs.MonthlyIncome).HasColumnType("decimal(8,2)").IsRequired();
             incomeInfo.Property(bs => bs.Year).HasColumnType("date").IsRequired();
             incomeInfo.Property(bs => bs.Month).HasColumnType("date").IsRequired();
             incomeInfo.Property(bs => bs.Document).HasMaxLength(100);

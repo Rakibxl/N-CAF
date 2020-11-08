@@ -21,7 +21,6 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
                 familyInfo.Property(bs => bs.TaxCode).HasMaxLength(100);
                 familyInfo.Property(bs => bs.PlaceOfBirth).HasMaxLength(100);
                 familyInfo.Property(bs => bs.PhoneNumber).HasMaxLength(100);
-                familyInfo.Property(bs => bs.PreviousNationality).HasMaxLength(100);
                 familyInfo.Property(bs => bs.DependentPercentage).HasColumnType("decimal(3,2)").HasDefaultValue(0.0);
                 familyInfo.Property(bs => bs.DisabledPercentage).HasColumnType("decimal(3,2)").HasDefaultValue(0.0);
                 familyInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(8,2)").HasDefaultValue(0.0);

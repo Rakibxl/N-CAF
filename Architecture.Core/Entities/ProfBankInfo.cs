@@ -13,7 +13,8 @@ namespace Architecture.Core.Entities
         public string BranchName { get; set; }
         public string AccountNumber { get; set; }
         public string SwiftNumber { get; set; }      
-        public string Active { get; set; }
+        public string Status { get; set; }
 
     }
 }
+    

@@ -12,7 +12,7 @@ namespace Architecture.Core.Entities
         public int? IncomeTypeId { get; set; }
         public virtual IncomeType IncomeType { get; set; }
         public decimal YearlyIncome { get; set; }
-        public decimal MontlyIncome { get; set; }        
+        public decimal MonthlyIncome { get; set; }        
         public DateTime Year { get; set; }
         public DateTime Month { get; set; }
         public string Document { get; set; }
