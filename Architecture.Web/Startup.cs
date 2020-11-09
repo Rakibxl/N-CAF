@@ -25,8 +25,8 @@ using Architecture.Core.Repository.Interfaces;
 using System;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Architecture.BLL.Services.Notification;
-using Architecture.BLL.Services.ClientProfile.Interfaces;
-using Architecture.BLL.Services.ClientProfile.Implements;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
+using Architecture.BLL.Services.Implements.ClientProfile;
 using Architecture.Core.Repository.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Implements.ClientProfile;
 
@@ -77,7 +77,7 @@ namespace Architecture.Web
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();
             services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
-            services.AddTransient<IClientProfileService, ClientProfileService>();
+            services.AddTransient<IBasicInfoService, BasicInfoService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())

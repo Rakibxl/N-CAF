@@ -95,7 +95,7 @@ export class BasicInformationComponent implements OnInit {
   save() {
     let formData = this.basicInfoForm.value;
 
-    this.clientProfileService.saveBasicInfo(formData).subscribe(res => {
+    this.clientProfileService.createOrUpdateBasicInfo(formData).subscribe(res => {
       console.log(res)
     });
   }
