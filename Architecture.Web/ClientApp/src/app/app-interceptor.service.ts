@@ -8,16 +8,16 @@ import { AuthService } from './Shared/Services/Users/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppInterceptorService implements HttpInterceptor {
-    
+
     constructor(private alertService: AlertService,
         private activatedRoute: ActivatedRoute,
-        private authService: AuthService) { 
+        private authService: AuthService) {
     }
 
     handleError = (error: HttpErrorResponse, request?, next?) => {
         console.log("api error:", error);
         setTimeout(() => {
-            this.alertService.fnLoading(false);   
+            this.alertService.fnLoading(false);
             let statusCode = error.status;
             let errorMsg = error.error.message || "";
             if (statusCode == 0) {
@@ -29,8 +29,8 @@ export class AppInterceptorService implements HttpInterceptor {
                 errorMsg = "You are not authorized. Please contact with system admin.";
             }
             else if (statusCode == 400) {
-                errorMsg = "Validation failed for " + error.error.errors[0].propertyName + ". " 
-                + error.error.errors[0].errorList[0];
+                errorMsg = "Validation failed for " + error.error.errors[0].propertyName + ". "
+                    + error.error.errors[0].errorList[0];
             }
 
             //showing message            
@@ -43,7 +43,6 @@ export class AppInterceptorService implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        debugger
         this.alertService.fnLoading(true);
         console.log('processing request', request);
         console.log('url', request.url);
@@ -53,7 +52,7 @@ export class AppInterceptorService implements HttpInterceptor {
         if (request.method === 'POST' || request.method === 'PUT') {
             this.shiftDates(request.body);
         }
-        
+
         const headers = new HttpHeaders({
             Authorization: 'Bearer ' + token
         });
@@ -70,7 +69,6 @@ export class AppInterceptorService implements HttpInterceptor {
                 }),
                 finalize(() => {
                     setTimeout(() => {
-                        debugger;
                         this.alertService.fnLoading(false);
                     }, 1000);
                 })
@@ -81,11 +79,11 @@ export class AppInterceptorService implements HttpInterceptor {
         if (body === null || body === undefined) {
             return body;
         }
-    
+
         if (typeof body !== 'object') {
             return body;
         }
-    
+
         for (const key of Object.keys(body)) {
             const value = body[key];
             if (value instanceof Date) {

@@ -27,8 +27,6 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Architecture.BLL.Services.Notification;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.BLL.Services.Implements.ClientProfile;
-using Architecture.Core.Repository.Interfaces.ClientProfile;
-using Architecture.Core.Repository.Implements.ClientProfile;
 
 namespace Architecture.Web
 {
@@ -62,7 +60,6 @@ namespace Architecture.Web
             #region Repository and UnitOfWork
             services.AddScoped<IExampleRepository, ExampleRepository>();
             services.AddScoped<IExampleUnitOfWork, ExampleUnitOfWork>();
-            services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
             #endregion
 
             services.AddHttpContextAccessor();

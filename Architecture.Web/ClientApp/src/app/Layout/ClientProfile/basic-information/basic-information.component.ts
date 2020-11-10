@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { ClientProfileService } from '../../../Shared/Services/ClientProfile/client-profile.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 
 @Component({
@@ -13,28 +14,25 @@ import { ClientProfileService } from '../../../Shared/Services/ClientProfile/cli
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
 
+  // defaultBindingsList = [
+  //   { value: "1", label: "type here" },
+  //   { value: "Celibe/Nubile - Unmarried Maiden", label: "Celibe/Nubile - Unmarried Maiden" },
+  //   { value: "Coniugato/a - Married To", label: "Coniugato/a - Married To" },
+  //   { value: "unito/a civilmente - joined civilly", label: "unito/a civilmente - joined civilly" },
+  //   { value: "separata legalmente - legally separated", label: "separata legalmente - legally separated" },
+  //   { value: "sciolto/a legalmente - legally dissolved", label: "sciolto/a legalmente - legally dissolved" },
+  //   { value: "sciolto/a da unione civile-dissolved from civil union - civil union", label: "sciolto/a da unione civile-dissolved from civil union - civil union" },
+  //   { value: "divorziato/a - divorced to", label: "divorziato/a - divorced to" },
+  //   { value: "vedovo/a - widower", label: "vedovo/a - widower" },
+  //   { value: "abbandonato/a - abandoned", label: "abbandonato/a - abandoned" },
+  //   { value: "parte superstite dell'unione civile- surviving part of the civil union", label: "parte superstite dell'unione civile- surviving part of the civil union" },
+  // ];
+  // selectedCity = { value: "1", label: "type here" };
+
   constructor(private fb: FormBuilder, private clientProfileService: ClientProfileService,
-    private alertService: AlertService, private router: Router) {
+    private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.initForm();
   }
-
-
-  defaultBindingsList = [
-    { value: "1", label: "type here" },
-    { value: "Celibe/Nubile - Unmarried Maiden", label: "Celibe/Nubile - Unmarried Maiden" },
-    { value: "Coniugato/a - Married To", label: "Coniugato/a - Married To" },
-    { value: "unito/a civilmente - joined civilly", label: "unito/a civilmente - joined civilly" },
-    { value: "separata legalmente - legally separated", label: "separata legalmente - legally separated" },
-    { value: "sciolto/a legalmente - legally dissolved", label: "sciolto/a legalmente - legally dissolved" },
-    { value: "sciolto/a da unione civile-dissolved from civil union - civil union", label: "sciolto/a da unione civile-dissolved from civil union - civil union" },
-    { value: "divorziato/a - divorced to", label: "divorziato/a - divorced to" },
-    { value: "vedovo/a - widower", label: "vedovo/a - widower" },
-    { value: "abbandonato/a - abandoned", label: "abbandonato/a - abandoned" },
-    { value: "parte superstite dell'unione civile- surviving part of the civil union", label: "parte superstite dell'unione civile- surviving part of the civil union" },
-  ];
-
-  selectedCity = { value: "1", label: "type here" };
-
 
   ngOnInit() {
 
@@ -60,32 +58,32 @@ export class BasicInformationComponent implements OnInit {
       birthStateCode: [null],
       nationalityId: [null],
       citizenStateCode: [null],
-      eyesColorId: [null],
-      height: [null],
+      eyeColorId: [null],
+      height: [null, Validators.required],
       zipCode: [null],
       motiveTypeId: [null],
       cityOfResidence: [null],
       stateOfResidence: [null],
       occupationTypeId: [null],
       occupationPositionId: [null],
-      hasUnEmployedCertificate: [null],
+      hasUnEmployedCertificate: [null, Validators.required],
       unEmployedCertificateIssuesDate: [null],
-      hasAnyUnEmployedFacility: [null],
+      hasAnyUnEmployedFacility: [null, Validators.required],
       contractTypeId: [null],
-      yearlyIncome: [null],
-      isRentHouse: [null],
+      yearlyIncome: [null, Validators.required],
+      isRentHouse: [null, Validators.required],
       howManyHouseRent: [null],
-      isHouseOwner: [null],
+      isHouseOwner: [null, Validators.required],
       houseCountryName: [null],
       houseCityName: [null],
-      hasVehicle: [null],
+      hasVehicle: [null, Validators.required],
       carSerialNumber: [null],
       carNumberPlate: [null],
-      hasVehicleInsurance: [null],
-      isCompanyOwner: [null],
-      hasWorker: [null],
+      hasVehicleInsurance: [null, Validators.required],
+      isCompanyOwner: [null, Validators.required],
+      hasWorker: [null, Validators.required],
       digitalVatCode: [null],
-      hasAppliedForCitizenship: [null],
+      hasAppliedForCitizenship: [null, Validators.required],
       requestTypeOfApplicant: [null],
       applicationFor: [null],
       branchId: [null]
@@ -94,9 +92,28 @@ export class BasicInformationComponent implements OnInit {
 
   save() {
     let formData = this.basicInfoForm.value;
+    formData.profileId = formData.profileId || 0;
+    formData.hasAnyUnEmployedFacility = this.getBoolValue(formData.hasAnyUnEmployedFacility);
+    formData.hasUnEmployedCertificate = this.getBoolValue(formData.hasUnEmployedCertificate);
+    formData.hasAppliedForCitizenship = this.getBoolValue(formData.hasAppliedForCitizenship);
+    formData.hasVehicle = this.getBoolValue(formData.hasVehicle);
+    formData.hasVehicleInsurance = this.getBoolValue(formData.hasVehicleInsurance);
+    formData.hasWorker = this.getBoolValue(formData.hasWorker);
+    formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
+    formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
+    formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
 
+    this.commonService.startLoading();
     this.clientProfileService.createOrUpdateBasicInfo(formData).subscribe(res => {
       console.log(res)
+      this.commonService.stopLoading();
     });
+  }
+
+  getBoolValue(val) {
+    if (val && (val == 'Yes' || val == '1' || val == 1 || val == true)) {
+      return true;
+    }
+    return false;
   }
 }

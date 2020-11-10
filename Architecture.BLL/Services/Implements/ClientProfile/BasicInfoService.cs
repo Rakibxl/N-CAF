@@ -18,7 +18,6 @@ using System.IO;
 using iTextSharp.text.pdf;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Interfaces;
-using Architecture.Core.Repository.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
@@ -32,7 +31,6 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             IEnumerable<ProfBasicInfo> result;
             result = await basicInfoRepo.GetAsync(x => x, x => x.ProfileId == profileId);
             return result;
-
         }
 
         public async Task<ProfBasicInfo> GetById(int basicInfoId)
@@ -69,7 +67,6 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             {
                 throw ex;
             }
-
         }
 
         public async Task<int> Delete(int basicInfoId)

@@ -10,8 +10,8 @@ namespace Architecture.Core.Entities
 {
    public class ProfBasicInfo: Auditable
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key, Column(Order = 0)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key, Column(Order = 0)]
         public int ProfileId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
@@ -48,8 +48,9 @@ namespace Architecture.Core.Entities
         public int? ContractTypeId { get; set; }
         public virtual ContractType ContractType { get; set; }
         public decimal YearlyIncome { get; set; }
+
         #region house info
-        public Boolean IsRentHouse { get; set; }
+        public bool IsRentHouse { get; set; }
         public int? HowManyHouseRent { get; set; }
         public bool IsHouseOwner { get; set; }
         public string HouseCountryName { get; set; }
@@ -57,7 +58,7 @@ namespace Architecture.Core.Entities
         public bool HasVehicle { get; set; }
         public string CarSerialNumber { get; set; }
         public string CarNumberPlate { get; set; }
-        public Boolean HasVehicleInsurance { get; set; }
+        public bool HasVehicleInsurance { get; set; }
         public bool IsCompanyOwner { get; set; }
         public bool HasWorker { get; set; }
         public string DigitalVatCode { get; set; }
@@ -78,8 +79,6 @@ namespace Architecture.Core.Entities
         public virtual ICollection<ProfEducationInfo> ProfEducationInfos { get; set; }
         public virtual ICollection<ProfOccupationInfo> ProfOccupationInfos { get; set; }
         public virtual ICollection<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
-
         #endregion
-
     }
 }
