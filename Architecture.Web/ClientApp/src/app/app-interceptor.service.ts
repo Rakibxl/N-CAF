@@ -70,7 +70,6 @@ export class AppInterceptorService implements HttpInterceptor {
                 }),
                 finalize(() => {
                     setTimeout(() => {
-                        debugger;
                         this.alertService.fnLoading(false);
                     }, 1000);
                 })

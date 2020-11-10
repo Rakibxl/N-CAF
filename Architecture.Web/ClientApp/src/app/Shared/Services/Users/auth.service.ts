@@ -21,7 +21,7 @@ export class AuthService {
     private jwtHelper: JwtHelperService, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl + "api/";
     this.authEndpoint = this.baseUrl + 'v1/auth';
-    this.currentUserSubject = new BehaviorSubject<IAuthUser>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUserSubject = new BehaviorSubject<IAuthUser>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -42,7 +42,8 @@ export class AuthService {
 
   public get currentUserToken(): string {
     if (!this.isLoggedIn) return "";
-    const token = this.currentUserSubject.value.token;
+      const token = this.currentUserSubject.value.token;
+      console.log("token:", token);
     return token;
   }
 
