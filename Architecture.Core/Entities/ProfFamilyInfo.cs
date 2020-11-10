@@ -23,7 +23,8 @@ namespace Architecture.Core.Entities
         public virtual OccupationType OccupationType { get; set; }
         public int? NationlityId { get; set; }
         public virtual Nationality Nationality { get; set; }
-        public string PreviousNationality { get; set; }
+        public virtual Nationality PreviousNationality { get; set; }
+        public int? PreviousNationalityId { get; set; }
         public int? ResidenceScopeId { get; set; }
         public virtual ResidenceScope ResidenceScope { get; set; }
         public bool IsDependent { get; set; } = false;

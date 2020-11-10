@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Architecture.Core.Entities.Core;
 using System.ComponentModel.DataAnnotations.Schema;
+using Architecture.Core.Entities.LU;
 
 namespace Architecture.Core.Entities
 {
@@ -20,24 +21,32 @@ namespace Architecture.Core.Entities
         public DateTime? TaxCodeEndDate { get; set; }
         public string PhoneNumber { get; set; }
         public int? GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
         public int? MaritalStatusId { get; set; }
+        public virtual MaritalStatus MaritalStatus { get; set; }
         public string Email { get; set; }
         public string PostalElectronicCertificate { get; set; }
         public string CityOfBirth { get; set; }
         public string StateOfBirth { get; set; }
         public string BirthStateCode { get; set; }
         public int? NationalityId { get; set; }
+        public virtual Nationality Nationality { get; set; }
         public string CitizenStateCode { get; set; }
-        public string EyesColorId { get; set; }
+        public int? EyeColorId { get; set; }
+        public virtual EyeColor EyeColor { get; set; }
         public decimal Height { get; set; }
         public string ZipCode { get; set; }
         public int? MotiveTypeId { get; set; }
+        public virtual MotiveType MotiveType { get; set; }
         public int? OccupationTypeId { get; set; }
+        public virtual OccupationType OccupationType { get; set; }
         public int? OccupationPositionId { get; set; }
+        public virtual OccupationPosition OccupationPosition { get; set; }
         public bool HasUnEmployedCertificate { get; set; }
         public DateTime? UnEmployedCertificateIssuesDate { get; set; }
         public bool HasAnyUnEmployedFacility { get; set; }
         public int? ContractTypeId { get; set; }
+        public virtual ContractType ContractType { get; set; }
         public decimal YearlyIncome { get; set; }
         #region house info
         public Boolean IsRentHouse { get; set; }

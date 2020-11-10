@@ -19,7 +19,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             iseeInfo.Property(bs => bs.ISEAmount).HasColumnType("decimal(3,2)").IsRequired();
             iseeInfo.Property(bs => bs.ISRAmount).HasColumnType("decimal(3,2)").IsRequired();
             iseeInfo.Property(bs => bs.IdentificationNumber).HasMaxLength(100).IsRequired();
-            iseeInfo.Property(bs => bs.SumittedDate).HasColumnType("Date").IsRequired();
+            iseeInfo.Property(bs => bs.SubmittedDate).HasColumnType("Date").IsRequired();
             iseeInfo.Property(bs => bs.DeliveryDate).HasColumnType("Date").IsRequired();
             iseeInfo.Property(bs => bs.ExpiryDate).HasColumnType("Date").IsRequired();
 
