@@ -118,7 +118,7 @@ export class BasicInformationComponent implements OnInit {
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
       this.commonService.stopLoading();
       console.log(res)
-    }, error => {
+    }, (error: any) => {
       this.commonService.stopLoading();
       console.log(error)
     });
