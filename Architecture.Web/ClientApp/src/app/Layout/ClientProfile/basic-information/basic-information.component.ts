@@ -90,7 +90,7 @@ export class BasicInformationComponent implements OnInit {
     });
   }
 
-  save() {
+  getModel() {
     let formData = this.basicInfoForm.value;
     formData.profileId = formData.profileId || 0;
     formData.hasAnyUnEmployedFacility = this.getBoolValue(formData.hasAnyUnEmployedFacility);
@@ -102,12 +102,7 @@ export class BasicInformationComponent implements OnInit {
     formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
     formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
     formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
-
-    this.commonService.startLoading();
-    this.clientProfileService.createOrUpdateBasicInfo(formData).subscribe(res => {
-      console.log(res)
-      this.commonService.stopLoading();
-    });
+    return formData;
   }
 
   getBoolValue(val) {
@@ -115,5 +110,17 @@ export class BasicInformationComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  save() {
+    let model = this.getModel();
+    this.commonService.startLoading();
+    this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
+      this.commonService.stopLoading();
+      console.log(res)
+    }, error => {
+      this.commonService.stopLoading();
+      console.log(error)
+    });
   }
 }
