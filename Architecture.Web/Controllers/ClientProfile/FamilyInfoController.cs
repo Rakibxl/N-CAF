@@ -46,7 +46,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrUpdate([FromForm] ProfFamilyInfo model)
+        public async Task<IActionResult> CreateOrUpdate(ProfFamilyInfo model)
         {
             if (!ModelState.IsValid)
             {

@@ -36,8 +36,18 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int houserentInfoId)
         {
-            var result = await houserentInfoRepo.DeleteAsync(x=>x.HouseRentInfoId == houserentInfoId);
-            return result;
+            try
+            {
+                var info = await houserentInfoRepo.GetByIdAsync(houserentInfoId);
+                info.RecordStatusId = 2;
+                var result = await houserentInfoRepo.UpdateAsync(info);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Information is not exists.");
+            }
+            
         }
 
         public async Task<ProfHouseRentInfo> GetById(int houserentInfoId)

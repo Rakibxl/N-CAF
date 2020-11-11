@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyInfo';
+import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family-info.service';
 
 @Component({
   selector: 'app-family-information-form',
@@ -8,13 +9,22 @@ import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyI
 })
 export class FamilyInformationFormComponent implements OnInit {
     public familyInfoForm = new ProfFamilyInfo();
-  constructor() { }
+    constructor(private familyInfoService: FamilyInfoService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
     public onSubmit() {
         console.table(this.familyInfoForm);
+        this.familyInfoForm.profileId = 1;
+        this.familyInfoService.saveFamilyInfo(this.familyInfoForm).subscribe(
+            (success: any) => {
+                alert("success");
+            },
+            (error: any) => {
+                console.log("error", error);
+            });
+
+
     }
 
     public fnBackToList() {
