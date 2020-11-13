@@ -8,12 +8,14 @@ import { APIResponse } from '../../Entity/Response/api-response';
 })
 export class ClientProfileService {
   public baseUrl: string;
+  public basicInfoEndpoint: string;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl + 'api/';
+    this.basicInfoEndpoint = this.baseUrl + 'v1/BasicInfo';
   }
 
-  saveBasicInfo(data) {
-    return this.http.post<APIResponse>(this.baseUrl + 'ClientProfile/save-basic-info', data);
+  createOrUpdateBasicInfo(data) {
+    return this.http.post<APIResponse>(`${this.basicInfoEndpoint}`, data);
   }
 }

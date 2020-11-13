@@ -83,7 +83,11 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">MaritalStatus</label>
-                            <ng-select [items]="defaultBindingsList" formControlName="selectedCity"></ng-select>
+                            <select formControlName="maritalStatusId" name="" id="" class="form-control">
+                                <option value="1">Married</option>
+                                <option value="2">Single</option>
+                                <option value="3">Others</option>
+                            </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -132,7 +136,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Nationality</label>
-                            <select formControlName="Nationality" name="" id="" class="form-control">
+                            <select formControlName="nationalityId" name="" id="" class="form-control">
                                 <option>type here</option>
                                 <option>Bangladeshi</option>
                                 <option>Italian</option>
@@ -145,7 +149,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CitizenStateCode</label>
-                            <input formControlName="CitizenStateCode" type="text" autocomplete="off" class="form-control" placeholder="Enter CitizenStateCode" />
+                            <input formControlName="citizenStateCode" type="text" autocomplete="off" class="form-control" placeholder="Enter CitizenStateCode" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -153,7 +157,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Eyes Color</label>
-                            <select formControlName="eyesColorId" name="" id="" class="form-control">
+                            <select formControlName="eyeColorId" name="" id="" class="form-control">
                                 <option>type here</option>
                                 <option>Black</option>
                                 <option>Blue</option>
@@ -166,7 +170,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Height(in)CM</label>
-                            <input formControlName="height" type="text" autocomplete="off" class="form-control" placeholder="Enter height" />
+                            <input formControlName="height" type="number" autocomplete="off" class="form-control" placeholder="Enter Height" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -183,12 +187,11 @@
                         <div class="caf-input-group">
                             <label class="label">Reason/Motive</label>
                             <select formControlName="motiveTypeId" name="" id="" class="form-control">
-                                <option>List of Motive Type</option>
-                                <option>Motivo Lavoro</option>
-                                <option>SubordinatoAutonomo/Attesa</option>
-                                <option>Occupazione</option>
-                                <option>familiare</option>
-                                <option>Codice di motivo 13,15,16</option>
+                                <option value="1">Motivo Lavoro</option>
+                                <option value="2">SubordinatoAutonomo/Attesa</option>
+                                <option value="3">Occupazione</option>
+                                <option value="4">familiare</option>
+                                <option value="5">Codice di motivo 13,15,16</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -199,12 +202,12 @@
                         <div class="caf-input-group">
                             <label class="label">Occupation</label>
                             <select formControlName="occupationTypeId" name="" id="" class="form-control">
-                                <option value="">List of Profession</option>
-                                <option value="">Lavoro Subordinato</option>
-                                <option value="">Colf Badante - Care giver</option>
-                                <option value="">disoccupazione - Unemployment</option>
-                                <option value="">Lavoro Autonomo - self employment</option>
-                                <option value="">lavoro agricoltura - agriculture work</option>
+                                <option value="1">List of Profession</option>
+                                <option value="2">Lavoro Subordinato</option>
+                                <option value="3">Colf Badante - Care giver</option>
+                                <option value="4">disoccupazione - Unemployment</option>
+                                <option value="5">Lavoro Autonomo - self employment</option>
+                                <option value="6">lavoro agricoltura - agriculture work</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -214,10 +217,10 @@
                         <div class="caf-input-group">
                             <label class="label">Ocupation Position</label>
                             <select formControlName="occupationPositionId" name="" id="" class="form-control">
-                                <option value="">“Dirigente” (executive);</option>
-                                <option value="">“Quadro” (middle manager);</option>
-                                <option value="">“Impiegato” (white collar employee);</option>
-                                <option value="">“Operaio” (blue collar employee).</option>
+                                <option value="1">“Dirigente” (executive);</option>
+                                <option value="2">“Quadro” (middle manager);</option>
+                                <option value="3">“Impiegato” (white collar employee);</option>
+                                <option value="4">“Operaio” (blue collar employee).</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -229,7 +232,7 @@
                             <label>HasUnEmployedCertificate</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="HasUnEmployedCertificate">
+                                    <input type="checkbox" formControlName="hasUnEmployedCertificate">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -263,12 +266,12 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
                             <label>ContractType</label>
-                            <div class="pl-2">
-                                <label class="switch">
-                                    <input type="checkbox" formControlName="contractTypeId">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
+                            <select formControlName="contractTypeId" name="" id="" class="form-control">
+                                <option value="1">“Dirigente” (executive);</option>
+                                <option value="2">“Quadro” (middle manager);</option>
+                                <option value="3">“Impiegato” (white collar employee);</option>
+                                <option value="4">“Operaio” (blue collar employee).</option>
+                            </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -287,7 +290,7 @@
                             <label>IsRentHouse</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsRentHouse">
+                                    <input type="checkbox" formControlName="isRentHouse">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -299,7 +302,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">HowManyHouseHasRent</label>
-                            <input type="text" formControlName="howManyHouseRent" autocomplete="off" class="form-control" placeholder="has rent" />
+                            <input type="number" formControlName="howManyHouseRent" autocomplete="off" class="form-control" placeholder="has rent" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -341,7 +344,7 @@
                             <label>HasVehicle</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="HasVehicle">
+                                    <input type="checkbox" formControlName="hasVehicle">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -374,7 +377,7 @@
                             </label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="HasVehicleInsurance">
+                                    <input type="checkbox" formControlName="hasVehicleInsurance">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -388,7 +391,7 @@
                             <label>IsCompanyOwner</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsCompanyOwner">
+                                    <input type="checkbox" formControlName="isCompanyOwner">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -402,7 +405,7 @@
                             <label>HasWorker</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="HasWorker">
+                                    <input type="checkbox" formControlName="hasWorker">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -414,7 +417,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DigitalVatCode</label>
-                            <input type="number" formControlName="digitalVatCode" autocomplete="off" class="form-control" placeholder="Enter digital vat code" />
+                            <input type="text" formControlName="digitalVatCode" autocomplete="off" class="form-control" placeholder="Enter digital vat code" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -425,7 +428,7 @@
                             <label>HasAppliedForCitizenship</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="HasAppliedForCitizenship">
+                                    <input type="checkbox" formControlName="hasAppliedForCitizenship">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -435,30 +438,30 @@
                     </div>
 
                     <!--<div class="col-xl-4 col-md-6">
-        <div class="caf-input-group">
-            <label class="label">RequestTypeOfApplicant</label>
-            <select formControlName="requestTypeOfApplicant" value="" class="form-control">
-                <option value="">Rilascio- issue</option>
-                <option value="">Rinnovo - Renewal</option>
-                <option value="">Aggiornamento - Update</option>
-                <option value="">Duplicato - Duplicate</option>
-                <option value="">Conversione - Conversion</option>
-            </select>
-            <p class="text-info d-none">Info message</p>
-            <p class="text-danger d-none">Danger message</p>
-        </div>
-    </div>
-    <div class="col-xl-4 col-md-6">
-        <div class="caf-input-group">
-            <label class="label">ApplicationFor</label>
-            <select formControlName="applicationFor" name="" id="" class="form-control">
-                <option value=""> Permesso Di Soggiorno - Residence permit</option>
-                <option value=""> Carta Di Soggiorno - Residence Permiti unlimited</option>
-            </select>
-            <p class="text-info d-none">Info message</p>
-            <p class="text-danger d-none">Danger message</p>
-        </div>
-    </div>-->
+                    <div class="caf-input-group">
+                        <label class="label">RequestTypeOfApplicant</label>
+                        <select formControlName="requestTypeOfApplicant" value="" class="form-control">
+                            <option value="">Rilascio- issue</option>
+                            <option value="">Rinnovo - Renewal</option>
+                            <option value="">Aggiornamento - Update</option>
+                            <option value="">Duplicato - Duplicate</option>
+                            <option value="">Conversione - Conversion</option>
+                        </select>
+                        <p class="text-info d-none">Info message</p>
+                        <p class="text-danger d-none">Danger message</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="caf-input-group">
+                        <label class="label">ApplicationFor</label>
+                        <select formControlName="applicationFor" name="" id="" class="form-control">
+                            <option value=""> Permesso Di Soggiorno - Residence permit</option>
+                            <option value=""> Carta Di Soggiorno - Residence Permiti unlimited</option>
+                        </select>
+                        <p class="text-info d-none">Info message</p>
+                        <p class="text-danger d-none">Danger message</p>
+                    </div>
+                </div>-->
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -467,7 +470,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button [disabled]="basicInfoForm.invalid" class="caf-btn-primary-outline" (click)="basicInfoForm.valid && save()"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button class="caf-btn-primary-outline" (click)="save()"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

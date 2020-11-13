@@ -19,6 +19,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+
 import { AppInterceptorService } from './app-interceptor.service';
 import { AuthGuard } from './Shared/Guards/auth.guard';
 import { PermissionGuard } from './Shared/Guards/permission.guard';
@@ -28,6 +29,8 @@ import { MustMatchDirective } from './Shared/Directive/mustmatch.directive';
 import { PDFModifyComponent } from './pdfmodify/pdfmodify.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SelectModule } from 'ng-select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -55,7 +58,7 @@ export function tokenGetter(): string {
         NgReduxModule,
         CommonModule,
         LoadingBarRouterModule,
-
+        MatProgressSpinnerModule,
         // Angular Bootstrap Components
         PerfectScrollbarModule,
         NgbModule,
@@ -69,6 +72,9 @@ export function tokenGetter(): string {
                 tokenGetter: tokenGetter
             }
         })
+    ],
+    exports: [
+        MatProgressSpinnerModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

@@ -16,7 +16,7 @@
                                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                                     <i class="header-icon lnr-lighter icon-gradient bg-amy-crisp"></i>
                                     <div class="d-flex justify-content-between">
-                                        <strong>{{ user.fullName }} Profile</strong>
+                                        <strong>{{ user && user.fullName }} Profile</strong>
                                         <div class="border-left border-primary pl-3 ml-2"><a href="/accounts/accounts-history">$0.00<small><sup>USD</sup></small></a></div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="widget-content-left ml-1 header-user-info">
-                    <div class="widget-heading">{{ user.fullName }}</div>
+                    <div class="widget-heading">{{ user && user.fullName }}</div>
                 </div>
             </div>
         </div>
