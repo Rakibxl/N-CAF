@@ -36,23 +36,23 @@ namespace Architecture.Core.Repository.Core
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                             bool disableTracking = true)
         {
-            IQueryable<TEntity> query = _dbSet.AsQueryable();
+            using (_dbContext) { 
+                IQueryable<TEntity> query = _dbSet.AsQueryable();
+                if (include != null)
+                    query = include(query);
 
-            if (include != null)
-                query = include(query);
+                if (predicate != null)
+                    query = query.Where(predicate);
 
-            if (predicate != null)
-                query = query.Where(predicate);
+                if (orderBy != null)
+                    query = orderBy(query);
 
-            if (orderBy != null)
-                query = orderBy(query);
+                if (disableTracking)
+                    query = query.AsNoTracking();
 
-            if (disableTracking)
-                query = query.AsNoTracking();
+                 return await query.Select(selector).ToListAsync();
+            }
 
-            var result = await query.Select(selector).ToListAsync();
-
-            return result;
         }
 
         public virtual async Task<(IList<TResult> Items, int Total, int TotalFilter)> GetWithFilterAsync<TResult>(Expression<Func<TEntity, TResult>> selector,

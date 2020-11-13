@@ -21,7 +21,8 @@ namespace Architecture.Core.Repository.Core
 
         public bool SaveChanges()
         {
-            return _dbContext?.SaveChanges() > 0;
+            using (_dbContext)
+                return _dbContext?.SaveChanges() > 0;
         }
 
         public async Task<bool> SaveChangesAsync()

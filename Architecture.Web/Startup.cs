@@ -29,6 +29,9 @@ using Architecture.BLL.Services.ClientProfile.Interfaces;
 using Architecture.BLL.Services.ClientProfile.Implements;
 using Architecture.Core.Repository.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Implements.ClientProfile;
+using Serilog;
+using System.IO;
+using System.Diagnostics;
 
 namespace Architecture.Web
 {
@@ -44,7 +47,15 @@ namespace Architecture.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.File($@"{Directory.GetCurrentDirectory()}\log\log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
+                .CreateLogger();
 
+
+            Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 
@@ -88,9 +99,9 @@ namespace Architecture.Web
             //        .Where(c => c.Name.EndsWith("UnitOfWork"))
             //        .AsPublicImplementedInterfaces();
 
-            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-            //        .Where(c => c.Name.EndsWith("Service"))
-            //        .AsPublicImplementedInterfaces();
+            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+                    .Where(c => c.Name.EndsWith("Service"))
+                    .AsPublicImplementedInterfaces();
 
             services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 
@@ -100,7 +111,7 @@ namespace Architecture.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -160,6 +171,7 @@ namespace Architecture.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+                       
 
             //Start Notification Service
             //new NotificationService().GetAllAsync();
@@ -188,15 +200,13 @@ namespace Architecture.Web
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
+                endpoints.MapControllers();
+             });
 
             app.UseSpa(spa =>
             {

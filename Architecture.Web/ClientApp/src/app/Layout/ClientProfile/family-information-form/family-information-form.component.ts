@@ -14,8 +14,18 @@ export class FamilyInformationFormComponent implements OnInit {
   ngOnInit() {}
 
     public onSubmit() {
+        debugger;
         console.table(this.familyInfoForm);
         this.familyInfoForm.profileId = 1;
+
+        //this.familyInfoService.getFamilyInfo(this.familyInfoForm.profileId).subscribe(
+        //    (success:any) => {
+        //        console.log("success");
+        //    },
+        //    (error: any) => {
+        //        console.log("error", error);
+        //    });
+
         this.familyInfoService.saveFamilyInfo(this.familyInfoForm).subscribe(
             (success: any) => {
                 alert("success");

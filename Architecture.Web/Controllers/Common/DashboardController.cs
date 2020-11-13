@@ -39,5 +39,20 @@ namespace Architecture.Web.Controllers.Common
                 return ExceptionResult(ex);
             }
         }
+
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetProfileId(int profileId)
+        //{
+        //    try
+        //    {
+        //        var result = "tst";
+        //        return OkResult(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
     }
 }

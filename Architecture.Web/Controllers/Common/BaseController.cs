@@ -12,7 +12,16 @@ namespace Architecture.Web.Controllers.Common
 {
     //[ApiController]
     public abstract class BaseController : ControllerBase
-    {
+    {        
+        public async Task<IActionResult> ModelValidation(Func<Task<IActionResult>> action)
+        {
+
+            if (!ModelState.IsValid)
+            {
+               return  ValidationResult(ModelState);
+            }
+            return await action();
+        }
         public IActionResult OkResult(object data)
         {
             var apiResult = new ApiResponse

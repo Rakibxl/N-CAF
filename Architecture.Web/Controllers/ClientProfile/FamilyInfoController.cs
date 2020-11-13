@@ -13,49 +13,71 @@ namespace Architecture.Web.Controllers.ClientProfile
     [Route("api/v{v:apiVersion}/FamilyInfo")]
     public class FamilyInfoController : BaseController
     {
-        private readonly IFamilyInfoService _familyInfoService;
+        private readonly IFamilyInfoService familyInfoService;
+
         public FamilyInfoController(IFamilyInfoService familyInfoService)
         {
-            _familyInfoService = familyInfoService;
+            this.familyInfoService = familyInfoService;
         }
+
+        [HttpGet("/Test")]
+        public async Task<IActionResult> GetTest()
+        {
+            try
+            {
+                var result = "dfdsdfdsff";
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpPost("CreateOrUpdate")]
+
+        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfFamilyInfo model)
+        {            
+            return await ModelValidation(async()=> {
+                var result = await familyInfoService.AddOrUpdate(model);
+                return OkResult(result);
+            });
+        }
+
+        [HttpGet("Profile/{profileId}")]
+        public async Task<IActionResult> GetFamilyByProfileId(int profileId)
+        {
+            try
+            {
+                var result = "tstrrrggsdfdfdfd";
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetTestData")]
+        public async Task<IActionResult> GetTestData()
+        {
+            try
+            {
+                var result = "tstrrrggsdfdfdfd";
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var result = "";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetTest()
-        {
-            try
-            {
-                var result = "";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateOrUpdate(ProfFamilyInfo model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return ValidationResult(ModelState);
-            }
-
-            try
-            {
-                var result = await _familyInfoService.AddOrUpdate(model);
+                var result = "Palash Kanti Habijabi";
                 return OkResult(result);
             }
             catch (Exception ex)
