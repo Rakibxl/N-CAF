@@ -25,10 +25,6 @@ using Architecture.Core.Repository.Interfaces;
 using System;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Architecture.BLL.Services.Notification;
-using Architecture.BLL.Services.ClientProfile.Interfaces;
-using Architecture.BLL.Services.ClientProfile.Implements;
-using Architecture.Core.Repository.Interfaces.ClientProfile;
-using Architecture.Core.Repository.Implements.ClientProfile;
 using Serilog;
 using System.IO;
 using System.Diagnostics;
@@ -73,27 +69,27 @@ namespace Architecture.Web
             #region Repository and UnitOfWork
             services.AddScoped<IExampleRepository, ExampleRepository>();
             services.AddScoped<IExampleUnitOfWork, ExampleUnitOfWork>();
-            services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
+           // services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
             #endregion
 
             services.AddHttpContextAccessor();
 
             // Add service here
             #region Service
-            services.AddTransient<IDateTime, DateTimeService>();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<IApplicationUserService, ApplicationUserService>();
-            services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
-            services.AddTransient<IDashboardService, DashboardService>();
-            services.AddTransient<IExampleService, ExampleService>();
-            services.AddSingleton<IHostedService, NotificationService>();
-            services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
-            services.AddTransient<IClientProfileService, ClientProfileService>();
+            //services.AddTransient<IDateTime, DateTimeService>();
+            //services.AddScoped<ICurrentUserService, CurrentUserService>();
+            //services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            //services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
+            //services.AddTransient<IDashboardService, DashboardService>();
+            //services.AddTransient<IExampleService, ExampleService>();
+            //services.AddSingleton<IHostedService, NotificationService>();
+            //services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
+            //services.AddTransient<IClientProfileService, ClientProfileService>();
             #endregion
 
-            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-            //        .Where(c => c.Name.EndsWith("Repository"))
-            //        .AsPublicImplementedInterfaces();
+            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+                    .Where(c => c.Name.EndsWith("Repository"))
+                    .AsPublicImplementedInterfaces();
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
             //        .Where(c => c.Name.EndsWith("UnitOfWork"))
