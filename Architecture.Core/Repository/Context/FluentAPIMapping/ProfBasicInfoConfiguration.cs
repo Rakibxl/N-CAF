@@ -39,7 +39,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.UnEmployedCertificateIssuesDate).HasColumnType("Date").IsRequired(false);
             basicInfo.Property(bs => bs.HasAnyUnEmployedFacility).HasDefaultValue(false);
             //basicInfo.Property(bs => bs.ContractTypeId).HasMaxLength(100);
-            basicInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(8,2)").HasDefaultValue(0.0);
+            basicInfo.Property(bs => bs.YearlyIncome).IsRequired(false).HasColumnType("decimal(8,2)").HasDefaultValue(0.0);
             basicInfo.Property(bs => bs.IsRentHouse).HasDefaultValue(false);
             basicInfo.Property(bs => bs.IsHouseOwner).HasDefaultValue(false);
             basicInfo.Property(bs => bs.HasVehicle).HasDefaultValue(false);

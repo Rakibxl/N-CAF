@@ -36,7 +36,7 @@ namespace Architecture.Core.Repository.Core
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                             bool disableTracking = true)
         {
-            using (_dbContext) { 
+           // using (_dbContext) { 
                 IQueryable<TEntity> query = _dbSet.AsQueryable();
                 if (include != null)
                     query = include(query);
@@ -51,7 +51,7 @@ namespace Architecture.Core.Repository.Core
                     query = query.AsNoTracking();
 
                  return await query.Select(selector).ToListAsync();
-            }
+           // }
 
         }
 

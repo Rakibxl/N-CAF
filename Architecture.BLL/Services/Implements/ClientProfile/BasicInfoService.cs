@@ -24,7 +24,12 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 {
     public class BasicInfoService : IBasicInfoService
     {
-        public IRepository<ProfBasicInfo> basicInfoRepo;
+        private readonly IRepository<ProfBasicInfo> basicInfoRepo;
+
+        //public BasicInfoService(IRepository<ProfBasicInfo> basicInfoRepo)
+        //{
+        //    this.basicInfoRepo = basicInfoRepo;
+        //}
 
         public async Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId)
         {

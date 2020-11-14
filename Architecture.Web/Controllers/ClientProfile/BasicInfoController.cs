@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 
 namespace Architecture.Web.Controllers.BasicInfo
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [ApiVersion("1")]
     [Route("api/v{v:apiVersion}/BasicInfo")]
@@ -28,36 +28,36 @@ namespace Architecture.Web.Controllers.BasicInfo
             _basicInfoService = basicInfoService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTest()
-        {
-            try
-            {
-                var result = "";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetTest()
+        //{
+        //    try
+        //    {
+        //        var result = "";
+        //        return OkResult(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                var result = "";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    try
+        //    {
+        //        var result = "";
+        //        return OkResult(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> CreateOrUpdate([FromForm] ProfBasicInfo model)
+        [HttpPost("CreateOrUpdate")]
+        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfBasicInfo model)
         {
             if (!ModelState.IsValid)
             {
