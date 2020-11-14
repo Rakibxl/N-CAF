@@ -15,7 +15,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             documentInfo.Property(bs => bs.IssuedBy).HasMaxLength(100);
             documentInfo.Property(bs => bs.IssuedDate).HasColumnType("Date").IsRequired();
             documentInfo.Property(bs => bs.ExpiryDate).HasColumnType("Date").IsRequired();
-            documentInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
+            documentInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             documentInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
 
         }

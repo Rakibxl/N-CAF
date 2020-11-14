@@ -36,7 +36,8 @@ namespace Architecture.Core.Repository.Core
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                             bool disableTracking = true)
         {
-           // using (_dbContext) { 
+            using (_dbContext)
+            {
                 IQueryable<TEntity> query = _dbSet.AsQueryable();
                 if (include != null)
                     query = include(query);
@@ -50,8 +51,8 @@ namespace Architecture.Core.Repository.Core
                 if (disableTracking)
                     query = query.AsNoTracking();
 
-                 return await query.Select(selector).ToListAsync();
-           // }
+                return await query.Select(selector).ToListAsync();
+            }
 
         }
 
@@ -135,24 +136,28 @@ namespace Architecture.Core.Repository.Core
         public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
 
         public virtual async Task AddRangeAsync(IList<TEntity> entities)
         {
             await _dbSet.AddRangeAsync(entities);
+            await _dbContext.SaveChangesAsync();
         }
 
         public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
 
         public virtual async Task UpdateRangeAsync(IList<TEntity> entities)
         {
             _dbContext.UpdateRange(entities);
+            await _dbContext.SaveChangesAsync();
         }
 
         public virtual async Task DeleteAsync(object id)
@@ -392,7 +397,7 @@ namespace Architecture.Core.Repository.Core
 
             return items;
         }
-        
+
         public DataSet GetDataSetFromSql(string sql, Dictionary<string, object> parameters, bool isStoredProcedure = false)
         {
             var dataSet = new DataSet();

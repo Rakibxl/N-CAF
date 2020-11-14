@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Architecture.Core.Repository.Migrations
+namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201114220626_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1472,7 +1474,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1636,7 +1638,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1758,7 +1760,7 @@ namespace Architecture.Core.Repository.Migrations
 
                     b.Property<decimal>("Height")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(3,2)")
+                        .HasColumnType("decimal(10,2)")
                         .HasDefaultValue(0m);
 
                     b.Property<string>("HouseCityName")
@@ -1791,7 +1793,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1852,12 +1854,15 @@ namespace Architecture.Core.Repository.Migrations
 
                     b.Property<decimal>("YearlyIncome")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(8,2)")
+                        .HasColumnType("decimal(10,2)")
                         .HasDefaultValue(0m);
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<int?>("testData")
+                        .HasColumnType("int");
 
                     b.HasKey("ProfileId");
 
@@ -1911,7 +1916,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1994,7 +1999,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("Date");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2054,7 +2059,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2149,7 +2154,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2436,7 +2441,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2489,7 +2494,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2566,7 +2571,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2624,7 +2629,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2685,7 +2690,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("Date");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2785,7 +2790,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasMaxLength(500);
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2862,7 +2867,7 @@ namespace Architecture.Core.Repository.Migrations
                         .HasColumnType("Date");
 
                     b.Property<DateTime?>("Modified")
-                        .ValueGeneratedOnUpdate()
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 

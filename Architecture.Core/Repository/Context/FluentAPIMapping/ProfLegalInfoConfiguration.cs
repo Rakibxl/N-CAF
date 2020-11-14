@@ -18,7 +18,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             legalInfo.Property(bs => bs.Note).HasMaxLength(500);
             legalInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
             legalInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
-            legalInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
+            legalInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             legalInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
 
         }

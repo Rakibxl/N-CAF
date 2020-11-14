@@ -29,8 +29,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.BirthStateCode).HasMaxLength(100);
             //basicInfo.Property(bs => bs.NationalityId).HasMaxLength(100);
             basicInfo.Property(bs => bs.CitizenStateCode).HasMaxLength(100);
-            //basicInfo.Property(bs => bs.EyesColorId).HasMaxLength(100);
-            basicInfo.Property(bs => bs.Height).HasColumnType("decimal(3,2)").HasDefaultValue(0.0);
+            basicInfo.Property(bs => bs.EyeColorId).IsRequired(false);
+            basicInfo.Property(bs => bs.Height).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             basicInfo.Property(bs => bs.ZipCode).HasMaxLength(100);
             //basicInfo.Property(bs => bs.MotiveTypeId).HasMaxLength(100);
             //basicInfo.Property(bs => bs.OccupationTypeId).HasMaxLength(100);
@@ -39,7 +39,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.UnEmployedCertificateIssuesDate).HasColumnType("Date").IsRequired(false);
             basicInfo.Property(bs => bs.HasAnyUnEmployedFacility).HasDefaultValue(false);
             //basicInfo.Property(bs => bs.ContractTypeId).HasMaxLength(100);
-            basicInfo.Property(bs => bs.YearlyIncome).IsRequired(false).HasColumnType("decimal(8,2)").HasDefaultValue(0.0);
+            basicInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             basicInfo.Property(bs => bs.IsRentHouse).HasDefaultValue(false);
             basicInfo.Property(bs => bs.IsHouseOwner).HasDefaultValue(false);
             basicInfo.Property(bs => bs.HasVehicle).HasDefaultValue(false);
@@ -53,8 +53,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.CarNumberPlate).HasMaxLength(100);
             basicInfo.Property(bs => bs.HouseCountryName).HasMaxLength(100);
             basicInfo.Property(bs => bs.DigitalVatCode).HasMaxLength(100);
-            basicInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
-            basicInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            basicInfo.Property(bs => bs.Modified).IsRequired(false).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+            basicInfo.Property(bs => bs.Created).IsRequired(false).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
         }
     }
 }

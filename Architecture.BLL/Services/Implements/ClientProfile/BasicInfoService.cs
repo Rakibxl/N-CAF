@@ -19,31 +19,31 @@ using iTextSharp.text.pdf;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Interfaces;
 using Architecture.Core.Repository.Core;
+using Architecture.Core.Repository.Context;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class BasicInfoService : IBasicInfoService
-    {
-        private readonly IRepository<ProfBasicInfo> basicInfoRepo;
 
-        //public BasicInfoService(IRepository<ProfBasicInfo> basicInfoRepo)
-        //{
-        //    this.basicInfoRepo = basicInfoRepo;
-        //}
+    public class BasicInfoService : Repository<ProfBasicInfo>, IBasicInfoService
+    {
+
+        public BasicInfoService(ApplicationDbContext dbContext) : base(dbContext)
+        {
+        }
 
         public async Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfBasicInfo> result;
-            result = await basicInfoRepo.GetAsync(x => x, x => x.ProfileId == profileId);
+            result = await GetAsync(x => x, x => x.ProfileId == profileId);
             return result;
         }
 
         public async Task<ProfBasicInfo> GetById(int basicInfoId)
         {
-            var checkVal = await basicInfoRepo.IsExistsAsync(x => x.ProfileId == basicInfoId);
+            var checkVal = await IsExistsAsync(x => x.ProfileId == basicInfoId);
             if (checkVal)
             {
-                ProfBasicInfo result = await basicInfoRepo.GetByIdAsync(basicInfoId);
+                ProfBasicInfo result = await GetByIdAsync(basicInfoId);
                 return result;
             }
             else
@@ -60,11 +60,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfBasicInfo result;
                 if (basicInfo.ProfileId > 0)
                 {
-                    result = await basicInfoRepo.UpdateAsync(basicInfo);
+                    result = await UpdateAsync(basicInfo);
                 }
                 else
                 {
-                    result = await basicInfoRepo.AddAsync(basicInfo);
+                    result = await AddAsync(basicInfo);
                 }
                 return result;
             }
@@ -76,7 +76,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int basicInfoId)
         {
-            var result = await basicInfoRepo.DeleteAsync(x => x.ProfileId == basicInfoId);
+            var result = await DeleteAsync(x => x.ProfileId == basicInfoId);
             return result;
         }
     }

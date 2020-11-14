@@ -32,9 +32,10 @@ namespace Architecture.Core.Entities
         public int? NationalityId { get; set; }
         public virtual Nationality Nationality { get; set; }
         public string CitizenStateCode { get; set; }
-        public int? EyeColorId { get; set; }
+        public int? EyeColorId { get; set; } 
+        public int? testData { get; set; }
         public virtual EyeColor EyeColor { get; set; }
-        public decimal? Height { get; set; }
+        public decimal Height { get; set; }
         public string ZipCode { get; set; }
         public int? MotiveTypeId { get; set; }
         public virtual MotiveType MotiveType { get; set; }
@@ -47,7 +48,7 @@ namespace Architecture.Core.Entities
         public bool HasAnyUnEmployedFacility { get; set; }
         public int? ContractTypeId { get; set; }
         public virtual ContractType ContractType { get; set; }
-        public decimal? YearlyIncome { get; set; }
+        public decimal YearlyIncome { get; set; }
 
         #region house info
         public bool IsRentHouse { get; set; }

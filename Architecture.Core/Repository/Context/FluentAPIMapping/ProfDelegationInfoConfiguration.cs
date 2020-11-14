@@ -22,7 +22,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             delegationInfo.Property(bs => bs.ExpiryDate).HasColumnType("Date").IsRequired();
             delegationInfo.Property(bs => bs.IssuedBy).HasMaxLength(100);
             delegationInfo.Property(bs => bs.Status).HasMaxLength(100);
-            delegationInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
+            delegationInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             delegationInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
 
         }

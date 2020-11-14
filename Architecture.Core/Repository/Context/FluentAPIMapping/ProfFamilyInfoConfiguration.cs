@@ -28,7 +28,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
                 familyInfo.Property(bs => bs.ApplicationCity).HasMaxLength(100);
                 familyInfo.Property(bs => bs.ApplicationPlacedAddress).HasMaxLength(500);
                 familyInfo.Property(bs => bs.ApplicationFileNumber).HasMaxLength(100);               
-                familyInfo.Property(bs => bs.Modified).ValueGeneratedOnUpdate().HasComputedColumnSql("GetUtcDate()");
+                familyInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
                 familyInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
         }
     }

@@ -87,22 +87,22 @@ namespace Architecture.Web
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();
-            //services.AddTransient<IPDFGeneratorService, PDFGeneratorService>();
+            services.AddTransient<IFamilyInfoService, FamilyInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
             #endregion
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("Repository"))
-                    .AsPublicImplementedInterfaces();
+            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+            //        .Where(c => c.Name.EndsWith("Repository"))
+            //        .AsPublicImplementedInterfaces();
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("UnitOfWork"))
-                    .AsPublicImplementedInterfaces();
+            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+            //        .Where(c => c.Name.EndsWith("UnitOfWork"))
+            //        .AsPublicImplementedInterfaces();
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("Service"))
-                    .AsPublicImplementedInterfaces();
+            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+            //        .Where(c => c.Name.EndsWith("Service"))
+            //        .AsPublicImplementedInterfaces();
 
             services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 
