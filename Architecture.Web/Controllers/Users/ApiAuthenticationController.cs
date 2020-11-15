@@ -65,9 +65,6 @@ namespace Architecture.Web.Controllers.Users
                 var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    user.AccessFailedCount += 1;
-                    await _userManager.UpdateAsync(user);
-
                     ModelState.AddModelError("", "Email or password is invalid.");
                     return ValidationResult(ModelState);
                 }

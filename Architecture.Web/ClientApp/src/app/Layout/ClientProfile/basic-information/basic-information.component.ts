@@ -4,6 +4,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { ClientProfileService } from '../../../Shared/Services/ClientProfile/client-profile.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { AuthService } from '../../../Shared/Services/Users/auth.service';
+import { IAuthUser } from '../../../Shared/Entity/Users/auth';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
+  user: IAuthUser;
 
   // defaultBindingsList = [
   //   { value: "1", label: "type here" },
@@ -29,13 +32,14 @@ export class BasicInformationComponent implements OnInit {
   // ];
   // selectedCity = { value: "1", label: "type here" };
 
-  constructor(private fb: FormBuilder, private clientProfileService: ClientProfileService,
+  constructor(private fb: FormBuilder, private clientProfileService: ClientProfileService, private authService: AuthService,
     private alertService: AlertService, private router: Router, private commonService: CommonService) {
+    this.authService.currentUser.subscribe(user => this.user = user);
     this.initForm();
   }
 
   ngOnInit() {
-
+    this.loadBasicInfo();
   }
 
   initForm() {
@@ -90,6 +94,18 @@ export class BasicInformationComponent implements OnInit {
     });
   }
 
+  loadBasicInfo() {
+    this.clientProfileService.getBasicInfo(this.user.id).subscribe(res => {
+      console.log(res)
+      if (res && res.data.profileId) {
+        this.basicInfoForm.patchValue(res.data);
+      }
+    }, (error: any) => {
+      this.commonService.stopLoading();
+      console.log(error)
+    });
+  }
+
   getModel() {
     let formData = this.basicInfoForm.value;
     formData.profileId = formData.profileId || 0;
@@ -102,6 +118,11 @@ export class BasicInformationComponent implements OnInit {
     formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
     formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
     formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
+    if (formData.profileId) {
+      formData.modifiedBy = this.user.id;
+    } else {
+      formData.createdBy = this.user.id;
+    }
     return formData;
   }
 
@@ -113,7 +134,7 @@ export class BasicInformationComponent implements OnInit {
   }
 
   save() {
-    let model = this.getModel();     
+    let model = this.getModel();
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
       console.log(res)
     }, (error: any) => {
