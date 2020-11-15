@@ -35,45 +35,29 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DateOfBirth</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter dateofbirth"
-                                   required />
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter dateofbirth" name="dateOfBirth" [(ngModel)]="familyInfoForm.dateOfBirth"
+                                   required #dateOfBirth="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-Name is required.</p>
+                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">Date of Birth is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">TaxCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter tax code"
-                                   required />
+                            <input type="text" autocomplete="off" name="taxCode" [(ngModel)]="familyInfoForm.taxCode" #taxCode="ngModel" class="form-control" placeholder="Enter tax code"
+                                   />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PhoneNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter phone number"
+                            <input type="text" autocomplete="off" class="form-control" name="phoneNumber" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="Enter phone number"
                                    required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
-                    </div>
-
-                    <!--<div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">Gender/Sex</label>
-                            <select name="" id="" class="form-control">
-                                <option value="">Male</option>
-                                <option value="">Female</option>
-                                <option value="">Others</option>
-                            </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
+                    </div>                  
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
@@ -101,7 +85,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Nationality</label>
-                            <select  name="" id="" class="form-control">
+                            <select name="" id="" class="form-control">
                                 <option>type here</option>
                                 <option>Bangladeshi</option>
                                 <option>Italian</option>
@@ -115,7 +99,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PreviousNationality</label>
-                            <select  name="" id="" class="form-control">
+                            <select name="" id="" class="form-control">
                                 <option>type here</option>
                                 <option>Bangladeshi</option>
                                 <option>Italian</option>
@@ -154,145 +138,145 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group d-flex align-items-center">
-                            <label>IsDependent</label>
-                            <div class="pl-2">
-                                <label class="switch">
-                                    <input type="checkbox" formControlName="IsDependent">
-                                    <span class="slider round"></span>
-                                </label>
+                    <!--
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group d-flex align-items-center">
+                                <label>IsDependent</label>
+                                <div class="pl-2">
+                                    <label class="switch">
+                                        <input type="checkbox" formControlName="IsDependent">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">DependentPercentage</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter dependent percentage"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group d-flex align-items-center">
-                            <label>IsDisabled</label>
-                            <div class="pl-2">
-                                <label class="switch">
-                                    <input type="checkbox" formControlName="IsDisabled">
-                                    <span class="slider round"></span>
-                                </label>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">DependentPercentage</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter dependent percentage"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">DisablePercentage</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter disable percentage"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">YearlyIncome</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter yearly income"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group d-flex align-items-center">
-                            <label>
-                                IsAppliedForCitizenship
-                            </label>
-                            <div class="pl-2">
-                                <label class="switch">
-                                    <input type="checkbox" formControlName="IsAppliedForCitizenship
-">
-                                    <span class="slider round"></span>
-                                </label>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group d-flex align-items-center">
+                                <label>IsDisabled</label>
+                                <div class="pl-2">
+                                    <label class="switch">
+                                        <input type="checkbox" formControlName="IsDisabled">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">ApplicationCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter application code"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">DisablePercentage</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter disable percentage"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">ApplicationDate</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter application date"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">YearlyIncome</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter yearly income"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">ApplicationCity</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter application city"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group d-flex align-items-center">
+                                <label>
+                                    IsAppliedForCitizenship
+                                </label>
+                                <div class="pl-2">
+                                    <label class="switch">
+                                        <input type="checkbox" formControlName="IsAppliedForCitizenship
+    ">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">
-                                ApplicationPlacedAddress
-                            </label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ApplicationPlacedAddress"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">ApplicationCode</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter application code"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">FileNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter file number"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">ApplicationDate</label>
+                                <input type="date" autocomplete="off" class="form-control" placeholder="Enter application date"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">FilePlacedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter file placed date"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">ApplicationCity</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter application city"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
                         </div>
-                    </div>-->
 
-                    
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">
+                                    ApplicationPlacedAddress
+                                </label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter ApplicationPlacedAddress"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">FileNumber</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Enter file number"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="caf-input-group">
+                                <label class="label">FilePlacedDate</label>
+                                <input type="date" autocomplete="off" class="form-control" placeholder="Enter file placed date"
+                                       required />
+                                <p class="text-info d-none">Info message</p>
+                                <p class="text-danger d-none">Danger message</p>
+                            </div>
+                        </div>-->
+
+
                 </div>
 
                 <div class="row">
