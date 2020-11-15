@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyInfo';
 import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family-info.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 
 @Component({
   selector: 'app-family-information-form',
@@ -9,7 +10,7 @@ import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family
 })
 export class FamilyInformationFormComponent implements OnInit {
     public familyInfoForm = new ProfFamilyInfo();
-    constructor(private familyInfoService: FamilyInfoService) { }
+    constructor(private familyInfoService: FamilyInfoService, private alertService: AlertService) { }
 
   ngOnInit() {}
 
@@ -28,9 +29,11 @@ export class FamilyInformationFormComponent implements OnInit {
 
         this.familyInfoService.saveFamilyInfo(this.familyInfoForm).subscribe(
             (success: any) => {
-                alert("success");
+                console.log("success:", success);
+                this.alertService.tosterSuccess("Information saved successfully.");
             },
             (error: any) => {
+                this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

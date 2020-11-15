@@ -49,7 +49,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             try
             {
-                var result = "tstrrrggsdfdfdfd";
+                var result =await familyInfoService.GetAll(profileId);
                 return OkResult(result);
             }
             catch (Exception ex)
