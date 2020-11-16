@@ -12,7 +12,7 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
     public interface IBasicInfoService
     {
         public Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId);
-        public Task<ProfBasicInfo> GetById(Guid userId);
+        public Task<ProfBasicInfo> GetById(int profileId);
         public Task<ProfBasicInfo> AddOrUpdate(ProfBasicInfo basicInfo);
         public Task<int> Delete(int profileId);
     }

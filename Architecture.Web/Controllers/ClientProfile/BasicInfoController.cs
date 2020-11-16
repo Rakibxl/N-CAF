@@ -29,11 +29,11 @@ namespace Architecture.Web.Controllers.BasicInfo
         }
 
         [HttpGet("GetBasicInfo")]
-        public async Task<IActionResult> GetBasicInfo(Guid userId)
+        public async Task<IActionResult> GetBasicInfo()
         {
             try
             {
-                var result = await _basicInfoService.GetById(userId);
+                var result = await _basicInfoService.GetById(1);
                 return OkResult(result);
             }
             catch (Exception ex)

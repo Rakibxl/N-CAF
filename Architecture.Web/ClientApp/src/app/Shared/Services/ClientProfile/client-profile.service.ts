@@ -15,8 +15,8 @@ export class ClientProfileService {
     this.basicInfoEndpoint = this.baseUrl + 'v1/BasicInfo';
   }
 
-  getBasicInfo(userId) {
-    let url = this.basicInfoEndpoint + "/GetBasicInfo?userId=" + userId;
+  getBasicInfo() {
+    let url = this.basicInfoEndpoint + "/GetBasicInfo";
     return this.http.get<APIResponse>(`${url}`);
   }
 

@@ -95,9 +95,13 @@ export class BasicInformationComponent implements OnInit {
   }
 
   loadBasicInfo() {
-    this.clientProfileService.getBasicInfo(this.user.id).subscribe(res => {
+    this.clientProfileService.getBasicInfo().subscribe(res => {
       console.log(res)
       if (res && res.data.profileId) {
+        res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
+        res.data.taxCodeStartDate = this.commonService.getDateToSetForm(res.data.taxCodeStartDate);
+        res.data.taxCodeEndDate = this.commonService.getDateToSetForm(res.data.taxCodeEndDate);
+        res.data.unEmployedCertificateIssuesDate = this.commonService.getDateToSetForm(res.data.unEmployedCertificateIssuesDate);
         this.basicInfoForm.patchValue(res.data);
       }
     }, (error: any) => {
@@ -135,6 +139,7 @@ export class BasicInformationComponent implements OnInit {
 
   save() {
     let model = this.getModel();
+    console.log(model)
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
       console.log(res)
     }, (error: any) => {

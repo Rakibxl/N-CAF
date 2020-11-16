@@ -2607,3 +2607,8 @@ WHERE [p].[ProfileId] = @__profileId_0
 2020-11-16 02:30:42.474 +06:00 [INF] Executed action Architecture.Web.Controllers.ClientProfile.FamilyInfoController.GetFamilyByProfileId (Architecture.Web) in 107.2487ms
 2020-11-16 02:30:42.474 +06:00 [INF] Executed endpoint 'Architecture.Web.Controllers.ClientProfile.FamilyInfoController.GetFamilyByProfileId (Architecture.Web)'
 2020-11-16 02:30:42.474 +06:00 [INF] Request finished in 109.3737ms 200 application/json; charset=utf-8
+2020-11-16 23:59:04.583 +06:00 [INF] Starting @angular/cli on port 55913...
+2020-11-16 23:59:05.339 +06:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-16 23:59:06.030 +06:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:5060/  0
+2020-11-16 23:59:06.036 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/  
+2020-11-16 23:59:06.194 +06:00 [INF] Request finished in 170.5938ms 200 

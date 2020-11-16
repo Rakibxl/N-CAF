@@ -60,4 +60,11 @@ export class CommonService {
   public stopLoading() {
     jQuery('.spinner-overlay').hide();
   }
+
+  getDateToSetForm(date: any) {
+    if (!date) {
+      return '';
+    }
+    return new Date(date).toISOString().substring(0, 10);
+  };
 }

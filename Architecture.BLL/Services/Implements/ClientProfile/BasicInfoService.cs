@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             return result;
         }
 
-        public async Task<ProfBasicInfo> GetById(Guid userId)
+        public async Task<ProfBasicInfo> GetById(int profileId)
         {
-            var checkVal = await IsExistsAsync(x => x.CreatedBy == userId);
+            var checkVal = await IsExistsAsync(x => x.ProfileId == profileId);
             if (checkVal)
             {
-                ProfBasicInfo result = await GetByIdAsync(userId);
+                ProfBasicInfo result = await GetByIdAsync(profileId);
                 return result;
             }
             else
@@ -59,6 +59,8 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfBasicInfo result;
                 if (basicInfo.ProfileId > 0)
                 {
+                    //ProfBasicInfo res = await GetByIdAsync(basicInfo.ProfileId);
+                    //basicInfo.Created = DateTime.Parse("2020-11-16T19:15:32.34");
                     result = await UpdateAsync(basicInfo);
                 }
                 else
