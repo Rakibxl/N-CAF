@@ -2607,3 +2607,559 @@ WHERE [p].[ProfileId] = @__profileId_0
 2020-11-16 02:30:42.474 +06:00 [INF] Executed action Architecture.Web.Controllers.ClientProfile.FamilyInfoController.GetFamilyByProfileId (Architecture.Web) in 107.2487ms
 2020-11-16 02:30:42.474 +06:00 [INF] Executed endpoint 'Architecture.Web.Controllers.ClientProfile.FamilyInfoController.GetFamilyByProfileId (Architecture.Web)'
 2020-11-16 02:30:42.474 +06:00 [INF] Request finished in 109.3737ms 200 application/json; charset=utf-8
+2020-11-16 21:20:13.031 +01:00 [INF] Starting @angular/cli on port 28519...
+2020-11-16 21:20:13.399 +01:00 [INF] User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-16 21:20:13.724 +01:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:5060/  0
+2020-11-16 21:20:13.724 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/  
+2020-11-16 21:20:13.764 +01:00 [INF] Request finished in 39.9932ms 200 
+2020-11-16 21:20:25.557 +01:00 [ERR] WARNING: This is a simple server for use in testing or debugging Angular applications
+
+2020-11-16 21:20:25.559 +01:00 [ERR] locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disableHostCheck" if that's the
+case.
+
+2020-11-16 21:20:35.826 +01:00 [INF] > Architecture-Value-Club@1.0.0 start C:\Users\Administrator\Desktop\N-CAF Project\Architecture.Web\ClientApp
+> ng serve --host 0.0.0.0 "--port" "28519"
+
+i ´¢ówds´¢ú: Project is running at http://0.0.0.0:28519/webpack-dev-server/
+
+2020-11-16 21:20:50.456 +01:00 [INF] i ´¢ówds´¢ú: webpack output is served from /
+i ´¢ówds´¢ú: 404s will fallback to //index.html
+
+
+2020-11-16 21:20:50.463 +01:00 [INF] chunk {0} 0.js, 0.js.map () 132 kB  [rendered]
+chunk {1} 1.js, 1.js.map () 1.34 MB  [rendered]
+chunk {2} 2.js, 2.js.map () 1.56 MB  [rendered]
+chunk {3} 3.js, 3.js.map () 530 kB  [rendered]
+chunk {4} 4.js, 4.js.map () 166 kB  [rendered]
+chunk {5} 5.js, 5.js.map () 95.7 kB  [rendered]
+chunk {6} 6.js, 6.js.map () 95 kB  [rendered]
+chunk {7} 7.js, 7.js.map () 60.1 kB  [rendered]
+chunk {8} 8.js, 8.js.map () 332 kB  [rendered]
+chunk {9} 9.js, 9.js.map () 45.9 kB  [rendered]
+chunk {10} 10.js, 10.js.map () 40.8 kB  [rendered]
+chunk {11} 11.js, 11.js.map () 53.4 kB  [rendered]
+chunk {12} 12.js, 12.js.map () 11.4 kB  [rendered]
+chunk {13} 13.js, 13.js.map () 11.6 kB  [rendered]
+chunk {14} 14.js, 14.js.map () 7.44 kB  [rendered]
+chunk {common} common.js, common.js.map (common) 8.99 kB  [rendered]
+chunk {main} main.js, main.js.map (main) 76.1 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 296 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 8.98 kB [entry] [rendered]
+chunk {scripts} scripts.js, scripts.js.map (scripts) 362 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 1.55 MB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 7.49 MB [initial] [rendered]
+Date: 2020-11-16T20:20:50.453Z - Hash: bd0b700f5e1a71a7dea9 - Time: 24263ms
+
+2020-11-16 21:20:50.546 +01:00 [INF] ** Angular Live Development Server is listening on 0.0.0.0:28519, open your browser on http://localhost:28519/ **
+i ´¢ówdm´¢ú: Compiled successfully.
+
+2020-11-16 21:20:56.708 +01:00 [INF] Request finished in 42986.9917ms 200 text/html; charset=UTF-8
+2020-11-16 21:20:56.783 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:20:56.785 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:20:56.785 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:20:56.811 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:20:56.814 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:20:56.814 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:20:56.844 +01:00 [INF] Request finished in 29.7186ms 304 
+2020-11-16 21:20:58.898 +01:00 [INF] Request finished in 2086.4122ms 304 
+2020-11-16 21:20:58.898 +01:00 [INF] Request finished in 2084.1009ms 304 
+2020-11-16 21:20:58.916 +01:00 [INF] Request finished in 2132.4014ms 304 
+2020-11-16 21:20:58.917 +01:00 [INF] Request finished in 2132.1772ms 304 
+2020-11-16 21:20:58.919 +01:00 [INF] Request finished in 2133.6126ms 304 
+2020-11-16 21:21:00.381 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js  
+2020-11-16 21:21:00.381 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js  
+2020-11-16 21:21:00.391 +01:00 [INF] Request finished in 11.2637ms 304 
+2020-11-16 21:21:00.392 +01:00 [INF] Request finished in 11.7777ms 304 
+2020-11-16 21:21:01.403 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js  
+2020-11-16 21:21:01.404 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js  
+2020-11-16 21:21:01.405 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js  
+2020-11-16 21:21:01.417 +01:00 [INF] Request finished in 14.6139ms 304 
+2020-11-16 21:21:01.417 +01:00 [INF] Request finished in 12.1472ms 304 
+2020-11-16 21:21:01.417 +01:00 [INF] Request finished in 14.2116ms 304 
+2020-11-16 21:21:01.564 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js  
+2020-11-16 21:21:01.569 +01:00 [INF] Request finished in 4.487ms 304 
+2020-11-16 21:21:03.028 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/4.js  
+2020-11-16 21:21:03.031 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/info?t=1605558063026  
+2020-11-16 21:21:03.035 +01:00 [INF] Request finished in 7.2332ms 304 
+2020-11-16 21:21:03.045 +01:00 [INF] Request finished in 13.8657ms 200 application/json; charset=UTF-8
+2020-11-16 21:21:03.120 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/885/krwaw3nc/websocket  
+2020-11-16 21:21:03.643 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/logo.png  
+2020-11-16 21:21:03.644 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/bg10.jpg  
+2020-11-16 21:21:03.651 +01:00 [INF] Request finished in 8.2407ms 304 
+2020-11-16 21:21:03.651 +01:00 [INF] Request finished in 7.3648ms 304 
+2020-11-16 21:21:03.799 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/app-logo.jpg  
+2020-11-16 21:21:03.799 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/banner1.jpeg  
+2020-11-16 21:21:03.803 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/user-male-icon.png  
+2020-11-16 21:21:03.803 +01:00 [INF] Request finished in 3.9489ms 304 
+2020-11-16 21:21:03.804 +01:00 [INF] Request finished in 4.3789ms 304 
+2020-11-16 21:21:03.806 +01:00 [INF] Request finished in 4.023ms 304 
+2020-11-16 21:21:56.072 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/api/v1/auth/login application/json 58
+2020-11-16 21:21:56.084 +01:00 [INF] Executing endpoint 'Architecture.Web.Controllers.Users.ApiAuthenticationController.Login (Architecture.Web)'
+2020-11-16 21:21:56.189 +01:00 [INF] Route matched with {action = "Login", controller = "ApiAuthentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Architecture.Models.ApiLoginModel) on controller Architecture.Web.Controllers.Users.ApiAuthenticationController (Architecture.Web).
+2020-11-16 21:21:58.310 +01:00 [INF] Entity Framework Core 3.1.5 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-16 21:22:00.338 +01:00 [INF] Executed DbCommand (252ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AppUserStatusId], [a].[AppUserTypeId], [a].[BranchId], [a].[ConcurrencyStamp], [a].[Created], [a].[CreatedBy], [a].[Email], [a].[EmailConfirmed], [a].[GenderId], [a].[ImageUrl], [a].[IsLocked], [a].[LastPassChangeDate], [a].[LastPassword], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Modified], [a].[ModifiedBy], [a].[Name], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[SurName], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2020-11-16 21:22:00.853 +01:00 [INF] Executed DbCommand (210ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2020-11-16 21:22:01.224 +01:00 [INF] Executed DbCommand (189ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AppUserStatusId], [a].[AppUserTypeId], [a].[BranchId], [a].[ConcurrencyStamp], [a].[Created], [a].[CreatedBy], [a].[Email], [a].[EmailConfirmed], [a].[GenderId], [a].[ImageUrl], [a].[IsLocked], [a].[LastPassChangeDate], [a].[LastPassword], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Modified], [a].[ModifiedBy], [a].[Name], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[SurName], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2020-11-16 21:22:01.757 +01:00 [INF] Executed DbCommand (193ms) [Parameters=[@p28='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p29='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Guid), @p7='?' (Size = 256), @p8='?' (DbType = Boolean), @p9='?' (DbType = Int32), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime2), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?' (DbType = DateTime2), @p17='?' (DbType = Guid), @p18='?' (Size = 4000), @p19='?' (Size = 256), @p20='?' (Size = 256), @p21='?' (Size = 4000), @p22='?' (Size = 4000), @p23='?' (DbType = Boolean), @p24='?' (Size = 4000), @p25='?' (Size = 4000), @p26='?' (DbType = Boolean), @p27='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [AppUserStatusId] = @p1, [AppUserTypeId] = @p2, [BranchId] = @p3, [ConcurrencyStamp] = @p4, [Created] = @p5, [CreatedBy] = @p6, [Email] = @p7, [EmailConfirmed] = @p8, [GenderId] = @p9, [ImageUrl] = @p10, [IsLocked] = @p11, [LastPassChangeDate] = @p12, [LastPassword] = @p13, [LockoutEnabled] = @p14, [LockoutEnd] = @p15, [Modified] = @p16, [ModifiedBy] = @p17, [Name] = @p18, [NormalizedEmail] = @p19, [NormalizedUserName] = @p20, [PasswordHash] = @p21, [PhoneNumber] = @p22, [PhoneNumberConfirmed] = @p23, [SecurityStamp] = @p24, [SurName] = @p25, [TwoFactorEnabled] = @p26, [UserName] = @p27
+WHERE [Id] = @p28 AND [ConcurrencyStamp] = @p29;
+SELECT @@ROWCOUNT;
+2020-11-16 21:22:01.997 +01:00 [INF] Executing ObjectResult, writing value of type 'Architecture.Web.Core.ApiResponse'.
+2020-11-16 21:22:02.066 +01:00 [INF] Executed action Architecture.Web.Controllers.Users.ApiAuthenticationController.Login (Architecture.Web) in 5872.3691ms
+2020-11-16 21:22:02.067 +01:00 [INF] Executed endpoint 'Architecture.Web.Controllers.Users.ApiAuthenticationController.Login (Architecture.Web)'
+2020-11-16 21:22:02.074 +01:00 [INF] Request finished in 6001.4992ms 200 application/json; charset=utf-8
+2020-11-16 21:22:02.138 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/api/v1/dashboard  
+2020-11-16 21:22:02.151 +01:00 [INF] Authorization failed.
+2020-11-16 21:22:02.284 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/1.jpg  
+2020-11-16 21:22:02.285 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/2.jpg  
+2020-11-16 21:22:02.285 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/3.jpg  
+2020-11-16 21:22:02.313 +01:00 [INF] Successfully validated the token.
+2020-11-16 21:22:02.318 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-11-16 21:22:02.319 +01:00 [INF] Request finished in 180.631ms 401 
+2020-11-16 21:22:02.325 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/Pe-icon-7-stroke.woff?d7yf1v  
+2020-11-16 21:22:04.354 +01:00 [INF] Request finished in 2070.4792ms 304 
+2020-11-16 21:22:04.362 +01:00 [INF] Request finished in 2077.0577ms 304 
+2020-11-16 21:22:04.368 +01:00 [INF] Request finished in 2082.8027ms 304 
+2020-11-16 21:22:04.379 +01:00 [INF] Request finished in 2053.7869ms 304 
+2020-11-16 21:22:10.803 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js  
+2020-11-16 21:22:12.889 +01:00 [INF] Request finished in 2085.1963ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:22:13.808 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/sort_both.png  
+2020-11-16 21:22:13.815 +01:00 [INF] The file /assets/images/sort_both.png was not modified
+2020-11-16 21:22:13.817 +01:00 [INF] Request finished in 8.8237ms 304 image/png
+2020-11-16 21:22:13.861 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/fontawesome-webfont.woff2?v=4.7.0  
+2020-11-16 21:22:13.866 +01:00 [INF] Request finished in 5.2201ms 304 
+2020-11-16 21:22:32.884 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/api/v1/EducationInfo/CreateOrUpdate application/json 15
+2020-11-16 21:22:32.885 +01:00 [INF] Executing endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web)'
+2020-11-16 21:22:32.896 +01:00 [INF] Route matched with {action = "CreateOrUpdate", controller = "EducationInfo"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateOrUpdate(Architecture.Core.Entities.ProfEducationInfo) on controller Architecture.Web.Controllers.ClientProfile.EducationInfoController (Architecture.Web).
+2020-11-16 21:22:32.902 +01:00 [INF] Executed action Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web) in 5.8046ms
+2020-11-16 21:22:32.904 +01:00 [INF] Executed endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web)'
+2020-11-16 21:22:32.906 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Architecture.BLL.Services.Interfaces.ClientProfile.IEducationInfoService' while attempting to activate 'Architecture.Web.Controllers.ClientProfile.EducationInfoController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-11-16 21:22:32.996 +01:00 [INF] Request finished in 112.0308ms 500 text/plain
+2020-11-16 21:23:37.325 +01:00 [INF] i ´¢ówdm´¢ú: Compiling...
+
+2020-11-16 21:23:38.889 +01:00 [INF] Date: 2020-11-16T20:23:38.883Z - Hash: f18adf3a5473b6ac0480
+21 unchanged chunks
+chunk {3} 3.js, 3.js.map () 530 kB  [rendered]
+Time: 1175ms
+
+2020-11-16 21:23:38.938 +01:00 [INF] i ´¢ówdm´¢ú: Compiled successfully.
+
+2020-11-16 21:23:39.560 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:23:41.630 +01:00 [INF] Request finished in 2069.6822ms 200 text/html; charset=UTF-8
+2020-11-16 21:23:41.665 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:23:41.668 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:23:41.669 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:23:41.671 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:23:41.676 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:23:41.676 +01:00 [INF] Request finished in 8.6608ms 304 
+2020-11-16 21:23:41.695 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:23:41.695 +01:00 [INF] Request finished in 24.0453ms 304 
+2020-11-16 21:23:41.700 +01:00 [INF] Request finished in 5.5146ms 304 
+2020-11-16 21:23:41.796 +01:00 [INF] Request finished in 158676.3074ms 101 
+2020-11-16 21:23:43.716 +01:00 [INF] Request finished in 2051.7974ms 304 
+2020-11-16 21:23:43.718 +01:00 [INF] Request finished in 2049.0301ms 304 
+2020-11-16 21:23:43.734 +01:00 [INF] Request finished in 2057.4866ms 304 
+2020-11-16 21:23:44.390 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js  
+2020-11-16 21:23:44.390 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js  
+2020-11-16 21:23:44.397 +01:00 [INF] Request finished in 7.2087ms 304 
+2020-11-16 21:23:44.398 +01:00 [INF] Request finished in 8.1672ms 304 
+2020-11-16 21:23:44.404 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/info?t=1605558224398  
+2020-11-16 21:23:44.409 +01:00 [INF] Request finished in 5.1494ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:44.419 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/624/u3u4arfq/websocket  
+2020-11-16 21:23:44.993 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js  
+2020-11-16 21:23:44.993 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js  
+2020-11-16 21:23:44.993 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js  
+2020-11-16 21:23:44.994 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js  
+2020-11-16 21:23:44.999 +01:00 [INF] Request finished in 5.6598ms 304 
+2020-11-16 21:23:45.001 +01:00 [INF] Request finished in 7.3448ms 304 
+2020-11-16 21:23:45.002 +01:00 [INF] Request finished in 8.9942ms 304 
+2020-11-16 21:23:45.003 +01:00 [INF] Request finished in 9.9028ms 304 
+2020-11-16 21:23:45.204 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/sockjs-node/624/qmkdfshu/xhr_streaming?t=1605558225200  0
+2020-11-16 21:23:46.021 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js  
+2020-11-16 21:23:46.033 +01:00 [INF] Request finished in 12.3146ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:23:46.567 +01:00 [INF] Request finished in 2148.0185ms 101 
+2020-11-16 21:23:46.894 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/1.jpg  
+2020-11-16 21:23:46.898 +01:00 [INF] Request finished in 3.3926ms 304 
+2020-11-16 21:23:46.932 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/app-logo.jpg  
+2020-11-16 21:23:46.935 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/Pe-icon-7-stroke.woff?d7yf1v  
+2020-11-16 21:23:46.935 +01:00 [INF] Request finished in 3.2337ms 304 
+2020-11-16 21:23:46.935 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/fontawesome-webfont.woff2?v=4.7.0  
+2020-11-16 21:23:46.940 +01:00 [INF] Request finished in 5.0386ms 304 
+2020-11-16 21:23:46.940 +01:00 [INF] Request finished in 4.872ms 304 
+2020-11-16 21:23:47.144 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/favicon.ico  
+2020-11-16 21:23:47.171 +01:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Administrator\Desktop\N-CAF Project\Architecture.Web\wwwroot\favicon.ico'
+2020-11-16 21:23:47.172 +01:00 [INF] Request finished in 27.7443ms 200 image/x-icon
+2020-11-16 21:23:56.837 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js.map  
+2020-11-16 21:23:56.843 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js.map  
+2020-11-16 21:23:56.847 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js.map  
+2020-11-16 21:23:56.854 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js.map  
+2020-11-16 21:23:56.855 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js.map  
+2020-11-16 21:23:56.993 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js.map  
+2020-11-16 21:23:56.999 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js.map  
+2020-11-16 21:23:57.061 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js.map  
+2020-11-16 21:23:57.065 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js.map  
+2020-11-16 21:23:57.068 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js.map  
+2020-11-16 21:23:57.069 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js.map  
+2020-11-16 21:23:57.279 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js.map  
+2020-11-16 21:23:58.121 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:23:58.880 +01:00 [INF] Request finished in 2043.2986ms 304 
+2020-11-16 21:23:58.897 +01:00 [INF] Request finished in 2049.9591ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:58.915 +01:00 [INF] Request finished in 2061.7947ms 304 
+2020-11-16 21:23:58.920 +01:00 [INF] Request finished in 2064.9138ms 304 
+2020-11-16 21:23:59.053 +01:00 [INF] Request finished in 2060.2635ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.072 +01:00 [INF] Request finished in 2073.3389ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.101 +01:00 [INF] Request finished in 2258.0471ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.111 +01:00 [INF] Request finished in 2050.0542ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.114 +01:00 [INF] Request finished in 2045.4563ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.122 +01:00 [INF] Request finished in 2057.6441ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.131 +01:00 [INF] Request finished in 2061.7708ms 200 application/json; charset=UTF-8
+2020-11-16 21:23:59.326 +01:00 [INF] Request finished in 2047.2133ms 200 application/json; charset=UTF-8
+2020-11-16 21:24:00.166 +01:00 [INF] Request finished in 2044.8662ms 304 
+2020-11-16 21:24:00.203 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:24:00.204 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:24:00.204 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:24:00.206 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:24:00.207 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:24:00.210 +01:00 [INF] Request finished in 6.317ms 304 
+2020-11-16 21:24:00.222 +01:00 [INF] Request finished in 18.3316ms 304 
+2020-11-16 21:24:00.224 +01:00 [INF] Request finished in 20.769ms 304 
+2020-11-16 21:24:00.228 +01:00 [INF] Request finished in 20.4583ms 304 
+2020-11-16 21:24:00.229 +01:00 [INF] Request finished in 22.569ms 304 
+2020-11-16 21:24:00.237 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:24:00.240 +01:00 [INF] Request finished in 2.9997ms 304 
+2020-11-16 21:24:00.418 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js.map  
+2020-11-16 21:24:00.421 +01:00 [INF] Request finished in 2.7037ms 304 
+2020-11-16 21:24:00.427 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js.map  
+2020-11-16 21:24:00.429 +01:00 [INF] Request finished in 2.3366ms 304 
+2020-11-16 21:24:00.433 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js.map  
+2020-11-16 21:24:00.436 +01:00 [INF] Request finished in 2.5515ms 304 
+2020-11-16 21:24:00.453 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js.map  
+2020-11-16 21:24:00.458 +01:00 [INF] Request finished in 4.8345ms 304 
+2020-11-16 21:24:00.885 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js.map  
+2020-11-16 21:24:00.899 +01:00 [INF] Request finished in 14.2038ms 304 
+2020-11-16 21:24:02.636 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js  
+2020-11-16 21:24:02.639 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js  
+2020-11-16 21:24:02.642 +01:00 [INF] Request finished in 5.6242ms 304 
+2020-11-16 21:24:02.643 +01:00 [INF] Request finished in 4.758ms 304 
+2020-11-16 21:24:02.657 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/info?t=1605558242652  
+2020-11-16 21:24:02.660 +01:00 [INF] Request finished in 3.0792ms 200 application/json; charset=UTF-8
+2020-11-16 21:24:02.672 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/717/yjd050fm/websocket  
+2020-11-16 21:24:02.952 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js.map  
+2020-11-16 21:24:02.955 +01:00 [INF] Request finished in 3.0053ms 304 
+2020-11-16 21:24:03.531 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js  
+2020-11-16 21:24:03.534 +01:00 [INF] Request finished in 2.902ms 304 
+2020-11-16 21:24:03.534 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js  
+2020-11-16 21:24:03.539 +01:00 [INF] Request finished in 4.6925ms 304 
+2020-11-16 21:24:03.539 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js  
+2020-11-16 21:24:03.543 +01:00 [INF] Request finished in 3.2946ms 304 
+2020-11-16 21:24:03.546 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js  
+2020-11-16 21:24:03.554 +01:00 [INF] Request finished in 8.0314ms 304 
+2020-11-16 21:24:03.560 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js.map  
+2020-11-16 21:24:03.567 +01:00 [INF] Request finished in 6.4635ms 304 
+2020-11-16 21:24:03.760 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/sockjs-node/717/iqi4t21p/xhr_streaming?t=1605558243755  0
+2020-11-16 21:24:03.831 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js.map  
+2020-11-16 21:24:03.834 +01:00 [INF] Request finished in 2.6428ms 304 
+2020-11-16 21:24:03.863 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js.map  
+2020-11-16 21:24:03.867 +01:00 [INF] Request finished in 4.1258ms 304 
+2020-11-16 21:24:03.871 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js.map  
+2020-11-16 21:24:03.874 +01:00 [INF] Request finished in 2.2149ms 304 
+2020-11-16 21:24:04.836 +01:00 [INF] Request finished in 2164.152ms 101 
+2020-11-16 21:24:05.762 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js  
+2020-11-16 21:24:05.766 +01:00 [INF] Request finished in 3.7383ms 304 
+2020-11-16 21:24:05.781 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js.map  
+2020-11-16 21:24:05.784 +01:00 [INF] Request finished in 3.1274ms 304 
+2020-11-16 21:24:08.148 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js.map  
+2020-11-16 21:24:08.148 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/app-logo.jpg  
+2020-11-16 21:24:08.152 +01:00 [INF] Request finished in 3.8263ms 304 
+2020-11-16 21:24:08.235 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/1.jpg  
+2020-11-16 21:24:08.237 +01:00 [INF] Request finished in 2.4557ms 304 
+2020-11-16 21:24:08.260 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/fontawesome-webfont.woff2?v=4.7.0  
+2020-11-16 21:24:08.260 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/Pe-icon-7-stroke.woff?d7yf1v  
+2020-11-16 21:24:08.264 +01:00 [INF] Request finished in 4.1648ms 304 
+2020-11-16 21:24:10.205 +01:00 [INF] Request finished in 2056.8359ms 304 
+2020-11-16 21:24:10.239 +01:00 [INF] Request finished in 25035.2058ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:24:10.316 +01:00 [INF] Request finished in 2055.8411ms 304 
+2020-11-16 21:24:10.338 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/favicon.ico  
+2020-11-16 21:24:10.343 +01:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Administrator\Desktop\N-CAF Project\Architecture.Web\wwwroot\favicon.ico'
+2020-11-16 21:24:10.343 +01:00 [INF] Request finished in 5.0576ms 200 image/x-icon
+2020-11-16 21:25:48.708 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/api/v1/EducationInfo/CreateOrUpdate application/json 185
+2020-11-16 21:25:48.710 +01:00 [INF] Executing endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web)'
+2020-11-16 21:25:48.712 +01:00 [INF] Route matched with {action = "CreateOrUpdate", controller = "EducationInfo"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateOrUpdate(Architecture.Core.Entities.ProfEducationInfo) on controller Architecture.Web.Controllers.ClientProfile.EducationInfoController (Architecture.Web).
+2020-11-16 21:25:48.713 +01:00 [INF] Executed action Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web) in 1.1712ms
+2020-11-16 21:25:48.714 +01:00 [INF] Executed endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.CreateOrUpdate (Architecture.Web)'
+2020-11-16 21:25:48.714 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Architecture.BLL.Services.Interfaces.ClientProfile.IEducationInfoService' while attempting to activate 'Architecture.Web.Controllers.ClientProfile.EducationInfoController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-11-16 21:25:48.717 +01:00 [INF] Request finished in 9.3243ms 500 text/plain
+2020-11-16 21:26:06.884 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.086 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.284 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.417 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.559 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.695 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.855 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.933 +01:00 [INF] Request finished in 2049.0699ms 304 
+2020-11-16 21:26:08.984 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:08.994 +01:00 [INF] Request finished in 9.6752ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:09.043 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:26:09.046 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:26:09.050 +01:00 [INF] Request finished in 6.8076ms 304 
+2020-11-16 21:26:09.050 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:26:09.051 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:26:09.051 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:26:09.056 +01:00 [INF] Request finished in 5.4821ms 304 
+2020-11-16 21:26:09.060 +01:00 [INF] Request finished in 9.4162ms 304 
+2020-11-16 21:26:09.080 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:26:09.084 +01:00 [INF] Request finished in 3.4667ms 304 
+2020-11-16 21:26:10.012 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/client-profile/education/0  
+2020-11-16 21:26:10.014 +01:00 [INF] Request finished in 2.269ms 304 
+2020-11-16 21:26:10.039 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:26:10.042 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:26:10.042 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:26:10.042 +01:00 [INF] Request finished in 3.3905ms 304 
+2020-11-16 21:26:10.044 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:26:10.045 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:26:10.049 +01:00 [INF] Request finished in 7.2211ms 304 
+2020-11-16 21:26:10.053 +01:00 [INF] Request finished in 9.4242ms 304 
+2020-11-16 21:26:10.066 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:26:10.069 +01:00 [INF] Request finished in 3.4243ms 304 
+2020-11-16 21:26:10.115 +01:00 [INF] Request finished in 2029.0038ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:10.286 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js.map  
+2020-11-16 21:26:10.286 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js.map  
+2020-11-16 21:26:10.287 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js.map  
+2020-11-16 21:26:10.289 +01:00 [INF] Request finished in 3.3915ms 304 
+2020-11-16 21:26:10.291 +01:00 [INF] Request finished in 4.8951ms 304 
+2020-11-16 21:26:10.295 +01:00 [INF] Request finished in 7.8844ms 304 
+2020-11-16 21:26:10.333 +01:00 [INF] Request finished in 2049.2129ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:10.456 +01:00 [INF] Request finished in 2038.6158ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:10.565 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js.map  
+2020-11-16 21:26:10.567 +01:00 [INF] Request finished in 2.5027ms 304 
+2020-11-16 21:26:10.570 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js.map  
+2020-11-16 21:26:10.574 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js.map  
+2020-11-16 21:26:10.577 +01:00 [INF] Request finished in 7.1596ms 304 
+2020-11-16 21:26:10.578 +01:00 [INF] Request finished in 4.6932ms 304 
+2020-11-16 21:26:10.613 +01:00 [INF] Request finished in 2054.2175ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:10.725 +01:00 [INF] Request finished in 2029.8089ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:10.900 +01:00 [INF] Request finished in 2044.9292ms 200 text/html; charset=UTF-8
+2020-11-16 21:26:11.099 +01:00 [INF] Request finished in 2047.9633ms 304 
+2020-11-16 21:26:11.130 +01:00 [INF] Request finished in 2084.0114ms 304 
+2020-11-16 21:26:12.121 +01:00 [INF] Request finished in 2076.1605ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:26:12.157 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js.map  
+2020-11-16 21:26:12.159 +01:00 [INF] Request finished in 2.4713ms 304 
+2020-11-16 21:26:12.379 +01:00 [INF] Request finished in 2336.5965ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:26:12.709 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js.map  
+2020-11-16 21:26:12.727 +01:00 [INF] Request finished in 18.7145ms 304 
+2020-11-16 21:26:13.784 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js  
+2020-11-16 21:26:13.788 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js  
+2020-11-16 21:26:13.790 +01:00 [INF] Request finished in 6.4431ms 304 
+2020-11-16 21:26:13.792 +01:00 [INF] Request finished in 3.8969ms 304 
+2020-11-16 21:26:13.805 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/info?t=1605558373797  
+2020-11-16 21:26:13.808 +01:00 [INF] Request finished in 3.6376ms 200 application/json; charset=UTF-8
+2020-11-16 21:26:13.817 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/376/iho2slgn/websocket  
+2020-11-16 21:26:14.061 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js.map  
+2020-11-16 21:26:14.063 +01:00 [INF] Request finished in 2.6916ms 304 
+2020-11-16 21:26:14.502 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js  
+2020-11-16 21:26:14.504 +01:00 [INF] Request finished in 2.6959ms 304 
+2020-11-16 21:26:14.505 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js  
+2020-11-16 21:26:14.510 +01:00 [INF] Request finished in 4.5718ms 304 
+2020-11-16 21:26:14.510 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js  
+2020-11-16 21:26:14.513 +01:00 [INF] Request finished in 2.7773ms 304 
+2020-11-16 21:26:14.515 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js  
+2020-11-16 21:26:14.518 +01:00 [INF] Request finished in 3.0108ms 304 
+2020-11-16 21:26:14.528 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js.map  
+2020-11-16 21:26:14.534 +01:00 [INF] Request finished in 5.484ms 304 
+2020-11-16 21:26:14.740 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:44357/sockjs-node/376/2rm0xx3x/xhr_streaming?t=1605558374737  0
+2020-11-16 21:26:14.782 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js.map  
+2020-11-16 21:26:14.785 +01:00 [INF] Request finished in 3.1691ms 304 
+2020-11-16 21:26:14.823 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js.map  
+2020-11-16 21:26:14.828 +01:00 [INF] Request finished in 5.6156ms 304 
+2020-11-16 21:26:14.851 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js.map  
+2020-11-16 21:26:14.853 +01:00 [INF] Request finished in 2.6605ms 304 
+2020-11-16 21:26:15.981 +01:00 [INF] Request finished in 2164.6673ms 101 
+2020-11-16 21:26:16.289 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js  
+2020-11-16 21:26:16.292 +01:00 [INF] Request finished in 3.2329ms 304 
+2020-11-16 21:26:16.306 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js.map  
+2020-11-16 21:26:16.309 +01:00 [INF] Request finished in 3.2632ms 304 
+2020-11-16 21:26:18.209 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/1.jpg  
+2020-11-16 21:26:18.212 +01:00 [INF] Request finished in 3.031ms 304 
+2020-11-16 21:26:18.249 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/fontawesome-webfont.woff2?v=4.7.0  
+2020-11-16 21:26:18.249 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/app-logo.jpg  
+2020-11-16 21:26:18.249 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js.map  
+2020-11-16 21:26:18.249 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/Pe-icon-7-stroke.woff?d7yf1v  
+2020-11-16 21:26:18.252 +01:00 [INF] Request finished in 3.0084ms 304 
+2020-11-16 21:26:18.253 +01:00 [INF] Request finished in 4.3178ms 304 
+2020-11-16 21:26:18.267 +01:00 [INF] Request finished in 18.4569ms 304 
+2020-11-16 21:26:18.445 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/favicon.ico  
+2020-11-16 21:26:18.450 +01:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Administrator\Desktop\N-CAF Project\Architecture.Web\wwwroot\favicon.ico'
+2020-11-16 21:26:18.450 +01:00 [INF] Request finished in 5.453ms 200 image/x-icon
+2020-11-16 21:26:20.317 +01:00 [INF] Request finished in 2068.2366ms 304 
+2020-11-16 21:26:33.821 +01:00 [INF] Request finished in 150061.8601ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:42:24.775 +01:00 [INF] Starting @angular/cli on port 28873...
+2020-11-16 21:42:25.018 +01:00 [INF] User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-16 21:42:25.259 +01:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:5060/  0
+2020-11-16 21:42:25.259 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/  
+2020-11-16 21:42:25.283 +01:00 [INF] Request finished in 27.1969ms 200 
+2020-11-16 21:42:33.808 +01:00 [ERR] WARNING: This is a simple server for use in testing or debugging Angular applications
+
+2020-11-16 21:42:33.809 +01:00 [ERR] locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disableHostCheck" if that's the
+case.
+
+2020-11-16 21:42:43.310 +01:00 [INF] > Architecture-Value-Club@1.0.0 start C:\Users\Administrator\Desktop\N-CAF Project\Architecture.Web\ClientApp
+> ng serve --host 0.0.0.0 "--port" "28873"
+
+i ´¢ówds´¢ú: Project is running at http://0.0.0.0:28873/webpack-dev-server/
+
+2020-11-16 21:42:57.222 +01:00 [INF] i ´¢ówds´¢ú: webpack output is served from /
+i ´¢ówds´¢ú: 404s will fallback to //index.html
+
+
+2020-11-16 21:42:57.229 +01:00 [INF] chunk {0} 0.js, 0.js.map () 132 kB  [rendered]
+chunk {1} 1.js, 1.js.map () 1.34 MB  [rendered]
+chunk {2} 2.js, 2.js.map () 1.56 MB  [rendered]
+chunk {3} 3.js, 3.js.map () 519 kB  [rendered]
+chunk {4} 4.js, 4.js.map () 166 kB  [rendered]
+chunk {5} 5.js, 5.js.map () 95.7 kB  [rendered]
+chunk {6} 6.js, 6.js.map () 95 kB  [rendered]
+chunk {7} 7.js, 7.js.map () 60.1 kB  [rendered]
+chunk {8} 8.js, 8.js.map () 332 kB  [rendered]
+chunk {9} 9.js, 9.js.map () 45.9 kB  [rendered]
+chunk {10} 10.js, 10.js.map () 40.8 kB  [rendered]
+chunk {11} 11.js, 11.js.map () 53.4 kB  [rendered]
+chunk {12} 12.js, 12.js.map () 11.4 kB  [rendered]
+chunk {13} 13.js, 13.js.map () 11.6 kB  [rendered]
+chunk {14} 14.js, 14.js.map () 7.44 kB  [rendered]
+chunk {common} common.js, common.js.map (common) 8.99 kB  [rendered]
+chunk {main} main.js, main.js.map (main) 76.1 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 296 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 8.98 kB [entry] [rendered]
+chunk {scripts} scripts.js, scripts.js.map (scripts) 362 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 1.55 MB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 7.49 MB [initial] [rendered]
+Date: 2020-11-16T20:42:57.220Z - Hash: 14f6fa82c2b349e85610 - Time: 22856ms
+
+2020-11-16 21:42:57.231 +01:00 [INF] ** Angular Live Development Server is listening on 0.0.0.0:28873, open your browser on http://localhost:28873/ **
+
+2020-11-16 21:42:57.332 +01:00 [INF] i ´¢ówdm´¢ú: Compiled successfully.
+
+2020-11-16 21:43:03.826 +01:00 [INF] Request finished in 38571.4512ms 304 
+2020-11-16 21:43:03.906 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/polyfills.js  
+2020-11-16 21:43:03.909 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/styles.js  
+2020-11-16 21:43:03.909 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/runtime.js  
+2020-11-16 21:43:03.953 +01:00 [INF] Request finished in 47.6897ms 304 
+2020-11-16 21:43:03.968 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/vendor.js  
+2020-11-16 21:43:03.985 +01:00 [INF] Request finished in 16.4166ms 304 
+2020-11-16 21:43:04.155 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/main.js  
+2020-11-16 21:43:04.164 +01:00 [INF] Request finished in 9.9176ms 304 
+2020-11-16 21:43:04.484 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/scripts.js  
+2020-11-16 21:43:04.490 +01:00 [INF] Request finished in 5.2267ms 304 
+2020-11-16 21:43:05.986 +01:00 [INF] Request finished in 2076.533ms 304 
+2020-11-16 21:43:05.995 +01:00 [INF] Request finished in 2085.5056ms 304 
+2020-11-16 21:43:06.931 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/2.js  
+2020-11-16 21:43:06.931 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/6.js  
+2020-11-16 21:43:06.940 +01:00 [INF] Request finished in 8.9078ms 304 
+2020-11-16 21:43:06.940 +01:00 [INF] Request finished in 9.0356ms 304 
+2020-11-16 21:43:07.784 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/0.js  
+2020-11-16 21:43:07.785 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/1.js  
+2020-11-16 21:43:07.786 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/common.js  
+2020-11-16 21:43:07.795 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/info?t=1605559387785  
+2020-11-16 21:43:07.795 +01:00 [INF] Request finished in 11.0687ms 304 
+2020-11-16 21:43:07.795 +01:00 [INF] Request finished in 8.8458ms 304 
+2020-11-16 21:43:07.798 +01:00 [INF] Request finished in 12.396ms 304 
+2020-11-16 21:43:07.809 +01:00 [INF] Request finished in 15.1088ms 200 application/json; charset=UTF-8
+2020-11-16 21:43:07.892 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/8.js  
+2020-11-16 21:43:07.892 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/sockjs-node/110/pycbbdof/websocket  
+2020-11-16 21:43:07.899 +01:00 [INF] Request finished in 6.4948ms 304 
+2020-11-16 21:43:08.914 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/api/v1/dashboard  
+2020-11-16 21:43:08.918 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/app-logo.jpg  
+2020-11-16 21:43:08.923 +01:00 [INF] Request finished in 5.2741ms 304 
+2020-11-16 21:43:09.127 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/2.jpg  
+2020-11-16 21:43:09.127 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/1.jpg  
+2020-11-16 21:43:09.132 +01:00 [INF] Request finished in 5.7593ms 304 
+2020-11-16 21:43:09.132 +01:00 [INF] Request finished in 5.7523ms 304 
+2020-11-16 21:43:09.133 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/assets/images/avatars/3.jpg  
+2020-11-16 21:43:09.137 +01:00 [INF] Request finished in 4.1547ms 304 
+2020-11-16 21:43:09.160 +01:00 [INF] Authorization failed.
+2020-11-16 21:43:09.214 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/Pe-icon-7-stroke.woff?d7yf1v  
+2020-11-16 21:43:09.230 +01:00 [INF] Request finished in 16.6792ms 304 
+2020-11-16 21:43:09.437 +01:00 [INF] Successfully validated the token.
+2020-11-16 21:43:09.440 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2020-11-16 21:43:09.444 +01:00 [INF] Request finished in 530.2884ms 401 
+2020-11-16 21:43:47.751 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/3.js  
+2020-11-16 21:43:49.829 +01:00 [INF] Request finished in 2077.5472ms 200 application/javascript; charset=UTF-8
+2020-11-16 21:43:50.482 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/api/v1/EducationInfo/Profile/1  
+2020-11-16 21:43:50.486 +01:00 [INF] Executing endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.GetEducationByProfileId (Architecture.Web)'
+2020-11-16 21:43:50.539 +01:00 [INF] Route matched with {action = "GetEducationByProfileId", controller = "EducationInfo"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetEducationByProfileId(Int32) on controller Architecture.Web.Controllers.ClientProfile.EducationInfoController (Architecture.Web).
+2020-11-16 21:43:50.551 +01:00 [INF] Executed action Architecture.Web.Controllers.ClientProfile.EducationInfoController.GetEducationByProfileId (Architecture.Web) in 4.5027ms
+2020-11-16 21:43:50.554 +01:00 [INF] Executed endpoint 'Architecture.Web.Controllers.ClientProfile.EducationInfoController.GetEducationByProfileId (Architecture.Web)'
+2020-11-16 21:43:50.555 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'Architecture.BLL.Services.Interfaces.ClientProfile.IEducationInfoService' while attempting to activate 'Architecture.Web.Controllers.ClientProfile.EducationInfoController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-11-16 21:43:50.576 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:44357/fontawesome-webfont.woff2?v=4.7.0  
+2020-11-16 21:43:50.624 +01:00 [INF] Request finished in 48.2637ms 304 
+2020-11-16 21:43:50.626 +01:00 [INF] Request finished in 144.0675ms 500 text/plain
