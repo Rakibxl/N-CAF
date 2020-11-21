@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
@@ -67,6 +68,11 @@ namespace Architecture.Web.Controllers.BasicInfo
 
             try
             {
+                if (model.ProfileId <= 0)
+                {
+                    var UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    model.RefId = Guid.Parse(UserId);
+                }
                 var result = await _basicInfoService.AddOrUpdate(model);
                 return OkResult(result);
             }

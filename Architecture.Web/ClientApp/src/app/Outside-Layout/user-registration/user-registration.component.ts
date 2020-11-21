@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../../Shared/Modules/alert/alert.service';
 import { AuthService } from '../../Shared/Services/Users/auth.service';
+import { CommonService } from '../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,7 +14,7 @@ export class UserRegistrationComponent implements OnInit {
   @Output() OnClickChange = new EventEmitter() || null;
   userRegistrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private alertService: AlertService, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private commonService: CommonService, private router: Router, private alertService: AlertService, private authService: AuthService) {
     this.initForm();
   }
 
@@ -55,17 +56,28 @@ export class UserRegistrationComponent implements OnInit {
       alert('Password not matched!');
       return;
     }
+    if (formData.password.length < 6) {
+      alert('Password must not less than 6 character!');
+      return;
+    }
     formData.genderId = formData.genderId ? parseInt(formData.genderId) : null;
 
     this.alertService.fnLoading(true);
-    this.authService.register(formData).subscribe(res => {
+    this.commonService.startLoading();
+    this.authService.register(formData).subscribe((res: any) => {
+      this.commonService.stopLoading();
       this.alertService.fnLoading(false);
-      //console.log(res)
+      if (res && res.message) {
+        alert(res.message);
+        this.userRegistrationForm.reset();
+      }
     }, err => {
+      this.commonService.stopLoading();
       this.alertService.fnLoading(false);
       if (err.status == 400) {
         let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
           + err.error.errors[0].errorList[0];
+        alert(errorMsg);
         this.alertService.tosterDanger(errorMsg);
       }
     });

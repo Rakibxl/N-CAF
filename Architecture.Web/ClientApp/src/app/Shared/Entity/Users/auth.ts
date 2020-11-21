@@ -4,6 +4,7 @@
     userName: string;
     email: string;
     phoneNumber: string;
+    appUserTypeId: number;
     imageUrl: string;
     token?: string;
 }
@@ -12,7 +13,7 @@ export class Login {
     email: string;
     password: string;
     rememberMe: boolean;
-    
+
     constructor(init?: Partial<Login>) {
         Object.assign(this, init);
     }
@@ -28,7 +29,7 @@ export class ResetPassword {
     userId: string;
     newPassword: string;
     token: string;
-    
+
     constructor(init?: Partial<ResetPassword>) {
         Object.assign(this, init);
     }
