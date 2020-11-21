@@ -23,7 +23,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             assetInfo.Property(bs => bs.UseAblePercentage).HasColumnType("decimal(8,2)");
             assetInfo.Property(bs => bs.AnyRestrictionByGovt).HasMaxLength(100);
             assetInfo.Property(bs => bs.CityName).HasMaxLength(100);
-            assetInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            assetInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

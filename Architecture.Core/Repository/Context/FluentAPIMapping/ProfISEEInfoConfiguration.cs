@@ -24,7 +24,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             iseeInfo.Property(bs => bs.ExpiryDate).HasColumnType("Date").IsRequired();
 
             iseeInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            iseeInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            iseeInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

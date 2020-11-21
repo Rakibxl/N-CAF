@@ -17,7 +17,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             movementInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
             movementInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             movementInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            movementInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            movementInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

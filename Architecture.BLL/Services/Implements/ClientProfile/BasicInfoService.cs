@@ -60,7 +60,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 if (basicInfo.ProfileId > 0)
                 {
                     //ProfBasicInfo res = await GetByIdAsync(basicInfo.ProfileId);
-                    //basicInfo.Created = DateTime.Parse("2020-11-16T19:15:32.34");
+                    basicInfo.Created = DateTime.Parse("2020-11-16T19:15:32.34");
                     result = await UpdateAsync(basicInfo);
                 }
                 else

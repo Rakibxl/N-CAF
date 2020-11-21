@@ -33,7 +33,8 @@ namespace Architecture.Web.Controllers.BasicInfo
         {
             try
             {
-                var result = await _basicInfoService.GetById(1);
+                var basicInfoId = 2;
+                var result = await _basicInfoService.GetById(basicInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

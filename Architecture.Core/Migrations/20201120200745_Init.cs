@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Architecture.Core.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -577,9 +577,9 @@ namespace Architecture.Core.Migrations
                     ProfileId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     SurName = table.Column<string>(maxLength: 100, nullable: false),
@@ -775,9 +775,9 @@ namespace Architecture.Core.Migrations
                     AddressInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     AddressTypeId = table.Column<int>(nullable: true),
@@ -823,9 +823,9 @@ namespace Architecture.Core.Migrations
                     AssetInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     AssetTypeId = table.Column<int>(nullable: true),
@@ -879,9 +879,9 @@ namespace Architecture.Core.Migrations
                     BankInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     BankNameId = table.Column<int>(nullable: true),
@@ -920,9 +920,9 @@ namespace Architecture.Core.Migrations
                     DelegationInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
@@ -960,9 +960,9 @@ namespace Architecture.Core.Migrations
                     DocumentInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     DocumentTypeId = table.Column<int>(nullable: true),
@@ -1002,9 +1002,9 @@ namespace Architecture.Core.Migrations
                     EducationInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     DegreeTypeId = table.Column<int>(nullable: true),
@@ -1045,9 +1045,9 @@ namespace Architecture.Core.Migrations
                     FamilyInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     RelationTypeId = table.Column<int>(nullable: true),
@@ -1129,9 +1129,9 @@ namespace Architecture.Core.Migrations
                     HouseRentInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     ContractDate = table.Column<DateTime>(type: "Date", nullable: false),
@@ -1224,9 +1224,9 @@ namespace Architecture.Core.Migrations
                     IncomeInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     IncomeTypeId = table.Column<int>(nullable: true),
@@ -1267,9 +1267,9 @@ namespace Architecture.Core.Migrations
                     InsuranceInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     InsuranceTypeId = table.Column<int>(nullable: true),
@@ -1309,9 +1309,9 @@ namespace Architecture.Core.Migrations
                     ISEEInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     ISEEClassTypeId = table.Column<int>(nullable: true),
@@ -1356,9 +1356,9 @@ namespace Architecture.Core.Migrations
                     LegalInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     CountryNameId = table.Column<int>(nullable: true),
@@ -1400,9 +1400,9 @@ namespace Architecture.Core.Migrations
                     MovementInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     CountryNameId = table.Column<int>(nullable: true),
@@ -1441,9 +1441,9 @@ namespace Architecture.Core.Migrations
                     OccupationInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     JobTypeId = table.Column<int>(nullable: true),
@@ -1503,9 +1503,9 @@ namespace Architecture.Core.Migrations
                     WorkerInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true, computedColumnSql: "GetUtcDate()"),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     WorkerTypeId = table.Column<int>(nullable: true),

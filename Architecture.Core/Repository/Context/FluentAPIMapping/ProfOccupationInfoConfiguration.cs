@@ -34,7 +34,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             occupationInfo.Property(bs => bs.CompanyRepresentative).HasMaxLength(100);
 
             occupationInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            occupationInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            occupationInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }
