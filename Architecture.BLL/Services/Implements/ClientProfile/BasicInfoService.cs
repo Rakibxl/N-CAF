@@ -26,9 +26,9 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
     public class BasicInfoService : Repository<ProfBasicInfo>, IBasicInfoService
     {
-
         public BasicInfoService(ApplicationDbContext dbContext) : base(dbContext)
         {
+
         }
 
         public async Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId)
@@ -38,19 +38,18 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             return result;
         }
 
-        public async Task<ProfBasicInfo> GetById(int basicInfoId)
+        public async Task<ProfBasicInfo> GetById(int profileId)
         {
-            var checkVal = await IsExistsAsync(x => x.ProfileId == basicInfoId);
+            var checkVal = await IsExistsAsync(x => x.ProfileId == profileId);
             if (checkVal)
             {
-                ProfBasicInfo result = await GetByIdAsync(basicInfoId);
+                ProfBasicInfo result = await GetByIdAsync(profileId);
                 return result;
             }
             else
             {
                 throw new Exception("Information is not exists.");
             }
-
         }
 
         public async Task<ProfBasicInfo> AddOrUpdate(ProfBasicInfo basicInfo)
@@ -60,6 +59,8 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfBasicInfo result;
                 if (basicInfo.ProfileId > 0)
                 {
+                    //ProfBasicInfo res = await GetByIdAsync(basicInfo.ProfileId);
+                    basicInfo.Created = DateTime.Parse("2020-11-16T19:15:32.34");
                     result = await UpdateAsync(basicInfo);
                 }
                 else

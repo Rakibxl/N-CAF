@@ -18,7 +18,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             educationInfo.Property(bs => bs.ActivitiesAndSocieties).HasMaxLength(500);
             educationInfo.Property(bs => bs.Result).HasMaxLength(100);
             educationInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            educationInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            educationInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

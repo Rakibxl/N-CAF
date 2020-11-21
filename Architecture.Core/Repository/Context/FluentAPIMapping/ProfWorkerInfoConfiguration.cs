@@ -20,7 +20,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             workerInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
             workerInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             workerInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            workerInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            workerInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

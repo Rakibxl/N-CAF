@@ -15,8 +15,13 @@ export class ClientProfileService {
     this.basicInfoEndpoint = this.baseUrl + 'v1/BasicInfo';
   }
 
-    createOrUpdateBasicInfo(data) {
-        let url = this.basicInfoEndpoint +"/CreateOrUpdate";
-        return this.http.post<APIResponse>(`${url}`, data);
+  getBasicInfo() {
+    let url = this.basicInfoEndpoint + "/GetBasicInfo";
+    return this.http.get<APIResponse>(`${url}`);
+  }
+
+  createOrUpdateBasicInfo(data) {
+    let url = this.basicInfoEndpoint + "/CreateOrUpdate";
+    return this.http.post<APIResponse>(`${url}`, data);
   }
 }

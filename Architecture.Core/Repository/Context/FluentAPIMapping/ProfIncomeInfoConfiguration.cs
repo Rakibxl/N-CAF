@@ -19,7 +19,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             incomeInfo.Property(bs => bs.Document).HasMaxLength(100);
             incomeInfo.Property(bs => bs.Status).HasMaxLength(100);
             incomeInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            incomeInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            incomeInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

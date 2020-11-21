@@ -28,19 +28,20 @@ namespace Architecture.Web.Controllers.BasicInfo
             _basicInfoService = basicInfoService;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetTest()
-        //{
-        //    try
-        //    {
-        //        var result = "";
-        //        return OkResult(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ExceptionResult(ex);
-        //    }
-        //}
+        [HttpGet("GetBasicInfo")]
+        public async Task<IActionResult> GetBasicInfo()
+        {
+            try
+            {
+                var basicInfoId = 2;
+                var result = await _basicInfoService.GetById(basicInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
 
         //[HttpGet("{id}")]
         //public async Task<IActionResult> Get(int id)

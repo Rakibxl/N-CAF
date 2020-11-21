@@ -15,7 +15,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             bankInfo.Property(bs => bs.AccountNumber).HasMaxLength(100);
             bankInfo.Property(bs => bs.SwiftNumber).HasMaxLength(100);
             bankInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            bankInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            bankInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

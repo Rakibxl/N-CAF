@@ -23,7 +23,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             addressInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
             addressInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             addressInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            addressInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            addressInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }

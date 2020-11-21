@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201114220626_init")]
-    partial class init
+    [Migration("20201120200745_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1458,8 +1458,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1473,7 +1473,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -1544,8 +1544,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1558,7 +1558,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int>("EquivalentMoneyMin")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ModifiedBy")
@@ -1629,15 +1629,15 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -1702,8 +1702,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("ContractTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1792,7 +1792,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("MaritalStatusId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -1894,8 +1894,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1915,7 +1915,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -1972,8 +1972,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -1998,7 +1998,7 @@ namespace Architecture.Core.Migrations
                         .IsRequired()
                         .HasColumnType("Date");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2039,8 +2039,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2058,7 +2058,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2123,8 +2123,8 @@ namespace Architecture.Core.Migrations
                     b.Property<DateTime?>("ApplicationPlacedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2153,7 +2153,7 @@ namespace Architecture.Core.Migrations
                     b.Property<bool>("IsDisabled")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2249,7 +2249,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("ContractTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
@@ -2296,7 +2296,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ModifiedBy")
@@ -2403,8 +2403,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2440,7 +2440,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2478,8 +2478,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2493,7 +2493,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("IncomeTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2541,8 +2541,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2570,7 +2570,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("InsuranceTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2614,8 +2614,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("CountryNameId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2628,7 +2628,7 @@ namespace Architecture.Core.Migrations
                     b.Property<bool?>("IsAnyCase")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2678,8 +2678,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("CountryNameId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2689,7 +2689,7 @@ namespace Architecture.Core.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("Date");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2768,8 +2768,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("ContractTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2789,7 +2789,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
@@ -2855,8 +2855,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");
 
@@ -2866,7 +2866,7 @@ namespace Architecture.Core.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("Date");
 
-                    b.Property<DateTime?>("Modified")
+                    b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GetUtcDate()");

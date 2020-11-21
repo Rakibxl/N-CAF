@@ -17,7 +17,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             insuranceInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
             insuranceInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             insuranceInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            insuranceInfo.Property(bs => bs.Created).ValueGeneratedOnAdd().HasComputedColumnSql("GetUtcDate()");
+            insuranceInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 
         }
     }
