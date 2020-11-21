@@ -60,6 +60,7 @@ namespace Architecture.Models
     public class ApiAuthenticateUserModel : IMapFrom<ApplicationUser>
     {
         public Guid Id { get; set; }
+        public int? AppUserTypeId { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }

@@ -13,6 +13,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         {
             //Prof Basic Info
             basicInfo.HasKey(bs => bs.ProfileId);
+            basicInfo.Property(bs => bs.RefId).IsRequired();
             basicInfo.Property(bs => bs.Name).HasMaxLength(100).IsRequired();
             basicInfo.Property(bs => bs.SurName).HasMaxLength(100).IsRequired();
             basicInfo.Property(bs => bs.DateOfBirth).HasColumnType("Date").IsRequired();

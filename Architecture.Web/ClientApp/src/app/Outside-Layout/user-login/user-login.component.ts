@@ -48,6 +48,7 @@ export class UserLoginComponent implements OnInit {
       if (err.status == 400) {
         let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
           + err.error.errors[0].errorList[0];
+        alert(errorMsg);
         this.alertService.tosterDanger(errorMsg);
       }
     });

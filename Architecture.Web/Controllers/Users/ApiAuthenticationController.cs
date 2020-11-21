@@ -100,31 +100,39 @@ namespace Architecture.Web.Controllers.Users
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
         {
-            var userExists = await _userManager.FindByEmailAsync(model.Email);
-            if (userExists != null)
+            try
             {
-                ModelState.AddModelError("", "User email already exists!");
-                return ValidationResult(ModelState);
-            }
+                var userExists = await _userManager.FindByEmailAsync(model.Email);
+                if (userExists != null)
+                {
+                    ModelState.AddModelError("", "User email already exists!");
+                    return ValidationResult(ModelState);
+                }
 
-            ApplicationUser user = new ApplicationUser()
-            {
-                Name = model.Name,
-                SurName = model.SurName,
-                UserName = model.PhoneNumber,
-                Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
-                GenderId = model.GenderId,
-                SecurityStamp = Guid.NewGuid().ToString()
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
-                return ValidationResult(ModelState);
-            }
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Name = model.Name,
+                    SurName = model.SurName,
+                    UserName = model.PhoneNumber,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    GenderId = model.GenderId,
+                    AppUserTypeId = 1,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
+                    return ValidationResult(ModelState);
+                }
 
-            return Ok(new { Status = "Success", Message = "User created successfully!" });
+                return OkResult(new { Message = "User created successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
         }
 
         [AllowAnonymous]

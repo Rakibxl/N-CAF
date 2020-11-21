@@ -13,6 +13,7 @@ namespace Architecture.Core.Entities
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         //[Key, Column(Order = 0)]
         public int ProfileId { get; set; }
+        public Guid RefId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime DateOfBirth { get; set; }

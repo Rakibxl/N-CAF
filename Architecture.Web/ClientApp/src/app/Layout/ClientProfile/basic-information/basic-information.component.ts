@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { ClientProfileService } from '../../../Shared/Services/ClientProfile/client-profile.service';
@@ -16,6 +16,7 @@ import { IAuthUser } from '../../../Shared/Entity/Users/auth';
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
   user: IAuthUser;
+  profId: any;
 
   // defaultBindingsList = [
   //   { value: "1", label: "type here" },
@@ -32,10 +33,11 @@ export class BasicInformationComponent implements OnInit {
   // ];
   // selectedCity = { value: "1", label: "type here" };
 
-  constructor(private fb: FormBuilder, private clientProfileService: ClientProfileService, private authService: AuthService,
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
     private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.authService.currentUser.subscribe(user => this.user = user);
     this.initForm();
+    this.profId = this.route.snapshot.paramMap.get('profId');
   }
 
   ngOnInit() {
@@ -95,6 +97,7 @@ export class BasicInformationComponent implements OnInit {
   }
 
   loadBasicInfo() {
+    console.log(this.profId);
     this.clientProfileService.getBasicInfo().subscribe(res => {
       console.log(res)
       if (res && res.data.profileId) {
