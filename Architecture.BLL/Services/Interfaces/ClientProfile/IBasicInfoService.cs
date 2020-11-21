@@ -13,6 +13,7 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
     {
         public Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId);
         public Task<ProfBasicInfo> GetById(int profileId);
+        public Task<ProfBasicInfo> GetByRefId(Guid UserId);
         public Task<ProfBasicInfo> AddOrUpdate(ProfBasicInfo basicInfo);
         public Task<int> Delete(int profileId);
     }

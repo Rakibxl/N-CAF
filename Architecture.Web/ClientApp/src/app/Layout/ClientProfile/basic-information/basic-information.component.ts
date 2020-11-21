@@ -16,28 +16,13 @@ import { IAuthUser } from '../../../Shared/Entity/Users/auth';
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
   user: IAuthUser;
-  profId: any;
-
-  // defaultBindingsList = [
-  //   { value: "1", label: "type here" },
-  //   { value: "Celibe/Nubile - Unmarried Maiden", label: "Celibe/Nubile - Unmarried Maiden" },
-  //   { value: "Coniugato/a - Married To", label: "Coniugato/a - Married To" },
-  //   { value: "unito/a civilmente - joined civilly", label: "unito/a civilmente - joined civilly" },
-  //   { value: "separata legalmente - legally separated", label: "separata legalmente - legally separated" },
-  //   { value: "sciolto/a legalmente - legally dissolved", label: "sciolto/a legalmente - legally dissolved" },
-  //   { value: "sciolto/a da unione civile-dissolved from civil union - civil union", label: "sciolto/a da unione civile-dissolved from civil union - civil union" },
-  //   { value: "divorziato/a - divorced to", label: "divorziato/a - divorced to" },
-  //   { value: "vedovo/a - widower", label: "vedovo/a - widower" },
-  //   { value: "abbandonato/a - abandoned", label: "abbandonato/a - abandoned" },
-  //   { value: "parte superstite dell'unione civile- surviving part of the civil union", label: "parte superstite dell'unione civile- surviving part of the civil union" },
-  // ];
-  // selectedCity = { value: "1", label: "type here" };
+  profileId: any;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
     private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.authService.currentUser.subscribe(user => this.user = user);
     this.initForm();
-    this.profId = this.route.snapshot.paramMap.get('profId');
+    this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
   }
 
   ngOnInit() {
@@ -92,13 +77,15 @@ export class BasicInformationComponent implements OnInit {
       hasAppliedForCitizenship: [null, Validators.required],
       requestTypeOfApplicant: [null],
       applicationFor: [null],
-      branchId: [null]
+      branchId: [null],
+      refId: [null],
+      createdBy: [null],
+      modifiedBy: [null]
     });
   }
 
   loadBasicInfo() {
-    console.log(this.profId);
-    this.clientProfileService.getBasicInfo().subscribe(res => {
+    this.clientProfileService.getBasicInfo(this.user.appUserTypeId, this.profileId).subscribe(res => {
       console.log(res)
       if (res && res.data.profileId) {
         res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
@@ -125,11 +112,6 @@ export class BasicInformationComponent implements OnInit {
     formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
     formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
     formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
-    if (formData.profileId) {
-      formData.modifiedBy = this.user.id;
-    } else {
-      formData.createdBy = this.user.id;
-    }
     return formData;
   }
 
@@ -142,9 +124,11 @@ export class BasicInformationComponent implements OnInit {
 
   save() {
     let model = this.getModel();
-    console.log(model)
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
-      console.log(res)
+      if (res && res.data && res.data.profileId) {
+        alert('Basic Info saved successfully');
+        this.basicInfoForm.patchValue({ profileId: res.data.profileId });
+      }
     }, (error: any) => {
       this.commonService.stopLoading();
       console.log(error)

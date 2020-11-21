@@ -237,6 +237,8 @@ namespace Architecture.Web.Controllers.Users
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            //await _userManager.AddClaimsAsync(user, claims);
+
             return tokenHandler.WriteToken(token);
         }
     }
