@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { profAddressInfo } from '../../../Shared/Entity/ClientProfile/profAddressInfo';
+import { AddressInfoService } from '../../../Shared/Services/ClientProfile/address-info.service';
 
 @Component({
-  selector: 'app-address-information',
-  templateUrl: './address-information.component.html',
-  styleUrls: ['./address-information.component.css']
+    selector: 'app-address-information',
+    templateUrl: './address-information.component.html',
+    styleUrls: ['./address-information.component.css']
 })
 export class AddressInformationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    constructor(private router: Router, private addressService: AddressInfoService) { }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.getAddressInfos();
     }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -24,32 +26,46 @@ export class AddressInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/address-info/0']);
+            this.router.navigate(['/client-profile/address/0']);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/address-info/0']);
+            this.router.navigate(['/client-profile/address/0']);
         }
     }
 
+    public getAddressInfos() {
+        let profileId = 1;
+        this.addressService.getAddressInfo(profileId).subscribe(
+            (success) => {
+                console.log("get address: ", success);
+                this.addressInfoList = success.data;
+            },
+            error => {
+            });
+
+
+    }
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Address List',
-        tableRowIDInternalName: "userId",
+        tableRowIDInternalName: "addressinfoid",
         tableColDef: [
-            { headerName: 'Address Id', width: '10%', internalName: 'userId', sort: true, type: "" },
-            { headerName: 'AddressType', width: '20%', internalName: 'addresstype', sort: true, type: "" },
-            { headerName: 'Road Name ', width: '10%', internalName: 'roadname', sort: true, type: "" },
-            { headerName: 'Road Number ', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
-            { headerName: 'Building Number', width: '15%', internalName: 'buildingnumber', sort: true, type: "" },
-            { headerName: 'Floor Number', width: '10%', internalName: 'floornumber', sort: true, type: "" },
-            { headerName: 'Appartment Number', width: '10%', internalName: 'appartmentnumber', sort: true, type: "" },
-            { headerName: 'Province', width: '20%', internalName: 'province', sort: true, type: "" },
-            { headerName: 'City Name', width: '10%', internalName: 'cityname', sort: true, type: "" },
-            { headerName: 'Postal Code', width: '10%', internalName: 'postalcode', sort: true, type: "" },
-            { headerName: 'Start Date', width: '10%', internalName: 'startdate', sort: true, type: "" },
-            { headerName: 'End Date', width: '10%', internalName: 'enddate', sort: true, type: "" },
+            { headerName: 'AddressType', width: '20%', internalName: 'AddressType', sort: true, type: "" },
+            { headerName: 'Road Name ', width: '10%', internalName: 'RoadName', sort: true, type: "" },
+            { headerName: 'Road Number ', width: '15%', internalName: 'RoadNo', sort: true, type: "" },
+            { headerName: 'Building Number', width: '15%', internalName: 'BuildingNo', sort: true, type: "" },
+            { headerName: 'Floor Number', width: '10%', internalName: 'FloorNo', sort: true, type: "" },
+            { headerName: 'Appartment Number', width: '10%', internalName: 'AppartmentNo', sort: true, type: "" },
+            { headerName: 'Province', width: '20%', internalName: 'Province', sort: true, type: "" },
+            { headerName: 'City Name', width: '10%', internalName: 'CityName', sort: true, type: "" },
+            { headerName: 'Postal Code', width: '10%', internalName: 'PostalCode', sort: true, type: "" },
+            { headerName: 'State', width: '10%', internalName: 'State', sort: true, type: "" },
+            { headerName: 'Start Date', width: '10%', internalName: 'StartDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '10%', internalName: 'EndDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '10%', internalName: 'EndDate', sort: true, type: "" },
+            { headerName: 'Active', width: '10%', internalName: 'Active', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -82,34 +98,6 @@ export class AddressInformationComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { userId: "AD-120", addresstype: "Guest", roadname: "Via Torino", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",        startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-121", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "7", buildingnumber: "2", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-122", addresstype: "Permanent", roadname: "Via Milano", roadnumber: "4", buildingnumber: "2", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-123", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "2", buildingnumber: "2", floornumber: "4", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100", startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-124", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-125", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-126", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "7", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",  startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-127", addresstype: "Guest ", roadname: "Via Torino", roadnumber: "9", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",        startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-128", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "1", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",     startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-129", addresstype: "Guest", roadname: "Via Milano", roadnumber: "2", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Milan", cityname: "Como", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-131", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-130", addresstype: "Guest", roadname: "Via Torino", roadnumber: "4", buildingnumber: "6", floornumber: "3", appartmentnumber: "A", province: "Milan", cityname: "Milan", postalcode: "22100",         startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-131", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "6", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-132", addresstype: "Guest", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-133", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "4", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",   startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-134", addresstype: "Guest", roadname: "Via Milano", roadnumber: "3", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-135", addresstype: "Guest", roadname: "Via Torino", roadnumber: "2", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",           startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-136", addresstype: "Permanent", roadname: "Via Allesandro", roadnumber: "4", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",  startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-137", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "8", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-138", addresstype: "Guest", roadname: "Via Torino", roadnumber: "3", buildingnumber: "7", floornumber: "4", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-139", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "5", buildingnumber: "4", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-140", addresstype: "Permanent", roadname: "Via Milano", roadnumber: "7", buildingnumber: "4", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-151", addresstype: "Guest", roadname: "Via Torino", roadnumber: "4", buildingnumber: "4", floornumber: "4", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",          startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-152", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "2", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",       startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-153", addresstype: "Permanent", roadname: "Via Torino", roadnumber: "4", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-154", addresstype: "Guest", roadname: "Via Milano", roadnumber: "6", buildingnumber: "7", floornumber: "2", appartmentnumber: "A", province: "Como", cityname: "Como", postalcode: "22100",           startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-        { userId: "AD-155", addresstype: "Guest", roadname: "Via Allesandro", roadnumber: "3", buildingnumber: "7", floornumber: "3", appartmentnumber: "A", province: "Como", cityname: "Milan", postalcode: "22100",      startdate: "10/06/2020", enddate: "10/06/2020",  details: "More.." },
-    ];
+    public addressInfoList = [];
 
 }

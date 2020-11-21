@@ -13,6 +13,7 @@ namespace Architecture.Core.Entities
         public virtual AddressType AddressType { get; set; }
         public string RoadName { get; set; }
         public string RoadNo { get; set; }
+        public string BuildingNo { get; set; }
         public string FloorNo { get; set; }
         public string AppartmentNo { get; set; }
         public string PostalCode { get; set; }

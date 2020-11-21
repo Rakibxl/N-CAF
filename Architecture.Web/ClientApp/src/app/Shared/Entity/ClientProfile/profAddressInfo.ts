@@ -10,28 +10,29 @@ export class profAddressInfo extends Auditable {
     //public virtual AddressType AddressType { get; set; }
     public addressTypeId: number;
 
-    public RoadName: string;
+    public roadName: string;
 
-    public RoadNo: string;
+    public roadNo: string;
 
-    public FloorNo: string;
+    public buildingNo: string;
 
-    public AppartmentNo: string;
+    public floorNo: string;
 
-    public PostalCode: string;
+    public appartmentNo: string;
 
-    public CityName: string;
+    public postalCode: string;
 
-    public Province: string;
+    public cityName: string;
 
-    public State: string;
+    public province: string;
 
-    public StartDate: Date;
+    public state: string;
 
-    public EndDate: Date;
+    public startDate: Date;
 
-    public Status: string; 
+    public endDate: Date;
 
+    public status: string; 
         
 }
 

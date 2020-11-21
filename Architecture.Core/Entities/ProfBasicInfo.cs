@@ -49,6 +49,8 @@ namespace Architecture.Core.Entities
         public int? ContractTypeId { get; set; }
         public virtual ContractType ContractType { get; set; }
         public decimal YearlyIncome { get; set; }
+        public bool IsPregnant { get; set; }
+        public DateTime? ExpectedBabyBirthDate { get; set; }
 
         #region house info
         public bool IsRentHouse { get; set; }

@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #addressInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Address Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -16,28 +16,28 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">AddressType</label>
-                            <select name="" id="" class="form-control">
-                                <option value="">Permanent</option>
-                                <option value="">Guest</option>
+                            <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId">
+                                <option value="1">Permanent</option>
+                                <option value="2">Guest</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">start year is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter cityname"
+                            <input type="text" autocomplete="off" name="cityName" [(ngModel)]="addressInfoForm.cityName" #cityName="ngModel" class="form-control" placeholder="Enter cityname"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">start year is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Province</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter province"
+                            <input type="text" autocomplete="off" name="province" [(ngModel)]="addressInfoForm.province" #province="ngModel" class="form-control" placeholder="Enter province"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -47,7 +47,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">State</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter state"
+                            <input type="text" autocomplete="off" name="state" [(ngModel)]="addressInfoForm.state" #state="ngModel" class="form-control" placeholder="Enter state"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -57,7 +57,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PostalCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter postalcode"
+                            <input type="text" autocomplete="off" name="postalCode" [(ngModel)]="addressInfoForm.postalCode" #postalCode="ngModel" class="form-control" placeholder="Enter postalcode"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -67,7 +67,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RoadName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter roadname"
+                            <input type="text" autocomplete="off" name="roadName" [(ngModel)]="addressInfoForm.roadName" #roadName="ngModel" class="form-control" placeholder="Enter roadname"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -77,7 +77,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Road#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter road number"
+                            <input type="text" autocomplete="off" name="roadNo" [(ngModel)]="addressInfoForm.roadNo" #roadNo="ngModel" class="form-control" placeholder="Enter road number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -87,7 +87,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Buiding#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter building number"
+                            <input type="text" autocomplete="off" name="buildingNo" [(ngModel)]="addressInfoForm.buildingNo" #buildingNo="ngModel" class="form-control" placeholder="Enter building number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -97,7 +97,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Floor#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter floor number"
+                            <input type="text" autocomplete="off" name="floorNo" [(ngModel)]="addressInfoForm.floorNo" #floorNo ="ngModel" class="form-control" placeholder="Enter floor number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -107,7 +107,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Appartment#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Appartment number"
+                            <input type="text" autocomplete="off"  name="appartmentNo" [(ngModel)]="addressInfoForm.appartmentNo" #appartmentNo ="ngModel" class="form-control" placeholder="Enter Appartment number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -117,7 +117,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate ="ngModel" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -125,7 +125,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate ="ngModel" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -133,7 +133,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Status</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter status"
+                            <input type="text" autocomplete="off" name="status" [(ngModel)]="addressInfoForm.status" #status ="ngModel" class="form-control" placeholder="Enter status"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>

@@ -15,14 +15,14 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DegreeType</label>
-                            <select n id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId">
+                            <select id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId">
                                 <option>type here</option>
                                 <option value="1">Bachelor</option>
                                 <option value="2">Masters</option>
                                 <option value="3">PHD</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="degreeTypeId.valid || degreeTypeId.pristine" class="text-danger">start year is required.</p>
                         </div>
                     </div>
 
