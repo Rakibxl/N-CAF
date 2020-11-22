@@ -70,7 +70,7 @@ namespace Architecture.Web.Controllers.BasicInfo
             try
             {
                 var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                var UserId = uId != string.Empty ? Guid.Parse(uId) : Guid.Empty;
+                var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
 
                 if (model.ProfileId > 0)
                 {
