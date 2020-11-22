@@ -53,6 +53,7 @@ namespace Architecture.Web.Controllers.Users
             _authMessageSenderOptions = authOptions.Value;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
