@@ -139,7 +139,7 @@
                             <select formControlName="nationalityId" name="" id="" class="form-control">
                                 <option value="1">Bangladesh</option>
                                 <option value="2">India</option>
-                                <option value="3">Itally</option>
+                                <option value="3">Italy</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -370,9 +370,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label class="label">
-                                HasVehicleInsurance*
-                            </label>
+                            <label>HasVehicleInsurance*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasVehicleInsurance">
@@ -435,31 +433,54 @@
                         </div>
                     </div>
 
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group d-flex align-items-center">
+                            <label>IsPregnant*</label>
+                            <div class="pl-2">
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="IsPregnant">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">ExpectedBabyBirthDate</label>
+                            <input type="date" formControlName="ExpectedBabyBirthDate" autocomplete="off" class="form-control" />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+
                     <!--<div class="col-xl-4 col-md-6">
-                    <div class="caf-input-group">
-                        <label class="label">RequestTypeOfApplicant</label>
-                        <select formControlName="requestTypeOfApplicant" value="" class="form-control">
-                            <option value="">Rilascio- issue</option>
-                            <option value="">Rinnovo - Renewal</option>
-                            <option value="">Aggiornamento - Update</option>
-                            <option value="">Duplicato - Duplicate</option>
-                            <option value="">Conversione - Conversion</option>
-                        </select>
-                        <p class="text-info d-none">Info message</p>
-                        <p class="text-danger d-none">Danger message</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="caf-input-group">
-                        <label class="label">ApplicationFor</label>
-                        <select formControlName="applicationFor" name="" id="" class="form-control">
-                            <option value=""> Permesso Di Soggiorno - Residence permit</option>
-                            <option value=""> Carta Di Soggiorno - Residence Permiti unlimited</option>
-                        </select>
-                        <p class="text-info d-none">Info message</p>
-                        <p class="text-danger d-none">Danger message</p>
-                    </div>
-                </div>-->
+        <div class="caf-input-group">
+            <label class="label">RequestTypeOfApplicant</label>
+            <select formControlName="requestTypeOfApplicant" value="" class="form-control">
+                <option value="">Rilascio- issue</option>
+                <option value="">Rinnovo - Renewal</option>
+                <option value="">Aggiornamento - Update</option>
+                <option value="">Duplicato - Duplicate</option>
+                <option value="">Conversione - Conversion</option>
+            </select>
+            <p class="text-info d-none">Info message</p>
+            <p class="text-danger d-none">Danger message</p>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <div class="caf-input-group">
+            <label class="label">ApplicationFor</label>
+            <select formControlName="applicationFor" name="" id="" class="form-control">
+                <option value=""> Permesso Di Soggiorno - Residence permit</option>
+                <option value=""> Carta Di Soggiorno - Residence Permiti unlimited</option>
+            </select>
+            <p class="text-info d-none">Info message</p>
+            <p class="text-danger d-none">Danger message</p>
+        </div>
+    </div>-->
                 </div>
                 <div class="row">
                     <div class="col-12">

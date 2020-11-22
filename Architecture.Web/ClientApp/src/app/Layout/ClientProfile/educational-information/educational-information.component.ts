@@ -37,7 +37,7 @@ export class EducationalInformationComponent implements OnInit {
     }
 
     public getEducationInfos() {
-        let profileId = 1;
+        let profileId = 2;
         this.educationService.getEducationInfo(profileId).subscribe(
             (success) => {
                 console.log("get education: ", success);

@@ -32,7 +32,7 @@ export class profAddressInfo extends Auditable {
 
     public endDate: Date;
 
-    public status: string; 
+    public active: string; 
         
 }
 

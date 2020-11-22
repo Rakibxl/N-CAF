@@ -30,7 +30,7 @@
                             <input type="text" autocomplete="off" name="cityName" [(ngModel)]="addressInfoForm.cityName" #cityName="ngModel" class="form-control" placeholder="Enter cityname"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">start year is required.</p>
+                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">CityName is required.</p>
                         </div>
                     </div>
 
@@ -131,10 +131,13 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
+                        
                         <div class="caf-input-group">
                             <label class="label">Status</label>
-                            <input type="text" autocomplete="off" name="status" [(ngModel)]="addressInfoForm.status" #status ="ngModel" class="form-control" placeholder="Enter status"
-                                   required />
+                            <select id="" class="form-control"  name="active" [(ngModel)]="addressInfoForm.active" #active="ngModel" >
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -149,7 +152,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button  type="submit"  [disabled]="!addressInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

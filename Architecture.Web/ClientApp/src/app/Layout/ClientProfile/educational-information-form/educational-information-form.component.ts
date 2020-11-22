@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
@@ -12,7 +13,7 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 export class EducationalInformationFormComponent implements OnInit {
     public educationInfoForm = new profEducationInfo();
 
-    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService) { }
+    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,7 +21,7 @@ export class EducationalInformationFormComponent implements OnInit {
     public onSubmit() {
         debugger;
         console.table(this.educationInfoForm);
-        this.educationInfoForm.profileId = 1;
+        this.educationInfoForm.profileId = 2;
 
 
         this.educationInfoService.saveEducationInfo(this.educationInfoForm).subscribe(
@@ -36,7 +37,7 @@ export class EducationalInformationFormComponent implements OnInit {
     }
 
     public fnBackToList() {
-
+        this.router.navigate(['/client-profile/education']);
     }
 
 }
