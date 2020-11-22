@@ -54,6 +54,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.CarNumberPlate).HasMaxLength(100);
             basicInfo.Property(bs => bs.HouseCountryName).HasMaxLength(100);
             basicInfo.Property(bs => bs.DigitalVatCode).HasMaxLength(100);
+            basicInfo.Property(bs => bs.IsPregnant).HasDefaultValue(false);
+            basicInfo.Property(bs => bs.ExpectedBabyBirthDate).HasColumnType("Date").IsRequired(false);
             basicInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             basicInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }

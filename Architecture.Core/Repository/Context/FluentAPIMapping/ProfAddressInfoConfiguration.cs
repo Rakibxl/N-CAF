@@ -14,6 +14,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
 
             addressInfo.Property(bs => bs.RoadName).HasMaxLength(100).IsRequired();
             addressInfo.Property(bs => bs.RoadNo).HasMaxLength(100).IsRequired();
+            addressInfo.Property(bs => bs.BuildingNo).HasMaxLength(100).IsRequired();
             addressInfo.Property(bs => bs.FloorNo).HasMaxLength(100);
             addressInfo.Property(bs => bs.AppartmentNo).HasMaxLength(100);
             addressInfo.Property(bs => bs.CityName).HasMaxLength(100).IsRequired();
