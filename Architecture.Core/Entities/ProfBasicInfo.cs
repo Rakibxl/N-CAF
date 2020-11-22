@@ -10,8 +10,6 @@ namespace Architecture.Core.Entities
 {
    public class ProfBasicInfo: Auditable
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //[Key, Column(Order = 0)]
         public int ProfileId { get; set; }
         public Guid RefId { get; set; }
         public string Name { get; set; }
