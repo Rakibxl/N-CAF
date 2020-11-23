@@ -76,6 +76,8 @@ export class BasicInformationComponent implements OnInit {
       digitalVatCode: [null],
       hasAppliedForCitizenship: [null, Validators.required],
       requestTypeOfApplicant: [null],
+      isPregnant: [null, Validators.required],
+      expectedBabyBirthDate: [null],
       applicationFor: [null],
       branchId: [null],
       refId: [null],
@@ -91,6 +93,7 @@ export class BasicInformationComponent implements OnInit {
         res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
         res.data.taxCodeStartDate = this.commonService.getDateToSetForm(res.data.taxCodeStartDate);
         res.data.taxCodeEndDate = this.commonService.getDateToSetForm(res.data.taxCodeEndDate);
+        res.data.expectedBabyBirthDate = this.commonService.getDateToSetForm(res.data.expectedBabyBirthDate);
         res.data.unEmployedCertificateIssuesDate = this.commonService.getDateToSetForm(res.data.unEmployedCertificateIssuesDate);
         this.basicInfoForm.patchValue(res.data);
       }
@@ -109,6 +112,7 @@ export class BasicInformationComponent implements OnInit {
     formData.hasVehicle = this.getBoolValue(formData.hasVehicle);
     formData.hasVehicleInsurance = this.getBoolValue(formData.hasVehicleInsurance);
     formData.hasWorker = this.getBoolValue(formData.hasWorker);
+    formData.isPregnant = this.getBoolValue(formData.isPregnant);
     formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
     formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
     formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
