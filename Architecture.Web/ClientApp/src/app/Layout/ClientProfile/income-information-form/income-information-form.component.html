@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #incomeInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Income Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -15,75 +15,69 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IncomeType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">IncomeType*</label>
+                            <select class="form-control" name="incomeTypeId" #incomeTypeId="ngModel" [(ngModel)]="incomeInfoForm.incomeTypeId">
                                 <option value="1">Personal</option>
                                 <option value="2">Business</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="incomeTypeId.valid || incomeTypeId.pristine" class="text-danger">IncomeType is required.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">YearlyIncome</label>
+                            <input type="text" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="Enter yearly income"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">MonthlyIncome</label>
+                            <input type="text" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="Enter monthly Income"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Year</label>
+                            <input type="date" autocomplete="off" class="form-control" name="Year" #Year="ngModel" [(ngModel)]="incomeInfoForm.Year" />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Month</label>
+                            <input type="date" autocomplete="off" class="form-control" name="month" #month="ngModel" [(ngModel)]="incomeInfoForm.month" />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Document</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Document" name="document" #document="ngModel" [(ngModel)]="incomeInfoForm.document"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Status</label>
+                            <select id="" class="form-control" name="status" [(ngModel)]="incomeInfoForm.status" #status="ngModel">
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">YearlyIncome</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter yearly income"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">MonthlyIncome</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter monthly Income"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">Year</label>
-                            <input type="date" autocomplete="off" class="form-control" />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">Month</label>
-                            <input type="date" autocomplete="off" class="form-control" />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">Document</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Document"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">Status</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Status"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -92,7 +86,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!incomeInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

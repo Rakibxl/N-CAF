@@ -15,12 +15,12 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             assetInfo.Property(bs => bs.NumberOfAsset).IsRequired();
             assetInfo.Property(bs => bs.EquivalentMoneyMax);
             assetInfo.Property(bs => bs.EquivalentMoneyMin);
-            assetInfo.Property(bs => bs.MoneyAverage).HasColumnType("decimal(8,2)");
-            assetInfo.Property(bs => bs.OwnershipPercentage).HasColumnType("decimal(3,2)");
+            assetInfo.Property(bs => bs.MoneyAverage).HasColumnType("decimal(10,2)");
+            assetInfo.Property(bs => bs.OwnershipPercentage).HasColumnType("decimal(5,2)");
             assetInfo.Property(bs => bs.OwnerFromDate).HasColumnType("Date").IsRequired();
-            assetInfo.Property(bs => bs.RentAmount).HasColumnType("decimal(8,2)");
-            assetInfo.Property(bs => bs.TaxAmount).HasColumnType("decimal(8,2)");
-            assetInfo.Property(bs => bs.UseAblePercentage).HasColumnType("decimal(8,2)");
+            assetInfo.Property(bs => bs.RentAmount).HasColumnType("decimal(10,2)");
+            assetInfo.Property(bs => bs.TaxAmount).HasColumnType("decimal(10,2)");
+            assetInfo.Property(bs => bs.UseAblePercentage).HasColumnType("decimal(5,2)");
             assetInfo.Property(bs => bs.AnyRestrictionByGovt).HasMaxLength(100);
             assetInfo.Property(bs => bs.CityName).HasMaxLength(100);
             assetInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

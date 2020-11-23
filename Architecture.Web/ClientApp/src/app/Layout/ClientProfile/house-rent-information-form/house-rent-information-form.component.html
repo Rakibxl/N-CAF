@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #houseRentInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">House Rent Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -14,42 +14,42 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">HouseType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">HouseType*</label>
+                            <select id="" name="houseTypeId" #houseTypeId="ngModel" [(ngModel)]="houseRentInfoForm.houseTypeId" class="form-control">
                                 <option value="1">Rent</option>
                                 <option value="2">Owner</option>
                                 <option value="3">SharedRent</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="houseTypeId.valid || houseTypeId.pristine" class="text-danger">HouseType is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContractDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">ContractDate*</label>
+                            <input type="date" autocomplete="off" name="contractDate" #contractDate="ngModel" [(ngModel)]="houseRentInfoForm.contractDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="contractDate.valid || contractDate.pristine" class="text-danger">ContractDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ContractType</label>
-                            <select name="" id="" class="form-control">
+                            <select id="" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="houseRentInfoForm.contractTypeId" class="form-control">
                                 <option value="1">Permanent Contract(Unlimited)</option>
                                 <option value="2">Temporary Contract(Limited)</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">ContractType is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="startDate" #startDate="ngModel" [(ngModel)]="houseRentInfoForm.startDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="endDate" #endDate="ngModel" [(ngModel)]="houseRentInfoForm.endDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -67,7 +67,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">MonthlyRentAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter rent amount"
+                            <input type="text" autocomplete="off" name="monthlyRentAmount" #monthlyRentAmount="ngModel" [(ngModel)]="houseRentInfoForm.monthlyRentAmount" class="form-control" placeholder="Enter rent amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -77,7 +77,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ServiceChargeAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter service amount"
+                            <input type="text" autocomplete="off" name="serviceChargeAmount" #serviceChargeAmount="ngModel" [(ngModel)]="houseRentInfoForm.serviceChargeAmount"  class="form-control" placeholder="Enter service amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -87,7 +87,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RegistrationInfo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter registration info"
+                            <input type="text" autocomplete="off" name="registrationInfo" #registrationInfo="ngModel" [(ngModel)]="houseRentInfoForm.registrationInfo"  class="form-control" placeholder="Enter registration info"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -97,7 +97,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RegistrationDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="registrationDate" #registrationDate="ngModel" [(ngModel)]="houseRentInfoForm.registrationDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RegistrationOffice</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter registration office"
+                            <input type="text" autocomplete="off" name="registrationOffice" #registrationOffice="ngModel" [(ngModel)]="houseRentInfoForm.registrationOffice" class="form-control" placeholder="Enter registration office"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -116,7 +116,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RegistrationCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter registration code"
+                            <input type="text" autocomplete="off" name="registrationCode" #registrationCode="ngModel" [(ngModel)]="houseRentInfoForm.registrationCode" class="form-control" placeholder="Enter registration code"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -126,7 +126,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Registration#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter registration number"
+                            <input type="text" autocomplete="off" name="registrationNo" #registrationNo="ngModel" [(ngModel)]="houseRentInfoForm.registrationNo" class="form-control" placeholder="Enter registration number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -136,7 +136,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RegistrationCity</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter registration city"
+                            <input type="text" autocomplete="off" name="registrationCity" #registrationCity="ngModel" [(ngModel)]="houseRentInfoForm.registrationCity" class="form-control" placeholder="Enter registration city"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -148,7 +148,7 @@
                             <label>IsJoined</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsJoined">
+                                    <input type="checkbox" name="isJoined" #isJoined="ngModel" [(ngModel)]="houseRentInfoForm.isJoined" >
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -160,7 +160,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SharePercent</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter share percent"
+                            <input type="text" autocomplete="off" name="sharePercent" #sharePercent="ngModel" [(ngModel)]="houseRentInfoForm.sharePercent"  class="form-control" placeholder="Enter share percent"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -170,17 +170,16 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Foglio#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter foglio number"
+                            <input type="text" autocomplete="off" name="foglioNo" #foglioNo="ngModel" [(ngModel)]="houseRentInfoForm.foglioNo" class="form-control" placeholder="Enter foglio number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Partiocella#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter partiocella"
+                            <input type="text" autocomplete="off" name="partiocellaNo" #partiocellaNo="ngModel" [(ngModel)]="houseRentInfoForm.partiocellaNo"  class="form-control" placeholder="Enter partiocella"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -190,7 +189,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Sub#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter sub number"
+                            <input type="text" autocomplete="off" name="subNo" #subNo="ngModel" [(ngModel)]="houseRentInfoForm.subNo" class="form-control" placeholder="Enter sub number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -200,7 +199,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Section#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter section"
+                            <input type="text" autocomplete="off" name="sectionNo" #sectionNo="ngModel" [(ngModel)]="houseRentInfoForm.sectionNo" class="form-control" placeholder="Enter section"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -210,7 +209,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Category</label>
-                            <select name="" id="" class="form-control">
+                            <select id="" name="houseCategoryId" #houseCategoryId="ngModel" [(ngModel)]="houseRentInfoForm.houseCategoryId" class="form-control">
                                 <option value="1">Category A</option>
                                 <option value="2">Category B</option>
                                 <option value="3">Category C</option>
@@ -223,7 +222,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Zona</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Zona"
+                            <input type="text" autocomplete="off" name="zona" #zona="ngModel" [(ngModel)]="houseRentInfoForm.zona" class="form-control" placeholder="Enter Zona"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -233,7 +232,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">MicroZona</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter micro zona"
+                            <input type="text" autocomplete="off" name="microZona" #microZona="ngModel" [(ngModel)]="houseRentInfoForm.microZona" class="form-control" placeholder="Enter micro zona"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -243,7 +242,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Consistenza</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter consistenza"
+                            <input type="text" autocomplete="off" name="consistenza" #consistenza="ngModel" [(ngModel)]="houseRentInfoForm.consistenza" class="form-control" placeholder="Enter consistenza"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -253,7 +252,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SuperficieCatastale</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter superficie catastale"
+                            <input type="text" autocomplete="off" name="superficieCatastale" #superficieCatastale="ngModel" [(ngModel)]="houseRentInfoForm.superficieCatastale" class="form-control" placeholder="Enter superficie catastale"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -263,7 +262,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Rendita</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter rendita"
+                            <input type="text" autocomplete="off" name="rendita" #rendita="ngModel" [(ngModel)]="houseRentInfoForm.rendita" class="form-control" placeholder="Enter rendita"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -273,7 +272,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">NotaioInfo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter notaio info"
+                            <input type="text" autocomplete="off" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="houseRentInfoForm.notaioInfo" class="form-control" placeholder="Enter notaio info"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -285,7 +284,7 @@
                             <label>HasLoan</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsJoined">
+                                    <input type="checkbox" name="hasLoan" #hasLoan="ngModel" [(ngModel)]="houseRentInfoForm.hasLoan" >
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -297,7 +296,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">LoanStatus</label>
-                            <select name="" id="" class="form-control">
+                            <select  id=""  name="loanStatusTypeID" #loanStatusTypeID="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeID" class="form-control">
                                 <option value="1">Dummy A</option>
                                 <option value="2">Dummy B</option>
                             </select>
@@ -309,7 +308,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">LoanStartDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" name="loanStartDate" #loanStartDate="ngModel" [(ngModel)]="houseRentInfoForm.loanStartDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -318,7 +317,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">LoanAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter loan amount"
+                            <input type="text" autocomplete="off" name="loanAmount" #loanAmount="ngModel" [(ngModel)]="houseRentInfoForm.loanAmount" class="form-control" placeholder="Enter loan amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -328,7 +327,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PaidAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter paid amount"
+                            <input type="text" autocomplete="off" name="paidAmount" #paidAmount="ngModel" [(ngModel)]="houseRentInfoForm.paidAmount" class="form-control" placeholder="Enter paid amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -338,7 +337,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">InterestType</label>
-                            <select name="" id="" class="form-control">
+                            <select id="" name="loanInterestTypeId" #loanInterestTypeId="ngModel" [(ngModel)]="houseRentInfoForm.loanInterestTypeId" class="form-control">
                                 <option value="1">Fixed Interest</option>
                                 <option value="2">Variable Interest</option>
                             </select>
@@ -350,7 +349,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Tenor/LoanPeriod</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter loan period"
+                            <input type="text" autocomplete="off" name="loanPeriod" #loanPeriod="ngModel" [(ngModel)]="houseRentInfoForm.loanPeriod" class="form-control" placeholder="Enter loan period"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -362,7 +361,7 @@
                             <label>IsRentByOwner</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsRentByOwner">
+                                    <input type="checkbox" name="isRentByOwner" #isRentByOwner="ngModel" [(ngModel)]="houseRentInfoForm.isRentByOwner" >
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -374,7 +373,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RentAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter rent amount"
+                            <input type="text" autocomplete="off" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="houseRentInfoForm.rentAmount" class="form-control"  placeholder="Enter rent amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -389,7 +388,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!houseRentInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>
