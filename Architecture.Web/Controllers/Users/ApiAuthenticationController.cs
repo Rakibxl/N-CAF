@@ -67,6 +67,13 @@ namespace Architecture.Web.Controllers.Users
                     return ValidationResult(ModelState);
                 }
 
+                userExists = _userManager.Users.Where(ex => ex.PhoneNumber == model.PhoneNumber).FirstOrDefault();
+                if (userExists != null)
+                {
+                    ModelState.AddModelError("", "User phone no already exists!");
+                    return ValidationResult(ModelState);
+                }
+
                 ApplicationUser user = new ApplicationUser()
                 {
                     Name = model.Name,
@@ -107,8 +114,12 @@ namespace Architecture.Web.Controllers.Users
                 var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Email or password is invalid.");
-                    return ValidationResult(ModelState);
+                    user = _userManager.Users.Where(ex => ex.PhoneNumber == model.Email).FirstOrDefault();
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("", "Email or password is invalid.");
+                        return ValidationResult(ModelState);
+                    }
                 }
 
                 var isValidUser = await _userManager.CheckPasswordAsync(user, model.Password);
@@ -149,7 +160,8 @@ namespace Architecture.Web.Controllers.Users
                 //new Claim(ClaimTypes.Name, user.Id.ToString())
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email??string.Empty),
-                new Claim(ClaimTypes.Name, user.UserName??string.Empty)
+                new Claim(ClaimTypes.Name, user.UserName??string.Empty),
+                new Claim("AppUserTypeId", user.AppUserTypeId?.ToString()??string.Empty)
             };
 
             var userRoles = await _userManager.GetRolesAsync(user);

@@ -11,14 +11,16 @@ import { BranchInformationFormComponent } from './branch-information-form/branch
 import { ApplicationUserRoleFormComponent } from './application-user-role-form/application-user-role-form.component';
 import { ApplicationUserRoleMappingComponent } from './application-user-role-mapping/application-user-role-mapping.component';
 import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-master.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent],
   imports: [
-      CommonModule,
-      SharedMasterModule,
-    ApplicationManagerRoutingModule
+    CommonModule,
+    SharedMasterModule,
+    ApplicationManagerRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ApplicationManagerModule { }

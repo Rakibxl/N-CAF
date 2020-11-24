@@ -35,12 +35,13 @@ namespace Architecture.Web.Controllers.BasicInfo
         }
 
         [HttpGet("GetBasicInfo")]
-        public async Task<IActionResult> GetBasicInfo(int appUserTypeId, int profileId)
+        public async Task<IActionResult> GetBasicInfo(int profileId)
         {
             try
             {
                 var result = new ProfBasicInfo();
-                if (appUserTypeId == 1)
+                var appUserTypeId = User.FindFirst("AppUserTypeId")?.Value;
+                if (appUserTypeId != null && int.Parse(appUserTypeId) == 1)
                 {
                     //var user = await _userManager.GetUserAsync(User);
                     var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

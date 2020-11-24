@@ -59,7 +59,7 @@ export class BasicInformationComponent implements OnInit {
       occupationPositionId: [null],
       hasUnEmployedCertificate: [null, Validators.required],
       unEmployedCertificateIssuesDate: [null],
-      hasAnyUnEmployedFacility: [null, Validators.required],
+      hasAnyUnEmployedFacility: [null],
       contractTypeId: [null],
       yearlyIncome: [null, Validators.required],
       isRentHouse: [null, Validators.required],
@@ -70,9 +70,9 @@ export class BasicInformationComponent implements OnInit {
       hasVehicle: [null, Validators.required],
       carSerialNumber: [null],
       carNumberPlate: [null],
-      hasVehicleInsurance: [null, Validators.required],
+      hasVehicleInsurance: [null],
       isCompanyOwner: [null, Validators.required],
-      hasWorker: [null, Validators.required],
+      hasWorker: [null],
       digitalVatCode: [null],
       hasAppliedForCitizenship: [null, Validators.required],
       requestTypeOfApplicant: [null],
@@ -87,7 +87,7 @@ export class BasicInformationComponent implements OnInit {
   }
 
   loadBasicInfo() {
-    this.clientProfileService.getBasicInfo(this.user.appUserTypeId, this.profileId).subscribe(res => {
+    this.clientProfileService.getBasicInfo(this.profileId).subscribe(res => {
       console.log(res)
       if (res && res.data.profileId) {
         res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
@@ -130,7 +130,7 @@ export class BasicInformationComponent implements OnInit {
     let model = this.getModel();
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
       if (res && res.data && res.data.profileId) {
-        alert('Basic Info saved successfully');
+        this.alertService.tosterSuccess('Basic Info saved successfully');
         this.basicInfoForm.patchValue({ profileId: res.data.profileId });
       }
     }, (error: any) => {
