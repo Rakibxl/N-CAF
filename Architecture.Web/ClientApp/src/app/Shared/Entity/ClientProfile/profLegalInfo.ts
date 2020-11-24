@@ -9,19 +9,21 @@ export class profLegalInfo extends Auditable {
     //    public int ? CountryNameId { get; set; }
     //    public virtual CountryName CountryName { get; set; }
 
-    public CityName: string;
+    public countryNameId: number;
 
-    public IsAnyCase: boolean
+    public cityName: string;
 
-    public RefNo: string;
+    public isAnyCase: boolean
 
-    public Reason: string;
+    public refNo: string;
 
-    public Note: string;
+    public reason: string;
 
-    public StartDate: Date;
+    public note: string;
 
-    public EndDate: Date;
+    public startDate: Date;
+
+    public endDate: Date;
     
 }
 

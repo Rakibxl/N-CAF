@@ -92,6 +92,8 @@ namespace Architecture.Web
             services.AddTransient<IAddressInfoService, AddressInfoService>();
             services.AddTransient<IHouseRentInfoService, HouseRentInfoService>();
             services.AddTransient<IIncomeInfoService, IncomeInfoService>();
+            services.AddTransient<IMovementInfoService, MovementInfoService>();
+            services.AddTransient<ILegalInfoService, LegalInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
             #endregion

@@ -35,6 +35,6 @@ export class IncomeInformationFormComponent implements OnInit {
     }
 
     public fnBackToList() {
-        this.router.navigate(['/client-profile/address']);
+        this.router.navigate(['/client-profile/income-info']);
     }
 }

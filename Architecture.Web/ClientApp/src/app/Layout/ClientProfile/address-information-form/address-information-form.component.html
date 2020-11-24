@@ -21,7 +21,7 @@
                                 <option value="2">Guest</option>
                             </select>
                             <p class="text-info">Info message</p>
-                            <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">start year is required.</p>
+                            <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">address type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -131,7 +131,6 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
-                        
                         <div class="caf-input-group">
                             <label class="label">Status</label>
                             <select id="" class="form-control"  name="active" [(ngModel)]="addressInfoForm.active" #active="ngModel" >

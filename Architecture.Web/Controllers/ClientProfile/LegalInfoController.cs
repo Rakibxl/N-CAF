@@ -12,14 +12,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Architecture.Web.Controllers.ClientProfile
 {
     [ApiVersion("1")]
-    [Route("api/v{v:apiVersion}/MovementInfo")]
-    public class MovementInfoController : BaseController
+    [Route("api/v{v:apiVersion}/LegalInfo")]
+    public class LegalInfoController : BaseController
     {
-        private readonly IMovementInfoService movementInfoService;
+        private readonly ILegalInfoService legalInfoService;
 
-        public MovementInfoController(IMovementInfoService movementInfoService)
+        public LegalInfoController(ILegalInfoService legalInfoService)
         {
-            this.movementInfoService = movementInfoService;
+            this.legalInfoService = legalInfoService;
         }
 
         [HttpGet("/Test")]
@@ -37,21 +37,21 @@ namespace Architecture.Web.Controllers.ClientProfile
         }
 
         [HttpPost("CreateOrUpdate")]
-        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfMovementInfo model)
+        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfLegalInfo model)
         {
             return await ModelValidation(async () =>
             {
-                var result = await movementInfoService.AddOrUpdate(model);
+                var result = await legalInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
 
         [HttpGet("Profile/{profileId}")]
-        public async Task<IActionResult> GetMovementByProfileId(int profileId)
+        public async Task<IActionResult> GetLegalByProfileId(int profileId)
         {
             try
             {
-                var result =await movementInfoService.GetAll(profileId);
+                var result =await legalInfoService.GetAll(profileId);
                 return OkResult(result);
             }
             catch (Exception ex)

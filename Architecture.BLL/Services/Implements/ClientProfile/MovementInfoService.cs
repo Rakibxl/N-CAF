@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class MovementInfoService : IMovementInfoService
+    public class MovementInfoService : Repository<ProfMovementInfo>, IMovementInfoService
     {
-        public IRepository<ProfMovementInfo> movementInfoRepo;
+        public MovementInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfMovementInfo> AddOrUpdate(ProfMovementInfo movementInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfMovementInfo result;
                 if (movementInfo.MovementInfoId > 0)
                 {
-                    result = await movementInfoRepo.UpdateAsync(movementInfo);
+                    result = await UpdateAsync(movementInfo);
                 }
                 else
                 {
-                    result = await movementInfoRepo.AddAsync(movementInfo);
+                    result = await AddAsync(movementInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int movementInfoId)
         {
-            var result = await movementInfoRepo.DeleteAsync(x=>x.MovementInfoId == movementInfoId);
+            var result = await DeleteAsync(x=>x.MovementInfoId == movementInfoId);
             return result;
         }
 
         public async Task<ProfMovementInfo> GetById(int movementInfoId)
         {
-            var checkVal =await movementInfoRepo.IsExistsAsync(x=>x.MovementInfoId == movementInfoId);
+            var checkVal =await IsExistsAsync(x=>x.MovementInfoId == movementInfoId);
             if (checkVal)
             {
-                ProfMovementInfo result = await movementInfoRepo.GetByIdAsync(movementInfoId);
+                ProfMovementInfo result = await GetByIdAsync(movementInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfMovementInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfMovementInfo> result;
-              result=await movementInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }
