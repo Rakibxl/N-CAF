@@ -98,6 +98,7 @@ namespace Architecture.Web.Controllers.Users
                         user.Email = model.Email;
                         user.PhoneNumber = model.PhoneNumber;
                         user.ModifiedBy = UserId;
+                        user.Modified = DateTime.Now;
 
                         result = await _userManager.UpdateAsync(user);
                     }
@@ -126,7 +127,8 @@ namespace Architecture.Web.Controllers.Users
                         Email = model.Email,
                         PhoneNumber = model.PhoneNumber,
                         GenderId = model.GenderId,
-                        CreatedBy = UserId
+                        CreatedBy = UserId,
+                        Created = DateTime.Now
                     }; 
                     
                     result = await _userManager.CreateAsync(user, model.Password);
