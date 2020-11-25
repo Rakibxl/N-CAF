@@ -48,10 +48,10 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="appUserForm.get('id').value">
                         <div class="caf-input-group">
                             <label class="label">Password*</label>
-                            <input type="text" formControlName="password" autocomplete="off" class="form-control" placeholder="Enter password" required />
+                            <input type="text" formControlName="password" [required]="!appUserForm.get('id').value" autocomplete="off" class="form-control" placeholder="Enter password" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -73,7 +73,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">BranchName*</label>
+                            <label class="label">BranchName</label>
                             <select formControlName="branchId" name="" id="" class="form-control">
                                 <option>type here</option>
                                 <option value="1">Milan branch</option>
@@ -94,7 +94,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button [disabled]="appUserForm.invalid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button [disabled]="appUserForm.invalid" (click)="save()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

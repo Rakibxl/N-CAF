@@ -60,6 +60,11 @@ namespace Architecture.Web.Controllers.Users
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return ValidationResult(ModelState);
+                }
+
                 var userExists = await _userManager.FindByEmailAsync(model.Email);
                 if (userExists != null)
                 {

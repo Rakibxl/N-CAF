@@ -134,8 +134,8 @@ export class BasicInformationComponent implements OnInit {
         this.basicInfoForm.patchValue({ profileId: res.data.profileId });
       }
     }, (error: any) => {
-      this.commonService.stopLoading();
-      console.log(error)
+      console.log(error);
+      this.alertService.tosterDanger(error);
     });
   }
 }

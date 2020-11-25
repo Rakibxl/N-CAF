@@ -1,47 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { IPTableSetting } from '../../../Shared/Modules/p-table/p-table.component';
 import { Router } from '@angular/router';
+import { UserService } from '../../../Shared/Services/Users/user.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+
+
 @Component({
-  selector: 'app-application-user',
-  templateUrl: './application-user.component.html',
-  styleUrls: ['./application-user.component.css']
+    selector: 'app-application-user',
+    templateUrl: './application-user.component.html',
+    styleUrls: ['./application-user.component.css']
 })
 export class ApplicationUserComponent implements OnInit {
+    employeeList: any[] = [];
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private userService: UserService, private alertService: AlertService) {
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.getUsers();
+    }
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
     }
 
     public fnCustomrTrigger(event) {
-        console.log("custom  click: ", event);
-        let id = 0;
+        let id = event.record && event.record.id || 0;
         if (event.action == "new-record") {
-            debugger;
-            this.router.navigate(['../manager/user-info/0']);
-            debugger
+            this.router.navigate(['../manager/user-info/' + id]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/manager/user-info-new']);
+            this.router.navigate(['../manager/user-info/' + id]);
         }
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Application User List',
         tableRowIDInternalName: "userId",
         tableColDef: [
-            { headerName: 'User Id', width: '10%', internalName: 'userId', sort: true, type: "" },
-            { headerName: 'User Name ', width: '10%', internalName: 'username', sort: true, type: "" },
-            { headerName: 'User Type ', width: '15%', internalName: 'usertype', sort: true, type: "" },
-            { headerName: 'Branch Location', width: '15%', internalName: 'branchlocation', sort: true, type: "" },
-            { headerName: 'Contact Number', width: '10%', internalName: 'contactnumber', sort: true, type: "" },
+            { headerName: 'User Id', width: '20%', internalName: 'id', sort: true, type: "" },
+            { headerName: 'Name ', width: '10%', internalName: 'name', sort: true, type: "" },
+            { headerName: 'Email', width: '10%', internalName: 'email', sort: true, type: "" },
+            { headerName: 'User Type ', width: '15%', internalName: 'appUserTypeId', sort: true, type: "" },
+            { headerName: 'Branch Location', width: '15%', internalName: 'branchId', sort: true, type: "" },
+            { headerName: 'Contact Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
             { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "" },
             { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "" },
             { headerName: 'IsLocked', width: '10%', internalName: 'islocked', sort: true, type: "" },
@@ -53,7 +56,7 @@ export class ApplicationUserComponent implements OnInit {
         enabledSerialNo: true,
         pageSize: 15,
         enabledPagination: false,
-        enabledAutoScrolled:true,
+        enabledAutoScrolled: true,
         // enabledEditDeleteBtn: true,
         enabledEditDeleteBtn: true,
         //enabledDeleteBtn: true,
@@ -72,38 +75,30 @@ export class ApplicationUserComponent implements OnInit {
         enabledRadioBtn: false,
         tableHeaderVisibility: true,
         // tableFooterVisibility:false,
-         pTableStyle: {
-           tableOverflowY: true,
-           overflowContentHeight: '460px'
-         }
+        pTableStyle: {
+            tableOverflowY: true,
+            overflowContentHeight: '460px'
+        }
     };
-   
-    public employeeList = [
-        { userId: "NC-120", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-121", username: "mustafiz@gmail.com", usertype: "Branch User", branchlocation: "Firenze", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-122", username: "zaman@gmail.com", usertype: "Operator User", branchlocation: "Rome", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-123", username: "rakibh@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-124", username: "pial@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-125", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-126", username: "palash@gmail.coml", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-127", username: "palash@gmail.com ", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-128", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Firenze", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-129", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-130", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-131", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-132", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-133", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-134", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-135", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-136", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-137", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Rome", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-138", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Como", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-139", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-140", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-151", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-152", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Bergamo", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "Yes", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-153", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Venice", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-154", username: "palash@gmail.com", usertype: "Operator User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "InActive", managerName: "Rakibul Tanvi", details: "More.." },
-        { userId: "NC-155", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-    ];
+
+    getUsers() {
+        this.userService.getUsers().subscribe((res) => {
+            this.alertService.fnLoading(false);
+            if (res && res.data && res.data.items.length) {
+                this.employeeList = res.data.items;
+
+                this.employeeList.map(ex => {
+                    ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
+                    return ex;
+                });
+            }
+        }, err => {
+            this.alertService.tosterDanger(err);
+        });
+    }
+
+    // public employeeList = [
+    //     { userId: "NC-120", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
+    //     { userId: "NC-155", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
+    // ];
 }

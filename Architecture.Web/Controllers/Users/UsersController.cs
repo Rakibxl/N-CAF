@@ -13,6 +13,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -24,15 +26,18 @@ namespace Architecture.Web.Controllers.Users
         private readonly IApplicationUserService _applicationUserService;
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public UsersController(
             IApplicationUserService applicationUserService,
             IOptionsSnapshot<AppSettings> appOptions,
-            IMapper mapper)
+            IMapper mapper,
+            UserManager<ApplicationUser> userManager)
         {
             this._applicationUserService = applicationUserService;
             this._appSettings = appOptions.Value;
             this._mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -42,38 +47,6 @@ namespace Architecture.Web.Controllers.Users
             try
             {
                 var result = await _applicationUserService.GetAllAsync(query);
-                var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
-                return OkResult(queryResult);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
-        [HttpGet("except-app-users")]
-        //[Authorize(Permissions.Users.ListView)]
-        public async Task<IActionResult> GetExceptAppUsers([FromQuery] UserQuery query)
-        {
-            try
-            {
-                var result = await _applicationUserService.GetAllExceptAppUsersAsync(query);
-                var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
-                return OkResult(queryResult);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
-        [HttpGet("app-users")]
-        //[Authorize(Permissions.Users.ListView)]
-        public async Task<IActionResult> GetAppUsers([FromQuery] UserQuery query)
-        {
-            try
-            {
-                var result = await _applicationUserService.GetAllAppUsersAsync(query);
                 var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
                 return OkResult(queryResult);
             }
@@ -99,17 +72,67 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
-        [HttpPost]
-        //[Authorize(Permissions.Users.Create)]
-        public async Task<IActionResult> Create([FromBody] SaveUserModel model)
+        [HttpPost("CreateOrUpdate")]
+        public async Task<IActionResult> CreateOrUpdate([FromBody] SaveUserModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationResult(ModelState);
+            }
+
             try
             {
-                if (!ModelState.IsValid)
-                    return ValidationResult(ModelState);
+                IdentityResult result = new IdentityResult();
+                ApplicationUser user;
+                var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
 
-                var user = _mapper.Map<SaveUserModel, ApplicationUser>(model);
-                var result = await _applicationUserService.AddAsync(user, model.UserRoleId, _appSettings.UserDefaultPassword);
+                if (model.Id != Guid.Empty)
+                {
+                    user = await _userManager.FindByIdAsync(model.Id.ToString());
+                    if (user != null)
+                    {
+                        user.Name = model.Name;
+                        user.SurName = model.SurName;
+                        user.UserName = model.PhoneNumber;
+                        user.Email = model.Email;
+                        user.PhoneNumber = model.PhoneNumber;
+                        user.ModifiedBy = UserId;
+
+                        result = await _userManager.UpdateAsync(user);
+                    }
+                }
+                else
+                {
+                    var userExists = await _userManager.FindByEmailAsync(model.Email);
+                    if (userExists != null)
+                    {
+                        ModelState.AddModelError("", "User email already exists!");
+                        return ValidationResult(ModelState);
+                    }
+
+                    userExists = _userManager.Users.Where(ex => ex.PhoneNumber == model.PhoneNumber).FirstOrDefault();
+                    if (userExists != null)
+                    {
+                        ModelState.AddModelError("", "User phone no already exists!");
+                        return ValidationResult(ModelState);
+                    }
+
+                    user = new ApplicationUser()
+                    {
+                        Name = model.Name,
+                        SurName = model.SurName,
+                        UserName = model.PhoneNumber,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        GenderId = model.GenderId,
+                        CreatedBy = UserId
+                    }; 
+                    
+                    result = await _userManager.CreateAsync(user, model.Password);
+                };
+
+                //var result = await _applicationUserService.AddOrUpdate(user);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -118,52 +141,103 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
-        [HttpPut("{id}")]
-        //[Authorize(Permissions.Users.Edit)]
-        public async Task<IActionResult> Update(Guid id, [FromBody] SaveUserModel model)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return ValidationResult(ModelState);
+        //[HttpGet("except-app-users")]
+        ////[Authorize(Permissions.Users.ListView)]
+        //public async Task<IActionResult> GetExceptAppUsers([FromQuery] UserQuery query)
+        //{
+        //    try
+        //    {
+        //        var result = await _applicationUserService.GetAllExceptAppUsersAsync(query);
+        //        var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
+        //        return OkResult(queryResult);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
 
-                var user = _mapper.Map<SaveUserModel, ApplicationUser>(model);
-                await _applicationUserService.UpdateAsync(user, model.UserRoleId);
-                return OkResult(true);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        //[HttpGet("app-users")]
+        ////[Authorize(Permissions.Users.ListView)]
+        //public async Task<IActionResult> GetAppUsers([FromQuery] UserQuery query)
+        //{
+        //    try
+        //    {
+        //        var result = await _applicationUserService.GetAllAppUsersAsync(query);
+        //        var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
+        //        return OkResult(queryResult);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
 
-        [HttpDelete("{id}")]
-        //[Authorize(Permissions.Users.Delete)]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
-                await _applicationUserService.DeleteAsync(id);
-                return OkResult(true);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        //[HttpPost]
+        ////[Authorize(Permissions.Users.Create)]
+        //public async Task<IActionResult> Create([FromBody] SaveUserModel model)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return ValidationResult(ModelState);
 
-        [HttpPost("activeInactive/{id}")]
-        public async Task<IActionResult> ActiveInactive(Guid id)
-        {
-            try
-            {
-                await _applicationUserService.ActiveInactiveAsync(id);
-                return OkResult(true);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        //        var user = _mapper.Map<SaveUserModel, ApplicationUser>(model);
+        //        var result = await _applicationUserService.AddAsync(user, model.UserRoleId, _appSettings.UserDefaultPassword);
+        //        return OkResult(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
+
+        //[HttpPut("{id}")]
+        ////[Authorize(Permissions.Users.Edit)]
+        //public async Task<IActionResult> Update(Guid id, [FromBody] SaveUserModel model)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return ValidationResult(ModelState);
+
+        //        var user = _mapper.Map<SaveUserModel, ApplicationUser>(model);
+        //        await _applicationUserService.UpdateAsync(user, model.UserRoleId);
+        //        return OkResult(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
+
+        //[HttpDelete("{id}")]
+        ////[Authorize(Permissions.Users.Delete)]
+        //public async Task<IActionResult> Delete(Guid id)
+        //{
+        //    try
+        //    {
+        //        await _applicationUserService.DeleteAsync(id);
+        //        return OkResult(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
+
+        //[HttpPost("activeInactive/{id}")]
+        //public async Task<IActionResult> ActiveInactive(Guid id)
+        //{
+        //    try
+        //    {
+        //        await _applicationUserService.ActiveInactiveAsync(id);
+        //        return OkResult(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ExceptionResult(ex);
+        //    }
+        //}
     }
 }
