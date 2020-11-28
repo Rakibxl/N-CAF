@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class EducationInfoService : IEducationInfoService
+    public class EducationInfoService :  Repository<ProfEducationInfo>, IEducationInfoService
     {
-        public IRepository<ProfEducationInfo> educationInfoRepo;
+
+        public EducationInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfEducationInfo> AddOrUpdate(ProfEducationInfo educationInfo)
         {
             try
@@ -17,11 +22,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfEducationInfo result;
                 if (educationInfo.EducationInfoId > 0)
                 {
-                    result = await educationInfoRepo.UpdateAsync(educationInfo);
+                    result = await UpdateAsync(educationInfo);
                 }
                 else
                 {
-                    result = await educationInfoRepo.AddAsync(educationInfo);
+                    result = await AddAsync(educationInfo);
                 }
 
                 return result;
@@ -36,16 +41,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int educationInfoId)
         {
-            var result = await educationInfoRepo.DeleteAsync(x=>x.EducationInfoId == educationInfoId);
+            var result = await DeleteAsync(x=>x.EducationInfoId == educationInfoId);
             return result;
         }
 
         public async Task<ProfEducationInfo> GetById(int educationInfoId)
         {
-            var checkVal =await educationInfoRepo.IsExistsAsync(x=>x.EducationInfoId == educationInfoId);
+            var checkVal =await IsExistsAsync(x=>x.EducationInfoId == educationInfoId);
             if (checkVal)
             {
-                ProfEducationInfo result = await educationInfoRepo.GetByIdAsync(educationInfoId);
+                ProfEducationInfo result = await GetByIdAsync(educationInfoId);
                 return result;
             }
             else
@@ -58,7 +63,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfEducationInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfEducationInfo> result;
-              result=await educationInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

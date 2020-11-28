@@ -8,14 +8,15 @@ export class profMovementInfo extends Auditable {
 
     //    public int ? CountryNameId { get; set; }
     //    public virtual CountryName CountryName { get; set; }
+    public countryNameId: number;
 
-    public Purpose: string;
+    public purpose: string;
 
-    public Status: string
+    public status: string
 
-    public StartDate: Date;
+    public startDate: Date;
 
-    public EndDate: Date;
+    public endDate: Date;
 
 }
 

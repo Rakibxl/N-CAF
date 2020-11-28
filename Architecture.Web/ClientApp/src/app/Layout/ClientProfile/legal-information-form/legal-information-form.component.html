@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #legalInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Legal Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -14,38 +14,38 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CountryName</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">CountryName*</label>
+                            <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="legalInfoForm.countryNameId">
                                 <option value="1">Italy</option>
                                 <option value="2">Bangladesh</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">address type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CityName"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CityName" name="cityName" #cityName="ngModel" [(ngModel)]="legalInfoForm.cityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">CityName type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="legalInfoForm.startDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="legalInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate type is required.</p>
                         </div>
                     </div>
 
@@ -54,8 +54,8 @@
                             <label>IsAnyCase</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
+                                    <input type="checkbox" name="isAnyCase" #isAnyCase="ngModel" [(ngModel)]="legalInfoForm.isAnyCase">
+                                    <span class="slider round"></span>
                                 </label>
                             </div>
                             <p class="text-info d-none">Info message</p>
@@ -66,8 +66,8 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Ref#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Ref No"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Ref No" name="refNo" #refNo="ngModel" [(ngModel)]="legalInfoForm.refNo"
+                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -76,24 +76,21 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Reason</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Reason"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Reason" name="reason" #reason="ngModel" [(ngModel)]="legalInfoForm.reason"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Note</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Note"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Note" name="note" #note="ngModel" [(ngModel)]="legalInfoForm.note"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -102,7 +99,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!legalInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

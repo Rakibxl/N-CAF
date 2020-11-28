@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { profInsuranceInfo } from '../../../Shared/Entity/ClientProfile/profInsuranceInfo';
+import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/insurance-info.service';
 
 @Component({
   selector: 'app-insurance-information',
@@ -9,11 +11,11 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 })
 export class InsuranceInformationComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private insuranceService: InsuranceInfoService) { }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+        this.getInsuranceInfos();
+    }
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -32,27 +34,32 @@ export class InsuranceInformationComponent implements OnInit {
         }
     }
 
+    public getInsuranceInfos() {
+        debugger;
+        let profileId = 2;
+        this.insuranceService.getInsuranceInfo(profileId).subscribe(
+            (success) => {
+                console.log("get insurance: ", success);
+                this.insuranceInfoList = success.data;
+            },
+            error => {
+            });
+
+    }
+
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Insurance List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Insurance Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'InsuranceType', width: '20%', internalName: 'assettype', sort: true, type: "" },
-            { headerName: 'Insurance Title', width: '10%', internalName: 'numberofasset', sort: true, type: "" },
-            { headerName: 'Start Date', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
-            { headerName: 'End Date', width: '15%', internalName: 'equivalentmoneymax', sort: true, type: "" },
-            { headerName: 'Insurance Amount', width: '10%', internalName: 'moneyaverage', sort: true, type: "" },
-            { headerName: 'InsuranceReturnPercentage', width: '10%', internalName: 'equivalentmoneymin', sort: true, type: "" },
-            //{ headerName: 'Owner Ship Percentage', width: '20%', internalName: 'ownershippercentage', sort: true, type: "" },
-            //{ headerName: 'Owner From Date', width: '10%', internalName: 'rentamount', sort: true, type: "" },
-            //{ headerName: 'Rent Amount', width: '10%', internalName: 'rentamount', sort: true, type: "" },
-            //{ headerName: 'Tax Amount', width: '10%', internalName: 'taxamount', sort: true, type: "" },
-            //{ headerName: 'Use-able Percentage', width: '10%', internalName: 'useablepercentage', sort: true, type: "" },
-            //{ headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyrestrictionbygovt', sort: true, type: "" },
-            //{ headerName: 'City Name', width: '10%', internalName: 'cityname', sort: true, type: "" },
-            //{ headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
+            //{ headerName: 'Insurance Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
+            //{ headerName: 'InsuranceType', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Insurance Title', width: '10%', internalName: 'insuranceTitle', sort: true, type: "" },
+            { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
+            { headerName: 'Insurance Amount', width: '10%', internalName: 'insuranceAmount', sort: true, type: "" },
+            { headerName: 'InsuranceReturnPercentage', width: '10%', internalName: 'insuranceReturnPercentage', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -85,33 +92,6 @@ export class InsuranceInformationComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { assetinfoid: "AD-120", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-121", assettype: "Car", numberofasset: "Car Insurance",      roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-122", assettype: "Car",   numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-123", assettype: "Car",   numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-124", assettype: "Car",   numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-125", assettype: "Car",   numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-126", assettype: "Car",   numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-127", assettype: "House ",numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-128", assettype: "House", numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-129", assettype: "House", numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "House", numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-130", assettype: "House", numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "House", numberofasset: "House Insurance",  roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-132", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-133", assettype: "Car",   numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-134", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-135", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-136", assettype: "Car",   numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-137", assettype: "Car",   numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-138", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-139", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-140", assettype: "Car",   numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-151", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-152", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-153", assettype: "Car",   numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-154", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-155", assettype: "House", numberofasset: "Car Insurance",    roadnumber: "20/10/2019", equivalentmoneymax: "20/10/2020", equivalentmoneymin: "5%", moneyaverage: "2500.30", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
+    public insuranceInfoList = [
     ];
 }

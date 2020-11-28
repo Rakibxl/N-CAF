@@ -84,10 +84,24 @@ namespace Architecture.Web
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
+            services.AddTransient<IApplicationUserRoleMappingService, ApplicationUserRoleMappingService>();
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();
             services.AddTransient<IFamilyInfoService, FamilyInfoService>();
+            services.AddTransient<IEducationInfoService, EducationInfoService>();
+            services.AddTransient<IAddressInfoService, AddressInfoService>();
+            services.AddTransient<IHouseRentInfoService, HouseRentInfoService>();
+            services.AddTransient<IIncomeInfoService, IncomeInfoService>();
+            services.AddTransient<IMovementInfoService, MovementInfoService>();
+            services.AddTransient<ILegalInfoService, LegalInfoService>();
+            services.AddTransient<IInsuranceInfoService, InsuranceInfoService>();
+            services.AddTransient<IBankInfoService, BankInfoService>();
+            services.AddTransient<IWorkerInfoService, WorkerInfoService>();
+            services.AddTransient<IOccupationInfoService, OccupationInfoService>();
+            services.AddTransient<IAssetInfoService, AssetInfoService>();
+            services.AddTransient<IDelegationInfoService, DelegationInfoService>();
+            services.AddTransient<IISEEInfoService, ISEEInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
             #endregion
@@ -201,7 +215,7 @@ namespace Architecture.Web
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

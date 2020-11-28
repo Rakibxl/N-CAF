@@ -32,9 +32,11 @@ namespace Architecture.Models
         public string SurName { get; set; }
         public string FullName { get; set; }
         public string UserId { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
-        [RegularExpression("^(01[0-9]{9})$", ErrorMessage = "Please, Provide 11 digit phone number")]
+        //[RegularExpression("^(01[0-9]{9})$", ErrorMessage = "Please, Provide 11 digit phone number")]
         public string PhoneNumber { get; set; }
         [Required]
         public string Password { get; set; }
@@ -60,6 +62,7 @@ namespace Architecture.Models
     public class ApiAuthenticateUserModel : IMapFrom<ApplicationUser>
     {
         public Guid Id { get; set; }
+        public int? AppUserTypeId { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }

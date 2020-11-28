@@ -33,6 +33,8 @@ namespace Architecture.Web.Models
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
+        public EnumApplicationRoleStatus Status { get; set; }
         public IList<string> Permissions { get; set; }
 
         public SaveUserRoleModel()
@@ -46,5 +48,13 @@ namespace Architecture.Web.Models
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.Name.Trim()));
             profile.CreateMap<ApplicationRole, SaveUserRoleModel>();
         }
+    }
+
+    public class ApplicationUserRoleModel
+    {
+        [Required]
+        public Guid UserId { get; set; }
+        [Required]
+        public string Role { get; set; }
     }
 }

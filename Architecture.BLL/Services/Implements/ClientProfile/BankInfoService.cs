@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class BankInfoService : IBankInfoService
+    public class BankInfoService : Repository<ProfBankInfo>, IBankInfoService
     {
-        public IRepository<ProfBankInfo> bankInfoRepo;
+        public BankInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfBankInfo> AddOrUpdate(ProfBankInfo bankInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfBankInfo result;
                 if (bankInfo.BankInfoId > 0)
                 {
-                    result = await bankInfoRepo.UpdateAsync(bankInfo);
+                    result = await UpdateAsync(bankInfo);
                 }
                 else
                 {
-                    result = await bankInfoRepo.AddAsync(bankInfo);
+                    result = await AddAsync(bankInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int bankInfoId)
         {
-            var result = await bankInfoRepo.DeleteAsync(x=>x.BankInfoId == bankInfoId);
+            var result = await DeleteAsync(x=>x.BankInfoId == bankInfoId);
             return result;
         }
 
         public async Task<ProfBankInfo> GetById(int bankInfoId)
         {
-            var checkVal =await bankInfoRepo.IsExistsAsync(x=>x.BankInfoId == bankInfoId);
+            var checkVal =await IsExistsAsync(x=>x.BankInfoId == bankInfoId);
             if (checkVal)
             {
-                ProfBankInfo result = await bankInfoRepo.GetByIdAsync(bankInfoId);
+                ProfBankInfo result = await GetByIdAsync(bankInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfBankInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfBankInfo> result;
-              result=await bankInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

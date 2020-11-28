@@ -1,31 +1,33 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #bankInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Bank Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
                     </div>
                     <hr>
-                    <div class="pt-3"></div>
+                    <div class="pt-3"></div>                    
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">BankName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter bankName"
-                                   required />
+                            <label class="label">BankName*</label>
+                            <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId">
+                                <option value="1">Intesa SanPaolo</option>
+                                <option value="2">Unicredit</option>
+                            </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="bankNameId.valid || bankNameId.pristine" class="text-danger">Bank name is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Branch</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter branch"
+                            <label class="label">BranchName</label>
+                            <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="Enter branch name"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -37,7 +39,7 @@
                             <label class="label">
                                 AccountNumber/IBAN
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter account number"
+                            <input type="text" autocomplete="off" class="form-control" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="bankInfoForm.accountNumber" placeholder="Enter account number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -47,15 +49,23 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SwiftNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter swift number"
+                            <input type="text" autocomplete="off" class="form-control" name="swiftNumber" #swiftNumber="ngModel" [(ngModel)]="bankInfoForm.swiftNumber" placeholder="Enter swift number"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
-
-
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Status</label>
+                            <select id="" class="form-control" name="status" [(ngModel)]="bankInfoForm.status" #status="ngModel">
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -64,7 +74,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!bankInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

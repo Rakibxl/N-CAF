@@ -9,17 +9,19 @@ export class profIncomeInfo extends Auditable {
         //public int? IncomeTypeId { get; set; }
         //public virtual IncomeType IncomeType { get; set; }
 
-    public YearlyIncome: number;
+    public incomeTypeId: number;
 
-    public MontlyIncome: number;
+    public yearlyIncome: number;
 
-    public Year: Date;
+    public monthlyIncome: number;
 
-    public Month: Date;
+    public year: Date;
 
-    public Document: String;
+    public month: Date;
 
-    public Status: String;
+    public document: String;
+
+    public status: String;
         
 }
 

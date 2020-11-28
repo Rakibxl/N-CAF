@@ -6,33 +6,33 @@ export class profAssetInfo extends Auditable {
     public profileId: number;
     //public virtual ProfBasicInfo ProfBasicInfo { get; set; }
     
-    public  AssetTypeId : number
+    public  assetTypeId : number
     //public virtual AssetType AssetType { get; set; }
 
-    public NumberOfAsset: number
+    public numberOfAsset: number
 
-    public EquivalentMoneyMax: number
+    public equivalentMoneyMax: number
 
-    public EquivalentMoneyMin: number
+    public equivalentMoneyMin: number
 
-    public MoneyAverage: number
+    public moneyAverage: number
 
-    public OwnerTypeId: number
+    public ownerTypeId: number
     //public virtual OwnerType OwnerType { get; set; }
 
-    public OwnershipPercentage: number
+    public ownershipPercentage: number
 
-    public OwnerFromDate: Date
+    public ownerFromDate: Date
 
-    public RentAmount: number
-    public TaxAmount: number
-    public UseAblePercentage: number
+    public rentAmount: number
+    public taxAmount: number
+    public useAblePercentage: number
 
-    public AnyRestrictionByGovt: string; 
+    public anyRestrictionByGovt: string; 
 
-    public CityName: string;
+    public cityName: string;
     
-    public Note: string; 
+    public note: string; 
         
 }
 

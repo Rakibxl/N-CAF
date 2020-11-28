@@ -2,24 +2,24 @@
 import { Auditable } from '../Common/auditable';
 
 export class profEducationInfo extends Auditable {
-    public EducationInfoId: number;
+    public educationInfoId: number;
     public profileId: number;
     //public virtual ProfBasicInfo ProfBasicInfo { get; set; }
 
-    //    public int ? DegreeTypeId { get; set; }
-    //    public virtual DegreeType DegreeType { get; set; }
+    public degreeTypeId: number;
+    //    public virtual degreeType DegreeType { get; set; }
 
-    public InstitutionName: string;
+    public institutionName: string;
 
-    public UniversityAddress: string
+    public universityAddress: string
 
-    public ActivitiesAndSocieties: string
+    public activitiesAndSocieties: string
 
-    public Result: string
+    public result: string
 
-    public StartYear: Date;
+    public startYear: Date;
 
-    public EndYear: Date;
+    public endYear: Date;
 
 }
 

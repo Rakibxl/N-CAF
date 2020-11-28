@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class AddressInfoService : IAddressInfoService
+    public class AddressInfoService : Repository<ProfAddressInfo>, IAddressInfoService
     {
-        public IRepository<ProfAddressInfo> addressInfoRepo;
+        public AddressInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfAddressInfo> AddOrUpdate(ProfAddressInfo addressInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfAddressInfo result;
                 if (addressInfo.AddressInfoId > 0)
                 {
-                    result = await addressInfoRepo.UpdateAsync(addressInfo);
+                    result = await UpdateAsync(addressInfo);
                 }
                 else
                 {
-                    result = await addressInfoRepo.AddAsync(addressInfo);
+                    result = await AddAsync(addressInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int addressInfoId)
         {
-            var result = await addressInfoRepo.DeleteAsync(x=>x.AddressInfoId == addressInfoId);
+            var result = await DeleteAsync(x=>x.AddressInfoId == addressInfoId);
             return result;
         }
 
         public async Task<ProfAddressInfo> GetById(int addressInfoId)
         {
-            var checkVal =await addressInfoRepo.IsExistsAsync(x=>x.AddressInfoId == addressInfoId);
+            var checkVal =await IsExistsAsync(x=>x.AddressInfoId == addressInfoId);
             if (checkVal)
             {
-                ProfAddressInfo result = await addressInfoRepo.GetByIdAsync(addressInfoId);
+                ProfAddressInfo result = await GetByIdAsync(addressInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfAddressInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfAddressInfo> result;
-              result=await addressInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

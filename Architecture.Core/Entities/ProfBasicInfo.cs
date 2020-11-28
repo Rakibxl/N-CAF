@@ -10,9 +10,8 @@ namespace Architecture.Core.Entities
 {
    public class ProfBasicInfo: Auditable
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //[Key, Column(Order = 0)]
         public int ProfileId { get; set; }
+        public Guid RefId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -45,10 +44,12 @@ namespace Architecture.Core.Entities
         public virtual OccupationPosition OccupationPosition { get; set; }
         public bool HasUnEmployedCertificate { get; set; }
         public DateTime? UnEmployedCertificateIssuesDate { get; set; }
-        public bool HasAnyUnEmployedFacility { get; set; }
+        public bool? HasAnyUnEmployedFacility { get; set; }
         public int? ContractTypeId { get; set; }
         public virtual ContractType ContractType { get; set; }
         public decimal YearlyIncome { get; set; }
+        public bool IsPregnant { get; set; }
+        public DateTime? ExpectedBabyBirthDate { get; set; }
 
         #region house info
         public bool IsRentHouse { get; set; }
@@ -59,9 +60,9 @@ namespace Architecture.Core.Entities
         public bool HasVehicle { get; set; }
         public string CarSerialNumber { get; set; }
         public string CarNumberPlate { get; set; }
-        public bool HasVehicleInsurance { get; set; }
+        public bool? HasVehicleInsurance { get; set; }
         public bool IsCompanyOwner { get; set; }
-        public bool HasWorker { get; set; }
+        public bool? HasWorker { get; set; }
         public string DigitalVatCode { get; set; }
         public bool HasAppliedForCitizenship { get; set; }
         public int? BranchId { get; set; }

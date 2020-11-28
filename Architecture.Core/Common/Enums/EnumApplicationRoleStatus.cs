@@ -8,7 +8,9 @@ namespace Architecture.Core.Common.Enums
 {
     public enum EnumApplicationRoleStatus
     {
-        SuperAdmin = 1,
-        GeneralUser = 2,
+        //SuperAdmin = 1,
+        //GeneralUser = 2,
+        Active = 1,
+        Inactive = 2,
     }
 }

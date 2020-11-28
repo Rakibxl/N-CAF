@@ -46,7 +46,7 @@ namespace Architecture.BLL.Services.Implements
             result.Total = await query.CountAsync();
 
             query = query.Where(x => !x.IsDeleted &&
-                x.Status != EnumApplicationRoleStatus.SuperAdmin &&
+                //x.Status != EnumApplicationRoleStatus.Inactive &&
                 (string.IsNullOrWhiteSpace(queryObj.Name) || x.Name.Contains(queryObj.Name)));
 
             result.TotalFilter = await query.CountAsync();
@@ -97,7 +97,7 @@ namespace Architecture.BLL.Services.Implements
                         throw new DuplicationException(nameof(entity.Name));
                     }
 
-                    entity.Status = EnumApplicationRoleStatus.GeneralUser;
+                    //entity.Status = EnumApplicationRoleStatus.GeneralUser;
                     entity.Created = _dateTime.Now;
                     entity.CreatedBy = _currentUserService.UserId;
 
@@ -153,6 +153,7 @@ namespace Architecture.BLL.Services.Implements
                     }
 
                     role.Name = entity.Name;
+                    role.Status = entity.Status;
                     role.LastModified = _dateTime.Now;
                     role.LastModifiedBy = _currentUserService.UserId;
 
@@ -269,7 +270,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<IList<KeyValuePairObject>> GetAllForSelectAsync()
         {
-            return await _roleManager.Roles.Where(x => x.IsActive && !x.IsDeleted && x.Status != EnumApplicationRoleStatus.SuperAdmin && 
+            return await _roleManager.Roles.Where(x => x.IsActive && !x.IsDeleted && x.Status != EnumApplicationRoleStatus.Inactive && 
                 x.Name != ConstantsValue.UserRoleName.AppUser).OrderBy(x => x.Name)
                 .Select(x => new KeyValuePairObject { Value = x.Id.ToString().ToLower(), Text = x.Name }).ToListAsync();
         }

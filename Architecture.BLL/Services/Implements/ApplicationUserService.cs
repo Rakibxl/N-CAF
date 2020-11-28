@@ -15,10 +15,12 @@ using Architecture.Core.Common.Constants;
 using System.Transactions;
 using Microsoft.EntityFrameworkCore.Query;
 using Architecture.Core.Common.Helpers;
+using Architecture.Core.Repository.Core;
+using Architecture.Core.Repository.Context;
 
 namespace Architecture.BLL.Services.Implements
 {
-    public class ApplicationUserService : IApplicationUserService
+    public class ApplicationUserService : Repository<ApplicationUser>, IApplicationUserService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -29,8 +31,9 @@ namespace Architecture.BLL.Services.Implements
             UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
             ICurrentUserService currentUserService,
-            IDateTime dateTime
-            )
+            IDateTime dateTime,
+            ApplicationDbContext dbContext
+            ) : base(dbContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -66,63 +69,6 @@ namespace Architecture.BLL.Services.Implements
             return result;
         }
 
-        public async Task<QueryResult<ApplicationUser>> GetAllExceptAppUsersAsync(UserQuery queryObj)
-        {
-            var result = new QueryResult<ApplicationUser>();
-
-            var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
-            {
-                ["Name"] = v => v.Name,
-                ["userName"] = v => v.UserName,
-                ["email"] = v => v.Email
-            };
-
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
-            result.Total = await query.CountAsync();
-
-            query = query.Where(x => !x.IsLocked &&
-                !x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) && 
-                (string.IsNullOrWhiteSpace(queryObj.FullName) || x.Name.Contains(queryObj.FullName)) &&
-                (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
-                (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
-                (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
-
-            result.TotalFilter = await query.CountAsync();
-            query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
-            query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
-            result.Items = (await query.AsNoTracking().ToListAsync());
-
-            return result;
-        }
-
-        public async Task<QueryResult<ApplicationUser>> GetAllAppUsersAsync(UserQuery queryObj)
-        {
-            var result = new QueryResult<ApplicationUser>();
-
-            var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
-            {
-                ["Name"] = v => v.Name,
-                ["userName"] = v => v.UserName,
-                ["email"] = v => v.Email
-            };
-
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
-            result.Total = await query.CountAsync();
-
-            query = query.Where(x => !x.IsLocked &&
-                x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) &&
-                (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
-                (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
-                (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
-
-            result.TotalFilter = await query.CountAsync();
-            query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
-            query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
-            result.Items = (await query.AsNoTracking().ToListAsync());
-
-            return result;
-        }
-
         public async Task<ApplicationUser> GetByIdAsync(Guid id)
         {
             var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
@@ -137,228 +83,338 @@ namespace Architecture.BLL.Services.Implements
             return user;
         }
 
-        public async Task<ApplicationUser> GetByUserNameAsync(string userName)
-        {
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //public async Task<IdentityResult> AddOrUpdate(ApplicationUser model)
+        //{
+        //    try
+        //    {
+        //        IdentityResult result;
+        //        if (model.Id != Guid.Empty)
+        //        {
+        //            model.Modified = _dateTime.Now;
+        //            result = await _userManager.UpdateAsync(model);
+        //            //result = await UpdateAsync(model);
+        //        }
+        //        else
+        //        {
+        //            model.Created = _dateTime.Now;
+        //            result = await _userManager.CreateAsync(model, model.PasswordHash);
+        //            //result = await AddAsync(model);
+        //        }
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-            var user = await query.FirstOrDefaultAsync(u => u.UserName == userName);
+        //public async Task<QueryResult<ApplicationUser>> GetAllAsync(UserQuery queryObj)
+        //{
+        //    var result = new QueryResult<ApplicationUser>();
 
-            if (user == null)
-            {
-                throw new NotFoundException(nameof(ApplicationUser), userName);
-            }
+        //    var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
+        //    {
+        //        ["Name"] = v => v.Name,
+        //        ["userName"] = v => v.UserName,
+        //        ["email"] = v => v.Email
+        //    };
 
-            return user;
-        }
+        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //    result.Total = await query.CountAsync();
 
-        public async Task<Guid> AddAsync(ApplicationUser entity, Guid userRoleId, string newPassword)
-        {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                try
-                {
-                    var isExists = await this.IsExistsUserNameAsync(entity.UserName, entity.Id);
-                    if (isExists)
-                    {
-                        throw new DuplicationException(nameof(entity.Email));
-                    }
+        //    query = query.Where(x => !x.IsLocked &&
+        //        (string.IsNullOrWhiteSpace(queryObj.FullName) || x.Name.Contains(queryObj.FullName)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
 
-                    entity.Created = _dateTime.Now;
-                    entity.CreatedBy = _currentUserService.UserId;
+        //    result.TotalFilter = await query.CountAsync();
+        //    query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
+        //    query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
+        //    result.Items = (await query.AsNoTracking().ToListAsync());
 
-                    var userSaveResult = await _userManager.CreateAsync(entity, newPassword);
+        //    return result;
+        //}
 
-                    if (!userSaveResult.Succeeded)
-                    {
-                        throw new IdentityValidationException(userSaveResult.Errors);
-                    };
+        //public async Task<QueryResult<ApplicationUser>> GetAllExceptAppUsersAsync(UserQuery queryObj)
+        //{
+        //    var result = new QueryResult<ApplicationUser>();
 
-                    // Add New User Role
-                    var user = await _userManager.FindByNameAsync(entity.UserName);
-                    var role = await _roleManager.FindByIdAsync(userRoleId.ToString());
-            
-                    if (role == null)
-                    {
-                        throw new NotFoundException(nameof(ApplicationRole), userRoleId);
-                    }
-            
-                    var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
+        //    var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
+        //    {
+        //        ["Name"] = v => v.Name,
+        //        ["userName"] = v => v.UserName,
+        //        ["email"] = v => v.Email
+        //    };
 
-                    if (!roleSaveResult.Succeeded)
-                    {
-                        throw new IdentityValidationException(roleSaveResult.Errors);
-                    };
+        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //    result.Total = await query.CountAsync();
 
-                    scope.Complete();
+        //    query = query.Where(x => !x.IsLocked &&
+        //        !x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) && 
+        //        (string.IsNullOrWhiteSpace(queryObj.FullName) || x.Name.Contains(queryObj.FullName)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
 
-                    return user.Id;
-                }
-                catch (Exception ex)
-                {
-                    scope.Dispose();
-                    throw;
-                }
-            }
-        }
+        //    result.TotalFilter = await query.CountAsync();
+        //    query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
+        //    query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
+        //    result.Items = (await query.AsNoTracking().ToListAsync());
 
-        public async Task<Guid> UpdateAsync(ApplicationUser entity, Guid userRoleId)
-        {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                try
-                {
-                    var user = await this._userManager.FindByIdAsync(entity.Id.ToString());
+        //    return result;
+        //}
 
-                    if (user == null)
-                    {
-                        throw new NotFoundException(nameof(ApplicationUser), entity.Id);
-                    }
+        //public async Task<QueryResult<ApplicationUser>> GetAllAppUsersAsync(UserQuery queryObj)
+        //{
+        //    var result = new QueryResult<ApplicationUser>();
 
-                    var isExists = await this.IsExistsUserNameAsync(entity.UserName, entity.Id);
-                    if (isExists)
-                    {
-                        throw new DuplicationException(nameof(entity.Email));
-                    }
+        //    var columnsMap = new Dictionary<string, Expression<Func<ApplicationUser, object>>>()
+        //    {
+        //        ["Name"] = v => v.Name,
+        //        ["userName"] = v => v.UserName,
+        //        ["email"] = v => v.Email
+        //    };
 
-                    user.Name = entity.Name;
-                    user.UserName = entity.UserName;
-                    user.Email = entity.Email;
-                    user.PhoneNumber = entity.PhoneNumber;
-                    user.ImageUrl = entity.ImageUrl ?? user.ImageUrl;
-                    user.Modified = _dateTime.Now;
-                    user.ModifiedBy = _currentUserService.UserId;
+        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+        //    result.Total = await query.CountAsync();
 
-                    var userSaveResult = await _userManager.UpdateAsync(user);
+        //    query = query.Where(x => !x.IsLocked &&
+        //        x.UserRoles.Any(ur => ur.Role.Name == ConstantsValue.UserRoleName.AppUser) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.UserName) || x.UserName.Contains(queryObj.UserName)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.PhoneNumber) || x.UserName.Contains(queryObj.PhoneNumber)) &&
+        //        (string.IsNullOrWhiteSpace(queryObj.Email) || x.Email.Contains(queryObj.Email)));
 
-                    if (!userSaveResult.Succeeded)
-                    {
-                        throw new IdentityValidationException(userSaveResult.Errors);
-                    };
+        //    result.TotalFilter = await query.CountAsync();
+        //    query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
+        //    query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
+        //    result.Items = (await query.AsNoTracking().ToListAsync());
 
-                    // Remove Previous User Role
-                    var previousUserRoles = await _userManager.GetRolesAsync(user);
-                    if (previousUserRoles.Any())
-                    {
-                        var roleRemoveResult = await _userManager.RemoveFromRolesAsync(user, previousUserRoles);
+        //    return result;
+        //}
 
-                        if (!roleRemoveResult.Succeeded)
-                        {
-                            throw new IdentityValidationException(roleRemoveResult.Errors);
-                        };
+        //public async Task<ApplicationUser> GetByUserNameAsync(string userName)
+        //{
+        //    var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
 
-                    }
+        //    var user = await query.FirstOrDefaultAsync(u => u.UserName == userName);
 
-                    // Add New User Role
-                    var role = await _roleManager.FindByIdAsync(userRoleId.ToString());
+        //    if (user == null)
+        //    {
+        //        throw new NotFoundException(nameof(ApplicationUser), userName);
+        //    }
 
-                    if (role == null)
-                    {
-                        throw new NotFoundException(nameof(ApplicationRole), userRoleId);
-                    }
+        //    return user;
+        //}
 
-                    var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
+        //public async Task<Guid> AddAsync(ApplicationUser entity, Guid userRoleId, string newPassword)
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //    {
+        //        try
+        //        {
+        //            var isExists = await this.IsExistsUserNameAsync(entity.UserName, entity.Id);
+        //            if (isExists)
+        //            {
+        //                throw new DuplicationException(nameof(entity.Email));
+        //            }
 
-                    if (!roleSaveResult.Succeeded)
-                    {
-                        throw new IdentityValidationException(roleSaveResult.Errors);
-                    };
+        //            entity.Created = _dateTime.Now;
+        //            entity.CreatedBy = _currentUserService.UserId;
 
-                    scope.Complete();
+        //            var userSaveResult = await _userManager.CreateAsync(entity, newPassword);
 
-                    return user.Id;
-                }
-                catch (Exception ex)
-                {
-                    scope.Dispose();
-                    throw;
-                }
-            }
-        }
+        //            if (!userSaveResult.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(userSaveResult.Errors);
+        //            };
 
-        public async Task<bool> DeleteAsync(Guid id)
-        {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                try
-                {
-                    var user = await _userManager.FindByIdAsync(id.ToString());
+        //            // Add New User Role
+        //            var user = await _userManager.FindByNameAsync(entity.UserName);
+        //            var role = await _roleManager.FindByIdAsync(userRoleId.ToString());
 
-                    if (user == null)
-                    {
-                        throw new NotFoundException(nameof(ApplicationUser), id);
-                    }
+        //            if (role == null)
+        //            {
+        //                throw new NotFoundException(nameof(ApplicationRole), userRoleId);
+        //            }
 
-                    //user.IsDeleted = true;
-                    //var result = await _userManager.UpdateAsync(user);
-                    var result = await _userManager.DeleteAsync(user);
+        //            var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
 
-                    if (!result.Succeeded)
-                    {
-                        throw new IdentityValidationException(result.Errors);
-                    };
+        //            if (!roleSaveResult.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(roleSaveResult.Errors);
+        //            };
 
-                    scope.Complete();
+        //            scope.Complete();
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    scope.Dispose();
-                    throw;
-                }
-            }
-        }
+        //            return user.Id;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            scope.Dispose();
+        //            throw;
+        //        }
+        //    }
+        //}
 
-        public async Task<bool> ActiveInactiveAsync(Guid id)
-        {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                try
-                {
-                    var user = await _userManager.FindByIdAsync(id.ToString());
+        //public async Task<Guid> UpdateAsync(ApplicationUser entity, Guid userRoleId)
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //    {
+        //        try
+        //        {
+        //            var user = await this._userManager.FindByIdAsync(entity.Id.ToString());
 
-                    if (user == null)
-                    {
-                        throw new NotFoundException(nameof(ApplicationUser), id);
-                    }
+        //            if (user == null)
+        //            {
+        //                throw new NotFoundException(nameof(ApplicationUser), entity.Id);
+        //            }
 
-                    user.IsLocked = !user.IsLocked;
-                    var result = await _userManager.UpdateAsync(user);
+        //            var isExists = await this.IsExistsUserNameAsync(entity.UserName, entity.Id);
+        //            if (isExists)
+        //            {
+        //                throw new DuplicationException(nameof(entity.Email));
+        //            }
 
-                    if (!result.Succeeded)
-                    {
-                        throw new IdentityValidationException(result.Errors);
-                    };
+        //            user.Name = entity.Name;
+        //            user.UserName = entity.UserName;
+        //            user.Email = entity.Email;
+        //            user.PhoneNumber = entity.PhoneNumber;
+        //            user.ImageUrl = entity.ImageUrl ?? user.ImageUrl;
+        //            user.Modified = _dateTime.Now;
+        //            user.ModifiedBy = _currentUserService.UserId;
 
-                    scope.Complete();
+        //            var userSaveResult = await _userManager.UpdateAsync(user);
 
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    scope.Dispose();
-                    throw;
-                }
-            }
-        }
+        //            if (!userSaveResult.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(userSaveResult.Errors);
+        //            };
 
-        public async Task<IList<KeyValuePairObject>> GetAllForSelectAsync()
-        {
-            return await _userManager.Users.Where(x => !x.IsLocked ).OrderBy(x => x.Name)
-                                .Select(s => new KeyValuePairObject { Value = s.Id.ToString().ToLower(), Text = s.Name }).ToListAsync();
-        }
+        //            // Remove Previous User Role
+        //            var previousUserRoles = await _userManager.GetRolesAsync(user);
+        //            if (previousUserRoles.Any())
+        //            {
+        //                var roleRemoveResult = await _userManager.RemoveFromRolesAsync(user, previousUserRoles);
 
-        public async Task<bool> IsExistsUserNameAsync(string name, Guid id)
-        {
-            var result = await _userManager.Users.AnyAsync(x => x.UserName.ToLower() == name.ToLower() && x.Id != id );
-            return result;
-        }
+        //                if (!roleRemoveResult.Succeeded)
+        //                {
+        //                    throw new IdentityValidationException(roleRemoveResult.Errors);
+        //                };
 
-        public async Task<bool> IsExistsEmailAsync(string email, Guid id)
-        {
-            var result = await _userManager.Users.AnyAsync(x => x.Email.ToLower() == email.ToLower() && x.Id != id && !x.IsLocked);
-            return result;
-        }
+        //            }
+
+        //            // Add New User Role
+        //            var role = await _roleManager.FindByIdAsync(userRoleId.ToString());
+
+        //            if (role == null)
+        //            {
+        //                throw new NotFoundException(nameof(ApplicationRole), userRoleId);
+        //            }
+
+        //            var roleSaveResult = await _userManager.AddToRoleAsync(user, role.Name);
+
+        //            if (!roleSaveResult.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(roleSaveResult.Errors);
+        //            };
+
+        //            scope.Complete();
+
+        //            return user.Id;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            scope.Dispose();
+        //            throw;
+        //        }
+        //    }
+        //}
+
+        //public async Task<bool> DeleteAsync(Guid id)
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //    {
+        //        try
+        //        {
+        //            var user = await _userManager.FindByIdAsync(id.ToString());
+
+        //            if (user == null)
+        //            {
+        //                throw new NotFoundException(nameof(ApplicationUser), id);
+        //            }
+
+        //            //user.IsDeleted = true;
+        //            //var result = await _userManager.UpdateAsync(user);
+        //            var result = await _userManager.DeleteAsync(user);
+
+        //            if (!result.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(result.Errors);
+        //            };
+
+        //            scope.Complete();
+
+        //            return true;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            scope.Dispose();
+        //            throw;
+        //        }
+        //    }
+        //}
+
+        //public async Task<bool> ActiveInactiveAsync(Guid id)
+        //{
+        //    using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //    {
+        //        try
+        //        {
+        //            var user = await _userManager.FindByIdAsync(id.ToString());
+
+        //            if (user == null)
+        //            {
+        //                throw new NotFoundException(nameof(ApplicationUser), id);
+        //            }
+
+        //            user.IsLocked = !user.IsLocked;
+        //            var result = await _userManager.UpdateAsync(user);
+
+        //            if (!result.Succeeded)
+        //            {
+        //                throw new IdentityValidationException(result.Errors);
+        //            };
+
+        //            scope.Complete();
+
+        //            return true;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            scope.Dispose();
+        //            throw;
+        //        }
+        //    }
+        //}
+
+        //public async Task<IList<KeyValuePairObject>> GetAllForSelectAsync()
+        //{
+        //    return await _userManager.Users.Where(x => !x.IsLocked ).OrderBy(x => x.Name)
+        //                        .Select(s => new KeyValuePairObject { Value = s.Id.ToString().ToLower(), Text = s.Name }).ToListAsync();
+        //}
+
+        //public async Task<bool> IsExistsUserNameAsync(string name, Guid id)
+        //{
+        //    var result = await _userManager.Users.AnyAsync(x => x.UserName.ToLower() == name.ToLower() && x.Id != id );
+        //    return result;
+        //}
+
+        //public async Task<bool> IsExistsEmailAsync(string email, Guid id)
+        //{
+        //    var result = await _userManager.Users.AnyAsync(x => x.Email.ToLower() == email.ToLower() && x.Id != id && !x.IsLocked);
+        //    return result;
+        //}
 
         #region Helper
         public virtual async Task<IList<TResult>> GetAsync<TResult>(Expression<Func<ApplicationUser, TResult>> selector,

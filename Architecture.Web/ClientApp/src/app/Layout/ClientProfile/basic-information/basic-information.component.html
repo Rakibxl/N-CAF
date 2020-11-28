@@ -139,7 +139,7 @@
                             <select formControlName="nationalityId" name="" id="" class="form-control">
                                 <option value="1">Bangladesh</option>
                                 <option value="2">India</option>
-                                <option value="3">Itally</option>
+                                <option value="3">Italy</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -239,7 +239,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasUnEmployedCertificate').value">
                         <div class="caf-input-group">
                             <label class="label">UnEmp.Cer.IssuesDate</label>
                             <input type="date" formControlName="unEmployedCertificateIssuesDate" autocomplete="off" class="form-control" />
@@ -247,9 +247,9 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasUnEmployedCertificate').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasAnyUnEmployedFacility*</label>
+                            <label>HasAnyUnEmployedFacility</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasAnyUnEmployedFacility">
@@ -297,7 +297,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isRentHouse').value">
                         <div class="caf-input-group">
                             <label class="label">HowManyHouseHasRent</label>
                             <input type="number" formControlName="howManyHouseRent" autocomplete="off" class="form-control" placeholder="has rent" />
@@ -320,7 +320,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isHouseOwner').value">
                         <div class="caf-input-group">
                             <label class="label">HouseCountryName</label>
                             <input type="text" formControlName="houseCountryName" autocomplete="off" class="form-control" placeholder="Enter house country name" />
@@ -328,7 +328,7 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isHouseOwner').value">
                         <div class="caf-input-group">
                             <label class="label">HouseCityName</label>
                             <input type="text" formControlName="houseCityName" autocomplete="off" class="form-control" placeholder="Enter house city name" />
@@ -351,7 +351,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group">
                             <label class="label">CarSerialNumber</label>
                             <input type="text" formControlName="carSerialNumber" autocomplete="off" class="form-control" placeholder="Enter car serial number" />
@@ -359,7 +359,7 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group">
                             <label class="label">CarNumberPlate</label>
                             <input type="text" formControlName="carNumberPlate" autocomplete="off" class="form-control" placeholder="Enter car number plate" />
@@ -368,11 +368,9 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label class="label">
-                                HasVehicleInsurance*
-                            </label>
+                            <label>HasVehicleInsurance</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasVehicleInsurance">
@@ -398,9 +396,9 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isCompanyOwner').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasWorker*</label>
+                            <label>HasWorker</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasWorker">
@@ -412,7 +410,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isCompanyOwner').value">
                         <div class="caf-input-group">
                             <label class="label">DigitalVatCode</label>
                             <input type="text" formControlName="digitalVatCode" autocomplete="off" class="form-control" placeholder="Enter digital vat code" />
@@ -435,31 +433,28 @@
                         </div>
                     </div>
 
-                    <!--<div class="col-xl-4 col-md-6">
-                    <div class="caf-input-group">
-                        <label class="label">RequestTypeOfApplicant</label>
-                        <select formControlName="requestTypeOfApplicant" value="" class="form-control">
-                            <option value="">Rilascio- issue</option>
-                            <option value="">Rinnovo - Renewal</option>
-                            <option value="">Aggiornamento - Update</option>
-                            <option value="">Duplicato - Duplicate</option>
-                            <option value="">Conversione - Conversion</option>
-                        </select>
-                        <p class="text-info d-none">Info message</p>
-                        <p class="text-danger d-none">Danger message</p>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group d-flex align-items-center">
+                            <label>IsPregnant*</label>
+                            <div class="pl-2">
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="isPregnant">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="caf-input-group">
-                        <label class="label">ApplicationFor</label>
-                        <select formControlName="applicationFor" name="" id="" class="form-control">
-                            <option value=""> Permesso Di Soggiorno - Residence permit</option>
-                            <option value=""> Carta Di Soggiorno - Residence Permiti unlimited</option>
-                        </select>
-                        <p class="text-info d-none">Info message</p>
-                        <p class="text-danger d-none">Danger message</p>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">ExpectedBabyBirthDate</label>
+                            <input type="date" formControlName="expectedBabyBirthDate" autocomplete="off" class="form-control" />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
                     </div>
-                </div>-->
                 </div>
                 <div class="row">
                     <div class="col-12">

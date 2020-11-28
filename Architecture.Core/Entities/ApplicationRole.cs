@@ -8,6 +8,7 @@ namespace Architecture.Core.Entities
     public class ApplicationRole : IdentityRole<Guid>
     {
         public EnumApplicationRoleStatus Status { get; set; }
+        //public int Status { get; set; }
 
         public Guid? CreatedBy { get; set; }
         public DateTime Created { get; set; }

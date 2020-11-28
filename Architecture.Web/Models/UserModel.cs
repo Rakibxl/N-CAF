@@ -12,17 +12,20 @@ namespace Architecture.Web.Models
     public class UserModel : IMapFrom<ApplicationUser>
     {
         public Guid Id { get; set; }
-        //public string UserName { get; set; }
+        public string Name { get; set; }
+        public string SurName { get; set; }
+        public string FullName { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-
-        public string FullName { get; set; }
         public string Address { get; set; }
+        public int? GenderId { get; set; }
         public string Gender { get; set; }
+        public int? AppUserTypeId { get; set; }
+        public int? BranchId { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        //public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
         public Guid? UserRoleId { get; set; }
-
         public string UserRoleName { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
@@ -43,21 +46,24 @@ namespace Architecture.Web.Models
     public class SaveUserModel : IMapFrom<ApplicationUser>
     {
         public Guid Id { get; set; }
-        //public string UserName { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string SurName { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
-
         [Required]
-        public string Name { get; set; }
-        //public string ImageUrl { get; set; }
-        public string SurName { get; set; }
+        public string Password { get; set; }
         public int? GenderId { get; set; }
-
+        public int? AppUserTypeId { get; set; }
+        public int? BranchId { get; set; }
         [Required]
         public Guid UserRoleId { get; set; }
+
+        //public string UserName { get; set; }
+        //public string ImageUrl { get; set; }
         //public IFormFile ImageFile { get; set; }
 
         public void Mapping(Profile profile)

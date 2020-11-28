@@ -13,6 +13,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         {
             //Prof Basic Info
             basicInfo.HasKey(bs => bs.ProfileId);
+            basicInfo.Property(bs => bs.RefId).IsRequired();
             basicInfo.Property(bs => bs.Name).HasMaxLength(100).IsRequired();
             basicInfo.Property(bs => bs.SurName).HasMaxLength(100).IsRequired();
             basicInfo.Property(bs => bs.DateOfBirth).HasColumnType("Date").IsRequired();
@@ -37,15 +38,15 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             //basicInfo.Property(bs => bs.OccupationPositionId).HasMaxLength(100);
             basicInfo.Property(bs => bs.HasUnEmployedCertificate).HasDefaultValue(false);
             basicInfo.Property(bs => bs.UnEmployedCertificateIssuesDate).HasColumnType("Date").IsRequired(false);
-            basicInfo.Property(bs => bs.HasAnyUnEmployedFacility).HasDefaultValue(false);
+            basicInfo.Property(bs => bs.HasAnyUnEmployedFacility).IsRequired(false).HasDefaultValue(false);
             //basicInfo.Property(bs => bs.ContractTypeId).HasMaxLength(100);
             basicInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             basicInfo.Property(bs => bs.IsRentHouse).HasDefaultValue(false);
             basicInfo.Property(bs => bs.IsHouseOwner).HasDefaultValue(false);
             basicInfo.Property(bs => bs.HasVehicle).HasDefaultValue(false);
-            basicInfo.Property(bs => bs.HasVehicleInsurance).HasDefaultValue(false);
+            basicInfo.Property(bs => bs.HasVehicleInsurance).IsRequired(false).HasDefaultValue(false);
             basicInfo.Property(bs => bs.IsCompanyOwner).HasDefaultValue(false);
-            basicInfo.Property(bs => bs.HasWorker).HasDefaultValue(false);
+            basicInfo.Property(bs => bs.HasWorker).IsRequired(false).HasDefaultValue(false);
             basicInfo.Property(bs => bs.HasAppliedForCitizenship).HasDefaultValue(false);
             basicInfo.Property(bs => bs.HouseCountryName).HasMaxLength(100);
             basicInfo.Property(bs => bs.HouseCityName).HasMaxLength(100);
@@ -53,6 +54,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             basicInfo.Property(bs => bs.CarNumberPlate).HasMaxLength(100);
             basicInfo.Property(bs => bs.HouseCountryName).HasMaxLength(100);
             basicInfo.Property(bs => bs.DigitalVatCode).HasMaxLength(100);
+            basicInfo.Property(bs => bs.IsPregnant).HasDefaultValue(false);
+            basicInfo.Property(bs => bs.ExpectedBabyBirthDate).HasColumnType("Date").IsRequired(false);
             basicInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             basicInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }

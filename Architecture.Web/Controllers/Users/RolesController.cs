@@ -12,6 +12,7 @@ using Architecture.Web.Models.IdentityModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -64,8 +65,37 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
+        [HttpPost("CreateOrUpdate")]
+        public async Task<IActionResult> CreateOrUpdate([FromBody] SaveUserRoleModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ValidationResult(ModelState);
+            }
+
+            try
+            {
+
+                if (model.Id != Guid.Empty)
+                {
+                    var role = _mapper.Map<SaveUserRoleModel, ApplicationRole>(model);
+                    await _applicationRoleService.UpdateAsync(role, model.Permissions);
+                    return OkResult(true);
+                }
+                else
+                {
+                    var role = _mapper.Map<SaveUserRoleModel, ApplicationRole>(model);
+                    var result = await _applicationRoleService.AddAsync(role, model.Permissions);
+                    return OkResult(result);               
+                };
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpPost]
-        //[Authorize(Permissions.UserRoles.Create)]
         public async Task<IActionResult> Create([FromBody] SaveUserRoleModel model)
         {
             try
@@ -84,7 +114,6 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Permissions.UserRoles.Edit)]
         public async Task<IActionResult> Update(Guid id, [FromBody] SaveUserRoleModel model)
         {
             try
@@ -103,7 +132,6 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Permissions.Users.Delete)]
         public async Task<IActionResult> Delete(Guid id)
         {
             try

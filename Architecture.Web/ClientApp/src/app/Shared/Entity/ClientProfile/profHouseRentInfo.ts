@@ -6,81 +6,92 @@ export class profHouseRentInfo extends Auditable {
     public profileId: number;
     //public virtual ProfBasicInfo ProfBasicInfo { get; set; }
 
-    public ContractDate: Date;
+    public contractDate: Date;
 
     //   public int ? ContractTypeId { get; set; }
     //    public virtual ContractType ContractType { get; set; }
 
     //    public int ? HouseTypeId { get; set; }
     //    public virtual HouseType HouseType { get; set; } 
+
+    public contractTypeId: number;
+
+    public houseTypeId: number;
   
-    public StartDate: Date;
+    public startDate: Date;
 
-    public EndDate: Date;
+    public endDate: Date;
 
-    public MonthlyRentAmount: number;
+    public monthlyRentAmount: number;
 
-    public ServiceChargeAmount: number;
+    public serviceChargeAmount: number;
 
-    public RegistrationInfo: string;
+    public registrationInfo: string;
 
-    public RegistrationDate: Date;
+    public registrationDate: Date;
 
-    public RegistrationOffice: string;
+    public registrationOffice: string;
 
-    public RegistrationCode: string;
+    public registrationCode: string;
 
-    public RegistrationNo: string;
+    public registrationNo: string;
 
-    public RegistrationCity: string;
+    public registrationCity: string;
 
-    public IsJoined: boolean
+    public isJoined: boolean
 
-    public SharePercent: number;
+    public sharePercent: number;
 
-    public FoglioNo: string;
+    public foglioNo: string;
 
-    public PartiocellaNo: string;
+    public partiocellaNo: string;
 
-    public SubNo: string;
+    public subNo: string;
 
-    public SectionNo: string;
+    public sectionNo: string;
+
+    public houseCategoryId: boolean
+
 
    //    public int ? HouseCategoryId { get; set; }
    //    public virtual HouseCategory HouseCategory { get; set; }
 
-    public Zona: string;
+    public zona: string;
 
-    public MicroZona: string;
+    public microZona: string;
 
-    public Consistenza: string;
+    public consistenza: string;
 
-    public SuperficieCatastale: string;
+    public superficieCatastale: string;
 
-    public Rendita: string;
+    public rendita: string;
 
-    public NotaioInfo: string;
+    public notaioInfo: string;
 
-    public HasLoan: boolean
-    
+    public hasLoan: boolean
+
+    public loanStatusTypeID: number
+
         //    public int LoanStatusTypeID { get; set; }
     //    public virtual LoanStatusType LoanStatusType { get; set; }
     
-    public LoanStartDate: Date
+    public loanStartDate: Date
 
-    public LoanAmount: number
+    public loanAmount: number
 
-    public PaidAmount: number
+    public paidAmount: number
+
+    public loanInterestTypeId: number
 
     //    public int LoanInterestTypeId { get; set; }
 
     //    public virtual LoanInterestType LoanInterestType { get; set; }
     
-    public LoanPeriod: number
+    public loanPeriod: number
 
-    public IsRentByOwner: boolean
+    public isRentByOwner: boolean
 
-    public RentAmount: boolean
+    public rentAmount: boolean
     
     
 

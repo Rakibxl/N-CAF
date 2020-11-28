@@ -8,9 +8,14 @@ export class profISEEInfo extends Auditable {
 
     //public int? ISEEClassTypeId { get; set; }
     //    public virtual ISEEClassType ISEEClassType { get; set; }
+
+    public ISEEClassType: string
+
+    public ISEEClassTypeId: number;
+
     public ISEEValue: number;
 
-    public Point: number;
+    public point: number;
 
     public ISEEFamilyIncome: number;
 
@@ -20,13 +25,13 @@ export class profISEEInfo extends Auditable {
 
     public ISRAmount: number;
 
-    public IdentificationNumber: string;
+    public identificationNumber: string;
 
-    public SumittedDate: Date;
+    public submittedDate: Date;
 
-    public DeliveryDate: Date;
+    public deliveryDate: Date;
 
-    public ExpiryDate: Date;
+    public expiryDate: Date;
         
 }
 

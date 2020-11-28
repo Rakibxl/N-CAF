@@ -1,5 +1,6 @@
 ﻿using Architecture.Core.Entities;
 using Architecture.Core.Entities.NotMapped;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,19 @@ namespace Architecture.BLL.Services.Interfaces
     public interface IApplicationUserService
     {
         Task<QueryResult<ApplicationUser>> GetAllAsync(UserQuery queryObj);
-        Task<QueryResult<ApplicationUser>> GetAllExceptAppUsersAsync(UserQuery queryObj);
-        Task<QueryResult<ApplicationUser>> GetAllAppUsersAsync(UserQuery queryObj);
         Task<ApplicationUser> GetByIdAsync(Guid id);
-        Task<ApplicationUser> GetByUserNameAsync(string userName);
-        Task<Guid> AddAsync(ApplicationUser command, Guid userRoleId, string newPassword);
-        Task<Guid> UpdateAsync(ApplicationUser command, Guid userRoleId);
-        Task<bool> DeleteAsync(Guid id);
-        Task<bool> ActiveInactiveAsync(Guid id);
-        Task<IList<KeyValuePairObject>> GetAllForSelectAsync();
-        Task<bool> IsExistsUserNameAsync(string name, Guid id);
-        Task<bool> IsExistsEmailAsync(string email, Guid id);
+        //public Task<IdentityResult> AddOrUpdate(ApplicationUser basicInfo);
+        //Task<QueryResult<ApplicationUser>> GetAllAsync(UserQuery queryObj);
+        //Task<QueryResult<ApplicationUser>> GetAllExceptAppUsersAsync(UserQuery queryObj);
+        //Task<QueryResult<ApplicationUser>> GetAllAppUsersAsync(UserQuery queryObj);
+        //Task<ApplicationUser> GetByUserNameAsync(string userName);
+        //Task<Guid> AddAsync(ApplicationUser command, Guid userRoleId, string newPassword);
+        //Task<Guid> UpdateAsync(ApplicationUser command, Guid userRoleId);
+        //Task<bool> DeleteAsync(Guid id);
+        //Task<bool> ActiveInactiveAsync(Guid id);
+        //Task<IList<KeyValuePairObject>> GetAllForSelectAsync();
+        //Task<bool> IsExistsUserNameAsync(string name, Guid id);
+        //Task<bool> IsExistsEmailAsync(string email, Guid id);
 
         #region Helper
         Task<IList<TResult>> GetAsync<TResult>(Expression<Func<ApplicationUser, TResult>> selector,

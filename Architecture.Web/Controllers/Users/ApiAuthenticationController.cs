@@ -54,19 +54,77 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [AllowAnonymous]
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return ValidationResult(ModelState);
+                }
+
+                var userExists = await _userManager.FindByEmailAsync(model.Email);
+                if (userExists != null)
+                {
+                    ModelState.AddModelError("", "User email already exists!");
+                    return ValidationResult(ModelState);
+                }
+
+                userExists = _userManager.Users.Where(ex => ex.PhoneNumber == model.PhoneNumber).FirstOrDefault();
+                if (userExists != null)
+                {
+                    ModelState.AddModelError("", "User phone no already exists!");
+                    return ValidationResult(ModelState);
+                }
+
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Name = model.Name,
+                    SurName = model.SurName,
+                    UserName = model.PhoneNumber,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    GenderId = model.GenderId,
+                    AppUserTypeId = 1,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
+                    return ValidationResult(ModelState);
+                }
+
+                return OkResult(new { Message = "User created successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] ApiLoginModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
+                {
                     return ValidationResult(ModelState);
+                }
 
                 var user = await this._userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Email or password is invalid.");
-                    return ValidationResult(ModelState);
+                    user = _userManager.Users.Where(ex => ex.PhoneNumber == model.Email).FirstOrDefault();
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("", "Email or password is invalid.");
+                        return ValidationResult(ModelState);
+                    }
                 }
 
                 var isValidUser = await _userManager.CheckPasswordAsync(user, model.Password);
@@ -84,7 +142,7 @@ namespace Architecture.Web.Controllers.Users
                 // authentication successful so generate jwt token
                 authUser.Token = await this.BuildToken(user);
 
-                //Reset faild login attempt flag
+                //Reset failed login attempt flag
                 user.AccessFailedCount = 0;
                 await _userManager.UpdateAsync(user);
 
@@ -96,35 +154,46 @@ namespace Architecture.Web.Controllers.Users
             }
         }
 
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody] ApiAppRegistrationModel model)
+        private async Task<string> BuildToken(ApplicationUser user)
         {
-            var userExists = await _userManager.FindByEmailAsync(model.Email);
-            if (userExists != null)
-            {
-                ModelState.AddModelError("", "User email already exists!");
-                return ValidationResult(ModelState);
-            }
+            // authentication successful so generate jwt token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(this._appSettings.TokenSecretKey);
 
-            ApplicationUser user = new ApplicationUser()
+            var claims = new List<Claim>()
             {
-                Name = model.Name,
-                SurName = model.SurName,
-                UserName = model.PhoneNumber,
-                Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
-                GenderId = model.GenderId,
-                SecurityStamp = Guid.NewGuid().ToString()
+                //new Claim(ClaimTypes.Name, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email??string.Empty),
+                new Claim(ClaimTypes.Name, user.UserName??string.Empty),
+                new Claim("AppUserTypeId", user.AppUserTypeId?.ToString()??string.Empty)
             };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var userRole in userRoles)
             {
-                ModelState.AddModelError("", "User creation failed! Please check user details and try again.");
-                return ValidationResult(ModelState);
+                var role = await _roleManager.FindByNameAsync(userRole);
+                if (role == null) { continue; }
+                claims.Add(new Claim(ClaimTypes.Role, role.Name));
+
+                var roleClaims = await _roleManager.GetClaimsAsync(role);
+                foreach (Claim roleClaim in roleClaims)
+                {
+                    claims.Add(roleClaim);
+                }
             }
 
-            return Ok(new { Status = "Success", Message = "User created successfully!" });
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            //await _userManager.AddClaimsAsync(user, claims);
+
+            return tokenHandler.WriteToken(token);
         }
 
         [AllowAnonymous]
@@ -191,45 +260,6 @@ namespace Architecture.Web.Controllers.Users
             {
                 return ExceptionResult(ex);
             }
-        }
-
-        private async Task<string> BuildToken(ApplicationUser user)
-        {
-            // authentication successful so generate jwt token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(this._appSettings.TokenSecretKey);
-
-            var claims = new List<Claim>()
-            {
-                //new Claim(ClaimTypes.Name, user.Id.ToString())
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email??string.Empty),
-                new Claim(ClaimTypes.Name, user.UserName??string.Empty)
-            };
-
-            var userRoles = await _userManager.GetRolesAsync(user);
-            foreach (var userRole in userRoles)
-            {
-                var role = await _roleManager.FindByNameAsync(userRole);
-                if (role == null) { continue; }
-                claims.Add(new Claim(ClaimTypes.Role, role.Name));
-
-                var roleClaims = await _roleManager.GetClaimsAsync(role);
-                foreach (Claim roleClaim in roleClaims)
-                {
-                    claims.Add(roleClaim);
-                }
-            }
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddHours(this._appSettings.TokenExpiresHours),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
         }
     }
 }

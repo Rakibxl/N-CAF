@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { ClientProfileService } from '../../../Shared/Services/ClientProfile/client-profile.service';
@@ -16,26 +16,13 @@ import { IAuthUser } from '../../../Shared/Entity/Users/auth';
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
   user: IAuthUser;
+  profileId: any;
 
-  // defaultBindingsList = [
-  //   { value: "1", label: "type here" },
-  //   { value: "Celibe/Nubile - Unmarried Maiden", label: "Celibe/Nubile - Unmarried Maiden" },
-  //   { value: "Coniugato/a - Married To", label: "Coniugato/a - Married To" },
-  //   { value: "unito/a civilmente - joined civilly", label: "unito/a civilmente - joined civilly" },
-  //   { value: "separata legalmente - legally separated", label: "separata legalmente - legally separated" },
-  //   { value: "sciolto/a legalmente - legally dissolved", label: "sciolto/a legalmente - legally dissolved" },
-  //   { value: "sciolto/a da unione civile-dissolved from civil union - civil union", label: "sciolto/a da unione civile-dissolved from civil union - civil union" },
-  //   { value: "divorziato/a - divorced to", label: "divorziato/a - divorced to" },
-  //   { value: "vedovo/a - widower", label: "vedovo/a - widower" },
-  //   { value: "abbandonato/a - abandoned", label: "abbandonato/a - abandoned" },
-  //   { value: "parte superstite dell'unione civile- surviving part of the civil union", label: "parte superstite dell'unione civile- surviving part of the civil union" },
-  // ];
-  // selectedCity = { value: "1", label: "type here" };
-
-  constructor(private fb: FormBuilder, private clientProfileService: ClientProfileService, private authService: AuthService,
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
     private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.authService.currentUser.subscribe(user => this.user = user);
     this.initForm();
+    this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
   }
 
   ngOnInit() {
@@ -72,7 +59,7 @@ export class BasicInformationComponent implements OnInit {
       occupationPositionId: [null],
       hasUnEmployedCertificate: [null, Validators.required],
       unEmployedCertificateIssuesDate: [null],
-      hasAnyUnEmployedFacility: [null, Validators.required],
+      hasAnyUnEmployedFacility: [null],
       contractTypeId: [null],
       yearlyIncome: [null, Validators.required],
       isRentHouse: [null, Validators.required],
@@ -83,24 +70,30 @@ export class BasicInformationComponent implements OnInit {
       hasVehicle: [null, Validators.required],
       carSerialNumber: [null],
       carNumberPlate: [null],
-      hasVehicleInsurance: [null, Validators.required],
+      hasVehicleInsurance: [null],
       isCompanyOwner: [null, Validators.required],
-      hasWorker: [null, Validators.required],
+      hasWorker: [null],
       digitalVatCode: [null],
       hasAppliedForCitizenship: [null, Validators.required],
       requestTypeOfApplicant: [null],
+      isPregnant: [null, Validators.required],
+      expectedBabyBirthDate: [null],
       applicationFor: [null],
-      branchId: [null]
+      branchId: [null],
+      refId: [null],
+      createdBy: [null],
+      modifiedBy: [null]
     });
   }
 
   loadBasicInfo() {
-    this.clientProfileService.getBasicInfo().subscribe(res => {
+    this.clientProfileService.getBasicInfo(this.profileId).subscribe(res => {
       console.log(res)
       if (res && res.data.profileId) {
         res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
         res.data.taxCodeStartDate = this.commonService.getDateToSetForm(res.data.taxCodeStartDate);
         res.data.taxCodeEndDate = this.commonService.getDateToSetForm(res.data.taxCodeEndDate);
+        res.data.expectedBabyBirthDate = this.commonService.getDateToSetForm(res.data.expectedBabyBirthDate);
         res.data.unEmployedCertificateIssuesDate = this.commonService.getDateToSetForm(res.data.unEmployedCertificateIssuesDate);
         this.basicInfoForm.patchValue(res.data);
       }
@@ -119,14 +112,10 @@ export class BasicInformationComponent implements OnInit {
     formData.hasVehicle = this.getBoolValue(formData.hasVehicle);
     formData.hasVehicleInsurance = this.getBoolValue(formData.hasVehicleInsurance);
     formData.hasWorker = this.getBoolValue(formData.hasWorker);
+    formData.isPregnant = this.getBoolValue(formData.isPregnant);
     formData.isCompanyOwner = this.getBoolValue(formData.isCompanyOwner);
     formData.isHouseOwner = this.getBoolValue(formData.isHouseOwner);
     formData.isRentHouse = this.getBoolValue(formData.isRentHouse);
-    if (formData.profileId) {
-      formData.modifiedBy = this.user.id;
-    } else {
-      formData.createdBy = this.user.id;
-    }
     return formData;
   }
 
@@ -139,12 +128,14 @@ export class BasicInformationComponent implements OnInit {
 
   save() {
     let model = this.getModel();
-    console.log(model)
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
-      console.log(res)
+      if (res && res.data && res.data.profileId) {
+        this.alertService.tosterSuccess('Basic Info saved successfully');
+        this.basicInfoForm.patchValue({ profileId: res.data.profileId });
+      }
     }, (error: any) => {
-      this.commonService.stopLoading();
-      console.log(error)
+      console.log(error);
+      this.alertService.tosterDanger(error);
     });
   }
 }

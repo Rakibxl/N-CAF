@@ -1827,6 +1827,9 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("RefId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("StateOfBirth")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
