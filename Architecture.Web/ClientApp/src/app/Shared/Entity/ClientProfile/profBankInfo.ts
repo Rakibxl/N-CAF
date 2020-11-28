@@ -9,11 +9,15 @@ export class profBankInfo extends Auditable {
      //    public int ? BankNameId { get; set; }
     //    public virtual BankName BankName { get; set; }
 
-    public BranchName: string;
+    public bankNameId: number;
 
-    public AccountNumber: string;
+    public branchName: string;
 
-    public SwiftNumber: string;
+    public accountNumber: string;
+
+    public swiftNumber: string;
+
+    public status: string;
     
 }
 

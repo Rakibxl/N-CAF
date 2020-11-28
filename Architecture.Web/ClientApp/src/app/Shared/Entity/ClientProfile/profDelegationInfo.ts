@@ -6,25 +6,25 @@ export class profDelegationInfo extends Auditable {
     public profileId: number;
     //public virtual ProfBasicInfo ProfBasicInfo { get; set; }
     
-    public Name: string;
+    public name: string;
 
-    public SurName: string;
+    public surName: string;
 
-    public DateOfBirth: Date;
+    public dateOfBirth: Date;
 
-    public TaxCode: string;
+    public taxCode: string;
 
-    public RefNo: string;
+    public refNo: string;
 
-    public Purpose: string;
+    public purpose: string;
 
-    public DocumentIssueDate: Date;
+    public documentIssueDate: Date;
 
-    public ExpiryDate: Date;
+    public expiryDate: Date;
 
-    public IssuedBy: string;
+    public issuedBy: string;
 
-    public Status: string;
+    public status: string;
         
 }
 

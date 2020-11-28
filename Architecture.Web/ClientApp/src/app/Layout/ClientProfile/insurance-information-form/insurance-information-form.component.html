@@ -1,78 +1,73 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #insuranceInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Insurance Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">InsuranceType*</label>
+                            <select id="" class="form-control" name="insuranceTypeId" #insuranceTypeId="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTypeId">
                                 <option value="1">Dummy A</option>
                                 <option value="2">Dummy B</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="insuranceTypeId.valid || insuranceTypeId.pristine" class="text-danger">InsuranceType type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceTitle</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceTitle"
+                            <label class="label">InsuranceTitle*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceTitle" name="insuranceTitle" #insuranceTitle="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTitle"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="insuranceTitle.valid || insuranceTitle.pristine" class="text-danger">InsuranceTitle  is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">StartDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="insuranceInfoForm.startDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate  is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">EndDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="insuranceInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate  is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceAmount"
+                            <label class="label">InsuranceAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceAmount" name="insuranceAmount" #insuranceAmount="ngModel" [(ngModel)]="insuranceInfoForm.insuranceAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="insuranceAmount.valid || insuranceAmount.pristine" class="text-danger">InsuranceAmount  is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
                                 InsuranceReturnPercentage
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceReturnPercentage"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceReturnPercentage" name="insuranceReturnPercentage" #insuranceReturnPercentage="ngModel" [(ngModel)]="insuranceInfoForm.insuranceReturnPercentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -81,7 +76,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!insuranceInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

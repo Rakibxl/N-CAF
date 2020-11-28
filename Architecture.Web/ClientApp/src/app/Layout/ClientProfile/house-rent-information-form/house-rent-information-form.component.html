@@ -36,7 +36,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContractType</label>
+                            <label class="label">ContractType*</label>
                             <select id="" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="houseRentInfoForm.contractTypeId" class="form-control">
                                 <option value="1">Permanent Contract(Unlimited)</option>
                                 <option value="2">Temporary Contract(Limited)</option>
@@ -66,21 +66,21 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MonthlyRentAmount</label>
+                            <label class="label">MonthlyRentAmount*</label>
                             <input type="text" autocomplete="off" name="monthlyRentAmount" #monthlyRentAmount="ngModel" [(ngModel)]="houseRentInfoForm.monthlyRentAmount" class="form-control" placeholder="Enter rent amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="monthlyRentAmount.valid || monthlyRentAmount.pristine" class="text-danger">MonthlyRentAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ServiceChargeAmount</label>
-                            <input type="text" autocomplete="off" name="serviceChargeAmount" #serviceChargeAmount="ngModel" [(ngModel)]="houseRentInfoForm.serviceChargeAmount"  class="form-control" placeholder="Enter service amount"
+                            <label class="label">ServiceChargeAmount*</label>
+                            <input type="text" autocomplete="off" name="serviceChargeAmount" #serviceChargeAmount="ngModel" [(ngModel)]="houseRentInfoForm.serviceChargeAmount" class="form-control" placeholder="Enter service amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="serviceChargeAmount.valid || serviceChargeAmount.pristine" class="text-danger">ServiceChargeAmount is required.</p>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Registration#</label>
+                            <label class="label">RegistrationNo</label>
                             <input type="text" autocomplete="off" name="registrationNo" #registrationNo="ngModel" [(ngModel)]="houseRentInfoForm.registrationNo" class="form-control" placeholder="Enter registration number"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -160,16 +160,16 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SharePercent</label>
-                            <input type="text" autocomplete="off" name="sharePercent" #sharePercent="ngModel" [(ngModel)]="houseRentInfoForm.sharePercent"  class="form-control" placeholder="Enter share percent"
+                            <input type="text" autocomplete="off" name="sharePercent" #sharePercent="ngModel" [(ngModel)]="houseRentInfoForm.sharePercent" class="form-control" placeholder="Enter share percent"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="sharePercent.valid || sharePercent.pristine" class="text-danger">SharePercent is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Foglio#</label>
+                            <label class="label">FoglioNo</label>
                             <input type="text" autocomplete="off" name="foglioNo" #foglioNo="ngModel" [(ngModel)]="houseRentInfoForm.foglioNo" class="form-control" placeholder="Enter foglio number"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Partiocella#</label>
+                            <label class="label">PartiocellaNo</label>
                             <input type="text" autocomplete="off" name="partiocellaNo" #partiocellaNo="ngModel" [(ngModel)]="houseRentInfoForm.partiocellaNo"  class="form-control" placeholder="Enter partiocella"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -188,7 +188,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Sub#</label>
+                            <label class="label">SubNo</label>
                             <input type="text" autocomplete="off" name="subNo" #subNo="ngModel" [(ngModel)]="houseRentInfoForm.subNo" class="form-control" placeholder="Enter sub number"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -198,7 +198,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Section#</label>
+                            <label class="label">SectionNo</label>
                             <input type="text" autocomplete="off" name="sectionNo" #sectionNo="ngModel" [(ngModel)]="houseRentInfoForm.sectionNo" class="form-control" placeholder="Enter section"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -296,12 +296,12 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">LoanStatus</label>
-                            <select  id=""  name="loanStatusTypeID" #loanStatusTypeID="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeID" class="form-control">
+                            <select id="" name="loanStatusTypeID" #loanStatusTypeID="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeID" class="form-control">
                                 <option value="1">Dummy A</option>
                                 <option value="2">Dummy B</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="loanStatusTypeID.valid || loanStatusTypeID.pristine" class="text-danger">LoanStatus is required.</p>
                         </div>
                     </div>
 
@@ -310,7 +310,7 @@
                             <label class="label">LoanStartDate</label>
                             <input type="date" autocomplete="off" name="loanStartDate" #loanStartDate="ngModel" [(ngModel)]="houseRentInfoForm.loanStartDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="loanStartDate.valid || loanStartDate.pristine" class="text-danger">LoanStartDate is required.</p>
                         </div>
                     </div>
 
@@ -320,20 +320,18 @@
                             <input type="text" autocomplete="off" name="loanAmount" #loanAmount="ngModel" [(ngModel)]="houseRentInfoForm.loanAmount" class="form-control" placeholder="Enter loan amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="loanAmount.valid || loanAmount.pristine" class="text-danger">LoanAmount is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PaidAmount</label>
                             <input type="text" autocomplete="off" name="paidAmount" #paidAmount="ngModel" [(ngModel)]="houseRentInfoForm.paidAmount" class="form-control" placeholder="Enter paid amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="paidAmount.valid || paidAmount.pristine" class="text-danger">PaidAmount is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">InterestType</label>
@@ -342,7 +340,7 @@
                                 <option value="2">Variable Interest</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="loanInterestTypeId.valid || loanInterestTypeId.pristine" class="text-danger">InterestType is required.</p>
                         </div>
                     </div>
 
@@ -361,22 +359,22 @@
                             <label>IsRentByOwner</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isRentByOwner" #isRentByOwner="ngModel" [(ngModel)]="houseRentInfoForm.isRentByOwner" >
+                                    <input type="checkbox" name="isRentByOwner" #isRentByOwner="ngModel" [(ngModel)]="houseRentInfoForm.isRentByOwner">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="isRentByOwner.valid || isRentByOwner.pristine" class="text-danger">RentByOwner is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RentAmount</label>
-                            <input type="text" autocomplete="off" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="houseRentInfoForm.rentAmount" class="form-control"  placeholder="Enter rent amount"
+                            <input type="text" autocomplete="off" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="houseRentInfoForm.rentAmount" class="form-control" placeholder="Enter rent amount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="rentAmount.valid || rentAmount.pristine" class="text-danger">RentAmount is required.</p>
                         </div>
                     </div>
 

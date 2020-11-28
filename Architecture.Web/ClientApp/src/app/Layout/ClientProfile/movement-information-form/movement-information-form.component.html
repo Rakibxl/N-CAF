@@ -26,19 +26,19 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate</label>
+                            <label class="label">StartDate*</label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="movementInfoForm.startDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate</label>
+                            <label class="label">EndDate*</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="movementInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
                         </div>
                     </div>
 

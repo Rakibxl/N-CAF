@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { profBankInfo } from '../../../Shared/Entity/ClientProfile/profBankInfo';
+import { BankInfoService } from '../../../Shared/Services/ClientProfile/bank-info.service';
 
 @Component({
   selector: 'app-bank-information',
@@ -9,10 +11,12 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 })
 export class BankInformationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    constructor(private router: Router, private bankService: BankInfoService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.getBankInfos();
+    }
+
 
 
 
@@ -33,17 +37,31 @@ export class BankInformationComponent implements OnInit {
         }
     }
 
+    public getBankInfos() {
+        debugger;
+        let profileId = 2;
+        this.bankService.getBankInfo(profileId).subscribe(
+            (success) => {
+                console.log("get bank: ", success);
+                this.bankInfoList = success.data;
+            },
+            error => {
+            });
+
+    }
+
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Bank List',
         tableRowIDInternalName: "bankinfoid",
         tableColDef: [
-            { headerName: 'Bank Id', width: '10%', internalName: 'bankinfoid', sort: true, type: "" },
-            { headerName: 'Bank Name', width: 'Como0%', internalName: 'bankname', sort: true, type: "" },
-            { headerName: 'Branch', width: '10%', internalName: 'branch', sort: true, type: "" },
-            { headerName: 'Account Number', width: '15%', internalName: 'accountnumber', sort: true, type: "" },
-            { headerName: 'Swift Number', width: '15%', internalName: 'swiftnumber', sort: true, type: "" },            
+            //{ headerName: 'Bank Id', width: '10%', internalName: 'bankinfoid', sort: true, type: "" },
+            //{ headerName: 'Bank Name', width: 'Como0%', internalName: 'bankname', sort: true, type: "" },
+            { headerName: 'Branch Name', width: '10%', internalName: 'branchName', sort: true, type: "" },
+            { headerName: 'Account Number', width: '15%', internalName: 'accountNumber', sort: true, type: "" },
+            { headerName: 'Swift Number', width: '15%', internalName: 'swiftNumber', sort: true, type: "" },            
+            { headerName: 'Status', width: '15%', internalName: 'status', sort: true, type: "" },            
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -76,34 +94,8 @@ export class BankInformationComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { bankinfoid: "AD-10", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-11", bankname: "Intesa San Paolo", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-12", bankname: "Intesa San Paolo", branch: "Milan", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-13", bankname: "Intesa San Paolo", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "4", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-14", bankname: "Intesa San Paolo", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-15", bankname: "Intesa San Paolo", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Milan", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-16", bankname: "Intesa San Paolo", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-17", bankname: "UniCredit Banca ", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-18", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-19", bankname: "UniCredit Banca", branch: "Milan", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-20", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-21", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Milan", moneyaverage: "Como500.Milan0", ownertype: "By Birth", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-22", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-23", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-24", bankname: "Intesa San Paolo", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Milan", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-25", bankname: "UniCredit Banca", branch: "Milan", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-26", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-27", bankname: "Intesa San Paolo", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-28", bankname: "Intesa San Paolo", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-29", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "4", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-30", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-31", bankname: "Intesa San Paolo", branch: "Milan", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-32", bankname: "UniCredit Banca", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "4", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-33", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-34", bankname: "Intesa San Paolo", branch: "Como", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-35", bankname: "UniCredit Banca", branch: "Milan", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Como", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { bankinfoid: "AD-36", bankname: "UniCredit Banca", branch: "1", accountnumber: "IT45345435", swiftnumber: "CTBAAU2S", equivalentmoneymin: "Milan", moneyaverage: "Como500.Milan0", ownertype: "Buy", ownershippercentage: "55%", rentamount: "550", taxamount: "ComoComo%", useablepercentage: "ComoComo%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
+    public bankInfoList = [
+       
     ];
 
 }

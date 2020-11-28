@@ -12,10 +12,9 @@
                     </div>
                     <hr>
                     <div class="pt-3"></div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">AddressType</label>
+                            <label class="label">AddressType*</label>
                             <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId">
                                 <option value="1">Permanent</option>
                                 <option value="2">Guest</option>
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CityName</label>
+                            <label class="label">CityName*</label>
                             <input type="text" autocomplete="off" name="cityName" [(ngModel)]="addressInfoForm.cityName" #cityName="ngModel" class="form-control" placeholder="Enter cityname"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -36,77 +35,76 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Province</label>
+                            <label class="label">Province*</label>
                             <input type="text" autocomplete="off" name="province" [(ngModel)]="addressInfoForm.province" #province="ngModel" class="form-control" placeholder="Enter province"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="province.valid || province.pristine" class="text-danger">Province is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">State</label>
+                            <label class="label">State*</label>
                             <input type="text" autocomplete="off" name="state" [(ngModel)]="addressInfoForm.state" #state="ngModel" class="form-control" placeholder="Enter state"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="state.valid || state.pristine" class="text-danger">State is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PostalCode</label>
+                            <label class="label">PostalCode*</label>
                             <input type="text" autocomplete="off" name="postalCode" [(ngModel)]="addressInfoForm.postalCode" #postalCode="ngModel" class="form-control" placeholder="Enter postalcode"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="postalCode.valid || postalCode.pristine" class="text-danger">PostalCode is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">RoadName</label>
+                            <label class="label">RoadName*</label>
                             <input type="text" autocomplete="off" name="roadName" [(ngModel)]="addressInfoForm.roadName" #roadName="ngModel" class="form-control" placeholder="Enter roadname"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="roadName.valid || roadName.pristine" class="text-danger">RoadName is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Road#</label>
+                            <label class="label">RoadNo*</label>
                             <input type="text" autocomplete="off" name="roadNo" [(ngModel)]="addressInfoForm.roadNo" #roadNo="ngModel" class="form-control" placeholder="Enter road number"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="roadNo.valid || roadNo.pristine" class="text-danger">RoadNo is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Buiding#</label>
+                            <label class="label">BuidingNo*</label>
                             <input type="text" autocomplete="off" name="buildingNo" [(ngModel)]="addressInfoForm.buildingNo" #buildingNo="ngModel" class="form-control" placeholder="Enter building number"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="buildingNo.valid || buildingNo.pristine" class="text-danger">BuidingNo is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Floor#</label>
-                            <input type="text" autocomplete="off" name="floorNo" [(ngModel)]="addressInfoForm.floorNo" #floorNo ="ngModel" class="form-control" placeholder="Enter floor number"
+                            <label class="label">FloorNo*</label>
+                            <input type="text" autocomplete="off" name="floorNo" [(ngModel)]="addressInfoForm.floorNo" #floorNo="ngModel" class="form-control" placeholder="Enter floor number"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="floorNo.valid || floorNo.pristine" class="text-danger">FloorNo is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Appartment#</label>
+                            <label class="label">AppartmentNo</label>
                             <input type="text" autocomplete="off"  name="appartmentNo" [(ngModel)]="addressInfoForm.appartmentNo" #appartmentNo ="ngModel" class="form-control" placeholder="Enter Appartment number"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -117,17 +115,17 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate ="ngModel" class="form-control" />
+                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate="ngModel" class="form-control" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate ="ngModel" class="form-control" />
+                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate="ngModel" class="form-control" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -141,9 +139,7 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">

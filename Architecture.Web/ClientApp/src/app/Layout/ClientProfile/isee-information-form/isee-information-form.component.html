@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #iseeInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">ISEE Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -15,110 +15,110 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeClass</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">IseeClass*</label>
+                            <select id="" class="form-control" name="ISEEClassTypeId" #ISEEClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.ISEEClassTypeId">
                                 <option value="1">Low</option>
                                 <option value="2">Middle</option>
                                 <option value="3">High</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISEEClassTypeId.valid || ISEEClassTypeId.pristine" class="text-danger">IseeClass is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeValue</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeValue"
+                            <label class="label">IseeValue*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeValue" name="ISEEValue" #ISEEValue="ngModel" [(ngModel)]="iseeInfoForm.ISEEValue"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISEEValue.valid || ISEEValue.pristine" class="text-danger">IseeValue is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Point</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Point"
+                            <label class="label">Point*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Point" name="point" #point="ngModel" [(ngModel)]="iseeInfoForm.point"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="point.valid || point.pristine" class="text-danger">Point is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeFamilyIncome</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeFamilyIncome"
+                            <label class="label">IseeFamilyIncome*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeFamilyIncome" name="ISEEFamilyIncome" #ISEEFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.ISEEFamilyIncome"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISEEFamilyIncome.valid || ISEEFamilyIncome.pristine" class="text-danger">IseeFamilyIncome is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISPAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISPAmount"
+                            <label class="label">ISPAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISPAmount" name="ISPAmount" #ISPAmount="ngModel" [(ngModel)]="iseeInfoForm.ISPAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISPAmount.valid || ISPAmount.pristine" class="text-danger">ISPAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISEAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISEAmount"
+                            <label class="label">ISEAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISEAmount" name="ISEAmount" #ISEAmount="ngModel" [(ngModel)]="iseeInfoForm.ISEAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISEAmount.valid || ISEAmount.pristine" class="text-danger">ISEAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISRAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISRAmount"
+                            <label class="label">ISRAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISRAmount" name="ISRAmount" #ISRAmount="ngModel" [(ngModel)]="iseeInfoForm.ISRAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ISRAmount.valid || ISRAmount.pristine" class="text-danger">ISRAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IdentificationNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IdentificationNumber"
+                            <label class="label">IdentificationNumber*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IdentificationNumber" name="identificationNumber" #identificationNumber="ngModel" [(ngModel)]="iseeInfoForm.identificationNumber"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="identificationNumber.valid || identificationNumber.pristine" class="text-danger">IdentificationNumber is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SubmittedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">SubmittedDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="sumittedDate" #submittedDate="ngModel" [(ngModel)]="iseeInfoForm.submittedDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="submittedDate.valid || submittedDate.pristine" class="text-danger">SubmittedDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DeliveryDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">DeliveryDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="deliveryDate" #deliveryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="deliveryDate.valid || deliveryDate.pristine" class="text-danger">DeliveryDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpiryDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">ExpiryDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!iseeInfoInputForm.form.valid"  class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

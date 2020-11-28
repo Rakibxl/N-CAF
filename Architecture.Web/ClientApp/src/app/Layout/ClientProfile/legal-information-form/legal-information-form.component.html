@@ -29,23 +29,23 @@
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter CityName" name="cityName" #cityName="ngModel" [(ngModel)]="legalInfoForm.cityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">CityName type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" class="form-control"  name="startDate" #startDate="ngModel" [(ngModel)]="legalInfoForm.startDate"/>
+                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="legalInfoForm.startDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" class="form-control"  name="endDate" #endDate="ngModel" [(ngModel)]="legalInfoForm.endDate"/>
+                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="legalInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate type is required.</p>
                         </div>
                     </div>
 

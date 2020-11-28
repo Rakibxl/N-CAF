@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class OccupationInfoService : IOccupationInfoService
+    public class OccupationInfoService : Repository<ProfOccupationInfo>, IOccupationInfoService
     {
-        public IRepository<ProfOccupationInfo> occupationInfoRepo;
+        public OccupationInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfOccupationInfo> AddOrUpdate(ProfOccupationInfo occupationInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfOccupationInfo result;
                 if (occupationInfo.OccupationInfoId > 0)
                 {
-                    result = await occupationInfoRepo.UpdateAsync(occupationInfo);
+                    result = await UpdateAsync(occupationInfo);
                 }
                 else
                 {
-                    result = await occupationInfoRepo.AddAsync(occupationInfo);
+                    result = await AddAsync(occupationInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int occupationInfoId)
         {
-            var result = await occupationInfoRepo.DeleteAsync(x=>x.OccupationInfoId == occupationInfoId);
+            var result = await DeleteAsync(x=>x.OccupationInfoId == occupationInfoId);
             return result;
         }
 
         public async Task<ProfOccupationInfo> GetById(int occupationInfoId)
         {
-            var checkVal =await occupationInfoRepo.IsExistsAsync(x=>x.OccupationInfoId == occupationInfoId);
+            var checkVal =await IsExistsAsync(x=>x.OccupationInfoId == occupationInfoId);
             if (checkVal)
             {
-                ProfOccupationInfo result = await occupationInfoRepo.GetByIdAsync(occupationInfoId);
+                ProfOccupationInfo result = await GetByIdAsync(occupationInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfOccupationInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfOccupationInfo> result;
-              result=await occupationInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

@@ -12,7 +12,6 @@
                     </div>
                     <hr>
                     <div class="pt-3"></div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IncomeType*</label>
@@ -26,36 +25,36 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">YearlyIncome</label>
+                            <label class="label">YearlyIncome*</label>
                             <input type="text" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="Enter yearly income"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">YearlyIncome is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MonthlyIncome</label>
+                            <label class="label">MonthlyIncome*</label>
                             <input type="text" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="Enter monthly Income"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="monthlyIncome.valid || monthlyIncome.pristine" class="text-danger">MonthlyIncome is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Year</label>
-                            <input type="date" autocomplete="off" class="form-control" name="Year" #Year="ngModel" [(ngModel)]="incomeInfoForm.Year" />
+                            <label class="label">Year*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="year" #year="ngModel" [(ngModel)]="incomeInfoForm.year" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="year.valid || year.pristine" class="text-danger">Year is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Month</label>
+                            <label class="label">Month*</label>
                             <input type="date" autocomplete="off" class="form-control" name="month" #month="ngModel" [(ngModel)]="incomeInfoForm.month" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="month.valid || month.pristine" class="text-danger">Month is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">

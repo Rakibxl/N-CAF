@@ -37,6 +37,6 @@ export class LegalInformationFormComponent implements OnInit {
     }
 
     public fnBackToList() {
-        this.router.navigate(['/client-profile/legal']);
+        this.router.navigate(['/client-profile/legal-info']);
     }
 }

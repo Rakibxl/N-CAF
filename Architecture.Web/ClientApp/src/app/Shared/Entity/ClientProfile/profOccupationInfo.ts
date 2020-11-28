@@ -9,28 +9,35 @@ export class profOccupationInfo extends Auditable {
         //public int ? JobTypeId { get; set; }
         //public virtual JobType JobType { get; set; }
 
-    public JobHour: number;
+
+    //public int ? JobTypeId { get; set; }
+
+    public jobTypeId: number;
+
+    public jobHour: number;
 
     //public int ? ContractTypeId { get; set; }
      //public virtual ContractType ContractType { get; set; }
 
-    public ContractStartDate: Date;
+    public contractTypeId: number;
 
-    public ContractEndDate: Date;
+    public contractStartDate: Date;
 
-    public CompanyName: String;
+    public contractEndDate: Date;
 
-    public VATNo: String;
+    public companyName: String;
 
-    public LegalCompanyAddress: String;
+    public vatNo: String;
 
-    public OfficeAddress: String;
+    public legalCompanyAddress: String;
 
-    public BranchAddress: String;
+    public officeAddress: String;
 
-    public ChamberOfCommerceRegNo: String;
+    public branchAddress: String;
 
-    public ChamberOfCommerceCityName: String;
+    public chamberOfCommerceRegNo: String;
+
+    public chamberOfCommerceCityName: String;
 
     public REANo: String;
 
@@ -40,13 +47,13 @@ export class profOccupationInfo extends Auditable {
 
     public SCIACityName: String;
 
-    public IsShareHolder: number;
+    public isShareHolder: number;
 
-    public PercentageOfShare: number;
+    public percentageOfShare: number;
 
-    public NotaioInfo: string;
+    public notaioInfo: string;
 
-    public CompanyRepresentative: string;
+    public companyRepresentative: string;
         
 }
 

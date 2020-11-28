@@ -9,21 +9,23 @@ export class profWorkerInfo extends Auditable {
     //    public int ? WorkerTypeId { get; set; }
     //    public virtual WorkerType WorkerType { get; set; }
 
-    public Name: string;
+    public workerTypeId: number;
 
-    public SurName: string;
+    public name: string;
 
-    public TaxCode: string;
+    public surName: string;
 
-    public ContractNumber: string;
+    public taxCode: string;
 
-    public MonthlySalary: number;
+    public contractNumber: string;
+
+    public monthlySalary: number;
    
-    public StartDate: Date;
+    public startDate: Date;
 
-    public EndDate: Date;
+    public endDate: Date;
 
-    public Status: string; 
+    public status: string; 
         
 }
 
