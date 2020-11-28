@@ -18,7 +18,7 @@ export class EducationalInformationComponent implements OnInit {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         debugger;
         if (this.profileId==0) {
-
+            //this.router.navigate([`/`]); // redirect to dashboard
         }
         this.getEducationInfos();
   }
@@ -43,8 +43,7 @@ export class EducationalInformationComponent implements OnInit {
     }
 
     public getEducationInfos() {
-        let profileId = 2;
-        this.educationService.getEducationInfo(profileId).subscribe(
+        this.educationService.getEducationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get education: ", success);
                 this.educationInfoList = success.data;

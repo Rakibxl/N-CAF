@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 
 
 @Component({
@@ -37,6 +38,19 @@ export class EducationalInformationFormComponent implements OnInit {
                 console.log("error", error);
             });
 
+    }
+
+    public getEducation() {
+
+        this.educationInfoService.getEducaitonById(this.profileId, this.educationInfoId).subscribe(
+            (success: APIResponse) => {
+                this.educationInfoForm = success.data
+            },
+            (error: any) => {
+                this.alertService.tosterWarning(error.message);
+                console.log("error", error);
+            });
+        
     }
 
     public fnBackToList() {

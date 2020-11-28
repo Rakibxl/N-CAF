@@ -21,4 +21,8 @@ export class EducationInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/EducationInfo/Profile/${profileId}`);
     }
+    public getEducaitonById(profileId: number, educationInfoId:number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/EducationInfo/GetById/${profileId}/${educationInfoId}`);
+    }
 }
