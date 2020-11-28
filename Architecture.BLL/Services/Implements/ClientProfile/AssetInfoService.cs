@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class AssetInfoService : IAssetInfoService
+    public class AssetInfoService : Repository<ProfAssetInfo>, IAssetInfoService
     {
-        public IRepository<ProfAssetInfo> assetInfoRepo;
+        public AssetInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfAssetInfo> AddOrUpdate(ProfAssetInfo assetInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfAssetInfo result;
                 if (assetInfo.AssetInfoId > 0)
                 {
-                    result = await assetInfoRepo.UpdateAsync(assetInfo);
+                    result = await UpdateAsync(assetInfo);
                 }
                 else
                 {
-                    result = await assetInfoRepo.AddAsync(assetInfo);
+                    result = await AddAsync(assetInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int assetInfoId)
         {
-            var result = await assetInfoRepo.DeleteAsync(x=>x.AssetInfoId == assetInfoId);
+            var result = await DeleteAsync(x=>x.AssetInfoId == assetInfoId);
             return result;
         }
 
         public async Task<ProfAssetInfo> GetById(int assetInfoId)
         {
-            var checkVal =await assetInfoRepo.IsExistsAsync(x=>x.AssetInfoId == assetInfoId);
+            var checkVal =await IsExistsAsync(x=>x.AssetInfoId == assetInfoId);
             if (checkVal)
             {
-                ProfAssetInfo result = await assetInfoRepo.GetByIdAsync(assetInfoId);
+                ProfAssetInfo result = await GetByIdAsync(assetInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfAssetInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfAssetInfo> result;
-              result=await assetInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

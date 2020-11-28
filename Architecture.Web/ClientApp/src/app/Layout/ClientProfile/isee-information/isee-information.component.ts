@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { Router } from '@angular/router';
+import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { profISEEInfo } from '../../../Shared/Entity/ClientProfile/profISEEInfo';
+import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-info.service';
 
 @Component({
   selector: 'app-isee-information',
@@ -9,10 +11,12 @@ import { Router } from '@angular/router';
 })
 export class IseeInformationComponent implements OnInit {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private iseeService: ISEEInfoService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.getISEEInfos();
+    }
+
 
 
     public fnPtableCellClick(event) {
@@ -32,24 +36,36 @@ export class IseeInformationComponent implements OnInit {
         }
     }
 
+    public getISEEInfos() {
+        debugger;
+        let profileId = 2;
+        this.iseeService.getISEEInfo(profileId).subscribe(
+            (success) => {
+                console.log("get isee: ", success);
+                this.iseeInfoList = success.data;
+            },
+            error => {
+            });
+
+    }
+
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Isee List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Isee Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'Isee Class', width: '20%', internalName: 'assettype', sort: true, type: "" },
-            { headerName: 'IseeValue', width: '10%', internalName: 'numberofasset', sort: true, type: "" },
-            { headerName: 'Point', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
-            { headerName: 'IseeFamilyIncome', width: '15%', internalName: 'numberofasset', sort: true, type: "" },
-            { headerName: 'IspAmount', width: '10%', internalName: 'equivalentmoneymin', sort: true, type: "" },
-            { headerName: 'ISE Amount', width: '10%', internalName: 'equivalentmoneymin', sort: true, type: "" },
-            { headerName: 'ISR Amount', width: '20%', internalName: 'equivalentmoneymin', sort: true, type: "" },
-            { headerName: 'IdnetificationNumber', width: '10%', internalName: 'moneyaverage', sort: true, type: "" },
-            { headerName: 'Sumitted Date', width: '10%', internalName: 'ownertype', sort: true, type: "" },
-            { headerName: 'Delivery Date', width: '10%', internalName: 'ownertype', sort: true, type: "" },
-            { headerName: 'Expiry Date', width: '10%', internalName: 'ownertype', sort: true, type: "" },
+            { headerName: 'Isee Class', width: '20%', internalName: 'iseeClassType', sort: true, type: "" },
+            { headerName: 'IseeValue', width: '10%', internalName: 'iseeValue', sort: true, type: "" },
+            { headerName: 'Point', width: '15%', internalName: 'point', sort: true, type: "" },
+            { headerName: 'IseeFamilyIncome', width: '15%', internalName: 'iseeFamilyIncome', sort: true, type: "" },
+            { headerName: 'IspAmount', width: '10%', internalName: 'ispAmount', sort: true, type: "" },
+            { headerName: 'ISE Amount', width: '10%', internalName: 'iseAmount', sort: true, type: "" },
+            { headerName: 'ISR Amount', width: '20%', internalName: 'isrAmount', sort: true, type: "" },
+            { headerName: 'IdnetificationNumber', width: '10%', internalName: 'identificationNumber', sort: true, type: "" },
+            { headerName: 'Submitted Date', width: '10%', internalName: 'submittedDate', sort: true, type: "" },
+            { headerName: 'Delivery Date', width: '10%', internalName: 'deliveryDate', sort: true, type: "" },
+            { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
 
@@ -83,35 +99,7 @@ export class IseeInformationComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { assetinfoid: "AD-120", assettype: "High", numberofasset: "12000", roadnumber: "6", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-121", assettype: "Low",  numberofasset: "12000", roadnumber: "7", equivalentmoneymax: "2", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-122", assettype: "Low",  numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "2", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-123", assettype: "Low",  numberofasset: "12000", roadnumber: "2", equivalentmoneymax: "2", equivalentmoneymin: "4", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-124", assettype: "Low",  numberofasset: "12000", roadnumber: "6", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-125", assettype: "Low",  numberofasset: "12000", roadnumber: "3", equivalentmoneymax: "7", equivalentmoneymin: "3", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-126", assettype: "Low",  numberofasset: "12000", roadnumber: "7", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-127", assettype: "High ",numberofasset: "12000", roadnumber: "9", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-128", assettype: "High", numberofasset: "12000", roadnumber: "1", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-129", assettype: "High", numberofasset: "12000", roadnumber: "2", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "High", numberofasset: "12000", roadnumber: "5", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-130", assettype: "High", numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "6", equivalentmoneymin: "3", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "High", numberofasset: "12000", roadnumber: "5", equivalentmoneymax: "6", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-132", assettype: "High", numberofasset: "12000", roadnumber: "3", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-133", assettype: "Low",  numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "7", equivalentmoneymin: "3", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-134", assettype: "High", numberofasset: "12000", roadnumber: "3", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-135", assettype: "High", numberofasset: "12000", roadnumber: "2", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-136", assettype: "Low",  numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-137", assettype: "Low",  numberofasset: "12000", roadnumber: "8", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-138", assettype: "High", numberofasset: "12000", roadnumber: "3", equivalentmoneymax: "7", equivalentmoneymin: "4", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-139", assettype: "High", numberofasset: "12000", roadnumber: "5", equivalentmoneymax: "4", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-140", assettype: "Low",  numberofasset: "12000", roadnumber: "7", equivalentmoneymax: "4", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-151", assettype: "High", numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "4", equivalentmoneymin: "4", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-152", assettype: "High", numberofasset: "12000", roadnumber: "2", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-153", assettype: "Low",  numberofasset: "12000", roadnumber: "4", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-154", assettype: "High", numberofasset: "12000", roadnumber: "6", equivalentmoneymax: "7", equivalentmoneymin: "2", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-155", assettype: "High", numberofasset: "12000", roadnumber: "3", equivalentmoneymax: "7", equivalentmoneymin: "3", moneyaverage: "AR3432", ownertype: "20/05/2020", ownershippercentage: "55%", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-    ];
+    public iseeInfoList = [ ];
 
 
 }

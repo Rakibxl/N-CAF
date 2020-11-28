@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #assetInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Asset Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -14,120 +14,120 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">AssetType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">AssetType*</label>
+                            <select id="" class="form-control" name="assetTypeId" #assetTypeId="ngModel" [(ngModel)]="assetInfoForm.assetTypeId">
                                 <option value="1">House</option>
                                 <option value="2">Car</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="assetTypeId.valid || assetTypeId.pristine" class="text-danger">AssetType is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">NumberOfAsset</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter number of asset"
+                            <label class="label">NumberOfAsset*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter number of asset" name="numberOfAsset" #numberOfAsset="ngModel" [(ngModel)]="assetInfoForm.numberOfAsset"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="numberOfAsset.valid || numberOfAsset.pristine" class="text-danger">NumberOfAsset is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EquivalentMoneyMax</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter equivalent money max"
+                            <label class="label">EquivalentMoneyMax*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter equivalent money max" name="equivalentMoneyMax" #equivalentMoneyMax="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMax"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="equivalentMoneyMax.valid || equivalentMoneyMax.pristine" class="text-danger">EquivalentMoneyMax is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EquivalentMoneyMin</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter equivalent money min"
+                            <label class="label">EquivalentMoneyMin*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter equivalent money min" name="equivalentMoneyMin" #equivalentMoneyMin="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMin"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="equivalentMoneyMin.valid || equivalentMoneyMin.pristine" class="text-danger">EquivalentMoneyMin is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MoneyAverage</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter money average"
+                            <label class="label">MoneyAverage*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter money average" name="moneyAverage" #moneyAverage="ngModel" [(ngModel)]="assetInfoForm.moneyAverage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="moneyAverage.valid || moneyAverage.pristine" class="text-danger">MoneyAverage is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">OwnerType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">OwnerType*</label>
+                            <select id="" class="form-control" name="ownerTypeId" #ownerTypeId="ngModel" [(ngModel)]="assetInfoForm.ownerTypeId">
                                 <option value="1">ByBirth</option>
                                 <option value="2">Buy</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ownerTypeId.valid || ownerTypeId.pristine" class="text-danger">OwnerType is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">OwnershipPercentage</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ownership percentage"
+                            <label class="label">OwnershipPercentage*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ownership percentage" name="ownershipPercentage" #ownershipPercentage="ngModel" [(ngModel)]="assetInfoForm.ownershipPercentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ownershipPercentage.valid || ownershipPercentage.pristine" class="text-danger">OwnershipPercentage is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">OwnerFromDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <label class="label">OwnerFromDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="ownerFromDate" #ownerFromDate="ngModel" [(ngModel)]="assetInfoForm.ownerFromDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="ownerFromDate.valid || ownerFromDate.pristine" class="text-danger">OwnerFromDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">RentAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter rent amount"
+                            <label class="label">RentAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter rent amount" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="assetInfoForm.rentAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="rentAmount.valid || rentAmount.pristine" class="text-danger">RentAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxAmount</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter tax amount"
+                            <label class="label">TaxAmount*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter tax amount" name="taxAmount" #taxAmount="ngModel" [(ngModel)]="assetInfoForm.taxAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="taxAmount.valid || taxAmount.pristine" class="text-danger">TaxAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Use-AblePercentage</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Use-able percentage"
+                            <label class="label">Use-AblePercentage*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Use-able percentage" name="useAblePercentage" #useAblePercentage="ngModel" [(ngModel)]="assetInfoForm.useAblePercentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="useAblePercentage.valid || useAblePercentage.pristine" class="text-danger">Use-AblePercentage is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">AnyRestrictionByGovt</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter any restriction by govt"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter any restriction by govt" name="anyRestrictionByGovt" #anyRestrictionByGovt="ngModel" [(ngModel)]="assetInfoForm.anyRestrictionByGovt"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -137,7 +137,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter city name"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter city name" name="cityName" #cityName="ngModel" [(ngModel)]="assetInfoForm.cityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -147,7 +147,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Note</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter note"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter note" name="note" #note="ngModel" [(ngModel)]="assetInfoForm.note"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -162,7 +162,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!assetInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

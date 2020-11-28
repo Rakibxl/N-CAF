@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #occupationInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Occupation Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -14,70 +14,69 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">JobType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">JobType*</label>
+                            <select id="" class="form-control" name="jobTypeId" #jobTypeId="ngModel" [(ngModel)]="occupationInfoForm.jobTypeId">
                                 <option value="1">PartTime</option>
                                 <option value="2">FullTime</option>
                                 <option value="3">Occasional</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="jobTypeId.valid || jobTypeId.pristine" class="text-danger">JobType is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">JobHour</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter JobHour"
+                            <label class="label">JobHour*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter JobHour" name="jobHour" #jobHour="ngModel" [(ngModel)]="occupationInfoForm.jobHour"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="jobHour.valid || jobHour.pristine" class="text-danger">JobHour is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContractType</label>
-                            <select name="" id="" class="form-control">
+                            <label class="label">ContractType*</label>
+                            <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId">
                                 <option value="1">Limited</option>
                                 <option value="2">Unlimited</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">ContractType is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContractStartDate</label>
-                            <input type="date" formControlName="ContractStartDate" autocomplete="off" class="form-control" placeholder="Enter ContractStartDate" required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">ContractEndDate</label>
-                            <input type="date" formControlName="dateOfBirth" autocomplete="off" class="form-control" placeholder="Enter ContractEndDate" required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">CompanyName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CompanyName"
+                            <label class="label">ContractStartDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter JobHour" name="contractStartDate" #contractStartDate="ngModel" [(ngModel)]="occupationInfoForm.contractStartDate"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="contractStartDate.valid || contractStartDate.pristine" class="text-danger">ContractStartDate is required.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">ContractEndDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="contractEndDate" #contractEndDate="ngModel" [(ngModel)]="occupationInfoForm.contractEndDate"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="contractEndDate.valid || contractEndDate.pristine" class="text-danger">ContractEndDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">VATNo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter VATNo"
+                            <label class="label">CompanyName*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CompanyName" name="companyName" #companyName="ngModel" [(ngModel)]="occupationInfoForm.companyName"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="companyName.valid || companyName.pristine" class="text-danger">CompanyName is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">VatNo</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter VATNo" name="vatNo" #vatNo="ngModel" [(ngModel)]="occupationInfoForm.vatNo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -87,7 +86,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">LegalCompanyAddress</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter LegalCompanyAddress"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter LegalCompanyAddress" name="legalCompanyAddress" #legalCompanyAddress="ngModel" [(ngModel)]="occupationInfoForm.legalCompanyAddress"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -97,36 +96,36 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">OfficeAddress</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter OfficeAddress"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter OfficeAddress" name="officeAddress" #officeAddress="ngModel" [(ngModel)]="occupationInfoForm.officeAddress"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
+
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">BranchAddress</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter BranchAddress"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter BranchAddress" name="branchAddress" #branchAddress="ngModel" [(ngModel)]="occupationInfoForm.branchAddress"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ChamberOfCommerceRegNo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceRegNo"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceRegNo" name="chamberOfCommerceRegNo" #chamberOfCommerceRegNo="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceRegNo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ChamberOfCommerceCityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceCityName"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceCityName" name="chamberOfCommerceCityName" #chamberOfCommerceCityName="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceCityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -135,7 +134,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">REANo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter REANo"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter REANo" name="REANo" #REANo="ngModel" [(ngModel)]="occupationInfoForm.REANo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -144,7 +143,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ATECONo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ATECONo"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ATECONo" name="ATECONo" #ATECONo="ngModel" [(ngModel)]="occupationInfoForm.ATECONo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -153,7 +152,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SCIANo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIANo"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIANo" name="SCIANo" #SCIANo="ngModel" [(ngModel)]="occupationInfoForm.SCIANo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -162,18 +161,19 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SCIACityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIACityName"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIACityName" name="SCIACityName" #SCIACityName="ngModel" [(ngModel)]="occupationInfoForm.SCIACityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
                             <label>IsShareHolder</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" formControlName="IsShareHolder">
+                                    <input type="checkbox" name="isShareHolder" #isShareHolder="ngModel" [(ngModel)]="occupationInfoForm.isShareHolder">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -184,18 +184,18 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PercentageofShare</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter PercentageofShare"
+                            <label class="label">PercentageofShare*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter PercentageofShare" name="percentageOfShare" #percentageOfShare="ngModel" [(ngModel)]="occupationInfoForm.percentageOfShare"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="percentageOfShare.valid || percentageOfShare.pristine" class="text-danger">PercentageofShare is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">NotaioInfo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter NotaioInfo"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter NotaioInfo" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="occupationInfoForm.notaioInfo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -205,23 +205,23 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CompanyRepresentative</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CompanyRepresentative"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CompanyRepresentative" name="companyRepresentative" #companyRepresentative="ngModel" [(ngModel)]="occupationInfoForm.companyRepresentative"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
-                </div>
 
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2">
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!occupationInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

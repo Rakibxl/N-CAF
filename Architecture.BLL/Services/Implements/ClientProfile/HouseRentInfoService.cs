@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class HouseRentInfoService : IHouseRentInfoService
+    public class HouseRentInfoService :  Repository<ProfHouseRentInfo>,IHouseRentInfoService
     {
-        public IRepository<ProfHouseRentInfo> houserentInfoRepo;
+        public HouseRentInfoService(ApplicationDbContext context): base(context)
+        {
+
+        }
+
         public async Task<ProfHouseRentInfo> AddOrUpdate(ProfHouseRentInfo houserentInfo)
         {
             try
@@ -17,11 +22,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfHouseRentInfo result;
                 if (houserentInfo.HouseRentInfoId > 0)
                 {
-                    result = await houserentInfoRepo.UpdateAsync(houserentInfo);
+                    result = await UpdateAsync(houserentInfo);
                 }
                 else
                 {
-                    result = await houserentInfoRepo.AddAsync(houserentInfo);
+                    result = await AddAsync(houserentInfo);
                 }
 
                 return result;
@@ -38,9 +43,9 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         {
             try
             {
-                var info = await houserentInfoRepo.GetByIdAsync(houserentInfoId);
+                var info = await GetByIdAsync(houserentInfoId);
                 info.RecordStatusId = 2;
-                var result = await houserentInfoRepo.UpdateAsync(info);
+                var result = await UpdateAsync(info);
                 return 1;
             }
             catch (Exception ex)
@@ -52,10 +57,10 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<ProfHouseRentInfo> GetById(int houserentInfoId)
         {
-            var checkVal =await houserentInfoRepo.IsExistsAsync(x=>x.HouseRentInfoId == houserentInfoId);
+            var checkVal =await IsExistsAsync(x=>x.HouseRentInfoId == houserentInfoId);
             if (checkVal)
             {
-                ProfHouseRentInfo result = await houserentInfoRepo.GetByIdAsync(houserentInfoId);
+                ProfHouseRentInfo result = await GetByIdAsync(houserentInfoId);
                 return result;
             }
             else
@@ -68,7 +73,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfHouseRentInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfHouseRentInfo> result;
-              result=await houserentInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #delegationInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Delegation Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -14,48 +14,48 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Name</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter name"
+                            <label class="label">Name*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter name" name="name" #name="ngModel" [(ngModel)]="delegationInfoForm.name"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SurName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter surname"
+                            <label class="label">SurName*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter surname" name="surName" #surName="ngModel" [(ngModel)]="delegationInfoForm.surName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">SurName is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DateOfBirth</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter date of birth"
+                            <label class="label">DateOfBirth*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter date of birth" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="delegationInfoForm.dateOfBirth"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">DateOfBirth is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCode</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter taxCode"
+                            <label class="label">TaxCode*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter taxCode" name="taxCode" #taxCode="ngModel" [(ngModel)]="delegationInfoForm.taxCode"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="taxCode.valid || taxCode.pristine" class="text-danger">TaxCode is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">RefNo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ref no"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ref no" name="refNo" #refNo="ngModel" [(ngModel)]="delegationInfoForm.refNo"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -65,7 +65,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Purpose</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter purpose"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter purpose" name="purpose" #purpose="ngModel" [(ngModel)]="delegationInfoForm.purpose"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -74,44 +74,44 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentIssueDate</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter document issue date"
+                            <label class="label">DocumentIssueDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter document issue date" name="documentIssueDate" #documentIssueDate="ngModel" [(ngModel)]="delegationInfoForm.documentIssueDate"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="documentIssueDate.valid || documentIssueDate.pristine" class="text-danger">DocumentIssueDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ExpiryDate</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter expiry date"
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter expiry date" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="delegationInfoForm.expiryDate"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IssuedBy</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter issued by"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter issued by" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="delegationInfoForm.issuedBy"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Status</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter status"
-                                   required />
+                            <select id="" class="form-control" name="status" [(ngModel)]="delegationInfoForm.status" #status="ngModel">
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
 
                 </div>
                 <div class="row">

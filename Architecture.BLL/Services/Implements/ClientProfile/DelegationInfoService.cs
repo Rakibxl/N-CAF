@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class DelegationInfoService : IDelegationInfoService
+    public class DelegationInfoService : Repository<ProfDelegationInfo>, IDelegationInfoService
     {
-        public IRepository<ProfDelegationInfo> delegationInfoRepo;
+        public DelegationInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfDelegationInfo> AddOrUpdate(ProfDelegationInfo delegationInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfDelegationInfo result;
                 if (delegationInfo.DelegationInfoId > 0)
                 {
-                    result = await delegationInfoRepo.UpdateAsync(delegationInfo);
+                    result = await UpdateAsync(delegationInfo);
                 }
                 else
                 {
-                    result = await delegationInfoRepo.AddAsync(delegationInfo);
+                    result = await AddAsync(delegationInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int delegationInfoId)
         {
-            var result = await delegationInfoRepo.DeleteAsync(x=>x.DelegationInfoId == delegationInfoId);
+            var result = await DeleteAsync(x=>x.DelegationInfoId == delegationInfoId);
             return result;
         }
 
         public async Task<ProfDelegationInfo> GetById(int delegationInfoId)
         {
-            var checkVal =await delegationInfoRepo.IsExistsAsync(x=>x.DelegationInfoId == delegationInfoId);
+            var checkVal =await IsExistsAsync(x=>x.DelegationInfoId == delegationInfoId);
             if (checkVal)
             {
-                ProfDelegationInfo result = await delegationInfoRepo.GetByIdAsync(delegationInfoId);
+                ProfDelegationInfo result = await GetByIdAsync(delegationInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfDelegationInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfDelegationInfo> result;
-              result=await delegationInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

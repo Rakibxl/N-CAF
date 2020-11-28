@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { profHouseRentInfo } from '../../../Shared/Entity/ClientProfile/profHouseRentInfo';
+import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/houserent-info.service';
 
 @Component({
   selector: 'app-house-rent-information',
@@ -9,9 +11,10 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 })
 export class HouseRentInformationComponent implements OnInit {
 
-  constructor(private router:Router) { }
+    constructor(private router: Router, private houseRentService: HouseRentInfoService) { }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.getHouseRentInfos();
   }
 
 
@@ -33,26 +36,58 @@ export class HouseRentInformationComponent implements OnInit {
     }
 
 
+    public getHouseRentInfos() {
+        debugger;
+        let profileId = 2;
+        this.houseRentService.getHouseRentInfo(profileId).subscribe(
+            (success) => {
+                console.log("get address: ", success);
+                this.houseRentInfoList = success.data;
+            },
+            error => {
+            });
+
+
+    }
+
+
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'House Rent List',
-        tableRowIDInternalName: "assetinfoid",
+        tableRowIDInternalName: "houserentinfoid",
         tableColDef: [
-            { headerName: 'House Rent Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'Contract Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
-            { headerName: 'House Type', width: '10%', internalName: 'numberofasset', sort: true, type: "" },
-            { headerName: 'Start Date', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
-            { headerName: 'End Date', width: '15%', internalName: 'equivalentmoneymax', sort: true, type: "" },
-            { headerName: 'Monthly Rent Amount', width: '10%', internalName: 'rentamount', sort: true, type: "" },
-            { headerName: 'Service Charge Amount', width: '10%', internalName: 'rentamount', sort: true, type: "" },
-            { headerName: 'Registration Info', width: '20%', internalName: 'note', sort: true, type: "" },
-            { headerName: 'Registration Date', width: '10%', internalName: 'equivalentmoneymax', sort: true, type: "" },
-            { headerName: 'Registration Office', width: '10%', internalName: 'equivalentmoneymin', sort: true, type: "" },
-            { headerName: 'Registration Code', width: '10%', internalName: 'moneyaverage', sort: true, type: "" },
-            { headerName: 'Registration No', width: '10%', internalName: 'ownertype', sort: true, type: "" },
-            //{ headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyrestrictionbygovt', sort: true, type: "" },
-            //{ headerName: 'City Name', width: '10%', internalName: 'cityname', sort: true, type: "" },
-            //{ headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
+            //{ headerName: 'Contract Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            //{ headerName: 'House Type', width: '10%', internalName: 'numberofasset', sort: true, type: "" },
+            { headerName: 'Contract Date', width: '15%', internalName: 'contractDate', sort: true, type: "" },
+            { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },
+            { headerName: 'Monthly Rent Amount', width: '10%', internalName: 'monthlyRentAmount', sort: true, type: "" },
+            { headerName: 'Service Charge Amount', width: '20%', internalName: 'serviceChargeAmount', sort: true, type: "" },
+            { headerName: 'Registration Info', width: '10%', internalName: 'registrationInfo', sort: true, type: "" },
+            { headerName: 'Registration Date', width: '10%', internalName: 'registrationDate', sort: true, type: "" },
+            { headerName: 'Registration Office', width: '10%', internalName: 'registrationOffice', sort: true, type: "" },
+            { headerName: 'Registration Code', width: '10%', internalName: 'registrationCode', sort: true, type: "" },
+            { headerName: 'Registration No', width: '10%', internalName: 'registrationNo', sort: true, type: "" },
+            { headerName: 'Registration City', width: '10%', internalName: 'registrationCity', sort: true, type: "" },
+            { headerName: 'Is Joined', width: '10%', internalName: 'isJoined', sort: true, type: "" },
+            { headerName: 'Share Percent', width: '10%', internalName: 'sharePercent', sort: true, type: "" },
+            { headerName: 'Foglio No', width: '10%', internalName: 'foglioNo', sort: true, type: "" },
+            { headerName: 'Partiocella No', width: '10%', internalName: 'partiocellaNo', sort: true, type: "" },
+            { headerName: 'Sub No', width: '10%', internalName: 'subNo', sort: true, type: "" },
+            { headerName: 'Section No', width: '10%', internalName: 'sectionNo', sort: true, type: "" },
+            { headerName: 'Zona No', width: '10%', internalName: 'zona', sort: true, type: "" },
+            { headerName: 'Micro Zona', width: '10%', internalName: 'microZona', sort: true, type: "" },
+            { headerName: 'Consistenza', width: '10%', internalName: 'consistenza', sort: true, type: "" },
+            { headerName: 'Super Ficie Catastale', width: '10%', internalName: 'superficieCatastale', sort: true, type: "" },
+            { headerName: 'Rendita', width: '10%', internalName: 'rendita', sort: true, type: "" },
+            { headerName: 'Notaio Info', width: '10%', internalName: 'notaioInfo', sort: true, type: "" },
+            { headerName: 'Has Loan', width: '10%', internalName: 'hasLoan', sort: true, type: "" },
+            { headerName: 'Loan Start Date', width: '10%', internalName: 'loanStartDate', sort: true, type: "" },
+            { headerName: 'Loan Amount', width: '10%', internalName: 'loanAmount', sort: true, type: "" },
+            { headerName: 'Paid Amount', width: '10%', internalName: 'paidAmount', sort: true, type: "" },
+            { headerName: 'Loan Period', width: '10%', internalName: 'loanPeriod', sort: true, type: "" },
+            { headerName: 'Is RentByOwner', width: '10%', internalName: 'isRentByOwner', sort: true, type: "" },
+            { headerName: 'RentAmount', width: '10%', internalName: 'rentAmount', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -85,34 +120,6 @@ export class HouseRentInformationComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { assetinfoid: "AD-120", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-121", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-122", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-123", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-124", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-125", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-126", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-127", assettype: "Limited ",     numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-128", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-129", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-130", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043",ownershippercentage:"20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-131", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-132", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-133", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020",    equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage:    "20/07/2019", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-134", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-135", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-136", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-137", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-138", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-139", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-140", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-151", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-152", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-153", assettype: "Unlimited",    numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-154", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-        { assetinfoid: "AD-155", assettype: "Limited",      numberofasset: "Owner", roadnumber: "20/07/2018", equivalentmoneymax: "20/7/2020", equivalentmoneymin: "Milan", moneyaverage: "HR0432", ownertype: "RN043", ownershippercentage: "20/072020", rentamount: "550", taxamount: "22%", useablepercentage: "22%", anyrestrictionbygovt: "Yes", cityname: "Como", note: "Nothing", details: "More.." },
-    ];
+    public houseRentInfoList = [];
 
 }

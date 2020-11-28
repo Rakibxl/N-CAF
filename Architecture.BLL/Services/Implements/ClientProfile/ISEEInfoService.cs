@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class ISEEInfoService : IISEEInfoService
+    public class ISEEInfoService : Repository<ProfISEEInfo>, IISEEInfoService
     {
-        public IRepository<ProfISEEInfo> iseeInfoRepo;
+        public ISEEInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfISEEInfo> AddOrUpdate(ProfISEEInfo iseeInfo)
         {
             try
@@ -17,11 +21,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfISEEInfo result;
                 if (iseeInfo.ISEEInfoId > 0)
                 {
-                    result = await iseeInfoRepo.UpdateAsync(iseeInfo);
+                    result = await UpdateAsync(iseeInfo);
                 }
                 else
                 {
-                    result = await iseeInfoRepo.AddAsync(iseeInfo);
+                    result = await AddAsync(iseeInfo);
                 }
 
                 return result;
@@ -36,16 +40,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int iseeInfoId)
         {
-            var result = await iseeInfoRepo.DeleteAsync(x=>x.ISEEInfoId == iseeInfoId);
+            var result = await DeleteAsync(x=>x.ISEEInfoId == iseeInfoId);
             return result;
         }
 
         public async Task<ProfISEEInfo> GetById(int iseeInfoId)
         {
-            var checkVal =await iseeInfoRepo.IsExistsAsync(x=>x.ISEEInfoId == iseeInfoId);
+            var checkVal =await IsExistsAsync(x=>x.ISEEInfoId == iseeInfoId);
             if (checkVal)
             {
-                ProfISEEInfo result = await iseeInfoRepo.GetByIdAsync(iseeInfoId);
+                ProfISEEInfo result = await GetByIdAsync(iseeInfoId);
                 return result;
             }
             else
@@ -58,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfISEEInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfISEEInfo> result;
-              result=await iseeInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }

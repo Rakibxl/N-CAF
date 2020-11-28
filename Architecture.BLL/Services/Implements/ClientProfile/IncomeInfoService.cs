@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
+using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-    public class IncomeInfoService : IIncomeInfoService
+    public class IncomeInfoService : Repository<ProfIncomeInfo>, IIncomeInfoService
     {
-        public IRepository<ProfIncomeInfo> incomeInfoRepo;
+
+        public IncomeInfoService(ApplicationDbContext context) : base(context)
+        {
+
+        }
         public async Task<ProfIncomeInfo> AddOrUpdate(ProfIncomeInfo incomeInfo)
         {
             try
@@ -17,11 +22,11 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ProfIncomeInfo result;
                 if (incomeInfo.IncomeInfoId > 0)
                 {
-                    result = await incomeInfoRepo.UpdateAsync(incomeInfo);
+                    result = await UpdateAsync(incomeInfo);
                 }
                 else
                 {
-                    result = await incomeInfoRepo.AddAsync(incomeInfo);
+                    result = await AddAsync(incomeInfo);
                 }
 
                 return result;
@@ -36,16 +41,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<int> Delete(int incomeInfoId)
         {
-            var result = await incomeInfoRepo.DeleteAsync(x=>x.IncomeInfoId == incomeInfoId);
+            var result = await DeleteAsync(x=>x.IncomeInfoId == incomeInfoId);
             return result;
         }
 
         public async Task<ProfIncomeInfo> GetById(int incomeInfoId)
         {
-            var checkVal =await incomeInfoRepo.IsExistsAsync(x=>x.IncomeInfoId == incomeInfoId);
+            var checkVal =await IsExistsAsync(x=>x.IncomeInfoId == incomeInfoId);
             if (checkVal)
             {
-                ProfIncomeInfo result = await incomeInfoRepo.GetByIdAsync(incomeInfoId);
+                ProfIncomeInfo result = await GetByIdAsync(incomeInfoId);
                 return result;
             }
             else
@@ -58,7 +63,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfIncomeInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfIncomeInfo> result;
-              result=await incomeInfoRepo.GetAsync(x => x,x => x.ProfileId== profileId);
+              result=await GetAsync(x => x,x => x.ProfileId== profileId);
             return result;
 
         }
