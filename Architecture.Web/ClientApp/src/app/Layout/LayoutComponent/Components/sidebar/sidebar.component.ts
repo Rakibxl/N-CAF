@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   public extraParameter: any;
   menuList: any[] = [];
 
-  constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute,
+    constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute
     // private menuService: MenuService 
     ) {
 
@@ -39,7 +39,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
       this.prod = !environment.production;
-      this.profileId = 2;
+      debugger;
+      this.profileId = +this.activatedRoute.snapshot.paramMap.get("profId") || 0;
     setTimeout(() => {
 
       this.innerWidth = window.innerWidth;

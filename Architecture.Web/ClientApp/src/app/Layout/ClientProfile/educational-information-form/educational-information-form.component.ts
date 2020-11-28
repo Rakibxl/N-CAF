@@ -23,7 +23,6 @@ export class EducationalInformationFormComponent implements OnInit {
   }
 
     public onSubmit() {
-        debugger;
         console.table(this.educationInfoForm);
         this.educationInfoForm.profileId = 2;
 
@@ -42,6 +41,7 @@ export class EducationalInformationFormComponent implements OnInit {
 
     public fnBackToList() {
         this.router.navigate([`/client-profile/education/${this.profileId}`]);
+        return false;
     }
 
 }
