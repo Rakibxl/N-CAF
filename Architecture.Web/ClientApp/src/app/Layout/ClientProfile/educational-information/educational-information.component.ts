@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
@@ -12,9 +12,14 @@ import { EducationInfoService } from '../../../Shared/Services/ClientProfile/edu
 })
 export class EducationalInformationComponent implements OnInit {
 
-    constructor(private router: Router, private educationService: EducationInfoService) { }
-
+    constructor(private router: Router, private educationService: EducationInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId==0) {
+
+        }
         this.getEducationInfos();
   }
 
@@ -28,11 +33,12 @@ export class EducationalInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/education/0']);
+            this.router.navigate([`/client-profile/education/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/education/0']);
+            console.log("event:", event);
+            this.router.navigate([`/client-profile/education/${this.profileId}/${event.record.educationInfoId}`]);
         }
     }
 

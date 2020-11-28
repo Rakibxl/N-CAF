@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
@@ -13,9 +13,13 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 export class EducationalInformationFormComponent implements OnInit {
     public educationInfoForm = new profEducationInfo();
 
-    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService, private router: Router) { }
-
-  ngOnInit() {
+    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    private profileId: number;
+    private educationInfoId: number;
+    ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        this.educationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        console.log("this.profileId:", this.profileId, "this.educationInfoId", this.educationInfoId);
   }
 
     public onSubmit() {
@@ -37,7 +41,7 @@ export class EducationalInformationFormComponent implements OnInit {
     }
 
     public fnBackToList() {
-        this.router.navigate(['/client-profile/education']);
+        this.router.navigate([`/client-profile/education/${this.profileId}`]);
     }
 
 }

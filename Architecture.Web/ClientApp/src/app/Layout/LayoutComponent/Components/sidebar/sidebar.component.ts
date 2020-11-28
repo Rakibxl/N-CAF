@@ -24,7 +24,9 @@ export class SidebarComponent implements OnInit {
   @select('config') public config$: Observable<any>;
 
   private newInnerWidth: number;
-  private innerWidth: number;
+    private innerWidth: number;
+    private profileId: number;
+    public educationInfoLink = "/client-profile/education";
   activeId = 'dashboardsMenu';
   prod: any;
   toggleSidebar() {
@@ -36,7 +38,8 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prod = !environment.production;
+      this.prod = !environment.production;
+      this.profileId = 2;
     setTimeout(() => {
 
       this.innerWidth = window.innerWidth;

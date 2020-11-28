@@ -18,11 +18,12 @@ export class BasicInformationComponent implements OnInit {
   user: IAuthUser;
   profileId: any;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
-    private alertService: AlertService, private router: Router, private commonService: CommonService) {
+    constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
+        private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.authService.currentUser.subscribe(user => this.user = user);
-    this.initForm();
-    this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
+      this.initForm();
+      //this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
+        this.profileId = this.route.snapshot.queryParamMap.get("profId")||0;
   }
 
   ngOnInit() {
