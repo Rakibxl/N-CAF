@@ -84,6 +84,7 @@ namespace Architecture.Web
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
+            services.AddTransient<IApplicationUserRoleMappingService, ApplicationUserRoleMappingService>();
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IExampleService, ExampleService>();
             services.AddSingleton<IHostedService, NotificationService>();

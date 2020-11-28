@@ -7,6 +7,7 @@ import { ApplicationUserFormComponent } from './application-user-form/applicatio
 import { ApplicationUserRoleFormComponent } from './application-user-role-form/application-user-role-form.component';
 import { BranchInformationFormComponent } from './branch-information-form/branch-information-form.component';
 import { ApplicationUserRoleMappingComponent } from './application-user-role-mapping/application-user-role-mapping.component';
+import { ApplicationUserRoleMappingFormComponent } from './application-user-role-mapping-form/application-user-role-mapping-form.component';
 import { ApplicationAccessPermissionComponent } from './application-access-permission/application-access-permission.component';
 
 
@@ -19,15 +20,16 @@ const routes: Routes = [
             { path: 'branch-info-new', component: BranchInformationFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info/:id', component: ApplicationUserFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info', component: ApplicationUserComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role-new', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },
+            { path: 'user-role/:id', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role', component: ApplicationUserRoleComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role-mapping', component: ApplicationUserRoleMappingComponent, data: { extraParameter: 'analytics' } },
-            { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } }           
+            { path: 'user-role-mapping', pathMatch: 'full', component: ApplicationUserRoleMappingComponent, data: { extraParameter: 'analytics' } },
+            { path: 'user-role-mapping/:id', pathMatch: 'full', component: ApplicationUserRoleMappingFormComponent, data: { extraParameter: 'analytics' } },
+            { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } }
         ]
     }
 ];
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class ApplicationManagerRoutingModule { }

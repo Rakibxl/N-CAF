@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { RoleService } from '../../../Shared/Services/Users/role.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 
 @Component({
-  selector: 'app-application-user-role',
-  templateUrl: './application-user-role.component.html',
-  styleUrls: ['./application-user-role.component.css']
+    selector: 'app-application-user-role',
+    templateUrl: './application-user-role.component.html',
+    styleUrls: ['./application-user-role.component.css']
 })
 export class ApplicationUserRoleComponent implements OnInit {
+    roleList: any[] = [];
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private roleService: RoleService, private alertService: AlertService) {
     }
 
 
-  ngOnInit() {
+    ngOnInit() {
+        this.getRoles();
     }
 
 
@@ -23,11 +27,12 @@ export class ApplicationUserRoleComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
+        let id = event.record && event.record.id || 0;
         if (event.action == "new-record") {
-            this.router.navigate(['/manager/user-role-new']);
+            this.router.navigate(['/manager/user-role/' + id]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/manager/user-role-new']);
+            this.router.navigate(['/manager/user-role/' + id]);
         }
     }
 
@@ -37,10 +42,10 @@ export class ApplicationUserRoleComponent implements OnInit {
         tableName: 'User Role List',
         tableRowIDInternalName: "roleId",
         tableColDef: [
-            { headerName: 'Role Id', width: '10%', internalName: 'roleId', sort: true, type: "" },
-            { headerName: 'Role Name', width: '15%', internalName: 'rolename', sort: true, type: "" },
-            { headerName: 'Role Type', width: '15%', internalName: 'roletype', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'status', sort: false, type: "" },            
+            { headerName: 'Role Id', width: '30%', internalName: 'id', sort: true, type: "" },
+            { headerName: 'Role Name', width: '20%', internalName: 'name', sort: true, type: "" },
+            // { headerName: 'Role Type', width: '15%', internalName: 'roletype', sort: true, type: "" },
+            { headerName: 'Status', width: '10%', internalName: 'status', sort: false, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -71,35 +76,16 @@ export class ApplicationUserRoleComponent implements OnInit {
             tableOverflowY: true,
             overflowContentHeight: '460px'
         }
-    };
+    }
 
-    public employeeList = [
-        { roleId: "NC-120", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active",  details: "More.." },
-        { roleId: "NC-121", rolename: "Branch- Admin", roletype: "Admin", status: "Active", details: "More.." },
-        { roleId: "NC-122", rolename: "Admin", roletype: "Operator", status: "Active", details: "More.." },
-        { roleId: "NC-123", rolename: "Operator", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-124 ", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-125", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-126", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-127", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-128", rolename: "Operator User", roletype: "Admin", status: "Active", details: "More.." },
-        { roleId: "NC-129", rolename: "Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-130", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-131", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-132", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-133", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-134", rolename: "Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-135", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-136", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-137", rolename: "Branch- Admin", roletype: "Operator", status: "Active", details: "More.." },
-        { roleId: "NC-138", rolename: "Branch- Admin", roletype: "Como", status: "Active", details: "More.." },
-        { roleId: "NC-139", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-140", rolename: "Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-151", rolename: "Branch- Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-152", rolename: "Operator User", roletype: "Bergamo", status: "Active", details: "More.." },
-        { roleId: "NC-153", rolename: "Branch- Admin", roletype: "Venice", status: "Active", details: "More.." },
-        { roleId: "NC-154", rolename: "Admin", roletype: "Branch- Admin", status: "Active", details: "More.." },
-        { roleId: "NC-155", rolename: "Operator User", roletype: "Branch- Admin", status: "Active", details: "More.." },
-    ];
-
+    getRoles() {
+        this.roleService.getRoles().subscribe((res) => {
+            this.alertService.fnLoading(false);
+            if (res && res.data && res.data.items.length) {
+                this.roleList = res.data.items;
+            }
+        }, err => {
+            this.alertService.tosterDanger(err);
+        });
+    }
 }

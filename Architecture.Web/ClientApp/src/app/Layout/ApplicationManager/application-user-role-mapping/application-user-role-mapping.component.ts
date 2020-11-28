@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table/p-table.component';
+import { UserRoleService } from '../../../Shared/Services/Users/user-role.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 
 @Component({
-  selector: 'app-application-user-role-mapping',
-  templateUrl: './application-user-role-mapping.component.html',
-  styleUrls: ['./application-user-role-mapping.component.css']
+    selector: 'app-application-user-role-mapping',
+    templateUrl: './application-user-role-mapping.component.html',
+    styleUrls: ['./application-user-role-mapping.component.css']
 })
 export class ApplicationUserRoleMappingComponent implements OnInit {
+    userRoleList: any[] = [];
 
-  constructor(private router : Router) { }
+    constructor(private router: Router, private userRoleService: UserRoleService, private alertService: AlertService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.getUserRoles();
+    }
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -20,11 +24,12 @@ export class ApplicationUserRoleMappingComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
+        let id = event.record && event.record.id || 0;
         if (event.action == "new-record") {
-            this.router.navigate(['/manager/user-role-new']);
+            this.router.navigate(['/manager/user-role-mapping/' + id]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/manager/user-role-new']);
+            this.router.navigate(['/manager/user-role-mapping/' + id]);
         }
     }
 
@@ -70,33 +75,14 @@ export class ApplicationUserRoleMappingComponent implements OnInit {
         }
     };
 
-    public employeeList = [
-        { rolemappingId: "NC-120", username: "palash@yahoo.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-121", username: "mustafiz@gmail.com", status: "Active", rolename: "Branch- Admin",  details: "More.." },
-        { rolemappingId: "NC-122", username: "zaman@yahoo.com", rolename: "Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-123", username: "rakib@gmail.com", rolename: "Operator",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-124 ", username: "rakib@gmail.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-125", username: "mustafiz@gmail.com",  rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-126", username: "zaman@yahoo.com",   rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-127", username: "rakib@gmail.com",    rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-128", username: "rakib@gmail.com", rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-129", username: "mustafiz@gmail.com",   rolename: "Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-130", username: "mustafiz@gmail.com",  rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-131", username: "mustafiz@gmail.com", rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-132", username: "mustafiz@gmail.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-133", username: "mustafiz@gmail.com", rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-134", username: "rakib@gmail.com",   rolename: "Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-135", username: "rakib@gmail.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-136", username: "rakib@gmail.com", rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-137", username: "mustafiz@gmail.com",  rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-138", username: "mustafiz@gmail.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-139", username: "mustafiz@gmail.com",   rolename: "Operator User", status: "Active", details: "More.." },
-        { rolemappingId: "NC-140", username: "mustafiz@gmail.com",  rolename: "Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-151", username: "mustafiz@gmail.com",  rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-152", username: "zaman@yahoo.com", rolename: "Operator User",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-153", username: "zaman@yahoo.com", rolename: "Branch- Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-154", username: "zaman@yahoo.com",   rolename: "Admin",  status: "Active", details: "More.." },
-        { rolemappingId: "NC-155", username: "zaman@yahoo.com", rolename: "Operator User",  status: "Active", details: "More.." },
-    ];
-
+    getUserRoles() {
+        this.userRoleService.getUserRoles().subscribe((res) => {
+            this.alertService.fnLoading(false);
+            if (res && res.data && res.data.items.length) {
+                this.userRoleList = res.data.items;
+            }
+        }, err => {
+            this.alertService.tosterDanger(err);
+        });
+    }
 }
