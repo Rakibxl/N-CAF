@@ -82,7 +82,7 @@ namespace Architecture.Web.Controllers.Users
 
             try
             {
-                IdentityResult result = new IdentityResult();
+                //IdentityResult result = new IdentityResult();
                 ApplicationUser user;
                 var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
@@ -97,10 +97,12 @@ namespace Architecture.Web.Controllers.Users
                         user.UserName = model.PhoneNumber;
                         user.Email = model.Email;
                         user.PhoneNumber = model.PhoneNumber;
+                        user.AppUserTypeId = model.AppUserTypeId;
+                        user.BranchId = model.BranchId;
                         user.ModifiedBy = UserId;
                         user.Modified = DateTime.Now;
 
-                        result = await _userManager.UpdateAsync(user);
+                        await _userManager.UpdateAsync(user);
                     }
                 }
                 else
@@ -126,16 +128,18 @@ namespace Architecture.Web.Controllers.Users
                         UserName = model.PhoneNumber,
                         Email = model.Email,
                         PhoneNumber = model.PhoneNumber,
+                        AppUserTypeId = model.AppUserTypeId,
+                        BranchId = model.BranchId,
                         GenderId = model.GenderId,
                         CreatedBy = UserId,
                         Created = DateTime.Now
-                    }; 
+                    };
                     
-                    result = await _userManager.CreateAsync(user, model.Password);
+                    await _userManager.CreateAsync(user, model.Password);
                 };
 
                 //var result = await _applicationUserService.AddOrUpdate(user);
-                return OkResult(result);
+                return OkResult(user);
             }
             catch (Exception ex)
             {
