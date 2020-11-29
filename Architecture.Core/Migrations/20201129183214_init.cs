@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Architecture.Core.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -571,6 +571,38 @@ namespace Architecture.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BranchInfos",
+                columns: table => new
+                {
+                    BranchId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    ModifiedBy = table.Column<Guid>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    RecordStatusId = table.Column<int>(nullable: true),
+                    BranchLocation = table.Column<string>(maxLength: 100, nullable: false),
+                    Address = table.Column<string>(maxLength: 100, nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    ContactPerson = table.Column<string>(maxLength: 100, nullable: false),
+                    ContactNumber = table.Column<string>(maxLength: 100, nullable: false),
+                    AgreementStart = table.Column<DateTime>(type: "Date", nullable: true),
+                    NumberOfUser = table.Column<int>(nullable: true),
+                    IsLocked = table.Column<bool>(nullable: true, defaultValue: false),
+                    Note = table.Column<string>(maxLength: 500, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BranchInfos", x => x.BranchId);
+                    table.ForeignKey(
+                        name: "FK_BranchInfos_RecordStatus_RecordStatusId",
+                        column: x => x.RecordStatusId,
+                        principalTable: "RecordStatus",
+                        principalColumn: "RecordStatusId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProfBasicInfos",
                 columns: table => new
                 {
@@ -581,6 +613,7 @@ namespace Architecture.Core.Migrations
                     ModifiedBy = table.Column<Guid>(nullable: true),
                     Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
                     RecordStatusId = table.Column<int>(nullable: true),
+                    RefId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     SurName = table.Column<string>(maxLength: 100, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "Date", nullable: false),
@@ -606,9 +639,11 @@ namespace Architecture.Core.Migrations
                     OccupationPositionId = table.Column<int>(nullable: true),
                     HasUnEmployedCertificate = table.Column<bool>(nullable: false, defaultValue: false),
                     UnEmployedCertificateIssuesDate = table.Column<DateTime>(type: "Date", nullable: true),
-                    HasAnyUnEmployedFacility = table.Column<bool>(nullable: false, defaultValue: false),
+                    HasAnyUnEmployedFacility = table.Column<bool>(nullable: true, defaultValue: false),
                     ContractTypeId = table.Column<int>(nullable: true),
                     YearlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    IsPregnant = table.Column<bool>(nullable: false, defaultValue: false),
+                    ExpectedBabyBirthDate = table.Column<DateTime>(type: "Date", nullable: true),
                     IsRentHouse = table.Column<bool>(nullable: false, defaultValue: false),
                     HowManyHouseRent = table.Column<int>(nullable: true),
                     IsHouseOwner = table.Column<bool>(nullable: false, defaultValue: false),
@@ -617,9 +652,9 @@ namespace Architecture.Core.Migrations
                     HasVehicle = table.Column<bool>(nullable: false, defaultValue: false),
                     CarSerialNumber = table.Column<string>(maxLength: 100, nullable: true),
                     CarNumberPlate = table.Column<string>(maxLength: 100, nullable: true),
-                    HasVehicleInsurance = table.Column<bool>(nullable: false, defaultValue: false),
+                    HasVehicleInsurance = table.Column<bool>(nullable: true, defaultValue: false),
                     IsCompanyOwner = table.Column<bool>(nullable: false, defaultValue: false),
-                    HasWorker = table.Column<bool>(nullable: false, defaultValue: false),
+                    HasWorker = table.Column<bool>(nullable: true, defaultValue: false),
                     DigitalVatCode = table.Column<string>(maxLength: 100, nullable: true),
                     HasAppliedForCitizenship = table.Column<bool>(nullable: false, defaultValue: false),
                     BranchId = table.Column<int>(nullable: true)
@@ -783,6 +818,7 @@ namespace Architecture.Core.Migrations
                     AddressTypeId = table.Column<int>(nullable: true),
                     RoadName = table.Column<string>(maxLength: 100, nullable: false),
                     RoadNo = table.Column<string>(maxLength: 100, nullable: false),
+                    BuildingNo = table.Column<string>(maxLength: 100, nullable: false),
                     FloorNo = table.Column<string>(maxLength: 100, nullable: true),
                     AppartmentNo = table.Column<string>(maxLength: 100, nullable: true),
                     PostalCode = table.Column<string>(maxLength: 100, nullable: false),
@@ -832,13 +868,13 @@ namespace Architecture.Core.Migrations
                     NumberOfAsset = table.Column<int>(nullable: false),
                     EquivalentMoneyMax = table.Column<int>(nullable: false),
                     EquivalentMoneyMin = table.Column<int>(nullable: false),
-                    MoneyAverage = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    MoneyAverage = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     OwnerTypeId = table.Column<int>(nullable: false),
-                    OwnershipPercentage = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    OwnershipPercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     OwnerFromDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    RentAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    TaxAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    UseAblePercentage = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    TaxAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    UseAblePercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     AnyRestrictionByGovt = table.Column<string>(maxLength: 100, nullable: true),
                     CityName = table.Column<string>(maxLength: 100, nullable: true),
                     Note = table.Column<string>(nullable: true)
@@ -1139,8 +1175,8 @@ namespace Architecture.Core.Migrations
                     HouseTypeId = table.Column<int>(nullable: true),
                     StartDate = table.Column<DateTime>(type: "Date", nullable: true),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: true),
-                    MonthlyRentAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
-                    ServiceChargeAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    MonthlyRentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ServiceChargeAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     RegistrationInfo = table.Column<string>(maxLength: 100, nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "Date", nullable: true),
                     RegistrationOffice = table.Column<string>(maxLength: 100, nullable: true),
@@ -1148,7 +1184,7 @@ namespace Architecture.Core.Migrations
                     RegistrationNo = table.Column<string>(maxLength: 100, nullable: true),
                     RegistrationCity = table.Column<string>(maxLength: 100, nullable: true),
                     IsJoined = table.Column<bool>(nullable: true),
-                    SharePercent = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    SharePercent = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     FoglioNo = table.Column<string>(maxLength: 100, nullable: true),
                     PartiocellaNo = table.Column<string>(maxLength: 100, nullable: true),
                     SubNo = table.Column<string>(maxLength: 100, nullable: true),
@@ -1163,12 +1199,12 @@ namespace Architecture.Core.Migrations
                     HasLoan = table.Column<bool>(nullable: true),
                     LoanStatusTypeID = table.Column<int>(nullable: false),
                     LoanStartDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    LoanAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
-                    PaidAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    LoanAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     LoanInterestTypeId = table.Column<int>(nullable: false),
                     LoanPeriod = table.Column<int>(nullable: true),
                     IsRentByOwner = table.Column<bool>(nullable: false),
-                    RentAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false)
+                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1230,8 +1266,8 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     IncomeTypeId = table.Column<int>(nullable: true),
-                    YearlyIncome = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    MonthlyIncome = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    YearlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    MonthlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Year = table.Column<DateTime>(type: "date", nullable: false),
                     Month = table.Column<DateTime>(type: "date", nullable: false),
                     Document = table.Column<string>(maxLength: 100, nullable: true),
@@ -1274,7 +1310,7 @@ namespace Architecture.Core.Migrations
                     ProfileId = table.Column<int>(nullable: false),
                     InsuranceTypeId = table.Column<int>(nullable: true),
                     InsuranceTitle = table.Column<string>(maxLength: 100, nullable: false),
-                    InsuranceAmount = table.Column<decimal>(type: "decimal(8,2)", nullable: false, defaultValue: 0m),
+                    InsuranceAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     InsuranceReturnPercentage = table.Column<string>(maxLength: 100, nullable: true),
                     StartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: false)
@@ -1315,12 +1351,12 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     ISEEClassTypeId = table.Column<int>(nullable: true),
-                    ISEEValue = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    Point = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
-                    ISEEFamilyIncome = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    ISPAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
-                    ISEAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
-                    ISRAmount = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    ISEEValue = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Point = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ISEEFamilyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ISPAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ISEAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ISRAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     IdentificationNumber = table.Column<string>(maxLength: 100, nullable: false),
                     SubmittedDate = table.Column<DateTime>(type: "Date", nullable: false),
                     DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
@@ -1447,7 +1483,7 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     JobTypeId = table.Column<int>(nullable: true),
-                    JobHour = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    JobHour = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     ContractTypeId = table.Column<int>(nullable: true),
                     ContractStartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     ContractEndDate = table.Column<DateTime>(type: "Date", nullable: false),
@@ -1463,7 +1499,7 @@ namespace Architecture.Core.Migrations
                     SCIANo = table.Column<string>(maxLength: 100, nullable: true),
                     SCIACityName = table.Column<string>(maxLength: 100, nullable: true),
                     IsShareHolder = table.Column<bool>(nullable: true),
-                    PercentageOfShare = table.Column<decimal>(type: "decimal(3,2)", nullable: false),
+                    PercentageOfShare = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     NotaioInfo = table.Column<string>(maxLength: 100, nullable: true),
                     CompanyRepresentative = table.Column<string>(maxLength: 100, nullable: true)
                 },
@@ -1513,7 +1549,7 @@ namespace Architecture.Core.Migrations
                     SurName = table.Column<string>(maxLength: 100, nullable: false),
                     TaxCode = table.Column<string>(maxLength: 100, nullable: false),
                     ContractNumber = table.Column<string>(maxLength: 100, nullable: false),
-                    MonthlySalary = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    MonthlySalary = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: false),
                     Status = table.Column<string>(nullable: true)
@@ -1893,6 +1929,11 @@ namespace Architecture.Core.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BranchInfos_RecordStatusId",
+                table: "BranchInfos",
+                column: "RecordStatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProfAddressInfos_AddressTypeId",
                 table: "ProfAddressInfos",
                 column: "AddressTypeId");
@@ -2224,6 +2265,9 @@ namespace Architecture.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "BranchInfos");
 
             migrationBuilder.DropTable(
                 name: "Examples");

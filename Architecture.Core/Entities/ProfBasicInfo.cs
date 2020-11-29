@@ -11,7 +11,7 @@ namespace Architecture.Core.Entities
    public class ProfBasicInfo: Auditable
     {
         public int ProfileId { get; set; }
-        public Guid RefId { get; set; }
+        public Guid? RefId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime DateOfBirth { get; set; }

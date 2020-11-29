@@ -35,6 +35,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ProfDocumentInfo> ProfDocumentInfos { get; set; }
         public DbSet<ProfEducationInfo> ProfEducationInfos { get; set; }
         public DbSet<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
+        public DbSet<BranchInfo> BranchInfos { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
