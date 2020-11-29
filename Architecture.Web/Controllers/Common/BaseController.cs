@@ -60,7 +60,7 @@ namespace Architecture.Web.Controllers.Common
 
         public IActionResult ExceptionResult(Exception ex)
         {
-            //ex.ToWriteLog();
+            ex.ToWriteLog();
 
             var apiResult = new ApiResponse
             {

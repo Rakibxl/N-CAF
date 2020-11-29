@@ -1,8 +1,6 @@
 import { Component, ComponentRef, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PDFModifyService } from './services/pdfmodify.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 declare var $: any;
 
 @Component({

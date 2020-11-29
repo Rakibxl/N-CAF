@@ -35,7 +35,7 @@ export class LandingPageComponent implements OnInit {
         this.regOpen = this.regOpen === 'out' ? 'in' : 'out';
     }
 
-    closePanel() {
+    closePanel(event:any) {
         this.openResetPass = "out";
         this.openLogin = 'out';
         this.regOpen = 'out';

@@ -12,6 +12,8 @@ export class AnalyticsComponent implements OnInit {
   icon = 'pe-7s-plane icon-gradient bg-tempting-azure';
 
   ngOnInit() {
-  }
+    }
+
+    public lineChartColors = 'red';
 
 }

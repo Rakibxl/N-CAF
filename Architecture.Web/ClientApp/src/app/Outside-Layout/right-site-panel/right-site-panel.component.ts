@@ -6,11 +6,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls:['./right-site-panel-host.scss']
 })
 export class RightSitePanelComponent implements OnInit {
+    @Output() closePanel: EventEmitter<any> = new EventEmitter<any>()||null;
 
   constructor() { }
 
 
-  @Output() closePanel:EventEmitter<any> = new EventEmitter<any>();
 
   closeFnPanel(status) {
     this.closePanel.emit(status);

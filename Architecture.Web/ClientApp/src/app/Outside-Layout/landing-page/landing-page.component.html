@@ -20,11 +20,11 @@
 
 <div class="container-fluid">
     <div class="main-container">
-        <app-right-site-panel [@animationRightToggle]="regOpen" (closePanel)="closePanel($event)">
+        <app-right-site-panel  (closePanel)="closePanel($event)">
             <app-user-registration (OnClickChange)="fnOnClickRegComponent($event)"></app-user-registration>
         </app-right-site-panel>
 
-        <app-right-site-panel [@animationRightToggle]="openLogin" (closePanel)="closePanel($event)">
+        <app-right-site-panel  (closePanel)="closePanel($event)">
             <app-user-login  (OnClickChange)="fnOnClickLoginComponent($event)"></app-user-login>
         </app-right-site-panel>
 
