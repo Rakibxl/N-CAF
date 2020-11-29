@@ -19,7 +19,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             branchInfo.Property(bs => bs.ContactPerson).HasMaxLength(100).IsRequired();
             branchInfo.Property(bs => bs.ContactNumber).HasMaxLength(100).IsRequired();
             branchInfo.Property(bs => bs.AgreementStart).HasColumnType("Date");
-            branchInfo.Property(bs => bs.NumberOfUser).HasDefaultValue(false);
+            //branchInfo.Property(bs => bs.NumberOfUser).HasDefaultValue(false);
             branchInfo.Property(bs => bs.IsLocked).HasDefaultValue(false);
             branchInfo.Property(bs => bs.Note).HasMaxLength(500);
             branchInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

@@ -10,6 +10,7 @@ namespace Architecture.Core.Entities
 {
     public class BranchInfo: Auditable
     {
+        [Key]
         public int BranchId { get; set; }
         public string BranchLocation { get; set; }
         public string Address { get; set; }
