@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profIncomeInfo } from '../../../Shared/Entity/ClientProfile/profIncomeInfo';
 import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income-info.service';
@@ -11,9 +11,14 @@ import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income
 })
 export class IncomeInformationComponent implements OnInit {
 
-   constructor(private router: Router, private incomeService: IncomeInfoService) { }
-
+    constructor(private router: Router, private incomeService: IncomeInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getIncomeInfos();
   }
 
@@ -26,19 +31,18 @@ export class IncomeInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
-            this.router.navigate(['/client-profile/income-info/0']);
+            debugger;            
+            this.router.navigate([`/client-profile/income-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/income-info/0']);
+            this.router.navigate([`/client-profile/income-info/${this.profileId}/${event.record.incomeInfoId}`]);
         }
     }
 
     public getIncomeInfos() {
         debugger;
-        let profileId = 2;
-        this.incomeService.getIncomeInfo(profileId).subscribe(
+        this.incomeService.getIncomeInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get income: ", success);
                 this.incomeInfoList = success.data;

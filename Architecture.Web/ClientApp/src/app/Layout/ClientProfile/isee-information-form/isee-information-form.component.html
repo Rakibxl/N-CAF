@@ -16,22 +16,22 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IseeClass*</label>
-                            <select id="" class="form-control" name="ISEEClassTypeId" #ISEEClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.ISEEClassTypeId">
+                            <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId">
                                 <option value="1">Low</option>
                                 <option value="2">Middle</option>
                                 <option value="3">High</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISEEClassTypeId.valid || ISEEClassTypeId.pristine" class="text-danger">IseeClass is required.</p>
+                            <p [hidden]="iseeClassTypeId.valid || iseeClassTypeId.pristine" class="text-danger">IseeClass is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IseeValue*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeValue" name="ISEEValue" #ISEEValue="ngModel" [(ngModel)]="iseeInfoForm.ISEEValue"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeValue" name="iseeValue" #iseeValue="ngModel" [(ngModel)]="iseeInfoForm.iseeValue"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISEEValue.valid || ISEEValue.pristine" class="text-danger">IseeValue is required.</p>
+                            <p [hidden]="iseeValue.valid || iseeValue.pristine" class="text-danger">IseeValue is required.</p>
                         </div>
                     </div>
 
@@ -48,40 +48,40 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IseeFamilyIncome*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeFamilyIncome" name="ISEEFamilyIncome" #ISEEFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.ISEEFamilyIncome"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeFamilyIncome" name="iseeFamilyIncome" #iseeFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.iseeFamilyIncome"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISEEFamilyIncome.valid || ISEEFamilyIncome.pristine" class="text-danger">IseeFamilyIncome is required.</p>
+                            <p [hidden]="iseeFamilyIncome.valid || iseeFamilyIncome.pristine" class="text-danger">IseeFamilyIncome is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ISPAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISPAmount" name="ISPAmount" #ISPAmount="ngModel" [(ngModel)]="iseeInfoForm.ISPAmount"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISPAmount" name="ispAmount" #ispAmount="ngModel" [(ngModel)]="iseeInfoForm.ispAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISPAmount.valid || ISPAmount.pristine" class="text-danger">ISPAmount is required.</p>
+                            <p [hidden]="ispAmount.valid || ispAmount.pristine" class="text-danger">ISPAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ISEAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISEAmount" name="ISEAmount" #ISEAmount="ngModel" [(ngModel)]="iseeInfoForm.ISEAmount"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISEAmount" name="iseAmount" #iseAmount="ngModel" [(ngModel)]="iseeInfoForm.iseAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISEAmount.valid || ISEAmount.pristine" class="text-danger">ISEAmount is required.</p>
+                            <p [hidden]="iseAmount.valid || iseAmount.pristine" class="text-danger">ISEAmount is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ISRAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISRAmount" name="ISRAmount" #ISRAmount="ngModel" [(ngModel)]="iseeInfoForm.ISRAmount"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISRAmount" name="isrAmount" #isrAmount="ngModel" [(ngModel)]="iseeInfoForm.isrAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ISRAmount.valid || ISRAmount.pristine" class="text-danger">ISRAmount is required.</p>
+                            <p [hidden]="isrAmount.valid || isrAmount.pristine" class="text-danger">ISRAmount is required.</p>
                         </div>
                     </div>
 

@@ -7,7 +7,7 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
     public interface IOccupationInfoService
     {
         public Task<ProfOccupationInfo> AddOrUpdate(ProfOccupationInfo occupationInfo);
-        public Task<ProfOccupationInfo> GetById(int occupationInfoId);
+        public Task<ProfOccupationInfo> GetById(int profileId, int occupationInfoId);
         public Task<int> Delete(int occupationInfoId);
         public Task<IEnumerable<ProfOccupationInfo>> GetAll(int profileId);
     }

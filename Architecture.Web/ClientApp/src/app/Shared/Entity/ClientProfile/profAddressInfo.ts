@@ -8,6 +8,8 @@ export class profAddressInfo extends Auditable {
 
     //public int ? AddressTypeId { get; set; }
     //public virtual AddressType AddressType { get; set; }
+    public addressType: string;
+
     public addressTypeId: number;
 
     public roadName: string;

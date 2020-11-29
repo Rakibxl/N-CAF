@@ -21,4 +21,9 @@ export class BankInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/BankInfo/Profile/${profileId}`);
     }
+
+    public getBankById(profileId: number, bankInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/BankInfo/GetById/${profileId}/${bankInfoId}`);
+    }
 }

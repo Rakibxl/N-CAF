@@ -44,9 +44,9 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             return result;
         }
 
-        public async Task<ProfOccupationInfo> GetById(int occupationInfoId)
+        public async Task<ProfOccupationInfo> GetById(int profileId, int occupationInfoId)
         {
-            var checkVal =await IsExistsAsync(x=>x.OccupationInfoId == occupationInfoId);
+            var checkVal =await IsExistsAsync(x=>x.OccupationInfoId == occupationInfoId && x.ProfileId == profileId);
             if (checkVal)
             {
                 ProfOccupationInfo result = await GetByIdAsync(occupationInfoId);

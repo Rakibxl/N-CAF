@@ -8,6 +8,7 @@ export class profAssetInfo extends Auditable {
     
     public  assetTypeId : number
     //public virtual AssetType AssetType { get; set; }
+    public assetType: string
 
     public numberOfAsset: number
 

@@ -21,4 +21,9 @@ export class ISEEInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/ISEEInfo/Profile/${profileId}`);
     }
+
+    public getIseeById(profileId: number, iseeInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/IseeInfo/GetById/${profileId}/${iseeInfoId}`);
+    }
 }

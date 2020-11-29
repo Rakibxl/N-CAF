@@ -20,12 +20,16 @@ export class EducationalInformationFormComponent implements OnInit {
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.educationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
         console.log("this.profileId:", this.profileId, "this.educationInfoId", this.educationInfoId);
+        if (this.profileId != 0 && this.educationInfoId != 0) {
+            this.getEducation()
+        }
   }
 
     public onSubmit() {
         console.table(this.educationInfoForm);
-        this.educationInfoForm.profileId = 2;
+        this.educationInfoForm.profileId = this.profileId;
 
 
         this.educationInfoService.saveEducationInfo(this.educationInfoForm).subscribe(
@@ -41,8 +45,8 @@ export class EducationalInformationFormComponent implements OnInit {
     }
 
     public getEducation() {
-
-        this.educationInfoService.getEducaitonById(this.profileId, this.educationInfoId).subscribe(
+        debugger;
+        this.educationInfoService.getEducationById(this.profileId, this.educationInfoId).subscribe(
             (success: APIResponse) => {
                 this.educationInfoForm = success.data
             },

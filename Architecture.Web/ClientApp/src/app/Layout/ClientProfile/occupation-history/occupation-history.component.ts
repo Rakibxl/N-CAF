@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profOccupationInfo } from '../../../Shared/Entity/ClientProfile/profOccupationInfo';
 import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/occupation-info.service';
@@ -11,9 +11,15 @@ import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/oc
 })
 export class OccupationHistoryComponent implements OnInit {
 
-    constructor(private router: Router, private occupationService: OccupationInfoService) { }
+    constructor(private router: Router, private occupationService: OccupationInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
 
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getOccupationInfos();
     }
 
@@ -30,22 +36,21 @@ export class OccupationHistoryComponent implements OnInit {
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/occupation/0']);
+            //this.router.navigate(['/client-profile/occupation/0']);
+            this.router.navigate([`/client-profile/occupation/${this.profileId}/${event.record.occupationInfoId}`]);
         }
     }
 
 
     public getOccupationInfos() {
         debugger;
-        let profileId = 2;
-        this.occupationService.getOccupationInfo(profileId).subscribe(
+        this.occupationService.getOccupationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get occupation: ", success);
                 this.occupationInfoList = success.data;
             },
             error => {
             });
-
     }
 
     public ptableSettings: IPTableSetting = {
@@ -53,8 +58,7 @@ export class OccupationHistoryComponent implements OnInit {
         tableName: 'Occupation List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Occupation Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'Job Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Job Type', width: '20%', internalName: 'jobType', sort: true, type: "" },
             { headerName: 'JobHour', width: '10%', internalName: 'jobHour', sort: true, type: "" },
             { headerName: 'ContractType', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
             { headerName: 'Contract StartDate', width: '15%', internalName: 'contractStartDate', sort: true, type: "" },

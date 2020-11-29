@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profBankInfo } from '../../../Shared/Entity/ClientProfile/profBankInfo';
 import { BankInfoService } from '../../../Shared/Services/ClientProfile/bank-info.service';
@@ -11,14 +11,16 @@ import { BankInfoService } from '../../../Shared/Services/ClientProfile/bank-inf
 })
 export class BankInformationComponent implements OnInit {
 
-    constructor(private router: Router, private bankService: BankInfoService) { }
-
+    constructor(private router: Router, private bankService: BankInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getBankInfos();
     }
-
-
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -29,18 +31,17 @@ export class BankInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/bank-info/0']);
+            this.router.navigate([`/client-profile/bank-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/bank-info/0']);
+            this.router.navigate([`/client-profile/bank-info/${this.profileId}/${event.record.bankInfoId}`]);
         }
     }
 
     public getBankInfos() {
         debugger;
-        let profileId = 2;
-        this.bankService.getBankInfo(profileId).subscribe(
+        this.bankService.getBankInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get bank: ", success);
                 this.bankInfoList = success.data;
@@ -49,7 +50,6 @@ export class BankInformationComponent implements OnInit {
             });
 
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",

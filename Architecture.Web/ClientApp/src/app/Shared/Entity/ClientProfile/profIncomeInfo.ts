@@ -9,6 +9,8 @@ export class profIncomeInfo extends Auditable {
         //public int? IncomeTypeId { get; set; }
         //public virtual IncomeType IncomeType { get; set; }
 
+    public incomeType: string;
+
     public incomeTypeId: number;
 
     public yearlyIncome: number;

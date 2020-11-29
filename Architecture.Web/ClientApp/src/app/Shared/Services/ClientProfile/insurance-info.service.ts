@@ -21,4 +21,9 @@ export class InsuranceInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/InsuranceInfo/Profile/${profileId}`);
     }
+
+    public getInsuranceById(profileId: number, insuranceInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/InsuranceInfo/GetById/${profileId}/${insuranceInfoId}`);
+    }
 }

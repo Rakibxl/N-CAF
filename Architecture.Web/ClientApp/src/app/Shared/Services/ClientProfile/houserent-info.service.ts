@@ -21,4 +21,9 @@ export class HouseRentInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/HouseRentInfo/Profile/${profileId}`);
     }
+
+    public getHouseRentById(profileId: number, houserentInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/HouseRentInfo/GetById/${profileId}/${houserentInfoId}`);
+    }
 }

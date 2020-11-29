@@ -7,7 +7,7 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
     public interface IISEEInfoService
     {
         public Task<ProfISEEInfo> AddOrUpdate(ProfISEEInfo iseeInfo);
-        public Task<ProfISEEInfo> GetById(int iseeInfoId);
+        public Task<ProfISEEInfo> GetById(int profileId, int iseeInfoId);
         public Task<int> Delete(int iseeInfoId);
         public Task<IEnumerable<ProfISEEInfo>> GetAll(int profileId);
     }

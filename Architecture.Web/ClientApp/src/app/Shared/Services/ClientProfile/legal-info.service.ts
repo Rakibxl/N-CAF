@@ -21,4 +21,9 @@ export class LegalInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/LegalInfo/Profile/${profileId}`);
     }
+
+    public getLegalById(profileId: number, legalInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/LegalInfo/GetById/${profileId}/${legalInfoId}`);
+    }
 }

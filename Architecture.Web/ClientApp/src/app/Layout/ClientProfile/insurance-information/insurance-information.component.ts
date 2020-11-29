@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profInsuranceInfo } from '../../../Shared/Entity/ClientProfile/profInsuranceInfo';
 import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/insurance-info.service';
@@ -11,9 +11,14 @@ import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/ins
 })
 export class InsuranceInformationComponent implements OnInit {
 
-    constructor(private router: Router, private insuranceService: InsuranceInfoService) { }
-
+    constructor(private router: Router, private insuranceService: InsuranceInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getInsuranceInfos();
     }
 
@@ -26,18 +31,17 @@ export class InsuranceInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/insurance-info/0']);
+            this.router.navigate([`/client-profile/insurance-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/insurance-info/0']);
+            this.router.navigate([`/client-profile/insurance-info/${this.profileId}/${event.record.insuranceInfoId}`]);
         }
     }
 
     public getInsuranceInfos() {
         debugger;
-        let profileId = 2;
-        this.insuranceService.getInsuranceInfo(profileId).subscribe(
+        this.insuranceService.getInsuranceInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get insurance: ", success);
                 this.insuranceInfoList = success.data;

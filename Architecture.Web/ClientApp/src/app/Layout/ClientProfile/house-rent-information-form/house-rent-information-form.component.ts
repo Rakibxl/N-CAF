@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { profHouseRentInfo } from '../../../Shared/Entity/ClientProfile/profHouseRentInfo';
 import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/houserent-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+
 
 @Component({
   selector: 'app-house-rent-information-form',
@@ -12,15 +14,24 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 export class HouseRentInformationFormComponent implements OnInit {
     public houseRentInfoForm = new profHouseRentInfo();
 
-    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private router: Router) { }
+    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    private profileId: number;
+    private houseRentInfoId: number;
 
-  ngOnInit() {
+    ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        this.houseRentInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
+        console.log("this.profileId:", this.profileId, "this.houserentInfoId", this.houseRentInfoId);
+        if (this.profileId != 0 && this.houseRentInfoId != 0) {
+            this.getHouseRent()
+        }
     }
 
     public onSubmit() {
         debugger;
         console.table(this.houseRentInfoForm);
-        this.houseRentInfoForm.profileId = 2;
+        this.houseRentInfoForm.profileId = this.profileId;
 
 
         this.houseRentInfoService.saveHouseRentInfo(this.houseRentInfoForm).subscribe(
@@ -35,8 +46,22 @@ export class HouseRentInformationFormComponent implements OnInit {
 
     }
 
+    public getHouseRent() {
+        debugger;
+        this.houseRentInfoService.getHouseRentById(this.profileId, this.houseRentInfoId).subscribe(
+            (success: APIResponse) => {
+                this.houseRentInfoForm = success.data
+            },
+            (error: any) => {
+                this.alertService.tosterWarning(error.message);
+                console.log("error", error);
+            });
+
+    }
+
     public fnBackToList() {
-        this.router.navigate(['/client-profile/houseRent']);
+        this.router.navigate([`/client-profile/house-rent/${this.profileId}`]);
+        return false;
     }
 
 }

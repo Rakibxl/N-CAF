@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profWorkerInfo } from '../../../Shared/Entity/ClientProfile/profWorkerInfo';
 import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker-info.service';
@@ -11,12 +11,16 @@ import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker
 })
 export class WorkerInformationComponent implements OnInit {
 
-    constructor(private router: Router, private workerService: WorkerInfoService) { }
-
+    constructor(private router: Router, private workerService: WorkerInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getWorkerInfos();
     }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -27,18 +31,17 @@ export class WorkerInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/worker-info/0']);
+            this.router.navigate([`/client-profile/worker-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/worker-info/0']);
+            this.router.navigate([`/client-profile/worker-info/${this.profileId}/${event.record.workerInfoId}`]);
         }
     }
 
     public getWorkerInfos() {
         debugger;
-        let profileId = 2;
-        this.workerService.getWorkerInfo(profileId).subscribe(
+        this.workerService.getWorkerInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get worker: ", success);
                 this.workerInfoList = success.data;

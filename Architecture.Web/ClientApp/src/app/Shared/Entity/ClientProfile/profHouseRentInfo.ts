@@ -12,9 +12,13 @@ export class profHouseRentInfo extends Auditable {
     //    public virtual ContractType ContractType { get; set; }
 
     //    public int ? HouseTypeId { get; set; }
-    //    public virtual HouseType HouseType { get; set; } 
+    //    public virtual HouseType HouseType { get; set; }
+
+    public contractType: string;
 
     public contractTypeId: number;
+
+    public houseType: string;
 
     public houseTypeId: number;
   

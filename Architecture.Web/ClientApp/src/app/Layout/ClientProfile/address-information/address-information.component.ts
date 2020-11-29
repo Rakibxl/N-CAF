@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profAddressInfo } from '../../../Shared/Entity/ClientProfile/profAddressInfo';
 import { AddressInfoService } from '../../../Shared/Services/ClientProfile/address-info.service';
@@ -11,9 +11,14 @@ import { AddressInfoService } from '../../../Shared/Services/ClientProfile/addre
 })
 export class AddressInformationComponent implements OnInit {
 
-    constructor(private router: Router, private addressService: AddressInfoService) { }
-
+    constructor(private router: Router, private addressService: AddressInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getAddressInfos();
     }
 
@@ -26,18 +31,16 @@ export class AddressInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/address/0']);
-            debugger
+            this.router.navigate([`/client-profile/address/${this.profileId}/0`]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/address/0']);
+            this.router.navigate([`/client-profile/address/${this.profileId}/${event.record.addressInfoId}`]);
         }
     }
 
     public getAddressInfos() {
         debugger;
-        let profileId = 2;
-        this.addressService.getAddressInfo(profileId).subscribe(
+        this.addressService.getAddressInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get address: ", success);
                 this.addressInfoList = success.data;
@@ -53,6 +56,8 @@ export class AddressInformationComponent implements OnInit {
         tableName: 'Address List',
         tableRowIDInternalName: "addressinfoid",
         tableColDef: [
+
+            { headerName: 'Address Type', width: '10%', internalName: 'addressType', sort: true, type: "" },
             { headerName: 'Road Name ', width: '10%', internalName: 'roadName', sort: true, type: "" },
             { headerName: 'Road Number ', width: '15%', internalName: 'roadNo', sort: true, type: "" },
             { headerName: 'Building Number', width: '15%', internalName: 'buildingNo', sort: true, type: "" },
