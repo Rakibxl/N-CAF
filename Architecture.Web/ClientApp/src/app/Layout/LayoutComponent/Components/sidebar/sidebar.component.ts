@@ -2,10 +2,11 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ThemeOptions } from '../../../../theme-options';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // import { MenuService } from 'src/app/Shared/Services/Menu-Details/menu.service';
 // import { Menu } from 'src/app/Shared/Entity/Menu/menu.model';
 import { environment } from 'src/environments/environment';
+import { ClientProfileService } from '../../../../Shared/Services/ClientProfile/client-profile.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,7 @@ export class SidebarComponent implements OnInit {
   public extraParameter: any;
   menuList: any[] = [];
 
-  constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute
+  constructor(public globals: ThemeOptions, private router: Router, private activatedRoute: ActivatedRoute, private clientProfileService: ClientProfileService
     // private menuService: MenuService 
   ) {
 
@@ -41,6 +42,8 @@ export class SidebarComponent implements OnInit {
     this.prod = !environment.production;
     // debugger;
     this.profileId = +this.activatedRoute.snapshot.paramMap.get("profId") || 0;
+    // this.profileId = this.clientProfileService.profileId;
+
     setTimeout(() => {
 
       this.innerWidth = window.innerWidth;
@@ -53,6 +56,14 @@ export class SidebarComponent implements OnInit {
 
     // this.getMenus();
 
+  }
+
+  onMenuClick(route) {
+    if (this.clientProfileService.profileId) {
+      this.router.navigate([`${route}${this.clientProfileService.profileId}`]);
+    } else {
+      this.router.navigate([`/client-profile/client-list`]);
+    }
   }
 
   // getMenus() { 

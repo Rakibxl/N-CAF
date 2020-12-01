@@ -9,10 +9,16 @@ import { APIResponse } from '../../Entity/Response/api-response';
 export class ClientProfileService {
   public baseUrl: string;
   public basicInfoEndpoint: string;
+  profileId: number = 0;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl + 'api/';
     this.basicInfoEndpoint = this.baseUrl + 'v1/BasicInfo';
+  }
+
+  getBasicInfoList() {
+    let url = this.basicInfoEndpoint + "/GetBasicInfos";
+    return this.http.get<APIResponse>(`${url}`);
   }
 
   getBasicInfo(profileId) {

@@ -18,12 +18,14 @@ export class BasicInformationComponent implements OnInit {
   user: IAuthUser;
   profileId: any;
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
-        private alertService: AlertService, private router: Router, private commonService: CommonService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
+    private alertService: AlertService, private router: Router, private commonService: CommonService) {
     this.authService.currentUser.subscribe(user => this.user = user);
-      this.initForm();
-      //this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
-        this.profileId = this.route.snapshot.queryParamMap.get("profId")||0;
+    this.initForm();
+    this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
+    this.profileId = parseInt(this.profileId);
+    this.clientProfileService.profileId = this.profileId;
+    //this.profileId = this.route.snapshot.queryParamMap.get("profId") || 0;
   }
 
   ngOnInit() {
@@ -58,26 +60,26 @@ export class BasicInformationComponent implements OnInit {
       stateOfResidence: [null],
       occupationTypeId: [null],
       occupationPositionId: [null],
-      hasUnEmployedCertificate: [null, Validators.required],
+      hasUnEmployedCertificate: [false, Validators.required],
       unEmployedCertificateIssuesDate: [null],
       hasAnyUnEmployedFacility: [null],
       contractTypeId: [null],
       yearlyIncome: [null, Validators.required],
-      isRentHouse: [null, Validators.required],
+      isRentHouse: [false, Validators.required],
       howManyHouseRent: [null],
-      isHouseOwner: [null, Validators.required],
+      isHouseOwner: [false, Validators.required],
       houseCountryName: [null],
       houseCityName: [null],
-      hasVehicle: [null, Validators.required],
+      hasVehicle: [false, Validators.required],
       carSerialNumber: [null],
       carNumberPlate: [null],
       hasVehicleInsurance: [null],
-      isCompanyOwner: [null, Validators.required],
+      isCompanyOwner: [false, Validators.required],
       hasWorker: [null],
       digitalVatCode: [null],
-      hasAppliedForCitizenship: [null, Validators.required],
+      hasAppliedForCitizenship: [false, Validators.required],
       requestTypeOfApplicant: [null],
-      isPregnant: [null, Validators.required],
+      isPregnant: [false, Validators.required],
       expectedBabyBirthDate: [null],
       applicationFor: [null],
       branchId: [null],
@@ -87,9 +89,15 @@ export class BasicInformationComponent implements OnInit {
     });
   }
 
+  backBtnClick() {
+    this.router.navigate(["/client-profile/client-list"]);
+  }
+
   loadBasicInfo() {
+    if (!(this.profileId > 0)) {
+      return;
+    }
     this.clientProfileService.getBasicInfo(this.profileId).subscribe(res => {
-      console.log(res)
       if (res && res.data.profileId) {
         res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
         res.data.taxCodeStartDate = this.commonService.getDateToSetForm(res.data.taxCodeStartDate);
@@ -133,6 +141,9 @@ export class BasicInformationComponent implements OnInit {
       if (res && res.data && res.data.profileId) {
         this.alertService.tosterSuccess('Basic Info saved successfully');
         this.basicInfoForm.patchValue({ profileId: res.data.profileId });
+        setTimeout(() => {
+          this.router.navigate([`/client-profile/client-list`]);
+        }, 200);
       }
     }, (error: any) => {
       console.log(error);

@@ -31,10 +31,10 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         }
 
-        public async Task<IEnumerable<ProfBasicInfo>> GetAll(int profileId)
+        public async Task<IEnumerable<ProfBasicInfo>> GetAll()
         {
             IEnumerable<ProfBasicInfo> result;
-            result = await GetAsync(x => x, x => x.ProfileId == profileId);
+            result = await GetAsync(x => x);
             return result;
         }
 

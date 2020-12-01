@@ -34,24 +34,38 @@ namespace Architecture.Web.Controllers.BasicInfo
             //_userManager = userManager;
         }
 
+        [HttpGet("GetBasicInfos")]
+        public async Task<IActionResult> GetBasicInfos()
+        {
+            try
+            {
+                var result = await _basicInfoService.GetAll();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("GetBasicInfo")]
         public async Task<IActionResult> GetBasicInfo(int profileId)
         {
             try
             {
                 var result = new ProfBasicInfo();
-                var appUserTypeId = User.FindFirst("AppUserTypeId")?.Value;
-                if (appUserTypeId != null && int.Parse(appUserTypeId) == 1)
-                {
-                    //var user = await _userManager.GetUserAsync(User);
-                    var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
-                    result = await _basicInfoService.GetByRefId(UserId);
-                }
-                else
-                {
-                    result = await _basicInfoService.GetById(profileId);
-                }
+                //var appUserTypeId = User.FindFirst("AppUserTypeId")?.Value;
+                //if (appUserTypeId != null && int.Parse(appUserTypeId) == 1)
+                //{
+                //    //var user = await _userManager.GetUserAsync(User);
+                //    var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                //    var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
+                //    result = await _basicInfoService.GetByRefId(UserId);
+                //}
+                //else
+                //{
+                result = await _basicInfoService.GetById(profileId);
+                //}
                 return OkResult(result);
             }
             catch (Exception ex)

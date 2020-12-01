@@ -31,6 +31,7 @@ import { AssetInformationFormComponent } from './asset-information-form/asset-in
 import { DeligationInformationFormComponent } from './deligation-information-form/deligation-information-form.component';
 import { IseeInformationFormComponent } from './isee-information-form/isee-information-form.component';
 import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
+import { ClientListComponent } from './client-list/client-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -40,7 +41,8 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'basic-info' },
+            { path: '', redirectTo: 'basic-info', pathMatch: 'full' },
+            { path: 'client-list', component: ClientListComponent, data: { extraParameter: 'analytics' } },
             { path: 'basic-info/:profId', component: BasicInformationComponent, data: { extraParameter: 'analytics' } },
             { path: 'occupation/:profId', component: OccupationHistoryComponent, data: { extraParameter: 'analytics' } },
             { path: 'occupation/:profId/:id', component: OccupationHistoryFormComponent, data: { extraParameter: 'analytics' } },
@@ -73,7 +75,6 @@ const routes: Routes = [
             { path: 'isee-info/:profId/:id', component: IseeInformationFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'document-info/:profId', component: DocumentInformationComponent, data: { extraParameter: 'analytics' } },
             { path: 'document-info/:profId/:id', component: DocumentInformationFormComponent, data: { extraParameter: 'analytics' } }
-
         ]
     }
 ];
