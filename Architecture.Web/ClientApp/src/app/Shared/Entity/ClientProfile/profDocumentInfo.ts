@@ -9,13 +9,17 @@ export class profDocumentInfo extends Auditable {
     //public int ? DocumentTypeId { get; set; }
     //public virtual DocumentType DocumentType { get; set; }
 
-    public PurposeofDocument: string;
+    public documentTypeId: number;
 
-    public IssuedBy: string
+    public documentName: string;
 
-    public IssueDate: Date;
+    public purposeofDocument: string;
 
-    public ExpiryDate: Date;
+    public issuedBy: string
+
+    public issuedDate: Date;
+
+    public expiryDate: Date;
 
 }
 

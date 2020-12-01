@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #documentInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
                         <h3><span class="bordered-title">Document Informations</span></h3>
-                        <button class="caf-btn-primary-outline h-auto back btn-sm">
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
                         </button>
@@ -15,60 +15,60 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DocumentType</label>
-                            <select name="" id="" class="form-control">
-                                <option value="1">Personal</option>
-                                <option value="2">Business</option>
+                            <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId">
+                                <option value="1">Passport</option>
+                                <option value="2">Driving License</option>
+                                <option value="3">National Id</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="documentTypeId.valid || documentTypeId.pristine" class="text-danger">Document type is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">DocumentName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter document name"
+                            <input type="text" autocomplete="off" class="form-control" name="documentName" #documentName="ngModel" [(ngModel)]="documentInfoForm.documentName" placeholder="Enter document name"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="documentName.valid || documentName.pristine" class="text-danger">DocumentName is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IssuesBy</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter issues by"
+                            <label class="label">Issued By</label>
+                            <input type="text" autocomplete="off" class="form-control" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="documentInfoForm.issuedBy" placeholder="Enter issues by"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="issuedBy.valid || issuedBy.pristine" class="text-danger">Issued by is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IssuedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" class="form-control" name="issuedDate" #issuedDate="ngModel" [(ngModel)]="documentInfoForm.issuedDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">IssuedDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ExpiryDate</label>
-                            <input type="date" autocomplete="off" class="form-control" />
+                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="documentInfoForm.expiryDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PurposeOfDocument</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter purpose of document"
+                            <input type="text" autocomplete="off" class="form-control" name="purposeofDocument" #purposeofDocument="ngModel" [(ngModel)]="documentInfoForm.purposeofDocument" placeholder="Enter purpose of document"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="purposeofDocument.valid || purposeofDocument.pristine" class="text-danger">PurposeOfDocument is required.</p>
                         </div>
                     </div>
 
@@ -76,11 +76,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2">
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit"  [disabled]="!documentInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
                         </div>
                     </div>
                 </div>

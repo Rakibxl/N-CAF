@@ -102,6 +102,7 @@ namespace Architecture.Web
             services.AddTransient<IAssetInfoService, AssetInfoService>();
             services.AddTransient<IDelegationInfoService, DelegationInfoService>();
             services.AddTransient<IISEEInfoService, ISEEInfoService>();
+            services.AddTransient<IDocumentInfoService, DocumentInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
             #endregion
