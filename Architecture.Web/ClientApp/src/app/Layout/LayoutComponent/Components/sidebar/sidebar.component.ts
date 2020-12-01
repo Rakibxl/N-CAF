@@ -15,18 +15,18 @@ export class SidebarComponent implements OnInit {
   public extraParameter: any;
   menuList: any[] = [];
 
-    constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute
+  constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute
     // private menuService: MenuService 
-    ) {
+  ) {
 
   }
 
   @select('config') public config$: Observable<any>;
 
   private newInnerWidth: number;
-    private innerWidth: number;
-    private profileId: number;
-    public educationInfoLink = "/client-profile/education";
+  private innerWidth: number;
+  private profileId: number;
+  public educationInfoLink = "/client-profile/education";
   activeId = 'dashboardsMenu';
   prod: any;
   toggleSidebar() {
@@ -38,9 +38,9 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.prod = !environment.production;
-      debugger;
-      this.profileId = +this.activatedRoute.snapshot.paramMap.get("profId") || 0;
+    this.prod = !environment.production;
+    // debugger;
+    this.profileId = +this.activatedRoute.snapshot.paramMap.get("profId") || 0;
     setTimeout(() => {
 
       this.innerWidth = window.innerWidth;
@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit {
     });
 
     this.extraParameter = this.activatedRoute.snapshot.firstChild.data.extraParameter || "";
-    
+
     // this.getMenus();
 
   }
