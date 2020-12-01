@@ -90,11 +90,13 @@ namespace Architecture.Web.Controllers.BasicInfo
                 if (model.ProfileId > 0)
                 {
                     model.ModifiedBy = UserId;
+                    model.Modified = DateTime.Now;
                 }
                 else
                 {
                     model.RefId = UserId;
                     model.CreatedBy = UserId;
+                    model.Created = DateTime.Now;
                 }
                 var result = await _basicInfoService.AddOrUpdate(model);
                 return OkResult(result);
