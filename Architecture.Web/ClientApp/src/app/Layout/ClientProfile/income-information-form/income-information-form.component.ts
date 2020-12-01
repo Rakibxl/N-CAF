@@ -18,7 +18,7 @@ export class IncomeInformationFormComponent implements OnInit {
     private incomeInfoId: number;
 
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.incomeInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 
         console.log("this.profileId:", this.profileId, "this.incomeInfoId", this.incomeInfoId);

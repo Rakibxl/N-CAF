@@ -51,6 +51,7 @@ export class HouseRentInformationFormComponent implements OnInit {
         this.houseRentInfoService.getHouseRentById(this.profileId, this.houseRentInfoId).subscribe(
             (success: APIResponse) => {
                 this.houseRentInfoForm = success.data
+  
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

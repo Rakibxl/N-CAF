@@ -35,7 +35,6 @@ namespace Architecture.Web.Controllers.ClientProfile
         }
 
         [HttpPost("CreateOrUpdate")]
-
         public async Task<IActionResult> CreateOrUpdate([FromBody] ProfFamilyInfo model)
         {            
             return await ModelValidation(async()=> {
@@ -50,6 +49,21 @@ namespace Architecture.Web.Controllers.ClientProfile
             try
             {
                 var result =await familyInfoService.GetAll(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+
+        [HttpGet("GetById/{profileId}/{familyInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int familyInfoId)
+        {
+            try
+            {
+                var result = await familyInfoService.GetById(profileId, familyInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

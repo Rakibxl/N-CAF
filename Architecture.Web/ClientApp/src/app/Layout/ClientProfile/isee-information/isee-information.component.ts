@@ -15,7 +15,7 @@ export class IseeInformationComponent implements OnInit {
     private profileId: number;
 
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         debugger;
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);

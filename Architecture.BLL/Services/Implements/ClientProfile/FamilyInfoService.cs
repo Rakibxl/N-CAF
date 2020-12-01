@@ -45,9 +45,9 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             return result;
         }
 
-        public async Task<ProfFamilyInfo> GetById(int familyInfoId)
+        public async Task<ProfFamilyInfo> GetById(int profileId, int familyInfoId)
         {
-            var checkVal =await IsExistsAsync(x=>x.FamilyInfoId== familyInfoId);
+            var checkVal =await IsExistsAsync(x=>x.FamilyInfoId== familyInfoId && x.ProfileId == profileId);
             if (checkVal)
             {
                 ProfFamilyInfo result = await GetByIdAsync(familyInfoId);

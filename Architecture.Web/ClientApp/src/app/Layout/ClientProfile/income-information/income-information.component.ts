@@ -14,7 +14,7 @@ export class IncomeInformationComponent implements OnInit {
     constructor(private router: Router, private incomeService: IncomeInfoService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         debugger;
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);

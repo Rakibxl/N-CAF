@@ -29,7 +29,7 @@ export class IseeInformationFormComponent implements OnInit {
     public onSubmit() {
         debugger;
         console.table(this.iseeInfoForm);
-        this.iseeInfoForm.profileId = 2;
+        this.iseeInfoForm.profileId = this.profileId;
 
 
         this.iseeInfoService.saveISEEInfo(this.iseeInfoForm).subscribe(

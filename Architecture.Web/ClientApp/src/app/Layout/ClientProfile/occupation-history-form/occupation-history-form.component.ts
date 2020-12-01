@@ -18,7 +18,7 @@ export class OccupationHistoryFormComponent implements OnInit {
     private profileId: number;
     private occupationInfoId: number;
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.occupationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 
         console.log("this.profileId:", this.profileId, "this.occupationInfoId", this.occupationInfoId);
