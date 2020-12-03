@@ -4,6 +4,7 @@ import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEduc
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class EducationalInformationFormComponent implements OnInit {
     public educationInfoForm = new profEducationInfo();
 
-    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private educationInfoService: EducationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private educationInfoId: number;
     ngOnInit() {
@@ -48,6 +49,8 @@ export class EducationalInformationFormComponent implements OnInit {
         debugger;
         this.educationInfoService.getEducationById(this.profileId, this.educationInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startYear = this.commonService.getDateToSetForm(success.data.startYear);
+                success.data.endYear = this.commonService.getDateToSetForm(success.data.endYear);
                 this.educationInfoForm = success.data
             },
             (error: any) => {

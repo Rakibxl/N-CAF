@@ -14,7 +14,7 @@ export class EducationalInformationComponent implements OnInit {
     constructor(private router: Router, private educationService: EducationInfoService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
         debugger;
         if (this.profileId==0) {
             this.router.navigate(['/dashboard/common']);

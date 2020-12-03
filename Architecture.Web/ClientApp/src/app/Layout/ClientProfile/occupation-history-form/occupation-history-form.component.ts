@@ -4,6 +4,7 @@ import { profOccupationInfo } from '../../../Shared/Entity/ClientProfile/profOcc
 import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/occupation-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class OccupationHistoryFormComponent implements OnInit {
     public occupationInfoForm = new profOccupationInfo();
 
-    constructor(private occupationInfoService: OccupationInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private occupationInfoService: OccupationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private occupationInfoId: number;
     ngOnInit() {
@@ -49,6 +50,8 @@ export class OccupationHistoryFormComponent implements OnInit {
         debugger;
         this.occupationInfoService.getOccupationById(this.profileId, this.occupationInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.contractStartDate = this.commonService.getDateToSetForm(success.data.contractStartDate);
+                success.data.contractEndDate = this.commonService.getDateToSetForm(success.data.contractEndDate);
                 this.occupationInfoForm = success.data
             },
             (error: any) => {

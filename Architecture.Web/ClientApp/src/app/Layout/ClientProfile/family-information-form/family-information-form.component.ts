@@ -4,6 +4,7 @@ import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyI
 import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-family-information-form',
@@ -12,7 +13,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 })
 export class FamilyInformationFormComponent implements OnInit {
     public familyInfoForm = new ProfFamilyInfo();
-    constructor(private familyInfoService: FamilyInfoService, private alertService: AlertService,private router: Router, private route: ActivatedRoute,) { }
+    constructor(private familyInfoService: FamilyInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute,) { }
     private profileId: number;
     private familyInfoId: number;
     ngOnInit() {
@@ -25,37 +26,10 @@ export class FamilyInformationFormComponent implements OnInit {
         }
     }
 
-    //public onSubmit() {
-    //    debugger;
-    //    console.table(this.familyInfoForm);
-    //    this.familyInfoForm.profileId = this.profileId;
-
-    //    //this.familyInfoService.getFamilyInfo(this.familyInfoForm.profileId).subscribe(
-    //    //    (success:any) => {
-    //    //        console.log("success");
-    //    //    },
-    //    //    (error: any) => {
-    //    //        console.log("error", error);
-    //    //    });
-
-    //    this.familyInfoService.saveFamilyInfo(this.familyInfoForm).subscribe(
-    //        (success: any) => {
-    //            console.log("success:", success);
-    //            this.alertService.tosterSuccess("Information saved successfully.");
-    //        },
-    //        (error: any) => {
-    //            this.alertService.tosterWarning(error.message);
-    //            console.log("error", error);
-    //        });
-
-
-    //}
 
     public onSubmit() {
         console.table(this.familyInfoForm);
         this.familyInfoForm.profileId = this.profileId;
-
-        //this.familyInfoForm.relationTypeId = this.familyInfoForm.relationTypeId ? parseInt(this.familyInfoForm.relationTypeId) : null;
 
         this.familyInfoService.saveFamilyInfo(this.familyInfoForm).subscribe(
             (success: any) => {
@@ -73,6 +47,11 @@ export class FamilyInformationFormComponent implements OnInit {
         debugger;
         this.familyInfoService.getFamilyById(this.profileId, this.familyInfoId).subscribe(
             (success: APIResponse) => {
+
+                success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth); 
+                success.data.applicationDate = this.commonService.getDateToSetForm(success.data.applicationDate); 
+                success.data.applicationPlacedDate = this.commonService.getDateToSetForm(success.data.applicationPlacedDate); 
+
                 this.familyInfoForm = success.data
             },
             (error: any) => {
