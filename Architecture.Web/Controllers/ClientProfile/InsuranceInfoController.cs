@@ -15,11 +15,11 @@ namespace Architecture.Web.Controllers.ClientProfile
     [Route("api/v{v:apiVersion}/InsuranceInfo")]
     public class InsuranceInfoController : BaseController
     {
-        private readonly IInsuranceInfoService addressInfoService;
+        private readonly IInsuranceInfoService insuranceInfoService;
 
-        public InsuranceInfoController(IInsuranceInfoService addressInfoService)
+        public InsuranceInfoController(IInsuranceInfoService insuranceInfoService)
         {
-            this.addressInfoService = addressInfoService;
+            this.insuranceInfoService = insuranceInfoService;
         }
 
         [HttpGet("/Test")]
@@ -41,7 +41,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             return await ModelValidation(async () =>
             {
-                var result = await addressInfoService.AddOrUpdate(model);
+                var result = await insuranceInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
@@ -51,7 +51,21 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             try
             {
-                var result =await addressInfoService.GetAll(profileId);
+                var result =await insuranceInfoService.GetAll(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+           [HttpGet("GetById/{profileId}/{insuranceInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int insuranceInfoId)
+        {
+            try
+            {
+                var result = await insuranceInfoService.GetById(profileId, insuranceInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

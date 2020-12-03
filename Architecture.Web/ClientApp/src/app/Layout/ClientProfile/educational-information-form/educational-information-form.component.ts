@@ -4,6 +4,7 @@ import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEduc
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 
 @Component({
@@ -14,18 +15,22 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class EducationalInformationFormComponent implements OnInit {
     public educationInfoForm = new profEducationInfo();
 
-    constructor(private educationInfoService: EducationInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private educationInfoService: EducationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private educationInfoId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.educationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
         console.log("this.profileId:", this.profileId, "this.educationInfoId", this.educationInfoId);
+        if (this.profileId != 0 && this.educationInfoId != 0) {
+            this.getEducation()
+        }
   }
 
     public onSubmit() {
         console.table(this.educationInfoForm);
-        this.educationInfoForm.profileId = 2;
+        this.educationInfoForm.profileId = this.profileId;
 
 
         this.educationInfoService.saveEducationInfo(this.educationInfoForm).subscribe(
@@ -41,9 +46,11 @@ export class EducationalInformationFormComponent implements OnInit {
     }
 
     public getEducation() {
-
-        this.educationInfoService.getEducaitonById(this.profileId, this.educationInfoId).subscribe(
+        debugger;
+        this.educationInfoService.getEducationById(this.profileId, this.educationInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startYear = this.commonService.getDateToSetForm(success.data.startYear);
+                success.data.endYear = this.commonService.getDateToSetForm(success.data.endYear);
                 this.educationInfoForm = success.data
             },
             (error: any) => {

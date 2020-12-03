@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profMovementInfo } from '../../../Shared/Entity/ClientProfile/profMovementInfo';
 import { MovementInfoService } from '../../../Shared/Services/ClientProfile/movement-info.service';
@@ -11,9 +11,14 @@ import { MovementInfoService } from '../../../Shared/Services/ClientProfile/move
 })
 export class MovementInformationComponent implements OnInit {
 
-    constructor(private router: Router, private movementService: MovementInfoService) { }
-
+    constructor(private router: Router, private movementService: MovementInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getMovementInfos();
     }
 
@@ -27,18 +32,17 @@ export class MovementInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/movement-info/0']);
+            this.router.navigate([`/client-profile/movement-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/movement-info/0']);
+            this.router.navigate([`/client-profile/movement-info/${this.profileId}/${event.record.movementInfoId}`]);
         }
     }
 
     public getMovementInfos() {
         debugger;
-        let profileId = 2;
-        this.movementService.getMovementInfo(profileId).subscribe(
+        this.movementService.getMovementInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get movement: ", success);
                 this.movementInfoList = success.data;
@@ -47,8 +51,6 @@ export class MovementInformationComponent implements OnInit {
             });
 
     }
-
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",

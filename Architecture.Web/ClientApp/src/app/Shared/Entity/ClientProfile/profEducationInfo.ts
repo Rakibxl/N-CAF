@@ -9,6 +9,8 @@ export class profEducationInfo extends Auditable {
     public degreeTypeId: number;
     //    public virtual degreeType DegreeType { get; set; }
 
+    public degreeType: string;
+
     public institutionName: string;
 
     public universityAddress: string

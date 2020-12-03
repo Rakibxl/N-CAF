@@ -21,4 +21,9 @@ export class AssetInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/AssetInfo/Profile/${profileId}`);
     }
+
+    public getAssetById(profileId: number, assetInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/AssetInfo/GetById/${profileId}/${assetInfoId}`);
+    }
 }

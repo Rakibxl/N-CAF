@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profISEEInfo } from '../../../Shared/Entity/ClientProfile/profISEEInfo';
 import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-info.service';
@@ -11,13 +11,17 @@ import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-inf
 })
 export class IseeInformationComponent implements OnInit {
 
-    constructor(private router: Router, private iseeService: ISEEInfoService) { }
+    constructor(private router: Router, private iseeService: ISEEInfoService,private route: ActivatedRoute) { }
+    private profileId: number;
 
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getISEEInfos();
     }
-
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -28,18 +32,17 @@ export class IseeInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/isee-info/0']);
+            this.router.navigate([`/client-profile/isee-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/isee-info/0']);
+            this.router.navigate([`/client-profile/isee-info/${this.profileId}/${event.record.iseeInfoId}`]);
         }
     }
 
     public getISEEInfos() {
         debugger;
-        let profileId = 2;
-        this.iseeService.getISEEInfo(profileId).subscribe(
+        this.iseeService.getISEEInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get isee: ", success);
                 this.iseeInfoList = success.data;
@@ -48,7 +51,6 @@ export class IseeInformationComponent implements OnInit {
             });
 
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",

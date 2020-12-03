@@ -21,4 +21,9 @@ export class IncomeInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/IncomeInfo/Profile/${profileId}`);
     }
+
+    public getIncomeById(profileId: number, incomeInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/IncomeInfo/GetById/${profileId}/${incomeInfoId}`);
+    }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profHouseRentInfo } from '../../../Shared/Entity/ClientProfile/profHouseRentInfo';
 import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/houserent-info.service';
@@ -11,9 +11,14 @@ import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/hou
 })
 export class HouseRentInformationComponent implements OnInit {
 
-    constructor(private router: Router, private houseRentService: HouseRentInfoService) { }
-
+    constructor(private router: Router, private houseRentService: HouseRentInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getHouseRentInfos();
   }
 
@@ -27,19 +32,18 @@ export class HouseRentInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/house-rent/0']);
+            this.router.navigate([`/client-profile/house-rent/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/house-rent/0']);
+            debugger;
+            this.router.navigate([`/client-profile/house-rent/${this.profileId}/${event.record.houseRentInfoId}`]);
         }
     }
 
-
     public getHouseRentInfos() {
         debugger;
-        let profileId = 2;
-        this.houseRentService.getHouseRentInfo(profileId).subscribe(
+        this.houseRentService.getHouseRentInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get address: ", success);
                 this.houseRentInfoList = success.data;
@@ -47,17 +51,14 @@ export class HouseRentInformationComponent implements OnInit {
             error => {
             });
 
-
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'House Rent List',
         tableRowIDInternalName: "houserentinfoid",
         tableColDef: [
-            //{ headerName: 'Contract Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
-            //{ headerName: 'House Type', width: '10%', internalName: 'numberofasset', sort: true, type: "" },
+            { headerName: 'Contract Type', width: '20%', internalName: 'contractType', sort: true, type: "" },
             { headerName: 'Contract Date', width: '15%', internalName: 'contractDate', sort: true, type: "" },
             { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },

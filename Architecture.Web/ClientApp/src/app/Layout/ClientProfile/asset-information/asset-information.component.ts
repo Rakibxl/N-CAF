@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profAssetInfo } from '../../../Shared/Entity/ClientProfile/profAssetInfo';
 import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-info.service';
@@ -11,12 +11,16 @@ import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-i
 })
 export class AssetInformationComponent implements OnInit {
 
-    constructor(private router: Router, private assetService: AssetInfoService) { }
-
+    constructor(private router: Router, private assetService: AssetInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getAssetInfos();
     }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -27,18 +31,18 @@ export class AssetInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/asset-info/0']);
+            this.router.navigate([`/client-profile/asset-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate(['/client-profile/asset-info/0']);
+            this.router.navigate([`/client-profile/asset-info/${this.profileId}/${event.record.assetInfoId}`]);
         }
     }
 
     public getAssetInfos() {
         debugger;
-        let profileId = 2;
-        this.assetService.getAssetInfo(profileId).subscribe(
+        this.assetService.getAssetInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get asset: ", success);
                 this.assetInfoList = success.data;
@@ -48,14 +52,13 @@ export class AssetInformationComponent implements OnInit {
 
     }
 
-
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Asset List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
             //{ headerName: 'Asset Id', width: '7%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'Asset Type', width: '7%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Asset Type', width: '7%', internalName: 'assetType', sort: true, type: "" },
             { headerName: 'Number Of Asset', width: '7%', internalName: 'numberOfAsset', sort: true, type: "" },
             { headerName: 'Equivalent Money Max', width: '7%', internalName: 'equivalentMoneyMax', sort: true, type: "" },
             { headerName: 'Equivalent Money Min', width: '7%', internalName: 'equivalentMoneyMin', sort: true, type: "" },

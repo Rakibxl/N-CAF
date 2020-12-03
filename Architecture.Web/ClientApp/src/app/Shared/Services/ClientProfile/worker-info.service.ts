@@ -21,4 +21,9 @@ export class WorkerInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/WorkerInfo/Profile/${profileId}`);
     }
+
+    public getWorkerById(profileId: number, workerInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/WorkerInfo/GetById/${profileId}/${workerInfoId}`);
+    }
 }

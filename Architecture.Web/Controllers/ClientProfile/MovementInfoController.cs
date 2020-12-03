@@ -12,14 +12,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Architecture.Web.Controllers.ClientProfile
 {
     [ApiVersion("1")]
-    [Route("api/v{v:apiVersion}/IncomeInfo")]
-    public class IncomeInfoController : BaseController
+    [Route("api/v{v:apiVersion}/MovementInfo")]
+    public class MovementInfoController : BaseController
     {
-        private readonly IIncomeInfoService incomeInfoService;
+        private readonly IMovementInfoService movementInfoService;
 
-        public IncomeInfoController(IIncomeInfoService incomeInfoService)
+        public MovementInfoController(IMovementInfoService movementInfoService)
         {
-            this.incomeInfoService = incomeInfoService;
+            this.movementInfoService = movementInfoService;
         }
 
         [HttpGet("/Test")]
@@ -37,21 +37,35 @@ namespace Architecture.Web.Controllers.ClientProfile
         }
 
         [HttpPost("CreateOrUpdate")]
-        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfIncomeInfo model)
+        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfMovementInfo model)
         {
             return await ModelValidation(async () =>
             {
-                var result = await incomeInfoService.AddOrUpdate(model);
+                var result = await movementInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
 
         [HttpGet("Profile/{profileId}")]
-        public async Task<IActionResult> GetIncomeByProfileId(int profileId)
+        public async Task<IActionResult> GetMovementByProfileId(int profileId)
         {
             try
             {
-                var result =await incomeInfoService.GetAll(profileId);
+                var result =await movementInfoService.GetAll(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetById/{profileId}/{movementInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int movementInfoId)
+        {
+            try
+            {
+                var result = await movementInfoService.GetById(profileId, movementInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

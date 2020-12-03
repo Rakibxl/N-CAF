@@ -14,9 +14,17 @@ export class FamilyInfoService {
     }
 
     public saveFamilyInfo(data: ProfFamilyInfo) {
+        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/FamilyInfo/CreateOrUpdate', data);
     }
+
     public getFamilyInfo(profileId: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/FamilyInfo/Profile/${profileId}`);
     }
+
+    public getFamilyById(profileId: number, familyInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/FamilyInfo/GetById/${profileId}/${familyInfoId}`);
+    }
+
 }

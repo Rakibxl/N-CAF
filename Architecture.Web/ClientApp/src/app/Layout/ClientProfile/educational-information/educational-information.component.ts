@@ -4,7 +4,6 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
 
-
 @Component({
   selector: 'app-educational-information',
   templateUrl: './educational-information.component.html',
@@ -15,14 +14,13 @@ export class EducationalInformationComponent implements OnInit {
     constructor(private router: Router, private educationService: EducationInfoService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 2;
         debugger;
         if (this.profileId==0) {
-            //this.router.navigate([`/`]); // redirect to dashboard
+            this.router.navigate(['/dashboard/common']);
         }
         this.getEducationInfos();
   }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -51,16 +49,14 @@ export class EducationalInformationComponent implements OnInit {
             error => {
             });
 
-
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Education List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Degree Name', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Degree Type', width: '20%', internalName: 'degreeType', sort: true, type: "" },
             { headerName: 'Inistitution Name', width: '10%', internalName: 'institutionName', sort: true, type: "" },
             { headerName: 'Start Year', width: '15%', internalName: 'startYear', sort: true, type: "" },
             { headerName: 'End Year', width: '15%', internalName: 'endYear', sort: true, type: "" },

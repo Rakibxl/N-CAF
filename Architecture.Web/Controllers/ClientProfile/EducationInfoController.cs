@@ -57,6 +57,20 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
+        [HttpGet("GetById/{profileId}/{educationInfoId}")]
+        public async Task<IActionResult> GetById(int profileId,int educationInfoId)
+        {
+            try
+            {
+                var result = await educationInfoService.GetById(profileId, educationInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("GetTestData")]
         public async Task<IActionResult> GetTestData()
         {

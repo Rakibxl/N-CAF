@@ -60,6 +60,20 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
+        [HttpGet("GetById/{profileId}/{IseeInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int iseeInfoId)
+        {
+            try
+            {
+                var result = await iseeInfoService.GetById(profileId, iseeInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("GetTestData")]
         public async Task<IActionResult> GetTestData()
         {

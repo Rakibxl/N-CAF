@@ -21,4 +21,9 @@ export class OccupationInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/OccupationInfo/Profile/${profileId}`);
     }
+
+    public getOccupationById(profileId: number, occupationInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/OccupationInfo/GetById/${profileId}/${occupationInfoId}`);
+    }
 }

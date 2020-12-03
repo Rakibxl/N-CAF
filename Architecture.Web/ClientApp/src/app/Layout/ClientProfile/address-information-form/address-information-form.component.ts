@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { profAddressInfo } from '../../../Shared/Entity/ClientProfile/profAddressInfo';
 import { AddressInfoService } from '../../../Shared/Services/ClientProfile/address-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 
 
 @Component({
@@ -13,16 +14,24 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 export class AddressInformationFormComponent implements OnInit {
     public addressInfoForm = new profAddressInfo();
 
-    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private router: Router) { }
+    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    private profileId: number;
+    private addressInfoId: number;
 
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        this.addressInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
+        console.log("this.profileId:", this.profileId, "this.addressInfoId", this.addressInfoId);
+        if (this.profileId != 0 && this.addressInfoId != 0) {
+            this.getAddress()
+        }
     }
 
     public onSubmit() {
         debugger;
         console.table(this.addressInfoForm);
-        this.addressInfoForm.profileId = 2;
-
+        this.addressInfoForm.profileId = this.profileId;
 
         this.addressInfoService.saveAddressInfo(this.addressInfoForm).subscribe(
             (success: any) => {
@@ -36,7 +45,22 @@ export class AddressInformationFormComponent implements OnInit {
 
     }
 
-    public fnBackToList() {
-        this.router.navigate(['/client-profile/address']);
+    public getAddress() {
+        debugger;
+        this.addressInfoService.getAddressById(this.profileId, this.addressInfoId).subscribe(
+            (success: APIResponse) => {
+                this.addressInfoForm = success.data
+            },
+            (error: any) => {
+                this.alertService.tosterWarning(error.message);
+                console.log("error", error);
+            });
+
     }
+
+    public fnBackToList() {
+        this.router.navigate([`/client-profile/address/${this.profileId}`]);
+        return false;
+    }
+ 
 }

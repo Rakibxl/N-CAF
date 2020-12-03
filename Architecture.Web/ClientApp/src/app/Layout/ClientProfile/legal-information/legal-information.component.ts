@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profLegalInfo } from '../../../Shared/Entity/ClientProfile/profLegalInfo';
 import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-info.service';
@@ -11,13 +11,16 @@ import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-i
 })
 export class LegalInformationComponent implements OnInit {
 
-    constructor(private router: Router, private legalService: LegalInfoService) { }
-
-
+    constructor(private router: Router, private legalService: LegalInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getLegalInfos();
     }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -28,18 +31,17 @@ export class LegalInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/legal-info/0']);
+            this.router.navigate([`/client-profile/legal-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/legal-info/0']);
+            this.router.navigate([`/client-profile/legal-info/${this.profileId}/${event.record.legalInfoId}`]);
         }
     }
 
     public getLegalInfos() {
         debugger;
-        let profileId = 2;
-        this.legalService.getLegalInfo(profileId).subscribe(
+        this.legalService.getLegalInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get legal: ", success);
                 this.legalInfoList = success.data;

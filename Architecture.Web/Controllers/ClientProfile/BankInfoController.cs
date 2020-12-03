@@ -15,11 +15,11 @@ namespace Architecture.Web.Controllers.ClientProfile
     [Route("api/v{v:apiVersion}/BankInfo")]
     public class BankInfoController : BaseController
     {
-        private readonly IBankInfoService addressInfoService;
+        private readonly IBankInfoService bankInfoService;
 
-        public BankInfoController(IBankInfoService addressInfoService)
+        public BankInfoController(IBankInfoService bankInfoService)
         {
-            this.addressInfoService = addressInfoService;
+            this.bankInfoService = bankInfoService;
         }
 
         [HttpGet("/Test")]
@@ -41,7 +41,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             return await ModelValidation(async () =>
             {
-                var result = await addressInfoService.AddOrUpdate(model);
+                var result = await bankInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
@@ -51,7 +51,21 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             try
             {
-                var result =await addressInfoService.GetAll(profileId);
+                var result =await bankInfoService.GetAll(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetById/{profileId}/{bankInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int bankInfoId)
+        {
+            try
+            {
+                var result = await bankInfoService.GetById(profileId, bankInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

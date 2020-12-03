@@ -9,21 +9,21 @@ export class profISEEInfo extends Auditable {
     //public int? ISEEClassTypeId { get; set; }
     //    public virtual ISEEClassType ISEEClassType { get; set; }
 
-    public ISEEClassType: string
+    public iseeClassType: string
 
-    public ISEEClassTypeId: number;
+    public iseeClassTypeId: number;
 
-    public ISEEValue: number;
+    public iseeValue: number;
 
     public point: number;
 
-    public ISEEFamilyIncome: number;
+    public iseeFamilyIncome: number;
 
-    public ISPAmount: number;
+    public ispAmount: number;
 
-    public ISEAmount: number;
+    public iseAmount: number;
 
-    public ISRAmount: number;
+    public isrAmount: number;
 
     public identificationNumber: string;
 

@@ -19,7 +19,7 @@
                                 <option value="1">Permanent</option>
                                 <option value="2">Guest</option>
                             </select>
-                            <p class="text-info">Info message</p>
+                            <p class="text-info d-none">Info message</p>
                             <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">address type is required.</p>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2">
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
                                 <i class="pe-7s-back pr-1"></i>
                                 Back
                             </button>

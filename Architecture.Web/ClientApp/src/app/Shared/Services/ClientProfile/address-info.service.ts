@@ -21,4 +21,10 @@ export class AddressInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/Profile/${profileId}`);
     }
+
+    public getAddressById(profileId: number, addressInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/GetById/${profileId}/${addressInfoId}`);
+    }
+
 }

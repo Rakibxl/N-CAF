@@ -7,7 +7,7 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
     public interface IIncomeInfoService
     {
         public Task<ProfIncomeInfo> AddOrUpdate(ProfIncomeInfo incomeInfo);
-        public Task<ProfIncomeInfo> GetById(int incomeInfoId);
+        public Task<ProfIncomeInfo> GetById(int profileId, int incomeInfoId);
         public Task<int> Delete(int incomeInfoId);
         public Task<IEnumerable<ProfIncomeInfo>> GetAll(int profileId);
     }

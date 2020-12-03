@@ -15,11 +15,11 @@ namespace Architecture.Web.Controllers.ClientProfile
     [Route("api/v{v:apiVersion}/WorkerInfo")]
     public class WorkerInfoController : BaseController
     {
-        private readonly IWorkerInfoService addressInfoService;
+        private readonly IWorkerInfoService workerInfoService;
 
-        public WorkerInfoController(IWorkerInfoService addressInfoService)
+        public WorkerInfoController(IWorkerInfoService workerInfoService)
         {
-            this.addressInfoService = addressInfoService;
+            this.workerInfoService = workerInfoService;
         }
 
         [HttpGet("/Test")]
@@ -41,7 +41,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             return await ModelValidation(async () =>
             {
-                var result = await addressInfoService.AddOrUpdate(model);
+                var result = await workerInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
@@ -51,7 +51,21 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             try
             {
-                var result =await addressInfoService.GetAll(profileId);
+                var result =await workerInfoService.GetAll(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetById/{profileId}/{workerInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int workerInfoId)
+        {
+            try
+            {
+                var result = await workerInfoService.GetById(profileId, workerInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

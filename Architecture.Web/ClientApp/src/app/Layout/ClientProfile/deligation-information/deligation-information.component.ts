@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profDelegationInfo } from '../../../Shared/Entity/ClientProfile/profDelegationInfo';
 import { DelegationInfoService } from '../../../Shared/Services/ClientProfile/delegation-info.service';
@@ -11,13 +11,17 @@ import { DelegationInfoService } from '../../../Shared/Services/ClientProfile/de
 })
 export class DeligationInformationComponent implements OnInit {
 
-    constructor(private router: Router, private delegationService: DelegationInfoService) { }
+    constructor(private router: Router, private delegationService: DelegationInfoService, private route: ActivatedRoute) { }
+    private profileId: number;
 
     ngOnInit() {
+        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        if (this.profileId == 0) {
+            this.router.navigate(['/dashboard/common']);
+        }
         this.getDelegationInfos();
     }
-
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -28,18 +32,17 @@ export class DeligationInformationComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/deligation-info/0']);
+            this.router.navigate([`/client-profile/deligation-info/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/client-profile/deligation-info/0']);
+            this.router.navigate([`/client-profile/deligation-info/${this.profileId}/${event.record.delegationInfoId}`]);
         }
     }
 
     public getDelegationInfos() {
         debugger;
-        let profileId = 2;
-        this.delegationService.getDelegationInfo(profileId).subscribe(
+        this.delegationService.getDelegationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get delegation: ", success);
                 this.delegationInfoList = success.data;

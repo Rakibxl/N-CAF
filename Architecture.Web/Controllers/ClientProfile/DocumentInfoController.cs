@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
@@ -10,14 +12,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Architecture.Web.Controllers.ClientProfile
 {
     [ApiVersion("1")]
-    [Route("api/v{v:apiVersion}/FamilyInfo")]
-    public class FamilyInfoController : BaseController
+    [Route("api/v{v:apiVersion}/DocumentInfo")]
+    public class DocumentInfoController : BaseController
     {
-        private readonly IFamilyInfoService familyInfoService;
+        private readonly IDocumentInfoService documentInfoService;
 
-        public FamilyInfoController(IFamilyInfoService familyInfoService)
+        public DocumentInfoController(IDocumentInfoService documentInfoService)
         {
-            this.familyInfoService = familyInfoService;
+            this.documentInfoService = documentInfoService;
         }
 
         [HttpGet("/Test")]
@@ -35,20 +37,21 @@ namespace Architecture.Web.Controllers.ClientProfile
         }
 
         [HttpPost("CreateOrUpdate")]
-        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfFamilyInfo model)
-        {            
-            return await ModelValidation(async()=> {
-                var result = await familyInfoService.AddOrUpdate(model);
+        public async Task<IActionResult> CreateOrUpdate([FromBody] ProfDocumentInfo model)
+        {
+            return await ModelValidation(async () =>
+            {
+                var result = await documentInfoService.AddOrUpdate(model);
                 return OkResult(result);
             });
         }
 
         [HttpGet("Profile/{profileId}")]
-        public async Task<IActionResult> GetFamilyByProfileId(int profileId)
+        public async Task<IActionResult> GetDocumentByProfileId(int profileId)
         {
             try
             {
-                var result =await familyInfoService.GetAll(profileId);
+                var result =await documentInfoService.GetAll(profileId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -57,13 +60,12 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
-
-        [HttpGet("GetById/{profileId}/{familyInfoId}")]
-        public async Task<IActionResult> GetById(int profileId, int familyInfoId)
+        [HttpGet("GetById/{profileId}/{documentInfoId}")]
+        public async Task<IActionResult> GetById(int profileId, int documentInfoId)
         {
             try
             {
-                var result = await familyInfoService.GetById(profileId, familyInfoId);
+                var result = await documentInfoService.GetById(profileId, documentInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -71,6 +73,7 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return ExceptionResult(ex);
             }
         }
+
 
         [HttpGet("GetTestData")]
         public async Task<IActionResult> GetTestData()

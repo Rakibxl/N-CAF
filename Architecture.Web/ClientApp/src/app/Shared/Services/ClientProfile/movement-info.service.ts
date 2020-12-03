@@ -21,4 +21,8 @@ export class MovementInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/MovementInfo/Profile/${profileId}`);
     }
+    public getMovementById(profileId: number, movementInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/MovementInfo/GetById/${profileId}/${movementInfoId}`);
+    }
 }

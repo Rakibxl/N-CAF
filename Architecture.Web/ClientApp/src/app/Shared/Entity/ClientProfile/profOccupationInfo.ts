@@ -14,12 +14,16 @@ export class profOccupationInfo extends Auditable {
 
     public jobTypeId: number;
 
+    public jobType: string;
+
     public jobHour: number;
 
     //public int ? ContractTypeId { get; set; }
      //public virtual ContractType ContractType { get; set; }
 
     public contractTypeId: number;
+
+    public contractType: string;
 
     public contractStartDate: Date;
 
@@ -39,13 +43,13 @@ export class profOccupationInfo extends Auditable {
 
     public chamberOfCommerceCityName: String;
 
-    public REANo: String;
+    public reaNo: String;
 
-    public ATECONo: String;
+    public atecoNo: String;
 
-    public SCIANo: String;
+    public sciaNo: String;
 
-    public SCIACityName: String;
+    public sciaCityName: String;
 
     public isShareHolder: number;
 

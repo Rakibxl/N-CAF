@@ -21,4 +21,9 @@ export class DelegationInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/DelegationInfo/Profile/${profileId}`);
     }
+
+    public getDelegationById(profileId: number, delegationInfoId: number) {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/DelegationInfo/GetById/${profileId}/${delegationInfoId}`);
+    }
 }
