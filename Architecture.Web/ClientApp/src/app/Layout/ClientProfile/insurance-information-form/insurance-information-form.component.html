@@ -16,8 +16,9 @@
                         <div class="caf-input-group">
                             <label class="label">InsuranceType*</label>
                             <select id="" class="form-control" name="insuranceTypeId" #insuranceTypeId="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTypeId">
-                                <option value="1">Dummy A</option>
-                                <option value="2">Dummy B</option>
+                                <option value="1">Car Insurance</option>
+                                <option value="2">Home Insurance</option>
+                                <option value="3">Health Insurance</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="insuranceTypeId.valid || insuranceTypeId.pristine" class="text-danger">InsuranceType type is required.</p>

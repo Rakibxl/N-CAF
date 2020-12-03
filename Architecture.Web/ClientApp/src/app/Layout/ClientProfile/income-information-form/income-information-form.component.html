@@ -16,8 +16,9 @@
                         <div class="caf-input-group">
                             <label class="label">IncomeType*</label>
                             <select class="form-control" name="incomeTypeId" #incomeTypeId="ngModel" [(ngModel)]="incomeInfoForm.incomeTypeId">
-                                <option value="1">Personal</option>
-                                <option value="2">Business</option>
+                                <option value="1">Single Income</option>
+                                <option value="2">Double Income</option>
+                                <option value="3">Business Income</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="incomeTypeId.valid || incomeTypeId.pristine" class="text-danger">IncomeType is required.</p>

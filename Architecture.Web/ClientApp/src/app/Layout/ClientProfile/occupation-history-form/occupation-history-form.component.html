@@ -39,6 +39,7 @@
                             <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId">
                                 <option value="1">Limited</option>
                                 <option value="2">Unlimited</option>
+                                <option value="3">Occational</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">ContractType is required.</p>

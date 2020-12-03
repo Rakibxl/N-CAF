@@ -17,7 +17,8 @@
                             <label class="label">AddressType*</label>
                             <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId">
                                 <option value="1">Permanent</option>
-                                <option value="2">Guest</option>
+                                <option value="2">Temporary</option>
+                                <option value="3">Previous Permanent</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">address type is required.</p>
@@ -74,11 +75,11 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">RoadNo*</label>
+                            <label class="label">RoadNo</label>
                             <input type="text" autocomplete="off" name="roadNo" [(ngModel)]="addressInfoForm.roadNo" #roadNo="ngModel" class="form-control" placeholder="Enter road number"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="roadNo.valid || roadNo.pristine" class="text-danger">RoadNo is required.</p>
+                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 

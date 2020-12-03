@@ -4,6 +4,7 @@ import { profIncomeInfo } from '../../../Shared/Entity/ClientProfile/profIncomeI
 import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-income-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class IncomeInformationFormComponent implements OnInit {
     public incomeInfoForm = new profIncomeInfo();
 
-    constructor(private incomeInfoService: IncomeInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private incomeInfoService: IncomeInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private incomeInfoId: number;
 
@@ -48,6 +49,10 @@ export class IncomeInformationFormComponent implements OnInit {
         debugger;
         this.incomeInfoService.getIncomeById(this.profileId, this.incomeInfoId).subscribe(
             (success: APIResponse) => {
+
+                success.data.year = this.commonService.getDateToSetForm(success.data.year);
+                success.data.month = this.commonService.getDateToSetForm(success.data.month);
+
                 this.incomeInfoForm = success.data
             },
             (error: any) => {

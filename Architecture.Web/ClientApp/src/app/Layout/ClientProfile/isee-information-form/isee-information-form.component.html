@@ -17,9 +17,9 @@
                         <div class="caf-input-group">
                             <label class="label">IseeClass*</label>
                             <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId">
-                                <option value="1">Low</option>
+                                <option value="1">High</option>
                                 <option value="2">Middle</option>
-                                <option value="3">High</option>
+                                <option value="3">Low</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="iseeClassTypeId.valid || iseeClassTypeId.pristine" class="text-danger">IseeClass is required.</p>

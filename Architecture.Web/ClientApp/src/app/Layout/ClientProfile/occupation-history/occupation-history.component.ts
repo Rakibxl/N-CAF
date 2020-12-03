@@ -32,11 +32,9 @@ export class OccupationHistoryComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate(['/client-profile/occupation/0']);
-            debugger
+            this.router.navigate([`/client-profile/occupation/${this.profileId}/0`]);
         }
         else if (event.action == "edit-item") {
-            //this.router.navigate(['/client-profile/occupation/0']);
             this.router.navigate([`/client-profile/occupation/${this.profileId}/${event.record.occupationInfoId}`]);
         }
     }

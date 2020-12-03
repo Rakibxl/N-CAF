@@ -38,8 +38,9 @@
                         <div class="caf-input-group">
                             <label class="label">ContractType*</label>
                             <select id="" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="houseRentInfoForm.contractTypeId" class="form-control">
-                                <option value="1">Permanent Contract(Unlimited)</option>
-                                <option value="2">Temporary Contract(Limited)</option>
+                                <option value="1">No Limit</option>
+                                <option value="2">Limited</option>
+                                <option value="3">Occational</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">ContractType is required.</p>
@@ -210,9 +211,9 @@
                         <div class="caf-input-group">
                             <label class="label">Category</label>
                             <select id="" name="houseCategoryId" #houseCategoryId="ngModel" [(ngModel)]="houseRentInfoForm.houseCategoryId" class="form-control">
-                                <option value="1">Category A</option>
-                                <option value="2">Category B</option>
-                                <option value="3">Category C</option>
+                                <option value="1">House Category 1</option>
+                                <option value="2">House Category 2</option>
+                                <option value="3">House Category 3</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -297,8 +298,9 @@
                         <div class="caf-input-group">
                             <label class="label">LoanStatus</label>
                             <select id="" name="loanStatusTypeID" #loanStatusTypeID="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeID" class="form-control">
-                                <option value="1">Dummy A</option>
-                                <option value="2">Dummy B</option>
+                                <option value="1">Pending</option>
+                                <option value="2">Active</option>
+                                <option value="3">Past Due</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="loanStatusTypeID.valid || loanStatusTypeID.pristine" class="text-danger">LoanStatus is required.</p>
@@ -338,6 +340,7 @@
                             <select id="" name="loanInterestTypeId" #loanInterestTypeId="ngModel" [(ngModel)]="houseRentInfoForm.loanInterestTypeId" class="form-control">
                                 <option value="1">Fixed Interest</option>
                                 <option value="2">Variable Interest</option>
+                                <option value="3">No Interest</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="loanInterestTypeId.valid || loanInterestTypeId.pristine" class="text-danger">InterestType is required.</p>

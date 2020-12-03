@@ -4,7 +4,7 @@ import { profAddressInfo } from '../../../Shared/Entity/ClientProfile/profAddres
 import { AddressInfoService } from '../../../Shared/Services/ClientProfile/address-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
-
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
     selector: 'app-address-information-form',
@@ -14,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class AddressInformationFormComponent implements OnInit {
     public addressInfoForm = new profAddressInfo();
 
-    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private addressInfoId: number;
 
@@ -49,6 +49,8 @@ export class AddressInformationFormComponent implements OnInit {
         debugger;
         this.addressInfoService.getAddressById(this.profileId, this.addressInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.addressInfoForm = success.data
             },
             (error: any) => {

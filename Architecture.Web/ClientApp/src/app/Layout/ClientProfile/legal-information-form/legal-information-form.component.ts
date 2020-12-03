@@ -4,6 +4,7 @@ import { profLegalInfo } from '../../../Shared/Entity/ClientProfile/profLegalInf
 import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
     selector: 'app-legal-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class LegalInformationFormComponent implements OnInit {
     public legalInfoForm = new profLegalInfo();
 
-    constructor(private legalInfoService: LegalInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private legalInfoService: LegalInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private legalInfoId: number;
 
@@ -48,6 +49,8 @@ export class LegalInformationFormComponent implements OnInit {
         debugger;
         this.legalInfoService.getLegalById(this.profileId, this.legalInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.legalInfoForm = success.data
             },
             (error: any) => {

@@ -13,7 +13,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             addressInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfAddressInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
             addressInfo.Property(bs => bs.RoadName).HasMaxLength(100).IsRequired();
-            addressInfo.Property(bs => bs.RoadNo).HasMaxLength(100).IsRequired();
+            addressInfo.Property(bs => bs.RoadNo).HasMaxLength(100);
             addressInfo.Property(bs => bs.BuildingNo).HasMaxLength(100).IsRequired();
             addressInfo.Property(bs => bs.FloorNo).HasMaxLength(100);
             addressInfo.Property(bs => bs.AppartmentNo).HasMaxLength(100);

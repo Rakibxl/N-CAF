@@ -4,6 +4,7 @@ import { profWorkerInfo } from '../../../Shared/Entity/ClientProfile/profWorkerI
 import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
     selector: 'app-worker-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class WorkerInformationFormComponent implements OnInit {
     public workerInfoForm = new profWorkerInfo();
 
-    constructor(private workerInfoService: WorkerInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private workerInfoService: WorkerInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private workerInfoId: number;
     ngOnInit() {
@@ -47,6 +48,9 @@ export class WorkerInformationFormComponent implements OnInit {
         debugger;
         this.workerInfoService.getWorkerById(this.profileId, this.workerInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
+
                 this.workerInfoForm = success.data
             },
             (error: any) => {

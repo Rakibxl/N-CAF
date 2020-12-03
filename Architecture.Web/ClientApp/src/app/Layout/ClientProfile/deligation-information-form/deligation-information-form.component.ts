@@ -4,7 +4,7 @@ import { profDelegationInfo } from '../../../Shared/Entity/ClientProfile/profDel
 import { DelegationInfoService } from '../../../Shared/Services/ClientProfile/delegation-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
-
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-deligation-information-form',
@@ -15,7 +15,7 @@ export class DeligationInformationFormComponent implements OnInit {
 
     public delegationInfoForm = new profDelegationInfo();
 
-    constructor(private delegationInfoService: DelegationInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private delegationInfoService: DelegationInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private delegationInfoId: number;
     ngOnInit() {
@@ -50,6 +50,9 @@ export class DeligationInformationFormComponent implements OnInit {
         debugger;
         this.delegationInfoService.getDelegationById(this.profileId, this.delegationInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth);
+                success.data.documentIssueDate = this.commonService.getDateToSetForm(success.data.documentIssueDate);
+                success.data.expiryDate = this.commonService.getDateToSetForm(success.data.expiryDate);
                 this.delegationInfoForm = success.data
             },
             (error: any) => {

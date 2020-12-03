@@ -4,6 +4,7 @@ import { profISEEInfo } from '../../../Shared/Entity/ClientProfile/profISEEInfo'
 import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-isee-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class IseeInformationFormComponent implements OnInit {
     public iseeInfoForm = new profISEEInfo();
 
-    constructor(private iseeInfoService: ISEEInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private iseeInfoService: ISEEInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private iseeInfoId: number;
     ngOnInit() {
@@ -48,6 +49,9 @@ export class IseeInformationFormComponent implements OnInit {
         debugger;
         this.iseeInfoService.getIseeById(this.profileId, this.iseeInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.submittedDate = this.commonService.getDateToSetForm(success.data.submittedDate);
+                success.data.deliveryDate = this.commonService.getDateToSetForm(success.data.deliveryDate);
+                success.data.expiryDate = this.commonService.getDateToSetForm(success.data.expiryDate);
                 this.iseeInfoForm = success.data
             },
             (error: any) => {

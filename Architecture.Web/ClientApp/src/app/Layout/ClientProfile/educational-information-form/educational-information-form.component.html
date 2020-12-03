@@ -16,10 +16,10 @@
                         <div class="caf-input-group">
                             <label class="label">DegreeType</label>
                             <select id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId">
-                                <option>type here</option>
+                                <!--<option>type here</option>-->
                                 <option value="1">Bachelor</option>
                                 <option value="2">Masters</option>
-                                <option value="3">PHD</option>
+                                <option value="3">High School</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="degreeTypeId.valid || degreeTypeId.pristine" class="text-danger">start year is required.</p>

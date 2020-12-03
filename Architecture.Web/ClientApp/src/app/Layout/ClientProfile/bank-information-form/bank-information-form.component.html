@@ -16,8 +16,9 @@
                         <div class="caf-input-group">
                             <label class="label">BankName*</label>
                             <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId">
-                                <option value="1">Intesa SanPaolo</option>
-                                <option value="2">Unicredit</option>
+                                <option value="1">UniCredit Bank</option>
+                                <option value="2">Intesa San Paolo</option>
+                                <option value="3">UBI Bank</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="bankNameId.valid || bankNameId.pristine" class="text-danger">Bank name is required.</p>

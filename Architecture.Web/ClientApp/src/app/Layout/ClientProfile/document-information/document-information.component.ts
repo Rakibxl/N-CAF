@@ -63,7 +63,7 @@ export class DocumentInformationComponent implements OnInit {
             //{ headerName: 'Document Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
             //{ headerName: 'Document Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
             { headerName: 'Document Name', width: '10%', internalName: 'documentName', sort: true, type: "" },
-            { headerName: 'Purpose Of Document', width: '15%', internalName: 'purposeofDocument', sort: true, type: "" },
+            { headerName: 'Purpose Of Document', width: '15%', internalName: 'purposeOfDocument', sort: true, type: "" },
             { headerName: 'Issued By', width: '15%', internalName: 'issuedBy', sort: true, type: "" },
             { headerName: 'Issue Date', width: '10%', internalName: 'issuedDate', sort: true, type: "" },
             { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },         

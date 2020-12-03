@@ -4,6 +4,7 @@ import { profMovementInfo } from '../../../Shared/Entity/ClientProfile/profMovem
 import { MovementInfoService } from '../../../Shared/Services/ClientProfile/movement-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-movement-information-form',
@@ -14,7 +15,7 @@ export class MovementInformationFormComponent implements OnInit {
 
     public movementInfoForm = new profMovementInfo();
 
-    constructor(private movementInfoService: MovementInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private movementInfoService: MovementInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private movementInfoId: number;
     ngOnInit() {
@@ -49,6 +50,8 @@ export class MovementInformationFormComponent implements OnInit {
         debugger;
         this.movementInfoService.getMovementById(this.profileId, this.movementInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.movementInfoForm = success.data
             },
             (error: any) => {

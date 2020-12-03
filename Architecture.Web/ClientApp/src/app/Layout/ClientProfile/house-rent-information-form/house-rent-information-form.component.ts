@@ -4,7 +4,7 @@ import { profHouseRentInfo } from '../../../Shared/Entity/ClientProfile/profHous
 import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/houserent-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
-
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-house-rent-information-form',
@@ -14,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class HouseRentInformationFormComponent implements OnInit {
     public houseRentInfoForm = new profHouseRentInfo();
 
-    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private houseRentInfoId: number;
 
@@ -50,8 +50,13 @@ export class HouseRentInformationFormComponent implements OnInit {
         debugger;
         this.houseRentInfoService.getHouseRentById(this.profileId, this.houseRentInfoId).subscribe(
             (success: APIResponse) => {
-                this.houseRentInfoForm = success.data
-  
+
+                success.data.contractDate = this.commonService.getDateToSetForm(success.data.contractDate);
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
+                success.data.loanStartDate = this.commonService.getDateToSetForm(success.data.loanStartDate);
+                success.data.registrationDate = this.commonService.getDateToSetForm(success.data.registrationDate);
+                this.houseRentInfoForm = success.data 
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

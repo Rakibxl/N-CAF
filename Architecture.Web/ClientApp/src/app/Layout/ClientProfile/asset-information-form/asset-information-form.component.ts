@@ -4,6 +4,7 @@ import { profAssetInfo } from '../../../Shared/Entity/ClientProfile/profAssetInf
 import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-asset-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class AssetInformationFormComponent implements OnInit {
     public assetInfoForm = new profAssetInfo();
 
-    constructor(private assetInfoService: AssetInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private assetInfoService: AssetInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private assetInfoId: number;
 
@@ -48,6 +49,7 @@ export class AssetInformationFormComponent implements OnInit {
         debugger;
         this.assetInfoService.getAssetById(this.profileId, this.assetInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.ownerFromDate = this.commonService.getDateToSetForm(success.data.ownerFromDate);
                 this.assetInfoForm = success.data
             },
             (error: any) => {

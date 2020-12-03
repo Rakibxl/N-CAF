@@ -4,6 +4,7 @@ import { profInsuranceInfo } from '../../../Shared/Entity/ClientProfile/profInsu
 import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/insurance-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
     selector: 'app-insurance-information-form',
@@ -13,7 +14,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class InsuranceInformationFormComponent implements OnInit {
     public insuranceInfoForm = new profInsuranceInfo();
 
-    constructor(private insuranceInfoService: InsuranceInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private insuranceInfoService: InsuranceInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private insuranceInfoId: number;
     ngOnInit() {
@@ -47,6 +48,8 @@ export class InsuranceInformationFormComponent implements OnInit {
         debugger;
         this.insuranceInfoService.getInsuranceById(this.profileId, this.insuranceInfoId).subscribe(
             (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.insuranceInfoForm = success.data
             },
             (error: any) => {

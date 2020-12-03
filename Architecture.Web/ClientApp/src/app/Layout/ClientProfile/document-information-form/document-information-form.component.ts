@@ -4,6 +4,8 @@ import { profDocumentInfo } from '../../../Shared/Entity/ClientProfile/profDocum
 import { DocumentInfoService } from '../../../Shared/Services/ClientProfile/document-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
+
 
 @Component({
   selector: 'app-document-information-form',
@@ -14,7 +16,7 @@ export class DocumentInformationFormComponent implements OnInit {
 
     public documentInfoForm = new profDocumentInfo();
 
-    constructor(private documentInfoService: DocumentInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private documentInfoService: DocumentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private documentInfoId: number;
 
@@ -49,6 +51,9 @@ export class DocumentInformationFormComponent implements OnInit {
         debugger;
         this.documentInfoService.getDocumentById(this.profileId, this.documentInfoId).subscribe(
             (success: APIResponse) => {
+     
+                success.data.issuedDate = this.commonService.getDateToSetForm(success.data.issuedDate);
+                success.data.expiryDate = this.commonService.getDateToSetForm(success.data.expiryDate);
                 this.documentInfoForm = success.data
             },
             (error: any) => {
