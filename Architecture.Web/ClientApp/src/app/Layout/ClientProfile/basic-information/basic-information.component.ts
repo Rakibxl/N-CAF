@@ -101,11 +101,11 @@ export class BasicInformationComponent implements OnInit {
     }
     this.clientProfileService.getBasicInfo(this.profileId).subscribe(res => {
       if (res && res.data.profileId) {
-        res.data.dateOfBirth = this.commonService.getDateToSetForm(res.data.dateOfBirth);
-        res.data.taxCodeStartDate = this.commonService.getDateToSetForm(res.data.taxCodeStartDate);
-        res.data.taxCodeEndDate = this.commonService.getDateToSetForm(res.data.taxCodeEndDate);
-        res.data.expectedBabyBirthDate = this.commonService.getDateToSetForm(res.data.expectedBabyBirthDate);
-        res.data.unEmployedCertificateIssuesDate = this.commonService.getDateToSetForm(res.data.unEmployedCertificateIssuesDate);
+        res.data.dateOfBirth = this.commonService.getFormatedDateToSave(res.data.dateOfBirth);
+        res.data.taxCodeStartDate = this.commonService.getFormatedDateToSave(res.data.taxCodeStartDate);
+        res.data.taxCodeEndDate = this.commonService.getFormatedDateToSave(res.data.taxCodeEndDate);
+        res.data.expectedBabyBirthDate = this.commonService.getFormatedDateToSave(res.data.expectedBabyBirthDate);
+        res.data.unEmployedCertificateIssuesDate = this.commonService.getFormatedDateToSave(res.data.unEmployedCertificateIssuesDate);
         this.basicInfoForm.patchValue(res.data);
       }
     }, (error: any) => {

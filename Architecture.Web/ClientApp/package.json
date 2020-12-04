@@ -51,6 +51,7 @@
     "jspdf": "^2.1.1",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.14",
+    "moment": "^2.29.1",
     "msal": "^1.2.2",
     "ng-bootstrap": "^1.6.3",
     "ng-select": "^1.0.2",

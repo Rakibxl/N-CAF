@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Guid } from 'guid-typescript';
+import * as _moment from 'moment';
 declare var jQuery: any;
 
 @Injectable({
@@ -61,10 +62,57 @@ export class CommonService {
     jQuery('.spinner-overlay').hide();
   }
 
-  getDateToSetForm(date: any) {
-    if (!date) {
+  getDateToSetForm(dateVal: any) {
+    if (!dateVal || dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
       return '';
     }
-    return new Date(date).toISOString().substring(0, 10);
-  };
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('YYYY-MM-DD') : '';
+  }
+
+  getFormatedDateToSave(dateVal) {
+    if (!dateVal || dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
+      return '';
+    }
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('YYYY-MM-DD') : '';
+  }
+
+  getFormatedDateTimeToSave(dateVal) {
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('YYYY-MM-DD HH:mm:ss') : '';
+  }
+
+  getFormatedDateToShow(dateVal) {
+    if (dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
+      return '';
+    }
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('DD/MM/YYYY') : '';
+  }
+
+  getFormatedDateMonthYearToShow(dateVal) {
+    if (dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
+      return '';
+    }
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('MMM YYYY') : '';
+  }
+
+  getFormatedDateTimeToShow(dateVal) {
+    if (dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
+      return '';
+    }
+    return _moment(dateVal).isValid() ? _moment(dateVal).format('DD/MM/YYYY HH:mm:ss') : '';
+  }
+
+  getCurrentDate() {
+    return _moment().toDate();
+  }
+
+  getDateToSet(dateString: string) {
+    if (!dateString || dateString == '0000-00-00' || dateString == '0000-00-00 00:00:00') {
+      return '';
+    }
+    return _moment(dateString).isValid ? _moment(dateString).toDate() : '';
+  }
+
+  getDateDifference(start, end) {
+    return _moment.duration(_moment(end).diff(_moment(start)));
+  }
 }
