@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyInfo';
 import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-family-information',
@@ -11,7 +12,7 @@ import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family
 })
 export class FamilyInformationComponent implements OnInit {
     public familyInfos: ProfFamilyInfo[] = [];
-    constructor(private router: Router, private familyService: FamilyInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private familyService: FamilyInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
@@ -44,6 +45,11 @@ export class FamilyInformationComponent implements OnInit {
         this.familyService.getFamilyInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get family: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                success.data[i].dateOfBirth = this.commonService.getDateToSetForm(success.data[i].dateOfBirth);
+                success.data[i].applicationDate = this.commonService.getDateToSetForm(success.data[i].applicationDate);
+                success.data[i].applicationPlacedDate = this.commonService.getDateToSetForm(success.data[i].applicationPlacedDate); 
+                }
                 this.familyInfoList = success.data;
             },
             error => {

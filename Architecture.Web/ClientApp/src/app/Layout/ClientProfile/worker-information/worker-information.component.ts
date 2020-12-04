@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profWorkerInfo } from '../../../Shared/Entity/ClientProfile/profWorkerInfo';
 import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-worker-information',
@@ -11,7 +12,7 @@ import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker
 })
 export class WorkerInformationComponent implements OnInit {
 
-    constructor(private router: Router, private workerService: WorkerInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private workerService: WorkerInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -44,6 +45,10 @@ export class WorkerInformationComponent implements OnInit {
         this.workerService.getWorkerInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get worker: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                }
                 this.workerInfoList = success.data;
             },
             error => {

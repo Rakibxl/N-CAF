@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profDelegationInfo } from '../../../Shared/Entity/ClientProfile/profDelegationInfo';
 import { DelegationInfoService } from '../../../Shared/Services/ClientProfile/delegation-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-deligation-information',
@@ -11,7 +12,7 @@ import { DelegationInfoService } from '../../../Shared/Services/ClientProfile/de
 })
 export class DeligationInformationComponent implements OnInit {
 
-    constructor(private router: Router, private delegationService: DelegationInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private delegationService: DelegationInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
@@ -45,6 +46,11 @@ export class DeligationInformationComponent implements OnInit {
         this.delegationService.getDelegationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get delegation: ", success);
+                for (var i = 0; i < success.data.length; i++) {
+                    success.data[i].dateOfBirth = this.commonService.getDateToSetForm(success.data[i].dateOfBirth);
+                    success.data[i].documentIssueDate = this.commonService.getDateToSetForm(success.data[i].documentIssueDate);
+                    success.data[i].expiryDate = this.commonService.getDateToSetForm(success.data[i].expiryDate);
+                }
                 this.delegationInfoList = success.data;
             },
             error => {

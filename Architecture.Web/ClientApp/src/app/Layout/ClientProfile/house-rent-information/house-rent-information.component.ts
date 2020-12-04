@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profHouseRentInfo } from '../../../Shared/Entity/ClientProfile/profHouseRentInfo';
 import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/houserent-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-house-rent-information',
@@ -11,7 +12,7 @@ import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/hou
 })
 export class HouseRentInformationComponent implements OnInit {
 
-    constructor(private router: Router, private houseRentService: HouseRentInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private houseRentService: HouseRentInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -46,6 +47,13 @@ export class HouseRentInformationComponent implements OnInit {
         this.houseRentService.getHouseRentInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get address: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].contractDate = this.commonService.getDateToSetForm(success.data[i].contractDate);
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                    success.data[i].loanStartDate = this.commonService.getDateToSetForm(success.data[i].loanStartDate);
+                    success.data[i].registrationDate = this.commonService.getDateToSetForm(success.data[i].registrationDate);
+                }
                 this.houseRentInfoList = success.data;
             },
             error => {

@@ -52,7 +52,6 @@ export class IncomeInformationFormComponent implements OnInit {
 
                 success.data.year = this.commonService.getDateToSetForm(success.data.year);
                 success.data.month = this.commonService.getDateToSetForm(success.data.month);
-
                 this.incomeInfoForm = success.data
             },
             (error: any) => {

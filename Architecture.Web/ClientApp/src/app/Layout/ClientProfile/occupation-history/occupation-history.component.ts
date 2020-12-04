@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profOccupationInfo } from '../../../Shared/Entity/ClientProfile/profOccupationInfo';
 import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/occupation-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-occupation-history',
@@ -11,7 +12,7 @@ import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/oc
 })
 export class OccupationHistoryComponent implements OnInit {
 
-    constructor(private router: Router, private occupationService: OccupationInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private occupationService: OccupationInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
@@ -44,6 +45,10 @@ export class OccupationHistoryComponent implements OnInit {
         debugger;
         this.occupationService.getOccupationInfo(this.profileId).subscribe(
             (success) => {
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].contractStartDate = this.commonService.getDateToSetForm(success.data[i].contractStartDate);
+                    success.data[i].contractEndDate = this.commonService.getDateToSetForm(success.data[i].contractEndDate);
+                }  
                 console.log("get occupation: ", success);
                 this.occupationInfoList = success.data;
             },

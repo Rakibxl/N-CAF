@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profAddressInfo } from '../../../Shared/Entity/ClientProfile/profAddressInfo';
 import { AddressInfoService } from '../../../Shared/Services/ClientProfile/address-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
     selector: 'app-address-information',
@@ -11,7 +12,7 @@ import { AddressInfoService } from '../../../Shared/Services/ClientProfile/addre
 })
 export class AddressInformationComponent implements OnInit {
 
-    constructor(private router: Router, private addressService: AddressInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private addressService: AddressInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -41,13 +42,16 @@ export class AddressInformationComponent implements OnInit {
     public getAddressInfos() {
         debugger;
         this.addressService.getAddressInfo(this.profileId).subscribe(
-            (success) => {
+            (success) => {                
                 console.log("get address: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                }
                 this.addressInfoList = success.data;
             },
             error => {
             });
-
 
     }
 

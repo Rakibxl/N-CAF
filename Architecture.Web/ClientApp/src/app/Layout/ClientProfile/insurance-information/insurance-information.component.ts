@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profInsuranceInfo } from '../../../Shared/Entity/ClientProfile/profInsuranceInfo';
 import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/insurance-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
+
 
 @Component({
   selector: 'app-insurance-information',
@@ -11,7 +13,7 @@ import { InsuranceInfoService } from '../../../Shared/Services/ClientProfile/ins
 })
 export class InsuranceInformationComponent implements OnInit {
 
-    constructor(private router: Router, private insuranceService: InsuranceInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private insuranceService: InsuranceInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -44,6 +46,10 @@ export class InsuranceInformationComponent implements OnInit {
         this.insuranceService.getInsuranceInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get insurance: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                }
                 this.insuranceInfoList = success.data;
             },
             error => {

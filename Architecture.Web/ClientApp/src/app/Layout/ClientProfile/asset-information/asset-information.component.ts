@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profAssetInfo } from '../../../Shared/Entity/ClientProfile/profAssetInfo';
 import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-asset-information',
@@ -11,7 +12,7 @@ import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-i
 })
 export class AssetInformationComponent implements OnInit {
 
-    constructor(private router: Router, private assetService: AssetInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private assetService: AssetInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -45,6 +46,9 @@ export class AssetInformationComponent implements OnInit {
         this.assetService.getAssetInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get asset: ", success);
+                for (var i = 0; i < success.data.length; i++) {
+                    success.data[i].ownerFromDate = this.commonService.getDateToSetForm(success.data[i].ownerFromDate);
+                }
                 this.assetInfoList = success.data;
             },
             error => {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profISEEInfo } from '../../../Shared/Entity/ClientProfile/profISEEInfo';
 import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-isee-information',
@@ -11,7 +12,7 @@ import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-inf
 })
 export class IseeInformationComponent implements OnInit {
 
-    constructor(private router: Router, private iseeService: ISEEInfoService,private route: ActivatedRoute) { }
+    constructor(private router: Router, private iseeService: ISEEInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
@@ -45,6 +46,11 @@ export class IseeInformationComponent implements OnInit {
         this.iseeService.getISEEInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get isee: ", success);
+                for (var i = 0; i < success.data.length; i++) {
+                    success.data[i].submittedDate = this.commonService.getDateToSetForm(success.data[i].submittedDate);
+                    success.data[i].deliveryDate = this.commonService.getDateToSetForm(success.data[i].deliveryDate);
+                    success.data[i].expiryDate = this.commonService.getDateToSetForm(success.data[i].expiryDate);
+                }
                 this.iseeInfoList = success.data;
             },
             error => {

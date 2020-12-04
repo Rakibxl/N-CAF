@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profIncomeInfo } from '../../../Shared/Entity/ClientProfile/profIncomeInfo';
 import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-income-information',
@@ -11,7 +12,7 @@ import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income
 })
 export class IncomeInformationComponent implements OnInit {
 
-    constructor(private router: Router, private incomeService: IncomeInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private incomeService: IncomeInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -45,6 +46,10 @@ export class IncomeInformationComponent implements OnInit {
         this.incomeService.getIncomeInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get income: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].year = this.commonService.getDateToSetForm(success.data[i].year);
+                    success.data[i].month = this.commonService.getDateToSetForm(success.data[i].month);
+                }
                 this.incomeInfoList = success.data;
             },
             error => {

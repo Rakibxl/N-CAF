@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profDocumentInfo } from '../../../Shared/Entity/ClientProfile/profDocumentInfo';
 import { DocumentInfoService } from '../../../Shared/Services/ClientProfile/document-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-document-information',
@@ -11,7 +12,7 @@ import { DocumentInfoService } from '../../../Shared/Services/ClientProfile/docu
 })
 export class DocumentInformationComponent implements OnInit {
 
-    constructor(private router: Router, private documentService: DocumentInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private documentService: DocumentInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
@@ -47,6 +48,10 @@ export class DocumentInformationComponent implements OnInit {
         this.documentService.getDocumentInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get document: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].issuedDate = this.commonService.getDateToSetForm(success.data[i].issuedDate);
+                    success.data[i].expiryDate = this.commonService.getDateToSetForm(success.data[i].expiryDate);
+                }
                 this.documentInfoList = success.data;
             },
             error => {

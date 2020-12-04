@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profMovementInfo } from '../../../Shared/Entity/ClientProfile/profMovementInfo';
 import { MovementInfoService } from '../../../Shared/Services/ClientProfile/movement-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-movement-information',
@@ -11,7 +12,7 @@ import { MovementInfoService } from '../../../Shared/Services/ClientProfile/move
 })
 export class MovementInformationComponent implements OnInit {
 
-    constructor(private router: Router, private movementService: MovementInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private movementService: MovementInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -45,6 +46,10 @@ export class MovementInformationComponent implements OnInit {
         this.movementService.getMovementInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get movement: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                }
                 this.movementInfoList = success.data;
             },
             error => {

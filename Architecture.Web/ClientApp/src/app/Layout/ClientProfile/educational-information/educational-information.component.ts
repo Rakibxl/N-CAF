@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profEducationInfo } from '../../../Shared/Entity/ClientProfile/profEducationInfo';
 import { EducationInfoService } from '../../../Shared/Services/ClientProfile/education-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-educational-information',
@@ -11,7 +12,7 @@ import { EducationInfoService } from '../../../Shared/Services/ClientProfile/edu
 })
 export class EducationalInformationComponent implements OnInit {
 
-    constructor(private router: Router, private educationService: EducationInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private educationService: EducationInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -44,6 +45,10 @@ export class EducationalInformationComponent implements OnInit {
         this.educationService.getEducationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get education: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startYear = this.commonService.getDateToSetForm(success.data[i].startYear);
+                    success.data[i].endYear = this.commonService.getDateToSetForm(success.data[i].endYear);
+                }
                 this.educationInfoList = success.data;
             },
             error => {

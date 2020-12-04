@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profLegalInfo } from '../../../Shared/Entity/ClientProfile/profLegalInfo';
 import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-legal-information',
@@ -11,7 +12,7 @@ import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-i
 })
 export class LegalInformationComponent implements OnInit {
 
-    constructor(private router: Router, private legalService: LegalInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private legalService: LegalInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -44,6 +45,10 @@ export class LegalInformationComponent implements OnInit {
         this.legalService.getLegalInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get legal: ", success);
+                for (let i = 0; i < success.data.length; i++) {
+                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
+                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
+                }
                 this.legalInfoList = success.data;
             },
             error => {
