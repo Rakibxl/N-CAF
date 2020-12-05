@@ -10,7 +10,7 @@ import { AuthService } from '../../Shared/Services/Users/auth.service';
 })
 export class LandingPageComponent implements OnInit {
 
-    public openLogin: string = 'out';
+    public openLogin: string = 'in';
     public regOpen: string = 'out';
     public openResetPass: string = "out";
 
@@ -35,7 +35,7 @@ export class LandingPageComponent implements OnInit {
         this.regOpen = this.regOpen === 'out' ? 'in' : 'out';
     }
 
-    closePanel(event:any) {
+    closePanel(event: any) {
         this.openResetPass = "out";
         this.openLogin = 'out';
         this.regOpen = 'out';
