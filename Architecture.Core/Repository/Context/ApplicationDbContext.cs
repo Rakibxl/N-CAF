@@ -104,7 +104,9 @@ namespace Architecture.Core.Repository.Context
                 gender.HasKey(g => g.GenderId);
                 gender.Property(g => g.Name).HasMaxLength(100);
                 gender.HasData(
-                    new Gender { GenderId = 1, Name = "Male", IsActive = true }
+                    new Gender { GenderId = 1, Name = "Male", IsActive = true },
+                    new Gender { GenderId = 2, Name = "Female", IsActive = true },
+                    new Gender { GenderId = 3, Name = "Other", IsActive = true }
                 );
             });
 

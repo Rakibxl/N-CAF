@@ -16,25 +16,27 @@ using Microsoft.EntityFrameworkCore.Query;
 using Architecture.Core.Common.Helpers;
 using System.IO;
 using iTextSharp.text.pdf;
-using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Repository.Interfaces;
 using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
+using Architecture.BLL.Services.Interfaces;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
-
     public class BasicInfoService : Repository<ProfBasicInfo>, IBasicInfoService
     {
-        public BasicInfoService(ApplicationDbContext dbContext) : base(dbContext)
-        {
+        private readonly ICurrentUserService _currentUserService;
 
+        public BasicInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService) : base(dbContext)
+        {
+            _currentUserService = currentUserService;
         }
 
         public async Task<IEnumerable<ProfBasicInfo>> GetAll()
         {
             IEnumerable<ProfBasicInfo> result;
-            result = await GetAsync(x => x);
+            result = await GetAsync(x => x, x => x.RefId == _currentUserService.UserId);
             return result;
         }
 
