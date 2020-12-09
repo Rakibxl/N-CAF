@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
+import { BranchService } from '../../../Shared/Services/Users/branch.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
-  selector: 'app-branch-information',
-  templateUrl: './branch-information.component.html',
-  styleUrls: ['./branch-information.component.css']
+    selector: 'app-branch-information',
+    templateUrl: './branch-information.component.html',
+    styleUrls: ['./branch-information.component.css']
 })
 export class BranchInformationComponent implements OnInit {
+    branchList: any[] = [];
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private branchService: BranchService, private alertService: AlertService, private commonService: CommonService) {
+
     }
 
-
-  ngOnInit() {
+    ngOnInit() {
+        this.loadBranchList();
     }
-
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
@@ -23,29 +27,29 @@ export class BranchInformationComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
+        let branchId = event.record && event.record.branchId || 0;
         if (event.action == "new-record") {
-            this.router.navigate(['/manager/branch-info-new']);
+            this.router.navigate([`/manager/branch-info/${branchId}`]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate(['/manager/branch-info-new']);
+            this.router.navigate([`/manager/branch-info/${branchId}`]);
         }
     }
-
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Branch List',
         tableRowIDInternalName: "branchId",
         tableColDef: [
-            { headerName: 'Branch Id', width: '10%', internalName: 'branchId', sort: true, type: "" },
+            { headerName: 'Branch Id', width: '6%', internalName: 'branchId', sort: true, type: "" },
             { headerName: 'Address', width: '15%', internalName: 'address', sort: true, type: "" },
             { headerName: 'City', width: '15%', internalName: 'city', sort: true, type: "" },
-            { headerName: 'Contact Person', width: '10%', internalName: 'contactperson', sort: false, type: "" },
-            { headerName: 'Contact Number', width: '10%', internalName: 'contactnumber', sort: true, type: "" },
-            { headerName: 'AgreementStart', width: '20%', internalName: 'agreementstart', sort: true, type: "" },
-            { headerName: 'Number Of User', width: '10%', internalName: 'numberofuser', sort: true, type: "" },
-            { headerName: 'Is Locked', width: '10%', internalName: 'islocked', sort: true, type: "" },
-            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
+            { headerName: 'Contact Person', width: '10%', internalName: 'contactPerson', sort: false, type: "" },
+            { headerName: 'Contact Number', width: '10%', internalName: 'contactNumber', sort: true, type: "" },
+            { headerName: 'AgreementStart', width: '10%', internalName: 'agreementStart', sort: true, type: "" },
+            { headerName: 'Number Of User', width: '10%', internalName: 'numberOfUser', sort: true, type: "" },
+            { headerName: 'Is Locked', width: '10%', internalName: 'isLocked', sort: true, type: "" },
+            { headerName: 'Note', width: '20%', internalName: 'note', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -76,34 +80,21 @@ export class BranchInformationComponent implements OnInit {
             tableOverflowY: true,
             overflowContentHeight: '460px'
         }
-    };
+    }
 
-    public employeeList = [
-        { branchId: "NC-120",  address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-121", address: "Via Milano", city: "Firenze", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok",  details: "More.." },
-        { branchId: "NC-122", address: "Via Allesandro", city: "Rome", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "Yes", note: "ok", details: "More.." },
-        { branchId: "NC-123", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-124 ", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-125", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-126", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-127", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-128", address: "Via Torino User", city: "Firenze", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-129", address: "Via Allesandro", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "Yes", note: "ok", details: "More.." },
-        { branchId: "NC-130", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-131", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "Yes", note: "ok", details: "More.." },
-        { branchId: "NC-132", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-133", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-134", address: "Via Allesandro", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-135", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-136", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "Yes", note: "ok", details: "More.." },
-        { branchId: "NC-137", address: "Via Milano", city: "Rome", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-138", address: "Via Milano", city: "Como", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-139", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "In10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-140", address: "Via Allesandro", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-151", address: "Via Milano", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-152", address: "Via Torino User", city: "Bergamo", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "In10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-153", address: "Via Milano", city: "Venice", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-154", address: "Via Allesandro", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "In10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-        { branchId: "NC-155", address: "Via Torino User", city: "Milan", contactperson: "Admin", contactnumber: "3897664336", agreementstart: "10/4/2020", numberofuser: "1", islocked: "No", note: "ok", details: "More.." },
-    ];
+    loadBranchList() {
+        this.branchService.getBranchList().subscribe((res) => {
+            this.alertService.fnLoading(false);
+            if (res && res.data && res.data.length) {
+                this.branchList = res.data;
+                this.branchList.map(ex => {
+                    // ex.full_name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
+                    ex.agreementStart = this.commonService.getDateToSetForm(ex.agreementStart);
+                    return ex;
+                });
+            }
+        }, err => {
+            this.alertService.tosterDanger(err);
+        });
+    }
 }

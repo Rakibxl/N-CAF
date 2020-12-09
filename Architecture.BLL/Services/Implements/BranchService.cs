@@ -31,10 +31,10 @@ namespace Architecture.BLL.Services.Implements
 
         }
 
-        public async Task<IEnumerable<BranchInfo>> GetAll(int branchId)
+        public async Task<IEnumerable<BranchInfo>> GetAll()
         {
             IEnumerable<BranchInfo> result;
-            result = await GetAsync(x => x, x => x.BranchId == branchId);
+            result = await GetAsync(x => x);
             return result;
         }
 

@@ -34,7 +34,21 @@ namespace Architecture.Web.Controllers.Users
             //_userManager = userManager;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetBranches")]
+        public async Task<IActionResult> GetBranches()
+        {
+            try
+            {
+                var result = await _branchService.GetAll();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetBranchInfo")]
         public async Task<IActionResult> GetBranchInfo(int branchId)
         {
             try
