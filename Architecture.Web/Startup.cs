@@ -105,6 +105,7 @@ namespace Architecture.Web
             services.AddTransient<IDocumentInfoService, DocumentInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
+            services.AddTransient<IBranchService, BranchService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())

@@ -13,7 +13,7 @@ export class UserLoginComponent implements OnInit {
   loginModel: any = {
     email: '',
     password: '',
-    branch: '',
+    // branch: '',
   };
 
   constructor(private commonService: CommonService, private router: Router, private authService: AuthService, private alertService: AlertService) { }
@@ -54,5 +54,5 @@ export class UserLoginComponent implements OnInit {
     });
   }
 
-  public hasBranch: boolean = false;
+  // public hasBranch: boolean = false;
 }
