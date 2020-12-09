@@ -6,6 +6,7 @@ import { BranchService } from '../../../Shared/Services/Users/branch.service';
 import { UserService } from '../../../Shared/Services/Users/user.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { Guid } from 'guid-typescript';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-branch-information-form',
@@ -14,12 +15,16 @@ import { Guid } from 'guid-typescript';
 })
 export class BranchInformationFormComponent implements OnInit {
   branchForm: FormGroup;
+  branchId: number;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserService, private roleService: RoleService, private branchService: BranchService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private commonService: CommonService, private userService: UserService, private roleService: RoleService, private branchService: BranchService, private alertService: AlertService) {
     this.initForm();
+    let bId: any = this.route.snapshot.paramMap.get('id') || 0;
+    this.branchId = parseInt(bId);
   }
 
   ngOnInit() {
+    this.loadBranchInfo();
   }
 
   backBtnClick() {
@@ -36,8 +41,28 @@ export class BranchInformationFormComponent implements OnInit {
       contactNumber: [null, Validators.required],
       agreementStart: [null, Validators.required],
       numberOfUser: [null],
-      isLocked: [null],
-      note: [null]
+      isLocked: [false],
+      note: [null],
+      createdBy: [null],
+      // created: [null],
+      modifiedBy: [null],
+      // modified: [null]
+    });
+  }
+
+  loadBranchInfo() {
+    if (!(this.branchId > 0)) {
+      this, this.branchForm.reset();
+      return;
+    }
+    this.branchService.getBranchInfo(this.branchId).subscribe(res => {
+      if (res && res.data.branchId) {
+        res.data.agreementStart = this.commonService.getFormatedDateToSave(res.data.agreementStart);
+        this.branchForm.patchValue(res.data);
+      }
+    }, (error: any) => {
+      this.commonService.stopLoading();
+      console.log(error)
     });
   }
 
@@ -53,6 +78,7 @@ export class BranchInformationFormComponent implements OnInit {
       if (res && res.data) {
         this.alertService.tosterSuccess('Branch saved successfully');
         this.branchForm.patchValue({ id: res.data });
+        this.router.navigate(["/manager/branch-info"]);
       }
     }, (err: any) => {
       console.log(err);

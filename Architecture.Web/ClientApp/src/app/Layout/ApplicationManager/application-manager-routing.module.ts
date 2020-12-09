@@ -15,9 +15,9 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'branch-info' },
+            // { path: '', redirectTo: 'branch-info' },
+            { path: 'branch-info/:id', component: BranchInformationFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'branch-info', component: BranchInformationComponent, data: { extraParameter: 'analytics' } },
-            { path: 'branch-info-new', component: BranchInformationFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info/:id', component: ApplicationUserFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-info', component: ApplicationUserComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role/:id', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },

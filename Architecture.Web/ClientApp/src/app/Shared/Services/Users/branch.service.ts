@@ -17,15 +17,21 @@ export class BranchService {
     @Inject('BASE_URL') baseUrl: string,
     private commonService: CommonService) {
     this.baseUrl = baseUrl + 'api/';
-    this.branchEndpoint = this.baseUrl + 'v1/branch';
+    this.branchEndpoint = this.baseUrl + 'v1/Branch';
   }
 
-  getUserRoles(filter?) {
-    return this.http.get<APIResponse>(`${this.branchEndpoint}?${this.commonService.toQueryString(filter)}`);
+  getBranchInfo(branchId) {
+    let url = this.branchEndpoint + "/GetBranchInfo?branchId=" + branchId;
+    return this.http.get<APIResponse>(`${url}`);
+  }
+
+  getBranchList() {
+    let url = this.branchEndpoint + "/GetBranches";
+    return this.http.get<APIResponse>(`${url}`);
   }
 
   createOrUpdate(data) {
-    let url = this.branchEndpoint + "/Create";
+    let url = this.branchEndpoint + "/CreateOrUpdate";
     return this.http.post<APIResponse>(`${url}`, data);
   }
 }
