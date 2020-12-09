@@ -13,7 +13,7 @@ export class profDocumentInfo extends Auditable {
 
     public documentName: string;
 
-    public purposeofDocument: string;
+    public purposeOfDocument: string;
 
     public issuedBy: string
 

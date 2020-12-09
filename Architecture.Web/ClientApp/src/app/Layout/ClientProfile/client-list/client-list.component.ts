@@ -53,10 +53,9 @@ export class ClientListComponent implements OnInit {
       { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
     ],
     enabledSearch: true,
-    enabledSerialNo: true,
-    pageSize: 15,
-    enabledPagination: false,
-    enabledAutoScrolled: true,
+    //enabledSerialNo: true,
+      pageSize: 15,
+      enabledPagination: true,
     // enabledEditDeleteBtn: true,
     enabledEditDeleteBtn: true,
     //enabledDeleteBtn: true,
@@ -69,16 +68,10 @@ export class ClientListComponent implements OnInit {
     enabledExcelDownload: true,
     enabledPrint: true,
     enabledColumnSetting: true,
-    enabledRecordCreateBtn: true,
-    enabledTotal: true,
-    //enabledCheckbox:true,
-    enabledRadioBtn: false,
-    tableHeaderVisibility: true,
-    // tableFooterVisibility:false,
-    pTableStyle: {
-      tableOverflowY: true,
-      overflowContentHeight: '460px'
-    }
+      enabledRecordCreateBtn: true,
+      //enabledCheckbox: true,
+      enabledRadioBtn: true,
+    
   }
 
   getClients() {

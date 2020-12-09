@@ -69,18 +69,18 @@ namespace Architecture.Web.Extensions
             var list = from ex in exceptions
                        let st = new StackTrace(ex, true)
                        let frame = st.GetFrame(st.FrameCount - 1)
-                       let declaringType = frame.GetMethod().DeclaringType
+                       let declaringType = frame?.GetMethod().DeclaringType
                        select new ApplicationError
                        {
                            Id = Guid.NewGuid().ToString().ToLower(),
                            ErrorTime = dateTime,
-                           FileName = Path.GetFileName(frame.GetFileName()),
-                           MethodName = frame.GetMethod().Name,
-                           LineNumber = frame.GetFileLineNumber(),
+                           FileName = Path.GetFileName(frame?.GetFileName()),
+                           MethodName = frame?.GetMethod().Name,
+                           LineNumber = frame==null?0:frame.GetFileLineNumber(),
                            Message = ex.Message,
-                           ColumnNumber = frame.GetFileColumnNumber(),
-                           EntityName = declaringType != null ? declaringType.Name : frame.GetFileName(),
-                           EntityFullName = declaringType != null ? declaringType.FullName : frame.GetFileName(),
+                           ColumnNumber = frame == null ? 0 : frame.GetFileColumnNumber(),
+                           EntityName = declaringType != null ? declaringType.Name : frame?.GetFileName(),
+                           EntityFullName = declaringType != null ? declaringType.FullName : frame?.GetFileName(),
                            StackTrace = ex.StackTrace,
                        };
 
@@ -122,7 +122,7 @@ namespace Architecture.Web.Extensions
             File.AppendAllText(filePath, message);
         }
 
-        public static void ToWriteMessageLog(this string message, string methodName = "", string folderName = "Log", string fileName = "MessageLog.txt")
+        public static void ToWriteMessageLog(this string message, string methodName = "", string folderName = "CusomLog", string fileName = "MessageLog.txt")
         {
             var startupPath = new DirectoryInfo(Path.GetDirectoryName(
                 Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path))).Parent.FullName;
