@@ -19,6 +19,7 @@ export class ProfFamilyInfo extends Auditable {
     public occupationType: string;
     public nationlityId: number;
     //public virtual Nationality Nationality { get; set; }
+    public nationality: string;
     public previousNationality: string;
     public previousNationalityId: number;
     public residenceScopeId: number;

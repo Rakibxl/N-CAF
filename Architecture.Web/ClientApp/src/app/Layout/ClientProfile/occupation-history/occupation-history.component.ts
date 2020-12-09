@@ -61,18 +61,18 @@ export class OccupationHistoryComponent implements OnInit {
         tableName: 'Occupation List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Job Type', width: '20%', internalName: 'jobType', sort: true, type: "" },
+            { headerName: 'Job Type', width: '10%', internalName: 'jobType', sort: true, type: "" },
             { headerName: 'JobHour', width: '10%', internalName: 'jobHour', sort: true, type: "" },
-            { headerName: 'ContractType', width: '15%', internalName: 'roadnumber', sort: true, type: "" },
-            { headerName: 'Contract StartDate', width: '15%', internalName: 'contractStartDate', sort: true, type: "" },
+            { headerName: 'ContractType', width: '10%', internalName: 'contractType', sort: true, type: "" },
+            { headerName: 'Contract StartDate', width: '10%', internalName: 'contractStartDate', sort: true, type: "" },
             { headerName: 'Contract EndDate', width: '10%', internalName: 'contractEndDate', sort: true, type: "" },
             { headerName: 'CompanyName', width: '10%', internalName: 'companyName', sort: true, type: "" },
-            { headerName: 'VATNo', width: '20%', internalName: 'vatNo', sort: true, type: "" },
+            { headerName: 'VATNo', width: '10%', internalName: 'vatNo', sort: true, type: "" },
             { headerName: 'Legal Company Address', width: '10%', internalName: 'legalCompanyAddress', sort: true, type: "" },
             { headerName: 'Office Address', width: '10%', internalName: 'officeAddress', sort: true, type: "" },
             { headerName: 'Branch Address', width: '10%', internalName: 'branchAddress', sort: true, type: "" },
             { headerName: 'Chamber Of CommerceRegNo', width: '10%', internalName: 'chamberOfCommerceRegNo', sort: true, type: "" },
-            { headerName: 'Chamber OfCommerce CityName', width: '10%', internalName: 'chamberOfCommerceCityName', sort: true, type: "" },
+            { headerName: 'Chamber OfCommerce CityName', width: '15%', internalName: 'chamberOfCommerceCityName', sort: true, type: "" },
             { headerName: 'REANo', width: '10%', internalName: 'reaNo', sort: true, type: "" },
             { headerName: 'ATECONo', width: '10%', internalName: 'atecoNo', sort: true, type: "" },
             { headerName: 'SCIANo', width: '10%', internalName: 'sciaNo', sort: true, type: "" },
@@ -81,17 +81,14 @@ export class OccupationHistoryComponent implements OnInit {
             { headerName: 'Percentage of Share', width: '10%', internalName: 'percentageOfShare', sort: true, type: "" },
             { headerName: 'Notaio Info', width: '10%', internalName: 'notaioInfo', sort: true, type: "" },
             { headerName: 'Company Representative', width: '10%', internalName: 'companyRepresentative', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -101,16 +98,7 @@ export class OccupationHistoryComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public occupationInfoList = [

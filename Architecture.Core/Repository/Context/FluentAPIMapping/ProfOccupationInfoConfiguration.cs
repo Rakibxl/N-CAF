@@ -15,7 +15,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             occupationInfo.HasKey(bs => bs.OccupationInfoId);
             occupationInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfOccupationInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
-            occupationInfo.Property(bs => bs.JobHour).HasColumnType("decimal(10,2)");
+            occupationInfo.Property(bs => bs.JobHour).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             occupationInfo.Property(bs => bs.ContractStartDate).HasColumnType("Date").IsRequired();
             occupationInfo.Property(bs => bs.ContractEndDate).HasColumnType("Date").IsRequired();
             occupationInfo.Property(bs => bs.CompanyName).HasMaxLength(100).IsRequired();
@@ -29,7 +29,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             occupationInfo.Property(bs => bs.ATECONo).HasMaxLength(100);
             occupationInfo.Property(bs => bs.SCIANo).HasMaxLength(100);
             occupationInfo.Property(bs => bs.SCIACityName).HasMaxLength(100);
-            occupationInfo.Property(bs => bs.PercentageOfShare).HasColumnType("decimal(5,2)");
+            occupationInfo.Property(bs => bs.PercentageOfShare).HasColumnType("decimal(5,2)").HasDefaultValue(0.0);
             occupationInfo.Property(bs => bs.NotaioInfo).HasMaxLength(100);
             occupationInfo.Property(bs => bs.CompanyRepresentative).HasMaxLength(100);
 

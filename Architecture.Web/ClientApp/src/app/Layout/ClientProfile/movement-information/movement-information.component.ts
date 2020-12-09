@@ -62,7 +62,7 @@ export class MovementInformationComponent implements OnInit {
         tableName: 'Movement List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Country Name', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            //{ headerName: 'Country Name', width: '20%', internalName: 'countryName', sort: true, type: "" },
             { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Purpose', width: '15%', internalName: 'purpose', sort: true, type: "" },
@@ -73,11 +73,8 @@ export class MovementInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -87,16 +84,7 @@ export class MovementInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
 

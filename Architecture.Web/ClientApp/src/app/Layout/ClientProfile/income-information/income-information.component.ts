@@ -62,8 +62,7 @@ export class IncomeInformationComponent implements OnInit {
         tableName: 'Income List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Income Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'Income Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            //{ headerName: 'Income Type', width: '20%', internalName: 'incomeType', sort: true, type: "" },
             { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "" },
             { headerName: 'Montly Income', width: '15%', internalName: 'monthlyIncome', sort: true, type: "" },
             { headerName: 'Year', width: '15%', internalName: 'year', sort: true, type: "" },
@@ -76,11 +75,8 @@ export class IncomeInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-         //enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -90,16 +86,7 @@ export class IncomeInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public incomeInfoList = [];

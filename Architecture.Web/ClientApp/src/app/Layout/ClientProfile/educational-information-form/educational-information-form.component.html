@@ -14,8 +14,8 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DegreeType</label>
-                            <select id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId">
+                            <label class="label">DegreeType*</label>
+                            <select id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId" required>
                                 <!--<option>type here</option>-->
                                 <option value="1">Bachelor</option>
                                 <option value="2">Masters</option>
@@ -28,8 +28,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartYear</label>
-                            <input type="date" autocomplete="off" class="form-control" name="startYear" #startYear="ngModel" [(ngModel)]="educationInfoForm.startYear" />
+                            <label class="label">StartYear*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="startYear" #startYear="ngModel" [(ngModel)]="educationInfoForm.startYear" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startYear.valid || startYear.pristine" class="text-danger">start year is required.</p>
                         </div>
@@ -37,8 +37,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndYear</label>
-                            <input type="date" autocomplete="off" class="form-control" name="endYear" #endYear="ngModel" [(ngModel)]="educationInfoForm.endYear" />
+                            <label class="label">EndYear*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="endYear" #endYear="ngModel" [(ngModel)]="educationInfoForm.endYear" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endYear.valid || endYear.pristine" class="text-danger">end year is required.</p>
                         </div>
@@ -46,7 +46,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InstitutionName</label>
+                            <label class="label">InstitutionName*</label>
                             <input type="text" autocomplete="off" name="institutionName" [(ngModel)]="educationInfoForm.institutionName" #institutionName="ngModel" class="form-control" placeholder="Enter institution"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -58,7 +58,7 @@
                         <div class="caf-input-group">
                             <label class="label">UniversityLoacation</label>
                             <input type="text" autocomplete="off" name="universityAddress" [(ngModel)]="educationInfoForm.universityAddress" #universityAddress="ngModel"  class="form-control" placeholder="Enter university location"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="caf-input-group">
                             <label class="label">ActivitiesAndSocieties</label>
                             <input type="text" autocomplete="off" name="activitiesAndSocieties" [(ngModel)]="educationInfoForm.activitiesAndSocieties" #activitiesAndSocieties="ngModel" class="form-control" placeholder="Enter activities and societies"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="caf-input-group">
                             <label class="label">Result</label>
                             <input type="text" autocomplete="off" name="result" [(ngModel)]="educationInfoForm.result" #result ="ngModel" class="form-control" placeholder="Enter result"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
