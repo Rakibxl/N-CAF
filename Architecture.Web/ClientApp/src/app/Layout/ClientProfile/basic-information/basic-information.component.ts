@@ -85,9 +85,9 @@ export class BasicInformationComponent implements OnInit {
       branchId: [null],
       refId: [null],
       createdBy: [null],
-      created: [null],
+      // created: [null],
       modifiedBy: [null],
-      modified: [null]
+      // modified: [null]
     });
   }
 
