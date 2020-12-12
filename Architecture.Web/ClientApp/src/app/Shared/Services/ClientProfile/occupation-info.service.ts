@@ -4,7 +4,7 @@ import { APIResponse } from '../../Entity/Response/api-response';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class OccupationInfoService {
     public baseUrl: string;
@@ -14,16 +14,13 @@ export class OccupationInfoService {
     }
 
     public saveOccupationInfo(data: profOccupationInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/OccupationInfo/CreateOrUpdate', data);
     }
     public getOccupationInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/OccupationInfo/Profile/${profileId}`);
     }
 
     public getOccupationById(profileId: number, occupationInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/OccupationInfo/GetById/${profileId}/${occupationInfoId}`);
     }
 }

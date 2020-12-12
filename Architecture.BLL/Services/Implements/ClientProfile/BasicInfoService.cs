@@ -54,12 +54,13 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             }
         }
 
-        public async Task<ProfBasicInfo> GetByRefId(Guid UserId)
+        public async Task<ProfBasicInfo> GetCurrentUserBasicInfo()
         {
-            var checkVal = await IsExistsAsync(x => x.RefId == UserId);
+            
+            var checkVal = await IsExistsAsync(x => x.RefId == _currentUserService.UserId);
             if (checkVal)
             {
-                IEnumerable<ProfBasicInfo> result = await GetAsync(x => x, x => x.RefId == UserId);
+                IEnumerable<ProfBasicInfo> result = await GetAsync(x => x, x => x.RefId == _currentUserService.UserId);
                 return result.FirstOrDefault();
             }
             else
