@@ -57,7 +57,7 @@ export class BankInformationComponent implements OnInit {
         tableRowIDInternalName: "bankinfoid",
         tableColDef: [
             //{ headerName: 'Bank Id', width: '10%', internalName: 'bankinfoid', sort: true, type: "" },
-            //{ headerName: 'Bank Name', width: 'Como0%', internalName: 'bankname', sort: true, type: "" },
+            { headerName: 'Bank Name', width: '10%', internalName: 'bankname', sort: true, type: "" },
             { headerName: 'Branch Name', width: '10%', internalName: 'branchName', sort: true, type: "" },
             { headerName: 'Account Number', width: '15%', internalName: 'accountNumber', sort: true, type: "" },
             { headerName: 'Swift Number', width: '15%', internalName: 'swiftNumber', sort: true, type: "" },            
@@ -68,11 +68,8 @@ export class BankInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -82,16 +79,7 @@ export class BankInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public bankInfoList = [

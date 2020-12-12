@@ -16,7 +16,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">IseeClass*</label>
-                            <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId">
+                            <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId" required>
                                 <option value="1">High</option>
                                 <option value="2">Middle</option>
                                 <option value="3">Low</option>
@@ -98,7 +98,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SubmittedDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="sumittedDate" #submittedDate="ngModel" [(ngModel)]="iseeInfoForm.submittedDate" />
+                            <input type="date" autocomplete="off" class="form-control" name="sumittedDate" #submittedDate="ngModel" [(ngModel)]="iseeInfoForm.submittedDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="submittedDate.valid || submittedDate.pristine" class="text-danger">SubmittedDate is required.</p>
                         </div>
@@ -116,7 +116,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ExpiryDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
+                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
                         </div>

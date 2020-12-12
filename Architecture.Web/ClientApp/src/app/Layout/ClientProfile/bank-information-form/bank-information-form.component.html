@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">BankName*</label>
-                            <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId">
+                            <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId" required>
                                 <option value="1">UniCredit Bank</option>
                                 <option value="2">Intesa San Paolo</option>
                                 <option value="3">UBI Bank</option>
@@ -29,7 +29,7 @@
                         <div class="caf-input-group">
                             <label class="label">BranchName</label>
                             <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="Enter branch name"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -38,7 +38,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                AccountNumber/IBAN
+                                AccountNumber/IBAN*
                             </label>
                             <input type="text" autocomplete="off" class="form-control" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="bankInfoForm.accountNumber" placeholder="Enter account number"
                                    required />
@@ -51,7 +51,7 @@
                         <div class="caf-input-group">
                             <label class="label">SwiftNumber</label>
                             <input type="text" autocomplete="off" class="form-control" name="swiftNumber" #swiftNumber="ngModel" [(ngModel)]="bankInfoForm.swiftNumber" placeholder="Enter swift number"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

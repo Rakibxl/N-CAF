@@ -83,10 +83,7 @@ export class AssetInformationComponent implements OnInit {
         enabledSerialNo: true,
         pageSize: 15,
         enabledPagination: true,
-       //enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -96,16 +93,7 @@ export class AssetInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public assetInfoList = [

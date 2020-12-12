@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">JobType*</label>
-                            <select id="" class="form-control" name="jobTypeId" #jobTypeId="ngModel" [(ngModel)]="occupationInfoForm.jobTypeId">
+                            <select id="" class="form-control" name="jobTypeId" #jobTypeId="ngModel" [(ngModel)]="occupationInfoForm.jobTypeId" required>
                                 <option value="1">PartTime</option>
                                 <option value="2">FullTime</option>
                                 <option value="3">Occasional</option>
@@ -36,7 +36,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ContractType*</label>
-                            <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId">
+                            <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId" required>
                                 <option value="1">Limited</option>
                                 <option value="2">Unlimited</option>
                                 <option value="3">Occational</option>
@@ -78,7 +78,7 @@
                         <div class="caf-input-group">
                             <label class="label">VatNo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter VATNo" name="vatNo" #vatNo="ngModel" [(ngModel)]="occupationInfoForm.vatNo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="caf-input-group">
                             <label class="label">LegalCompanyAddress</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter LegalCompanyAddress" name="legalCompanyAddress" #legalCompanyAddress="ngModel" [(ngModel)]="occupationInfoForm.legalCompanyAddress"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -98,7 +98,7 @@
                         <div class="caf-input-group">
                             <label class="label">OfficeAddress</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter OfficeAddress" name="officeAddress" #officeAddress="ngModel" [(ngModel)]="occupationInfoForm.officeAddress"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -109,7 +109,7 @@
                         <div class="caf-input-group">
                             <label class="label">BranchAddress</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter BranchAddress" name="branchAddress" #branchAddress="ngModel" [(ngModel)]="occupationInfoForm.branchAddress"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -118,7 +118,7 @@
                         <div class="caf-input-group">
                             <label class="label">ChamberOfCommerceRegNo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceRegNo" name="chamberOfCommerceRegNo" #chamberOfCommerceRegNo="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceRegNo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -127,7 +127,7 @@
                         <div class="caf-input-group">
                             <label class="label">ChamberOfCommerceCityName</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter ChamberOfCommerceCityName" name="chamberOfCommerceCityName" #chamberOfCommerceCityName="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceCityName"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -136,7 +136,7 @@
                         <div class="caf-input-group">
                             <label class="label">REANo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter REANo" name="reaNo" #reaNo="ngModel" [(ngModel)]="occupationInfoForm.reaNo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -145,7 +145,7 @@
                         <div class="caf-input-group">
                             <label class="label">ATECONo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter ATECONo" name="atecoNo" #atecoNo="ngModel" [(ngModel)]="occupationInfoForm.atecoNo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -154,7 +154,7 @@
                         <div class="caf-input-group">
                             <label class="label">SCIANo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIANo" name="sciaNo" #sciaNo="ngModel" [(ngModel)]="occupationInfoForm.sciaNo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -163,7 +163,7 @@
                         <div class="caf-input-group">
                             <label class="label">SCIACityName</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter SCIACityName" name="sciaCityName" #sciaCityName="ngModel" [(ngModel)]="occupationInfoForm.sciaCityName"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -187,7 +187,7 @@
                         <div class="caf-input-group">
                             <label class="label">PercentageofShare*</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter PercentageofShare" name="percentageOfShare" #percentageOfShare="ngModel" [(ngModel)]="occupationInfoForm.percentageOfShare"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="percentageOfShare.valid || percentageOfShare.pristine" class="text-danger">PercentageofShare is required.</p>
                         </div>
@@ -197,7 +197,7 @@
                         <div class="caf-input-group">
                             <label class="label">NotaioInfo</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter NotaioInfo" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="occupationInfoForm.notaioInfo"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -207,7 +207,7 @@
                         <div class="caf-input-group">
                             <label class="label">CompanyRepresentative</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter CompanyRepresentative" name="companyRepresentative" #companyRepresentative="ngModel" [(ngModel)]="occupationInfoForm.companyRepresentative"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

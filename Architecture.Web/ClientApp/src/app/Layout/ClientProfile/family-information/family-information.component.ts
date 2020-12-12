@@ -24,8 +24,6 @@ export class FamilyInformationComponent implements OnInit {
         this.getFamilyInfos();
     }
 
-
-
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
     }
@@ -64,31 +62,29 @@ export class FamilyInformationComponent implements OnInit {
         tableName: 'Family List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Relation Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            //{ headerName: 'Relation Type', width: '10%', internalName: 'relationType', sort: true, type: "" },
             { headerName: 'Name', width: '10%', internalName: 'name', sort: true, type: "" },
-            { headerName: 'SurName', width: '15%', internalName: 'surName', sort: true, type: "" },
-            { headerName: 'TaxCode', width: '15%', internalName: 'taxCode', sort: true, type: "" },
+            { headerName: 'SurName', width: '10%', internalName: 'surName', sort: true, type: "" },
+            { headerName: 'TaxCode', width: '10%', internalName: 'taxCode', sort: true, type: "" },
             { headerName: 'Date Of Birth', width: '10%', internalName: 'dateOfBirth', sort: true, type: "" },
             { headerName: 'Place Of Birth', width: '10%', internalName: 'placeOfBirth', sort: true, type: "" },
-            { headerName: 'Phone Number', width: '20%', internalName: 'phoneNumber', sort: true, type: "" },
+            { headerName: 'Phone Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
+            //{ headerName: 'Nationality', width: '10%', internalName: 'nationality', sort: true, type: "" },
+            //{ headerName: 'Previous Nationality', width: '10%', internalName: 'previousNationality', sort: true, type: "" },
+            //{ headerName: 'Residence Scope', width: '10%', internalName: 'residenceScope', sort: true, type: "" },
+            //{ headerName: 'Occupation Type', width: '10%', internalName: 'occupationType', sort: true, type: "" },
             { headerName: 'Is Disabled', width: '10%', internalName: 'isDisabled', sort: true, type: "" },
             { headerName: 'Disabled Percentage', width: '10%', internalName: 'disabledPercentage', sort: true, type: "" },
             { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "" },
-            //{ headerName: 'Use-able Percentage', width: '10%', internalName: 'useablepercentage', sort: true, type: "" },
-            //{ headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyrestrictionbygovt', sort: true, type: "" },
-            //{ headerName: 'City Name', width: '10%', internalName: 'cityname', sort: true, type: "" },
-            //{ headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
+            { headerName: 'Is Applied For Citizenship', width: '10%', internalName: 'isAppliedForCitizenship', sort: true, type: "" },            
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -98,16 +94,7 @@ export class FamilyInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public familyInfoList = [];

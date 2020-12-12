@@ -64,14 +64,14 @@ export class DeligationInformationComponent implements OnInit {
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
             //{ headerName: 'Delegation Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'Name', width: '20%', internalName: 'name', sort: true, type: "" },
+            { headerName: 'Name', width: '10%', internalName: 'name', sort: true, type: "" },
             { headerName: 'Sur Name', width: '10%', internalName: 'surName', sort: true, type: "" },
-            { headerName: 'Date Of Birth', width: '15%', internalName: 'dateOfBirth', sort: true, type: "" },
-            { headerName: 'TaxCode', width: '15%', internalName: 'taxCode', sort: true, type: "" },
+            { headerName: 'Date Of Birth', width: '10%', internalName: 'dateOfBirth', sort: true, type: "" },
+            { headerName: 'TaxCode', width: '10%', internalName: 'taxCode', sort: true, type: "" },
             { headerName: 'Purpose', width: '10%', internalName: 'purpose', sort: true, type: "" },
             { headerName: 'Ref No', width: '10%', internalName: 'refNo', sort: true, type: "" },
             { headerName: 'Purpose', width: '10%', internalName: 'purpose', sort: true, type: "" },
-            { headerName: 'Document Issue Date', width: '20%', internalName: 'documentIssueDate', sort: true, type: "" },
+            { headerName: 'Document Issue Date', width: '10%', internalName: 'documentIssueDate', sort: true, type: "" },
             { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },
             { headerName: 'Issued By', width: '10%', internalName: 'issuedBy', sort: true, type: "" },
             { headerName: 'Status', width: '10%', internalName: 'status', sort: true, type: "" },        
@@ -81,11 +81,8 @@ export class DeligationInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -95,16 +92,7 @@ export class DeligationInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public delegationInfoList = [

@@ -8,6 +8,10 @@ export class profInsuranceInfo extends Auditable {
 
         //public int? InsuranceTypeId { get; set; }
         //public virtual InsuranceType InsuranceType { get; set; }
+
+
+    public insuranceType: string;
+
     public insuranceTypeId: number;
 
     public insuranceTitle: string;

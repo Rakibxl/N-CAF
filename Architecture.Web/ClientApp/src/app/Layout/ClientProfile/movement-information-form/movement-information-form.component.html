@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">CountryName*</label>
-                            <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="movementInfoForm.countryNameId">
+                            <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="movementInfoForm.countryNameId" required>
                                 <option value="1">Italy</option>
                                 <option value="2">Bangladesh</option>
                             </select>
@@ -27,7 +27,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">StartDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="movementInfoForm.startDate" />
+                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="movementInfoForm.startDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">EndDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="movementInfoForm.endDate" />
+                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="movementInfoForm.endDate" required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
                         </div>
@@ -46,7 +46,7 @@
                         <div class="caf-input-group">
                             <label class="label">Purpose</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter Purpose" name="purpose" #purpose="ngModel" [(ngModel)]="movementInfoForm.purpose"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

@@ -66,12 +66,12 @@ export class HouseRentInformationComponent implements OnInit {
         tableName: 'House Rent List',
         tableRowIDInternalName: "houserentinfoid",
         tableColDef: [
-            { headerName: 'Contract Type', width: '20%', internalName: 'contractType', sort: true, type: "" },
-            { headerName: 'Contract Date', width: '15%', internalName: 'contractDate', sort: true, type: "" },
-            { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
+            { headerName: 'Contract Type', width: '10%', internalName: 'contractType', sort: true, type: "" },
+            { headerName: 'Contract Date', width: '10%', internalName: 'contractDate', sort: true, type: "" },
+            { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Monthly Rent Amount', width: '10%', internalName: 'monthlyRentAmount', sort: true, type: "" },
-            { headerName: 'Service Charge Amount', width: '20%', internalName: 'serviceChargeAmount', sort: true, type: "" },
+            { headerName: 'Service Charge Amount', width: '10%', internalName: 'serviceChargeAmount', sort: true, type: "" },
             { headerName: 'Registration Info', width: '10%', internalName: 'registrationInfo', sort: true, type: "" },
             { headerName: 'Registration Date', width: '10%', internalName: 'registrationDate', sort: true, type: "" },
             { headerName: 'Registration Office', width: '10%', internalName: 'registrationOffice', sort: true, type: "" },
@@ -103,11 +103,8 @@ export class HouseRentInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -117,16 +114,7 @@ export class HouseRentInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public houseRentInfoList = [];

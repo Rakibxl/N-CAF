@@ -14,8 +14,8 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentType</label>
-                            <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId">
+                            <label class="label">DocumentType*</label>
+                            <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId" required>
                                 <option value="1">Passport</option>
                                 <option value="2">Driving License</option>
                                 <option value="3">National Id</option>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentName</label>
+                            <label class="label">DocumentName*</label>
                             <input type="text" autocomplete="off" class="form-control" name="documentName" #documentName="ngModel" [(ngModel)]="documentInfoForm.documentName" placeholder="Enter document name"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -36,7 +36,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Issued By</label>
+                            <label class="label">Issued By*</label>
                             <input type="text" autocomplete="off" class="form-control" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="documentInfoForm.issuedBy" placeholder="Enter issues by"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -46,29 +46,29 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IssuedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="issuedDate" #issuedDate="ngModel" [(ngModel)]="documentInfoForm.issuedDate" />
+                            <label class="label">IssuedDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="issuedDate" #issuedDate="ngModel" [(ngModel)]="documentInfoForm.issuedDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">IssuedDate is required.</p>
+                            <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">Issued date is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpiryDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="documentInfoForm.expiryDate" />
+                            <label class="label">ExpiryDate*</label>
+                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="documentInfoForm.expiryDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">Expiry date is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PurposeOfDocument</label>
+                            <label class="label">PurposeOfDocument*</label>
                             <input type="text" autocomplete="off" class="form-control" name="purposeOfDocument" #purposeOfDocument="ngModel" [(ngModel)]="documentInfoForm.purposeOfDocument" placeholder="Enter purpose of document"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="purposeOfDocument.valid || purposeOfDocument.pristine" class="text-danger">PurposeOfDocument is required.</p>
+                            <p [hidden]="purposeOfDocument.valid || purposeOfDocument.pristine" class="text-danger">Purpose Of document is required.</p>
                         </div>
                     </div>
 
