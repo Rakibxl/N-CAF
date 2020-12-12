@@ -14,13 +14,13 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">WorkerType</label>
-                            <select id="" class="form-control" name="workerTypeId" #workerTypeId="ngModel" [(ngModel)]="workerInfoForm.workerTypeId">
+                            <label class="label">WorkerType*</label>
+                            <select id="" class="form-control" name="workerTypeId" #workerTypeId="ngModel" [(ngModel)]="workerInfoForm.workerTypeId" required>
                                 <option value="1">Company Worker</option>
                                 <option value="2">Domestic Worker</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <p [hidden]="workerTypeId.valid || workerTypeId.pristine" class="text-danger">Worker type is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">

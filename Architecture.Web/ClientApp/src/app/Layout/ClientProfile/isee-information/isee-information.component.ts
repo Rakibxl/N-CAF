@@ -63,13 +63,13 @@ export class IseeInformationComponent implements OnInit {
         tableName: 'Isee List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Isee Class', width: '20%', internalName: 'iseeClassType', sort: true, type: "" },
+            { headerName: 'Isee Class', width: '10%', internalName: 'iseeClassType', sort: true, type: "" },
             { headerName: 'IseeValue', width: '10%', internalName: 'iseeValue', sort: true, type: "" },
-            { headerName: 'Point', width: '15%', internalName: 'point', sort: true, type: "" },
-            { headerName: 'IseeFamilyIncome', width: '15%', internalName: 'iseeFamilyIncome', sort: true, type: "" },
-            { headerName: 'IspAmount', width: '10%', internalName: 'ispAmount', sort: true, type: "" },
-            { headerName: 'ISE Amount', width: '10%', internalName: 'iseAmount', sort: true, type: "" },
-            { headerName: 'ISR Amount', width: '20%', internalName: 'isrAmount', sort: true, type: "" },
+            { headerName: 'Point', width: '10%', internalName: 'point', sort: true, type: "" },
+            { headerName: 'IseeFamilyIncome', width: '10%', internalName: 'iseeFamilyIncome', sort: true, type: "" },
+            { headerName: 'IspAmount', width: '5%', internalName: 'ispAmount', sort: true, type: "" },
+            { headerName: 'ISE Amount', width: '5%', internalName: 'iseAmount', sort: true, type: "" },
+            { headerName: 'ISR Amount', width: '5%', internalName: 'isrAmount', sort: true, type: "" },
             { headerName: 'IdnetificationNumber', width: '10%', internalName: 'identificationNumber', sort: true, type: "" },
             { headerName: 'Submitted Date', width: '10%', internalName: 'submittedDate', sort: true, type: "" },
             { headerName: 'Delivery Date', width: '10%', internalName: 'deliveryDate', sort: true, type: "" },
@@ -81,11 +81,8 @@ export class IseeInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -95,16 +92,7 @@ export class IseeInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public iseeInfoList = [ ];
