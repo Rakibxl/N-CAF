@@ -65,8 +65,7 @@ export class DocumentInformationComponent implements OnInit {
         tableName: 'Document List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Document Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'Document Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Document Type', width: '10%', internalName: 'documentType', sort: true, type: "" },
             { headerName: 'Document Name', width: '10%', internalName: 'documentName', sort: true, type: "" },
             { headerName: 'Purpose Of Document', width: '15%', internalName: 'purposeOfDocument', sort: true, type: "" },
             { headerName: 'Issued By', width: '15%', internalName: 'issuedBy', sort: true, type: "" },
@@ -78,11 +77,8 @@ export class DocumentInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -92,16 +88,7 @@ export class DocumentInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public documentInfoList = [

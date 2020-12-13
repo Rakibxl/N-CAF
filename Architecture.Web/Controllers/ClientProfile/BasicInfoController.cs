@@ -48,6 +48,20 @@ namespace Architecture.Web.Controllers.BasicInfo
             }
         }
 
+        [HttpGet("GetCurrentUserBasicInfo")]
+        public async Task<IActionResult> GetCurrentUserBasicInfo()
+        {
+            try
+            {
+                var result = await _basicInfoService.GetCurrentUserBasicInfo();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("GetBasicInfo")]
         public async Task<IActionResult> GetBasicInfo(int profileId)
         {

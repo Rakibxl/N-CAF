@@ -106,6 +106,7 @@ namespace Architecture.Web
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             services.AddTransient<IBasicInfoService, BasicInfoService>();
             services.AddTransient<IBranchService, BranchService>();
+            services.AddTransient<IQuestionService, QuestionService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())

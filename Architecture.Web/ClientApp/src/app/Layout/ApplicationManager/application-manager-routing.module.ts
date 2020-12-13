@@ -9,6 +9,8 @@ import { BranchInformationFormComponent } from './branch-information-form/branch
 import { ApplicationUserRoleMappingComponent } from './application-user-role-mapping/application-user-role-mapping.component';
 import { ApplicationUserRoleMappingFormComponent } from './application-user-role-mapping-form/application-user-role-mapping-form.component';
 import { ApplicationAccessPermissionComponent } from './application-access-permission/application-access-permission.component';
+import { QuestionInformationComponent } from './question-information/question-information.component';
+import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,10 @@ const routes: Routes = [
             { path: 'user-role', component: ApplicationUserRoleComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role-mapping', component: ApplicationUserRoleMappingComponent, data: { extraParameter: 'analytics' } },
             { path: 'user-role-mapping/:id', component: ApplicationUserRoleMappingFormComponent, data: { extraParameter: 'analytics' } },
-            { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } }
+            { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } },
+            { path: 'question-info', component: QuestionInformationComponent, data: { extraParameter: 'analytics' } },
+            { path: 'question-info/:id', component: QuestionInformationFormComponent, data: { extraParameter: 'analytics' } }
+
         ]
     }
 ];

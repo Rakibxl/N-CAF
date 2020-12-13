@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">AssetType*</label>
-                            <select id="" class="form-control" name="assetTypeId" #assetTypeId="ngModel" [(ngModel)]="assetInfoForm.assetTypeId">
+                            <select id="" class="form-control" name="assetTypeId" #assetTypeId="ngModel" [(ngModel)]="assetInfoForm.assetTypeId" required>
                                 <option value="1">House</option>
                                 <option value="2">Car</option>
                             </select>
@@ -67,7 +67,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">OwnerType*</label>
-                            <select id="" class="form-control" name="ownerTypeId" #ownerTypeId="ngModel" [(ngModel)]="assetInfoForm.ownerTypeId">
+                            <select id="" class="form-control" name="ownerTypeId" #ownerTypeId="ngModel" [(ngModel)]="assetInfoForm.ownerTypeId" required>
                                 <option value="1">ByBirth</option>
                                 <option value="2">Buy</option>
                             </select>
@@ -128,7 +128,7 @@
                         <div class="caf-input-group">
                             <label class="label">AnyRestrictionByGovt</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter any restriction by govt" name="anyRestrictionByGovt" #anyRestrictionByGovt="ngModel" [(ngModel)]="assetInfoForm.anyRestrictionByGovt"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -138,7 +138,7 @@
                         <div class="caf-input-group">
                             <label class="label">CityName</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter city name" name="cityName" #cityName="ngModel" [(ngModel)]="assetInfoForm.cityName"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -148,7 +148,7 @@
                         <div class="caf-input-group">
                             <label class="label">Note</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="Enter note" name="note" #note="ngModel" [(ngModel)]="assetInfoForm.note"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

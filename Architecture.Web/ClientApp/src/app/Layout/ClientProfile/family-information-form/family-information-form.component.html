@@ -21,14 +21,13 @@
                             <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
                         </div>
                     </div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">SurName*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="surName" #surName="ngModel" [(ngModel)]="familyInfoForm.surName" placeholder="Enter SurName"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Sur name"
+                                   required name="surName" [(ngModel)]="familyInfoForm.surName" #surName="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-Name is required.</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-name is required.</p>
                         </div>
                     </div>
 
@@ -38,7 +37,7 @@
                             <input type="date" autocomplete="off" class="form-control" placeholder="Enter dateofbirth" #surName="ngModel" name="dateOfBirth" [(ngModel)]="familyInfoForm.dateOfBirth"
                                    required #dateOfBirth="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">Date of Birth is required.</p>
+                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">Date of birth is required.</p>
                         </div>
                     </div>
 
@@ -53,8 +52,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">PhoneNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="Enter phone number"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="Enter phone number" />
                         </div>
                     </div>
 
@@ -74,8 +72,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">BirthPlace</label>
-                            <input type="text" autocomplete="off" class="form-control" name="placeOfBirth" #placeOfBirth="ngModel" [(ngModel)]="familyInfoForm.placeOfBirth" placeholder="Enter birth city"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="placeOfBirth" #placeOfBirth="ngModel" [(ngModel)]="familyInfoForm.placeOfBirth" placeholder="Enter birth city" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -143,7 +140,7 @@
                             <label>IsDependent*</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isDependent" #isDependent="ngModel" [(ngModel)]="familyInfoForm.isDependent">
+                                    <input type="checkbox" name="isDependent" #isDependent="ngModel" [(ngModel)]="familyInfoForm.isDependent" required>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -167,7 +164,7 @@
                             <label>IsDisabled*</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isDisabled" #isDisabled="ngModel" [(ngModel)]="familyInfoForm.isDisabled">
+                                    <input type="checkbox" name="isDisabled" #isDisabled="ngModel" [(ngModel)]="familyInfoForm.isDisabled" required>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -192,7 +189,7 @@
                             <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="Enter yearly income"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">YearlyIncome is required.</p>
+                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">Yearly income is required.</p>
                         </div>
                     </div>
 
@@ -201,7 +198,7 @@
                             <label>IsAppliedForCitizenship*</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isAppliedForCitizenship" #isAppliedForCitizenship="ngModel" [(ngModel)]="familyInfoForm.isAppliedForCitizenship">
+                                    <input type="checkbox" name="isAppliedForCitizenship" #isAppliedForCitizenship="ngModel" [(ngModel)]="familyInfoForm.isAppliedForCitizenship" required>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -213,8 +210,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ApplicationCode</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationCode" #applicationCode="ngModel" [(ngModel)]="familyInfoForm.applicationCode" placeholder="Enter application code"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="applicationCode" #applicationCode="ngModel" [(ngModel)]="familyInfoForm.applicationCode" placeholder="Enter application code" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -223,8 +219,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ApplicationDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="applicationDate" #applicationDate="ngModel" [(ngModel)]="familyInfoForm.applicationDate" placeholder="Enter application date"
-                                   required />
+                            <input type="date" autocomplete="off" class="form-control" name="applicationDate" #applicationDate="ngModel" [(ngModel)]="familyInfoForm.applicationDate" placeholder="Enter application date" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -233,8 +228,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ApplicationCity</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationCity" #applicationCity="ngModel" [(ngModel)]="familyInfoForm.applicationCity" placeholder="Enter application city"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="applicationCity" #applicationCity="ngModel" [(ngModel)]="familyInfoForm.applicationCity" placeholder="Enter application city" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -245,8 +239,7 @@
                             <label class="label">
                                 ApplicationPlacedAddress
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationPlacedAddress" #applicationPlacedAddress="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedAddress" placeholder="Enter ApplicationPlacedAddress"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="applicationPlacedAddress" #applicationPlacedAddress="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedAddress" placeholder="Enter ApplicationPlacedAddress" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -255,8 +248,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">FileNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationFileNumber" #applicationFileNumber="ngModel" [(ngModel)]="familyInfoForm.applicationFileNumber" placeholder="Enter file number"
-                                   required />
+                            <input type="text" autocomplete="off" class="form-control" name="applicationFileNumber" #applicationFileNumber="ngModel" [(ngModel)]="familyInfoForm.applicationFileNumber" placeholder="Enter file number" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -265,8 +257,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">ApplicationPlacedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="applicationPlacedDate" #applicationPlacedDate="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedDate" placeholder="Enter file placed date"
-                                   required />
+                            <input type="date" autocomplete="off" class="form-control" name="applicationPlacedDate" #applicationPlacedDate="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedDate" placeholder="Enter file placed date" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

@@ -26,6 +26,11 @@ export class ClientProfileService {
     return this.http.get<APIResponse>(`${url}`);
   }
 
+  getCurrentUserBasicInfo() {
+    let url = this.basicInfoEndpoint + "/GetCurrentUserBasicInfo";
+    return this.http.get<APIResponse>(`${url}`);
+  }
+
   createOrUpdateBasicInfo(data) {
     let url = this.basicInfoEndpoint + "/CreateOrUpdate";
     return this.http.post<APIResponse>(`${url}`, data);

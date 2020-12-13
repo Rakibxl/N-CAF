@@ -1486,6 +1486,75 @@ namespace Architecture.Core.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.LU.SectionName", b =>
+                {
+                    b.Property<int>("SectionNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SectionDescription")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
+                    b.HasKey("SectionNameId");
+
+                    b.ToTable("LU_SectionName");
+
+                    b.HasData(
+                        new
+                        {
+                            SectionNameId = 1,
+                            IsActive = true,
+                            SectionDescription = "Basic Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 2,
+                            IsActive = true,
+                            SectionDescription = "Occupation Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 3,
+                            IsActive = true,
+                            SectionDescription = "Family Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 4,
+                            IsActive = true,
+                            SectionDescription = "Education Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 5,
+                            IsActive = true,
+                            SectionDescription = "Address Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 6,
+                            IsActive = true,
+                            SectionDescription = "House Rent Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 7,
+                            IsActive = true,
+                            SectionDescription = "Document Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 8,
+                            IsActive = true,
+                            SectionDescription = "Income Info"
+                        });
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.LU.WorkerType", b =>
                 {
                     b.Property<int>("WorkerTypeId")
@@ -1652,7 +1721,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("MoneyAverage")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
@@ -1668,7 +1739,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("OwnershipPercentage")
-                        .HasColumnType("decimal(5,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
@@ -1677,13 +1750,19 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("RentAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("TaxAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("UseAblePercentage")
-                        .HasColumnType("decimal(5,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
 
                     b.HasKey("AssetInfoId");
 
@@ -2377,7 +2456,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("LoanAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("LoanInterestTypeId")
                         .HasColumnType("int");
@@ -2402,14 +2483,18 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("MonthlyRentAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("NotaioInfo")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<decimal>("PaidAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("PartiocellaNo")
                         .HasColumnType("nvarchar(100)")
@@ -2449,17 +2534,23 @@ namespace Architecture.Core.Migrations
                         .HasMaxLength(100);
 
                     b.Property<decimal>("RentAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("SectionNo")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<decimal>("ServiceChargeAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("SharePercent")
-                        .HasColumnType("decimal(5,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("Date");
@@ -2517,22 +2608,32 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("Date");
 
                     b.Property<decimal>("ISEAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int?>("ISEEClassTypeId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("ISEEFamilyIncome")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("ISEEValue")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("ISPAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<decimal>("ISRAmount")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("IdentificationNumber")
                         .IsRequired()
@@ -2548,7 +2649,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Point")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
@@ -2604,7 +2707,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("date");
 
                     b.Property<decimal>("MonthlyIncome")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
@@ -2620,7 +2725,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("date");
 
                     b.Property<decimal>("YearlyIncome")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.HasKey("IncomeInfoId");
 
@@ -2879,7 +2986,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("JobHour")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int?>("JobTypeId")
                         .HasColumnType("int");
@@ -2905,7 +3014,9 @@ namespace Architecture.Core.Migrations
                         .HasMaxLength(500);
 
                     b.Property<decimal>("PercentageOfShare")
-                        .HasColumnType("decimal(5,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
@@ -2974,7 +3085,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("MonthlySalary")
-                        .HasColumnType("decimal(10,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -3015,6 +3128,57 @@ namespace Architecture.Core.Migrations
                     b.HasIndex("WorkerTypeId");
 
                     b.ToTable("ProfWorkerInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.QuestionInfo", b =>
+                {
+                    b.Property<int>("QuestionInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Modified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PageToUrl")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("QuestionDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SectionNameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("QuestionInfoId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.HasIndex("SectionNameId");
+
+                    b.ToTable("QuestionInfos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -3470,6 +3634,17 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.WorkerType", "WorkerType")
                         .WithMany()
                         .HasForeignKey("WorkerTypeId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.QuestionInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
+                        .WithMany()
+                        .HasForeignKey("SectionNameId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

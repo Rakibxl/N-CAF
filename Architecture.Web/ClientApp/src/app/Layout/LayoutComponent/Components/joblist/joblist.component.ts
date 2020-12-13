@@ -17,4 +17,11 @@ export class JoblistComponent implements OnInit {
     );
     window.open(url, '_blank');
   }
+
+  onClickOffer() {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['./show-offer'])
+    );
+    window.open(url, '_blank');
+  }
 }

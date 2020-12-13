@@ -1,0 +1,284 @@
+<div class="card mb-4">
+    <div class="card-body caf-card card-shadow">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
+                    <h3><span class="bordered-title">Offer Details</span></h3>
+                </div>
+                <hr>
+                <div class="pt-3"></div>
+                <div class="main-card mb-3 col-12 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Informations
+                            <a (click)="onEditBasicInfo()" class="btn ng-star-inserted"><em class="fa fa-edit"></em></a>
+                        </h5>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Name:</label>
+                                    <div class="col-sm-6"> {{basicInfo.name}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">SurName:</label>
+                                    <div class="col-sm-6"> {{basicInfo.surName}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">DateOfBirth:</label>
+                                    <div class="col-sm-6"> {{basicInfo.dateOfBirth}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">TaxCode:</label>
+                                    <div class="col-sm-6"> {{basicInfo.taxCode}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">TaxCodeStartDate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.taxCodeStartDate}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">TaxCodeEndDate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.taxCodeEndDate}} </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">PhoneNumber:</label>
+                                    <div class="col-sm-6"> {{basicInfo.phoneNumber}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Gender/Sex:</label>
+                                    <div class="col-sm-6"> {{basicInfo.genderId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">MaritalStatus:</label>
+                                    <div class="col-sm-6"> {{basicInfo.maritalStatus}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">EmailAddress:</label>
+                                    <div class="col-sm-6"> {{basicInfo.email}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">PostalElectronicCertificate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.postalElectronicCertificate}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">CityOfBirth:</label>
+                                    <div class="col-sm-6"> {{basicInfo.cityOfBirth}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">StateOfBirth:</label>
+                                    <div class="col-sm-6"> {{basicInfo.stateOfBirth}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">BirthStateCode:</label>
+                                    <div class="col-sm-6"> {{basicInfo.birthStateCode}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Nationality:</label>
+                                    <div class="col-sm-6"> {{basicInfo.nationalityId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">CitizenStateCode:</label>
+                                    <div class="col-sm-6"> {{basicInfo.citizenStateCode}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">EyesColor:</label>
+                                    <div class="col-sm-6"> {{basicInfo.eyeColorId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Height(in)CM:</label>
+                                    <div class="col-sm-6"> {{basicInfo.height}} </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">ZipCode:</label>
+                                    <div class="col-sm-6"> {{basicInfo.zipCode}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Reason/Motive:</label>
+                                    <div class="col-sm-6"> {{basicInfo.motiveTypeId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">Occupation:</label>
+                                    <div class="col-sm-6"> {{basicInfo.occupationTypeId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">OcupationPosition:</label>
+                                    <div class="col-sm-6"> {{basicInfo.occupationPositionId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasUnEmployedCertificate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasUnEmployedCertificate}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">UnEmp.Cer.IssuesDate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.unEmployedCertificateIssuesDate}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasAnyUnEmployedFacility:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasAnyUnEmployedFacility}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">ContractType:</label>
+                                    <div class="col-sm-6"> {{basicInfo.contractTypeId}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">YearlyIncome:</label>
+                                    <div class="col-sm-6"> {{basicInfo.yearlyIncome}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">IsRentHouse:</label>
+                                    <div class="col-sm-6"> {{basicInfo.isRentHouse}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HowManyHouseHasRent:</label>
+                                    <div class="col-sm-6"> {{basicInfo.howManyHouseRent}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">IsHouseOwner:</label>
+                                    <div class="col-sm-6"> {{basicInfo.isHouseOwner}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HouseCountryName:</label>
+                                    <div class="col-sm-6"> {{basicInfo.houseCountryName}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HouseCityName:</label>
+                                    <div class="col-sm-6"> {{basicInfo.houseCityName}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasVehicle:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasVehicle}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">CarSerialNumber:</label>
+                                    <div class="col-sm-6"> {{basicInfo.carSerialNumber}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">CarNumberPlate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.carNumberPlate}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasVehicleInsurance:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasVehicleInsurance}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">IsCompanyOwner:</label>
+                                    <div class="col-sm-6"> {{basicInfo.isCompanyOwner}} </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasWorker:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasWorker}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">DigitalVatCode:</label>
+                                    <div class="col-sm-6"> {{basicInfo.digitalVatCode}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">HasAppliedForCitizenship:</label>
+                                    <div class="col-sm-6"> {{basicInfo.hasAppliedForCitizenship}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">IsPregnant:</label>
+                                    <div class="col-sm-6"> {{basicInfo.isPregnant}} </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="position-relative row form-group">
+                                    <label class="col-sm-6">ExpectedBabyBirthDate:</label>
+                                    <div class="col-sm-6"> {{basicInfo.expectedBabyBirthDate}} </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-12">
+                    <app-p-table [pTableSetting]="ptableSettings" [pTableMasterData]="occupationInfoList" (cellClickCallbackFn)="fnPtableCellClick($event)" (customActivityOnRecord)="fnCustomrTrigger($event)">
+                    </app-p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

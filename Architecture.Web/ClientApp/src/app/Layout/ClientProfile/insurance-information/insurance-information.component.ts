@@ -64,7 +64,7 @@ export class InsuranceInformationComponent implements OnInit {
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
             //{ headerName: 'Insurance Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'InsuranceType', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            //{ headerName: 'InsuranceType', width: '20%', internalName: 'insuranceType', sort: true, type: "" },
             { headerName: 'Insurance Title', width: '10%', internalName: 'insuranceTitle', sort: true, type: "" },
             { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
@@ -76,11 +76,8 @@ export class InsuranceInformationComponent implements OnInit {
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 15,
-        enabledPagination: false,
-        enabledAutoScrolled: true,
-        // enabledEditDeleteBtn: true,
+        enabledPagination: true,
         enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -90,16 +87,7 @@ export class InsuranceInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledRecordCreateBtn: true
     };
 
     public insuranceInfoList = [

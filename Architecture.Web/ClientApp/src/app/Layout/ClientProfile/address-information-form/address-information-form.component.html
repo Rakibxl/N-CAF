@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">AddressType*</label>
-                            <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId">
+                            <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId" required>
                                 <option value="1">Permanent</option>
                                 <option value="2">Temporary</option>
                                 <option value="3">Previous Permanent</option>
@@ -77,7 +77,7 @@
                         <div class="caf-input-group">
                             <label class="label">RoadNo</label>
                             <input type="text" autocomplete="off" name="roadNo" [(ngModel)]="addressInfoForm.roadNo" #roadNo="ngModel" class="form-control" placeholder="Enter road number"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -87,9 +87,9 @@
                         <div class="caf-input-group">
                             <label class="label">BuidingNo*</label>
                             <input type="text" autocomplete="off" name="buildingNo" [(ngModel)]="addressInfoForm.buildingNo" #buildingNo="ngModel" class="form-control" placeholder="Enter building number"
-                                   required />
+                                  required  />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="buildingNo.valid || buildingNo.pristine" class="text-danger">BuidingNo is required.</p>
+                            <p [hidden]="buildingNo.valid || buildingNo.pristine" class="text-danger">Buiding no is required.</p>
                         </div>
                     </div>
 
@@ -107,7 +107,7 @@
                         <div class="caf-input-group">
                             <label class="label">AppartmentNo</label>
                             <input type="text" autocomplete="off"  name="appartmentNo" [(ngModel)]="addressInfoForm.appartmentNo" #appartmentNo ="ngModel" class="form-control" placeholder="Enter Appartment number"
-                                   required />
+                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -115,16 +115,16 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate</label>
-                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate="ngModel" class="form-control" />
+                            <label class="label">StartDate*</label>
+                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate="ngModel" class="form-control" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate</label>
-                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate="ngModel" class="form-control" />
+                            <label class="label">EndDate*</label>
+                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate="ngModel" class="form-control" required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
                         </div>
