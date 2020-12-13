@@ -13,6 +13,7 @@ export class AlertComponent implements OnInit {
   message: any;
   tosterCollection:any[]=[];
   titleTosterCollection:any[]=[];
+  questionTosterCollection:any[]=[];
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -52,6 +53,19 @@ export class AlertComponent implements OnInit {
           this.titleTosterCollection= this.titleTosterCollection.filter(res=>res.id!=tosterId)
         }, 300000);
       }
+      else if ((message != null) && (message.type).includes("question-toster")) { // for title toster
+        let tosterId= Math.floor(1000 + Math.random() * 9000);
+        this.questionTosterCollection.push({
+            type:message.alertType,
+            text:message.text,
+            id:tosterId
+        });
+
+        setTimeout(() => {
+            console.log("tosterId: ", tosterId, this.questionTosterCollection);
+            this.questionTosterCollection = this.questionTosterCollection.filter(res=>res.id!=tosterId)
+        }, 300000);
+      }
       this.message = message;
     }, err => {
             debugger;
@@ -65,6 +79,9 @@ export class AlertComponent implements OnInit {
   }
   fnRemoveTitleToster(tosterId){
     this.titleTosterCollection= this.titleTosterCollection.filter(res=>res.id!=tosterId)
+    }
+    fnRemoveQuestionToster(tosterId) {
+        this.questionTosterCollection = this.questionTosterCollection.filter(res => res.id != tosterId)
   }
 
   

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Architecture.Core.Entities.LU;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Architecture.Web.Controllers.Common
@@ -9,8 +10,14 @@ namespace Architecture.Web.Controllers.Common
     [ApiController]
     [ApiVersion("1")]
     [Route("api/v{v:apiVersion}/DropDown")]
-    public class GenericDropDownController : Controller
+    public class GenericDropDownController : BaseController
     {
+
+        //private readonly ICRUDService<DegreeType> degreeTypeService;
+        //public GenericDropDownController()
+        //{
+
+        //}
         //[HttpGet("AddressType")]
         //public async Task<IActionResult> GetAddressType()
         //{

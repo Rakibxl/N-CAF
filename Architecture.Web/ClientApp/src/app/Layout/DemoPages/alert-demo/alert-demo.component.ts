@@ -51,5 +51,14 @@ export class AlertDemoComponent implements OnInit {
   }
   fnGenerateTitleTosterWarning(){
     this.alertService.titleTosterWarning("Shwoing successfull title toster to the title it will be disable after 5 min.");
+    }
+    fnQuestionTosterWarning() {
+        this.alertService.questionToster("Shwoing successfull title toster to the title it will be disable after 5 min.",
+            () => {
+                alert("Clicked Yes");
+            },
+            () => {
+                alert("clicked No");
+            });
   }
 }

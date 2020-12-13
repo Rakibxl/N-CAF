@@ -99,6 +99,11 @@ export class AlertService {
     }
     //#endregion toster
 
+    //#region question
+    questionToster(message: string, siFn: () => void, noFn: () => void, type: string = 'question-toster') {
+        this.setConfirmation(message, siFn, noFn, type, "success");
+    }
+
     public getMessage(): Observable<any> {
         return this.subjectObj.asObservable();
     }
