@@ -13,9 +13,11 @@ import { ApplicationUserRoleMappingComponent } from './application-user-role-map
 import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-master.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationUserRoleMappingFormComponent } from './application-user-role-mapping-form/application-user-role-mapping-form.component';
+import { QuestionInformationComponent } from './question-information/question-information.component';
+import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
 
 @NgModule({
-  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent],
+  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent, QuestionInformationComponent, QuestionInformationFormComponent],
   imports: [
     CommonModule,
     SharedMasterModule,

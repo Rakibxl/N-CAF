@@ -1,0 +1,86 @@
+<div class="card mb-4">
+    <div class="card-body caf-card card-shadow">
+        <form action="" (ngSubmit)="onSubmit()" #questionInfoInputForm="ngForm">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
+                        <h3><span class="bordered-title">Question Informations</span></h3>
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
+                            <i class="pe-7s-back pr-1"></i>
+                            Back
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="pt-3"></div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">SectionName*</label>
+                            <select id="" class="form-control" name="status" [(ngModel)]="questionInfoForm.sectionNameId" #sectionNameId="ngModel" required>
+                                <option value="1">Basic Info</option>
+                                <option value="2">Occupation Info</option>
+                                <option value="3">Family Info</option>
+                                <option value="4">Education Info</option>
+                                <option value="5">Address Info</option>
+                                <option value="6">House Rent Info</option>
+                                <option value="7">Document Info</option>
+                                <option value="8">Income  Info</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="sectionNameId.valid || sectionNameId.pristine" class="text-danger">Section name is required.</p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">
+                                PageToUrl*
+                            </label>
+                            <input type="text" autocomplete="off" class="form-control" name="pageToUrl" #pageToUrl="ngModel" [(ngModel)]="questionInfoForm.pageToUrl" placeholder="Enter page to url"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="pageToUrl.valid || pageToUrl.pristine" class="text-danger">Page to url is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Status*</label>
+                            <select id="" class="form-control" name="status" [(ngModel)]="questionInfoForm.status" #status="ngModel" required>
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="status.valid || status.pristine" class="text-danger">Status is required.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">QuestionDescription*</label>
+                            <!-- <input type="text" autocomplete="off" class="form-control" name="questionDescription" #questionDescription="ngModel" [(ngModel)]="questionInfoForm.questionDescription" placeholder="Enter question description" required />-->
+                            <textarea class="form-control" autocomplete="off" id="" cols="30" rows="20" name="questionDescription" #questionDescription="ngModel" [(ngModel)]="questionInfoForm.questionDescription" placeholder="Enter question description"> </textarea>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="questionDescription.valid || questionDescription.pristine" class="text-danger">Question description is required.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-footer d-flex justify-content-end">
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
+                                <i class="pe-7s-back pr-1"></i>
+                                Back
+                            </button>
+                            <button type="submit" [disabled]="!questionInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

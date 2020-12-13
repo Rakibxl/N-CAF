@@ -36,6 +36,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ProfEducationInfo> ProfEducationInfos { get; set; }
         public DbSet<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
         public DbSet<BranchInfo> BranchInfos { get; set; }
+        public DbSet<QuestionInfo> QuestionInfos { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
@@ -68,6 +69,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<BankName> BankName { get; set; }
         public DbSet<CountryName> CountryName { get; set; }
         public DbSet<InsuranceType> InsuranceType { get; set; }
+        public DbSet<SectionName> SectionName { get; set; }
 
         #endregion 
 
@@ -449,6 +451,22 @@ namespace Architecture.Core.Repository.Context
                     new InsuranceType { InsuranceTypeId = 1, Description = "Car Insurance", IsActive = true },
                     new InsuranceType { InsuranceTypeId = 2, Description = "Home Insurance", IsActive = true },
                     new InsuranceType { InsuranceTypeId = 3, Description = "Health Insurance", IsActive = true }
+                );
+            });
+            modelBuilder.Entity<SectionName>().ToTable("LU_SectionName");
+            modelBuilder.Entity<SectionName>(ms =>
+            {
+                ms.HasKey(g => g.SectionNameId);
+                ms.Property(g => g.SectionDescription).HasMaxLength(150);
+                ms.HasData(
+                    new SectionName { SectionNameId = 1, SectionDescription = "Basic Info", IsActive = true },
+                    new SectionName { SectionNameId = 2, SectionDescription = "Occupation Info", IsActive = true },
+                    new SectionName { SectionNameId = 3, SectionDescription = "Family Info", IsActive = true },
+                    new SectionName { SectionNameId = 4, SectionDescription = "Education Info", IsActive = true },
+                    new SectionName { SectionNameId = 5, SectionDescription = "Address Info", IsActive = true },
+                    new SectionName { SectionNameId = 6, SectionDescription = "House Rent Info", IsActive = true },
+                    new SectionName { SectionNameId = 7, SectionDescription = "Document Info", IsActive = true },
+                    new SectionName { SectionNameId = 8, SectionDescription = "Income Info", IsActive = true }
                 );
             });
 
