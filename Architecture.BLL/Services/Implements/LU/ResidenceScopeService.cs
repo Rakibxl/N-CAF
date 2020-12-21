@@ -10,26 +10,26 @@ using Architecture.Core.Repository.Core;
 namespace Architecture.BLL.Services.Implements.LU
 {
 
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class ResidenceScopeService : Repository<ResidenceScope>, IResidenceScopeService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public ResidenceScopeService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<ResidenceScope>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<ResidenceScope> result;
+            result = await GetAsync(x => x, x => x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<ResidenceScope> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.ResidenceScopeId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                ResidenceScope result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<ResidenceScope> AddOrUpdate(ResidenceScope data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                ResidenceScope result;
+                if (data.ResidenceScopeId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,10 +61,11 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.ResidenceScopeId == id);
             return result;
         }
     }
 
 }
+
 

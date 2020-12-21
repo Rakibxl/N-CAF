@@ -71,10 +71,8 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Gender/Sex</label>
-                            <select formControlName="genderId" name="" id="" class="form-control">
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Others</option>
+                            <select formControlName="genderId" name="" id="" class="form-control" >
+                                <option *ngFor="let option of gender" [value]="option.genderId">{{option.name}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>

@@ -7,7 +7,7 @@ using Architecture.Core.Entities.LU;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 
-namespace Architecture.BLL.Services.Implements.ClientProfile
+namespace Architecture.BLL.Services.Implements.LU
 {
 
     public class AppUserTypeService : Repository<AppUserType>, IAppUserTypeService

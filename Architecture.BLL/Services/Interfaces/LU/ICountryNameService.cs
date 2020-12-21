@@ -6,7 +6,7 @@ using Architecture.Core.Entities.LU;
 
 namespace Architecture.BLL.Services.Interfaces.LU
 {
-    interface ICountryNameService
+   public interface ICountryNameService
     {
         Task<IEnumerable<CountryName>> GetAll();
         Task<CountryName> GetById(int id);

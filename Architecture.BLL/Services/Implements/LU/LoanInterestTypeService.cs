@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,26 +11,26 @@ using Architecture.Core.Repository.Core;
 namespace Architecture.BLL.Services.Implements.LU
 {
 
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class LoanInterestTypeService : Repository<LoanInterestType>, ILoanInterestTypeService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public LoanInterestTypeService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<LoanInterestType>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<LoanInterestType> result;
+            result = await GetAsync(x => x, x => x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<LoanInterestType> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.LoanInterestTypeId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                LoanInterestType result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +39,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<LoanInterestType> AddOrUpdate(LoanInterestType data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                LoanInterestType result;
+                if (data.LoanInterestTypeId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.LoanInterestTypeId == id);
             return result;
         }
     }

@@ -10,26 +10,26 @@ using Architecture.Core.Repository.Core;
 namespace Architecture.BLL.Services.Implements.LU
 {
 
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class HouseTypeService : Repository<HouseType>, IHouseTypeService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public HouseTypeService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<HouseType>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<HouseType> result;
+            result = await GetAsync(x => x, x => x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<HouseType> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.HouseTypeId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                HouseType result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<HouseType> AddOrUpdate(HouseType data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                HouseType result;
+                if (data.HouseTypeId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,7 +61,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.HouseTypeId == id);
             return result;
         }
     }

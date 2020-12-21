@@ -90,12 +90,12 @@ export class CommonComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.dashboardService.getDashboardData()
-      .subscribe(res => {
-        this.dashboard = res.data;
-        console.log(`dashboard response - ${JSON.stringify(res)}`);
-        this.generateChart();
-      });
+    //this.dashboardService.getDashboardData()
+    //  .subscribe(res => {
+    //    this.dashboard = res.data;
+    //    console.log(`dashboard response - ${JSON.stringify(res)}`);
+    //    this.generateChart();
+    //  });
   }
 
   generateChart() {

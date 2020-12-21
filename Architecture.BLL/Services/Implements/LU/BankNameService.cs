@@ -20,7 +20,7 @@ namespace Architecture.BLL.Services.Implements.LU
         public async Task<IEnumerable<BankName>> GetAll()
         {
             IEnumerable<BankName> result;
-            result = await GetAsync(x => x);
+            result = await GetAsync(x => x,x=>x.IsActive);
             return result;
         }
 

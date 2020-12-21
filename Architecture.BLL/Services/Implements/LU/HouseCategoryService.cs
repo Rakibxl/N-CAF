@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,26 +11,26 @@ using Architecture.Core.Repository.Core;
 namespace Architecture.BLL.Services.Implements.LU
 {
 
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class HouseCategoryService : Repository<HouseCategory>, IHouseCategoryService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public HouseCategoryService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<HouseCategory>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<HouseCategory> result;
+            result = await GetAsync(x => x,x=>x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<HouseCategory> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.HouseCategoryId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                HouseCategory result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +39,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<HouseCategory> AddOrUpdate(HouseCategory data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                HouseCategory result;
+                if (data.HouseCategoryId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,7 +62,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.HouseCategoryId == id);
             return result;
         }
     }

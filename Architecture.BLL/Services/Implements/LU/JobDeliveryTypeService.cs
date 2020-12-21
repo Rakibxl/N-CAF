@@ -10,26 +10,26 @@ using Architecture.Core.Repository.Core;
 namespace Architecture.BLL.Services.Implements.LU
 {
 
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class JobDeliveryTypeService : Repository<JobDeliveryType>, IJobDeliveryTypeService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public JobDeliveryTypeService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<JobDeliveryType>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<JobDeliveryType> result;
+            result = await GetAsync(x => x, x => x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<JobDeliveryType> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.JobDeliveryTypeId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                JobDeliveryType result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<JobDeliveryType> AddOrUpdate(JobDeliveryType data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                JobDeliveryType result;
+                if (data.JobDeliveryTypeId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,10 +61,13 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.JobDeliveryTypeId == id);
             return result;
         }
     }
 
 }
+
+
+
 

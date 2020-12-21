@@ -49,6 +49,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\Shared\Services\LU\" />
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\Generated PDF\" />
   </ItemGroup>

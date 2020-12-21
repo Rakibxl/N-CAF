@@ -6,7 +6,7 @@ using Architecture.Core.Entities.LU;
 
 namespace Architecture.BLL.Services.Interfaces.LU
 {
-    interface IAssetTypeService
+   public interface IAssetTypeService
     {
         Task<IEnumerable<AssetType>> GetAll();
         Task<AssetType> GetById(int id);

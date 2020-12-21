@@ -6,7 +6,7 @@ using Architecture.Core.Entities.LU;
 
 namespace Architecture.BLL.Services.Interfaces.LU
 {
-    interface IAppUserTypeService
+   public interface IAppUserTypeService
     {
         Task<IEnumerable<AppUserType>> GetAll();
         Task<AppUserType> GetById(int id);

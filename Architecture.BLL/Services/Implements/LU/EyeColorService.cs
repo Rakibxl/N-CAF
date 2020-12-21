@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Architecture.BLL.Services.Interfaces.LU;
 using Architecture.Core.Entities.LU;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Architecture.BLL.Services.Implements.LU
 {
-
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+   public class EyeColorService : Repository<EyeColor>, IEyeColorService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public EyeColorService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<EyeColor>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<EyeColor> result;
+            result = await GetAsync(x => x,x=>x.IsActive);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<EyeColor> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.EyeColorId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                EyeColor result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<EyeColor> AddOrUpdate(EyeColor data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                EyeColor result;
+                if (data.EyeColorId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,7 +61,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.EyeColorId == id);
             return result;
         }
     }

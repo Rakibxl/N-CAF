@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Architecture.BLL.Services.Interfaces.LU;
 using Architecture.Core.Entities.LU;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Architecture.BLL.Services.Implements.LU
 {
-
-    public class DegreeTypeService: Repository<DegreeType>, IDegreeTypeService
+    public class GenderService : Repository<Gender>, IGenderService
     {
-        public DegreeTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        public GenderService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<DegreeType>> GetAll()
+        public async Task<IEnumerable<Gender>> GetAll()
         {
-            IEnumerable<DegreeType> result;
-            result = await GetAsync(x => x);
+            IEnumerable<Gender> result;
+            result = await GetAsync(x => x,x=>x.IsActive==true);
             return result;
         }
 
-        public async Task<DegreeType> GetById(int id)
+        public async Task<Gender> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.DegreeTypeId == id);
+            var checkVal = await IsExistsAsync(x => x.GenderId == id);
             if (checkVal)
             {
-                DegreeType result = await GetByIdAsync(id);
+                Gender result = await GetByIdAsync(id);
                 return result;
             }
             else
@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements.LU
             }
         }
 
-        public async Task<DegreeType> AddOrUpdate(DegreeType data)
+        public async Task<Gender> AddOrUpdate(Gender data)
         {
             try
             {
-                DegreeType result;
-                if (data.DegreeTypeId > 0)
+                Gender result;
+                if (data.GenderId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,10 +61,11 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.DegreeTypeId == id);
+            var result = await DeleteAsync(x => x.GenderId == id);
             return result;
         }
     }
 
 }
+
 

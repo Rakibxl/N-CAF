@@ -6,7 +6,7 @@ using Architecture.Core.Entities.LU;
 
 namespace Architecture.BLL.Services.Interfaces.LU
 {
-    interface IBankNameService
+    public interface IBankNameService
     {
         Task<IEnumerable<BankName>> GetAll();
         Task<BankName> GetById(int id);

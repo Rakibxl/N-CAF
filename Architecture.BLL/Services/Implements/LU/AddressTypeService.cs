@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Architecture.BLL.Services.Implements.LU;
-using Architecture.Core.Entities.LU;
+﻿using Architecture.Core.Entities.LU;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Architecture.BLL.Services.Implements.ClientProfile
+namespace Architecture.BLL.Services.Implements.LU
 {
-
     public class AddressTypeService : Repository<AddressType>, IAddressTypeService
     {
         public AddressTypeService(ApplicationDbContext dbContext) : base(dbContext)
@@ -19,7 +18,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<AddressType>> GetAll()
         {
             IEnumerable<AddressType> result;
-            result = await GetAsync(x => x,x=>x.IsActive==true);
+            result = await GetAsync(x => x, x => x.IsActive == true);
             return result;
         }
 
@@ -43,7 +42,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             {
                 AddressType result;
                 if (addressType.AddressTypeId > 0)
-                {                    
+                {
                     result = await UpdateAsync(addressType);
                 }
                 else
