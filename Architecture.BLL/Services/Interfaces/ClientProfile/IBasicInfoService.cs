@@ -16,5 +16,6 @@ namespace Architecture.BLL.Services.Interfaces.ClientProfile
         public Task<ProfBasicInfo> GetCurrentUserBasicInfo();
         public Task<ProfBasicInfo> AddOrUpdate(ProfBasicInfo basicInfo);
         public Task<int> Delete(int profileId);
+        public Task<ProfBasicInfo> GetBasicWithIncludeAll();
     }
 }

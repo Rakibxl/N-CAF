@@ -21,6 +21,7 @@ using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
 using Architecture.BLL.Services.Interfaces;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
+using System.Security.Claims;
 
 namespace Architecture.BLL.Services.Implements.ClientProfile
 {
@@ -94,6 +95,34 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         {
             var result = await DeleteAsync(x => x.ProfileId == basicInfoId);
             return result;
+        }
+
+        public async Task<ProfBasicInfo> GetBasicWithIncludeAll()
+        {
+            ProfBasicInfo result = new ProfBasicInfo();
+
+          
+            if (_currentUserService.UserTypeId == 1 )  // client type user
+            {
+                result = await GetFirstOrDefaultAsync(x => x, x => x.RefId == _currentUserService.UserId, x => x.Include(y => y.ProfBankInfos)
+                                                                                                                .Include(y => y.ProfOccupationInfos)
+                                                                                                                .Include(y => y.ProfFamilyInfos)
+                                                                                                                .Include(y => y.ProfEducationInfos)
+                                                                                                                .Include(y => y.ProfAddressInfos)
+                                                                                                                .Include(y => y.ProfHouseRentInfos)
+                                                                                                                .Include(y => y.ProfDocumentInfos)
+                                                                                                                .Include(y => y.ProfIncomeInfos)
+                                                                                                                .Include(y => y.ProfAssetInfos)
+                                                                                                                .Include(y => y.ProfInsuranceInfos)
+                                                                                                                .Include(y => y.ProfISEEInfos)
+                                                                                                                .Include(y => y.ProfLegalInfos)
+                                                                                                                .Include(y => y.ProfMovementInfos)
+                                                                                                                .Include(y => y.ProfWorkerInfos)
+                                                                                                                .Include(y => y.ProfDelegationInfos));
+            }
+ 
+            return result;
+
         }
     }
 }

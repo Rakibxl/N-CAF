@@ -1,7 +1,8 @@
 ﻿using System;
-
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,12 @@ namespace Architecture.Web.Controllers.ClientProfile
     {
         private readonly IQuestionService questionInfoService;
 
-        public QuestionInfoController(IQuestionService questionInfoService)
+        private readonly IBasicInfoService basicInfoService;
+
+        public QuestionInfoController(IQuestionService questionInfoService, IBasicInfoService basicInfoService)
         {
             this.questionInfoService = questionInfoService;
+            this.basicInfoService = basicInfoService;
         }
 
         [HttpGet("/Test")]
@@ -48,8 +52,13 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             try
             {
+                
+                var x = await basicInfoService.GetBasicWithIncludeAll();
+
                 var result = await questionInfoService.GetAll();
                 return OkResult(result);
+                
+               
             }
             catch (Exception ex)
             {
@@ -85,6 +94,21 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
+
+        [HttpGet("GetUserQuestion")]
+        public async Task<IActionResult> GetUserQuestion()
+        {
+            try
+            {
+                var result = await questionInfoService.GetUserQuestion();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -98,5 +122,7 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return ExceptionResult(ex);
             }
         }
+
+
     }
 }

@@ -27,4 +27,8 @@ export class QuestionInfoService {
         debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/QuestionInfo/GetById/${questionInfoId}`);
     }
+    public GetUserQuestion() {
+        debugger;
+        return this.http.get<APIResponse>(this.baseUrl + `v1/QuestionInfo/GetUserQuestion`);
+    }
 }

@@ -112,6 +112,8 @@ namespace Architecture.Web.Controllers.BasicInfo
                     model.CreatedBy = UserId;
                     model.Created = DateTime.Now;
                 }
+
+
                 var result = await _basicInfoService.AddOrUpdate(model);
                 return OkResult(result);
             }

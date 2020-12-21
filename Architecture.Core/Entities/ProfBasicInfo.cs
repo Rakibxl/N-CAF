@@ -66,6 +66,10 @@ namespace Architecture.Core.Entities
         public string DigitalVatCode { get; set; }
         public bool HasAppliedForCitizenship { get; set; }
         public int? BranchId { get; set; }
+
+        #endregion
+
+        #region navigationprop
         public virtual ICollection<ProfFamilyInfo> ProfFamilyInfos { get; set; }
         public virtual ICollection<ProfAddressInfo> ProfAddressInfos { get; set; }
         public virtual ICollection<ProfAssetInfo> ProfAssetInfos { get; set; }
@@ -81,6 +85,8 @@ namespace Architecture.Core.Entities
         public virtual ICollection<ProfEducationInfo> ProfEducationInfos { get; set; }
         public virtual ICollection<ProfOccupationInfo> ProfOccupationInfos { get; set; }
         public virtual ICollection<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
+
         #endregion
+
     }
 }

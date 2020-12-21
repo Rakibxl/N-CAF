@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Color } from 'ng2-charts';
 import { DashboardService } from 'src/app/Shared/Services/Dashboard/dashboard.service';
 import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
+import { QuestionInfoService } from '../../../Shared/Services/Users/question-info.service';
 import { Router } from '@angular/router';
 import { Dashboard } from 'src/app/Shared/Entity/Common/dashboard';
 import * as Highcharts from 'highcharts';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-common',
@@ -86,8 +88,12 @@ export class CommonComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService,
     private alertService: AlertService,
+      private questionService: QuestionInfoService,
     private router: Router
     ) { }
+
+   public questiontimer = timer(500, 1000);
+
 
   ngOnInit() {
     this.dashboardService.getDashboardData()
@@ -95,7 +101,14 @@ export class CommonComponent implements OnInit {
         this.dashboard = res.data;
         console.log(`dashboard response - ${JSON.stringify(res)}`);
         this.generateChart();
+
       });
+
+      //setTimeout(this.generateQuestion.bind(this), 1500);
+     
+      this.generateQuestion();
+     //setInterval(() => this.generateQuestion(), 1500)
+
   }
 
   generateChart() {
@@ -146,6 +159,63 @@ export class CommonComponent implements OnInit {
 
   viewAppUserReports() {
 		this.router.navigate(['/users/app-users']);
-  }
+    }
+
+
+    generateQuestion() {
+
+        var questionInfoList = [];
+        debugger;
+        // basic service , occupation and everything call
+
+        this.questionService.GetUserQuestion().subscribe(
+            (success) => {
+                console.log("get question info: ", success);
+                questionInfoList = success.data;
+
+                // save in session storage array 
+                sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
+
+                let data = JSON.parse(sessionStorage.getItem('questioninfo'));
+
+                this.questiontimer.subscribe(x => {
+                    let displayQuestion = data.filter(x => x.status == "InActive")[0];
+                    this.alertService.questionToster(displayQuestion.questionDescription,
+                        () => {
+                            alert("Clicked Yes");
+                        },
+                        () => {
+                            alert("clicked No");
+                        });
+    
+                })
+
+
+
+                 
+                  //numbers.subscribe(x => console.log(x));
+
+
+                //console.log("sessiondata" + data);
+
+
+
+                //for (let i = 0; i < success.data.length; i++) {
+                //    if (success.data[i].status == "InActive") {
+                //        this.alertService.questionToster(success.data[i].questionDescription,
+                //            () => {
+                //                alert("Clicked Yes");
+                //            },
+                //            () => {
+                //                alert("clicked No");
+                //            });
+                //        }
+                //}
+            },
+            error => {
+            });
+       
+    }
+
 
 }

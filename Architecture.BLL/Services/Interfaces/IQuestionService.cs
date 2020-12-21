@@ -10,5 +10,6 @@ namespace Architecture.BLL.Services.Interfaces
         public Task<QuestionInfo> GetById(int questionInfoId);
         public Task<QuestionInfo> AddOrUpdate(QuestionInfo questionInfo);
         public Task<int> Delete(int questionInfoId);
+        public Task<IEnumerable<QuestionInfo>> GetUserQuestion();
     }
 }
