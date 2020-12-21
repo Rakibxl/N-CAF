@@ -42,6 +42,7 @@ export class QuestionInformationComponent implements OnInit {
             (success) => {
                 console.log("get question info: ", success);
                 this.questionInfoList = success.data;
+
             },
             error => {
             });
@@ -55,7 +56,7 @@ export class QuestionInformationComponent implements OnInit {
         tableColDef: [
             { headerName: 'Question Description', width: '30%', internalName: 'questionDescription', sort: true, type: "" },
             { headerName: 'Page to url', width: '15%', internalName: 'pageToUrl', sort: true, type: "" },
-            { headerName: 'Section Name', width: '20%', internalName: 'sectionName', sort: true, type: "" },
+            { headerName: 'Section Name', width: '20%', internalName: 'sectionName.sectionDescription', sort: true, type: "" },
             { headerName: 'Status', width: '15%', internalName: 'status', sort: true, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 

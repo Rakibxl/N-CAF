@@ -20,21 +20,77 @@ using Architecture.Core.Repository.Interfaces;
 using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
 using Architecture.BLL.Services.Interfaces;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
 
 namespace Architecture.BLL.Services.Implements
 {
 
     public class QuestionService : Repository<QuestionInfo>, IQuestionService
     {
-        public QuestionService(ApplicationDbContext dbContext) : base(dbContext)
-        {
 
+        private readonly IBasicInfoService basicInfoService;
+
+        public QuestionService(ApplicationDbContext dbContext, IBasicInfoService basicInfoService) : base(dbContext)
+        {
+            this.basicInfoService = basicInfoService;
         }
 
         public async Task<IEnumerable<QuestionInfo>> GetAll()
         {
             IEnumerable<QuestionInfo> result;
-            result = await GetAsync(x => x);
+            result = await GetAsync(x => x, null, null, x=> x.Include(y=> y.SectionName));
+            return result;
+        }
+
+        public async Task<IEnumerable<QuestionInfo>> GetUserQuestion()
+        {
+
+            ProfBasicInfo profileSections = await basicInfoService.GetBasicWithIncludeAll();
+
+            IEnumerable<QuestionInfo> result = new List<QuestionInfo>();
+
+            if (profileSections == null)
+            {
+                return result;
+            }
+
+            result = await GetAsync(x => x, null, null, x => x.Include(y => y.SectionName));
+
+            foreach (var item in result)
+            {
+                
+                switch (item.SectionName.SectionDescription)
+                {
+
+                    case "Basic Info":
+                        item.Status = profileSections.ProfileId != 0 ? "Active" : "InActive";
+                        break;
+                    case "Occupation Info":
+                        item.Status = profileSections.ProfOccupationInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "Family Info":
+                        item.Status = profileSections.ProfFamilyInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "Education Info":
+                        item.Status = profileSections.ProfEducationInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "Address Info":
+                        item.Status = profileSections.ProfAddressInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "House Rent Info":
+                        item.Status = profileSections.ProfHouseRentInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "Document Info":
+                        item.Status = profileSections.ProfDocumentInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    case "Income Info":
+                        item.Status = profileSections.ProfIncomeInfos.Count > 0 ? "Active" : "InActive";
+                        break;
+                    default:
+                        break;
+                }
+
+            }
             return result;
         }
 
