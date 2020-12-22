@@ -58,7 +58,7 @@ namespace Architecture.BLL.Services.Implements
 
             foreach (var item in result)
             {
-                
+                item.SectionNameId = profileSections.ProfileId;
                 switch (item.SectionName.SectionDescription)
                 {
 

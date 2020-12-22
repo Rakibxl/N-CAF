@@ -80,21 +80,7 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
-        [HttpGet("GetTestData")]
-        public async Task<IActionResult> GetTestData()
-        {
-            try
-            {
-                var result = "tstrrrggsdfdfdfd";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
-
+       
         [HttpGet("GetUserQuestion")]
         public async Task<IActionResult> GetUserQuestion()
         {
