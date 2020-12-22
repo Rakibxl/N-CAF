@@ -92,7 +92,7 @@ export class CommonComponent implements OnInit {
     private router: Router
     ) { }
 
-   public questiontimer = timer(500, 1000);
+   public questiontimerSubscribe;
 
 
   ngOnInit() {
@@ -174,21 +174,35 @@ export class CommonComponent implements OnInit {
                 questionInfoList = success.data;
 
                 // save in session storage array 
-                sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
+                if ((JSON.parse(sessionStorage.getItem('questioninfo')) || []).length==0) {
+                    sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
+                }
 
-                let data = JSON.parse(sessionStorage.getItem('questioninfo'));
+                this.questiontimerSubscribe = timer(500, 30000).subscribe(x => {
+                    let questionInfos = JSON.parse(sessionStorage.getItem('questioninfo')) || [];
+                    let displayQuestion = questionInfos.filter(x => x.status == "InActive").length > 0 ? questionInfos.filter(x => x.status == "InActive")[0] : null;
+                    if (displayQuestion != null) {
+                        questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
+                        console.log("questionInfos", questionInfos);
+                        sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
+                        this.alertService.questionToster(displayQuestion.questionDescription,
+                            () => {
+                                console.log("Clicked Yes");
+                                console.log("displayQuestion", displayQuestion.pageToUrl);
+                                if ((displayQuestion.pageToUrl || "") != "") {
+                                    window.open(`${displayQuestion.pageToUrl.replace("{profileId}", displayQuestion.sectionNameId)}`);
+                                }
+                            },
+                            () => {
+                                console.log("clicked No");
+                            });
 
-                this.questiontimer.subscribe(x => {
-                    let displayQuestion = data.filter(x => x.status == "InActive")[0];
-                    this.alertService.questionToster(displayQuestion.questionDescription,
-                        () => {
-                            alert("Clicked Yes");
-                        },
-                        () => {
-                            alert("clicked No");
-                        });
-    
-                })
+                    } else {
+                        debugger;
+                        this.questiontimerSubscribe.unsubscribe();
+                    }
+
+                });
 
 
 

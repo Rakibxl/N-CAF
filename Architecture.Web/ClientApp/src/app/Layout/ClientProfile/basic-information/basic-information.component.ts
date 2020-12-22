@@ -31,29 +31,8 @@ export class BasicInformationComponent implements OnInit {
   }
 
   async ngOnInit() {
-      this.loadBasicInfo();
-      //let addressType = await this.dropdownService.getAddressInfo();
-      //let addressType = await this.dropdownService.getAppUserStatus();
-      let addressType = await this.dropdownService.getAppUserType()||[];
-      let assetType = await this.dropdownService.getAssetType()||[];
-      let bankName = await this.dropdownService.getBankName()||[];
-      let contractType = await this.dropdownService.getContractType()||[];
-      let countryName = await this.dropdownService.getCountryName()||[];
-      let degreeType = await this.dropdownService.getDegreeName()||[];
-      let documentType = await this.dropdownService.getDocumentType()||[];
-      let eyeColor = await this.dropdownService.getEyeColor()||[];
+      this.loadBasicInfo();      
       this.gender = await this.dropdownService.getGender() || [];
-      let houseCategory = await this.dropdownService.getHouseCategory() || [];
-      let houseType = await this.dropdownService.getHouseType() || [];
-      let incomeType = await this.dropdownService.getIncomeType() || [];
-      let insuranceType = await this.dropdownService.getInsuranceType() || [];
-      let iseeClassType = await this.dropdownService.getISEEClassType() || [];
-      let jobDeliveryType = await this.dropdownService.getJobDeliveryType() || [];
-      let jobType = await this.dropdownService.getJobType() || [];
-
-      console.log("houseCategory: ", houseCategory, "houseType:", houseType, "incomeType:", incomeType, "insuranceType:", insuranceType, "iseeClassType:", iseeClassType, "jobDeliveryType: ", jobDeliveryType,
-          "jobType", jobType,
-          "documentType:", documentType, "eyeColor:", eyeColor, "gender:", this.gender);
   }
 
   initForm() {

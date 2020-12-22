@@ -4,6 +4,8 @@ import { PagerService } from './p-table-pagger';
 import { PDFService } from './service/pdf.service';
 import { ExcelService } from './service/excel.service';
 import { PrintService } from './service/print.service';
+
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 declare var jQuery: any;
 @Component({
   selector: 'app-p-table',
@@ -62,7 +64,7 @@ export class PTableComponent implements OnInit, DoCheck {
   };
   pager: any = {};
   pagedItems: any[];
-  constructor(private pagerService: PagerService, private differs: KeyValueDiffers, public renderer: Renderer2, private pdfService: PDFService, private excelService: ExcelService, private printService: PrintService) {
+    constructor(private pagerService: PagerService, private differs: KeyValueDiffers, public renderer: Renderer2, private pdfService: PDFService, private excelService: ExcelService, private printService: PrintService, private modalService: NgbModal) {
     this.Math = Math;
     this.differ = differs.find({}).create();
   }
@@ -310,7 +312,27 @@ export class PTableComponent implements OnInit, DoCheck {
   
   public fnActivityOnRecord(action: any, recordInfo: any) {
     this.customActivityOnRecord.emit({ action: action, record: recordInfo });
-  }
+    }
+
+    public fnShowDetailsModal(event, recordInfo: any,content) {
+        console.log("recordInfo:", recordInfo);
+        this.modalService.open(content, {
+            size: 'lg'
+        });
+
+        this.detailsInfo= [
+            { headerName: 'Name', width: '15%', internalName: 'full_name', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Date Of Birth', width: '15%', internalName: 'dateOfBirth', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Phone Number', width: '15%', internalName: 'phoneNumber', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Email', width: '15%', internalName: 'email', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Selected City', width: '15%', internalName: 'selectedCity', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Zip Code', width: '15%', internalName: 'zipCode', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Yearly Income', width: '12%', internalName: 'yearlyIncome', sort: true, type: "", onClick: 'true' },
+            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+        ]
+    }
+
+    public detailsInfo = [];
   
   public fnChangePTableRowLength(records: number) {
     this.pageSize = records;
@@ -734,7 +756,8 @@ export interface IPTableSetting {
   enabledTotal?: boolean | false,
   totalTitle?: string | 'Total',
   enabledServerSitePaggination?: boolean | false,
-  newRecordButtonText?: string | 'New Record'
+  newRecordButtonText?: string | 'New Record',
+  enabledViewDetails?: boolean | false
 }
 
 export interface colDef {

@@ -287,7 +287,7 @@
                                                     name="radio-{{pTableSetting.tableID}}"
                                                     attr.data-sectionvalue="{{body[pTableSetting.tableRowIDInternalName]}}"
                                                     (click)="fnIndividualRadioAction($event,body)"></td>
-                                            <td class="" *ngFor="let dispCol of pTableSetting.tableColDef"
+                                            <td class="" *ngFor="let dispCol of pTableSetting.tableColDef, let cellCounter =index"
                                                 [style.display]="dispCol?.visible==false && dispCol?.visible!=null ?'none':''"
                                                 [ngClass]="dispCol.className">
                                                 <div *ngIf="dispCol.type=='checkbox'|| dispCol.type=='checkbox-all'">
@@ -312,24 +312,20 @@
 
 
 
-                                                <div class="d-flex align-items-center" *ngIf="dispCol.type=='button'" style="text-align:center;">
-                                                    
-                                                    
+                                                <div class="d-flex align-items-center" *ngIf="cellCounter+1==pTableSetting.tableColDef.length &&( dispCol.type=='button'||pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn|| pTableSetting.enabledDeleteBtn)" style="text-align:center;">
                                                     <div class="action-inline-popup d-flex flex-nowrap" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
-                                                        <a  class="btn text-link d-flex align-items-center"
+                                                        <a  class="btn text-link d-flex align-items-center" *ngIf="dispCol.type=='button'"
                                                             (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                             <i class="pr-2 {{dispCol.innerBtnIcon}}" *ngIf="(dispCol.innerBtnIcon||'')!=''"> </i> {{body[dispCol.internalName]}}
                                                         </a>
-                                                        <a class="btn"><em class="fa fa-info-circle"></em></a>
+                                                        <a class="btn" (click)="fnShowDetailsModal($event,body,content)"><em class="fa fa-info-circle"></em></a>
                                                         <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" 
                                                             (click)="fnActivityOnRecord('edit-item',body)"><em class="fa fa-edit"></em></a>
                                                         <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledDeleteBtn" 
                                                             (click)="fnActivityOnRecord('delete-item',body)"><em class="fa fa-trash"></em></a>
                                                     </div>
-
-
-
                                                 </div>
+
                                                 <div *ngIf="dispCol.type=='hrefLink' && dispCol.displayType=='number'"
                                                     style="text-align:center;">
                                                     <a class="p-table-href-link"
@@ -468,3 +464,25 @@
         </div>
     </div>
 </div>
+
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">Details Information </h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div class="col-xl-4 col-md-6" *ngFor="let item of detailsInfo">
+                        <div class="caf-input-group">
+                            <label class="label">Province*</label>
+                            <input type="text" autocomplete="off" name="province" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+            </div>
+        </ng-template>
