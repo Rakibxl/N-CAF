@@ -156,6 +156,9 @@ export class PTableComponent implements OnInit, DoCheck {
     }
   }
 
+    public fnFilterColDef():any[] {
+        return this.pTableSetting.tableColDef.filter(x => x.visible != false)||[];
+    }
 
   fnClickPTableCell(event: any, isCellClick: boolean = false, currentCellName: string, activeClickForThisCell: string, data: any) {
     if (isCellClick && (activeClickForThisCell == "Yes" || activeClickForThisCell == "true")) {
@@ -314,24 +317,16 @@ export class PTableComponent implements OnInit, DoCheck {
     this.customActivityOnRecord.emit({ action: action, record: recordInfo });
     }
 
-    public fnShowDetailsModal(event, recordInfo: any,content) {
+    public fnShowDetailsModal(event, recordInfo: any, content) {
+        this.selectedRecordInfo = recordInfo
         console.log("recordInfo:", recordInfo);
         this.modalService.open(content, {
             size: 'lg'
         });
 
-        this.detailsInfo= [
-            { headerName: 'Name', width: '15%', internalName: 'full_name', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Date Of Birth', width: '15%', internalName: 'dateOfBirth', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Phone Number', width: '15%', internalName: 'phoneNumber', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Email', width: '15%', internalName: 'email', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Selected City', width: '15%', internalName: 'selectedCity', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Zip Code', width: '15%', internalName: 'zipCode', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Yearly Income', width: '12%', internalName: 'yearlyIncome', sort: true, type: "", onClick: 'true' },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
-        ]
+        this.detailsInfo = this.pTableSetting.tableColDef.filter(x => x.type !="button")||[];
     }
-
+    public selectedRecordInfo;
     public detailsInfo = [];
   
   public fnChangePTableRowLength(records: number) {

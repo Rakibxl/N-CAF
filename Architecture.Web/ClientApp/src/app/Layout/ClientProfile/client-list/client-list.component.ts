@@ -47,10 +47,10 @@ export class ClientListComponent implements OnInit {
       { headerName: 'Date Of Birth', width: '15%', internalName: 'dateOfBirth', sort: true, type: "", onClick: 'true' },
       { headerName: 'Phone Number', width: '15%', internalName: 'phoneNumber', sort: true, type: "", onClick: 'true' },
       { headerName: 'Email', width: '15%', internalName: 'email', sort: true, type: "", onClick: 'true' },
-      { headerName: 'Selected City', width: '15%', internalName: 'selectedCity', sort: true, type: "", onClick: 'true' },
-      { headerName: 'Zip Code', width: '15%', internalName: 'zipCode', sort: true, type: "", onClick: 'true' },
-      { headerName: 'Yearly Income', width: '12%', internalName: 'yearlyIncome', sort: true, type: "", onClick: 'true' },
-      { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+       { headerName: 'Selected City', width: '15%', internalName: 'selectedCity', sort: true, type: "", onClick: 'true', visible: false  },
+       { headerName: 'Zip Code', width: '15%', internalName: 'zipCode', sort: true, type: "", onClick: 'true', visible: false },
+       { headerName: 'Yearly Income', width: '12%', internalName: 'yearlyIncome', sort: true, type: "", onClick: 'true', visible:false },
+      //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
     ],
       enabledSearch: true,
       enabledSerialNo: true,
@@ -66,7 +66,8 @@ export class ClientListComponent implements OnInit {
       enabledExcelDownload: true,
       enabledPrint: true,
       enabledColumnSetting: true,
-      enabledRecordCreateBtn: true
+      enabledRecordCreateBtn: true,
+      enabledViewDetails:true
   }
 
   getClients() {
