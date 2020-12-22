@@ -63,7 +63,8 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         public async Task<IEnumerable<ProfOccupationInfo>> GetAll(int profileId)
         {
             IEnumerable<ProfOccupationInfo> result;
-              result=await GetAsync(x => x,x => x.ProfileId== profileId, null, x => x.Include(y => y.ContractType));
+              result=await GetAsync(x => x,x => x.ProfileId== profileId, null, x => x.Include(y => y.ContractType)
+                                                                                    .Include(y => y.JobType));
             return result;
 
         }

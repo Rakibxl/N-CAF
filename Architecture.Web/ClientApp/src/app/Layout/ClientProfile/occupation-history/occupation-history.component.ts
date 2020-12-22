@@ -51,18 +51,12 @@ export class OccupationHistoryComponent implements OnInit {
                 this.occupationInfoList = success.data;
                 this.occupationInfoList.forEach(x => {
                     x.contractTypeName = x.contractType.contractTypeName || "";
+                    x.jobTypeName = x.jobType.jobTypeName || "";
                     x.contractStartDate = this.commonService.getDateToSetForm(x.contractStartDate);
                     x.contractEndDate = this.commonService.getDateToSetForm(x.contractEndDate);
-                })
-        
-                //for (let i = 0; i < success.data.length; i++) {
-                //    success.data[i].contractStartDate = this.commonService.getDateToSetForm(success.data[i].contractStartDate);
-                //    success.data[i].contractEndDate = this.commonService.getDateToSetForm(success.data[i].contractEndDate);
 
-                //}  
-                //console.log("get occupation: ", success);
-                //this.occupationInfoList = success.data;
-
+                    console.log("Occupation Data", success.data);
+                })    
             },
             error => {
             });
@@ -73,27 +67,27 @@ export class OccupationHistoryComponent implements OnInit {
         tableName: 'Occupation List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Job Type', width: '5%', internalName: 'jobType', sort: true, type: ""},
-            { headerName: 'JobHour', width: '5%', internalName: 'jobHour', sort: true, type: ""},
-            { headerName: 'ContractType', width: '5%', internalName: 'contractTypeName', sort: true, type: "" },
+            { headerName: 'Job Type', width: '5%', internalName: 'jobTypeName', sort: true, type: ""},
+            { headerName: 'Job Hour', width: '5%', internalName: 'jobHour', sort: true, type: ""},
+            { headerName: 'ContractType', width: '7%', internalName: 'contractTypeName', sort: true, type: "" },
             { headerName: 'Contract StartDate', width: '5%', internalName: 'contractStartDate', sort: true, type: "" },
             { headerName: 'Contract EndDate', width: '5%', internalName: 'contractEndDate', sort: true, type: "" },
-            { headerName: 'CompanyName', width: '5%', internalName: 'companyName', sort: true, type: "" },
-            { headerName: 'VATNo', width: '5%', internalName: 'vatNo', sort: true, type: "" },
-            { headerName: 'Legal Company Address', width: '5%', internalName: 'legalCompanyAddress', sort: true, type: "" },
-            { headerName: 'Office Address', width: '5%', internalName: 'officeAddress', sort: true, type: "" },
-            { headerName: 'Branch Address', width: '5%', internalName: 'branchAddress', sort: true, type: "" },
-            { headerName: 'Chamber Of CommerceRegNo', width: '5%', internalName: 'chamberOfCommerceRegNo', sort: true, type: "" },
-            { headerName: 'Chamber OfCommerce CityName', width: '5%', internalName: 'chamberOfCommerceCityName', sort: true, type: "" },
-            { headerName: 'REANo', width: '5%', internalName: 'reaNo', sort: true, type: "" },
-            { headerName: 'ATECONo', width: '5%', internalName: 'atecoNo', sort: true, type: "" },
-            { headerName: 'SCIANo', width: '5%', internalName: 'sciaNo', sort: true, type: "" },
-            { headerName: 'SCIA CityName', width: '5%', internalName: 'sciaCityName', sort: true, type: "" },
-            { headerName: 'IsShareHolder', width: '5%', internalName: 'isShareHolder', sort: true, type: "" },
-            { headerName: 'Percentage of Share', width: '5%', internalName: 'percentageOfShare', sort: true, type: "" },
-            { headerName: 'Notaio Info', width: '5%', internalName: 'notaioInfo', sort: true, type: "" },
-            { headerName: 'Company Representative', width: '5%', internalName: 'companyRepresentative', sort: true, type: "" },
-            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'CompanyName', width: '10%', internalName: 'companyName', sort: true, type: "" },
+            { headerName: 'VAT No', width: '7%', internalName: 'vatNo', sort: true, type: "" },
+            { headerName: 'Office Address', width: '5%', internalName: 'officeAddress', sort: true, type: ""  },
+            { headerName: 'Legal Company Address', width: '5%', internalName: 'legalCompanyAddress', sort: true, type: "", visible: false },
+            { headerName: 'Branch Address', width: '5%', internalName: 'branchAddress', sort: true, type: "", visible: true  },
+            { headerName: 'Chamber Of CommerceRegNo', width: '5%', internalName: 'chamberOfCommerceRegNo', sort: true, type: "", visible: false  },
+            { headerName: 'Chamber OfCommerce CityName', width: '5%', internalName: 'chamberOfCommerceCityName', sort: true, type: "", visible: false  },
+            { headerName: 'REANo', width: '5%', internalName: 'reaNo', sort: true, type: "", visible: false  },
+            { headerName: 'ATECONo', width: '5%', internalName: 'atecoNo', sort: true, type: "", visible: false  },
+            { headerName: 'SCIANo', width: '5%', internalName: 'sciaNo', sort: true, type: "", visible: false  },
+            { headerName: 'SCIA CityName', width: '5%', internalName: 'sciaCityName', sort: true, type: "", visible: false  },
+            { headerName: 'IsShareHolder', width: '5%', internalName: 'isShareHolder', sort: true, type: "", visible: false  },
+            { headerName: 'Percentage of Share', width: '5%', internalName: 'percentageOfShare', sort: true, type: "", visible: false  },
+            { headerName: 'Notaio Info', width: '5%', internalName: 'notaioInfo', sort: true, type: "", visible: false  },
+            { headerName: 'Company Representative', width: '5%', internalName: 'companyRepresentative', sort: true, type: "", visible: false },
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -110,7 +104,8 @@ export class OccupationHistoryComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public occupationInfoList = [

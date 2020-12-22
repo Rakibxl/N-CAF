@@ -106,7 +106,7 @@ export class CommonComponent implements OnInit {
 
       //setTimeout(this.generateQuestion.bind(this), 1500);
      
-      //this.generateQuestion();
+      this.generateQuestion();
      //setInterval(() => this.generateQuestion(), 1500)
 
   }
@@ -162,16 +162,16 @@ export class CommonComponent implements OnInit {
     }
 
 
-    //generateQuestion() {
+    generateQuestion() {
 
-    //    var questionInfoList = [];
-    //    debugger;
-    //    // basic service , occupation and everything call
+        var questionInfoList = [];
+        debugger;
+        // basic service , occupation and everything call
 
-    //    this.questionService.GetUserQuestion().subscribe(
-    //        (success) => {
-    //            console.log("get question info: ", success);
-    //            questionInfoList = success.data;
+        this.questionService.GetUserQuestion().subscribe(
+            (success) => {
+                console.log("get question info: ", success);
+                questionInfoList = success.data;
 
                 // save in session storage array 
                 if ((JSON.parse(sessionStorage.getItem('questioninfo')) || []).length==0) {
@@ -206,29 +206,29 @@ export class CommonComponent implements OnInit {
 
 
                  
-    //              //numbers.subscribe(x => console.log(x));
+                  //numbers.subscribe(x => console.log(x));
 
 
-    //            //console.log("sessiondata" + data);
+                //console.log("sessiondata" + data);
 
 
 
-    //            //for (let i = 0; i < success.data.length; i++) {
-    //            //    if (success.data[i].status == "InActive") {
-    //            //        this.alertService.questionToster(success.data[i].questionDescription,
-    //            //            () => {
-    //            //                alert("Clicked Yes");
-    //            //            },
-    //            //            () => {
-    //            //                alert("clicked No");
-    //            //            });
-    //            //        }
-    //            //}
-    //        },
-    //        error => {
-    //        });
+                //for (let i = 0; i < success.data.length; i++) {
+                //    if (success.data[i].status == "InActive") {
+                //        this.alertService.questionToster(success.data[i].questionDescription,
+                //            () => {
+                //                alert("Clicked Yes");
+                //            },
+                //            () => {
+                //                alert("clicked No");
+                //            });
+                //        }
+                //}
+            },
+            error => {
+            });
        
-    //}
+    }
 
 
 }

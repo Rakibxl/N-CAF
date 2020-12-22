@@ -16,9 +16,7 @@
                         <div class="caf-input-group">
                             <label class="label">JobType*</label>
                             <select id="" class="form-control" name="jobTypeId" #jobTypeId="ngModel" [(ngModel)]="occupationInfoForm.jobTypeId" required>
-                                <option value="1">PartTime</option>
-                                <option value="2">FullTime</option>
-                                <option value="3">Occasional</option>
+                                <option *ngFor="let option of jobType" [value]="option.jobTypeId">{{option.jobTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="jobTypeId.valid || jobTypeId.pristine" class="text-danger">JobType is required.</p>
@@ -37,9 +35,7 @@
                         <div class="caf-input-group">
                             <label class="label">ContractType*</label>
                             <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId" required>
-                                <option value="1">Limited</option>
-                                <option value="2">Unlimited</option>
-                                <option value="3">Occational</option>
+                                <option *ngFor="let option of contractType" [value]="option.contractTypeId">{{option.contractTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">ContractType is required.</p>

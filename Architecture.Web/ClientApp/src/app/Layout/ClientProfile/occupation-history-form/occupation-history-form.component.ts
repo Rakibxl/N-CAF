@@ -5,6 +5,7 @@ import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/oc
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 
 @Component({
@@ -14,11 +15,17 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class OccupationHistoryFormComponent implements OnInit {
     public occupationInfoForm = new profOccupationInfo();
+    public jobType = [];
+    public contractType = [];
 
-    constructor(private occupationInfoService: OccupationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private occupationInfoService: OccupationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private dropdownService: DropdownService, private route: ActivatedRoute) { }
     private profileId: number;
     private occupationInfoId: number;
-    ngOnInit() {
+    async ngOnInit() {
+
+        this.jobType = await this.dropdownService.getJobType() || [];
+        this.contractType = await this.dropdownService.getContractType() || [];
+
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.occupationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 
