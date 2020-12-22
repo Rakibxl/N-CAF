@@ -14,13 +14,15 @@ export class OccupationHistoryComponent implements OnInit {
 
     constructor(private router: Router, private occupationService: OccupationInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
+    public contractType = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         debugger;
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
         }
+
         this.getOccupationInfos();
     }
 
@@ -41,16 +43,26 @@ export class OccupationHistoryComponent implements OnInit {
     }
 
 
-    public getOccupationInfos() {
+    public async getOccupationInfos() {
         debugger;
+
         this.occupationService.getOccupationInfo(this.profileId).subscribe(
             (success) => {
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].contractStartDate = this.commonService.getDateToSetForm(success.data[i].contractStartDate);
-                    success.data[i].contractEndDate = this.commonService.getDateToSetForm(success.data[i].contractEndDate);
-                }  
-                console.log("get occupation: ", success);
                 this.occupationInfoList = success.data;
+                this.occupationInfoList.forEach(x => {
+                    x.contractTypeName = x.contractType.contractTypeName || "";
+                    x.contractStartDate = this.commonService.getDateToSetForm(x.contractStartDate);
+                    x.contractEndDate = this.commonService.getDateToSetForm(x.contractEndDate);
+                })
+        
+                //for (let i = 0; i < success.data.length; i++) {
+                //    success.data[i].contractStartDate = this.commonService.getDateToSetForm(success.data[i].contractStartDate);
+                //    success.data[i].contractEndDate = this.commonService.getDateToSetForm(success.data[i].contractEndDate);
+
+                //}  
+                //console.log("get occupation: ", success);
+                //this.occupationInfoList = success.data;
+
             },
             error => {
             });
@@ -61,9 +73,9 @@ export class OccupationHistoryComponent implements OnInit {
         tableName: 'Occupation List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Job Type', width: '5%', internalName: 'jobType', sort: true, type: "" },
-            { headerName: 'JobHour', width: '5%', internalName: 'jobHour', sort: true, type: "" },
-            { headerName: 'ContractType', width: '5%', internalName: 'contractType', sort: true, type: "" },
+            { headerName: 'Job Type', width: '5%', internalName: 'jobType', sort: true, type: ""},
+            { headerName: 'JobHour', width: '5%', internalName: 'jobHour', sort: true, type: ""},
+            { headerName: 'ContractType', width: '5%', internalName: 'contractTypeName', sort: true, type: "" },
             { headerName: 'Contract StartDate', width: '5%', internalName: 'contractStartDate', sort: true, type: "" },
             { headerName: 'Contract EndDate', width: '5%', internalName: 'contractEndDate', sort: true, type: "" },
             { headerName: 'CompanyName', width: '5%', internalName: 'companyName', sort: true, type: "" },
