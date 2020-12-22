@@ -45,7 +45,8 @@ export class AlertComponent implements OnInit {
         this.titleTosterCollection.push({
             type:message.alertType,
             text:message.text,
-            id:tosterId
+            id: tosterId,
+            siFn: message.siFn
         });
 
         setTimeout(() => {
@@ -65,7 +66,8 @@ export class AlertComponent implements OnInit {
             console.log("tosterId: ", tosterId, this.questionTosterCollection);
             this.questionTosterCollection = this.questionTosterCollection.filter(res=>res.id!=tosterId)
         }, 300000);
-      }
+        }
+        console.log("message", message);
       this.message = message;
     }, err => {
             debugger;

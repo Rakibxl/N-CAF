@@ -104,8 +104,8 @@
 
 <!--Title Question -->
 <div class="title-toaster-wrapper">
-    <div *ngFor="let toster of questionTosterCollection">
-        <div class="toaster-box toaster-{{toster.type}}" [@slideInOutAnimation]>
+    <div *ngIf="message?.type=='question-toster'">
+        <div class="toaster-box toaster-{{message.alertType}}" [@slideInOutAnimation]>
             <div class="toaster-left">
                 <i class="fa fa-fw check" aria-hidden="true" title="check"></i>
                 <i class="fa fa-fw remove" aria-hidden="true" title="remove"></i>
@@ -113,10 +113,10 @@
                 <i class="fa fa-fw info" aria-hidden="true" title="info"></i>
             </div>
             <div class="toaster-content">
-                <p [innerHTML]="toster.text"></p>
-                <span (click)="message.siFn();fnRemoveQuestionToster(toster.id)" class="btn btn-lg btn-success mr-3">Yes</span>
-                <span (click)="message.noFn();fnRemoveQuestionToster(toster.id)" class="btn btn-lg btn-danger">No</span>
-                <i class="toast-remove fa fa-fw" aria-hidden="true" title="remove" (click)="fnRemoveQuestionToster(toster.id)"></i>
+                <p [innerHTML]="message.text"></p>
+                <span (click)="message.siFn()" class="btn btn-lg btn-success mr-3">Yes</span>
+                <span (click)="message.noFn()" class="btn btn-lg btn-danger">No</span>
+                <i class="toast-remove fa fa-fw" aria-hidden="true" title="remove" (click)="message.noFn()"></i>
             </div>
         </div>
     </div>

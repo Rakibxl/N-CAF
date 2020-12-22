@@ -95,20 +95,8 @@ export class CommonComponent implements OnInit {
    public questiontimerSubscribe;
 
 
-  ngOnInit() {
-    this.dashboardService.getDashboardData()
-      .subscribe(res => {
-        this.dashboard = res.data;
-        console.log(`dashboard response - ${JSON.stringify(res)}`);
-        this.generateChart();
-
-      });
-
-      //setTimeout(this.generateQuestion.bind(this), 1500);
-     
+  ngOnInit() {     
       this.generateQuestion();
-     //setInterval(() => this.generateQuestion(), 1500)
-
   }
 
   generateChart() {
@@ -165,7 +153,6 @@ export class CommonComponent implements OnInit {
     generateQuestion() {
 
         var questionInfoList = [];
-        debugger;
         // basic service , occupation and everything call
 
         this.questionService.GetUserQuestion().subscribe(
@@ -178,13 +165,13 @@ export class CommonComponent implements OnInit {
                     sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
                 }
 
-                this.questiontimerSubscribe = timer(500, 30000).subscribe(x => {
+                this.questiontimerSubscribe = timer(4000, 30000).subscribe(x => {
                     let questionInfos = JSON.parse(sessionStorage.getItem('questioninfo')) || [];
                     let displayQuestion = questionInfos.filter(x => x.status == "InActive").length > 0 ? questionInfos.filter(x => x.status == "InActive")[0] : null;
                     if (displayQuestion != null) {
                         questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
                         console.log("questionInfos", questionInfos);
-                        sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
+                        //sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
                         this.alertService.questionToster(displayQuestion.questionDescription,
                             () => {
                                 console.log("Clicked Yes");
@@ -198,7 +185,6 @@ export class CommonComponent implements OnInit {
                             });
 
                     } else {
-                        debugger;
                         this.questiontimerSubscribe.unsubscribe();
                     }
 
