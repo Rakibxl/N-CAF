@@ -287,82 +287,79 @@
                                                     name="radio-{{pTableSetting.tableID}}"
                                                     attr.data-sectionvalue="{{body[pTableSetting.tableRowIDInternalName]}}"
                                                     (click)="fnIndividualRadioAction($event,body)"></td>
-                                            <td class="" *ngFor="let dispCol of pTableSetting.tableColDef, let cellCounter =index"
+                                            <td class="" *ngFor="let dispCol of fnFilterColDef(), let cellCounter =index"
                                                 [style.display]="dispCol?.visible==false && dispCol?.visible!=null ?'none':''"
                                                 [ngClass]="dispCol.className">
                                                 <div *ngIf="dispCol.type=='checkbox'|| dispCol.type=='checkbox-all'">
                                                     <input type="checkbox"
-                                                        [checked]="body[dispCol.internalName]=='true' || body[dispCol.internalName]==true"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)" />
+                                                           [checked]="body[dispCol.internalName]=='true' || body[dispCol.internalName]==true"
+                                                           (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)" />
                                                 </div>
                                                 <div *ngIf="dispCol.type=='checkbox-switch'">
                                                     <label class="switch">
                                                         <input [disabled]="dispCol.onClick!='Yes'" type="checkbox"
-                                                            [checked]="body[dispCol.internalName]=='true' || body[dispCol.internalName]==true"
-                                                            (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                               [checked]="body[dispCol.internalName]=='true' || body[dispCol.internalName]==true"
+                                                               (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='battery-level'">
                                                     <i class="fa fa-battery-{{ this.Math.round(+body[dispCol.internalName]*4)}}"
-                                                        style="font-size:35px;"
-                                                        [style.color]="this.Math.round(+body[dispCol.internalName]*100)<10?'red':this.Math.round(+body[dispCol.internalName]*100)<30?'#a7a776':'green'"></i>
+                                                       style="font-size:35px;"
+                                                       [style.color]="this.Math.round(+body[dispCol.internalName]*100)<10?'red':this.Math.round(+body[dispCol.internalName]*100)<30?'#a7a776':'green'"></i>
                                                     <span> {{this.Math.round(+body[dispCol.internalName]*100)}}% </span>
                                                 </div>
 
-
-
-                                                <div class="d-flex align-items-center" *ngIf="cellCounter+1==pTableSetting.tableColDef.length &&( dispCol.type=='button'||pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn|| pTableSetting.enabledDeleteBtn)" style="text-align:center;">
-                                                    <div class="action-inline-popup d-flex flex-nowrap" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
-                                                        <a  class="btn text-link d-flex align-items-center" *ngIf="dispCol.type=='button'"
-                                                            (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                <div class="d-flex align-items-center" *ngIf="cellCounter+1==fnFilterColDef().length && (dispCol.type=='button'||pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn|| pTableSetting.enabledDeleteBtn||pTableSetting.enabledViewDetails)" style="text-align:center;">
+                                                    <div class="action-inline-popup d-flex flex-nowrap" >
+                                                        <a class="btn text-link d-flex align-items-center" *ngIf="dispCol.type=='button'"
+                                                           (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                             <i class="pr-2 {{dispCol.innerBtnIcon}}" *ngIf="(dispCol.innerBtnIcon||'')!=''"> </i> {{body[dispCol.internalName]}}
                                                         </a>
-                                                        <a class="btn" (click)="fnShowDetailsModal($event,body,content)"><em class="fa fa-info-circle"></em></a>
-                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" 
-                                                            (click)="fnActivityOnRecord('edit-item',body)"><em class="fa fa-edit"></em></a>
-                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledDeleteBtn" 
-                                                            (click)="fnActivityOnRecord('delete-item',body)"><em class="fa fa-trash"></em></a>
+                                                        <a class="btn" *ngIf="pTableSetting.enabledViewDetails" (click)="fnShowDetailsModal($event,body,content)"><em class="fa fa-info-circle"></em></a>
+                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn"
+                                                           (click)="fnActivityOnRecord('edit-item',body)"><em class="fa fa-edit"></em></a>
+                                                        <a class="btn" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledDeleteBtn"
+                                                           (click)="fnActivityOnRecord('delete-item',body)"><em class="fa fa-trash"></em></a>
                                                     </div>
                                                 </div>
 
                                                 <div *ngIf="dispCol.type=='hrefLink' && dispCol.displayType=='number'"
-                                                    style="text-align:center;">
+                                                     style="text-align:center;">
                                                     <a class="p-table-href-link"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                       (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                         {{body[dispCol.internalName]|number}}
                                                     </a>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='hrefLink' && dispCol.displayType!='number'"
-                                                    style="text-align:center;">
+                                                     style="text-align:center;">
                                                     <a class="p-table-href-link"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                       (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                         {{body[dispCol.internalName]}}
                                                     </a>
                                                 </div>
                                                 <div *ngIf="dispCol.type!='hrefLink' && dispCol.displayType=='number'"
-                                                    style="text-align:center;">
+                                                     style="text-align:center;">
                                                     <a class="p-table-href-link">
                                                         {{body[dispCol.internalName]|number}}
                                                     </a>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='custom-button'" style="text-align:center;">
-                                                    <button
-                                                        *ngIf="body[dispCol.internalName]=='true'|| body[dispCol.internalName]==true"
-                                                        class="btn btn-outline-success p-table-custom-button"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
+                                                    <button *ngIf="body[dispCol.internalName]=='true'|| body[dispCol.internalName]==true"
+                                                            class="btn btn-outline-success p-table-custom-button"
+                                                            (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                         {{dispCol.btnTitle}}
                                                     </button>
                                                 </div>
-                                                <div *ngIf="dispCol.type=='hyperlink'"><a class="p-table-hyperlink"
-                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">{{body[dispCol.internalName]}}</a>
+                                                <div *ngIf="dispCol.type=='hyperlink'">
+                                                    <a class="p-table-hyperlink"
+                                                       (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">{{body[dispCol.internalName]}}</a>
                                                 </div>
-                                                <div
-                                                    *ngIf="(dispCol.type=='' || dispCol.type==null)&& dispCol.displayType!='number'">
+                                                <div *ngIf="(dispCol.type=='' || dispCol.type==null)&& dispCol.displayType!='number'">
                                                     {{body[dispCol.internalName]}}
                                                 </div>
 
-                                                
+
                                             </td>
                                             <!-- <td align="center" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
                                                 <a *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" class="p-table-edit-icon" (click)="fnActivityOnRecord('edit-item',body)"><em
@@ -473,11 +470,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="d-flex">
+                <div class="d-flex col-sm-12 row">
                     <div class="col-xl-4 col-md-6" *ngFor="let item of detailsInfo">
                         <div class="caf-input-group">
-                            <label class="label">Province*</label>
-                            <input type="text" autocomplete="off" name="province" class="form-control" disabled />
+                            <label class="label">{{item.headerName}}</label>
+                            <input type="text" autocomplete="off" value="{{selectedRecordInfo[item.internalName]}}" class="form-control" disabled />
                         </div>
                     </div>
                 </div>
