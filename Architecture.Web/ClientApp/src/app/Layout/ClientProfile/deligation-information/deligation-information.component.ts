@@ -73,7 +73,7 @@ export class DeligationInformationComponent implements OnInit {
             { headerName: 'Expiry Date', width: '7%', internalName: 'expiryDate', sort: true, type: "" },
             { headerName: 'Issued By', width: '7%', internalName: 'issuedBy', sort: true, type: "" },
             { headerName: 'Status', width: '7%', internalName: 'status', sort: true, type: "" },        
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

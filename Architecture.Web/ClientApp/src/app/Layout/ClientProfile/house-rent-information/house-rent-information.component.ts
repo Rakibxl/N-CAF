@@ -107,7 +107,7 @@ export class HouseRentInformationComponent implements OnInit {
             { headerName: 'Loan Period', width: '10%', internalName: 'loanPeriod', sort: true, type: "", visible: false},
             { headerName: 'Is RentByOwner', width: '10%', internalName: 'isRentByOwner', sort: true, type: "", visible: false},
             { headerName: 'RentAmount', width: '10%', internalName: 'rentAmount', sort: true, type: "", visible: false},
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

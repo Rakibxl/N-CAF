@@ -78,7 +78,7 @@ export class IseeInformationComponent implements OnInit {
             { headerName: 'Submitted Date', width: '7%', internalName: 'submittedDate', sort: true, type: "" },
             { headerName: 'Delivery Date', width: '7%', internalName: 'deliveryDate', sort: true, type: "" },
             { headerName: 'Expiry Date', width: '7%', internalName: 'expiryDate', sort: true, type: "" },
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
 
         ],

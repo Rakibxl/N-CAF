@@ -79,7 +79,7 @@ export class AssetInformationComponent implements OnInit {
             { headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyRestrictionByGovt', sort: true, type: "", visible: false },
             { headerName: 'City Name', width: '10%', internalName: 'cityName', sort: true, type: "", visible: false },
             { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: ""},
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

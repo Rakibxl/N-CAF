@@ -73,7 +73,7 @@ export class LegalInformationComponent implements OnInit {
             { headerName: 'Ref No', width: '10%', internalName: 'refNo', sort: true, type: "" },
             { headerName: 'Reason', width: '10%', internalName: 'reason', sort: true, type: "" },
             { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },          
-            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

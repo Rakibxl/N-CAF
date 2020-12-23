@@ -76,7 +76,7 @@ export class DocumentInformationComponent implements OnInit {
             { headerName: 'Issued By', width: '15%', internalName: 'issuedBy', sort: true, type: "" },
             { headerName: 'Issue Date', width: '10%', internalName: 'issuedDate', sort: true, type: "" },
             { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },         
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

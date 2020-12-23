@@ -65,7 +65,7 @@ export class BankInformationComponent implements OnInit {
             { headerName: 'Account Number', width: '15%', internalName: 'accountNumber', sort: true, type: "" },
             { headerName: 'Swift Number', width: '15%', internalName: 'swiftNumber', sort: true, type: "" },            
             { headerName: 'Status', width: '15%', internalName: 'status', sort: true, type: "" },            
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

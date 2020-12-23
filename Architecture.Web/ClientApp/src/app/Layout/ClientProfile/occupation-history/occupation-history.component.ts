@@ -77,7 +77,7 @@ export class OccupationHistoryComponent implements OnInit {
             { headerName: 'Legal Company Address', width: '5%', internalName: 'legalCompanyAddress', sort: true, type: "", visible: false },
             { headerName: 'Branch Address', width: '5%', internalName: 'branchAddress', sort: true, type: "", visible: true  },
             { headerName: 'Chamber Of CommerceRegNo', width: '5%', internalName: 'chamberOfCommerceRegNo', sort: true, type: "", visible: false  },
-            { headerName: 'Chamber OfCommerce CityName', width: '5%', internalName: 'chamberOfCommerceCityName', sort: true, type: "", visible: false  },
+            { headerName: 'Chamber OfCommerce City', width: '5%', internalName: 'chamberOfCommerceCityName', sort: true, type: "", visible: false  },
             { headerName: 'REANo', width: '5%', internalName: 'reaNo', sort: true, type: "", visible: false  },
             { headerName: 'ATECONo', width: '5%', internalName: 'atecoNo', sort: true, type: "", visible: false  },
             { headerName: 'SCIANo', width: '5%', internalName: 'sciaNo', sort: true, type: "", visible: false  },
@@ -86,7 +86,7 @@ export class OccupationHistoryComponent implements OnInit {
             { headerName: 'Percentage of Share', width: '5%', internalName: 'percentageOfShare', sort: true, type: "", visible: false  },
             { headerName: 'Notaio Info', width: '5%', internalName: 'notaioInfo', sort: true, type: "", visible: false  },
             { headerName: 'Company Representative', width: '5%', internalName: 'companyRepresentative', sort: true, type: "", visible: false },
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

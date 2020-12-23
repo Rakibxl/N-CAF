@@ -40,8 +40,12 @@ export class QuestionInformationComponent implements OnInit {
         debugger;
         this.questionService.getQuestionInfo().subscribe(
             (success) => {
-                console.log("get question info: ", success);
                 this.questionInfoList = success.data;
+                console.log("get question info: ", success);
+                this.questionInfoList.forEach(x => {
+                    x.sectionName = x.sectionName.sectionDescription || "";
+                    console.log("Occupation Data", success.data);
+                })    
 
             },
             error => {
@@ -56,9 +60,9 @@ export class QuestionInformationComponent implements OnInit {
         tableColDef: [
             { headerName: 'Question Description', width: '30%', internalName: 'questionDescription', sort: true, type: "" },
             { headerName: 'Page to url', width: '15%', internalName: 'pageToUrl', sort: true, type: "" },
-            { headerName: 'Section Name', width: '20%', internalName: 'sectionName.sectionDescription', sort: true, type: "" },
+            { headerName: 'Section Name', width: '20%', internalName: 'sectionName', sort: true, type: "" },
             { headerName: 'Status', width: '15%', internalName: 'status', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -75,7 +79,9 @@ export class QuestionInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
     public questionInfoList = [

@@ -71,7 +71,7 @@ export class WorkerInformationComponent implements OnInit {
             { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Status', width: '10%', internalName: 'status', sort: true, type: "" },           
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
