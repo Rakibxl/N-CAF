@@ -44,12 +44,16 @@ export class LegalInformationComponent implements OnInit {
         debugger;
         this.legalService.getLegalInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get legal: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
-                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
-                }
                 this.legalInfoList = success.data;
+                console.log("get legal: ", success);
+                this.legalInfoList.forEach(x => {
+                    x.countryDescription = x.countryName.countryDescription || "";
+                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
+                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
+
+                    console.log("Occupation Data", success.data);
+                })    
+             
             },
             error => {
             });
@@ -61,15 +65,15 @@ export class LegalInformationComponent implements OnInit {
         tableName: 'Legal List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Country Name', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Country Name', width: '10%', internalName: 'countryDescription', sort: true, type: "" },
             { headerName: 'CityName', width: '10%', internalName: 'cityName', sort: true, type: "" },
-            { headerName: 'Start Date', width: '15%', internalName: 'startDate', sort: true, type: "" },
-            { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
+            { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'IsAnyCase', width: '10%', internalName: 'isAnyCase', sort: true, type: "" },
             { headerName: 'Ref No', width: '10%', internalName: 'refNo', sort: true, type: "" },
-            { headerName: 'Reason', width: '20%', internalName: 'reason', sort: true, type: "" },
+            { headerName: 'Reason', width: '10%', internalName: 'reason', sort: true, type: "" },
             { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },          
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -86,7 +90,8 @@ export class LegalInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
        
     };
 

@@ -19,6 +19,10 @@ export class BasicInformationComponent implements OnInit {
   user: IAuthUser;
     profileId: any;
     public gender = [];
+    public maritalStatus = [];
+    public nationality = [];
+    public eyeColor = [];
+    public motiveType = [];
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
         private alertService: AlertService, private router: Router, private commonService: CommonService, private dropdownService :DropdownService) {
@@ -31,8 +35,32 @@ export class BasicInformationComponent implements OnInit {
   }
 
   async ngOnInit() {
-      this.loadBasicInfo();      
+      this.loadBasicInfo();
+      //let addressType = await this.dropdownService.getAddressInfo();
+      //let addressType = await this.dropdownService.getAppUserStatus();
+      let addressType = await this.dropdownService.getAppUserType()||[];
+      let assetType = await this.dropdownService.getAssetType()||[];
+      let bankName = await this.dropdownService.getBankName()||[];
+      let contractType = await this.dropdownService.getContractType()||[];
+      let countryName = await this.dropdownService.getCountryName()||[];
+      let degreeType = await this.dropdownService.getDegreeName()||[];
+      let documentType = await this.dropdownService.getDocumentType()||[];
+       this.eyeColor = await this.dropdownService.getEyeColor()||[];
       this.gender = await this.dropdownService.getGender() || [];
+      let houseCategory = await this.dropdownService.getHouseCategory() || [];
+      let houseType = await this.dropdownService.getHouseType() || [];
+      let incomeType = await this.dropdownService.getIncomeType() || [];
+      let insuranceType = await this.dropdownService.getInsuranceType() || [];
+      let iseeClassType = await this.dropdownService.getISEEClassType() || [];
+      let jobDeliveryType = await this.dropdownService.getJobDeliveryType() || [];
+      let jobType = await this.dropdownService.getJobType() || [];
+      this.maritalStatus = await this.dropdownService.getMaritalStatus() || [];
+      this.nationality = await this.dropdownService.getNationality() || [];
+      this.motiveType = await this.dropdownService.getMotiveType() || [];
+
+      console.log("houseCategory: ", houseCategory, "houseType:", houseType, "incomeType:", incomeType, "insuranceType:", insuranceType, "iseeClassType:", iseeClassType, "jobDeliveryType: ", jobDeliveryType,
+          "jobType", jobType,
+          "documentType:", documentType, "eyeColor:", this.eyeColor, "gender:", this.gender, "nationality:", this.nationality, "motiveType:", this.motiveType);
   }
 
   initForm() {
@@ -46,7 +74,7 @@ export class BasicInformationComponent implements OnInit {
       taxCodeEndDate: [null],
       phoneNumber: [null, Validators.required],
       genderId: [null],
-      maritalStatusId: [null],
+      MeritalStatusId: [null],
       selectedCity: [null],
       email: [null, Validators.required],
       postalElectronicCertificate: [null],

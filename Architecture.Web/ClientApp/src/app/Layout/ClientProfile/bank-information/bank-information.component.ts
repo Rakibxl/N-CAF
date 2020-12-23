@@ -43,8 +43,12 @@ export class BankInformationComponent implements OnInit {
         debugger;
         this.bankService.getBankInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get bank: ", success);
                 this.bankInfoList = success.data;
+                this.bankInfoList.forEach(x => {
+                    x.bankDescription = x.bankName.bankDescription || "";
+                })    
+
+                console.log("get bank: ", success);
             },
             error => {
             });
@@ -56,8 +60,7 @@ export class BankInformationComponent implements OnInit {
         tableName: 'Bank List',
         tableRowIDInternalName: "bankinfoid",
         tableColDef: [
-            //{ headerName: 'Bank Id', width: '10%', internalName: 'bankinfoid', sort: true, type: "" },
-            { headerName: 'Bank Name', width: '10%', internalName: 'bankname', sort: true, type: "" },
+            { headerName: 'Bank Name', width: '10%', internalName: 'bankDescription', sort: true, type: "" },
             { headerName: 'Branch Name', width: '10%', internalName: 'branchName', sort: true, type: "" },
             { headerName: 'Account Number', width: '15%', internalName: 'accountNumber', sort: true, type: "" },
             { headerName: 'Swift Number', width: '15%', internalName: 'swiftNumber', sort: true, type: "" },            
@@ -79,7 +82,8 @@ export class BankInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public bankInfoList = [

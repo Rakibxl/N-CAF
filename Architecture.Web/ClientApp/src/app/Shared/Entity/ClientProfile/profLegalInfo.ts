@@ -9,6 +9,8 @@ export class profLegalInfo extends Auditable {
     //    public int ? CountryNameId { get; set; }
     //    public virtual CountryName CountryName { get; set; }
 
+    public countryDescription: string;
+
     public countryNameId: number;
 
     public cityName: string;

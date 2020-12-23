@@ -37,6 +37,9 @@ export class EducationalInformationFormComponent implements OnInit {
             (success: any) => {
                 console.log("success:", success);
                 this.alertService.tosterSuccess("Information saved successfully.");
+                setTimeout(() => {
+                    this.router.navigate([`/client-profile/education/${this.profileId}`]);
+                }, 200);
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

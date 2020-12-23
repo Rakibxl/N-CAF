@@ -191,7 +191,6 @@ export class CommonComponent implements OnInit {
                 });
 
 
-
                  
                   //numbers.subscribe(x => console.log(x));
 

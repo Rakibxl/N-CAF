@@ -9,6 +9,9 @@ export class profBankInfo extends Auditable {
      //    public int ? BankNameId { get; set; }
     //    public virtual BankName BankName { get; set; }
 
+
+    public bankDescription: string;
+
     public bankNameId: number;
 
     public branchName: string;

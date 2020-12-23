@@ -9,7 +9,7 @@ export class profISEEInfo extends Auditable {
     //public int? ISEEClassTypeId { get; set; }
     //    public virtual ISEEClassType ISEEClassType { get; set; }
 
-    public iseeClassType: string
+    public iseeClassTypeName: string
 
     public iseeClassTypeId: number;
 

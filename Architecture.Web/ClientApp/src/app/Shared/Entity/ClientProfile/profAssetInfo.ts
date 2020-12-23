@@ -8,7 +8,7 @@ export class profAssetInfo extends Auditable {
     
     public  assetTypeId : number
     //public virtual AssetType AssetType { get; set; }
-    public assetType: string
+    public assetTypeName: string
 
     public numberOfAsset: number
 
@@ -17,6 +17,8 @@ export class profAssetInfo extends Auditable {
     public equivalentMoneyMin: number
 
     public moneyAverage: number
+
+    public ownerTypeName: string
 
     public ownerTypeId: number
     //public virtual OwnerType OwnerType { get; set; }

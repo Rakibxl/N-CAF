@@ -45,12 +45,15 @@ export class MovementInformationComponent implements OnInit {
         debugger;
         this.movementService.getMovementInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get movement: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
-                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
-                }
                 this.movementInfoList = success.data;
+                console.log("get movement: ", success);
+                this.movementInfoList.forEach(x => {
+                    x.countryDescription = x.countryName.countryDescription || "";
+                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
+                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
+
+                    console.log("Occupation Data", success.data);
+                })    
             },
             error => {
             });
@@ -62,7 +65,7 @@ export class MovementInformationComponent implements OnInit {
         tableName: 'Movement List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Country Name', width: '20%', internalName: 'countryName', sort: true, type: "" },
+            { headerName: 'Country Name', width: '20%', internalName: 'countryDescription', sort: true, type: "" },
             { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Purpose', width: '15%', internalName: 'purpose', sort: true, type: "" },
@@ -84,7 +87,9 @@ export class MovementInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
 

@@ -45,12 +45,14 @@ export class IncomeInformationComponent implements OnInit {
         debugger;
         this.incomeService.getIncomeInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get income: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].year = this.commonService.getDateToSetForm(success.data[i].year);
-                    success.data[i].month = this.commonService.getDateToSetForm(success.data[i].month);
-                }
                 this.incomeInfoList = success.data;
+                this.incomeInfoList.forEach(x => {
+                    x.incomeTypeName = x.incomeType.incomeTypeName || "";
+                    x.year = this.commonService.getDateToSetForm(x.year);
+                    x.month = this.commonService.getDateToSetForm(x.month);
+
+                })    
+                console.log("get income: ", success);
             },
             error => {
             });
@@ -62,9 +64,9 @@ export class IncomeInformationComponent implements OnInit {
         tableName: 'Income List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Income Type', width: '20%', internalName: 'incomeType', sort: true, type: "" },
+            { headerName: 'Income Type', width: '20%', internalName: 'incomeTypeName', sort: true, type: "" },
             { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "" },
-            { headerName: 'Montly Income', width: '15%', internalName: 'monthlyIncome', sort: true, type: "" },
+            { headerName: 'Monthly Income', width: '15%', internalName: 'monthlyIncome', sort: true, type: "" },
             { headerName: 'Year', width: '15%', internalName: 'year', sort: true, type: "" },
             { headerName: 'Month', width: '10%', internalName: 'month', sort: true, type: "" },
             { headerName: 'Document', width: '10%', internalName: 'document', sort: true, type: "" },
@@ -86,7 +88,8 @@ export class IncomeInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public incomeInfoList = [];

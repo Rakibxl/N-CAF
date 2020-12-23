@@ -44,12 +44,13 @@ export class WorkerInformationComponent implements OnInit {
         debugger;
         this.workerService.getWorkerInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get worker: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
-                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
-                }
                 this.workerInfoList = success.data;
+                console.log("get worker: ", success);
+                this.workerInfoList.forEach(x => {
+                    x.workerTypeName = x.workerType.workerTypeName || "";
+                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
+                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
+                })    
             },
             error => {
             });
@@ -61,8 +62,7 @@ export class WorkerInformationComponent implements OnInit {
         tableName: 'Worker List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Worker Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            //{ headerName: 'Worker Type', width: '20%', internalName: 'assettype', sort: true, type: "" },
+            { headerName: 'Worker Type', width: '20%', internalName: 'workerTypeName', sort: true, type: "" },
             { headerName: 'Name', width: '10%', internalName: 'name', sort: true, type: "" },
             { headerName: 'SurName', width: '10%', internalName: 'surName', sort: true, type: "" },
             { headerName: 'TaxCode', width: '10%', internalName: 'taxCode', sort: true, type: "" },
@@ -88,7 +88,8 @@ export class WorkerInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public workerInfoList = [
