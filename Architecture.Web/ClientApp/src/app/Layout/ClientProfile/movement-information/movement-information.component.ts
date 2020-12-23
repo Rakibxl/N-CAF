@@ -70,7 +70,7 @@ export class MovementInformationComponent implements OnInit {
             { headerName: 'End Date', width: '15%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Purpose', width: '15%', internalName: 'purpose', sort: true, type: "" },
             { headerName: 'Status', width: '10%', internalName: 'status', sort: true, type: "" },            
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

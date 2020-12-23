@@ -71,7 +71,7 @@ export class EducationalInformationComponent implements OnInit {
             { headerName: 'University Address', width: '10%', internalName: 'universityAddress', sort: true, type: "" },
             { headerName: 'Activities and societies', width: '10%', internalName: 'activitiesAndSocieties', sort: true, type: "" },
             { headerName: 'Result', width: '20%', internalName: 'result', sort: true, type: "" },            
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

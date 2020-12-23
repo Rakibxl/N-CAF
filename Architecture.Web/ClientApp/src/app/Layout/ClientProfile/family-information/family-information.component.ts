@@ -81,7 +81,7 @@ export class FamilyInformationComponent implements OnInit {
             { headerName: 'Disabled Percentage', width: '10%', internalName: 'disabledPercentage', sort: true, type: "", visible: false },
             { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "", visible: false },
             { headerName: 'Is Applied For Citizenship', width: '10%', internalName: 'isAppliedForCitizenship', sort: true, type: "", visible: false },            
-            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

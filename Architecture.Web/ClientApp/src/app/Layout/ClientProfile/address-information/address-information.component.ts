@@ -76,7 +76,7 @@ export class AddressInformationComponent implements OnInit {
             { headerName: 'Start Date', width: '5%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '5%', internalName: 'endDate', sort: true, type: "" },
             { headerName: 'Active', width: '5%', internalName: 'active', sort: true, type: "", visible: false},
-            { headerName: 'Details', width: '5%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '5%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

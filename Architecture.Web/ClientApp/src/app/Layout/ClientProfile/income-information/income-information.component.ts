@@ -71,7 +71,7 @@ export class IncomeInformationComponent implements OnInit {
             { headerName: 'Month', width: '10%', internalName: 'month', sort: true, type: "" },
             { headerName: 'Document', width: '10%', internalName: 'document', sort: true, type: "" },
             { headerName: 'Status', width: '20%', internalName: 'status', sort: true, type: "" },       
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
