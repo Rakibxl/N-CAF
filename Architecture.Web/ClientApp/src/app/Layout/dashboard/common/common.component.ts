@@ -171,7 +171,7 @@ export class CommonComponent implements OnInit {
                     if (displayQuestion != null) {
                         questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
                         console.log("questionInfos", questionInfos);
-                        //sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
+                        sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
                         this.alertService.questionToster(displayQuestion.questionDescription,
                             () => {
                                 console.log("Clicked Yes");
