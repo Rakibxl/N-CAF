@@ -9,6 +9,8 @@ export class profWorkerInfo extends Auditable {
     //    public int ? WorkerTypeId { get; set; }
     //    public virtual WorkerType WorkerType { get; set; }
 
+    public workerTypeName: string;
+
     public workerTypeId: number;
 
     public name: string;

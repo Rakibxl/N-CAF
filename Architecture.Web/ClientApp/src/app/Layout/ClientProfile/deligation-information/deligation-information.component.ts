@@ -63,19 +63,17 @@ export class DeligationInformationComponent implements OnInit {
         tableName: 'Delegation List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Delegation Id', width: '10%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'Name', width: '10%', internalName: 'name', sort: true, type: "" },
-            { headerName: 'Sur Name', width: '10%', internalName: 'surName', sort: true, type: "" },
-            { headerName: 'Date Of Birth', width: '10%', internalName: 'dateOfBirth', sort: true, type: "" },
-            { headerName: 'TaxCode', width: '10%', internalName: 'taxCode', sort: true, type: "" },
-            { headerName: 'Purpose', width: '10%', internalName: 'purpose', sort: true, type: "" },
-            { headerName: 'Ref No', width: '10%', internalName: 'refNo', sort: true, type: "" },
-            { headerName: 'Purpose', width: '10%', internalName: 'purpose', sort: true, type: "" },
-            { headerName: 'Document Issue Date', width: '10%', internalName: 'documentIssueDate', sort: true, type: "" },
-            { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },
-            { headerName: 'Issued By', width: '10%', internalName: 'issuedBy', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'status', sort: true, type: "" },        
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Name', width: '7%', internalName: 'name', sort: true, type: "" },
+            { headerName: 'Sur Name', width: '7%', internalName: 'surName', sort: true, type: "" },
+            { headerName: 'Date Of Birth', width: '7%', internalName: 'dateOfBirth', sort: true, type: "" },
+            { headerName: 'TaxCode', width: '7%', internalName: 'taxCode', sort: true, type: "" },
+            { headerName: 'Purpose', width: '7%', internalName: 'purpose', sort: true, type: "" },
+            { headerName: 'Ref No', width: '7%', internalName: 'refNo', sort: true, type: "" },
+            { headerName: 'Document Issue Date', width: '7%', internalName: 'documentIssueDate', sort: true, type: "" },
+            { headerName: 'Expiry Date', width: '7%', internalName: 'expiryDate', sort: true, type: "" },
+            { headerName: 'Issued By', width: '7%', internalName: 'issuedBy', sort: true, type: "" },
+            { headerName: 'Status', width: '7%', internalName: 'status', sort: true, type: "" },        
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -92,7 +90,8 @@ export class DeligationInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public delegationInfoList = [

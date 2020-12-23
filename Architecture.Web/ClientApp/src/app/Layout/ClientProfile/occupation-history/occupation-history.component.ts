@@ -45,7 +45,6 @@ export class OccupationHistoryComponent implements OnInit {
 
     public async getOccupationInfos() {
         debugger;
-
         this.occupationService.getOccupationInfo(this.profileId).subscribe(
             (success) => {
                 this.occupationInfoList = success.data;

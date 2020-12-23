@@ -45,13 +45,17 @@ export class IseeInformationComponent implements OnInit {
         debugger;
         this.iseeService.getISEEInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get isee: ", success);
-                for (var i = 0; i < success.data.length; i++) {
-                    success.data[i].submittedDate = this.commonService.getDateToSetForm(success.data[i].submittedDate);
-                    success.data[i].deliveryDate = this.commonService.getDateToSetForm(success.data[i].deliveryDate);
-                    success.data[i].expiryDate = this.commonService.getDateToSetForm(success.data[i].expiryDate);
-                }
                 this.iseeInfoList = success.data;
+                this.iseeInfoList.forEach(x => {
+                    x.iseeClassTypeName = x.iseeClassType.iseeClassTypeName || "";
+                    x.submittedDate = this.commonService.getDateToSetForm(x.submittedDate);
+                    x.deliveryDate = this.commonService.getDateToSetForm(x.deliveryDate);
+                    x.expiryDate = this.commonService.getDateToSetForm(x.expiryDate);
+
+                })    
+
+                console.log("get isee: ", success);
+           
             },
             error => {
             });
@@ -63,18 +67,18 @@ export class IseeInformationComponent implements OnInit {
         tableName: 'Isee List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Isee Class', width: '10%', internalName: 'iseeClassType', sort: true, type: "" },
-            { headerName: 'IseeValue', width: '10%', internalName: 'iseeValue', sort: true, type: "" },
-            { headerName: 'Point', width: '10%', internalName: 'point', sort: true, type: "" },
+            { headerName: 'Isee Class', width: '10%', internalName: 'iseeClassTypeName', sort: true, type: "" },
+            { headerName: 'IseeValue', width: '5%', internalName: 'iseeValue', sort: true, type: "" },
+            { headerName: 'Point', width: '5%', internalName: 'point', sort: true, type: "" },
             { headerName: 'IseeFamilyIncome', width: '10%', internalName: 'iseeFamilyIncome', sort: true, type: "" },
-            { headerName: 'IspAmount', width: '5%', internalName: 'ispAmount', sort: true, type: "" },
-            { headerName: 'ISE Amount', width: '5%', internalName: 'iseAmount', sort: true, type: "" },
-            { headerName: 'ISR Amount', width: '5%', internalName: 'isrAmount', sort: true, type: "" },
+            { headerName: 'IspAmount', width: '7%', internalName: 'ispAmount', sort: true, type: "" },
+            { headerName: 'ISE Amount', width: '7%', internalName: 'iseAmount', sort: true, type: "" },
+            { headerName: 'ISR Amount', width: '7%', internalName: 'isrAmount', sort: true, type: "" },
             { headerName: 'IdnetificationNumber', width: '10%', internalName: 'identificationNumber', sort: true, type: "" },
-            { headerName: 'Submitted Date', width: '10%', internalName: 'submittedDate', sort: true, type: "" },
-            { headerName: 'Delivery Date', width: '10%', internalName: 'deliveryDate', sort: true, type: "" },
-            { headerName: 'Expiry Date', width: '10%', internalName: 'expiryDate', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Submitted Date', width: '7%', internalName: 'submittedDate', sort: true, type: "" },
+            { headerName: 'Delivery Date', width: '7%', internalName: 'deliveryDate', sort: true, type: "" },
+            { headerName: 'Expiry Date', width: '7%', internalName: 'expiryDate', sort: true, type: "" },
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
 
         ],
@@ -92,7 +96,9 @@ export class IseeInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
     public iseeInfoList = [ ];

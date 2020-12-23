@@ -46,15 +46,21 @@ export class HouseRentInformationComponent implements OnInit {
         debugger;
         this.houseRentService.getHouseRentInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get address: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].contractDate = this.commonService.getDateToSetForm(success.data[i].contractDate);
-                    success.data[i].startDate = this.commonService.getDateToSetForm(success.data[i].startDate);
-                    success.data[i].endDate = this.commonService.getDateToSetForm(success.data[i].endDate);
-                    success.data[i].loanStartDate = this.commonService.getDateToSetForm(success.data[i].loanStartDate);
-                    success.data[i].registrationDate = this.commonService.getDateToSetForm(success.data[i].registrationDate);
-                }
                 this.houseRentInfoList = success.data;
+                this.houseRentInfoList.forEach(x => {
+                    x.contractTypeName = x.contractType.contractTypeName || "";
+                    x.houseTypeName = x.houseType.houseTypeName || "";
+                    x.houseCategoryName = x.houseCategory.houseCategoryName || "";
+                    x.loanStatusTypeName = x.loanStatusType.loanStatusTypeName || "";
+                    x.loanInterestTypeName = x.loanInterestType.loanInterestTypeName || "";
+                    x.contractDate = this.commonService.getDateToSetForm(x.contractDate);
+                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
+                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
+                    x.loanStartDate = this.commonService.getDateToSetForm(x.loanStartDate);
+                    x.registrationDate = this.commonService.getDateToSetForm(x.registrationDate);
+
+                })    
+
             },
             error => {
             });
@@ -66,38 +72,42 @@ export class HouseRentInformationComponent implements OnInit {
         tableName: 'House Rent List',
         tableRowIDInternalName: "houserentinfoid",
         tableColDef: [
-            { headerName: 'Contract Type', width: '10%', internalName: 'contractType', sort: true, type: "" },
-            { headerName: 'Contract Date', width: '10%', internalName: 'contractDate', sort: true, type: "" },
-            { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
-            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: true, type: "" },
-            { headerName: 'Monthly Rent Amount', width: '10%', internalName: 'monthlyRentAmount', sort: true, type: "" },
-            { headerName: 'Service Charge Amount', width: '10%', internalName: 'serviceChargeAmount', sort: true, type: "" },
-            { headerName: 'Registration Info', width: '10%', internalName: 'registrationInfo', sort: true, type: "" },
-            { headerName: 'Registration Date', width: '10%', internalName: 'registrationDate', sort: true, type: "" },
-            { headerName: 'Registration Office', width: '10%', internalName: 'registrationOffice', sort: true, type: "" },
-            { headerName: 'Registration Code', width: '10%', internalName: 'registrationCode', sort: true, type: "" },
-            { headerName: 'Registration No', width: '10%', internalName: 'registrationNo', sort: true, type: "" },
-            { headerName: 'Registration City', width: '10%', internalName: 'registrationCity', sort: true, type: "" },
-            { headerName: 'Is Joined', width: '10%', internalName: 'isJoined', sort: true, type: "" },
-            { headerName: 'Share Percent', width: '10%', internalName: 'sharePercent', sort: true, type: "" },
-            { headerName: 'Foglio No', width: '10%', internalName: 'foglioNo', sort: true, type: "" },
-            { headerName: 'Partiocella No', width: '10%', internalName: 'partiocellaNo', sort: true, type: "" },
-            { headerName: 'Sub No', width: '10%', internalName: 'subNo', sort: true, type: "" },
-            { headerName: 'Section No', width: '10%', internalName: 'sectionNo', sort: true, type: "" },
-            { headerName: 'Zona No', width: '10%', internalName: 'zona', sort: true, type: "" },
-            { headerName: 'Micro Zona', width: '10%', internalName: 'microZona', sort: true, type: "" },
-            { headerName: 'Consistenza', width: '10%', internalName: 'consistenza', sort: true, type: "" },
-            { headerName: 'Super Ficie Catastale', width: '10%', internalName: 'superficieCatastale', sort: true, type: "" },
-            { headerName: 'Rendita', width: '10%', internalName: 'rendita', sort: true, type: "" },
-            { headerName: 'Notaio Info', width: '10%', internalName: 'notaioInfo', sort: true, type: "" },
-            { headerName: 'Has Loan', width: '10%', internalName: 'hasLoan', sort: true, type: "" },
-            { headerName: 'Loan Start Date', width: '10%', internalName: 'loanStartDate', sort: true, type: "" },
-            { headerName: 'Loan Amount', width: '10%', internalName: 'loanAmount', sort: true, type: "" },
-            { headerName: 'Paid Amount', width: '10%', internalName: 'paidAmount', sort: true, type: "" },
-            { headerName: 'Loan Period', width: '10%', internalName: 'loanPeriod', sort: true, type: "" },
-            { headerName: 'Is RentByOwner', width: '10%', internalName: 'isRentByOwner', sort: true, type: "" },
-            { headerName: 'RentAmount', width: '10%', internalName: 'rentAmount', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'House Type', width: '5%', internalName: 'houseTypeName', sort: true, type: "" },
+            { headerName: 'Contract Type', width: '5%', internalName: 'contractTypeName', sort: true, type: "" },
+            { headerName: 'Contract Date', width: '5%', internalName: 'contractDate', sort: true, type: "" },
+            { headerName: 'Start Date', width: '5%', internalName: 'startDate', sort: true, type: "" },
+            { headerName: 'End Date', width: '5%', internalName: 'endDate', sort: true, type: "" },
+            { headerName: 'Monthly Rent Amount', width: '5%', internalName: 'monthlyRentAmount', sort: true, type: "" },
+            { headerName: 'Service Charge Amount', width: '5%', internalName: 'serviceChargeAmount', sort: true, type: "" },
+            { headerName: 'Registration Info', width: '10%', internalName: 'registrationInfo', sort: true, type: "", visible: false },
+            { headerName: 'Registration Date', width: '10%', internalName: 'registrationDate', sort: true, type: "", visible: false },
+            { headerName: 'Registration Office', width: '10%', internalName: 'registrationOffice', sort: true, type: "", visible: false },
+            { headerName: 'Registration Code', width: '10%', internalName: 'registrationCode', sort: true, type: "", visible: false },
+            { headerName: 'Registration No', width: '10%', internalName: 'registrationNo', sort: true, type: "", visible: false },
+            { headerName: 'Registration City', width: '10%', internalName: 'registrationCity', sort: true, type: "", visible: false },
+            { headerName: 'Is Joined', width: '10%', internalName: 'isJoined', sort: true, type: "", visible: false },
+            { headerName: 'Share Percent', width: '10%', internalName: 'sharePercent', sort: true, type: "", visible: false },
+            { headerName: 'Foglio No', width: '10%', internalName: 'foglioNo', sort: true, type: "", visible: false },
+            { headerName: 'Partiocella No', width: '10%', internalName: 'partiocellaNo', sort: true, type: "", visible: false },
+            { headerName: 'Sub No', width: '10%', internalName: 'subNo', sort: true, type: "" ,visible: false},
+            { headerName: 'Section No', width: '10%', internalName: 'sectionNo', sort: true, type: "", visible: false },
+            { headerName: 'House Category', width: '10%', internalName: 'houseCategoryName', sort: true, type: "", visible: false },
+            { headerName: 'Zona No', width: '10%', internalName: 'zona', sort: true, type: "", visible: false},
+            { headerName: 'Micro Zona', width: '10%', internalName: 'microZona', sort: true, type: "", visible: false},
+            { headerName: 'Consistenza', width: '10%', internalName: 'consistenza', sort: true, type: "", visible: false},
+            { headerName: 'Super Ficie Catastale', width: '10%', internalName: 'superficieCatastale', sort: true, type: "", visible: false},
+            { headerName: 'Rendita', width: '10%', internalName: 'rendita', sort: true, type: "", visible: false},
+            { headerName: 'Notaio Info', width: '10%', internalName: 'notaioInfo', sort: true, type: "", visible: false},
+            { headerName: 'Has Loan', width: '10%', internalName: 'hasLoan', sort: true, type: "", visible: false},
+            { headerName: 'Loan Status', width: '10%', internalName: 'loanStatusTypeName', sort: true, type: "", visible: false},
+            { headerName: 'Loan Start Date', width: '10%', internalName: 'loanStartDate', sort: true, type: "", visible: false},
+            { headerName: 'Loan Amount', width: '10%', internalName: 'loanAmount', sort: true, type: "", visible: false},
+            { headerName: 'Paid Amount', width: '10%', internalName: 'paidAmount', sort: true, type: "", visible: false},
+            { headerName: 'Interest Type', width: '10%', internalName: 'loanInterestTypeName', sort: true, type: "", visible: false},
+            { headerName: 'Loan Period', width: '10%', internalName: 'loanPeriod', sort: true, type: "", visible: false},
+            { headerName: 'Is RentByOwner', width: '10%', internalName: 'isRentByOwner', sort: true, type: "", visible: false},
+            { headerName: 'RentAmount', width: '10%', internalName: 'rentAmount', sort: true, type: "", visible: false},
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -114,7 +124,9 @@ export class HouseRentInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
     public houseRentInfoList = [];

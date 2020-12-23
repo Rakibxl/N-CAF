@@ -45,6 +45,9 @@ export class OccupationHistoryFormComponent implements OnInit {
             (success: any) => {
                 console.log("success:", success);
                 this.alertService.tosterSuccess("Information saved successfully.");
+                setTimeout(() => {
+                    this.router.navigate([`/client-profile/occupation/${this.profileId}`]);
+                }, 200);
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

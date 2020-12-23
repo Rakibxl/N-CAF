@@ -39,6 +39,9 @@ export class DocumentInformationFormComponent implements OnInit {
             (success: any) => {
                 console.log("success:", success);
                 this.alertService.tosterSuccess("Information saved successfully.");
+                setTimeout(() => {
+                    this.router.navigate([`/client-profile/document-info/${this.profileId}`]);
+                }, 200);
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

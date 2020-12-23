@@ -45,11 +45,15 @@ export class AssetInformationComponent implements OnInit {
         debugger;
         this.assetService.getAssetInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get asset: ", success);
-                for (var i = 0; i < success.data.length; i++) {
-                    success.data[i].ownerFromDate = this.commonService.getDateToSetForm(success.data[i].ownerFromDate);
-                }
                 this.assetInfoList = success.data;
+                this.assetInfoList.forEach(x => {
+                    x.assetTypeName = x.assetType.assetTypeName || "";
+                    x.ownerTypeName = x.ownerType.ownerTypeName || "";
+                    x.ownerFromDate = this.commonService.getDateToSetForm(x.ownerFromDate);
+                })    
+
+                console.log("get asset: ", success);
+               
             },
             error => {
             });
@@ -61,22 +65,21 @@ export class AssetInformationComponent implements OnInit {
         tableName: 'Asset List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Asset Id', width: '7%', internalName: 'assetinfoid', sort: true, type: "" },
-            { headerName: 'Asset Type', width: '7%', internalName: 'assetType', sort: true, type: "" },
+            { headerName: 'Asset Type', width: '7%', internalName: 'assetTypeName', sort: true, type: "" },
             { headerName: 'Number Of Asset', width: '7%', internalName: 'numberOfAsset', sort: true, type: "" },
-            { headerName: 'Equivalent Money Max', width: '7%', internalName: 'equivalentMoneyMax', sort: true, type: "" },
-            { headerName: 'Equivalent Money Min', width: '7%', internalName: 'equivalentMoneyMin', sort: true, type: "" },
-            { headerName: 'Money Average', width: '7%', internalName: 'moneyAverage', sort: true, type: "" },
-            //{ headerName: 'Owner Type', width: '10%', internalName: 'ownertype', sort: true, type: "" },
+            { headerName: 'Equivalent Money Max', width: '7%', internalName: 'equivalentMoneyMax', sort: true, type: "", visible: false },
+            { headerName: 'Equivalent Money Min', width: '7%', internalName: 'equivalentMoneyMin', sort: true, type: "", visible: false },
+            { headerName: 'Money Average', width: '7%', internalName: 'moneyAverage', sort: true, type: "", visible: false },
+            { headerName: 'Owner Type', width: '7%', internalName: 'ownerTypeName', sort: true, type: "" },
             { headerName: 'Owner Ship Percentage', width: '10%', internalName: 'ownershipPercentage', sort: true, type: "" },
-            { headerName: 'Owner From Date', width: '10%', internalName: 'ownerFromDate', sort: true, type: "" },
-            { headerName: 'Rent Amount', width: '10%', internalName: 'rentAmount', sort: true, type: "" },
-            { headerName: 'Tax Amount', width: '10%', internalName: 'taxAmount', sort: true, type: "" },
-            { headerName: 'Use-able Percentage', width: '10%', internalName: 'useAblePercentage', sort: true, type: "" },
-            { headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyRestrictionByGovt', sort: true, type: "" },
-            { headerName: 'City Name', width: '10%', internalName: 'cityName', sort: true, type: "" },
-            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
-            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Owner From Date', width: '7%', internalName: 'ownerFromDate', sort: true, type: "" },
+            { headerName: 'Rent Amount', width: '10%', internalName: 'rentAmount', sort: true, type: "", visible: false },
+            { headerName: 'Tax Amount', width: '10%', internalName: 'taxAmount', sort: true, type: "", visible: false },
+            { headerName: 'Use-able Percentage', width: '10%', internalName: 'useAblePercentage', sort: true, type: "", visible: false },
+            { headerName: 'Any Restriction ByGovt', width: '10%', internalName: 'anyRestrictionByGovt', sort: true, type: "", visible: false },
+            { headerName: 'City Name', width: '10%', internalName: 'cityName', sort: true, type: "", visible: false },
+            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: ""},
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -93,7 +96,8 @@ export class AssetInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public assetInfoList = [
