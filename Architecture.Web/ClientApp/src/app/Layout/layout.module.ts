@@ -45,7 +45,7 @@ import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-maste
 import { HeaderNotificationComponent } from './LayoutComponent/Components/header/elements/header-notification/header-notification.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import { CurrentOfferComponent } from './LayoutComponent/Components/current-offer/current-offer.component';
+//import { CurrentOfferComponent } from './LayoutComponent/Components/current-offer/current-offer.component';
 import { OfferHistoryComponent } from './LayoutComponent/Components/offer-history/offer-history.component';
 //import { UserInfoListComponent } from './user-info/user-info-list/user-info-list.component';
 //import { UserInfoInsertComponent } from './user-info/user-info-insert/user-info-insert.component';
@@ -85,7 +85,7 @@ import { OfferHistoryComponent } from './LayoutComponent/Components/offer-histor
 
     HeaderNotificationComponent,
 
-    CurrentOfferComponent,
+    //CurrentOfferComponent,
 
     OfferHistoryComponent,   
 

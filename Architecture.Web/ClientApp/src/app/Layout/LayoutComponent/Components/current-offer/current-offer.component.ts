@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-current-offer',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentOfferComponent implements OnInit {
 
-  constructor() { }
+    constructor(private router: Router) { }
 
   ngOnInit() {
   }
+    onClickGeneratePDF() {
+        const url = this.router.serializeUrl(
+            this.router.createUrlTree(['./generate-pdf'])
+        );
+        window.open(url, '_blank');
+    }
+
+    onClickOffer() {
+        const url = this.router.serializeUrl(
+            this.router.createUrlTree(['./show-offer'])
+        );
+        window.open(url, '_blank');
+    }
 
 }
