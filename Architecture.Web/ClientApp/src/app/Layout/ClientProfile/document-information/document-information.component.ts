@@ -47,12 +47,17 @@ export class DocumentInformationComponent implements OnInit {
         debugger;
         this.documentService.getDocumentInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get document: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].issuedDate = this.commonService.getDateToSetForm(success.data[i].issuedDate);
-                    success.data[i].expiryDate = this.commonService.getDateToSetForm(success.data[i].expiryDate);
-                }
                 this.documentInfoList = success.data;
+
+                this.documentInfoList.forEach(x => {
+                    x.documentTypeName = x.documentType.documentName || "";
+                    x.issuedDate = this.commonService.getDateToSetForm(x.issuedDate);
+                    x.expiryDate = this.commonService.getDateToSetForm(x.expiryDate);
+
+                })    
+
+                console.log("get document: ", success);
+              
             },
             error => {
             });
@@ -65,7 +70,7 @@ export class DocumentInformationComponent implements OnInit {
         tableName: 'Document List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Document Type', width: '10%', internalName: 'documentType', sort: true, type: "" },
+            { headerName: 'Document Type', width: '10%', internalName: 'documentTypeName', sort: true, type: "" },
             { headerName: 'Document Name', width: '10%', internalName: 'documentName', sort: true, type: "" },
             { headerName: 'Purpose Of Document', width: '15%', internalName: 'purposeOfDocument', sort: true, type: "" },
             { headerName: 'Issued By', width: '15%', internalName: 'issuedBy', sort: true, type: "" },
@@ -88,7 +93,9 @@ export class DocumentInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
     public documentInfoList = [

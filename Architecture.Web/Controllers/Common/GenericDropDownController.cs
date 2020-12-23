@@ -395,7 +395,7 @@ namespace Architecture.Web.Controllers.Common
                 return ExceptionResult(ex);
             }
         }
-        [HttpGet("MotiveTypeService")]
+        [HttpGet("MotiveType")]
         public async Task<IActionResult> GetMotiveTypeService()
         {
             try

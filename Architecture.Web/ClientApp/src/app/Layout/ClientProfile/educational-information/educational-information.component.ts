@@ -44,12 +44,15 @@ export class EducationalInformationComponent implements OnInit {
     public getEducationInfos() {
         this.educationService.getEducationInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get education: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                    success.data[i].startYear = this.commonService.getDateToSetForm(success.data[i].startYear);
-                    success.data[i].endYear = this.commonService.getDateToSetForm(success.data[i].endYear);
-                }
                 this.educationInfoList = success.data;
+                console.log("get education: ", success);
+                this.educationInfoList.forEach(x => {
+                    x.degreeTypeName = x.degreeType.degreeTypeName || "";
+                    x.startYear = this.commonService.getDateToSetForm(x.startYear);
+                    x.endYear = this.commonService.getDateToSetForm(x.endYear);
+
+                    console.log("Occupation Data", success.data);
+                })    
             },
             error => {
             });
@@ -61,7 +64,7 @@ export class EducationalInformationComponent implements OnInit {
         tableName: 'Education List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Degree Type', width: '20%', internalName: 'degreeType', sort: true, type: "" },
+            { headerName: 'Degree Type', width: '20%', internalName: 'degreeTypeName', sort: true, type: "" },
             { headerName: 'Inistitution Name', width: '10%', internalName: 'institutionName', sort: true, type: "" },
             { headerName: 'Start Year', width: '15%', internalName: 'startYear', sort: true, type: "" },
             { headerName: 'End Year', width: '15%', internalName: 'endYear', sort: true, type: "" },
@@ -85,7 +88,9 @@ export class EducationalInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
+
     };
 
     public educationInfoList = [];

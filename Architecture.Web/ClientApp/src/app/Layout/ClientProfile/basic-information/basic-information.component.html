@@ -81,10 +81,8 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">MaritalStatus</label>
-                            <select formControlName="maritalStatusId" name="" id="" class="form-control">
-                                <option value="1">Married</option>
-                                <option value="2">Single</option>
-                                <option value="3">Others</option>
+                            <select formControlName="MeritalStatusId" name="" id="" class="form-control">
+                                <option *ngFor="let option of maritalStatus" [value]="option.MeritalStatusId">{{option.name}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -135,9 +133,7 @@
                         <div class="caf-input-group">
                             <label class="label">Nationality</label>
                             <select formControlName="nationalityId" name="" id="" class="form-control">
-                                <option value="1">Bangladesh</option>
-                                <option value="2">Italy</option>
-                                <option value="3">India</option>
+                                <option *ngFor="let option of nationality" [value]="option.nationalityId">{{option.nationalityName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -155,9 +151,7 @@
                         <div class="caf-input-group">
                             <label class="label">EyesColor</label>
                             <select formControlName="eyeColorId" name="" id="" class="form-control">
-                                <option value="1">Red</option>
-                                <option value="2">Blue</option>
-                                <option value="3">Normal</option>
+                                <option *ngFor="let option of eyeColor" [value]="option.eyeColorId">{{option.description}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -183,9 +177,7 @@
                         <div class="caf-input-group">
                             <label class="label">Reason/Motive</label>
                             <select formControlName="motiveTypeId" name="" id="" class="form-control">
-                                <option value="1">Occupation</option>
-                                <option value="2">Family</option>
-                                <option value="3">Worker</option>
+                                <option *ngFor="let option of motiveType" [value]="option.motiveTypeId">{{option.motiveTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -196,9 +188,7 @@
                         <div class="caf-input-group">
                             <label class="label">Occupation</label>
                             <select formControlName="occupationTypeId" name="" id="" class="form-control">
-                                <option value="1">Occupation Type 1</option>
-                                <option value="2">Occupation Type 2</option>
-                                <option value="3">Occupation Type 3</option>
+                                <option *ngFor="let option of motiveType" [value]="option.motiveTypeId">{{option.motiveTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>

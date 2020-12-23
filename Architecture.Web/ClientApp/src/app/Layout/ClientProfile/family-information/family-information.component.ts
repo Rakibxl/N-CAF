@@ -42,18 +42,22 @@ export class FamilyInformationComponent implements OnInit {
     public getFamilyInfos() {
         this.familyService.getFamilyInfo(this.profileId).subscribe(
             (success) => {
-                console.log("get family: ", success);
-                for (let i = 0; i < success.data.length; i++) {
-                success.data[i].dateOfBirth = this.commonService.getDateToSetForm(success.data[i].dateOfBirth);
-                success.data[i].applicationDate = this.commonService.getDateToSetForm(success.data[i].applicationDate);
-                success.data[i].applicationPlacedDate = this.commonService.getDateToSetForm(success.data[i].applicationPlacedDate); 
-                }
                 this.familyInfoList = success.data;
+                console.log("get family: ", success);
+                this.familyInfoList .forEach(x => {
+                    x.relationTypeName = x.relationType.relationTypeName|| "";
+                    //x.NationalityName = x.Nationality.NationalityName || "";
+                    x.nationalityName = x.previousNationality.nationalityName || "";
+                    x.residenceScopeName = x.residenceScope.residenceScopeName || "";
+                    x.occupationTypeName = x.occupationType.occupationTypeName || "";
+                    x.dateOfBirth = this.commonService.getDateToSetForm(x.dateOfBirth);
+                    x.applicationDate = this.commonService.getDateToSetForm(x.applicationDate);
+                    x.applicationPlacedDate = this.commonService.getDateToSetForm(x.applicationPlacedDate);
+                })
             },
             error => {
             });
-
-
+          
     }
 
 
@@ -62,22 +66,22 @@ export class FamilyInformationComponent implements OnInit {
         tableName: 'Family List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            //{ headerName: 'Relation Type', width: '10%', internalName: 'relationType', sort: true, type: "" },
-            { headerName: 'Name', width: '10%', internalName: 'name', sort: true, type: "" },
-            { headerName: 'SurName', width: '10%', internalName: 'surName', sort: true, type: "" },
-            { headerName: 'TaxCode', width: '10%', internalName: 'taxCode', sort: true, type: "" },
-            { headerName: 'Date Of Birth', width: '10%', internalName: 'dateOfBirth', sort: true, type: "" },
-            { headerName: 'Place Of Birth', width: '10%', internalName: 'placeOfBirth', sort: true, type: "" },
-            { headerName: 'Phone Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
-            //{ headerName: 'Nationality', width: '10%', internalName: 'nationality', sort: true, type: "" },
-            //{ headerName: 'Previous Nationality', width: '10%', internalName: 'previousNationality', sort: true, type: "" },
-            //{ headerName: 'Residence Scope', width: '10%', internalName: 'residenceScope', sort: true, type: "" },
-            //{ headerName: 'Occupation Type', width: '10%', internalName: 'occupationType', sort: true, type: "" },
-            { headerName: 'Is Disabled', width: '10%', internalName: 'isDisabled', sort: true, type: "" },
-            { headerName: 'Disabled Percentage', width: '10%', internalName: 'disabledPercentage', sort: true, type: "" },
-            { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "" },
-            { headerName: 'Is Applied For Citizenship', width: '10%', internalName: 'isAppliedForCitizenship', sort: true, type: "" },            
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Relation Type', width: '5%', internalName: 'relationTypeName', sort: true, type: "" },
+            { headerName: 'Name', width: '5%', internalName: 'name', sort: true, type: "" },
+            { headerName: 'SurName', width: '5%', internalName: 'surName', sort: true, type: "" },
+            { headerName: 'TaxCode', width: '5%', internalName: 'taxCode', sort: true, type: "" },
+            { headerName: 'Date Of Birth', width: '5%', internalName: 'dateOfBirth', sort: true, type: "" },
+            { headerName: 'Place Of Birth', width: '5%', internalName: 'placeOfBirth', sort: true, type: "" },
+            { headerName: 'Phone Number', width: '5%', internalName: 'phoneNumber', sort: true, type: "" },
+            { headerName: 'Nationality', width: '5%', internalName: 'nationalityName', sort: true, type: "" },
+            { headerName: 'Previous Nationality', width: '5%', internalName: 'nationalityName', sort: true, type: "" },
+            { headerName: 'Residence Scope', width: '5%', internalName: 'residenceScopeName', sort: true, type: "" },
+            { headerName: 'Occupation Type', width: '5%', internalName: 'occupationTypeName', sort: true, type: "" },
+            { headerName: 'Is Disabled', width: '10%', internalName: 'isDisabled', sort: true, type: "", visible: false },
+            { headerName: 'Disabled Percentage', width: '10%', internalName: 'disabledPercentage', sort: true, type: "", visible: false },
+            { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "", visible: false },
+            { headerName: 'Is Applied For Citizenship', width: '10%', internalName: 'isAppliedForCitizenship', sort: true, type: "", visible: false },            
+            { headerName: 'Details', width: '7%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,
@@ -94,7 +98,8 @@ export class FamilyInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true
+        enabledRecordCreateBtn: true,
+        enabledViewDetails: true
     };
 
     public familyInfoList = [];

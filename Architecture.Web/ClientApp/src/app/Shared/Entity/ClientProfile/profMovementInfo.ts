@@ -8,7 +8,7 @@ export class profMovementInfo extends Auditable {
 
     //    public int ? CountryNameId { get; set; }
     //    public virtual CountryName CountryName { get; set; }
-    public countryName: string;
+    public countryDescription: string;
 
     public countryNameId: number;
 
