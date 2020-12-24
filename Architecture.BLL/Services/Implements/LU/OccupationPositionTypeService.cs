@@ -16,7 +16,7 @@ namespace Architecture.BLL.Services.Implements.LU
         {
 
         }
-
+        
         public async Task<IEnumerable<OccupationPositionType>> GetAll()
         {
             IEnumerable<OccupationPositionType> result;

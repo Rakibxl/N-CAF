@@ -29,10 +29,12 @@ namespace Architecture.BLL.Services.Implements
     {
 
         private readonly IBasicInfoService basicInfoService;
+        private readonly ICurrentUserService currentUserService;
 
-        public QuestionService(ApplicationDbContext dbContext, IBasicInfoService basicInfoService) : base(dbContext)
+        public QuestionService(ApplicationDbContext dbContext, IBasicInfoService basicInfoService, ICurrentUserService _currentUserService) : base(dbContext)
         {
             this.basicInfoService = basicInfoService;
+            this.currentUserService = _currentUserService;
         }
 
         public async Task<IEnumerable<QuestionInfo>> GetAll()
@@ -47,14 +49,21 @@ namespace Architecture.BLL.Services.Implements
 
             ProfBasicInfo profileSections = await basicInfoService.GetBasicWithIncludeAll();
 
-            IEnumerable<QuestionInfo> result = new List<QuestionInfo>();
+            IEnumerable<QuestionInfo> result = await GetAsync(x => x, null, null, x => x.Include(y => y.SectionName)); 
 
-            if (profileSections == null)
+            if (profileSections == null && currentUserService.UserTypeId==1)
             {
-                return result;
+                foreach (var item in result)
+                {
+                    item.SectionNameId = 0;
+                }
+                    return result;
+            }else if (profileSections == null)
+            {
+                return new List<QuestionInfo>();
             }
 
-            result = await GetAsync(x => x, null, null, x => x.Include(y => y.SectionName));
+            
 
             foreach (var item in result)
             {

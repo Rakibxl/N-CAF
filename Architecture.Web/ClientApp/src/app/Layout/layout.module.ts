@@ -44,7 +44,9 @@ import { FooterComponent } from './LayoutComponent/Components/footer/footer.comp
 import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-master.module';
 import { HeaderNotificationComponent } from './LayoutComponent/Components/header/elements/header-notification/header-notification.component';
 
-
+import { NgSelectModule } from '@ng-select/ng-select';
+//import { CurrentOfferComponent } from './LayoutComponent/Components/current-offer/current-offer.component';
+import { OfferHistoryComponent } from './LayoutComponent/Components/offer-history/offer-history.component';
 //import { UserInfoListComponent } from './user-info/user-info-list/user-info-list.component';
 //import { UserInfoInsertComponent } from './user-info/user-info-insert/user-info-insert.component';
 //import { UserInfoComponent } from './user-details/user-info/user-info.component';
@@ -81,7 +83,11 @@ import { HeaderNotificationComponent } from './LayoutComponent/Components/header
     //UserInfoListComponent,
     FooterComponent,
 
-    HeaderNotificationComponent,   
+    HeaderNotificationComponent,
+
+    //CurrentOfferComponent,
+
+    OfferHistoryComponent,   
 
   ],
   imports: [
@@ -96,7 +102,8 @@ import { HeaderNotificationComponent } from './LayoutComponent/Components/header
     NgbModule,
     AngularFontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule,
+      ReactiveFormsModule,
+      NgSelectModule,
     // HttpClientModule,
     SharedMasterModule,
   ]

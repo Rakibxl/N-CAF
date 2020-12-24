@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgSelectModule, NgOption } from '@ng-select/ng-select';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobFormComponent implements OnInit {
 
-  constructor() { }
+    constructor(private dropdownService: DropdownService) { }
+    public sectionName = [];
+    async ngOnInit() {
+        this.sectionName = await this.dropdownService.getSectionName();
+        console.log("this.sectionName", this.sectionName);
+    }
 
-  ngOnInit() {
-  }
+    selectedSectionIds: string[];
+
+    public onSubmit() {
+
+    }
 
 }

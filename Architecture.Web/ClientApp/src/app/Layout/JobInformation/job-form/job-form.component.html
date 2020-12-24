@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-body caf-card card-shadow">
-        <form action="">
+        <form action="" (ngSubmit)="onSubmit()" #jobInfoInputForm="ngForm">
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
@@ -296,6 +296,22 @@
                                     <input type="checkbox">
                                     <span class="slider round"></span>
                                 </label>
+                            </div>
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group d-flex align-items-center">
+                            <label>Select Section</label>
+                            <div class="pl-2">
+                                <ng-select [items]="sectionName"
+                                           bindLabel="sectionDescription"
+                                           bindValue="sectionNameId"
+                                           [multiple]="true"
+                                           [dropdownPosition]="'top'"
+                                           [(ngModel)]="selectedSectionIds">
+                                </ng-select>
                             </div>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
