@@ -37,6 +37,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
         public DbSet<BranchInfo> BranchInfos { get; set; }
         public DbSet<QuestionInfo> QuestionInfos { get; set; }
+        public DbSet<JobInformation> JobInformations { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
@@ -360,9 +361,9 @@ namespace Architecture.Core.Repository.Context
                 ms.HasKey(g => g.JobDeliveryTypeId);
                 ms.Property(g => g.JobDeliveryTypeName).HasMaxLength(100);
                 ms.HasData(
-                    new JobDeliveryType { JobDeliveryTypeId = 1, JobDeliveryTypeName = "Quick", IsActive = true },
-                    new JobDeliveryType { JobDeliveryTypeId = 2, JobDeliveryTypeName = "Urgent", IsActive = true },
-                    new JobDeliveryType { JobDeliveryTypeId = 3, JobDeliveryTypeName = "Normal", IsActive = true }
+                    new JobDeliveryType { JobDeliveryTypeId = 1, JobDeliveryTypeName = "Normal", IsActive = true },
+                    new JobDeliveryType { JobDeliveryTypeId = 2, JobDeliveryTypeName = "Standard", IsActive = true },
+                    new JobDeliveryType { JobDeliveryTypeId = 3, JobDeliveryTypeName = "Urgent", IsActive = true }
                 );
             });
             modelBuilder.Entity<MotiveType>().ToTable("LU_MotiveType");

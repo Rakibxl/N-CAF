@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Architecture.Core.Entities.LU;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Architecture.Core.Entities
 {
@@ -15,7 +14,8 @@ namespace Architecture.Core.Entities
         public DateTime EndDate { get; set; }
         public bool IsCommon { get; set; }
         public int JobDeliveryTypeId { get; set; }
-        public Decimal OperatorTimeFram { get; set; }
+        public virtual JobDeliveryType JobDeliveryType { get; set; }
+        public Decimal OperatorTimeFrame { get; set; }
         public bool IsHighlighted { get; set; }
         public string VideoLink { get; set; }
         public string DocumentLink { get; set; }
@@ -25,16 +25,24 @@ namespace Architecture.Core.Entities
         public int ChildAgeMax { get; set; }
         public int ISEEMin { get; set; }
         public int ISEEMax { get; set; }
-        public int DefinedISEEClaaId { get; set; }
-        public bool IsPegnent { get; set; }
+        public int ISEEClassTypeId { get; set; }
+        public virtual ISEEClassType ISEEClassType { get; set; }
+        public bool IsPregnant { get; set; }
         public int OccupationTypeId { get; set; }
+        public virtual OccupationType OccupationType { get; set; }
         public int NumberOfChild { get; set; }
         public int DaysToExpairJobContract { get; set; }
-        public int DaysToBeExpairedRacidencePermit { get; set; }
-        public bool IsElegibleForUnlimitedResidencePermit { get; set; }
+        public int DaysToBeExpairedResidencePermit { get; set; }
+        public bool IsEligibleForUnlimitedResidencePermit { get; set; }
         public int DaysToBeExpairedNationalId { get; set; }
         public int DaysToBeExpairedPassport { get; set; }
+        public int SectionNameId { get; set; }
+        public virtual SectionName SectionName { get; set; }
+        public bool IsEligibleForCityzenShipApply { get; set; }
+        public bool HasUnlimitedResidencePermit { get; set; }
 
         #endregion
     }
 }
+
+
