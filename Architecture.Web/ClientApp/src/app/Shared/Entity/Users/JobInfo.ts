@@ -6,6 +6,8 @@ export class JobInfo extends Auditable {
 
     public title: string;
 
+    public description: string;
+
     public startDate: Date;
 
     public endDate: Date;
