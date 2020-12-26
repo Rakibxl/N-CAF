@@ -118,9 +118,9 @@ namespace Architecture.Web
             //        .Where(c => c.Name.EndsWith("UnitOfWork"))
             //        .AsPublicImplementedInterfaces();
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("Service"))
-                    .AsPublicImplementedInterfaces();
+            //(services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
+            //        .Where(c => c.Name.EndsWith("Service"))
+            //        .AsPublicImplementedInterfaces();
 
             services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 
