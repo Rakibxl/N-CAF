@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgSelectModule, NgOption } from '@ng-select/ng-select';
+import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 @Component({
   selector: 'app-job-form',
@@ -7,6 +8,7 @@ import { DropdownService } from '../../../Shared/Services/Common/dropdown.servic
   styleUrls: ['./job-form.component.css']
 })
 export class JobFormComponent implements OnInit {
+    public jobInfoForm = new JobInfo();
 
     constructor(private dropdownService: DropdownService) { }
     public sectionName = [];
