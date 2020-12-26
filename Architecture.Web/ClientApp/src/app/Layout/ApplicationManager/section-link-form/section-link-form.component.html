@@ -1,0 +1,78 @@
+<div class="card mb-4">
+    <div class="card-body caf-card card-shadow">
+        <form action="" (ngSubmit)="onSubmit()" #sectionInfoInputForm="ngForm">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
+                        <h3><span class="bordered-title">Section Link Informations</span></h3>
+                        <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
+                            <i class="pe-7s-back pr-1"></i>
+                            Back
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="pt-3"></div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Title*</label>
+                            <input type="text" autocomplete="off" class="form-control" name="title" #title="ngModel" [(ngModel)]="sectionInfoForm.title" placeholder="Enter title"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="title.valid || title.pristine" class="text-danger">Title is required.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">SectionName*</label>
+                            <select id="" class="form-control" name="sectionNameId" [(ngModel)]="sectionInfoForm.sectionNameId" #sectionNameId="ngModel" required>
+                                <option value="1">Basic Info</option>
+                                <option value="2">Occupation Info</option>
+                                <option value="3">Family Info</option>
+                                <option value="4">Education Info</option>
+                                <option value="5">Address Info</option>
+                                <option value="6">House Rent Info</option>
+                                <option value="7">Document Info</option>
+                                <option value="8">Income  Info</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="sectionNameId.valid || sectionNameId.pristine" class="text-danger">Section name is required.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">
+                                ActionLink*
+                            </label>
+                            <input type="text" autocomplete="off" class="form-control" name="actionLink" #actionLink="ngModel" [(ngModel)]="sectionInfoForm.actionLink" placeholder="Enter action link"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="actionLink.valid || actionLink.pristine" class="text-danger">Action link is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">
+                                Remarks
+                            </label>
+                            <input type="text" autocomplete="off" class="form-control" name="remarks" #remarks="ngModel" [(ngModel)]="sectionInfoForm.remarks" placeholder="Enter remarks" />
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-footer d-flex justify-content-end">
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
+                                <i class="pe-7s-back pr-1"></i>
+                                Back
+                            </button>
+                            <button type="submit" [disabled]="!sectionInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

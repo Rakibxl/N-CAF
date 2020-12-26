@@ -6,6 +6,8 @@ export class JobInfo extends Auditable {
 
     public title: string;
 
+    public description: string;
+
     public startDate: Date;
 
     public endDate: Date;
@@ -33,6 +35,8 @@ export class JobInfo extends Auditable {
     public iseeMax: number;
 
     public iseeClassTypeId: number;
+
+    public iseeClassType: string;
 
     public isPregnant: boolean;
 

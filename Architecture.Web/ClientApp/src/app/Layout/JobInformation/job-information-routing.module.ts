@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'job-list' },
             { path: 'job-list', component: JobListComponent, data: { extraParameter: 'dashboard' } },
-            { path: 'job-info-new', component: JobFormComponent, data: { extraParameter: 'analytics' } },
+            { path: 'job-info-new/:id', component: JobFormComponent, data: { extraParameter: 'analytics' } },
 
 
         ]

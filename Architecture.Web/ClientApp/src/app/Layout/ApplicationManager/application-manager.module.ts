@@ -15,9 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationUserRoleMappingFormComponent } from './application-user-role-mapping-form/application-user-role-mapping-form.component';
 import { QuestionInformationComponent } from './question-information/question-information.component';
 import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
+import { SectionLinkComponent } from './section-link/section-link.component';
+import { SectionLinkFormComponent } from './section-link-form/section-link-form.component';
 
 @NgModule({
-  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent, QuestionInformationComponent, QuestionInformationFormComponent],
+  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent, QuestionInformationComponent, QuestionInformationFormComponent, SectionLinkComponent, SectionLinkFormComponent],
   imports: [
     CommonModule,
     SharedMasterModule,

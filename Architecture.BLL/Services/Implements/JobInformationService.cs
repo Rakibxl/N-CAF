@@ -5,6 +5,7 @@ using Architecture.Core.Entities;
 using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
 using Architecture.BLL.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture.BLL.Services.Implements
 {
@@ -19,7 +20,10 @@ namespace Architecture.BLL.Services.Implements
         public async Task<IEnumerable<JobInformation>> GetAll()
         {
             IEnumerable<JobInformation> result;
-            result = await GetAsync(x => x);
+            result = await GetAsync(x => x, null, null, x => x.Include(y => y.JobDeliveryType)
+                                                              .Include(y => y.ISEEClassType)
+                                                              .Include(y => y.OccupationType)
+                                                              .Include(y => y.SectionName));
             return result;
         }
 

@@ -11,7 +11,8 @@ import { ApplicationUserRoleMappingFormComponent } from './application-user-role
 import { ApplicationAccessPermissionComponent } from './application-access-permission/application-access-permission.component';
 import { QuestionInformationComponent } from './question-information/question-information.component';
 import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
-
+import { SectionLinkComponent } from './section-link/section-link.component';
+import { SectionLinkFormComponent } from './section-link-form/section-link-form.component';
 
 const routes: Routes = [
     {
@@ -28,7 +29,9 @@ const routes: Routes = [
             { path: 'user-role-mapping/:id', component: ApplicationUserRoleMappingFormComponent, data: { extraParameter: 'analytics' } },
             { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } },
             { path: 'question-info', component: QuestionInformationComponent, data: { extraParameter: 'analytics' } },
-            { path: 'question-info/:id', component: QuestionInformationFormComponent, data: { extraParameter: 'analytics' } }
+            { path: 'question-info/:id', component: QuestionInformationFormComponent, data: { extraParameter: 'analytics' } },
+            { path: 'section-link', component: SectionLinkComponent, data: { extraParameter: 'analytics' } },
+            { path: 'section-link/:id', component: SectionLinkFormComponent, data: { extraParameter: 'analytics' } }
 
         ]
     }
