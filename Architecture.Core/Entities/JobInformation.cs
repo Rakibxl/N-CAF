@@ -21,22 +21,22 @@ namespace Architecture.Core.Entities
         public string DocumentLink { get; set; }
 
         #region Job Access Permission 
-        public int ChildAgeMin { get; set; }
-        public int ChildAgeMax { get; set; }
-        public int ISEEMin { get; set; }
-        public int ISEEMax { get; set; }
-        public int ISEEClassTypeId { get; set; }
+        public int? ChildAgeMin { get; set; }
+        public int? ChildAgeMax { get; set; }
+        public int? ISEEMin { get; set; }
+        public int? ISEEMax { get; set; }
+        public int? ISEEClassTypeId { get; set; }
         public virtual ISEEClassType ISEEClassType { get; set; }
         public bool IsPregnant { get; set; }
-        public int OccupationTypeId { get; set; }
+        public int? OccupationTypeId { get; set; }
         public virtual OccupationType OccupationType { get; set; }
-        public int NumberOfChild { get; set; }
-        public int DaysToExpairJobContract { get; set; }
-        public int DaysToBeExpairedResidencePermit { get; set; }
+        public int? NumberOfChild { get; set; }
+        public int? DaysToExpairJobContract { get; set; }
+        public int? DaysToBeExpairedResidencePermit { get; set; }
         public bool IsEligibleForUnlimitedResidencePermit { get; set; }
-        public int DaysToBeExpairedNationalId { get; set; }
-        public int DaysToBeExpairedPassport { get; set; }
-        public int SectionNameId { get; set; }
+        public int? DaysToBeExpairedNationalId { get; set; }
+        public int? DaysToBeExpairedPassport { get; set; }
+        public int? SectionNameId { get; set; }
         public virtual SectionName SectionName { get; set; }
         public bool IsEligibleForCityzenShipApply { get; set; }
         public bool HasUnlimitedResidencePermit { get; set; }
