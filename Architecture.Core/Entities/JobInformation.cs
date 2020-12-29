@@ -40,6 +40,7 @@ namespace Architecture.Core.Entities
         public virtual SectionName SectionName { get; set; }
         public bool IsEligibleForCityzenShipApply { get; set; }
         public bool HasUnlimitedResidencePermit { get; set; }
+        //public string SectionList { get; set; }
 
         #endregion
     }

@@ -61,6 +61,8 @@ export class JobInfo extends Auditable {
     public isEligibleForCityzenShipApply: boolean;
 
     public hasUnlimitedResidencePermit: boolean;
+
+    public sectionName : string;
     
 }
 

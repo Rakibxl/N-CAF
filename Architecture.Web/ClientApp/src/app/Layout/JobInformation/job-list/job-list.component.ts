@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { JobInfoService } from '../../../Shared/Services/Users/job-info.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
+
 
 @Component({
     selector: 'app-job-list',
@@ -11,26 +13,16 @@ import { JobInfoService } from '../../../Shared/Services/Users/job-info.service'
 })
 export class JobListComponent implements OnInit {
 
-    constructor(private router: Router, private jobInfoService: JobInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private jobInfoService: JobInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.getQuestionInfos();
+        this.getJobInfos();
     }
 
 
     public fnPtableCellClick(event) {
         console.log("cell click: ", event);
     }
-
-    //public fnCustomrTrigger(event) {
-    //    console.log("custom  click: ", event);
-    //    if (event.action == "new-record") {
-    //        this.router.navigate(['/job-info/job-info-new']);
-    //    }
-    //    else if (event.action == "edit-item") {
-    //        this.router.navigate(['/job-info/job-info-new']);
-    //    }
-    //}
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
@@ -41,12 +33,12 @@ export class JobListComponent implements OnInit {
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate([`/job-info/job-info-new/${event.record.jobInfoId}`]);
+            this.router.navigate([`/job-info/job-info-new/${event.record.jobId}`]);
         }
     }
 
 
-    public getQuestionInfos() {
+    public getJobInfos() {
         debugger;
         this.jobInfoService.getJobInfo().subscribe(
             (success) => {
@@ -54,9 +46,11 @@ export class JobListComponent implements OnInit {
                 console.log("job info: ", success);
                 this.jobInfoList.forEach(x => {
                     x.jobDeliveryType = x.jobDeliveryType.jobDeliveryTypeName || "";
-                    x.iseeClassType = x.ISEEClassType.iseeClassTypeName || "";
-                    x.occupationTypeName = x.occupationType.OccupationTypeName || "";
-                    x.sectionName = x.sectionName.sectionDescription || "";
+                    x.iseeClassTypeName = x.iseeClassType.iseeClassTypeName || "";
+                    x.occupationTypeName = x.occupationType.occupationTypeName || "";
+                    //x.sectionName = x.sectionName.sectionName || "";
+                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
+                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
                 })
 
             },
@@ -77,10 +71,25 @@ export class JobListComponent implements OnInit {
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "" },
             { headerName: 'Is Common', width: '10%', internalName: 'isCommon', sort: true, type: "" },
             { headerName: 'Job Delivery Type', width: '10%', internalName: 'jobDeliveryType', sort: true, type: "" },
-            //{ headerName: 'Time Frame For Operator', width: '10%', internalName: 'videoLink', sort: true, type: "" },
+            { headerName: 'Time Frame For Operator', width: '10%', internalName: 'videoLink', sort: true, type: "", visible:false },
             { headerName: 'Is Highlighted', width: '10%', internalName: 'isHighlighted', sort: true, type: "" },
             { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "" },
             { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },
+            { headerName: 'Child Age Min', width: '10%', internalName: 'childAgeMin', sort: true, type: "", visible: false  },
+            { headerName: 'Child Age Max', width: '10%', internalName: 'childAgeMax', sort: true, type: "", visible: false  },
+            { headerName: 'ISEE Min', width: '10%', internalName: 'iseeMin', sort: true, type: "", visible: false },
+            { headerName: 'ISEE Max', width: '10%', internalName: 'iseeMax', sort: true, type: "", visible: false },
+            { headerName: 'ISEE Class', width: '10%', internalName: 'iseeClassTypeName', sort: true, type: "", visible: false  },
+            { headerName: 'Is Pregnant', width: '10%', internalName: 'isPregnant', sort: true, type: "", visible: false },
+            { headerName: 'Occupation Type', width: '10%', internalName: 'occupationTypeName', sort: true, type: "", visible: false },
+            { headerName: 'Number Of Child', width: '10%', internalName: 'numberOfChild', sort: true, type: "", visible: false },
+            { headerName: 'DaysToExpairJobContract', width: '10%', internalName: 'daysToExpairJobContract', sort: true, type: "", visible: false },
+            { headerName: 'DaysToExpairResidence', width: '10%', internalName: 'daysToBeExpairedResidencePermit', sort: true, type: "", visible: false },
+            { headerName: 'Is Eligible Unlimited Residence', width: '10%', internalName: 'isEligibleForUnlimitedResidencePermit', sort: true, type: "", visible: false },
+            { headerName: 'DaysToExpairNationalID', width: '10%', internalName: 'daysToBeExpairedNationalId', sort: true, type: "", visible: false },
+            { headerName: 'DaysToExpairPassport', width: '10%', internalName: 'daysToBeExpairedPassport', sort: true, type: "", visible: false },
+            { headerName: 'IsEligibleCityzenShipApply', width: '10%', internalName: 'isEligibleForCityzenShipApply', sort: true, type: "", visible: false },
+            { headerName: 'HasUnlimitedResidence', width: '10%', internalName: 'hasUnlimitedResidencePermit', sort: true, type: "", visible: false },
             //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],

@@ -20,7 +20,7 @@ export class SectionLinkService {
     }
     public getSectionLinkInfo() {
         debugger;
-        return this.http.get<APIResponse>(this.baseUrl + `v1/SectionLinkInfo/GetQuestion`);
+        return this.http.get<APIResponse>(this.baseUrl + `v1/SectionLinkInfo/GetSection`);
     }
 
     public getSectionLinkById(sectionlinkId: number) {

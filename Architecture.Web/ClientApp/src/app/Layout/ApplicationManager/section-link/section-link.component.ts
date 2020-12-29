@@ -29,11 +29,11 @@ export class SectionLinkComponent implements OnInit {
         let id = 0;
         if (event.action == "new-record") {
             debugger;
-            this.router.navigate([`/manager/question-info/0`]);
+            this.router.navigate([`/manager/section-link/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate([`/manager/question-info/${event.record.questionInfoId}`]);
+            this.router.navigate([`/manager/section-link/${event.record.sectionLinkId}`]);
         }
     }
 
@@ -42,7 +42,7 @@ export class SectionLinkComponent implements OnInit {
         this.sectionLinkService.getSectionLinkInfo().subscribe(
             (success) => {
                 this.sectionLinkList = success.data;
-                console.log("get question info: ", success);
+                console.log("get section info: ", success);
                 this.sectionLinkList.forEach(x => {
                     x.sectionName = x.sectionName.sectionDescription || "";
                 })
@@ -58,10 +58,10 @@ export class SectionLinkComponent implements OnInit {
         tableName: 'Section Link List',
         tableRowIDInternalName: "bankinfoid",
         tableColDef: [
-            { headerName: 'Title', width: '15%', internalName: 'title', sort: true, type: "" },
+            { headerName: 'Title', width: '20%', internalName: 'title', sort: true, type: "" },
             { headerName: 'Section Name', width: '30%', internalName: 'sectionName', sort: true, type: "" },
-            { headerName: 'Action Link', width: '20%', internalName: 'actionLink', sort: true, type: "" },
-            { headerName: 'Remarks', width: '15%', internalName: 'remarks', sort: true, type: "" },
+            { headerName: 'Action Link', width: '30%', internalName: 'actionLink', sort: true, type: "" },
+            { headerName: 'Remarks', width: '20%', internalName: 'remarks', sort: true, type: "" },
             //{ headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],

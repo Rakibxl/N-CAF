@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NgSelectModule, NgOption } from '@ng-select/ng-select';
+import { Router, ActivatedRoute } from '@angular/router';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
+import { JobInfoService } from '../../../Shared/Services/Users/job-info.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
+import { CommonService } from '../../../Shared/Services/Common/common.service';
+
 @Component({
   selector: 'app-job-form',
   templateUrl: './job-form.component.html',
@@ -9,18 +14,59 @@ import { DropdownService } from '../../../Shared/Services/Common/dropdown.servic
 })
 export class JobFormComponent implements OnInit {
     public jobInfoForm = new JobInfo();
+    private jobId: number;
 
-    constructor(private dropdownService: DropdownService) { }
+    constructor(private dropdownService: DropdownService, private jobinfoService: JobInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     public sectionName = [];
     async ngOnInit() {
+        this.jobId = +this.route.snapshot.paramMap.get("id") || 0;
+        if (this.jobId != 0) {
+            this.getJob()
+        }
         this.sectionName = await this.dropdownService.getSectionName();
         console.log("this.sectionName", this.sectionName);
     }
 
-    selectedSectionIds: string[];
+    selectedSectionIds: number[] = [1, 2, 3];
 
     public onSubmit() {
+        debugger;
+        console.log(this.selectedSectionIds);
+        console.table(this.jobInfoForm);
+        //this.jobinfoService.saveJobInfo(this.jobInfoForm).subscribe(
+        //    (success: any) => {
+        //        console.log("success:", success);
+        //        this.alertService.tosterSuccess("Information saved successfully.");
+        //        setTimeout(() => {
+        //            this.router.navigate([`/job-info/job-list`]);
+        //        }, 200);
+        //    },
+        //    (error: any) => {
+        //        this.alertService.tosterWarning(error.message);
+        //        console.log("error", error);
+        //    });
 
     }
+
+    public getJob() {
+        debugger;
+        this.jobinfoService.getJobById(this.jobId).subscribe(
+            (success: APIResponse) => {
+                success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
+                success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
+                this.jobInfoForm = success.data
+            },
+            (error: any) => {
+                this.alertService.tosterWarning(error.message);
+                console.log("error", error);
+            });
+
+    }
+
+    public fnBackToList() {
+        this.router.navigate([`/job-info/job-list`]);
+        return false;
+    }
+
 
 }

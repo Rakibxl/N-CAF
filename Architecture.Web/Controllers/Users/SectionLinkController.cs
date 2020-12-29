@@ -45,8 +45,8 @@ namespace Architecture.Web.Controllers.ClientProfile
             });
         }
 
-        [HttpGet("GetQuestion")]
-        public async Task<IActionResult> GetQuestion()
+        [HttpGet("GetSection")]
+        public async Task<IActionResult> GetSection()
         {
             try
             {
@@ -61,12 +61,12 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
-        [HttpGet("GetById/{questionInfoId}")]
-        public async Task<IActionResult> GetById(int sectionLinkId)
+        [HttpGet("GetById/{sectionlinkId}")]
+        public async Task<IActionResult> GetById(int sectionlinkId)
         {
             try
             {
-                var result = await sectionLinkService.GetById(sectionLinkId);
+                var result = await sectionLinkService.GetById(sectionlinkId);
                 return OkResult(result);
             }
             catch (Exception ex)
