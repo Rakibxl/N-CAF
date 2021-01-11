@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Architecture.Core.Entities.Core;
 using Architecture.Core.Entities.LU;
@@ -18,5 +19,8 @@ namespace Architecture.Core.Entities
         public DateTime? IssuedDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public string PurposeOfDocument { get; set; }
+
+        [NotMapped]
+        public List<string>Urls { get; set; }
     }
 }

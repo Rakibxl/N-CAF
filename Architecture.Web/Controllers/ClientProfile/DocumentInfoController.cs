@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
+using Architecture.Web.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Architecture.Web.Controllers.ClientProfile
 {
@@ -45,7 +47,44 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return OkResult(result);
             });
         }
+        [HttpPost("document/save")]
+        public async Task<IActionResult> SaveDocument()
+        {
+            var entity = SaveFile();
+            return await ModelValidation(async () =>
+            {
+                var result = await documentInfoService.AddOrUpdate(entity);
+                return OkResult(result);
+            });
 
+        }
+        private ProfDocumentInfo  SaveFile()
+        {
+            string file_key = "doc";
+            var entity = new ProfDocumentInfo();
+            try
+            {
+                var model = HttpContext.Request.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                entity = JsonConvert.DeserializeObject<ProfDocumentInfo>(model["model"]);
+
+               var files = HttpContext.Request.Form.Files.Count > 0 ?
+                        HttpContext.Request.Form.Files : null;
+
+                if (files != null && files[file_key] != null)
+                {
+                    string folder = entity.ProfileId.ToString() + "/" + entity.DocumentTypeId;
+                   var  name =  FileHandler.SaveFile(files[file_key], folder);
+                }
+                return entity;
+            }
+            catch (Exception ex)
+            {
+             
+                throw ex;
+            }
+
+        }
         [HttpGet("Profile/{profileId}")]
         public async Task<IActionResult> GetDocumentByProfileId(int profileId)
         {
