@@ -39,6 +39,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<QuestionInfo> QuestionInfos { get; set; }
         public DbSet<JobInformation> JobInformations { get; set; }
         public DbSet<SectionLink> SectionLinks { get; set; }
+        public DbSet<JobSectionLink> JobSectionLinks { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }

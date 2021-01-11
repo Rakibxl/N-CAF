@@ -10,28 +10,26 @@ using Microsoft.EntityFrameworkCore;
 namespace Architecture.BLL.Services.Implements
 {
 
-    public class JobInformationService : Repository<JobInformation>, IJobInformationService
+    public class JobSectionLinkService : Repository<JobSectionLink>, IJobSectionLinkService
     {
-        public JobInformationService(ApplicationDbContext dbContext) : base(dbContext)
+        public JobSectionLinkService(ApplicationDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public async Task<IEnumerable<JobInformation>> GetAll()
+        public async Task<IEnumerable<JobSectionLink>> GetAll()
         {
-            IEnumerable<JobInformation> result;
-            result = await GetAsync(x => x, null, null, x => x.Include(y => y.JobDeliveryType)
-                                                              .Include(y => y.ISEEClassType)
-                                                              .Include(y => y.OccupationType));
+            IEnumerable<JobSectionLink> result;
+            result = await GetAsync(x => x, null, null, x => x.Include(y => y.SectionName));
             return result;
         }
 
-        public async Task<JobInformation> GetById(int jobId)
+        public async Task<JobSectionLink> GetById(int jobId)
         {
             var checkVal = await IsExistsAsync(x => x.JobId == jobId);
             if (checkVal)
             {
-                JobInformation result = await GetByIdAsync(jobId);
+                JobSectionLink result = await GetByIdAsync(jobId);
                 return result;
             }
             else
@@ -40,18 +38,18 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
-        public async Task<JobInformation> AddOrUpdate(JobInformation  jobInfo)
+        public async Task<JobSectionLink> AddOrUpdate(JobSectionLink jobSectionLink)
         {
             try
             {
-                JobInformation result;
-                if (jobInfo.JobId > 0)
+                JobSectionLink result;
+                if (jobSectionLink.JobSectionLinkId > 0)
                 {
-                    result = await UpdateAsync(jobInfo);
+                    result = await UpdateAsync(jobSectionLink);
                 }
                 else
                 {
-                    result = await AddAsync(jobInfo);
+                    result = await AddAsync(jobSectionLink);
                 }
                 return result;
             }

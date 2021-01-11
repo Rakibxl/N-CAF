@@ -109,6 +109,7 @@ namespace Architecture.Web
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IJobInformationService, JobInformationService>();
             services.AddTransient<ISectionLinkService, SectionLinkService>();
+            services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
             #endregion
 
             //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
@@ -119,9 +120,9 @@ namespace Architecture.Web
             //        .Where(c => c.Name.EndsWith("UnitOfWork"))
             //        .AsPublicImplementedInterfaces();
 
-            (services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
-                    .Where(c => c.Name.EndsWith("Service"))
-                    .AsPublicImplementedInterfaces();
+            //(services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
+            //        .Where(c => c.Name.EndsWith("Service"))
+            //        .AsPublicImplementedInterfaces();
 
             services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 

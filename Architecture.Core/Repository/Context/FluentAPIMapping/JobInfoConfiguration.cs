@@ -31,9 +31,9 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             jobInfo.Property(bs => bs.IsEligibleForCityzenShipApply).HasDefaultValue(false);
             jobInfo.Property(bs => bs.HasUnlimitedResidencePermit).HasDefaultValue(false);
             jobInfo.Property(bs => bs.IsEligibleForUnlimitedResidencePermit).HasDefaultValue(false);
-            jobInfo.Property(bs => bs.SectionNameId).IsRequired(false);
-            jobInfo.Property(bs => bs.DaysToBeExpairedNationalId).IsRequired(false);
             jobInfo.Property(bs => bs.DaysToBeExpairedPassport).IsRequired(false);
+            jobInfo.Property(bs => bs.SectionList).HasMaxLength(250).IsRequired(false);
+
 
             //jobInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             //jobInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

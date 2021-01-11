@@ -62,7 +62,9 @@ export class JobInfo extends Auditable {
 
     public hasUnlimitedResidencePermit: boolean;
 
-    public sectionName : string;
+    public sectionName: string;
+
+    public sectionList : string;
     
 }
 
