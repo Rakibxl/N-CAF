@@ -27,24 +27,28 @@ export class JobFormComponent implements OnInit {
         console.log("this.sectionName", this.sectionName);
     }
 
-    selectedSectionIds: number[] = [1, 2, 3];
+    //selectedSectionIds: number[] = [1, 2, 3];
+
+    selectedSectionIds: number[] = [];
+    selectedSectionIds2: string[] = [];
 
     public onSubmit() {
         debugger;
-        console.log(this.selectedSectionIds);
+
+        this.jobInfoForm.sectionList = this.selectedSectionIds.toString();
         console.table(this.jobInfoForm);
-        //this.jobinfoService.saveJobInfo(this.jobInfoForm).subscribe(
-        //    (success: any) => {
-        //        console.log("success:", success);
-        //        this.alertService.tosterSuccess("Information saved successfully.");
-        //        setTimeout(() => {
-        //            this.router.navigate([`/job-info/job-list`]);
-        //        }, 200);
-        //    },
-        //    (error: any) => {
-        //        this.alertService.tosterWarning(error.message);
-        //        console.log("error", error);
-        //    });
+        this.jobinfoService.saveJobInfo(this.jobInfoForm).subscribe(
+            (success: any) => {
+                console.log("success:", success);
+                this.alertService.tosterSuccess("Information saved successfully.");
+                setTimeout(() => {
+                    this.router.navigate([`/job-info/job-list`]);
+                }, 200);
+            },
+            (error: any) => {
+                this.alertService.tosterWarning(error.message);
+                console.log("error", error);
+            });
 
     }
 
@@ -55,6 +59,24 @@ export class JobFormComponent implements OnInit {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
                 success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.jobInfoForm = success.data
+
+                //this.selectedSectionIds.push(success.data.sectionList.array());
+                    
+                //this.selectedSectionIds = success.data.sectionList; 
+                this.selectedSectionIds = success.data.sectionList;
+
+                    //this.selectedSectionIds = [1, 2, 3];
+                console.table("table" + this.selectedSectionIds);
+
+                console.log("test " + success.data.sectionList.split(','));
+
+                this.selectedSectionIds2 = success.data.sectionList;
+
+                console.log("test2 " + this.selectedSectionIds2);
+
+
+                //this.selectedSectionIds = this.selectedSectionIds2.values;
+
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

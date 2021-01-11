@@ -17,6 +17,7 @@ import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.
 import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree/profile-tree.component';
 import { ChatBoxPopupComponent } from 'src/app/Shared/share-component/chat-box-popup/chat-box-popup.component';
 import { CurrentOfferComponent } from '../LayoutComponent/Components/current-offer/current-offer.component';
+//import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
 
 
 

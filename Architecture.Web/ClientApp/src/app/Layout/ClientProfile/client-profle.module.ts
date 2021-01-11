@@ -37,16 +37,21 @@ import { SharedMasterModule } from '../../Shared/Modules/shared-master/shared-ma
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ClientListComponent } from './client-list/client-list.component';
+import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
-    declarations: [BasicInformationComponent,OccupationHistoryComponent,FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, AssetInformationFormComponent, BankInformationFormComponent, DeligationInformationFormComponent, DocumentInformationFormComponent, EducationalInformationFormComponent, FamilyInformationFormComponent, HouseRentInformationFormComponent, IncomeInformationFormComponent, InsuranceInformationFormComponent, IseeInformationFormComponent, LegalInformationFormComponent, MovementInformationFormComponent, OccupationHistoryFormComponent, WorkerInformationFormComponent, AddressInformationFormComponent, ClientListComponent],
+    declarations: [BasicInformationComponent, OccupationHistoryComponent, FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, AssetInformationFormComponent, BankInformationFormComponent, DeligationInformationFormComponent, DocumentInformationFormComponent, EducationalInformationFormComponent, FamilyInformationFormComponent, HouseRentInformationFormComponent, IncomeInformationFormComponent, InsuranceInformationFormComponent, IseeInformationFormComponent, LegalInformationFormComponent, MovementInformationFormComponent, OccupationHistoryFormComponent, WorkerInformationFormComponent, AddressInformationFormComponent, ClientListComponent, SectionToSectionLinkComponent],
   imports: [
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
       NgSelectModule,
       SharedMasterModule,
-    ClientProfleRoutingModule
+      ClientProfleRoutingModule,
+      PerfectScrollbarModule,
+      AngularFontAwesomeModule
   ]
 })
 export class ClientProfleModule { }

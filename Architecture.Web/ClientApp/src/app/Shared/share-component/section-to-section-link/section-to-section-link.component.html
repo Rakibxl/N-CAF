@@ -1,0 +1,102 @@
+<div class="chat-box-outer">
+    <button class="chat-box-button" (click)="toggleClick()" [style.opacity]="animationOpen == 'out' ? 1: 0">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
+                <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
+            </svg>
+    </button>
+    <div class="chat-box-content" [@scaleAnimation]="animationOpen">
+        <div class="card-hover-shadow-2x card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-printer icon-gradient bg-ripe-malin"></i>
+                    <h4>Other Section for the New Offer</h4>
+                </div>
+
+                <span class="chatbox-close" (click)="closeChatbox()">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                    </svg>
+                </span>
+            </div>
+
+            <div class="scroll-area-lg">
+                <perfect-scrollbar style="max-height: 80vh;" [autoPropagation]="true">
+                    <div class="ps-content">
+                        <div class="chat-wrapper p-1">
+                            <div *ngFor ="let sectionLink of sectionLinkCollection">
+                                <a href="#" class="chat-box-wrapper">
+                                    <div>
+                                        <div class="chat-box">
+                                            {{sectionLink.title}}
+                                        </div>
+                                        <small class="opacity-6">
+                                            <fa class="mr-1" name="calendar-alt" _nghost-twc-c2=""
+                                                ng-reflect-name="calendar-alt">
+                                                <i _ngcontent-twc-c2="" aria-hidden="true"
+                                                   class="fa fa-calendar-alt" ng-reflect-klass="fa fa-calendar-alt"
+                                                   ng-reflect-ng-class=""
+                                                   style="font-family: FontAwesome, Bangla1000, sans-serif;"></i>
+                                            </fa>
+                                            {{sectionLink.remarks}}
+                                        </small>
+                                    </div>
+                                </a>
+                            </div>
+                            
+
+                            <!--<div class="float-right">
+                                <div class="chat-box-wrapper chat-box-wrapper-right">
+                                    <div>
+                                        <div class="chat-box">
+                                            Expound the actual teachings of the great explorer of
+                                            the
+                                            truth, the master-builder of human happiness.
+                                        </div><small class="opacity-6">
+                                            <fa class="mr-1" name="calendar-alt" _nghost-twc-c2=""
+                                                ng-reflect-name="calendar-alt">
+                                                <i _ngcontent-twc-c2=""
+                                                   aria-hidden="true" class="fa fa-calendar-alt"
+                                                   ng-reflect-klass="fa fa-calendar-alt" ng-reflect-ng-class=""
+                                                   style="font-family: FontAwesome, Bangla1000, sans-serif;"></i>
+                                            </fa>
+                                            11:01 AM | Yesterday
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-icon-wrapper ml-1">
+                                            <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
+                                            </div>
+                                            <div class="avatar-icon avatar-icon-lg rounded">
+                                                <img alt=""
+                                                     src="./assets/images/avatars/3.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                          
+                        </div>
+                    </div>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; height: 400px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 300px;"></div>
+                    </div>
+                </perfect-scrollbar>
+            </div>
+
+            <!--<div class="card-footer d-flex">
+                <input class="form-control-sm form-control" placeholder="Write here and hit enter to send..."
+                       type="text">
+                <button class="btn">Send</button>
+            </div>-->
+
+        </div>
+    </div>
+</div>

@@ -74,13 +74,12 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return ExceptionResult(ex);
             }
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("GetBySectionName/{sectionName}")]
+        public async Task<IActionResult> GetBySectionName(string sectionName)
         {
             try
             {
-                var result = "Palash Kanti Habijabi";
+                var result = await sectionLinkService.GetBySectionName(sectionName);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -88,7 +87,6 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return ExceptionResult(ex);
             }
         }
-
 
     }
 }

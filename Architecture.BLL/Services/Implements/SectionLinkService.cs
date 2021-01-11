@@ -40,6 +40,22 @@ namespace Architecture.BLL.Services.Implements
             {
                 throw new Exception("Information is not exists.");
             }
+        } 
+        public async Task<List<SectionLink>> GetBySectionName(string sectionName)
+        {
+
+            List<SectionLink> result=new List<SectionLink>();
+            IEnumerable<SectionLink> allSection;
+            allSection = await GetAsync(x => x, null, null, x => x.Include(y => y.SectionName));
+
+            foreach (var sLink in allSection) {
+                if (sLink.SectionName.SectionDescription== sectionName)
+                {
+
+                    result.Add(sLink);
+                }
+            }
+            return result;
         }
 
         public async Task<SectionLink> AddOrUpdate(SectionLink sectionLink)
