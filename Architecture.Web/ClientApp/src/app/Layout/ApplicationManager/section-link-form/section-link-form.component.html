@@ -15,8 +15,9 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">Title*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="title" #title="ngModel" [(ngModel)]="sectionInfoForm.title" placeholder="Enter title"
-                                   required />
+                            <!--<input type="text" autocomplete="off" class="form-control" name="title" #title="ngModel" [(ngModel)]="sectionInfoForm.title" placeholder="Enter title"
+                                   required />-->
+                            <textarea class="form-control" autocomplete="off" id="" cols="30" rows="20" name="title" #title="ngModel" [(ngModel)]="sectionInfoForm.title" placeholder="Enter title" required> </textarea>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="title.valid || title.pristine" class="text-danger">Title is required.</p>
                         </div>
@@ -55,7 +56,7 @@
                             <label class="label">
                                 Remarks
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" name="remarks" #remarks="ngModel" [(ngModel)]="sectionInfoForm.remarks" placeholder="Enter remarks" />
+                            <textarea class="form-control" autocomplete="off" id="" cols="30" rows="20" name="remarks" #remarks="ngModel" [(ngModel)]="sectionInfoForm.remarks" placeholder="Enter remarks"> </textarea>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
