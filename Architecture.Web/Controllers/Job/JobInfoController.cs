@@ -13,9 +13,12 @@ namespace Architecture.Web.Controllers.Job
     {
         private readonly IJobInformationService jobInfoService;
 
-        public JobInfoController(IJobInformationService jobInfoService)
+        private readonly IJobSectionLinkService jobSectionLinkService;
+
+        public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
         {
             this.jobInfoService = jobInfoService;
+            this.jobSectionLinkService = jobSectionLinkService;
         }
 
         [HttpGet("/Test")]
@@ -37,8 +40,25 @@ namespace Architecture.Web.Controllers.Job
         {
             return await ModelValidation(async () =>
             {
-                var result = await jobInfoService.AddOrUpdate(model);
-                return OkResult(result);
+                //var result = await jobInfoService.AddOrUpdate(model);
+                //return OkResult(result);
+
+
+                // save for job section link
+
+                string[] split = model.SectionList.Split(',');
+
+                
+                foreach (string item in split)
+                {
+                    JobSectionLink jobSectionLink = new JobSectionLink();
+                    jobSectionLink.JobId = model.JobId;
+                    jobSectionLink.SectionNameId = Int32.Parse(item) ;
+                    var result2 = await jobSectionLinkService.AddOrUpdate(jobSectionLink);
+                }
+
+                return OkResult("OK");
+
             });
         }
 

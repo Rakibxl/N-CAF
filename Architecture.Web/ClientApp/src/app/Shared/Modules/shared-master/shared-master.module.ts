@@ -5,6 +5,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertModule } from '../alert/alert.module';
 import { PTableModule } from '../p-table/p-table.module';
 import { ImageUploaderComponent } from 'src/app/Shared/Modules/image-uploader/image-upload.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,14 @@ import { ImageUploaderComponent } from 'src/app/Shared/Modules/image-uploader/im
     CommonModule,
     AngularFontAwesomeModule,
     AlertModule,
-    PTableModule
+    PTableModule,
+    TranslateModule
   ],
   exports:[PageTitleComponent,
     ImageUploaderComponent, 
     AlertModule,
-    PTableModule
+    PTableModule,
+    TranslateModule
   ]
 })
 export class SharedMasterModule { }

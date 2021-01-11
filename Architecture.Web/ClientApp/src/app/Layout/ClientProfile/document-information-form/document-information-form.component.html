@@ -73,6 +73,29 @@
                     </div>
 
                 </div>
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <!-- Standar Form -->
+                                <h4>Select files from your computer</h4>
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                            <input type="file"
+                                                   id="file"
+                                                   (change)="handleFileInput($event.target.files)">
+                                        </div>
+                                    </div>
+
+                                <!-- Upload Finished -->
+                                <div class="js-upload-finished">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">

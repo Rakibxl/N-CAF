@@ -15,7 +15,7 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class DocumentInformationFormComponent implements OnInit {
 
     public documentInfoForm = new profDocumentInfo();
-
+    fileToUpload: File = null;
     constructor(private documentInfoService: DocumentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     private profileId: number;
     private documentInfoId: number;
@@ -31,7 +31,6 @@ export class DocumentInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.documentInfoForm);
         this.documentInfoForm.profileId = this.profileId;
 
@@ -69,6 +68,10 @@ export class DocumentInformationFormComponent implements OnInit {
     public fnBackToList() {
         this.router.navigate([`/client-profile/document-info/${this.profileId}`]);
         return false;
+    }
+    public handleFileInput(files: FileList) {
+        this.fileToUpload = files.item(0);
+        console.log(this.fileToUpload);
     }
 
 }

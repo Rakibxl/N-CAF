@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210106134934_Added jobsectionlink")]
+    partial class Addedjobsectionlink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -436,24 +438,19 @@ namespace Architecture.Core.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Created")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasComputedColumnSql("GetUtcDate()");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("JobId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("JobInformationJobId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasComputedColumnSql("GetUtcDate()");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
@@ -462,7 +459,6 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("SectionNameId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("JobSectionLinkId");
@@ -3379,16 +3375,16 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int?>("SectionNameId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.HasKey("SectionLinkId");
 
@@ -3547,9 +3543,7 @@ namespace Architecture.Core.Migrations
 
                     b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
                         .WithMany()
-                        .HasForeignKey("SectionNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SectionNameId");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.ProfAddressInfo", b =>

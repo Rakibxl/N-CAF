@@ -35,12 +35,10 @@ namespace Architecture.Core.Entities
         public int? DaysToBeExpairedResidencePermit { get; set; }
         public bool IsEligibleForUnlimitedResidencePermit { get; set; }
         public int? DaysToBeExpairedNationalId { get; set; }
-        public int? DaysToBeExpairedPassport { get; set; }
-        public int? SectionNameId { get; set; }
-        public virtual SectionName SectionName { get; set; }
+        public int? DaysToBeExpairedPassport { get; set; }      
         public bool IsEligibleForCityzenShipApply { get; set; }
         public bool HasUnlimitedResidencePermit { get; set; }
-        //public string SectionList { get; set; }
+        public string SectionList { get; set; }
 
         #endregion
     }

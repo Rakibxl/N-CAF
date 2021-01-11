@@ -55,6 +55,11 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Include="wwwroot\assets\i18n\en.json" />
+    <None Include="wwwroot\assets\i18n\it.json" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\Architecture.BLL\Architecture.BLL.csproj" />
     <ProjectReference Include="..\Architecture.Core\Architecture.Core.csproj" />
   </ItemGroup>
