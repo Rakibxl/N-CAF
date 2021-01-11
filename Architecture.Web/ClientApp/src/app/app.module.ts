@@ -9,7 +9,7 @@ import { ConfigActions } from './ThemeOptions/store/config.actions';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 // BOOTSTRAP COMPONENTS
@@ -30,7 +30,11 @@ import { PDFModifyComponent } from './pdfmodify/pdfmodify.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SelectModule } from 'ng-select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -71,10 +75,19 @@ export function tokenGetter(): string {
             config: {
                 tokenGetter: tokenGetter
             }
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            defaultLanguage: 'en'
         })
     ],
     exports: [
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        TranslateModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
