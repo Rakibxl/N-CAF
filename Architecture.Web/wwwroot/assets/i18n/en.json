@@ -2,6 +2,7 @@
   "basicUserFrom": {
     "title": "Basic Informations",
     "username.label": "Username",
+    "surname.label": "Surname",
     "username.placeholder": "Username Here",
     "password.label": "Password",
     "password.placeholder": "Enter Password",

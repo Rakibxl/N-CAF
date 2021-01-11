@@ -2,6 +2,7 @@
   "basicUserFrom": {
     "title": "Informazioni di base",
     "username.label": "Nom d'utilisateur",
+    "surname.label": "Nom d'surname",
     "username.placeholder": "Nom D'Utilisateur Ici",
     "password.label": "Mot de passe",
     "password.placeholder": "Entrez Le Mot De Passe",
