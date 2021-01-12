@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Architecture.Web.Utilities
@@ -15,16 +16,17 @@ namespace Architecture.Web.Utilities
         public static float MaxFileSize = 5; // size in MB  
         private static string defaultRoot = "wwwroot/assets/";
 
-        public static string SaveFile(IFormFile file, string folder)
+        public static string SaveFile(IFormFile file, string folder, string docName)
         {
 
             try
             {
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                string fileName = RemoveSpecialCharacters(docName) + Path.GetExtension(file.FileName);
 
                 //Get url To Save
-                string SavePath = Path.Combine(Directory.GetCurrentDirectory(), defaultRoot, folder);
+                string SavePath = Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + "/documents", folder);
                 CreateFolder(SavePath);
+                DeleteFile(SavePath);
                 using (var stream = new FileStream(Path.Combine(SavePath, fileName), FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -37,11 +39,41 @@ namespace Architecture.Web.Utilities
             }
         }
 
+        public static void DeleteFile(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                Array.ForEach(Directory.GetFiles(path), File.Delete);
+            }
+          
+        }
         public static string CreateFolder(string path)
         {
 
             System.IO.Directory.CreateDirectory(path);
             return path;
+        }
+        public static string[] GetFiles(string folder)
+        {
+            var filePath =  Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + "/documents", folder);
+            if (Directory.Exists(filePath))
+            {
+                string[] fileEntries = Directory.GetFiles(filePath);
+                return fileEntries;
+            }
+            return null;
+        }
+        public static string RemoveSpecialCharacters(this string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_')
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
         }
     }
 }

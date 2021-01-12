@@ -21,6 +21,6 @@ namespace Architecture.Core.Entities
         public string PurposeOfDocument { get; set; }
 
         [NotMapped]
-        public List<string>Urls { get; set; }
+        public string[] Urls { get; set; }
     }
 }

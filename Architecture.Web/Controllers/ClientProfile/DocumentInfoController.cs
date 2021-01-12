@@ -74,7 +74,7 @@ namespace Architecture.Web.Controllers.ClientProfile
                 if (files != null && files[file_key] != null)
                 {
                     string folder = entity.ProfileId.ToString() + "/" + entity.DocumentTypeId;
-                   var  name =  FileHandler.SaveFile(files[file_key], folder);
+                   var  name =  FileHandler.SaveFile(files[file_key], folder, entity.DocumentName);
                 }
                 return entity;
             }
@@ -105,6 +105,9 @@ namespace Architecture.Web.Controllers.ClientProfile
             try
             {
                 var result = await documentInfoService.GetById(profileId, documentInfoId);
+                string folder = profileId.ToString() + "/" + result.DocumentTypeId;
+                var urls = FileHandler.GetFiles(folder);
+                result.Urls= urls;
                 return OkResult(result);
             }
             catch (Exception ex)
