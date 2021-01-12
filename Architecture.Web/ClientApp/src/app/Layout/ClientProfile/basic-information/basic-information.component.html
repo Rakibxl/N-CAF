@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'basicUserFrom.username.label' | translate}}*</label>
-                            <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="Enter name" required />
+                            <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.username.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -23,30 +23,30 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'basicUserFrom.surname.label' | translate}}*</label>
-                            <input type="text" formControlName="surName" autocomplete="off" class="form-control" placeholder="Enter sur name" required />
+                            <input type="text" formControlName="surName" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.surname.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DateOfBirth*</label>
-                            <input type="date" formControlName="dateOfBirth" autocomplete="off" class="form-control" placeholder="Enter date of birth" required />
+                            <label class="label">{{'common.dateOfBirth.label' | translate}}*</label>
+                            <input type="date" formControlName="dateOfBirth" autocomplete="off" class="form-control" placeholder="{{'common.dateOfBirth.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCode*</label>
-                            <input type="text" formControlName="taxCode" autocomplete="off" class="form-control" placeholder="Enter tax code" required />
+                            <label class="label">{{'common.taxCode.label' | translate}}*</label>
+                            <input type="text" formControlName="taxCode" autocomplete="off" class="form-control" placeholder="{{'common.taxCode.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCodeStartDate</label>
+                            <label class="label">{{'common.taxCodeStartDate.label' | translate}}</label>
                             <input type="date" formControlName="taxCodeStartDate" autocomplete="off" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCodeEndDate</label>
+                            <label class="label">{{'common.taxCodeEndDate.label' | translate}}</label>
                             <input type="date" formControlName="taxCodeEndDate" autocomplete="off" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -62,15 +62,15 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PhoneNumber*</label>
-                            <input type="text" formControlName="phoneNumber" autocomplete="off" class="form-control" placeholder="Enter phone number" required />
+                            <label class="label">{{'common.phoneNumber.label' | translate}}*</label>
+                            <input type="text" formControlName="phoneNumber" autocomplete="off" class="form-control" placeholder="{{'common.phoneNumber.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Gender/Sex</label>
+                            <label class="label">{{'common.gender.label' | translate}}</label>
                             <select formControlName="genderId" name="" id="" class="form-control" >
                                 <option *ngFor="let option of gender" [value]="option.genderId">{{option.name}}</option>
                             </select>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MaritalStatus</label>
+                            <label class="label">{{'common.maritalStatus.label' | translate}}</label>
                             <select formControlName="MeritalStatusId" name="" id="" class="form-control">
                                 <option *ngFor="let option of maritalStatus" [value]="option.MeritalStatusId">{{option.name}}</option>
                             </select>
@@ -90,16 +90,16 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EmailAddress*</label>
-                            <input formControlName="email" type="text" autocomplete="off" class="form-control" placeholder="Enter address" required />
+                            <label class="label">{{'common.emailAddress.label' | translate}}*</label>
+                            <input formControlName="email" type="text" autocomplete="off" class="form-control" placeholder="{{'common.emailAddress.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PostalElectronicCertificate</label>
-                            <input formControlName="postalElectronicCertificate" type="text" autocomplete="off" class="form-control" placeholder="Enter postal electronic certificate" />
+                            <label class="label">{{'basicUserFrom.postalElectronicCertificate.label' | translate}}</label>
+                            <input formControlName="postalElectronicCertificate" type="text" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.postalElectronicCertificate.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -107,31 +107,31 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CityOfBirth</label>
-                            <input formControlName="cityOfBirth" type="text" autocomplete="off" class="form-control" placeholder="Enter birth city" />
+                            <label class="label">{{'basicUserFrom.cityOfBirth.label' | translate}}</label>
+                            <input formControlName="cityOfBirth" type="text" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.cityOfBirth.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StateOfBirth</label>
-                            <input formControlName="stateOfBirth" type="text" autocomplete="off" class="form-control" placeholder="Enter state of birth" />
+                            <label class="label">{{'basicUserFrom.stateOfBirth.label' | translate}}</label>
+                            <input formControlName="stateOfBirth" type="text" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.stateOfBirth.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">BirthStateCode</label>
-                            <input formControlName="birthStateCode" type="text" autocomplete="off" class="form-control" placeholder="Enter birth state code" />
+                            <label class="label">{{'basicUserFrom.birthStateCode.label' | translate}}</label>
+                            <input formControlName="birthStateCode" type="text" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.birthStateCode.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Nationality</label>
+                            <label class="label">{{'common.nationality.label' | translate}}</label>
                             <select formControlName="nationalityId" name="" id="" class="form-control">
                                 <option *ngFor="let option of nationality" [value]="option.nationalityId">{{option.nationalityName}}</option>
                             </select>
@@ -141,15 +141,15 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CitizenStateCode</label>
-                            <input formControlName="citizenStateCode" type="text" autocomplete="off" class="form-control" placeholder="Enter CitizenStateCode" />
+                            <label class="label">{{'basicUserFrom.citizenStateCode.label' | translate}}</label>
+                            <input formControlName="citizenStateCode" type="text" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.citizenStateCode.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EyesColor</label>
+                            <label class="label">{{'basicUserFrom.eyesColor.label' | translate}}</label>
                             <select formControlName="eyeColorId" name="" id="" class="form-control">
                                 <option *ngFor="let option of eyeColor" [value]="option.eyeColorId">{{option.description}}</option>
                             </select>
@@ -159,23 +159,23 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Height(in)CM*</label>
-                            <input formControlName="height" type="number" autocomplete="off" class="form-control" placeholder="Enter Height" />
+                            <label class="label">{{'basicUserFrom.height.label' | translate}}</label>
+                            <input formControlName="height" type="number" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.height.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ZipCode</label>
-                            <input formControlName="zipCode" type="text" autocomplete="off" class="form-control" placeholder="Enter Zip Code" />
+                            <label class="label">{{'common.zipCode.label' | translate}}</label>
+                            <input formControlName="zipCode" type="text" autocomplete="off" class="form-control" placeholder="{{'common.zipCode.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Reason/Motive</label>
+                            <label class="label">{{'common.motive.label' | translate}}</label>
                             <select formControlName="motiveTypeId" name="" id="" class="form-control">
                                 <option *ngFor="let option of motiveType" [value]="option.motiveTypeId">{{option.motiveTypeName}}</option>
                             </select>
@@ -186,7 +186,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Occupation</label>
+                            <label class="label">{{'common.occupation.label' | translate}}</label>
                             <select formControlName="occupationTypeId" name="" id="" class="form-control">
                                 <option *ngFor="let option of motiveType" [value]="option.motiveTypeId">{{option.motiveTypeName}}</option>
                             </select>
@@ -196,7 +196,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">OcupationPosition</label>
+                            <label class="label">{{'common.OcupationPosition.label' | translate}}</label>
                             <select formControlName="occupationPositionId" name="" id="" class="form-control">
                                 <option value="1">UnEmployed</option>
                                 <option value="2">Employed</option>
@@ -209,7 +209,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasUnEmployedCertificate*</label>
+                            <label>{{'basicUserFrom.hasUnEmployedCertificate.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasUnEmployedCertificate">
@@ -223,7 +223,7 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasUnEmployedCertificate').value">
                         <div class="caf-input-group">
-                            <label class="label">UnEmp.Cer.IssuesDate</label>
+                            <label class="label">{{'basicUserFrom.unemployedcertficateIssueDate.label' | translate}}</label>
                             <input type="date" formControlName="unEmployedCertificateIssuesDate" autocomplete="off" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasUnEmployedCertificate').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasAnyUnEmployedFacility</label>
+                            <label>{{'basicUserFrom.hasAnyUnEmployedFacility.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasAnyUnEmployedFacility">
@@ -245,7 +245,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label class="label">ContractType</label>
+                            <label class="label">{{'basicUserFrom.contractType.label' | translate}}</label>
                             <select formControlName="contractTypeId" name="" id="" class="form-control">
                                 <option value="1">No Limit</option>
                                 <option value="2">Limited</option>
@@ -257,7 +257,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">YearlyIncome*</label>
+                            <label class="label">{{'common.yearlyIncome.label' | translate}}*</label>
                             <input type="number" formControlName="yearlyIncome" autocomplete="off" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -266,7 +266,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsRentHouse*</label>
+                            <label>{{'common.isRentHouse.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="isRentHouse">
@@ -280,8 +280,8 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isRentHouse').value">
                         <div class="caf-input-group">
-                            <label class="label">HowManyHouseHasRent</label>
-                            <input type="number" formControlName="howManyHouseRent" autocomplete="off" class="form-control" placeholder="has rent" />
+                            <label class="label">{{'basicUserFrom.howManyHouseHasRent.label' | translate}}</label>
+                            <input type="number" formControlName="howManyHouseRent" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.howManyHouseHasRent.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -289,7 +289,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsHouseOwner*</label>
+                            <label>{{'common.isHouseOwner.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="isHouseOwner">
@@ -303,16 +303,16 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isHouseOwner').value">
                         <div class="caf-input-group">
-                            <label class="label">HouseCountryName</label>
-                            <input type="text" formControlName="houseCountryName" autocomplete="off" class="form-control" placeholder="Enter house country name" />
+                            <label class="label">{{'basicUserFrom.houseCountryName.label' | translate}}</label>
+                            <input type="text" formControlName="houseCountryName" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.houseCountryName.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isHouseOwner').value">
                         <div class="caf-input-group">
-                            <label class="label">HouseCityName</label>
-                            <input type="text" formControlName="houseCityName" autocomplete="off" class="form-control" placeholder="Enter house city name" />
+                            <label class="label">{{'basicUserFrom.houseCityName.label' | translate}}</label>
+                            <input type="text" formControlName="houseCityName" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.houseCityName.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -320,7 +320,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasVehicle*</label>
+                            <label>{{'basicUserFrom.hasVehicle.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasVehicle">
@@ -334,8 +334,8 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group">
-                            <label class="label">CarSerialNumber</label>
-                            <input type="text" formControlName="carSerialNumber" autocomplete="off" class="form-control" placeholder="Enter car serial number" />
+                            <label class="label">{{'basicUserFrom.carSerialNumber.label' | translate}}</label>
+                            <input type="text" formControlName="carSerialNumber" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.carSerialNumber.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

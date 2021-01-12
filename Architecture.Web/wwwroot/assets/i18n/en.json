@@ -2,10 +2,37 @@
   "basicUserFrom": {
     "title": "Basic Informations",
     "username.label": "Username",
+    "username.placeholder": "Enter name",
     "surname.label": "Surname",
-    "username.placeholder": "Username Here",
+    "surname.placeholder": "Enter sur name",
     "password.label": "Password",
     "password.placeholder": "Enter Password",
+    "birthStateCode.label": "BirthStateCode",
+    "birthStateCode.placeholder": "Enter birth state code",
+    "stateOfBirth.label": "StateOfBirth",
+    "stateOfBirth.placeholder": "Enter state of birth",
+    "postalElectronicCertificate.label": "PostalElectronicCertificate",
+    "postalElectronicCertificate.placeholder": "Enter Postal Electronic Certificate",
+    "cityOfBirth.label": "CityOfBirth",
+    "cityOfBirth.placeholder": "Enter birth city",
+    "citizenStateCode.label": "CitizenStateCode",
+    "citizenStateCode.placeholder": "Enter citizenStateCode",
+    "eyesColor.label": "EyesColor",
+    "height.label": "Height(in)CM*",
+    "height.placeholder": "Enter height (in) CM",
+    "hasUnEmployedCertificate.label": "HasUnEmployedCertificate",
+    "unemployedcertficateIssueDate.label": "Unemployedcertficate IssueDate",
+    "hasAnyUnEmployedFacility.label": "HasAnyUnEmployedFacility",
+    "howManyHouseHasRent.label": "HowManyHouseHasRent",
+    "howManyHouseHasRent.placeholder": "Enter how many house has rent",
+    "houseCountryName.label": "HouseCountryName",
+    "houseCountryName.placeholder": "Enter houseCountryName",
+    "houseCityName.label": "HouseCityName",
+    "houseCityName.placeholder": "Enter house city name",
+    "contractType.label": "ContractType",
+    "hasVehicle.label": "HasVehicle",
+    "carSerialNumber.label": "CarSerialNumber",
+    "carSerialNumber.placeholder": "Enter car serial number",
     "button.name": "Signin",
     "forgotpassword.link": "Forgot Password ?",
     "register.link": "Create New Account",
@@ -13,5 +40,34 @@
     "button.ta": "Tamil",
     "button.fr": "French",
     "button.zh": "Chinese"
+  },
+
+  "common": {
+    "dateOfBirth.label": "DateOfBirth",
+    "dateOfBirth.placeholder": "Enter date of birth",
+    "taxCode.label": "taxCode",
+    "taxCode.placeholder": "Enter tax code",
+    "taxCodeStartDate.label": "TaxCodeStartDate",
+    "taxCodeEndDate.label": "TaxCodeEndDate",
+    "phoneNumber.label": "PhoneNumber",
+    "phoneNumber.placeholder": "Enter phone number",
+    "gender.label": "Gender",
+    "maritalStatus.label": "MaritalStatus",
+    "emailAddress.label": "EmailAddress",
+    "emailAddress.placeholder": "Enter email address",
+    "nationality.label": "Nationality",
+    "zipCode.label": "ZipCode",
+    "zipCode.placeholder": "Enter ZipCode",
+    "motive.label": "Motive",
+    "occupation.label": "Occupation",
+    "OcupationPosition.label": "OcupationPosition",
+    "yearlyIncome.label": "YearlyIncome",
+    "isRentHouse.label": "IsRentHouse",
+    "isHouseOwner.label": "IsHouseOwner"
+
+
+
+
+
   }
 }
