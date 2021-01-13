@@ -89,10 +89,13 @@
                                     </div>
 
                                 <!-- Upload Finished -->
-                                    <div class="js-upload-finished">
-                                        <h3>Processed files</h3>
-                                        <div class="list-group">
-                                            <a href="{{documentInfoForm.urls[0]}}" target="_blank" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>{{documentInfoForm.urls[0]}}</a>
+                                    <div class="js-upload-finished mt-3">
+                                        <h3>Documents</h3>
+                                        <div class="list-group" *ngFor="let file of documentInfoForm.urls">
+                                            <a href="{{file}}"
+                                               target="_blank" class="list-group-item list-group-item-success">
+                                                <span class="badge alert-success pull-right">download</span>{{file.split('/').pop()}}
+                                            </a>
                                         </div>
                                     </div>
                             </div>

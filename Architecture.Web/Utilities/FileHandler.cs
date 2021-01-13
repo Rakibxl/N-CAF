@@ -21,8 +21,7 @@ namespace Architecture.Web.Utilities
 
             try
             {
-                string fileName = RemoveSpecialCharacters(docName) + Path.GetExtension(file.FileName);
-
+                string fileName = RemoveSpecialCharacters(file.FileName);
                 //Get url To Save
                 string SavePath = Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + "/documents", folder);
                 CreateFolder(SavePath);
@@ -59,6 +58,16 @@ namespace Architecture.Web.Utilities
             if (Directory.Exists(filePath))
             {
                 string[] fileEntries = Directory.GetFiles(filePath);
+                for(var i =0; i<fileEntries.Length; i++)
+                {
+                    Uri uri = new Uri(fileEntries[i]);
+                    if (uri.IsFile)
+                    {
+                        string filename = System.IO.Path.GetFileName(uri.LocalPath);
+                        fileEntries[i] ="/assets/documents/" +folder + "/" + filename;
+                    }
+                }
+               
                 return fileEntries;
             }
             return null;
