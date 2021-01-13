@@ -4,7 +4,7 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title"> {{'familyform.title' | translate}}</span></h3>
+                        <h3><span class="bordered-title">Family Informations</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
                             Back
@@ -14,51 +14,51 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.name.label' | translate}}Name*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'familyform.name.placeholder' | translate}}Enter Name"
+                            <label class="label">Name*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Name"
                                    required name="name" [(ngModel)]="familyInfoForm.name" #name="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="name.valid || name.pristine" class="text-danger">{{'familyform.name.required' | translate}}Name is required.</p>
+                            <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}SurName*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'familyform.title' | translate}}Enter Sur name"
+                            <label class="label">SurName*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Sur name"
                                    required name="surName" [(ngModel)]="familyInfoForm.surName" #surName="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">{{'familyform.title' | translate}}Sur-name is required.</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">Sur-name is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}DateOfBirth*</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="{{'familyform.title' | translate}}Enter dateofbirth" #surName="ngModel" name="dateOfBirth" [(ngModel)]="familyInfoForm.dateOfBirth"
+                            <label class="label">DateOfBirth*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter dateofbirth" #surName="ngModel" name="dateOfBirth" [(ngModel)]="familyInfoForm.dateOfBirth"
                                    required #dateOfBirth="ngModel" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">{{'familyform.title' | translate}}Date of birth is required.</p>
+                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">Date of birth is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}TaxCode</label>
-                            <input type="text" autocomplete="off" name="taxCode" [(ngModel)]="familyInfoForm.taxCode" #taxCode="ngModel" class="form-control" placeholder="{{'familyform.title' | translate}}Enter tax code" />
+                            <label class="label">TaxCode</label>
+                            <input type="text" autocomplete="off" name="taxCode" [(ngModel)]="familyInfoForm.taxCode" #taxCode="ngModel" class="form-control" placeholder="Enter tax code" />
                             <p class="text-info d-none">Info message</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}PhoneNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="{{'familyform.title' | translate}}Enter phone number" />
+                            <label class="label">PhoneNumber</label>
+                            <input type="text" autocomplete="off" class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="Enter phone number" />
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}RelationType</label>
+                            <label class="label">RelationType</label>
                             <select id="" class="form-control" name="relationTypeId" #relationTypeId="ngModel" [(ngModel)]="familyInfoForm.relationTypeId">
                                 <!--<option>type here</option>-->
                                 <option value="1">Father</option>
@@ -71,8 +71,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}BirthPlace</label>
-                            <input type="text" autocomplete="off" class="form-control" name="placeOfBirth" #placeOfBirth="ngModel" [(ngModel)]="familyInfoForm.placeOfBirth" placeholder="{{'familyform.title' | translate}}Enter birth city" />
+                            <label class="label">BirthPlace</label>
+                            <input type="text" autocomplete="off" class="form-control" name="placeOfBirth" #placeOfBirth="ngModel" [(ngModel)]="familyInfoForm.placeOfBirth" placeholder="Enter birth city" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -80,7 +80,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}Nationality</label>
+                            <label class="label">Nationality</label>
                             <select id="" class="form-control" name="nationlityId" #nationlityId="ngModel" [(ngModel)]="familyInfoForm.nationlityId">
                                 <!--<option>type here</option>-->
                                 <option value="1">Bangladeshi</option>
@@ -94,7 +94,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}PreviousNationality</label>
+                            <label class="label">PreviousNationality</label>
                             <select id="" class="form-control" name="previousNationalityId" #previousNationalityId="ngModel" [(ngModel)]="familyInfoForm.previousNationalityId">
                                 <!--<option>type here</option>-->
                                 <option value="1">Bangladeshi</option>
@@ -108,7 +108,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}Occupation</label>
+                            <label class="label">Occupation</label>
                             <select id="" class="form-control" name="occupationTypeId" #occupationTypeId="ngModel" [(ngModel)]="familyInfoForm.occupationTypeId">
                                 <!--<option>List of Profession</option>-->
                                 <option value="1">Lavoro Subordinato</option>
@@ -124,7 +124,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}ResidenceScope</label>
+                            <label class="label">ResidenceScope</label>
                             <select id="" class="form-control" name="residenceScopeId" #residenceScopeId="ngModel" [(ngModel)]="familyInfoForm.residenceScopeId">
                                 <!--<option>type here</option>-->
                                 <option value="1">Italy</option>
@@ -137,7 +137,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.title' | translate}}IsDependent*</label>
+                            <label>IsDependent*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" name="isDependent" #isDependent="ngModel" [(ngModel)]="familyInfoForm.isDependent" required>
@@ -151,17 +151,17 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}DependentPercentage*</label>
-                            <input type="text" autocomplete="off" name="dependentPercentage" #dependentPercentage="ngModel" [(ngModel)]="familyInfoForm.dependentPercentage" class="form-control" placeholder="{{'familyform.title' | translate}}Enter dependent percentage"
+                            <label class="label">DependentPercentage*</label>
+                            <input type="text" autocomplete="off" name="dependentPercentage" #dependentPercentage="ngModel" [(ngModel)]="familyInfoForm.dependentPercentage" class="form-control" placeholder="Enter dependent percentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="dependentPercentage.valid || dependentPercentage.pristine" class="text-danger">{{'familyform.title' | translate}}DependentPercentage is required.</p>
+                            <p [hidden]="dependentPercentage.valid || dependentPercentage.pristine" class="text-danger">DependentPercentage is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.title' | translate}}IsDisabled*</label>
+                            <label>IsDisabled*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" name="isDisabled" #isDisabled="ngModel" [(ngModel)]="familyInfoForm.isDisabled" required>
@@ -169,33 +169,33 @@
                                 </label>
                             </div>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isDisabled.valid || isDisabled.pristine" class="text-danger">{{'familyform.title' | translate}}IsDisabled is required.</p>
+                            <p [hidden]="isDisabled.valid || isDisabled.pristine" class="text-danger">IsDisabled is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}DisablePercentage*</label>
-                            <input type="text" autocomplete="off" name="disabledPercentage" #disabledPercentage="ngModel" [(ngModel)]="familyInfoForm.disabledPercentage" class="form-control" placeholder="{{'familyform.title' | translate}}Enter disable percentage"
+                            <label class="label">DisablePercentage*</label>
+                            <input type="text" autocomplete="off" name="disabledPercentage" #disabledPercentage="ngModel" [(ngModel)]="familyInfoForm.disabledPercentage" class="form-control" placeholder="Enter disable percentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="disabledPercentage.valid || disabledPercentage.pristine" class="text-danger">{{'familyform.title' | translate}}DisablePercentage is required.</p>
+                            <p [hidden]="disabledPercentage.valid || disabledPercentage.pristine" class="text-danger">DisablePercentage is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}YearlyIncome*</label>
-                            <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="{{'familyform.title' | translate}}Enter yearly income"
+                            <label class="label">YearlyIncome*</label>
+                            <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="Enter yearly income"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">{{'familyform.title' | translate}}Yearly income is required.</p>
+                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">Yearly income is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.title' | translate}}IsAppliedForCitizenship*</label>
+                            <label>IsAppliedForCitizenship*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" name="isAppliedForCitizenship" #isAppliedForCitizenship="ngModel" [(ngModel)]="familyInfoForm.isAppliedForCitizenship" required>
@@ -209,8 +209,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}ApplicationCode</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationCode" #applicationCode="ngModel" [(ngModel)]="familyInfoForm.applicationCode" placeholder="{{'familyform.title' | translate}}Enter application code" />
+                            <label class="label">ApplicationCode</label>
+                            <input type="text" autocomplete="off" class="form-control" name="applicationCode" #applicationCode="ngModel" [(ngModel)]="familyInfoForm.applicationCode" placeholder="Enter application code" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -218,8 +218,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}ApplicationDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="applicationDate" #applicationDate="ngModel" [(ngModel)]="familyInfoForm.applicationDate" placeholder="{{'familyform.title' | translate}}Enter application date" />
+                            <label class="label">ApplicationDate</label>
+                            <input type="date" autocomplete="off" class="form-control" name="applicationDate" #applicationDate="ngModel" [(ngModel)]="familyInfoForm.applicationDate" placeholder="Enter application date" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -227,8 +227,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}ApplicationCity</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationCity" #applicationCity="ngModel" [(ngModel)]="familyInfoForm.applicationCity" placeholder="{{'familyform.title' | translate}}Enter application city" />
+                            <label class="label">ApplicationCity</label>
+                            <input type="text" autocomplete="off" class="form-control" name="applicationCity" #applicationCity="ngModel" [(ngModel)]="familyInfoForm.applicationCity" placeholder="Enter application city" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -237,9 +237,9 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                {{'familyform.title' | translate}}      ApplicationPlacedAddress
+                                ApplicationPlacedAddress
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationPlacedAddress" #applicationPlacedAddress="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedAddress" placeholder="{{'familyform.title' | translate}}Enter ApplicationPlacedAddress" />
+                            <input type="text" autocomplete="off" class="form-control" name="applicationPlacedAddress" #applicationPlacedAddress="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedAddress" placeholder="Enter ApplicationPlacedAddress" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -247,8 +247,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}FileNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" name="applicationFileNumber" #applicationFileNumber="ngModel" [(ngModel)]="familyInfoForm.applicationFileNumber" placeholder="{{'familyform.title' | translate}}Enter file number" />
+                            <label class="label">FileNumber</label>
+                            <input type="text" autocomplete="off" class="form-control" name="applicationFileNumber" #applicationFileNumber="ngModel" [(ngModel)]="familyInfoForm.applicationFileNumber" placeholder="Enter file number" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -256,8 +256,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.title' | translate}}ApplicationPlacedDate</label>
-                            <input type="date" autocomplete="off" class="form-control" name="applicationPlacedDate" #applicationPlacedDate="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedDate" placeholder="{{'familyform.title' | translate}}Enter file placed date" />
+                            <label class="label">ApplicationPlacedDate</label>
+                            <input type="date" autocomplete="off" class="form-control" name="applicationPlacedDate" #applicationPlacedDate="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedDate" placeholder="Enter file placed date" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
