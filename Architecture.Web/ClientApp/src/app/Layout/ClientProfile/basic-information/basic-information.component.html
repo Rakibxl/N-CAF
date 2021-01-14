@@ -342,8 +342,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group">
-                            <label class="label">CarNumberPlate</label>
-                            <input type="text" formControlName="carNumberPlate" autocomplete="off" class="form-control" placeholder="Enter car number plate" />
+                            <label class="label">{{'basicUserFrom.carNumberPlate.label' | translate}}</label>
+                            <input type="text" formControlName="carNumberPlate" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.carNumberPlate.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -351,7 +351,7 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('hasVehicle').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasVehicleInsurance</label>
+                            <label>{{'basicUserFrom.hasVehicleInsurance.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasVehicleInsurance">
@@ -365,7 +365,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsCompanyOwner*</label>
+                            <label>{{'basicUserFrom.isCompanyOwner.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="isCompanyOwner">
@@ -379,7 +379,7 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isCompanyOwner').value">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasWorker</label>
+                            <label>{{'basicUserFrom.hasWorker.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasWorker">
@@ -393,8 +393,8 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="!basicInfoForm.get('isCompanyOwner').value">
                         <div class="caf-input-group">
-                            <label class="label">DigitalVatCode</label>
-                            <input type="text" formControlName="digitalVatCode" autocomplete="off" class="form-control" placeholder="Enter digital vat code" />
+                            <label class="label">{{'basicUserFrom.digitalVatCode.label' | translate}}</label>
+                            <input type="text" formControlName="digitalVatCode" autocomplete="off" class="form-control" placeholder="{{'basicUserFrom.digitalVatCode.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -402,7 +402,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasAppliedForCitizenship*</label>
+                            <label>{{'basicUserFrom.hasAppliedForCitizenship.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="hasAppliedForCitizenship">
@@ -416,7 +416,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsPregnant*</label>
+                            <label>{{'basicUserFrom.isPregnant.label' | translate}}*</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" formControlName="isPregnant">
@@ -430,7 +430,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpectedBabyBirthDate</label>
+                            <label class="label">{{'basicUserFrom.expectedBabyBirthDate.label' | translate}}</label>
                             <input type="date" formControlName="expectedBabyBirthDate" autocomplete="off" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
