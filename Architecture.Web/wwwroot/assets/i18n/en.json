@@ -104,7 +104,40 @@
     "title": "Family Informations",
     "name.label": "Name",
     "name.placeholder": "Enter name",
-    "name.required": "Name is required"
+    "name.required": "Name is required",
+    "surname.label": "SurName",
+    "surname.placeholder": "Enter surname",
+    "surname.required": "Surname is required",
+    "relationtype.label": "RelationType",
+    "placeOfBirth.label": "BirthPlace",
+    "placeOfBirth.placeholder": "Enter birthPlace",
+    "isDependent.label": "IsDependent",
+    "isDependent.required": "IsDependent is required",
+    "dependentPercentage.label": "DependentPercentage",
+    "dependentPercentage.required": "DependentPercentage is required",
+    "isDisabled.label": "IsDisabled",
+    "isDisabled.required": "IsDisabled is required",
+    "disabledPercentage.label": "DisablePercentage",
+    "disabledPercentage.placeholder": "Enter disablePercentage",
+    "disabledPercentage.required": "DisablePercentage is required",
+    "yearlyIncome.label": "YearlyIncome",
+    "yearlyIncome.placeholder": "Enter yearlyIncome",
+    "yearlyIncome.required": "YearlyIncome is required",
+    "isAppliedForCitizenship.label": "IsAppliedForCitizenship",
+    "isAppliedForCitizenship.required": "IsAppliedForCitizenship is required",
+    "applicationCode.label": "ApplicationCode",
+    "applicationCode.placeholder": "Enter applicationCode",
+    "applicationDate.label": "ApplicationDate",
+    "applicationDate.placeholder": "Enter applicationDate",
+    "applicationCity.label": "ApplicationCity",
+    "applicationCity.placeholder": "Enter applicationCity",
+    "applicationPlacedAddress.label": "ApplicationPlacedAddress",
+    "applicationPlacedAddress.placeholder": "Enter applicationPlacedAddress",
+    "applicationFileNumber.label": "FileNumber",
+    "applicationFileNumber.placeholder": "Enter fileNumber",
+    "applicationPlacedDate.label": "ApplicationPlacedDate",
+    "applicationPlacedDate.placeholder": "Enter applicationPlacedDate"
+
   },
 
   "common": {
@@ -121,18 +154,18 @@
     "emailAddress.label": "EmailAddress",
     "emailAddress.placeholder": "Enter email address",
     "nationality.label": "Nationality",
+    "previousNationality.label": "PreviousNationality",
     "zipCode.label": "ZipCode",
     "zipCode.placeholder": "Enter ZipCode",
     "motive.label": "Motive",
     "occupation.label": "Occupation",
     "OcupationPosition.label": "OcupationPosition",
+    "residenceScope.label": "ResidenceScope",
     "yearlyIncome.label": "YearlyIncome",
     "isRentHouse.label": "IsRentHouse",
-    "isHouseOwner.label": "IsHouseOwner"
-
-
-
-
+    "isHouseOwner.label": "IsHouseOwner",
+    "back.label": "Back",
+    "save.label": "Save"
 
   }
 }
