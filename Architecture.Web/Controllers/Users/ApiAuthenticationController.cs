@@ -261,5 +261,37 @@ namespace Architecture.Web.Controllers.Users
                 return ExceptionResult(ex);
             }
         }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ApiChangePasswordModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return ValidationResult(ModelState);
+
+                var user = await this._userManager.FindByIdAsync(model.UserId.ToString());
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "User Id is invalid.");
+                    return ValidationResult(ModelState);
+                }
+
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    var error = result.Errors.ToList();
+                    ModelState.AddModelError("", error[0].Description);
+                    return ValidationResult(ModelState);
+                }
+
+                return OkResult(true);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
     }
 }

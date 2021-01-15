@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAuthUser } from '../../../Shared/Entity/Users/auth';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
@@ -36,11 +36,13 @@ export class ChangePasswordComponent implements OnInit {
 
     initForm() {
         this.changePasswordForm = this.fb.group({
-            profileId: [0],
+            userId: [null],
             oldPassword: [null, Validators.required],
             newPassword: [null, Validators.required],
             confirmPassword: [null, Validators.required],
-        });
+            token: [null]
+
+        }, { validator: this.passwordConfirming });
     }
 
     backBtnClick() {
@@ -50,10 +52,14 @@ export class ChangePasswordComponent implements OnInit {
 
     getModel() {
         let formData = this.changePasswordForm.value;
-        formData.profileId = formData.profileId || 0;
+        formData.userId = this.user.id;
         return formData;
     }
-
+    passwordConfirming(c: AbstractControl): { invalid: boolean } {
+        if (c.get('newPassword').value !== c.get('confirmPassword').value) {
+            return { invalid: true };
+        }
+    }
     getBoolValue(val) {
         if (val && (val == 'Yes' || val == '1' || val == 1 || val == true)) {
             return true;
@@ -62,19 +68,14 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     save() {
-        //let model = this.getModel();
-        //this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
-        //    if (res && res.data && res.data.profileId) {
-        //        this.alertService.tosterSuccess('Basic Info saved successfully');
-        //        this.basicInfoForm.patchValue({ profileId: res.data.profileId });
-        //        setTimeout(() => {
-        //            this.router.navigate([`/client-profile/client-list`]);
-        //        }, 200);
-        //    }
-        //}, (error: any) => {
-        //    console.log(error);
-        //    this.alertService.tosterDanger(error);
-        //});
+        let model = this.getModel();
+        this.authService.changePassword(model).subscribe(res => {
+                this.authService.logout();
+                this.router.navigate(['/auth/login']);
+        }, (error: any) => {
+            console.log(error);
+            this.alertService.tosterDanger(error);
+        });
     }
 
 }

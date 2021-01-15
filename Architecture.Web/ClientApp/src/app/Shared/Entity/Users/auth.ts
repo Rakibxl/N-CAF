@@ -29,6 +29,7 @@ export class ResetPassword {
     userId: string;
     newPassword: string;
     token: string;
+    oldPassword: string;
 
     constructor(init?: Partial<ResetPassword>) {
         Object.assign(this, init);
@@ -38,5 +39,22 @@ export class ResetPassword {
         this.userId = '';
         this.newPassword = '';
         this.token = '';
+        this.oldPassword = '';
+    }
+}
+
+export class ChangePassword {
+    userId: string;
+    newPassword: string;
+    oldPassword: string;
+
+    constructor(init?: Partial<ResetPassword>) {
+        Object.assign(this, init);
+    }
+
+    clear() {
+        this.userId = '';
+        this.newPassword = '';
+        this.oldPassword = '';
     }
 }
