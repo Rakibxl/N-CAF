@@ -4,133 +4,135 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">ISEE Informations</span></h3>
+                        <h3><span class="bordered-title">
+                        {{'iseeform.title' | translate}}
+                        </span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
-
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeClass*</label>
+                            <label class="label">{{'iseeform.iseeClassType.label' | translate}}*</label>
                             <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId" required>
                                 <option value="1">High</option>
                                 <option value="2">Middle</option>
                                 <option value="3">Low</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="iseeClassTypeId.valid || iseeClassTypeId.pristine" class="text-danger">IseeClass is required.</p>
+                            <p [hidden]="iseeClassTypeId.valid || iseeClassTypeId.pristine" class="text-danger">{{'iseeform.iseeClassType.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeValue*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeValue" name="iseeValue" #iseeValue="ngModel" [(ngModel)]="iseeInfoForm.iseeValue"
+                            <label class="label">{{'iseeform.iseeValue.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeValue.placeholder' | translate}}" name="iseeValue" #iseeValue="ngModel" [(ngModel)]="iseeInfoForm.iseeValue"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="iseeValue.valid || iseeValue.pristine" class="text-danger">IseeValue is required.</p>
+                            <p [hidden]="iseeValue.valid || iseeValue.pristine" class="text-danger">{{'iseeform.iseeValue.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Point*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Point" name="point" #point="ngModel" [(ngModel)]="iseeInfoForm.point"
+                            <label class="label">{{'iseeform.point.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.point.placeholder' | translate}}" name="point" #point="ngModel" [(ngModel)]="iseeInfoForm.point"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="point.valid || point.pristine" class="text-danger">Point is required.</p>
+                            <p [hidden]="point.valid || point.pristine" class="text-danger">{{'iseeform.point.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IseeFamilyIncome*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IseeFamilyIncome" name="iseeFamilyIncome" #iseeFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.iseeFamilyIncome"
+                            <label class="label">{{'iseeform.iseeFamilyIncome.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeFamilyIncome.placeholder' | translate}}" name="iseeFamilyIncome" #iseeFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.iseeFamilyIncome"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="iseeFamilyIncome.valid || iseeFamilyIncome.pristine" class="text-danger">IseeFamilyIncome is required.</p>
+                            <p [hidden]="iseeFamilyIncome.valid || iseeFamilyIncome.pristine" class="text-danger">{{'iseeform.iseeFamilyIncome.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISPAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISPAmount" name="ispAmount" #ispAmount="ngModel" [(ngModel)]="iseeInfoForm.ispAmount"
+                            <label class="label">{{'iseeform.ispAmount.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.ispAmount.placeholder' | translate}}" name="ispAmount" #ispAmount="ngModel" [(ngModel)]="iseeInfoForm.ispAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ispAmount.valid || ispAmount.pristine" class="text-danger">ISPAmount is required.</p>
+                            <p [hidden]="ispAmount.valid || ispAmount.pristine" class="text-danger">{{'iseeform.name.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISEAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISEAmount" name="iseAmount" #iseAmount="ngModel" [(ngModel)]="iseeInfoForm.iseAmount"
+                            <label class="label">{{'iseeform.iseAmount.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseAmount.placeholder' | translate}}" name="iseAmount" #iseAmount="ngModel" [(ngModel)]="iseeInfoForm.iseAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="iseAmount.valid || iseAmount.pristine" class="text-danger">ISEAmount is required.</p>
+                            <p [hidden]="iseAmount.valid || iseAmount.pristine" class="text-danger">{{'iseeform.iseAmount.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ISRAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ISRAmount" name="isrAmount" #isrAmount="ngModel" [(ngModel)]="iseeInfoForm.isrAmount"
+                            <label class="label">{{'iseeform.isrAmount.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.isrAmount.placeholder' | translate}}" name="isrAmount" #isrAmount="ngModel" [(ngModel)]="iseeInfoForm.isrAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isrAmount.valid || isrAmount.pristine" class="text-danger">ISRAmount is required.</p>
+                            <p [hidden]="isrAmount.valid || isrAmount.pristine" class="text-danger">{{'iseeform.isrAmount.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IdentificationNumber*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter IdentificationNumber" name="identificationNumber" #identificationNumber="ngModel" [(ngModel)]="iseeInfoForm.identificationNumber"
+                            <label class="label">{{'iseeform.identificationNumber.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.identificationNumber.placeholder' | translate}}" name="identificationNumber" #identificationNumber="ngModel" [(ngModel)]="iseeInfoForm.identificationNumber"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="identificationNumber.valid || identificationNumber.pristine" class="text-danger">IdentificationNumber is required.</p>
+                            <p [hidden]="identificationNumber.valid || identificationNumber.pristine" class="text-danger">{{'iseeform.identificationNumber.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SubmittedDate*</label>
+                            <label class="label">{{'iseeform.submittedDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="sumittedDate" #submittedDate="ngModel" [(ngModel)]="iseeInfoForm.submittedDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="submittedDate.valid || submittedDate.pristine" class="text-danger">SubmittedDate is required.</p>
+                            <p [hidden]="submittedDate.valid || submittedDate.pristine" class="text-danger">{{'iseeform.submittedDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DeliveryDate*</label>
+                            <label class="label">{{'iseeform.deliveryDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="deliveryDate" #deliveryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="deliveryDate.valid || deliveryDate.pristine" class="text-danger">DeliveryDate is required.</p>
+                            <p [hidden]="deliveryDate.valid || deliveryDate.pristine" class="text-danger">{{'iseeform.deliveryDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpiryDate*</label>
+                            <label class="label">{{'iseeform.expiryDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">{{'iseeform.expiryDate.required' | translate}}</p>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!iseeInfoInputForm.form.valid"  class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!iseeInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i> {{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

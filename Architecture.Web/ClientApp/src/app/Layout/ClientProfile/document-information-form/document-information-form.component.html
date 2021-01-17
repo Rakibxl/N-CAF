@@ -4,71 +4,71 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Document Informations</span></h3>
+                        <h3><span class="bordered-title">{{'documentform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentType*</label>
+                            <label class="label">{{'documentform.documenttype.label' | translate}}*</label>
                             <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId" required>
                                 <option value="1">Passport</option>
                                 <option value="2">Driving License</option>
                                 <option value="3">National Id</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="documentTypeId.valid || documentTypeId.pristine" class="text-danger">Document type is required.</p>
+                            <p [hidden]="documentTypeId.valid || documentTypeId.pristine" class="text-danger">{{'documentform.documenttype.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentName*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="documentName" #documentName="ngModel" [(ngModel)]="documentInfoForm.documentName" placeholder="Enter document name"
+                            <label class="label">{{'documentform.documentname.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" name="documentName" #documentName="ngModel" [(ngModel)]="documentInfoForm.documentName" placeholder="{{'documentform.documentname.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="documentName.valid || documentName.pristine" class="text-danger">DocumentName is required.</p>
+                            <p [hidden]="documentName.valid || documentName.pristine" class="text-danger">{{'documentform.documentname.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Issued By*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="documentInfoForm.issuedBy" placeholder="Enter issues by"
+                            <label class="label">{{'documentform.issuedBy.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="documentInfoForm.issuedBy" placeholder="{{'documentform.issuedBy.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="issuedBy.valid || issuedBy.pristine" class="text-danger">Issued by is required.</p>
+                            <p [hidden]="issuedBy.valid || issuedBy.pristine" class="text-danger">{{'documentform.issuedBy.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IssuedDate*</label>
+                            <label class="label">{{'documentform.issuedDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="issuedDate" #issuedDate="ngModel" [(ngModel)]="documentInfoForm.issuedDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">Issued date is required.</p>
+                            <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">{{'documentform.issuedDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpiryDate*</label>
+                            <label class="label">{{'documentform.expiryDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="documentInfoForm.expiryDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">Expiry date is required.</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">{{'documentform.expiryDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">PurposeOfDocument*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="purposeOfDocument" #purposeOfDocument="ngModel" [(ngModel)]="documentInfoForm.purposeOfDocument" placeholder="Enter purpose of document"
+                            <label class="label">{{'documentform.purposeOfDocument.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" name="purposeOfDocument" #purposeOfDocument="ngModel" [(ngModel)]="documentInfoForm.purposeOfDocument" placeholder="{{'documentform.purposeOfDocument.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="purposeOfDocument.valid || purposeOfDocument.pristine" class="text-danger">Purpose Of document is required.</p>
+                            <p [hidden]="purposeOfDocument.valid || purposeOfDocument.pristine" class="text-danger">{{'documentform.purposeOfDocument.required' | translate}}</p>
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
                             <div class="panel-body">
 
                                 <!-- Standar Form -->
-                                <h4>Select files from your computer</h4>
+                                <h4>{{'documentform.selectfiles.label' | translate}}</h4>
                                     <div class="form-inline">
                                         <div class="form-group">
                                             <input type="file"
@@ -90,11 +90,11 @@
 
                                 <!-- Upload Finished -->
                                     <div class="js-upload-finished mt-3">
-                                        <h3>Documents</h3>
+                                        <h3>{{'documentform.documents.label' | translate}}</h3>
                                         <div class="list-group" *ngFor="let file of documentInfoForm.urls">
                                             <a href="{{file}}"
                                                target="_blank" class="list-group-item list-group-item-success">
-                                                <span class="badge alert-success pull-right">download</span>{{file.split('/').pop()}}
+                                                <span class="badge alert-success pull-right">{{'documentform.download.label' | translate}}</span>{{file.split('/').pop()}}
                                             </a>
                                         </div>
                                     </div>
@@ -105,11 +105,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!documentInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!documentInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

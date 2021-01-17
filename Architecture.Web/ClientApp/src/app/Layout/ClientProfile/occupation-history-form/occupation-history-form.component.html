@@ -63,7 +63,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.companyName.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.companyName.placeholder' | translate}}Enter CompanyName" name="companyName" #companyName="ngModel" [(ngModel)]="occupationInfoForm.companyName"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.companyName.placeholder' | translate}}" name="companyName" #companyName="ngModel" [(ngModel)]="occupationInfoForm.companyName"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="companyName.valid || companyName.pristine" class="text-danger">   {{'occupationform.companyName.required' | translate}}</p>

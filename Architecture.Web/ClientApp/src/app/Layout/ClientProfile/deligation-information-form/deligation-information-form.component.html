@@ -4,58 +4,60 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Delegation Informations</span></h3>
+                        <h3><span class="bordered-title">{{'deligationform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Name*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter name" name="name" #name="ngModel" [(ngModel)]="delegationInfoForm.name"
+                            <label class="label">
+                                {{'deligationform.name.label' | translate}}*
+                            </label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'deligationform.name.placeholder' | translate}}" name="name" #name="ngModel" [(ngModel)]="delegationInfoForm.name"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
+                            <p [hidden]="name.valid || name.pristine" class="text-danger">{{'deligationform.name.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SurName*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter surname" name="surName" #surName="ngModel" [(ngModel)]="delegationInfoForm.surName"
+                            <label class="label">{{'deligationform.surname.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'deligationform.surname.placeholder' | translate}}" name="surName" #surName="ngModel" [(ngModel)]="delegationInfoForm.surName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">SurName is required.</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">{{'deligationform.surname.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DateOfBirth*</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter date of birth" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="delegationInfoForm.dateOfBirth"
+                            <label class="label">{{'common.dateOfBirth.label' | translate}}*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="{{'common.dateOfBirth.placeholder' | translate}}" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="delegationInfoForm.dateOfBirth"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">DateOfBirth is required.</p>
+                            <p [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="text-danger">{{'common.dateOfBirth.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCode*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter taxCode" name="taxCode" #taxCode="ngModel" [(ngModel)]="delegationInfoForm.taxCode"
+                            <label class="label">{{'common.taxCode.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.taxCode.placeholder' | translate}}" name="taxCode" #taxCode="ngModel" [(ngModel)]="delegationInfoForm.taxCode"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="taxCode.valid || taxCode.pristine" class="text-danger">TaxCode is required.</p>
+                            <p [hidden]="taxCode.valid || taxCode.pristine" class="text-danger">{{'common.taxCode.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">RefNo</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ref no" name="refNo" #refNo="ngModel" [(ngModel)]="delegationInfoForm.refNo"
+                            <label class="label">{{'deligationform.refNo.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'deligationform.refNo.placeholder' | translate}}" name="refNo" #refNo="ngModel" [(ngModel)]="delegationInfoForm.refNo"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -64,8 +66,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Purpose</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter purpose" name="purpose" #purpose="ngModel" [(ngModel)]="delegationInfoForm.purpose"
+                            <label class="label">{{'deligationform.purpose.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'deligationform.purpose.placeholder' | translate}}" name="purpose" #purpose="ngModel" [(ngModel)]="delegationInfoForm.purpose"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -74,28 +76,28 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DocumentIssueDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter document issue date" name="documentIssueDate" #documentIssueDate="ngModel" [(ngModel)]="delegationInfoForm.documentIssueDate"
+                            <label class="label">{{'deligationform.documentIssueDate.label' | translate}}*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="{{'deligationform.documentIssueDate.placeholder' | translate}}" name="documentIssueDate" #documentIssueDate="ngModel" [(ngModel)]="delegationInfoForm.documentIssueDate"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="documentIssueDate.valid || documentIssueDate.pristine" class="text-danger">DocumentIssueDate is required.</p>
+                            <p [hidden]="documentIssueDate.valid || documentIssueDate.pristine" class="text-danger">{{'deligationform.documentIssueDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ExpiryDate*</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter expiry date" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="delegationInfoForm.expiryDate"
+                            <label class="label">{{'deligationform.expiryDate.label' | translate}}*</label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="{{'deligationform.expiryDate.placeholder' | translate}}" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="delegationInfoForm.expiryDate"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">ExpiryDate is required.</p>
+                            <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">{{'deligationform.expiryDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IssuedBy</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter issued by" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="delegationInfoForm.issuedBy"
+                            <label class="label">{{'deligationform.issuedBy.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'deligationform.issuedBy.placeholder' | translate}}" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="delegationInfoForm.issuedBy"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -103,7 +105,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Status</label>
+                            <label class="label">{{'common.status.label' | translate}}</label>
                             <select id="" class="form-control" name="status" [(ngModel)]="delegationInfoForm.status" #status="ngModel">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
@@ -112,16 +114,16 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

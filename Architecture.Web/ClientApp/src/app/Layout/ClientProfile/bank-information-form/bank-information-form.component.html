@@ -4,31 +4,31 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Bank Informations</span></h3>
+                        <h3><span class="bordered-title">{{'bankform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>                    
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">BankName*</label>
+                            <label class="label">{{'bankform.bankName.label' | translate}}*</label>
                             <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId" required>
                                 <option value="1">UniCredit Bank</option>
                                 <option value="2">Intesa San Paolo</option>
                                 <option value="3">UBI Bank</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="bankNameId.valid || bankNameId.pristine" class="text-danger">Bank name is required.</p>
+                            <p [hidden]="bankNameId.valid || bankNameId.pristine" class="text-danger">{{'bankform.bankName.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">BranchName</label>
-                            <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="Enter branch name"
+                            <label class="label">{{'bankform.branchName.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="{{'bankform.branchName.placeholder' | translate}}"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -38,9 +38,9 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                AccountNumber/IBAN*
+                                {{'bankform.accountNumber.label' | translate}}*
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="bankInfoForm.accountNumber" placeholder="Enter account number"
+                            <input type="text" autocomplete="off" class="form-control" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="bankInfoForm.accountNumber" placeholder="{{'bankform.accountNumber.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -49,8 +49,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SwiftNumber</label>
-                            <input type="text" autocomplete="off" class="form-control" name="swiftNumber" #swiftNumber="ngModel" [(ngModel)]="bankInfoForm.swiftNumber" placeholder="Enter swift number"
+                            <label class="label">{{'bankform.swiftNumber.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" name="swiftNumber" #swiftNumber="ngModel" [(ngModel)]="bankInfoForm.swiftNumber" placeholder="{{'bankform.swiftNumber.placeholder' | translate}}"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Status</label>
+                            <label class="label">{{'common.status.label' | translate}}</label>
                             <select id="" class="form-control" name="status" [(ngModel)]="bankInfoForm.status" #status="ngModel">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
@@ -71,11 +71,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!bankInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!bankInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

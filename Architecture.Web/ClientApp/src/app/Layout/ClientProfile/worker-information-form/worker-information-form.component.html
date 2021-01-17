@@ -4,89 +4,91 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Worker Informations</span></h3>
+                        <h3><span class="bordered-title">
+                        {{'workerform.title' | translate}}
+                        </span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">WorkerType*</label>
+                            <label class="label">{{'workerform.workerType.label' | translate}}*</label>
                             <select id="" class="form-control" name="workerTypeId" #workerTypeId="ngModel" [(ngModel)]="workerInfoForm.workerTypeId" required>
                                 <option value="1">Company Worker</option>
                                 <option value="2">Domestic Worker</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="workerTypeId.valid || workerTypeId.pristine" class="text-danger">Worker type is required.</p>
+                            <p [hidden]="workerTypeId.valid || workerTypeId.pristine" class="text-danger">{{'workerform.workerType.placeholder' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Name*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Name" name="name" #name="ngModel" [(ngModel)]="workerInfoForm.name"
+                            <label class="label">{{'workerform.name.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.name.placeholder' | translate}}" name="name" #name="ngModel" [(ngModel)]="workerInfoForm.name"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="name.valid || name.pristine" class="text-danger">Name is required.</p>
+                            <p [hidden]="name.valid || name.pristine" class="text-danger">{{'workerform.name.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SurName*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter SurName" name="surName" #surName="ngModel" [(ngModel)]="workerInfoForm.surName"
+                            <label class="label">{{'workerform.surname.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.surname.placeholder' | translate}}" name="surName" #surName="ngModel" [(ngModel)]="workerInfoForm.surName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">SurName is required.</p>
+                            <p [hidden]="surName.valid || surName.pristine" class="text-danger">{{'workerform.surname.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TaxCode*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter TaxCode" name="taxCode" #taxCode="ngModel" [(ngModel)]="workerInfoForm.taxCode"
+                            <label class="label">{{'common.taxCode.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.taxCode.placeholder' | translate}}" name="taxCode" #taxCode="ngModel" [(ngModel)]="workerInfoForm.taxCode"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="taxCode.valid || taxCode.pristine" class="text-danger">TaxCode is required.</p>
+                            <p [hidden]="taxCode.valid || taxCode.pristine" class="text-danger">{{'common.taxCode.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContractNumber*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter ContractNumber" name="contractNumber" #contractNumber="ngModel" [(ngModel)]="workerInfoForm.contractNumber"
+                            <label class="label">{{'workerform.contractNumber.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.contractNumber.label' | translate}}" name="contractNumber" #contractNumber="ngModel" [(ngModel)]="workerInfoForm.contractNumber"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="contractNumber.valid || contractNumber.pristine" class="text-danger">ContractNumber is required.</p>
+                            <p [hidden]="contractNumber.valid || contractNumber.pristine" class="text-danger">{{'workerform.contractNumber.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MonthlySalary*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter MonthlySalary" name="monthlySalary" #monthlySalary="ngModel" [(ngModel)]="workerInfoForm.monthlySalary"
+                            <label class="label">{{'workerform.monthlySalary.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.monthlySalary.placeholder' | translate}}" name="monthlySalary" #monthlySalary="ngModel" [(ngModel)]="workerInfoForm.monthlySalary"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="monthlySalary.valid || monthlySalary.pristine" class="text-danger">MonthlySalary is required.</p>
+                            <p [hidden]="monthlySalary.valid || monthlySalary.pristine" class="text-danger">{{'workerform.monthlySalary.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate*</label>
+                            <label class="label">{{'common.startDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="workerInfoForm.startDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate*</label>
+                            <label class="label">{{'common.endDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="workerInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Status</label>
+                            <label class="label">{{'common.status.label' | translate}}</label>
                             <select id="" class="form-control" name="status" [(ngModel)]="workerInfoForm.status" #status="ngModel">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
@@ -99,11 +101,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>  {{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>
