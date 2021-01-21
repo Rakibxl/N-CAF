@@ -10,28 +10,27 @@ using Microsoft.EntityFrameworkCore;
 namespace Architecture.BLL.Services.Implements
 {
 
-    public class JobInformationService : Repository<JobInformation>, IJobInformationService
-    {
+    public class JobInformationService : Repository<JobInfo>, IJobInformationService
+    {       
         public JobInformationService(ApplicationDbContext dbContext) : base(dbContext)
         {
-
         }
 
-        public async Task<IEnumerable<JobInformation>> GetAll()
+        public async Task<IEnumerable<JobInfo>> GetAll()
         {
-            IEnumerable<JobInformation> result;
+            IEnumerable<JobInfo> result;
             result = await GetAsync(x => x, null, null, x => x.Include(y => y.JobDeliveryType)
                                                               .Include(y => y.ISEEClassType)
                                                               .Include(y => y.OccupationType));
             return result;
         }
 
-        public async Task<JobInformation> GetById(int jobId)
+        public async Task<JobInfo> GetById(int jobId)
         {
-            var checkVal = await IsExistsAsync(x => x.JobId == jobId);
+            var checkVal = await IsExistsAsync(x => x.JobInfoId == jobId);
             if (checkVal)
             {
-                JobInformation result = await GetByIdAsync(jobId);
+                JobInfo result = await GetFirstOrDefaultAsync(x=>x, x=>x.JobInfoId== jobId, x=>x.Include(y=>y.JobSectionLink));
                 return result;
             }
             else
@@ -40,12 +39,12 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
-        public async Task<JobInformation> AddOrUpdate(JobInformation  jobInfo)
+        public async Task<JobInfo> AddOrUpdate(JobInfo  jobInfo)
         {
             try
             {
-                JobInformation result;
-                if (jobInfo.JobId > 0)
+                JobInfo result;
+                if (jobInfo.JobInfoId > 0)
                 {
                     result = await UpdateAsync(jobInfo);
                 }
@@ -63,7 +62,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<int> Delete(int jobId)
         {
-            var result = await DeleteAsync(x => x.JobId == jobId);
+            var result = await DeleteAsync(x => x.JobInfoId == jobId);
             return result;
         }
     }

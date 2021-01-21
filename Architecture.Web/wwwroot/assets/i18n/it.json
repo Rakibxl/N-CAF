@@ -1,4 +1,4 @@
-{
+ï»¿{
   "basicUserFrom": {
     "title": "Informazioni di base",
     "username.label": "Nom d'utilisateur",
@@ -6,12 +6,13 @@
     "username.placeholder": "Inserisci la cognome",
     "password.label": "Mot de passe",
     "password.placeholder": "Entrez Le Mot De Passe",
+    "DateOfBirth": "Data Di Nascita",
     "button.name": "Signin",
-    "forgotpassword.link": "Mot De Passe Oublié ?",
-    "register.link": "Créer Un Nouveau Compte",
+    "forgotpassword.link": "Mot De Passe Oubliï¿½ ?",
+    "register.link": "Crï¿½er Un Nouveau Compte",
     "button.en": "Anglaise",
     "button.ta": "Tamil",
-    "button.fr": "Française",
+    "button.fr": "Franï¿½aise",
     "button.zh": "Chinoise"
   },
 

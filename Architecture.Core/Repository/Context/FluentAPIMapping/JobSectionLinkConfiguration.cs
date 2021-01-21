@@ -9,8 +9,6 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         public void Configure(EntityTypeBuilder<JobSectionLink> jobSectionLink)
         {
             jobSectionLink.HasKey(bs => bs.JobSectionLinkId);
-            jobSectionLink.Property(bs => bs.JobId).IsRequired();
-            jobSectionLink.Property(bs => bs.SectionNameId).IsRequired();
             jobSectionLink.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             jobSectionLink.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }

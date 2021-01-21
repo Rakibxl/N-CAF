@@ -33,7 +33,7 @@ export class JobListComponent implements OnInit {
             debugger
         }
         else if (event.action == "edit-item") {
-            this.router.navigate([`/job-info/job-info-new/${event.record.jobId}`]);
+            this.router.navigate([`/job-info/job-info-new/${event.record.jobInfoId}`]);
         }
     }
 

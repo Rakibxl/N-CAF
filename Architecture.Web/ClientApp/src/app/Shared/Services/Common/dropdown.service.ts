@@ -20,7 +20,6 @@ export class DropdownService {
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/AddressType`).toPromise().then(res => { result = res.data });
         return result;
     }
-
     public async getAppUserStatus() {
         let result;
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/UserStatus`).toPromise().then(res => { result = res.data });
@@ -166,13 +165,10 @@ export class DropdownService {
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/OccupationPosition`).toPromise().then(res => { result = res.data });
         return result;
     }
-
     public async getSectionName() {
         let result;
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/SectionName`).toPromise().then(res => { result = res.data });
         return result;
     }
-
-   
 
 }

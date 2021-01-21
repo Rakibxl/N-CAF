@@ -52,7 +52,7 @@ namespace Architecture.BLL.Services.Implements
                             RoleName = role.Role.Name,
                             UserName = role.User.Name,
                             Status = role.Role.Status,
-                            BranchId = role.User.BranchId,
+                            BranchId = role.User.BranchInfoId,
                             //BranchName = item.BranchInfo.BranchLocation
                         });
                     }

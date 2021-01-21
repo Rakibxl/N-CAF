@@ -6,6 +6,7 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { JobSectionLink } from '../../../Shared/Entity/Users/JobSectionLink';
 
 @Component({
   selector: 'app-job-form',
@@ -14,13 +15,14 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class JobFormComponent implements OnInit {
     public jobInfoForm = new JobInfo();
-    private jobId: number;
+    public selectedJobSectionLink: JobSectionLink[]=[]
+    private jobInfoId: number;
 
     constructor(private dropdownService: DropdownService, private jobinfoService: JobInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
     public sectionName = [];
     async ngOnInit() {
-        this.jobId = +this.route.snapshot.paramMap.get("id") || 0;
-        if (this.jobId != 0) {
+        this.jobInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        if (this.jobInfoId != 0) {
             this.getJob()
         }
         this.sectionName = await this.dropdownService.getSectionName();
@@ -30,13 +32,23 @@ export class JobFormComponent implements OnInit {
     //selectedSectionIds: number[] = [1, 2, 3];
 
     selectedSectionIds: number[] = [];
-    selectedSectionIds2: string[] = [];
 
     public onSubmit() {
         debugger;
 
-        this.jobInfoForm.sectionList = this.selectedSectionIds.toString();
-        console.table(this.jobInfoForm);
+        this.jobInfoForm.jobSectionLink = [];
+        this.selectedSectionIds.forEach(m => {
+            if (this.selectedJobSectionLink.filter(x => x.jobSectionLinkId == m).length > 0) {
+                this.jobInfoForm.jobSectionLink.push(this.selectedJobSectionLink.find(x => x.jobSectionLinkId == m))
+            } else {
+                let sectionLink = new JobSectionLink();
+                sectionLink.jobSectionLinkId= 0;
+                sectionLink.jobInfoId= this.jobInfoId;
+                sectionLink.sectionNameId = m;
+                this.jobInfoForm.jobSectionLink.push(sectionLink)
+            }
+        });
+        console.log(this.jobInfoForm);
         this.jobinfoService.saveJobInfo(this.jobInfoForm).subscribe(
             (success: any) => {
                 console.log("success:", success);
@@ -53,36 +65,19 @@ export class JobFormComponent implements OnInit {
     }
 
     public getJob() {
-        debugger;
-        this.jobinfoService.getJobById(this.jobId).subscribe(
+        this.jobinfoService.getJobById(this.jobInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);
                 success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.jobInfoForm = success.data
-
-                //this.selectedSectionIds.push(success.data.sectionList.array());
-                    
-                //this.selectedSectionIds = success.data.sectionList; 
-                this.selectedSectionIds = success.data.sectionList;
-
-                    //this.selectedSectionIds = [1, 2, 3];
-                console.table("table" + this.selectedSectionIds);
-
-                console.log("test " + success.data.sectionList.split(','));
-
-                this.selectedSectionIds2 = success.data.sectionList;
-
-                console.log("test2 " + this.selectedSectionIds2);
-
-
-                //this.selectedSectionIds = this.selectedSectionIds2.values;
-
+                this.selectedJobSectionLink = this.jobInfoForm.jobSectionLink || [];
+                this.selectedSectionIds = this.selectedJobSectionLink.map(x=>x.sectionNameId);
+                console.table("selectedSectionIds:" + this.selectedSectionIds);
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
-
     }
 
     public fnBackToList() {

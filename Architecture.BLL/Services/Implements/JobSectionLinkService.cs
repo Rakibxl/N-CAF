@@ -6,6 +6,7 @@ using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
 using Architecture.BLL.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Architecture.BLL.Services.Implements
 {
@@ -26,7 +27,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<JobSectionLink> GetById(int jobId)
         {
-            var checkVal = await IsExistsAsync(x => x.JobId == jobId);
+            var checkVal = await IsExistsAsync(x => x.JobInfoId == jobId);
             if (checkVal)
             {
                 JobSectionLink result = await GetByIdAsync(jobId);
@@ -59,10 +60,94 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
+        public async Task<JobSectionLink> AddOrUpdateOrDelete(int jobInfId, List<JobSectionLink> jobSectionLink)
+        {
+            try
+            {
+                JobInfo result;
+                if (jobInfId > 0)
+                {
+                    foreach (var link in jobSectionLink)
+                    {
+                        link.JobInfoId = jobInfId;
+                    }
+
+                    var existingsItems = await GetAsync(x => x, x => x.JobInfoId == jobInfId);
+                    List<JobSectionLink> deletedItems = new List<JobSectionLink>();
+                    foreach (var item in existingsItems)
+                    {
+                        if(jobSectionLink.Find(x=>x.SectionNameId== item.SectionNameId) == null)
+                        {
+                            deletedItems.Add(item);
+                        }
+                    }
+
+                    if(deletedItems.Count>0) await DeleteRangeAsync(deletedItems);
+                    if (jobSectionLink.FindAll(x => x.JobSectionLinkId > 0).Count > 0) await UpdateRangeAsync(jobSectionLink.FindAll(x => x.JobSectionLinkId > 0));
+                    if (jobSectionLink.FindAll(x => x.JobSectionLinkId ==0).Count > 0) await AddRangeAsync(jobSectionLink.FindAll(x => x.JobSectionLinkId == 0));
+                }
+                else
+                {
+                    if (jobSectionLink.FindAll(x => x.JobSectionLinkId == 0).Count > 0) await AddRangeAsync(jobSectionLink.FindAll(x => x.JobSectionLinkId == 0));
+                }
+
+                return new JobSectionLink();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<int> Delete(int jobId)
         {
-            var result = await DeleteAsync(x => x.JobId == jobId);
+            var result = await DeleteAsync(x => x.JobInfoId == jobId);
             return result;
+        }
+
+        public async Task<JobSectionLink> AddOrUpdateOrDelete(int jobInfId, ICollection<JobSectionLink> jobSectionLink)
+        {
+            try
+            {
+                JobInfo result;
+                List<JobSectionLink> listOfJobSectionLink = jobSectionLink.ToList();
+                if (jobInfId > 0)
+                {
+                    foreach (var link in jobSectionLink)
+                    {
+                        link.JobInfoId = jobInfId;
+                    }
+
+                    var existingsItems = await GetAsync(x => x, x => x.JobInfoId == jobInfId);
+                    List<JobSectionLink> deletedItems = new List<JobSectionLink>();
+                    foreach (var item in existingsItems)
+                    {
+                        if (listOfJobSectionLink.Find(x => x.SectionNameId == item.SectionNameId) == null)
+                        {
+                            deletedItems.Add(item);
+                        }
+                    }
+
+                    if (deletedItems.Count > 0) await DeleteRangeAsync(deletedItems);
+                    if (listOfJobSectionLink.FindAll(x => x.JobSectionLinkId > 0).Count > 0) await UpdateRangeAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId > 0));
+                    if (listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0).Count > 0)
+                    {
+                        await AddAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0)[0]);
+                        //await AddRangeAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0));
+                    }
+
+                }
+                else
+                {
+                    if (listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0).Count > 0) await AddRangeAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0));
+                }
+
+                return new JobSectionLink();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

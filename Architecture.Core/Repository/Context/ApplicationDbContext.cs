@@ -37,7 +37,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<ProfHouseRentInfo> ProfHouseRentInfos { get; set; }
         public DbSet<BranchInfo> BranchInfos { get; set; }
         public DbSet<QuestionInfo> QuestionInfos { get; set; }
-        public DbSet<JobInformation> JobInformations { get; set; }
+        public DbSet<JobInfo> JobInfos { get; set; }
         public DbSet<SectionLink> SectionLinks { get; set; }
         public DbSet<JobSectionLink> JobSectionLinks { get; set; }
 
