@@ -46,7 +46,7 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
     this.userService.getUsers().subscribe((res) => {
       this.alertService.fnLoading(false);
       if (res && res.data && res.data.items.length) {
-        this.userList = res.data.items;
+        this.userList = res.data.items; //.filter(ex => ex.branchId);
 
         this.userList.map(ex => {
           ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;

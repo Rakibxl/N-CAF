@@ -20,40 +20,21 @@ namespace Architecture.BLL.Services.Implements
     public class ApplicationUserRoleMappingService : IApplicationUserRoleMappingService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly RoleManager<ApplicationUserRole> _roleManager;
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
 
         public ApplicationUserRoleMappingService(
             UserManager<ApplicationUser> userManager,
-            //RoleManager<ApplicationUserRole> roleManager,
             ICurrentUserService currentUserService,
             IDateTime dateTime)
         {
             _userManager = userManager;
-            //_roleManager = roleManager;
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
 
         public async Task<List<object>> GetAllAsync(UserRoleQuery queryObj)
         {
-            //var result = new List<ApplicationUser>();
-
-            var columnsMap = new Dictionary<string, Expression<Func<ApplicationUserRole, object>>>()
-            {
-                ["userId"] = v => v.UserId,
-                ["roleId"] = v => v.RoleId,
-            };
-
-            //ApplicationUser user = new ApplicationUser()
-            //{
-            //    Id = _currentUserService.UserId
-            //};
-
-            //var user = await _userManager.FindByIdAsync("0effbf6b-5de8-4b6b-4426-08d899d2512c");
-            //var result = await _userManager.GetRolesAsync(user);
-
             var userRoleList = new List<object>();
             var users = _userManager.Users
                 //.Include(br => br.BranchInfo)
@@ -77,20 +58,6 @@ namespace Architecture.BLL.Services.Implements
                     }
                 }
             }
-            //var result = await _userManager.GetRolesAsync(user);
-
-            //var query = _roleManager.Roles.AsQueryable();
-            //result.Total = await query.CountAsync();
-
-            //query = query.Where(x => !x.IsDeleted &&
-            //x.Status != EnumApplicationRoleStatus.Inactive &&
-            //(string.IsNullOrWhiteSpace(queryObj.Name) || x.Name.Contains(queryObj.Name)));
-
-            //result.TotalFilter = await query.CountAsync();
-            //query = query.ApplyOrdering(columnsMap, queryObj.SortBy, queryObj.IsSortAscending);
-            //query = query.ApplyPaging(queryObj.Page, queryObj.PageSize);
-            //result.Items = (await query.AsNoTracking().ToListAsync());
-
             return userRoleList;
         }
 
