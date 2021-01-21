@@ -39,10 +39,10 @@ export class ApplicationUserRoleMappingComponent implements OnInit {
         tableName: 'Role Mapping List',
         tableRowIDInternalName: "rolemappingId",
         tableColDef: [
-            { headerName: 'Role MappingId', width: '10%', internalName: 'rolemappingId', sort: true, type: "" },
-            { headerName: 'User Name', width: '15%', internalName: 'username', sort: true, type: "" },
-            { headerName: 'Role Name', width: '15%', internalName: 'rolename', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'status', sort: false, type: "" },
+            { headerName: 'User Name', width: '15%', internalName: 'userName', sort: true, type: "" },
+            { headerName: 'Role Name', width: '15%', internalName: 'roleName', sort: true, type: "" },
+            { headerName: 'BranchId', width: '10%', internalName: 'branchId', sort: true, type: "" },
+            // { headerName: 'Status', width: '10%', internalName: 'status', sort: false, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
@@ -78,8 +78,8 @@ export class ApplicationUserRoleMappingComponent implements OnInit {
     getUserRoles() {
         this.userRoleService.getUserRoles().subscribe((res) => {
             this.alertService.fnLoading(false);
-            if (res && res.data && res.data.items.length) {
-                this.userRoleList = res.data.items;
+            if (res && res.data && res.data.length) {
+                this.userRoleList = res.data;
             }
         }, err => {
             this.alertService.tosterDanger(err);

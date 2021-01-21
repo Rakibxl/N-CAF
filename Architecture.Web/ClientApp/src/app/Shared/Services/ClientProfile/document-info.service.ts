@@ -13,9 +13,9 @@ export class DocumentInfoService {
         this.baseUrl = baseUrl + 'api/';
     }
 
-    public saveDocumentInfo(data: profDocumentInfo) {
+    public saveDocumentInfo(data: any) {
         debugger;
-        return this.http.post<APIResponse>(this.baseUrl + 'v1/DocumentInfo/CreateOrUpdate', data);
+        return this.http.post<APIResponse>(this.baseUrl + 'v1/DocumentInfo/document/save', data);
     }
     public getDocumentInfo(profileId: number) {
         debugger;

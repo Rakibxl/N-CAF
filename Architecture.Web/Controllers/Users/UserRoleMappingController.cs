@@ -22,14 +22,10 @@ namespace Architecture.Web.Controllers.Users
     public class UserRoleMappingController : BaseController
     {
         private IApplicationUserRoleMappingService _applicationUserRoleMappingService;
-        private readonly IMapper _mapper;
 
-        public UserRoleMappingController(
-            IApplicationUserRoleMappingService applicationUserRoleMappingService,
-            IMapper mapper)
+        public UserRoleMappingController(IApplicationUserRoleMappingService applicationUserRoleMappingService)
         {
             this._applicationUserRoleMappingService = applicationUserRoleMappingService;
-            this._mapper = mapper;
         }
 
         [HttpGet]
@@ -38,8 +34,7 @@ namespace Architecture.Web.Controllers.Users
             try
             {
                 var result = await _applicationUserRoleMappingService.GetAllAsync(query);
-                var queryResult = _mapper.Map<QueryResult<ApplicationUserRole>, QueryResult<UserRoleModel>>(result);
-                return OkResult(queryResult);
+                return OkResult(result);
             }
             catch (Exception ex)
             {

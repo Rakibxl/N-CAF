@@ -4,64 +4,66 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Income Informations</span></h3>
+                        <h3><span class="bordered-title">
+                            {{'incomeform.title' | translate}}
+                        </span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">IncomeType*</label>
+                            <label class="label">{{'incomeform.incomeType.label' | translate}}*</label>
                             <select class="form-control" name="incomeTypeId" #incomeTypeId="ngModel" [(ngModel)]="incomeInfoForm.incomeTypeId" required>
                                 <option value="1">Single Income</option>
                                 <option value="2">Double Income</option>
                                 <option value="3">Business Income</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="incomeTypeId.valid || incomeTypeId.pristine" class="text-danger">IncomeType is required.</p>
+                            <p [hidden]="incomeTypeId.valid || incomeTypeId.pristine" class="text-danger">{{'incomeform.documenttype.label' | translate}}IncomeType is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">YearlyIncome*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="Enter yearly income"
+                            <label class="label">{{'incomeform.yearlyIncome.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="{{'incomeform.yearlyIncome.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">YearlyIncome is required.</p>
+                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">{{'incomeform.yearlyIncome.label' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">MonthlyIncome*</label>
-                            <input type="text" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="Enter monthly Income"
+                            <label class="label">{{'incomeform.monthlyIncome.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="{{'incomeform.monthlyIncome.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="monthlyIncome.valid || monthlyIncome.pristine" class="text-danger">MonthlyIncome is required.</p>
+                            <p [hidden]="monthlyIncome.valid || monthlyIncome.pristine" class="text-danger">{{'incomeform.monthlyIncome.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Year*</label>
+                            <label class="label">{{'incomeform.year.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="year" #year="ngModel" [(ngModel)]="incomeInfoForm.year" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="year.valid || year.pristine" class="text-danger">Year is required.</p>
+                            <p [hidden]="year.valid || year.pristine" class="text-danger">{{'incomeform.year.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Month*</label>
+                            <label class="label">{{'incomeform.month.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="month" #month="ngModel" [(ngModel)]="incomeInfoForm.month" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="month.valid || month.pristine" class="text-danger">Month is required.</p>
+                            <p [hidden]="month.valid || month.pristine" class="text-danger">{{'incomeform.month.label' | translate}}Month is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Document</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Document" name="document" #document="ngModel" [(ngModel)]="incomeInfoForm.document"
+                            <label class="label">{{'incomeform.documents.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'incomeform.documents.placeholder' | translate}}" name="document" #document="ngModel" [(ngModel)]="incomeInfoForm.document"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -69,7 +71,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Status</label>
+                            <label class="label">{{'common.status.label' | translate}}</label>
                             <select id="" class="form-control" name="status" [(ngModel)]="incomeInfoForm.status" #status="ngModel">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
@@ -82,11 +84,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!incomeInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!incomeInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i> {{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

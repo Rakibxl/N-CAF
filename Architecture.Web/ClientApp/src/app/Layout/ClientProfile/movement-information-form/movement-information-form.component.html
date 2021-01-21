@@ -4,48 +4,48 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Movement Informations</span></h3>
+                        <h3><span class="bordered-title">{{'movementform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CountryName*</label>
+                            <label class="label">{{'movementform.countryName.label' | translate}}*</label>
                             <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="movementInfoForm.countryNameId" required>
                                 <option value="1">Italy</option>
                                 <option value="2">Bangladesh</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">CountryName is required.</p>
+                            <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">{{'movementform.countryName.label' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate*</label>
+                            <label class="label">{{'common.startDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="movementInfoForm.startDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.label' | translate}}StartDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate*</label>
+                            <label class="label">{{'common.endDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="movementInfoForm.endDate" required/>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.label' | translate}}EndDate is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Purpose</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Purpose" name="purpose" #purpose="ngModel" [(ngModel)]="movementInfoForm.purpose"
+                            <label class="label">{{'movementform.purpose.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'movementform.purpose.placeholder' | translate}}" name="purpose" #purpose="ngModel" [(ngModel)]="movementInfoForm.purpose"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -54,7 +54,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Status</label>
+                            <label class="label">{{'common.status.label' | translate}}</label>
                             <select id="" class="form-control" name="status" [(ngModel)]="movementInfoForm.status" #status="ngModel">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
@@ -68,11 +68,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!movementInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!movementInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -4,67 +4,67 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Insurance Informations</span></h3>
+                        <h3><span class="bordered-title">{{'insuranceform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceType*</label>
+                            <label class="label">{{'insuranceform.insuranceType.label' | translate}}*</label>
                             <select id="" class="form-control" name="insuranceTypeId" #insuranceTypeId="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTypeId" required>
                                 <option value="1">Car Insurance</option>
                                 <option value="2">Home Insurance</option>
                                 <option value="3">Health Insurance</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="insuranceTypeId.valid || insuranceTypeId.pristine" class="text-danger">Insurance type is required.</p>
+                            <p [hidden]="insuranceTypeId.valid || insuranceTypeId.pristine" class="text-danger">{{'insuranceform.insuranceType.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceTitle*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter insurance title" name="insuranceTitle" #insuranceTitle="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTitle"
+                            <label class="label">{{'insuranceform.insuranceTitle.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'insuranceform.insuranceTitle.placeholder' | translate}}" name="insuranceTitle" #insuranceTitle="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTitle"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="insuranceTitle.valid || insuranceTitle.pristine" class="text-danger">Insurance title  is required.</p>
+                            <p [hidden]="insuranceTitle.valid || insuranceTitle.pristine" class="text-danger">{{'insuranceform.insuranceTitle.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate*</label>
+                            <label class="label">{{'common.startDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="insuranceInfoForm.startDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate  is required.</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.label' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate*</label>
+                            <label class="label">{{'common.endDate.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="insuranceInfoForm.endDate" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate  is required.</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InsuranceAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceAmount" name="insuranceAmount" #insuranceAmount="ngModel" [(ngModel)]="insuranceInfoForm.insuranceAmount"
+                            <label class="label">{{'insuranceform.insuranceAmount.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'insuranceform.insuranceAmount.placeholder' | translate}}" name="insuranceAmount" #insuranceAmount="ngModel" [(ngModel)]="insuranceInfoForm.insuranceAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="insuranceAmount.valid || insuranceAmount.pristine" class="text-danger">Insurance amount  is required.</p>
+                            <p [hidden]="insuranceAmount.valid || insuranceAmount.pristine" class="text-danger">{{'insuranceform.insuranceAmount.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                InsuranceReturnPercentage
+                                {{'insuranceform.insuranceReturnPercentage.label' | translate}}
                             </label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter InsuranceReturnPercentage" name="insuranceReturnPercentage" #insuranceReturnPercentage="ngModel" [(ngModel)]="insuranceInfoForm.insuranceReturnPercentage"
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'insuranceform.insuranceReturnPercentage.placeholder' | translate}}" name="insuranceReturnPercentage" #insuranceReturnPercentage="ngModel" [(ngModel)]="insuranceInfoForm.insuranceReturnPercentage"
                                     />
                             <p class="text-info d-none">Info message</p>
                         </div>
@@ -73,11 +73,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!insuranceInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!insuranceInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

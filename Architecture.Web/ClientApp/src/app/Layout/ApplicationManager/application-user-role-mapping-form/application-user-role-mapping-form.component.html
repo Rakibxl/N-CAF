@@ -16,7 +16,7 @@
                         <div class="caf-input-group">
                             <label class="label">User*</label>
                             <select formControlName="userId" name="" id="" class="form-control">
-                                <option>type here</option>
+                                <option>Select</option>
                                 <option *ngFor="let user of userList" [value]="user.id">{{user.name}}</option>
                                 <!-- <option value="2">InActive</option> -->
                             </select>
@@ -28,7 +28,7 @@
                         <div class="caf-input-group">
                             <label class="label">Role*</label>
                             <select formControlName="role" name="" id="" class="form-control">
-                                <option>type here</option>                                
+                                <option>Select</option>                                
                                 <option *ngFor="let role of roleList" [value]="role.name">{{role.name}}</option>
                                 <!-- <option value="1">Active</option>
                                 <option value="2">InActive</option> -->

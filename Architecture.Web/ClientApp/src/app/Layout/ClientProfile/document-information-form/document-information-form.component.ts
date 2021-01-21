@@ -34,7 +34,7 @@ export class DocumentInformationFormComponent implements OnInit {
         console.table(this.documentInfoForm);
         this.documentInfoForm.profileId = this.profileId;
 
-        this.documentInfoService.saveDocumentInfo(this.documentInfoForm).subscribe(
+        this.documentInfoService.saveDocumentInfo(this.getFromData(this.documentInfoForm)).subscribe(
             (success: any) => {
                 console.log("success:", success);
                 this.alertService.tosterSuccess("Information saved successfully.");
@@ -50,7 +50,6 @@ export class DocumentInformationFormComponent implements OnInit {
     }
 
     public getDocument() {
-        debugger;
         this.documentInfoService.getDocumentById(this.profileId, this.documentInfoId).subscribe(
             (success: APIResponse) => {
      
@@ -71,7 +70,13 @@ export class DocumentInformationFormComponent implements OnInit {
     }
     public handleFileInput(files: FileList) {
         this.fileToUpload = files.item(0);
-        console.log(this.fileToUpload);
+    }
+
+    getFromData(model: any) {
+        const formData = new FormData();
+        formData.append('model', JSON.stringify(model));
+        formData.append('doc', this.fileToUpload);
+        return formData;
     }
 
 }

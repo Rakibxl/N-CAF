@@ -24,7 +24,15 @@ namespace Architecture.Models
         [Required]
         public string Token { get; set; } 
     }
-
+    public class ApiChangePasswordModel
+    {
+        [Required]
+        public Guid UserId { get; set; }
+        [Required]
+        public string NewPassword { get; set; }
+        [Required]
+        public string OldPassword { get; set; }
+    }
     public class ApiAppRegistrationModel : IMapFrom<ApplicationUser>
     {
         [Required]

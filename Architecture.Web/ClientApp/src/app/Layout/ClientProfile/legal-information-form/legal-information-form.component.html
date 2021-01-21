@@ -4,54 +4,55 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Legal Informations</span></h3>
+                        <h3><span class="bordered-title">{{'legalform.title' | translate}}
+                    </span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CountryName*</label>
+                            <label class="label">{{'movementform.countryName.label' | translate}}*</label>
                             <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="legalInfoForm.countryNameId" required>
                                 <option value="1">Italy</option>
                                 <option value="2">Bangladesh</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">Country name is required.</p>
+                            <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">{{'movementform.countryName.label' | translate}}Country name is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">CityName</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter CityName" name="cityName" #cityName="ngModel" [(ngModel)]="legalInfoForm.cityName"
+                            <label class="label">{{'common.cityName.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.cityName.placeholder' | translate}}" name="cityName" #cityName="ngModel" [(ngModel)]="legalInfoForm.cityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">City name is required.</p>
+                            <p [hidden]="cityName.valid || cityName.pristine" class="text-danger">{{'common.cityName.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate</label>
+                            <label class="label">{{'common.startDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="legalInfoForm.startDate"  required/>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
+                            <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndDate</label>
+                            <label class="label">{{'common.endDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="legalInfoForm.endDate" required  />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">EndDate is required.</p>
+                            <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsAnyCase</label>
+                            <label>{{'legalform.isAnyCase.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" name="isAnyCase" #isAnyCase="ngModel" [(ngModel)]="legalInfoForm.isAnyCase">
@@ -65,8 +66,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Ref#</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Ref No" name="refNo" #refNo="ngModel" [(ngModel)]="legalInfoForm.refNo"
+                            <label class="label">{{'legalform.refNo.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.refNo.placeholder' | translate}}" name="refNo" #refNo="ngModel" [(ngModel)]="legalInfoForm.refNo"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -75,8 +76,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Reason</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Reason" name="reason" #reason="ngModel" [(ngModel)]="legalInfoForm.reason"
+                            <label class="label">{{'legalform.reason.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.reason.placeholder' | translate}}" name="reason" #reason="ngModel" [(ngModel)]="legalInfoForm.reason"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -84,8 +85,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Note</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="Enter Note" name="note" #note="ngModel" [(ngModel)]="legalInfoForm.note"
+                            <label class="label">{{'legalform.note.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.note.placeholder' | translate}}" name="note" #note="ngModel" [(ngModel)]="legalInfoForm.note"
                                    />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -95,11 +96,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-footer d-flex justify-content-end">
-                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()" >
+                            <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button type="submit"  [disabled]="!legalInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!legalInfoInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

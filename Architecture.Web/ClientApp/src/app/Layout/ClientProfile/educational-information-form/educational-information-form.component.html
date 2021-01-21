@@ -4,60 +4,59 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Educational Informations</span></h3>
+                        <h3><span class="bordered-title">{{'educationform.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="fnBackToList()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DegreeType*</label>
+                            <label class="label">{{'educationform.degreeType.label' | translate}}*</label>
                             <select id="" class="form-control" name="degreeTypeId" #degreeTypeId="ngModel" [(ngModel)]="educationInfoForm.degreeTypeId" required>
-                                <!--<option>type here</option>-->
                                 <option value="1">Bachelor</option>
                                 <option value="2">Masters</option>
                                 <option value="3">High School</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="degreeTypeId.valid || degreeTypeId.pristine" class="text-danger">start year is required.</p>
+                            <p [hidden]="degreeTypeId.valid || degreeTypeId.pristine" class="text-danger">{{'educationform.degreeType.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartYear*</label>
+                            <label class="label">{{'common.startYear.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="startYear" #startYear="ngModel" [(ngModel)]="educationInfoForm.startYear" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="startYear.valid || startYear.pristine" class="text-danger">start year is required.</p>
+                            <p [hidden]="startYear.valid || startYear.pristine" class="text-danger">{{'common.startYear.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EndYear*</label>
+                            <label class="label">{{'common.endYear.label' | translate}}*</label>
                             <input type="date" autocomplete="off" class="form-control" name="endYear" #endYear="ngModel" [(ngModel)]="educationInfoForm.endYear" required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="endYear.valid || endYear.pristine" class="text-danger">end year is required.</p>
+                            <p [hidden]="endYear.valid || endYear.pristine" class="text-danger">{{'common.endYear.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">InstitutionName*</label>
-                            <input type="text" autocomplete="off" name="institutionName" [(ngModel)]="educationInfoForm.institutionName" #institutionName="ngModel" class="form-control" placeholder="Enter institution"
+                            <label class="label">{{'educationform.institutionName.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" name="institutionName" [(ngModel)]="educationInfoForm.institutionName" #institutionName="ngModel" class="form-control" placeholder="{{'educationform.institutionName.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
-                            <p [hidden]="institutionName.valid || institutionName.pristine" class="text-danger">institution name is required.</p>
+                            <p [hidden]="institutionName.valid || institutionName.pristine" class="text-danger">{{'educationform.institutionName.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">UniversityLoacation</label>
-                            <input type="text" autocomplete="off" name="universityAddress" [(ngModel)]="educationInfoForm.universityAddress" #universityAddress="ngModel"  class="form-control" placeholder="Enter university location"
+                            <label class="label">{{'educationform.universityAddress.label' | translate}}</label>
+                            <input type="text" autocomplete="off" name="universityAddress" [(ngModel)]="educationInfoForm.universityAddress" #universityAddress="ngModel"  class="form-control" placeholder="{{'educationform.universityAddress.placeholder' | translate}}"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -66,8 +65,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ActivitiesAndSocieties</label>
-                            <input type="text" autocomplete="off" name="activitiesAndSocieties" [(ngModel)]="educationInfoForm.activitiesAndSocieties" #activitiesAndSocieties="ngModel" class="form-control" placeholder="Enter activities and societies"
+                            <label class="label">{{'educationform.activitiesAndSocieties.label' | translate}}</label>
+                            <input type="text" autocomplete="off" name="activitiesAndSocieties" [(ngModel)]="educationInfoForm.activitiesAndSocieties" #activitiesAndSocieties="ngModel" class="form-control" placeholder="{{'educationform.activitiesAndSocieties.placeholder' | translate}}"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -76,8 +75,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Result</label>
-                            <input type="text" autocomplete="off" name="result" [(ngModel)]="educationInfoForm.result" #result ="ngModel" class="form-control" placeholder="Enter result"
+                            <label class="label">{{'educationform.result.label' | translate}}</label>
+                            <input type="text" autocomplete="off" name="result" [(ngModel)]="educationInfoForm.result" #result ="ngModel" class="form-control" placeholder="{{'educationform.result.placeholder' | translate}}"
                                     />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -90,9 +89,9 @@
                         <div class="card-footer d-flex justify-content-end">
                             <a href="javascript:void(0)" class="caf-btn-primary-outline back mr-2" (click)="this.fnBackToList()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </a>
-                            <button type="submit" [disabled]="!educationInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button type="submit" [disabled]="!educationInfoInputForm.form.valid" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}</button>
                         </div>
                     </div>
                 </div>
