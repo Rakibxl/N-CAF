@@ -75,25 +75,25 @@ namespace Architecture.BLL.Services.Implements
                         item.Status = profileSections.ProfileId != 0 ? "Active" : "InActive";
                         break;
                     case "Occupation Info":
-                        item.Status = profileSections.ProfOccupationInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfOccupationInfos.Any() ? "Active" : "InActive";
                         break;
                     case "Family Info":
-                        item.Status = profileSections.ProfFamilyInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfFamilyInfos.Any() ? "Active" : "InActive";
                         break;
                     case "Education Info":
-                        item.Status = profileSections.ProfEducationInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfEducationInfos.Any() ? "Active" : "InActive";
                         break;
                     case "Address Info":
-                        item.Status = profileSections.ProfAddressInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfAddressInfos.Any() ? "Active" : "InActive";
                         break;
                     case "House Rent Info":
-                        item.Status = profileSections.ProfHouseRentInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfHouseRentInfos.Any() ? "Active" : "InActive";
                         break;
                     case "Document Info":
-                        item.Status = profileSections.ProfDocumentInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfDocumentInfos.Any() ? "Active" : "InActive";
                         break;
                     case "Income Info":
-                        item.Status = profileSections.ProfIncomeInfos.Count > 0 ? "Active" : "InActive";
+                        item.Status = profileSections.ProfIncomeInfos.Any() ? "Active" : "InActive";
                         break;
                     default:
                         break;

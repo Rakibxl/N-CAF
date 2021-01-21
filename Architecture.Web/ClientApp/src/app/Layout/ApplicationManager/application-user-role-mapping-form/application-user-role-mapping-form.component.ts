@@ -84,6 +84,7 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
 
   getModel() {
     let formData = this.roleMappingForm.value;
+    formData.userId = formData.userId;
     return formData;
   }
 

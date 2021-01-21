@@ -38,8 +38,8 @@ namespace Architecture.Web.Controllers.Users
             try
             {
                 var result = await _applicationUserRoleMappingService.GetAllAsync(query);
-                var queryResult = _mapper.Map<QueryResult<ApplicationUserRole>, QueryResult<UserRoleModel>>(result);
-                return OkResult(queryResult);
+                //var queryResult = _mapper.Map<QueryResult<ApplicationUserRole>, QueryResult<UserRoleModel>>(result);
+                return OkResult(result);
             }
             catch (Exception ex)
             {
