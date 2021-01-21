@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210112194524_Job Section Link model creation")]
+    partial class JobSectionLinkmodelcreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("AppUserTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BranchInfoId")
+                    b.Property<int?>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -197,7 +199,7 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.BranchInfo", b =>
                 {
-                    b.Property<int>("BranchInfoId")
+                    b.Property<int>("BranchId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -261,7 +263,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
-                    b.HasKey("BranchInfoId");
+                    b.HasKey("BranchId");
 
                     b.HasIndex("RecordStatusId");
 
@@ -440,6 +442,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("JobInfoId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
@@ -454,6 +457,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("SectionNameId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("JobSectionLinkId");
@@ -3528,9 +3532,11 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.JobSectionLink", b =>
                 {
-                    b.HasOne("Architecture.Core.Entities.JobInfo", null)
+                    b.HasOne("Architecture.Core.Entities.JobInfo", "JobInfo")
                         .WithMany("JobSectionLink")
-                        .HasForeignKey("JobInfoId");
+                        .HasForeignKey("JobInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
@@ -3538,7 +3544,9 @@ namespace Architecture.Core.Migrations
 
                     b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
                         .WithMany()
-                        .HasForeignKey("SectionNameId");
+                        .HasForeignKey("SectionNameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.ProfAddressInfo", b =>

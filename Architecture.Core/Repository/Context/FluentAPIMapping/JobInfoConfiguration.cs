@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Architecture.Core.Repository.Context.FluentAPIMapping
 {
-    public class JobInfoConfiguration : IEntityTypeConfiguration<JobInformation>
+    public class JobInfoConfiguration : IEntityTypeConfiguration<JobInfo>
     {
-        public void Configure(EntityTypeBuilder<JobInformation> jobInfo)
+        public void Configure(EntityTypeBuilder<JobInfo> jobInfo)
         {
-            jobInfo.HasKey(bs => bs.JobId);
+            jobInfo.HasKey(bs => bs.JobInfoId);
             jobInfo.Property(bs => bs.Title).HasMaxLength(250).IsRequired();
             jobInfo.Property(bs => bs.Description).HasMaxLength(250).IsRequired(false);
             jobInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
@@ -32,7 +32,6 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             jobInfo.Property(bs => bs.HasUnlimitedResidencePermit).HasDefaultValue(false);
             jobInfo.Property(bs => bs.IsEligibleForUnlimitedResidencePermit).HasDefaultValue(false);
             jobInfo.Property(bs => bs.DaysToBeExpairedPassport).IsRequired(false);
-            jobInfo.Property(bs => bs.SectionList).HasMaxLength(250).IsRequired(false);
 
 
             //jobInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

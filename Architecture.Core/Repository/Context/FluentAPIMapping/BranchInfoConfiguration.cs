@@ -11,7 +11,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
     {
         public void Configure(EntityTypeBuilder<BranchInfo> branchInfo)
         {
-            branchInfo.HasKey(bs => bs.BranchId);
+            branchInfo.HasKey(bs => bs.BranchInfoId);
             //branchInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfbranchInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
             branchInfo.Property(bs => bs.BranchLocation).HasMaxLength(100).IsRequired();
             branchInfo.Property(bs => bs.Address).HasMaxLength(100).IsRequired();

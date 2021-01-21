@@ -14,10 +14,15 @@ namespace Architecture.Web.Controllers.Job
         private readonly IJobInformationService jobInfoService;
 
         private readonly IJobSectionLinkService jobSectionLinkService;
-
-        public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
+        //public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
+        //{
+        //    this.jobInfoService = jobInfoService;
+        //    this.jobSectionLinkService = jobSectionLinkService;
+        //} 
+        
+        public JobInfoController( IJobSectionLinkService jobSectionLinkService)
         {
-            this.jobInfoService = jobInfoService;
+            //this.jobInfoService = jobInfoService;
             this.jobSectionLinkService = jobSectionLinkService;
         }
 
@@ -36,26 +41,31 @@ namespace Architecture.Web.Controllers.Job
         }
 
         [HttpPost("CreateOrUpdate")]
-        public async Task<IActionResult> CreateOrUpdate([FromBody] JobInformation model)
+        public async Task<IActionResult> CreateOrUpdate([FromBody] JobInfo model)
         {
             return await ModelValidation(async () =>
             {
-                //var result = await jobInfoService.AddOrUpdate(model);
+                var jobSectionLinks = model.JobSectionLink;
+                model.JobSectionLink = null;
+               // var result = await jobInfoService.AddOrUpdate(model);
+                //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(result.JobInfoId, jobSectionLinks);
+                //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks);
+                var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks);
                 //return OkResult(result);
 
 
                 // save for job section link
 
-                string[] split = model.SectionList.Split(',');
+                //string[] split = model.SectionList.Split(',');
 
                 
-                foreach (string item in split)
-                {
-                    JobSectionLink jobSectionLink = new JobSectionLink();
-                    jobSectionLink.JobId = model.JobId;
-                    jobSectionLink.SectionNameId = Int32.Parse(item) ;
-                    var result2 = await jobSectionLinkService.AddOrUpdate(jobSectionLink);
-                }
+                //foreach (string item in split)
+                //{
+                //    JobSectionLink jobSectionLink = new JobSectionLink();
+                //    jobSectionLink.JobInfoId = model.JobInfoId;
+                //    jobSectionLink.SectionNameId = Int32.Parse(item) ;
+                //    var result2 = await jobSectionLinkService.AddOrUpdate(jobSectionLink);
+                //}
 
                 return OkResult("OK");
 

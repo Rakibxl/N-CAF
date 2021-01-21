@@ -112,17 +112,19 @@ namespace Architecture.Web
             services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
             #endregion
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("Repository"))
-                    .AsPublicImplementedInterfaces();
+            #region dynamic service inject
+            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+            //        .Where(c => c.Name.EndsWith("Repository"))
+            //        .AsPublicImplementedInterfaces();
 
-            services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("UnitOfWork"))
-                    .AsPublicImplementedInterfaces();
+            //services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
+            //        .Where(c => c.Name.EndsWith("UnitOfWork"))
+            //        .AsPublicImplementedInterfaces();
 
-            (services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
-                    .Where(c => c.Name.EndsWith("Service"))
-                    .AsPublicImplementedInterfaces();
+            //(services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
+            //        .Where(c => c.Name.EndsWith("Service"))
+            //        .AsPublicImplementedInterfaces();
+            #endregion of dynamic service end
 
             services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 

@@ -1,8 +1,8 @@
 
 export class Entity {
     id: any;
-    isDeleted: boolean;
-    isActive: boolean;
+    isDeleted: boolean = false;
+    isActive: boolean = false;
 
     clear() {
         // this.id = '';

@@ -6,6 +6,7 @@
     "username.placeholder": "Nom D'Utilisateur Ici",
     "password.label": "Mot de passe",
     "password.placeholder": "Entrez Le Mot De Passe",
+    "DateOfBirth": "Data Di Nascita",
     "button.name": "Signin",
     "forgotpassword.link": "Mot De Passe Oublié ?",
     "register.link": "Créer Un Nouveau Compte",
@@ -13,5 +14,8 @@
     "button.ta": "Tamil",
     "button.fr": "Française",
     "button.zh": "Chinoise"
+  },
+  "common": {
+    "PhoneNumber": "Phone Number"
   }
 }

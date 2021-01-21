@@ -1,13 +1,15 @@
 ﻿using Architecture.Core.Entities.LU;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Architecture.Core.Entities
 {
-    public class JobInformation
+    public class JobInfo
     {
         [Key]
-        public int JobId { get; set; }
+        public int JobInfoId { get; set; }
+        //public int JobId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -38,9 +40,10 @@ namespace Architecture.Core.Entities
         public int? DaysToBeExpairedPassport { get; set; }      
         public bool IsEligibleForCityzenShipApply { get; set; }
         public bool HasUnlimitedResidencePermit { get; set; }
-        public string SectionList { get; set; }
 
         #endregion
+
+        public virtual ICollection<JobSectionLink> JobSectionLink { get; set; }
     }
 }
 

@@ -75,7 +75,7 @@ namespace Architecture.Web.Controllers.Users
                 var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
 
-                if (model.BranchId > 0)
+                if (model.BranchInfoId > 0)
                 {
                     model.ModifiedBy = UserId;
                 }

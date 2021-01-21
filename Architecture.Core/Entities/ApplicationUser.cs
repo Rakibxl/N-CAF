@@ -23,7 +23,7 @@ namespace Architecture.Core.Entities
         public Guid? ModifiedBy { get; set; }
         public DateTime? Modified { get; set; }
         public bool IsLocked { get; set; }
-        public int? BranchId { get; set; }
+        public int? BranchInfoId { get; set; }
 
         public IList<ApplicationUserRole> UserRoles { get; set; }
 
