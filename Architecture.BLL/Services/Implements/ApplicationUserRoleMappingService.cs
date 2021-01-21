@@ -92,5 +92,33 @@ namespace Architecture.BLL.Services.Implements
                 }
             }
         }
+
+        public async Task<Guid> DeleteAsync(ApplicationUser entity, string role)
+        {
+            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                try
+                {
+                    var isExists = await _userManager.IsInRoleAsync(entity, role);
+                    if (isExists)
+                    {
+                        var user = await _userManager.FindByIdAsync(entity.Id.ToString());
+
+                        var roleSaveResult = await _userManager.RemoveFromRoleAsync(user, role);
+                        if (!roleSaveResult.Succeeded)
+                        {
+                            throw new IdentityValidationException(roleSaveResult.Errors);
+                        };
+                    }
+                    scope.Complete();
+                    return new Guid();
+                }
+                catch (Exception ex)
+                {
+                    scope.Dispose();
+                    throw ex;
+                }
+            }
+        }
     }
 }

@@ -65,5 +65,29 @@ namespace Architecture.Web.Controllers.Users
                 return ExceptionResult(ex);
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] ApplicationUserRoleModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ValidationResult(ModelState);
+            }
+
+            try
+            {
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Id = model.UserId
+                };
+
+                var res = await _applicationUserRoleMappingService.AddAsync(user, model.Role);
+                return OkResult(res);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
     }
 }
