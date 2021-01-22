@@ -49,11 +49,11 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpGet("GetBranchInfo")]
-        public async Task<IActionResult> GetBranchInfo(int branchId)
+        public async Task<IActionResult> GetBranchInfo(int branchInfoId)
         {
             try
             {
-                var result = await _branchService.GetById(branchId);
+                var result = await _branchService.GetById(branchInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)

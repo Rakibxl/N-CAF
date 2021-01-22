@@ -43,7 +43,7 @@ export class ApplicationUserComponent implements OnInit {
             { headerName: 'Name ', width: '10%', internalName: 'name', sort: true, type: "" },
             { headerName: 'Email', width: '10%', internalName: 'email', sort: true, type: "" },
             { headerName: 'User Type ', width: '15%', internalName: 'appUserTypeId', sort: true, type: "" },
-            { headerName: 'Branch Location', width: '15%', internalName: 'branchId', sort: true, type: "" },
+            { headerName: 'Branch Location', width: '15%', internalName: 'branchInfoId', sort: true, type: "" },
             { headerName: 'Contact Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
             { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "" },
             { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "" },

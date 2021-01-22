@@ -41,7 +41,7 @@ export class ApplicationUserRoleMappingComponent implements OnInit {
         tableColDef: [
             { headerName: 'User Name', width: '15%', internalName: 'userName', sort: true, type: "" },
             { headerName: 'Role Name', width: '15%', internalName: 'roleName', sort: true, type: "" },
-            { headerName: 'BranchId', width: '10%', internalName: 'branchId', sort: true, type: "" },
+            { headerName: 'BranchInfoId', width: '10%', internalName: 'branchInfoId', sort: true, type: "" },
             // { headerName: 'Status', width: '10%', internalName: 'status', sort: false, type: "" },
             { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 

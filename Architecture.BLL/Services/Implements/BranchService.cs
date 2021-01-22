@@ -38,12 +38,12 @@ namespace Architecture.BLL.Services.Implements
             return result;
         }
 
-        public async Task<BranchInfo> GetById(int branchId)
+        public async Task<BranchInfo> GetById(int branchInfoId)
         {
-            var checkVal = await IsExistsAsync(x => x.BranchInfoId == branchId);
+            var checkVal = await IsExistsAsync(x => x.BranchInfoId == branchInfoId);
             if (checkVal)
             {
-                BranchInfo result = await GetByIdAsync(branchId);
+                BranchInfo result = await GetByIdAsync(branchInfoId);
                 return result;
             }
             else
@@ -73,9 +73,9 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
-        public async Task<int> Delete(int branchId)
+        public async Task<int> Delete(int branchInfoId)
         {
-            var result = await DeleteAsync(x => x.BranchInfoId == branchId);
+            var result = await DeleteAsync(x => x.BranchInfoId == branchInfoId);
             return result;
         }
     }

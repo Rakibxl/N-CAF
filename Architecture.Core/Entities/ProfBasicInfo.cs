@@ -65,7 +65,7 @@ namespace Architecture.Core.Entities
         public bool? HasWorker { get; set; }
         public string DigitalVatCode { get; set; }
         public bool HasAppliedForCitizenship { get; set; }
-        public int? BranchId { get; set; }
+        public int? BranchInfoId { get; set; }
 
         #endregion
 

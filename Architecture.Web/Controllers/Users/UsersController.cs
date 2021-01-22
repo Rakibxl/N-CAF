@@ -98,7 +98,7 @@ namespace Architecture.Web.Controllers.Users
                         user.Email = model.Email;
                         user.PhoneNumber = model.PhoneNumber;
                         user.AppUserTypeId = model.AppUserTypeId;
-                        user.BranchInfoId = model.BranchId;
+                        user.BranchInfoId = model.BranchInfoId;
                         user.ModifiedBy = UserId;
                         user.Modified = DateTime.Now;
 
@@ -129,7 +129,7 @@ namespace Architecture.Web.Controllers.Users
                         Email = model.Email,
                         PhoneNumber = model.PhoneNumber,
                         AppUserTypeId = model.AppUserTypeId,
-                        BranchInfoId = model.BranchId,
+                        BranchInfoId = model.BranchInfoId,
                         GenderId = model.GenderId,
                         CreatedBy = UserId,
                         Created = DateTime.Now

@@ -15,12 +15,12 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class BranchInformationFormComponent implements OnInit {
   branchForm: FormGroup;
-  branchId: number;
+  branchInfoId: number;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private commonService: CommonService, private userService: UserService, private roleService: RoleService, private branchService: BranchService, private alertService: AlertService) {
     this.initForm();
     let bId: any = this.route.snapshot.paramMap.get('id') || 0;
-    this.branchId = parseInt(bId);
+    this.branchInfoId = parseInt(bId);
   }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class BranchInformationFormComponent implements OnInit {
 
   initForm() {
     this.branchForm = this.fb.group({
-      branchId: [null],
+      branchInfoId: [null],
       branchLocation: [null, Validators.required],
       address: [null, Validators.required],
       city: [null, Validators.required],
@@ -51,12 +51,12 @@ export class BranchInformationFormComponent implements OnInit {
   }
 
   loadBranchInfo() {
-    if (!(this.branchId > 0)) {
+    if (!(this.branchInfoId > 0)) {
       this, this.branchForm.reset();
       return;
     }
-    this.branchService.getBranchInfo(this.branchId).subscribe(res => {
-      if (res && res.data.branchId) {
+    this.branchService.getBranchInfo(this.branchInfoId).subscribe(res => {
+      if (res && res.data.branchInfoId) {
         res.data.agreementStart = this.commonService.getFormatedDateToSave(res.data.agreementStart);
         this.branchForm.patchValue(res.data);
       }
@@ -68,7 +68,7 @@ export class BranchInformationFormComponent implements OnInit {
 
   getModel() {
     let formData = this.branchForm.value;
-    formData.branchId = formData.branchId || 0;
+    formData.branchInfoId = formData.branchInfoId || 0;
     return formData;
   }
 

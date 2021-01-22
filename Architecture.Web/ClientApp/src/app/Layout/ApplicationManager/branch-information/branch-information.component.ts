@@ -27,21 +27,21 @@ export class BranchInformationComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
-        let branchId = event.record && event.record.branchId || 0;
+        let branchInfoId = event.record && event.record.branchInfoId || 0;
         if (event.action == "new-record") {
-            this.router.navigate([`/manager/branch-info/${branchId}`]);
+            this.router.navigate([`/manager/branch-info/${branchInfoId}`]);
         }
         else if (event.action == "edit-item") {
-            this.router.navigate([`/manager/branch-info/${branchId}`]);
+            this.router.navigate([`/manager/branch-info/${branchInfoId}`]);
         }
     }
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Branch List',
-        tableRowIDInternalName: "branchId",
+        tableRowIDInternalName: "branchInfoId",
         tableColDef: [
-            { headerName: 'Branch Id', width: '6%', internalName: 'branchId', sort: true, type: "" },
+            { headerName: 'Branch Id', width: '6%', internalName: 'branchInfoId', sort: true, type: "" },
             { headerName: 'Address', width: '15%', internalName: 'address', sort: true, type: "" },
             { headerName: 'City', width: '15%', internalName: 'city', sort: true, type: "" },
             { headerName: 'Contact Person', width: '10%', internalName: 'contactPerson', sort: false, type: "" },

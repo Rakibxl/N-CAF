@@ -17,15 +17,15 @@ import { DropdownService } from '../../../Shared/Services/Common/dropdown.servic
 export class BasicInformationComponent implements OnInit {
   basicInfoForm: FormGroup;
   user: IAuthUser;
-    profileId: any;
-    public gender = [];
-    public maritalStatus = [];
-    public nationality = [];
-    public eyeColor = [];
-    public motiveType = [];
+  profileId: any;
+  public gender = [];
+  public maritalStatus = [];
+  public nationality = [];
+  public eyeColor = [];
+  public motiveType = [];
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
-        private alertService: AlertService, private router: Router, private commonService: CommonService, private dropdownService :DropdownService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
+    private alertService: AlertService, private router: Router, private commonService: CommonService, private dropdownService: DropdownService) {
     this.authService.currentUser.subscribe(user => this.user = user);
     this.initForm();
     this.profileId = this.route.snapshot.paramMap.get('profId') || 0;
@@ -35,32 +35,32 @@ export class BasicInformationComponent implements OnInit {
   }
 
   async ngOnInit() {
-      this.loadBasicInfo();
-      //let addressType = await this.dropdownService.getAddressInfo();
-      //let addressType = await this.dropdownService.getAppUserStatus();
-      let addressType = await this.dropdownService.getAppUserType()||[];
-      let assetType = await this.dropdownService.getAssetType()||[];
-      let bankName = await this.dropdownService.getBankName()||[];
-      let contractType = await this.dropdownService.getContractType()||[];
-      let countryName = await this.dropdownService.getCountryName()||[];
-      let degreeType = await this.dropdownService.getDegreeName()||[];
-      let documentType = await this.dropdownService.getDocumentType()||[];
-       this.eyeColor = await this.dropdownService.getEyeColor()||[];
-      this.gender = await this.dropdownService.getGender() || [];
-      let houseCategory = await this.dropdownService.getHouseCategory() || [];
-      let houseType = await this.dropdownService.getHouseType() || [];
-      let incomeType = await this.dropdownService.getIncomeType() || [];
-      let insuranceType = await this.dropdownService.getInsuranceType() || [];
-      let iseeClassType = await this.dropdownService.getISEEClassType() || [];
-      let jobDeliveryType = await this.dropdownService.getJobDeliveryType() || [];
-      let jobType = await this.dropdownService.getJobType() || [];
-      this.maritalStatus = await this.dropdownService.getMaritalStatus() || [];
-      this.nationality = await this.dropdownService.getNationality() || [];
-      this.motiveType = await this.dropdownService.getMotiveType() || [];
+    this.loadBasicInfo();
+    //let addressType = await this.dropdownService.getAddressInfo();
+    //let addressType = await this.dropdownService.getAppUserStatus();
+    let addressType = await this.dropdownService.getAppUserType() || [];
+    let assetType = await this.dropdownService.getAssetType() || [];
+    let bankName = await this.dropdownService.getBankName() || [];
+    let contractType = await this.dropdownService.getContractType() || [];
+    let countryName = await this.dropdownService.getCountryName() || [];
+    let degreeType = await this.dropdownService.getDegreeName() || [];
+    let documentType = await this.dropdownService.getDocumentType() || [];
+    this.eyeColor = await this.dropdownService.getEyeColor() || [];
+    this.gender = await this.dropdownService.getGender() || [];
+    let houseCategory = await this.dropdownService.getHouseCategory() || [];
+    let houseType = await this.dropdownService.getHouseType() || [];
+    let incomeType = await this.dropdownService.getIncomeType() || [];
+    let insuranceType = await this.dropdownService.getInsuranceType() || [];
+    let iseeClassType = await this.dropdownService.getISEEClassType() || [];
+    let jobDeliveryType = await this.dropdownService.getJobDeliveryType() || [];
+    let jobType = await this.dropdownService.getJobType() || [];
+    this.maritalStatus = await this.dropdownService.getMaritalStatus() || [];
+    this.nationality = await this.dropdownService.getNationality() || [];
+    this.motiveType = await this.dropdownService.getMotiveType() || [];
 
-      console.log("houseCategory: ", houseCategory, "houseType:", houseType, "incomeType:", incomeType, "insuranceType:", insuranceType, "iseeClassType:", iseeClassType, "jobDeliveryType: ", jobDeliveryType,
-          "jobType", jobType,
-          "documentType:", documentType, "eyeColor:", this.eyeColor, "gender:", this.gender, "nationality:", this.nationality, "motiveType:", this.motiveType);
+    console.log("houseCategory: ", houseCategory, "houseType:", houseType, "incomeType:", incomeType, "insuranceType:", insuranceType, "iseeClassType:", iseeClassType, "jobDeliveryType: ", jobDeliveryType,
+      "jobType", jobType,
+      "documentType:", documentType, "eyeColor:", this.eyeColor, "gender:", this.gender, "nationality:", this.nationality, "motiveType:", this.motiveType);
   }
 
   initForm() {
@@ -113,7 +113,7 @@ export class BasicInformationComponent implements OnInit {
       isPregnant: [false, Validators.required],
       expectedBabyBirthDate: [null],
       applicationFor: [null],
-      branchId: [null],
+      branchInfoId: [null],
       refId: [null],
       createdBy: [null],
       // created: [null],

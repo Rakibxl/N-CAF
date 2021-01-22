@@ -36,7 +36,7 @@ export class ApplicationUserFormComponent implements OnInit {
       phoneNumber: [null, Validators.required],
       password: [null],
       appUserTypeId: [null, Validators.required],
-      branchId: [null],
+      branchInfoId: [null],
       createdBy: [null],
       modifiedBy: [null]
     });

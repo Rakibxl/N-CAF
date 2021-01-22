@@ -64,7 +64,7 @@ namespace Architecture.Web.Models.ClientProfile
         public bool? HasAppliedForCitizenship { get; set; }
         public string RequestTypeOfApplicant { get; set; }
         public string ApplicationFor { get; set; }
-        public int? BranchId { get; set; }
+        public int? BranchInfoId { get; set; }
         #endregion
 
 

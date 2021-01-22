@@ -20,8 +20,8 @@ export class BranchService {
     this.branchEndpoint = this.baseUrl + 'v1/Branch';
   }
 
-  getBranchInfo(branchId) {
-    let url = this.branchEndpoint + "/GetBranchInfo?branchId=" + branchId;
+  getBranchInfo(branchInfoId) {
+    let url = this.branchEndpoint + "/GetBranchInfo?branchInfoId=" + branchInfoId;
     return this.http.get<APIResponse>(`${url}`);
   }
 

@@ -22,7 +22,7 @@ namespace Architecture.Web.Models
         public int? GenderId { get; set; }
         public string Gender { get; set; }
         public int? AppUserTypeId { get; set; }
-        public int? BranchId { get; set; }
+        public int? BranchInfoId { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string ImageUrl { get; set; }
         public Guid? UserRoleId { get; set; }
@@ -57,7 +57,7 @@ namespace Architecture.Web.Models
         public string Password { get; set; }
         public int? GenderId { get; set; }
         public int? AppUserTypeId { get; set; }
-        public int? BranchId { get; set; }
+        public int? BranchInfoId { get; set; }
         [Required]
         public Guid UserRoleId { get; set; }
 
