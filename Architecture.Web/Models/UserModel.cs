@@ -22,7 +22,9 @@ namespace Architecture.Web.Models
         public int? GenderId { get; set; }
         public string Gender { get; set; }
         public int? AppUserTypeId { get; set; }
+        public string AppUserType { get; set; }
         public int? BranchInfoId { get; set; }
+        public string BranchLocation { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string ImageUrl { get; set; }
         public Guid? UserRoleId { get; set; }
@@ -34,6 +36,8 @@ namespace Architecture.Web.Models
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ApplicationUser, UserModel>()
+                .ForMember(dest => dest.BranchLocation, opt => opt.MapFrom(src => src.BranchInfo.BranchLocation))
+                .ForMember(dest => dest.AppUserType, opt => opt.MapFrom(src => src.AppUserType.AppUserTypeTitle))
                 .ForMember(dest => dest.UserRoleName, opt => opt.MapFrom(src =>
                     src.UserRoles.Any() ? (src.UserRoles.Select(ur => ur.Role).FirstOrDefault() != null ?
                     src.UserRoles.Select(ur => ur.Role.Name).FirstOrDefault() : null) : null))

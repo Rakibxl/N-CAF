@@ -313,7 +313,8 @@ namespace Architecture.Core.Repository.Context
                 ms.HasData(
                     new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Client", IsActive = true },
                     new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
-                    new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Other", IsActive = true }
+                    new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Operator", IsActive = true },
+                    new AppUserType { AppUserTypeId = 4, AppUserTypeTitle = "Admin", IsActive = true }
                 );
             });
             modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");

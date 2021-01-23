@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../Shared/Services/Users/user.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { BranchService } from '../../../Shared/Services/Users/branch.service';
 import { Guid } from 'guid-typescript';
 
 @Component({
@@ -13,8 +14,9 @@ import { Guid } from 'guid-typescript';
 export class ApplicationUserFormComponent implements OnInit {
   appUserForm: FormGroup;
   userGuid: any;
+  branchList: any[] = [];
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private branchService: BranchService, private router: Router, private userService: UserService, private alertService: AlertService) {
     this.initForm();
     this.userGuid = this.route.snapshot.params.id || "";
   }
@@ -24,6 +26,7 @@ export class ApplicationUserFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadBranchList();
     this.getUser();
   }
 
@@ -35,10 +38,22 @@ export class ApplicationUserFormComponent implements OnInit {
       email: [null, Validators.required],
       phoneNumber: [null, Validators.required],
       password: [null],
+      confirmPassword: [null],
       appUserTypeId: [null, Validators.required],
       branchInfoId: [null],
       createdBy: [null],
       modifiedBy: [null]
+    });
+  }
+
+  loadBranchList() {
+    this.branchService.getBranchList().subscribe((res) => {
+      this.alertService.fnLoading(false);
+      if (res && res.data && res.data.length) {
+        this.branchList = res.data;
+      }
+    }, err => {
+      this.alertService.tosterDanger(err);
     });
   }
 
@@ -66,15 +81,21 @@ export class ApplicationUserFormComponent implements OnInit {
   }
 
   save() {
-    let model = this.getModel();
-    this.userService.createOrUpdateAppUser(model).subscribe(res => {
+    let formData = this.appUserForm.value;
+    if (!formData.id && formData.password != formData.confirmPassword) {
+      this.alertService.tosterDanger('Password not matched!!');
+      return;
+    }
+    formData.id = formData.id || Guid.EMPTY;
+    this.userService.createOrUpdateAppUser(formData).subscribe(res => {
       if (res && res.data && res.data.id) {
         this.alertService.tosterSuccess('User saved successfully');
         this.appUserForm.patchValue({ id: res.data.id });
+        this.router.navigate(['/manager/user-info']);
       }
     }, (error: any) => {
       console.log(error);
-      this.alertService.tosterDanger(error);
+      // this.alertService.tosterDanger(error);
     });
   }
 }
