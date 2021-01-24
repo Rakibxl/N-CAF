@@ -132,7 +132,18 @@ namespace Architecture.BLL.Services.Implements
                     if (listOfJobSectionLink.FindAll(x => x.JobSectionLinkId > 0).Count > 0) await UpdateRangeAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId > 0));
                     if (listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0).Count > 0)
                     {
-                        await AddAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0)[0]);
+                        await AddAsync(new JobSectionLink()
+                        {
+                            Created= DateTime.Now,
+                            CreatedBy=null,
+                            JobInfoId=1,
+                            JobSectionLinkId=0,
+                            Modified=DateTime.Now,
+                            ModifiedBy=null,
+                            RecordStatus=null,
+                            RecordStatusId=null,
+                            SectionNameId=1
+                        });
                         //await AddRangeAsync(listOfJobSectionLink.FindAll(x => x.JobSectionLinkId == 0));
                     }
 

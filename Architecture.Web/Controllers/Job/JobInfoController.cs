@@ -14,15 +14,9 @@ namespace Architecture.Web.Controllers.Job
         private readonly IJobInformationService jobInfoService;
 
         private readonly IJobSectionLinkService jobSectionLinkService;
-        //public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
-        //{
-        //    this.jobInfoService = jobInfoService;
-        //    this.jobSectionLinkService = jobSectionLinkService;
-        //} 
-        
-        public JobInfoController( IJobSectionLinkService jobSectionLinkService)
+        public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
         {
-            //this.jobInfoService = jobInfoService;
+            this.jobInfoService = jobInfoService;
             this.jobSectionLinkService = jobSectionLinkService;
         }
 
