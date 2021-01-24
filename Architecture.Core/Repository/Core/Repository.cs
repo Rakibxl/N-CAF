@@ -36,8 +36,8 @@ namespace Architecture.Core.Repository.Core
                             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                             bool disableTracking = true)
         {
-            using (_dbContext)
-            {
+            //using (_dbContext)
+            //{
                 IQueryable<TEntity> query = _dbSet.AsQueryable();
                 if (include != null)
                     query = include(query);
@@ -52,7 +52,7 @@ namespace Architecture.Core.Repository.Core
                     query = query.AsNoTracking();
 
                 return await query.Select(selector).ToListAsync();
-            }
+            //}
 
         }
 
@@ -140,10 +140,11 @@ namespace Architecture.Core.Repository.Core
             return entity;
         }
 
-        public virtual async Task AddRangeAsync(IList<TEntity> entities)
+        public virtual async Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entities)
         {
             await _dbSet.AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
+            return entities;
         }
 
         public virtual async Task<TEntity> UpdateAsync(TEntity entity)
@@ -154,10 +155,11 @@ namespace Architecture.Core.Repository.Core
             return entity;
         }
 
-        public virtual async Task UpdateRangeAsync(IList<TEntity> entities)
+        public virtual async Task<IList<TEntity>> UpdateRangeAsync(IList<TEntity> entities)
         {
             _dbContext.UpdateRange(entities);
             await _dbContext.SaveChangesAsync();
+            return entities;
         }
 
         public virtual async Task DeleteAsync(object id)
@@ -189,9 +191,10 @@ namespace Architecture.Core.Repository.Core
             return 1;
         }
 
-        public virtual async Task DeleteRangeAsync(IList<TEntity> entities)
+        public virtual async Task<bool> DeleteRangeAsync(IList<TEntity> entities)
         {
             _dbContext.RemoveRange(entities);
+            return true;
         }
         #endregion
 

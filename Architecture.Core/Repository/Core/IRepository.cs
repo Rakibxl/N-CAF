@@ -34,13 +34,13 @@ namespace Architecture.Core.Repository.Core
         Task<int> GetCountAsync(Expression<Func<TEntity, bool>> predicate = null);
         Task<bool> IsExistsAsync(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> AddAsync(TEntity entity);
-        Task AddRangeAsync(IList<TEntity> entities);
+        Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entities);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task UpdateRangeAsync(IList<TEntity> entities);
+        Task<IList<TEntity>> UpdateRangeAsync(IList<TEntity> entities);
         Task DeleteAsync(object id);
         Task DeleteAsync(TEntity entity);
         Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
-        Task DeleteRangeAsync(IList<TEntity> entities);
+        Task<bool> DeleteRangeAsync(IList<TEntity> entities);
         #endregion
 
         #region LINQ
