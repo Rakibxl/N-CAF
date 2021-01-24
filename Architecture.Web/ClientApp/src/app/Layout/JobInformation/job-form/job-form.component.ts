@@ -34,12 +34,10 @@ export class JobFormComponent implements OnInit {
     selectedSectionIds: number[] = [];
 
     public onSubmit() {
-        debugger;
-
         this.jobInfoForm.jobSectionLink = [];
-        this.selectedSectionIds.forEach(m => {
-            if (this.selectedJobSectionLink.filter(x => x.jobSectionLinkId == m).length > 0) {
-                this.jobInfoForm.jobSectionLink.push(this.selectedJobSectionLink.find(x => x.jobSectionLinkId == m))
+        this.selectedSectionIds.forEach( m => {
+            if (this.selectedJobSectionLink.filter(x => x.sectionNameId == m).length > 0) {
+                this.jobInfoForm.jobSectionLink.push(this.selectedJobSectionLink.find(x => x.sectionNameId == m))
             } else {
                 let sectionLink = new JobSectionLink();
                 sectionLink.jobSectionLinkId= 0;
@@ -71,8 +69,8 @@ export class JobFormComponent implements OnInit {
                 success.data.endDate = this.commonService.getDateToSetForm(success.data.endDate);
                 this.jobInfoForm = success.data
                 this.selectedJobSectionLink = this.jobInfoForm.jobSectionLink || [];
-                this.selectedSectionIds = this.selectedJobSectionLink.map(x=>x.sectionNameId);
-                console.table("selectedSectionIds:" + this.selectedSectionIds);
+                this.selectedSectionIds = this.selectedJobSectionLink.map(x => x.sectionNameId);
+                console.log("selectedSectionIds:", this.selectedSectionIds, this.selectedJobSectionLink);
             },
             (error: any) => {
                 this.alertService.tosterWarning(error.message);

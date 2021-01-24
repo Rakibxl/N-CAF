@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Architecture.Core.Entities;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Architecture.Web.Controllers.Job
 {
@@ -12,17 +13,11 @@ namespace Architecture.Web.Controllers.Job
     public class JobInfoController : BaseController
     {
         private readonly IJobInformationService jobInfoService;
-
         private readonly IJobSectionLinkService jobSectionLinkService;
-        //public JobInfoController(IJobInformationService jobInfoService, IJobSectionLinkService jobSectionLinkService)
-        //{
-        //    this.jobInfoService = jobInfoService;
-        //    this.jobSectionLinkService = jobSectionLinkService;
-        //} 
-        
-        public JobInfoController( IJobSectionLinkService jobSectionLinkService)
+        public JobInfoController(IJobInformationService jobInfoService
+            , IJobSectionLinkService jobSectionLinkService)
         {
-            //this.jobInfoService = jobInfoService;
+            this.jobInfoService = jobInfoService;
             this.jobSectionLinkService = jobSectionLinkService;
         }
 
@@ -47,10 +42,10 @@ namespace Architecture.Web.Controllers.Job
             {
                 var jobSectionLinks = model.JobSectionLink;
                 model.JobSectionLink = null;
-               // var result = await jobInfoService.AddOrUpdate(model);
+                //var result = await jobInfoService.AddOrUpdate(model);
                 //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(result.JobInfoId, jobSectionLinks);
                 //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks);
-                var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks);
+                var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks.ToList());
                 //return OkResult(result);
 
 

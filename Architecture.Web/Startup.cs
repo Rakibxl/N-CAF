@@ -109,7 +109,7 @@ namespace Architecture.Web
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IJobInformationService, JobInformationService>();
             services.AddTransient<ISectionLinkService, SectionLinkService>();
-            services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
+            //services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
             #endregion
 
             #region dynamic service inject

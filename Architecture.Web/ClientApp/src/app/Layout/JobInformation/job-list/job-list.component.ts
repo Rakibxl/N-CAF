@@ -39,7 +39,6 @@ export class JobListComponent implements OnInit {
 
 
     public getJobInfos() {
-        debugger;
         this.jobInfoService.getJobInfo().subscribe(
             (success) => {
                 this.jobInfoList = success.data;
