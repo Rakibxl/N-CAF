@@ -52,7 +52,7 @@ namespace Architecture.BLL.Services.Implements
                 ["email"] = v => v.Email
             };
 
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+            var query = _userManager.Users.Include(dd => dd.BranchInfo).Include(dd => dd.AppUserType).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
             result.Total = await query.CountAsync();
 
             query = query.Where(x => !x.IsLocked &&

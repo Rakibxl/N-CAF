@@ -36,9 +36,7 @@ namespace Architecture.BLL.Services.Implements
         public async Task<List<object>> GetAllAsync(UserRoleQuery queryObj)
         {
             var userRoleList = new List<object>();
-            var users = _userManager.Users
-                //.Include(br => br.BranchInfo)
-                .Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToList();
+            var users = await _userManager.Users.Include(br => br.BranchInfo).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToListAsync();
             foreach (var item in users)
             {
                 if (item.UserRoles.Any())
@@ -53,7 +51,7 @@ namespace Architecture.BLL.Services.Implements
                             UserName = role.User.Name,
                             Status = role.Role.Status,
                             BranchInfoId = role.User.BranchInfoId,
-                            //BranchName = item.BranchInfo.BranchLocation
+                            BranchLocation = item.BranchInfo?.BranchLocation
                         });
                     }
                 }

@@ -24,6 +24,7 @@ namespace Architecture.Core.Entities
         public DateTime? Modified { get; set; }
         public bool IsLocked { get; set; }
         public int? BranchInfoId { get; set; }
+        public BranchInfo BranchInfo { get; set; }
 
         public IList<ApplicationUserRole> UserRoles { get; set; }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { each, some, find } from 'lodash';
 import { Subscription, pipe } from 'rxjs';
 import { SaveUserRole, UserRole } from 'src/app/Shared/Entity/Users/role';
@@ -13,44 +13,50 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './user-role-form.component.html',
   styleUrls: ['./user-role-form.component.css']
 })
-export class UserRoleFormComponent implements OnInit, OnDestroy {
+export class UserRoleFormComponent implements OnInit, OnDestroy, AfterViewInit {
   // Public properties
   userRole: SaveUserRole;
   @Input() userRoleId: any;
   // hasFormErrors: boolean = false;
-	// errors: any[];
+  // errors: any[];
   // viewLoading: boolean = false;
   // loadingAfterSubmit: boolean = false;
   rolePermissions: ISaveRolePermission[];
   // Private properties
-	private subscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private rolePermissionsData: RolePermissionsData,
     private alertService: AlertService,
     public activeModal: NgbActiveModal,
+    private cdr: ChangeDetectorRef,
     private roleService: RoleService) {
-      this.userRole = new UserRole();
-      this.userRole.clear();
-    }
+    this.userRole = new UserRole();
+    this.userRole.clear();
+  }
 
   ngOnInit() {
-    this.loadInitData();
+    setTimeout(() => {
+      this.loadInitData();
+      if (this.userRoleId) {
+        const roleSubscriptions = this.roleService.getRole(this.userRoleId).subscribe(res => {
+          this.userRole = res.data as SaveUserRole;
+          this.loadRolePermissions();
+        });
+        this.subscriptions.push(roleSubscriptions);
+      } else {
+        this.userRole = new UserRole();
+        this.userRole.clear();
+      }
+    }, 100);
+  }
 
-    if (this.userRoleId) {
-      const roleSubscriptions = this.roleService.getRole(this.userRoleId).subscribe(res => {
-        this.userRole = res.data as SaveUserRole;
-        this.loadRolePermissions();
-      });
-      this.subscriptions.push(roleSubscriptions);
-    } else {
-      this.userRole = new UserRole();
-      this.userRole.clear();
-    }
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {
-		this.subscriptions.forEach(sb => sb.unsubscribe());
+    this.subscriptions.forEach(sb => sb.unsubscribe());
   }
 
   loadInitData() {
@@ -60,29 +66,29 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
   }
 
   loadRolePermissions() {
-      if (!this.rolePermissions || this.rolePermissions.length===0 || !this.userRole.permissions || this.userRole.permissions.length===0) {
-        return;
-      }
+    if (!this.rolePermissions || this.rolePermissions.length === 0 || !this.userRole.permissions || this.userRole.permissions.length === 0) {
+      return;
+    }
 
-      this.rolePermissions.forEach(root => {
-        let isRootSelect = true;
-        root._children.forEach(child => {
-          if(this.userRole.permissions.some(per => per == child.name)) child.isSelected = true;
-          if(!child.isSelected) isRootSelect = false;
-        });
-        root.isSelected = isRootSelect;
+    this.rolePermissions.forEach(root => {
+      let isRootSelect = true;
+      root._children.forEach(child => {
+        if (this.userRole.permissions.some(per => per == child.name)) child.isSelected = true;
+        if (!child.isSelected) isRootSelect = false;
       });
+      root.isSelected = isRootSelect;
+    });
   }
 
   resetRolePermissions() {
-    if (!this.rolePermissions || this.rolePermissions.length===0) {
+    if (!this.rolePermissions || this.rolePermissions.length === 0) {
       return;
     }
 
     this.rolePermissions.forEach(root => {
       root.isSelected = false;
       root._children.forEach(child => {
-         child.isSelected = false;
+        child.isSelected = false;
       });
     });
   }
@@ -90,17 +96,17 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
   preparePermissions(): string[] {
     const result = [];
     each(this.rolePermissions, (_root: ISaveRolePermission) => {
-        each(_root._children, (_child: ISaveRolePermission) => {
-          if (_child.isSelected) {
-            result.push(_child.name);
-          }
-        });
+      each(_root._children, (_child: ISaveRolePermission) => {
+        if (_child.isSelected) {
+          result.push(_child.name);
+        }
+      });
     });
     return result;
   }
 
   prepareRole(): SaveUserRole {
-    const _role = new SaveUserRole ();
+    const _role = new SaveUserRole();
     _role.clear();
     _role.id = this.userRole.id;
     _role.name = this.userRole.name;
@@ -114,10 +120,10 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
     // this.resetErrors();
     // this.loadingAfterSubmit = false;
     // this.viewLoading = false;
-    
+
     if (!this.isRoleNameValid()) {
       // this.hasFormErrors = true;
-			// this.errors.push('Oh snap! Invalid role name.');
+      // this.errors.push('Oh snap! Invalid role name.');
       return;
     }
 
@@ -136,16 +142,16 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
     this.alertService.fnLoading(true);
     const updateSubscription = this.roleService.update(_role)
       .pipe(finalize(() => { this.alertService.fnLoading(false); }))
-      .subscribe(() => { 
+      .subscribe(() => {
         // this.viewLoading = false;
         // this.dialogRef.close({_role, isEdit: true}); 
         this.activeModal.close(`Role successfully has been saved.`);
         this.alertService.titleTosterSuccess(`Role successfully has been saved.`);
       },
-      error => {
-        this.throwError(error);
-      }); 
-      this.subscriptions.push(updateSubscription);
+        error => {
+          this.throwError(error);
+        });
+    this.subscriptions.push(updateSubscription);
   }
 
   createRole(_role: SaveUserRole) {
@@ -153,7 +159,7 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
     // this.loadingAfterSubmit = true;
     // this.viewLoading = true;
 
-		this.alertService.fnLoading(true);
+    this.alertService.fnLoading(true);
     const createSubscription = this.roleService.create(_role)
       .pipe(finalize(() => { this.alertService.fnLoading(false); }))
       .subscribe(res => {
@@ -166,16 +172,16 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
         this.activeModal.close(`Role successfully has been added.`);
         this.alertService.titleTosterSuccess(`Role successfully has been added.`);
       },
-      error => {
-        this.throwError(error);
-      });
-      this.subscriptions.push(createSubscription);
+        error => {
+          this.throwError(error);
+        });
+    this.subscriptions.push(createSubscription);
   }
 
-	// resetErrors() {
-	// 	this.hasFormErrors = false;
-	// 	this.errors = [];
-	// }
+  // resetErrors() {
+  // 	this.hasFormErrors = false;
+  // 	this.errors = [];
+  // }
 
   isSelectedChanged($event, permission: ISaveRolePermission) {
     if ((!permission._children || permission._children.length === 0) && permission.isSelected) {
@@ -199,7 +205,7 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
       //     _root.isSelected = false;
       //   }
       // }
-        if (_root) _root.isSelected = false;
+      if (_root) _root.isSelected = false;
       return;
     }
 
@@ -227,19 +233,19 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
     return (this.userRole && this.userRole.name.trim() && this.userRole.name.trim().length > 0);
   }
 
-	// onAlertClose($event) {
-	// 	this.resetErrors();
-	// }
+  // onAlertClose($event) {
+  // 	this.resetErrors();
+  // }
 
   private throwError(errorDetails: any) {
-      // this.alertService.fnLoading(false);
-      console.log("error", errorDetails);
-      let errList = errorDetails.error.errors;
-      if (errList.length) {
-          console.log("error", errList, errList[0].errorList[0]);
-          // this.alertService.tosterDanger(errList[0].errorList[0]);
-      } else {
-          // this.alertService.tosterDanger(errorDetails.error.message);
-      }
+    // this.alertService.fnLoading(false);
+    console.log("error", errorDetails);
+    let errList = errorDetails.error.errors;
+    if (errList.length) {
+      console.log("error", errList, errList[0].errorList[0]);
+      // this.alertService.tosterDanger(errList[0].errorList[0]);
+    } else {
+      // this.alertService.tosterDanger(errorDetails.error.message);
+    }
   }
 }

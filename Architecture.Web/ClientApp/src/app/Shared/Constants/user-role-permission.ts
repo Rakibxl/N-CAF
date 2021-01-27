@@ -3,6 +3,15 @@ export const RolePermissions = {
     SuperAdmin: "Permissions.SuperAdmin",
 
     // User
+    Branches: {
+        ListView: "Permissions.Branches.ListView",
+        DetailsView: "Permissions.Branches.DetailsView",
+        Create: "Permissions.Branches.Create",
+        Edit: "Permissions.Branches.Edit",
+        Delete: "Permissions.Branches.Delete"
+    },
+
+    // User
     Users: {
         ListView: "Permissions.Users.ListView",
         DetailsView: "Permissions.Users.DetailsView",
@@ -19,4 +28,13 @@ export const RolePermissions = {
         Edit: "Permissions.UserRoles.Edit",
         Delete: "Permissions.UserRoles.Delete"
     },
+
+    // User Role Mapping
+    UserRoleMapping: {
+        ListView: "Permissions.UserRoleMapping.ListView",
+        DetailsView: "Permissions.UserRoleMapping.DetailsView",
+        Create: "Permissions.UserRoleMapping.Create",
+        Edit: "Permissions.UserRoleMapping.Edit",
+        Delete: "Permissions.UserRoleMapping.Delete"
+    }
 };

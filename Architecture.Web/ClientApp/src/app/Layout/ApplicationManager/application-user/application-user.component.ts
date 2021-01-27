@@ -42,8 +42,8 @@ export class ApplicationUserComponent implements OnInit {
             { headerName: 'User Id', width: '20%', internalName: 'id', sort: true, type: "" },
             { headerName: 'Name ', width: '10%', internalName: 'name', sort: true, type: "" },
             { headerName: 'Email', width: '10%', internalName: 'email', sort: true, type: "" },
-            { headerName: 'User Type ', width: '15%', internalName: 'appUserTypeId', sort: true, type: "" },
-            { headerName: 'Branch Location', width: '15%', internalName: 'branchInfoId', sort: true, type: "" },
+            { headerName: 'User Type ', width: '15%', internalName: 'appUserType', sort: true, type: "" },
+            { headerName: 'Branch Location', width: '15%', internalName: 'branchLocation', sort: true, type: "" },
             { headerName: 'Contact Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
             { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "" },
             { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "" },
@@ -54,7 +54,7 @@ export class ApplicationUserComponent implements OnInit {
         ],
         enabledSearch: true,
         enabledSerialNo: true,
-        pageSize: 15,
+        pageSize: 20,
         enabledPagination: false,
         enabledAutoScrolled: true,
         // enabledEditDeleteBtn: true,
@@ -70,7 +70,7 @@ export class ApplicationUserComponent implements OnInit {
         enabledPrint: true,
         enabledColumnSetting: true,
         enabledRecordCreateBtn: true,
-        enabledTotal: true,
+        // enabledTotal: true,
         //enabledCheckbox:true,
         enabledRadioBtn: false,
         tableHeaderVisibility: true,
@@ -86,7 +86,6 @@ export class ApplicationUserComponent implements OnInit {
             this.alertService.fnLoading(false);
             if (res && res.data && res.data.items.length) {
                 this.employeeList = res.data.items;
-
                 this.employeeList.map(ex => {
                     ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
                     return ex;

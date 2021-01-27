@@ -60,6 +60,7 @@ export class ApplicationUserRoleFormComponent implements OnInit {
       if (res && res.data) {
         this.alertService.tosterSuccess('Role saved successfully');
         this.roleForm.patchValue({ id: res.data });
+        this.router.navigate(["/manager/user-role"]);
       }
     }, (error: any) => {
       console.log(error);
