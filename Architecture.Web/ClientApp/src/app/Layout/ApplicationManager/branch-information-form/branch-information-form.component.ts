@@ -83,7 +83,7 @@ export class BranchInformationFormComponent implements OnInit {
     }, (err: any) => {
       console.log(err);
       if (err.error && err.error.message) {
-        // this.alertService.tosterDanger(err.error.message);
+        this.alertService.tosterDanger(err.error.message);
       }
     });
   }

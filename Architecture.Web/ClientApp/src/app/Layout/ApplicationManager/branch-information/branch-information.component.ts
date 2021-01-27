@@ -30,9 +30,10 @@ export class BranchInformationComponent implements OnInit {
         let branchInfoId = event.record && event.record.branchInfoId || 0;
         if (event.action == "new-record") {
             this.router.navigate([`/manager/branch-info/${branchInfoId}`]);
-        }
-        else if (event.action == "edit-item") {
+        } else if (event.action == "edit-item") {
             this.router.navigate([`/manager/branch-info/${branchInfoId}`]);
+        } else if (event.action == "delete-item") {
+
         }
     }
 
@@ -41,16 +42,17 @@ export class BranchInformationComponent implements OnInit {
         tableName: 'Branch List',
         tableRowIDInternalName: "branchInfoId",
         tableColDef: [
-            { headerName: 'Branch Id', width: '6%', internalName: 'branchInfoId', sort: true, type: "" },
+            { headerName: 'Branch Id', width: '10%', internalName: 'branchInfoId', sort: true, type: "" },
+            { headerName: 'Branch Location', width: '15%', internalName: 'branchLocation', sort: true, type: "" },
             { headerName: 'Address', width: '15%', internalName: 'address', sort: true, type: "" },
-            { headerName: 'City', width: '15%', internalName: 'city', sort: true, type: "" },
+            { headerName: 'City', width: '10%', internalName: 'city', sort: true, type: "" },
             { headerName: 'Contact Person', width: '10%', internalName: 'contactPerson', sort: false, type: "" },
             { headerName: 'Contact Number', width: '10%', internalName: 'contactNumber', sort: true, type: "" },
-            { headerName: 'AgreementStart', width: '10%', internalName: 'agreementStart', sort: true, type: "" },
-            { headerName: 'Number Of User', width: '10%', internalName: 'numberOfUser', sort: true, type: "" },
+            // { headerName: 'AgreementStart', width: '10%', internalName: 'agreementStart', sort: true, type: "" },
+            // { headerName: 'Number Of User', width: '10%', internalName: 'numberOfUser', sort: true, type: "" },
             { headerName: 'Is Locked', width: '10%', internalName: 'isLocked', sort: true, type: "" },
-            { headerName: 'Note', width: '20%', internalName: 'note', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
+            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
 
         ],
         enabledSearch: true,

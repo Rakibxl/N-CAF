@@ -11,9 +11,9 @@ import { NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserRoleFormComponent } from '../user-role-form/user-role-form.component';
 
 @Component({
-  selector: 'app-user-role-list',
-  templateUrl: './user-role-list.component.html',
-  styleUrls: ['./user-role-list.component.css']
+	selector: 'app-user-role-list',
+	templateUrl: './user-role-list.component.html',
+	styleUrls: ['./user-role-list.component.css']
 })
 export class UserRoleListComponent implements OnInit, OnDestroy {
 
@@ -30,8 +30,8 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		private modalService: NgbModal,
 		private alertService: AlertService,
 		private commonService: CommonService) {
-			this.PAGE_SIZE = commonService.PAGE_SIZE;
-		}
+		this.PAGE_SIZE = commonService.PAGE_SIZE;
+	}
 
 	ngOnInit() {
 		// First Load
@@ -43,22 +43,23 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 	ngOnDestroy() {
 		this.subscriptions.forEach(el => el.unsubscribe());
 	}
-	
-    loadUserRolesPage() {
+
+	loadUserRolesPage() {
 		this.searchConfiguration();
-        this.alertService.fnLoading(true);
+		this.alertService.fnLoading(true);
 		const rolesSubscription = this.roleService.getRoles(this.query)
 			.pipe(finalize(() => { this.alertService.fnLoading(false); }))
 			.subscribe(
-            (res) => {
-				this.userroles = res.data.items;
-            },
-            (error) => {
-                console.log(error);
-            });
-			this.subscriptions.push(rolesSubscription);
+				(res) => {
+					debugger;
+					this.userroles = res.data.items;
+				},
+				(error) => {
+					console.log(error);
+				});
+		this.subscriptions.push(rolesSubscription);
 	}
-	
+
 	searchConfiguration() {
 		this.query = new UserRoleQuery({
 			page: 1,
@@ -76,104 +77,105 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(actInSubscription);
 	}
 
-	viewUserRole(id){
+	viewUserRole(id) {
 		console.log(`view ${id}`);
 	}
-	
+
 	editUserRole(id) {
 		// this.router.navigate(['/roles/edit', id]);
 		this.openUserRoleModal(id);
 	}
-	
+
 	newUserRole() {
 		// this.router.navigate(['/roles/new']);
 		this.openUserRoleModal(null);
 	}
-	
+
 	deleteUserRole(id) {
 		console.log(`delete ${id}`);
-		this.alertService.confirm("Are you sure want to delete this role?", 
+		this.alertService.confirm("Are you sure want to delete this role?",
 			() => {
 				this.alertService.fnLoading(true);
 				const deleteSubscription = this.roleService.delete(id)
 					.pipe(finalize(() => { this.alertService.fnLoading(false); }))
 					.subscribe((res: any) => {
-						console.log('res from del func',res);          
+						console.log('res from del func', res);
 						this.alertService.tosterSuccess("Role has been deleted successfully.");
 						this.loadUserRolesPage();
 					},
-					(error) => {
-						console.log(error);
-					});
-					this.subscriptions.push(deleteSubscription);
-				}, 
+						(error) => {
+							console.log(error);
+						});
+				this.subscriptions.push(deleteSubscription);
+			},
 			() => {
 			});
 	}
 
-    public ptableSettings: IPTableSetting = {
-        tableID: "roles-table",
-        tableClass: "table table-border ",
-        tableName: 'Roles List',
-        tableRowIDInternalName: "id",
-        tableColDef: [
-            { headerName: 'Name', width: '100%', internalName: 'name', sort: true, type: "" },
-        ],
-        enabledSearch: true,
-        enabledSerialNo: true,
-        pageSize: 10,
-        enabledPagination: true,
-        //enabledAutoScrolled:true,
-        enabledDeleteBtn: true,
-        enabledEditBtn: true,
-        // enabledCellClick: true,
-        enabledColumnFilter: true,
-        // enabledDataLength:true,
-        // enabledColumnResize:true,
-        // enabledReflow:true,
-        // enabledPdfDownload:true,
-        // enabledExcelDownload:true,
-        // enabledPrint:true,
-        // enabledColumnSetting:true,
-        enabledRecordCreateBtn: true,
-        // enabledTotal:true,
+	public ptableSettings: IPTableSetting = {
+		tableID: "roles-table",
+		tableClass: "table table-border ",
+		tableName: 'Roles List',
+		tableRowIDInternalName: "id",
+		tableColDef: [
+			{ headerName: 'Role Id', width: '40%', internalName: 'id', sort: true, type: "" },
+			{ headerName: 'Role Name', width: '50%', internalName: 'name', sort: true, type: "" },
+		],
+		enabledSearch: true,
+		enabledSerialNo: true,
+		pageSize: 10,
+		enabledPagination: true,
+		//enabledAutoScrolled:true,
+		enabledDeleteBtn: true,
+		enabledEditBtn: true,
+		// enabledCellClick: true,
+		enabledColumnFilter: true,
+		// enabledDataLength:true,
+		// enabledColumnResize:true,
+		// enabledReflow:true,
+		// enabledPdfDownload:true,
+		// enabledExcelDownload:true,
+		// enabledPrint:true,
+		// enabledColumnSetting:true,
+		enabledRecordCreateBtn: true,
+		// enabledTotal:true,
 		newRecordButtonText: 'New Role'
-    };
+	};
 
-    public fnCustomTrigger(event) {
-        console.log("custom  click: ", event);
+	public fnCustomTrigger(event) {
+		console.log("custom  click: ", event);
 
-        if (event.action == "new-record") {
-            this.newUserRole();
-        }
-        else if (event.action == "edit-item") {
-            this.editUserRole(event.record.id);
-        }
-        else if (event.action == "delete-item") {
-            this.deleteUserRole(event.record.id);
-        }
+		if (event.action == "new-record") {
+			this.newUserRole();
+		}
+		else if (event.action == "edit-item") {
+			this.editUserRole(event.record.id);
+		}
+		else if (event.action == "delete-item") {
+			this.deleteUserRole(event.record.id);
+		}
 	}
-	
+
 	openUserRoleModal(id?) {
 		let ngbModalOptions: NgbModalOptions = {
-		  backdrop: "static",
-		  keyboard: false,
-		  size: "lg",
+			backdrop: "static",
+			keyboard: false,
+			size: "lg",
 		};
 		const modalRef = this.modalService.open(
-		  UserRoleFormComponent,
-		  ngbModalOptions
+			UserRoleFormComponent,
+			ngbModalOptions
 		);
 		modalRef.componentInstance.userRoleId = id;
 
 		modalRef.result.then(
 			(result) => {
-			  console.log(result);
-			  if(!(result =='Close click' || result == 'Cross click'))
-			  	this.loadUserRolesPage();
+				console.log(result);
+				if (!(result == 'Close click' || result == 'Cross click'))
+					this.loadUserRolesPage();
 			},
 			(reason) => {
-			  console.log(reason);
+				console.log(reason);
 			});
-	}	
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { each, some, find } from 'lodash';
 import { Subscription, pipe } from 'rxjs';
 import { SaveUserRole, UserRole } from 'src/app/Shared/Entity/Users/role';
@@ -13,7 +13,7 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './user-role-form.component.html',
   styleUrls: ['./user-role-form.component.css']
 })
-export class UserRoleFormComponent implements OnInit, OnDestroy {
+export class UserRoleFormComponent implements OnInit, OnDestroy, AfterViewInit {
   // Public properties
   userRole: SaveUserRole;
   @Input() userRoleId: any;
@@ -29,24 +29,30 @@ export class UserRoleFormComponent implements OnInit, OnDestroy {
     private rolePermissionsData: RolePermissionsData,
     private alertService: AlertService,
     public activeModal: NgbActiveModal,
+    private cdr: ChangeDetectorRef,
     private roleService: RoleService) {
     this.userRole = new UserRole();
     this.userRole.clear();
   }
 
   ngOnInit() {
-    this.loadInitData();
+    setTimeout(() => {
+      this.loadInitData();
+      if (this.userRoleId) {
+        const roleSubscriptions = this.roleService.getRole(this.userRoleId).subscribe(res => {
+          this.userRole = res.data as SaveUserRole;
+          this.loadRolePermissions();
+        });
+        this.subscriptions.push(roleSubscriptions);
+      } else {
+        this.userRole = new UserRole();
+        this.userRole.clear();
+      }
+    }, 100);
+  }
 
-    if (this.userRoleId) {
-      const roleSubscriptions = this.roleService.getRole(this.userRoleId).subscribe(res => {
-        this.userRole = res.data as SaveUserRole;
-        this.loadRolePermissions();
-      });
-      this.subscriptions.push(roleSubscriptions);
-    } else {
-      this.userRole = new UserRole();
-      this.userRole.clear();
-    }
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {

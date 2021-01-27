@@ -94,6 +94,7 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
       if (res && res.data) {
         this.alertService.tosterSuccess('User role saved successfully');
         this.roleMappingForm.patchValue({ id: res.data });
+        this.router.navigate(["/manager/user-role-mapping"]);
       }
     }, (err: any) => {
       console.log(err);
