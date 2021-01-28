@@ -19,6 +19,7 @@ export class BranchInformationComponent implements OnInit {
 
     ngOnInit() {
         this.loadBranchList();
+
     }
 
     public fnPtableCellClick(event) {
@@ -51,16 +52,12 @@ export class BranchInformationComponent implements OnInit {
             // { headerName: 'AgreementStart', width: '10%', internalName: 'agreementStart', sort: true, type: "" },
             // { headerName: 'Number Of User', width: '10%', internalName: 'numberOfUser', sort: true, type: "" },
             { headerName: 'Is Locked', width: '10%', internalName: 'isLocked', sort: true, type: "" },
-            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "" },
-            { headerName: 'Details', width: '10%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
-
+            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "", visible:false },
         ],
         enabledSearch: true,
         enabledSerialNo: true,
         pageSize: 20,
         enabledPagination: true,
-        enabledAutoScrolled: false,
-        // enabledEditDeleteBtn: true,
         enabledEditDeleteBtn: true,
         //enabledDeleteBtn: true,
         enabledCellClick: true,
@@ -73,15 +70,7 @@ export class BranchInformationComponent implements OnInit {
         enabledPrint: true,
         enabledColumnSetting: true,
         enabledRecordCreateBtn: true,
-        // enabledTotal: true,
-        //enabledCheckbox:true,
-        enabledRadioBtn: false,
-        tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        enabledViewDetails:true,       
     }
 
     loadBranchList() {

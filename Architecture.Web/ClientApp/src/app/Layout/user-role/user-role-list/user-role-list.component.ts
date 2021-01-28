@@ -51,7 +51,6 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 			.pipe(finalize(() => { this.alertService.fnLoading(false); }))
 			.subscribe(
 				(res) => {
-					debugger;
 					this.userroles = res.data.items;
 				},
 				(error) => {
