@@ -33,9 +33,9 @@ namespace Architecture.BLL.Services.Implements
             _dateTime = dateTime;
         }
 
-        public async Task<List<object>> GetAllAsync(UserRoleQuery queryObj)
+        public async Task<List<UserRoleMapping>> GetAllAsync(UserRoleQuery queryObj)
         {
-            var userRoleList = new List<object>();
+            var userRoleList = new List<UserRoleMapping>();
             var users = await _userManager.Users.Include(br => br.BranchInfo).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToListAsync();
             foreach (var item in users)
             {
@@ -43,7 +43,7 @@ namespace Architecture.BLL.Services.Implements
                 {
                     foreach (var role in item.UserRoles)
                     {
-                        userRoleList.Add(new
+                        userRoleList.Add(new UserRoleMapping
                         {
                             UserId = role.UserId,
                             RoleId = role.RoleId,

@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
 import { QuestionInfoService } from '../../../Shared/Services/Users/question-info.service';
 import { Router } from '@angular/router';
 import { Dashboard } from 'src/app/Shared/Entity/Common/dashboard';
+import { AuthService } from '../../../Shared/Services/Users/auth.service';
 import * as Highcharts from 'highcharts';
 import { timer } from 'rxjs';
 
@@ -15,10 +16,10 @@ import { timer } from 'rxjs';
 })
 export class CommonComponent implements OnInit {
 
-  dashboard : Dashboard = new Dashboard();
+  dashboard: Dashboard = new Dashboard();
   Highcharts: typeof Highcharts = Highcharts; // required
   chartConstructor: string = 'chart'; // optional string, defaults to 'chart'
-  serviceRequestChartOptions: Highcharts.Options = { 
+  serviceRequestChartOptions: Highcharts.Options = {
     chart: {
       type: 'column'
     },
@@ -48,8 +49,8 @@ export class CommonComponent implements OnInit {
       borderColor: "rgba(1, 183, 230, 0.4)",
       borderWidth: 2
     }]
-   }; // required
-   newAppUserRegisterChartOptions: Highcharts.Options = { 
+  }; // required
+  newAppUserRegisterChartOptions: Highcharts.Options = {
     chart: {
       type: 'column'
     },
@@ -79,24 +80,25 @@ export class CommonComponent implements OnInit {
       borderColor: "rgba(1, 183, 230, 0.4)",
       borderWidth: 2
     }]
-   }; // required
-  chartCallback: Highcharts.ChartCallbackFunction = function (chart) {  } // optional function, defaults to null
+  }; // required
+  chartCallback: Highcharts.ChartCallbackFunction = function (chart) { } // optional function, defaults to null
   updateFlag: boolean = false; // optional boolean
   oneToOneFlag: boolean = true; // optional boolean, defaults to false
   runOutsideAngular: boolean = false;
-  
+
 
   constructor(private dashboardService: DashboardService,
+    private authService: AuthService,
     private alertService: AlertService,
-      private questionService: QuestionInfoService,
+    private questionService: QuestionInfoService,
     private router: Router
-    ) { }
+  ) { }
 
-   public questiontimerSubscribe;
+  public questiontimerSubscribe;
 
 
-  ngOnInit() {     
-      this.generateQuestion();
+  ngOnInit() {
+    this.generateQuestion();
   }
 
   generateChart() {
@@ -121,7 +123,7 @@ export class CommonComponent implements OnInit {
     this.newAppUserRegisterChartOptions.series = newUserSeries;
     this.updateFlag = true;
     //#endregion
-    
+
     //#region service request chart
     const newSerReqCat = this.dashboard.serviceRequestCharts.map(x => x.dateTimeText) as [];
     const newSerReqData = this.dashboard.serviceRequestCharts.map(x => x.totalServiceRequisition) as [];
@@ -146,75 +148,75 @@ export class CommonComponent implements OnInit {
   }
 
   viewAppUserReports() {
-		this.router.navigate(['/users/app-users']);
-    }
+    this.router.navigate(['/users/app-users']);
+  }
 
 
-    generateQuestion() {
+  generateQuestion() {
 
-        var questionInfoList = [];
-        // basic service , occupation and everything call
+    var questionInfoList = [];
+    // basic service , occupation and everything call
 
-        this.questionService.GetUserQuestion().subscribe(
-            (success) => {
-                console.log("get question info: ", success);
-                questionInfoList = success.data;
+    this.questionService.GetUserQuestion().subscribe(
+      (success) => {
+        console.log("get question info: ", success);
+        questionInfoList = success.data;
 
-                // save in session storage array 
-                if ((JSON.parse(sessionStorage.getItem('questioninfo')) || []).length==0) {
-                    sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
+        // save in session storage array 
+        if ((JSON.parse(sessionStorage.getItem('questioninfo')) || []).length == 0) {
+          sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
+        }
+
+        this.questiontimerSubscribe = timer(4000, 30000).subscribe(x => {
+          let questionInfos = JSON.parse(sessionStorage.getItem('questioninfo')) || [];
+          let displayQuestion = questionInfos.filter(x => x.status == "InActive").length > 0 ? questionInfos.filter(x => x.status == "InActive")[0] : null;
+          if (displayQuestion != null) {
+            questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
+            console.log("questionInfos", questionInfos);
+            sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
+            this.alertService.questionToster(displayQuestion.questionDescription,
+              () => {
+                console.log("Clicked Yes");
+                console.log("displayQuestion", displayQuestion.pageToUrl);
+                if ((displayQuestion.pageToUrl || "") != "") {
+                  window.open(`${displayQuestion.pageToUrl.replace("{profileId}", displayQuestion.sectionNameId)}`);
                 }
+              },
+              () => {
+                console.log("clicked No");
+              });
 
-                this.questiontimerSubscribe = timer(4000, 30000).subscribe(x => {
-                    let questionInfos = JSON.parse(sessionStorage.getItem('questioninfo')) || [];
-                    let displayQuestion = questionInfos.filter(x => x.status == "InActive").length > 0 ? questionInfos.filter(x => x.status == "InActive")[0] : null;
-                    if (displayQuestion != null) {
-                        questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
-                        console.log("questionInfos", questionInfos);
-                        sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
-                        this.alertService.questionToster(displayQuestion.questionDescription,
-                            () => {
-                                console.log("Clicked Yes");
-                                console.log("displayQuestion", displayQuestion.pageToUrl);
-                                if ((displayQuestion.pageToUrl || "") != "") {
-                                    window.open(`${displayQuestion.pageToUrl.replace("{profileId}", displayQuestion.sectionNameId)}`);
-                                }
-                            },
-                            () => {
-                                console.log("clicked No");
-                            });
+          } else {
+            this.questiontimerSubscribe.unsubscribe();
+          }
 
-                    } else {
-                        this.questiontimerSubscribe.unsubscribe();
-                    }
-
-                });
-
-
-                 
-                  //numbers.subscribe(x => console.log(x));
-
-
-                //console.log("sessiondata" + data);
+        });
 
 
 
-                //for (let i = 0; i < success.data.length; i++) {
-                //    if (success.data[i].status == "InActive") {
-                //        this.alertService.questionToster(success.data[i].questionDescription,
-                //            () => {
-                //                alert("Clicked Yes");
-                //            },
-                //            () => {
-                //                alert("clicked No");
-                //            });
-                //        }
-                //}
-            },
-            error => {
-            });
-       
-    }
+        //numbers.subscribe(x => console.log(x));
+
+
+        //console.log("sessiondata" + data);
+
+
+
+        //for (let i = 0; i < success.data.length; i++) {
+        //    if (success.data[i].status == "InActive") {
+        //        this.alertService.questionToster(success.data[i].questionDescription,
+        //            () => {
+        //                alert("Clicked Yes");
+        //            },
+        //            () => {
+        //                alert("clicked No");
+        //            });
+        //        }
+        //}
+      },
+      error => {
+      });
+
+  }
 
 
 }

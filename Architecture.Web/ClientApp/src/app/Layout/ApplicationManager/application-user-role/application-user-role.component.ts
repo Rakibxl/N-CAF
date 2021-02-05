@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { RoleService } from '../../../Shared/Services/Users/role.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 
 @Component({
     selector: 'app-application-user-role',
@@ -12,12 +13,14 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 export class ApplicationUserRoleComponent implements OnInit {
     roleList: any[] = [];
 
-    constructor(private router: Router, private roleService: RoleService, private alertService: AlertService) {
+    constructor(private router: Router, private authService: AuthService, private roleService: RoleService, private alertService: AlertService) {
     }
 
 
     ngOnInit() {
         this.getRoles();
+        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+        this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
     }
 
 
@@ -66,7 +69,7 @@ export class ApplicationUserRoleComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
+        // enabledRecordCreateBtn: true,
         // enabledTotal: true,
         //enabledCheckbox:true,
         enabledRadioBtn: false,
@@ -81,8 +84,8 @@ export class ApplicationUserRoleComponent implements OnInit {
     getRoles() {
         this.roleService.getRoles().subscribe((res) => {
             this.alertService.fnLoading(false);
-            if (res && res.data && res.data.items.length) {
-                this.roleList = res.data.items;
+            if (res && res.data && res.data.length) {
+                this.roleList = res.data;
             }
         }, err => {
             this.alertService.tosterDanger(err);

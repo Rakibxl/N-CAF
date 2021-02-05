@@ -9,9 +9,9 @@ import { DropdownService } from '../../../Shared/Services/Common/dropdown.servic
 import { AuthService } from '../../../Shared/Services/Users/auth.service';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+    selector: 'app-change-password',
+    templateUrl: './change-password.component.html',
+    styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     async ngOnInit() {
-       
+
     }
 
     initForm() {
@@ -47,6 +47,7 @@ export class ChangePasswordComponent implements OnInit {
 
     backBtnClick() {
         this.router.navigate(["/client-profile/client-list"]);
+        return false;
     }
 
 
@@ -70,8 +71,8 @@ export class ChangePasswordComponent implements OnInit {
     save() {
         let model = this.getModel();
         this.authService.changePassword(model).subscribe(res => {
-                this.authService.logout();
-                this.router.navigate(['/auth/login']);
+            this.authService.logout();
+            this.router.navigate(['/auth/login']);
         }, (error: any) => {
             console.log(error);
             this.alertService.tosterDanger(error);

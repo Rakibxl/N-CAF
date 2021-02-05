@@ -23,6 +23,7 @@ export class ApplicationUserFormComponent implements OnInit {
 
   public backBtnClick() {
     this.router.navigate(["/manager/user-info"]);
+    return false;
   }
 
   ngOnInit() {

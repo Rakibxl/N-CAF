@@ -7,6 +7,8 @@
     appUserTypeId: number;
     imageUrl: string;
     token?: string;
+    AppUserTypeId: number;
+    BranchLocation: string;
 }
 
 export class Login {

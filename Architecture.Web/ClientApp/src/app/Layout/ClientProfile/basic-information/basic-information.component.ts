@@ -124,6 +124,7 @@ export class BasicInformationComponent implements OnInit {
 
   backBtnClick() {
     this.router.navigate(["/client-profile/client-list"]);
+    return false;
   }
 
   loadBasicInfo() {

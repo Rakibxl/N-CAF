@@ -29,6 +29,7 @@ export class BranchInformationFormComponent implements OnInit {
 
   backBtnClick() {
     this.router.navigate(["/manager/branch-info"]);
+    return false;
   }
 
   initForm() {

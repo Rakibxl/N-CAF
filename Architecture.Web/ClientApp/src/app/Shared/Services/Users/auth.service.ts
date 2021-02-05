@@ -47,7 +47,14 @@ export class AuthService {
         return token;
     }
 
-    private get getPermissions(): any[] {
+    public get getDecodedToken(): any {
+        if (!this.isLoggedIn) return {};
+        const token = this.currentUserSubject.value.token;
+        const decodedToken = this.jwtHelper.decodeToken(token);
+        return decodedToken;
+    }
+
+    public get getPermissions(): any[] {
         if (!this.isLoggedIn) return [];
         const token = this.currentUserSubject.value.token;
         const decodedToken = this.jwtHelper.decodeToken(token);
@@ -68,8 +75,10 @@ export class AuthService {
             .pipe(map((res: APIResponse) => {
                 const authUser = res && res.data;
                 if (authUser && authUser.token) {
-                    localStorage.setItem('currentUser', JSON.stringify(authUser));
                     this.currentUserSubject.next(authUser);
+                    authUser.BranchLocation = this.getDecodedToken.BranchLocation;
+                    authUser.AppUserTypeId = this.getDecodedToken.AppUserTypeId;
+                    localStorage.setItem('currentUser', JSON.stringify(authUser));
                     // this.ngxPermissionsService.loadPermissions(this.getPermissions);
                 }
                 return authUser;

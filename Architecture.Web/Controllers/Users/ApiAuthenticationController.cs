@@ -23,6 +23,7 @@ using Architecture.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -159,6 +160,7 @@ namespace Architecture.Web.Controllers.Users
             // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this._appSettings.TokenSecretKey);
+            var userDetails = _userManager.Users.Include(dd => dd.BranchInfo).Where(ex => ex.Email == user.Email).FirstOrDefault();
 
             var claims = new List<Claim>()
             {
@@ -166,7 +168,9 @@ namespace Architecture.Web.Controllers.Users
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email??string.Empty),
                 new Claim(ClaimTypes.Name, user.UserName??string.Empty),
-                new Claim("AppUserTypeId", user.AppUserTypeId?.ToString()??string.Empty)
+                new Claim("AppUserTypeId", user.AppUserTypeId?.ToString()??string.Empty),
+                new Claim("BranchInfoId", userDetails.BranchInfo != null ? userDetails.BranchInfo.BranchInfoId.ToString() : ""),
+                new Claim("BranchLocation", userDetails.BranchInfo != null ? userDetails.BranchInfo.BranchLocation : "")
             };
 
             var userRoles = await _userManager.GetRolesAsync(user);

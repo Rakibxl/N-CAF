@@ -4,6 +4,7 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { BranchService } from '../../../Shared/Services/Users/branch.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 
 @Component({
     selector: 'app-branch-information',
@@ -13,13 +14,13 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class BranchInformationComponent implements OnInit {
     branchList: any[] = [];
 
-    constructor(private router: Router, private branchService: BranchService, private alertService: AlertService, private commonService: CommonService) {
+    constructor(private router: Router, private authService: AuthService, private branchService: BranchService, private alertService: AlertService, private commonService: CommonService) {
 
     }
 
     ngOnInit() {
         this.loadBranchList();
-
+        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
     }
 
     public fnPtableCellClick(event) {
@@ -52,7 +53,7 @@ export class BranchInformationComponent implements OnInit {
             // { headerName: 'AgreementStart', width: '10%', internalName: 'agreementStart', sort: true, type: "" },
             // { headerName: 'Number Of User', width: '10%', internalName: 'numberOfUser', sort: true, type: "" },
             { headerName: 'Is Locked', width: '10%', internalName: 'isLocked', sort: true, type: "" },
-            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "", visible:false },
+            { headerName: 'Note', width: '10%', internalName: 'note', sort: true, type: "", visible: false },
         ],
         enabledSearch: true,
         enabledSerialNo: true,
@@ -69,8 +70,8 @@ export class BranchInformationComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
-        enabledViewDetails:true,       
+        // enabledRecordCreateBtn: true,
+        enabledViewDetails: true,
     }
 
     loadBranchList() {

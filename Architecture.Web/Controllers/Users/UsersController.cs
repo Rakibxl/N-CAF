@@ -48,7 +48,34 @@ namespace Architecture.Web.Controllers.Users
             {
                 var result = await _applicationUserService.GetAllAsync(query);
                 var queryResult = _mapper.Map<QueryResult<ApplicationUser>, QueryResult<UserModel>>(result);
-                return OkResult(queryResult);
+                var data = queryResult.Items.ToList();
+                
+                var AppUserTypeId = GetClaimValue("AppUserTypeId");
+                if (AppUserTypeId == "1")
+                {
+                    data = new List<UserModel>();
+                }
+                else if (AppUserTypeId == "2")
+                {
+                    var BranchInfoId = GetClaimValue("BranchInfoId");
+                    if (BranchInfoId != null && !string.IsNullOrEmpty(BranchInfoId))
+                    {
+                        data = data.Where(ex => ex.BranchInfoId != null && ex.BranchInfoId.Value == int.Parse(BranchInfoId)).ToList();
+                    }
+                    else
+                    {
+                        data = new List<UserModel>();
+                    }
+                }
+                else if (AppUserTypeId == "3")
+                {
+
+                }
+                else
+                {
+                    data = new List<UserModel>();
+                }
+                return OkResult(data);
             }
             catch (Exception ex)
             {

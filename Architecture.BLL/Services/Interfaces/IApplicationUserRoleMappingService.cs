@@ -8,7 +8,7 @@ namespace Architecture.BLL.Services.Interfaces
 {
     public interface IApplicationUserRoleMappingService
     {
-        Task<List<object>> GetAllAsync(UserRoleQuery queryObj);
+        Task<List<UserRoleMapping>> GetAllAsync(UserRoleQuery queryObj);
         Task<Guid> AddAsync(ApplicationUser entity, string role);
     }
 }

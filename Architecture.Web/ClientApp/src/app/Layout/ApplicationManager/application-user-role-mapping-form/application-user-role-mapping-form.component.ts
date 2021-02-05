@@ -31,6 +31,7 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
 
   backBtnClick() {
     this.router.navigate(["/manager/user-role-mapping"]);
+    return false;
   }
 
   initForm() {
@@ -45,8 +46,8 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe((res) => {
       this.alertService.fnLoading(false);
-      if (res && res.data && res.data.items.length) {
-        this.userList = res.data.items; //.filter(ex => ex.branchInfoId);
+      if (res && res.data && res.data.length) {
+        this.userList = res.data; //.filter(ex => ex.branchInfoId);
 
         this.userList.map(ex => {
           ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
@@ -61,8 +62,8 @@ export class ApplicationUserRoleMappingFormComponent implements OnInit {
   getRoles() {
     this.roleService.getRoles().subscribe((res) => {
       this.alertService.fnLoading(false);
-      if (res && res.data && res.data.items.length) {
-        this.roleList = res.data.items;
+      if (res && res.data && res.data.length) {
+        this.roleList = res.data;
       }
     }, err => {
       this.alertService.tosterDanger(err);

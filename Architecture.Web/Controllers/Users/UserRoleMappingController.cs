@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Architecture.BLL.Services;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -34,6 +35,32 @@ namespace Architecture.Web.Controllers.Users
             try
             {
                 var result = await _applicationUserRoleMappingService.GetAllAsync(query);
+
+                var AppUserTypeId = GetClaimValue("AppUserTypeId");
+                if (AppUserTypeId == "1")
+                {
+                    result = new List<UserRoleMapping>();
+                }
+                else if (AppUserTypeId == "2")
+                {
+                    var BranchInfoId = GetClaimValue("BranchInfoId");
+                    if (BranchInfoId != null && !string.IsNullOrEmpty(BranchInfoId))
+                    {
+                        result = result.Where(ex => ex.BranchInfoId != null && ex.BranchInfoId.Value == int.Parse(BranchInfoId)).ToList();
+                    }
+                    else
+                    {
+                        result = new List<UserRoleMapping>();
+                    }
+                }
+                else if (AppUserTypeId == "3")
+                {
+
+                }
+                else
+                {
+                    result = new List<UserRoleMapping>();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)

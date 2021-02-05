@@ -1,7 +1,8 @@
-import {Component, HostBinding} from '@angular/core';
-import {select} from '@angular-redux/store';
-import {Observable} from 'rxjs';
-import {ThemeOptions} from '../../../../theme-options';
+import { Component, HostBinding } from '@angular/core';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs';
+import { ThemeOptions } from '../../../../theme-options';
+import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {ThemeOptions} from '../../../../theme-options';
 })
 export class HeaderComponent {
 
-  constructor(public globals: ThemeOptions) {
+  constructor(public globals: ThemeOptions, private authService: AuthService) {
   }
 
   @HostBinding('class.isActive')

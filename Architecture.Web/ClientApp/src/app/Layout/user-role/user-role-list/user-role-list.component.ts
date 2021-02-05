@@ -9,6 +9,7 @@ import { UserRoleQuery, UserRole } from 'src/app/Shared/Entity/Users/role';
 import { RoleService } from 'src/app/Shared/Services/Users/role.service';
 import { NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserRoleFormComponent } from '../user-role-form/user-role-form.component';
+import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 
 @Component({
 	selector: 'app-user-role-list',
@@ -29,6 +30,7 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		private roleService: RoleService,
 		private modalService: NgbModal,
 		private alertService: AlertService,
+		private authService: AuthService,
 		private commonService: CommonService) {
 		this.PAGE_SIZE = commonService.PAGE_SIZE;
 	}
@@ -38,6 +40,10 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		of(undefined).pipe(take(1), delay(1000)).subscribe(() => {
 			this.loadUserRolesPage();
 		});
+		this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+		this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+		this.ptableSettings.enabledEditBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+		this.ptableSettings.enabledDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
 	}
 
 	ngOnDestroy() {
@@ -51,7 +57,7 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 			.pipe(finalize(() => { this.alertService.fnLoading(false); }))
 			.subscribe(
 				(res) => {
-					this.userroles = res.data.items;
+					this.userroles = res.data;
 				},
 				(error) => {
 					console.log(error);

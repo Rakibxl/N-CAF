@@ -40,7 +40,18 @@ namespace Architecture.Web.Controllers.Users
             {
                 var result = await _applicationRoleService.GetAllAsync(query);
                 var queryResult = _mapper.Map<QueryResult<ApplicationRole>, QueryResult<UserRoleModel>>(result);
-                return OkResult(queryResult);
+                var data = queryResult.Items.ToList();
+
+                var AppUserTypeId = GetClaimValue("AppUserTypeId");
+                if (AppUserTypeId == "2")
+                {
+                    data = data.Where(ex => ex.Name != "Super Admin").ToList();
+                }
+                else if (AppUserTypeId != "3")
+                {
+                    data = new List<UserRoleModel>();
+                }
+                return OkResult(data);
             }
             catch (Exception ex)
             {

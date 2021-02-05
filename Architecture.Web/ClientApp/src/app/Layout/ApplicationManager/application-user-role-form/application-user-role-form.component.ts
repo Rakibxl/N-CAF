@@ -25,6 +25,7 @@ export class ApplicationUserRoleFormComponent implements OnInit {
 
   backBtnClick() {
     this.router.navigate(["/manager/user-role"]);
+    return false;
   }
 
   initForm() {

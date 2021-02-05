@@ -80,5 +80,11 @@ namespace Architecture.Web.Controllers.Common
             };
             return result;
         }
+
+        public string GetClaimValue(string claimType)
+        {
+            var claim = User.Claims.Where(dd => dd.Type == claimType).FirstOrDefault();
+            return claim != null ? claim.Value : null;
+        }
     }
 }

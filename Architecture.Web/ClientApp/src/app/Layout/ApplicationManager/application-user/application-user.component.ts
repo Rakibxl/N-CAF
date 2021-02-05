@@ -84,8 +84,8 @@ export class ApplicationUserComponent implements OnInit {
     getUsers() {
         this.userService.getUsers().subscribe((res) => {
             this.alertService.fnLoading(false);
-            if (res && res.data && res.data.items.length) {
-                this.employeeList = res.data.items;
+            if (res && res.data && res.data.length) {
+                this.employeeList = res.data;
                 this.employeeList.map(ex => {
                     ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
                     return ex;

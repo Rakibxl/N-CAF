@@ -40,6 +40,32 @@ namespace Architecture.Web.Controllers.Users
             try
             {
                 var result = await _branchService.GetAll();
+
+                var AppUserTypeId = GetClaimValue("AppUserTypeId");
+                if (AppUserTypeId == "1")
+                {
+                    result = new List<BranchInfo>();
+                }
+                else if (AppUserTypeId == "2")
+                {
+                    var BranchInfoId = GetClaimValue("BranchInfoId");
+                    if (BranchInfoId != null && !string.IsNullOrEmpty(BranchInfoId))
+                    {
+                        result = result.Where(ex => ex.BranchInfoId == int.Parse(BranchInfoId));
+                    }
+                    else
+                    {
+                        result = new List<BranchInfo>();
+                    }
+                }
+                else if (AppUserTypeId == "3")
+                {
+                    
+                }
+                else
+                {
+                    result = new List<BranchInfo>();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
