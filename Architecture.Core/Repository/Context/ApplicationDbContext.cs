@@ -73,6 +73,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<CountryName> CountryName { get; set; }
         public DbSet<InsuranceType> InsuranceType { get; set; }
         public DbSet<SectionName> SectionName { get; set; }
+        public DbSet<OperatorKeyword> OperatorKeyword { get; set; }
 
         #endregion 
 
@@ -311,10 +312,10 @@ namespace Architecture.Core.Repository.Context
                 ms.HasKey(g => g.AppUserTypeId);
                 ms.Property(g => g.AppUserTypeTitle).HasMaxLength(100);
                 ms.HasData(
-                    new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Client", IsActive = true },
+                    new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Admin", IsActive = true },
                     new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
                     new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Operator", IsActive = true },
-                    new AppUserType { AppUserTypeId = 4, AppUserTypeTitle = "Admin", IsActive = true }
+                    new AppUserType { AppUserTypeId = 4, AppUserTypeTitle = "Client", IsActive = true }
                 );
             });
             modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");
@@ -473,10 +474,17 @@ namespace Architecture.Core.Repository.Context
                     new SectionName { SectionNameId = 8, SectionDescription = "Income Info", IsActive = true }
                 );
             });
-
-
-
-
+            modelBuilder.Entity<OperatorKeyword>().ToTable("LU_OperatorKeyword");
+            modelBuilder.Entity<OperatorKeyword>(ms =>
+            {
+                ms.HasKey(g => g.OperatorKeywordId);
+                ms.Property(g => g.OperatorKeywordName).HasMaxLength(100);
+                ms.HasData(
+                    new OperatorKeyword { OperatorKeywordId = 1, OperatorKeywordName = "BabyBonus", IsActive = true },
+                    new OperatorKeyword { OperatorKeywordId = 2, OperatorKeywordName = "BonusMamma", IsActive = true },
+                    new OperatorKeyword { OperatorKeywordId = 3, OperatorKeywordName = "Naspi", IsActive = true }
+                );
+            });
         }
     }
 }
