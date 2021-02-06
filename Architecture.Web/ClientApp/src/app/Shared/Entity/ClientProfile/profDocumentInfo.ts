@@ -23,6 +23,8 @@ export class profDocumentInfo extends Auditable {
 
     public expiryDate: Date;
 
+    public urls: [];
+
 }
 
 

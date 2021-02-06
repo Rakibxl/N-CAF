@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(public globals: ThemeOptions, private authService: AuthService) {
+  constructor(public globals: ThemeOptions, public authService: AuthService) {
   }
 
   @HostBinding('class.isActive')
