@@ -7,7 +7,7 @@
                         <h3><span class="bordered-title">{{'basicUserFrom.title' | translate}}</span></h3>
                         <button class="caf-btn-primary-outline h-auto back btn-sm" (click)="backBtnClick()">
                             <i class="pe-7s-back pr-1"></i>
-                            Back
+                            {{'common.back.label' | translate}}
                         </button>
                     </div>
                     <hr>
@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">DateOfBirth*</label>
-                            <input type="date" formControlName="dateOfBirth" autocomplete="off" class="form-control" placeholder="Enter date of birth" required />
+                            <label class="label">{{'common.dateOfBirth.label' | translate}}*</label>
+                            <input type="date" formControlName="dateOfBirth" autocomplete="off" class="form-control" placeholder="{{'common.dateOfBirth.placeholder' | translate}}" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -188,7 +188,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.occupation.label' | translate}}</label>
                             <select formControlName="occupationTypeId" name="" id="" class="form-control">
-                                <option *ngFor="let option of motiveType" [value]="option.motiveTypeId">{{option.motiveTypeName}}</option>
+                                <option *ngFor="let option of occupationType" [value]="option.occupationTypeId">{{option.occupationTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -198,9 +198,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.OcupationPosition.label' | translate}}</label>
                             <select formControlName="occupationPositionId" name="" id="" class="form-control">
-                                <option value="1">UnEmployed</option>
-                                <option value="2">Employed</option>
-                                <option value="3">Shareholder</option>
+                                <option *ngFor="let option of occupationPosition" [value]="option.occupationPositionId">{{option.occupationPositionName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -247,9 +245,7 @@
                         <div class="caf-input-group d-flex align-items-center">
                             <label class="label">{{'basicUserFrom.contractType.label' | translate}}</label>
                             <select formControlName="contractTypeId" name="" id="" class="form-control">
-                                <option value="1">No Limit</option>
-                                <option value="2">Limited</option>
-                                <option value="3">Occational</option>
+                                <option *ngFor="let option of contractType" [value]="option.contractTypeId">{{option.contractTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -442,9 +438,9 @@
                         <div class="card-footer d-flex justify-content-end">
                             <button class="caf-btn-primary-outline back mr-2" (click)="backBtnClick()">
                                 <i class="pe-7s-back pr-1"></i>
-                                Back
+                                {{'common.back.label' | translate}}
                             </button>
-                            <button [disabled]="basicInfoForm.invalid" class="caf-btn-primary-outline" (click)="save()"><i class="fa fa-save pr-1"></i> Save</button>
+                            <button [disabled]="basicInfoForm.invalid" class="caf-btn-primary-outline" (click)="save()"><i class="fa fa-save pr-1"></i> {{'common.save.label' | translate}}</button>
                         </div>
                     </div>
                 </div>

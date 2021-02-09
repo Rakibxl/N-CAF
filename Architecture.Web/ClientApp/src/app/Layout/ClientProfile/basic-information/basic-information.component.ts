@@ -22,7 +22,10 @@ export class BasicInformationComponent implements OnInit {
   public maritalStatus = [];
   public nationality = [];
   public eyeColor = [];
+  public occupationType = [];
   public motiveType = [];
+  public occupationPosition = [];
+  public contractType = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private clientProfileService: ClientProfileService, private authService: AuthService,
     private alertService: AlertService, private router: Router, private commonService: CommonService, private dropdownService: DropdownService) {
@@ -41,7 +44,7 @@ export class BasicInformationComponent implements OnInit {
     let addressType = await this.dropdownService.getAppUserType() || [];
     let assetType = await this.dropdownService.getAssetType() || [];
     let bankName = await this.dropdownService.getBankName() || [];
-    let contractType = await this.dropdownService.getContractType() || [];
+    this.contractType = await this.dropdownService.getContractType() || [];
     let countryName = await this.dropdownService.getCountryName() || [];
     let degreeType = await this.dropdownService.getDegreeName() || [];
     let documentType = await this.dropdownService.getDocumentType() || [];
@@ -54,13 +57,15 @@ export class BasicInformationComponent implements OnInit {
     let iseeClassType = await this.dropdownService.getISEEClassType() || [];
     let jobDeliveryType = await this.dropdownService.getJobDeliveryType() || [];
     let jobType = await this.dropdownService.getJobType() || [];
+    this.occupationType = await this.dropdownService.getOccupationType() || [];
+    this.occupationPosition = await this.dropdownService.getOccupationPosition() || [];
     this.maritalStatus = await this.dropdownService.getMaritalStatus() || [];
     this.nationality = await this.dropdownService.getNationality() || [];
     this.motiveType = await this.dropdownService.getMotiveType() || [];
 
     console.log("houseCategory: ", houseCategory, "houseType:", houseType, "incomeType:", incomeType, "insuranceType:", insuranceType, "iseeClassType:", iseeClassType, "jobDeliveryType: ", jobDeliveryType,
       "jobType", jobType,
-      "documentType:", documentType, "eyeColor:", this.eyeColor, "gender:", this.gender, "nationality:", this.nationality, "motiveType:", this.motiveType);
+        "documentType:", documentType, "eyeColor:", this.eyeColor, "gender:", this.gender, "nationality:", this.nationality, "motiveType:", this.motiveType, "contractType:", this.contractType, "occupationPosition:", this.occupationPosition, "occupation:", this.occupationType);
   }
 
   initForm() {
