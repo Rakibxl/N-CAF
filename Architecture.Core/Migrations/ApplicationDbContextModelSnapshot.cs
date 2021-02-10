@@ -169,6 +169,8 @@ namespace Architecture.Core.Migrations
 
                     b.HasIndex("AppUserTypeId");
 
+                    b.HasIndex("BranchInfoId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -567,7 +569,7 @@ namespace Architecture.Core.Migrations
                         new
                         {
                             AppUserTypeId = 1,
-                            AppUserTypeTitle = "Client",
+                            AppUserTypeTitle = "Admin",
                             IsActive = true
                         },
                         new
@@ -579,7 +581,13 @@ namespace Architecture.Core.Migrations
                         new
                         {
                             AppUserTypeId = 3,
-                            AppUserTypeTitle = "Other",
+                            AppUserTypeTitle = "Operator",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            AppUserTypeId = 4,
+                            AppUserTypeTitle = "Client",
                             IsActive = true
                         });
                 });
@@ -1511,6 +1519,45 @@ namespace Architecture.Core.Migrations
                             OccupationTypeId = 3,
                             IsActive = true,
                             OccupationTypeName = "Occupation Type 3"
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.OperatorKeyword", b =>
+                {
+                    b.Property<int>("OperatorKeywordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OperatorKeywordName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("OperatorKeywordId");
+
+                    b.ToTable("LU_OperatorKeyword");
+
+                    b.HasData(
+                        new
+                        {
+                            OperatorKeywordId = 1,
+                            IsActive = true,
+                            OperatorKeywordName = "BabyBonus"
+                        },
+                        new
+                        {
+                            OperatorKeywordId = 2,
+                            IsActive = true,
+                            OperatorKeywordName = "BonusMamma"
+                        },
+                        new
+                        {
+                            OperatorKeywordId = 3,
+                            IsActive = true,
+                            OperatorKeywordName = "Naspi"
                         });
                 });
 
@@ -3485,6 +3532,10 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.AppUserType", "AppUserType")
                         .WithMany()
                         .HasForeignKey("AppUserTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.BranchInfo", "BranchInfo")
+                        .WithMany()
+                        .HasForeignKey("BranchInfoId");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.ApplicationUserRole", b =>

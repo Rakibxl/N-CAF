@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Architecture.Core.Migrations
 {
-    public partial class init : Migration
+    public partial class intialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -429,6 +429,20 @@ namespace Architecture.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LU_OperatorKeyword",
+                columns: table => new
+                {
+                    OperatorKeywordId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OperatorKeywordName = table.Column<string>(maxLength: 100, nullable: true),
+                    IsActive = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LU_OperatorKeyword", x => x.OperatorKeywordId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LU_OwnerType",
                 columns: table => new
                 {
@@ -468,6 +482,20 @@ namespace Architecture.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LU_ResidenceScope", x => x.ResidenceScopeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LU_SectionName",
+                columns: table => new
+                {
+                    SectionNameId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SectionDescription = table.Column<string>(maxLength: 150, nullable: true),
+                    IsActive = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LU_SectionName", x => x.SectionNameId);
                 });
 
             migrationBuilder.CreateTable(
@@ -520,53 +548,57 @@ namespace Architecture.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "JobInfos",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    SurName = table.Column<string>(nullable: true),
-                    GenderId = table.Column<int>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    LastPassword = table.Column<string>(nullable: true),
-                    LastPassChangeDate = table.Column<DateTime>(nullable: true),
-                    AppUserStatusId = table.Column<int>(nullable: true),
-                    AppUserTypeId = table.Column<int>(nullable: true),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    ModifiedBy = table.Column<Guid>(nullable: true),
-                    Modified = table.Column<DateTime>(nullable: true),
-                    IsLocked = table.Column<bool>(nullable: false),
-                    BranchId = table.Column<int>(nullable: true)
+                    JobInfoId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(maxLength: 250, nullable: false),
+                    Description = table.Column<string>(maxLength: 250, nullable: true),
+                    StartDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    IsCommon = table.Column<bool>(nullable: false, defaultValue: false),
+                    JobDeliveryTypeId = table.Column<int>(nullable: false),
+                    OperatorTimeFrame = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    IsHighlighted = table.Column<bool>(nullable: false, defaultValue: false),
+                    VideoLink = table.Column<string>(maxLength: 250, nullable: true),
+                    DocumentLink = table.Column<string>(maxLength: 250, nullable: true),
+                    ChildAgeMin = table.Column<int>(nullable: true, defaultValue: 0),
+                    ChildAgeMax = table.Column<int>(nullable: true),
+                    ISEEMin = table.Column<int>(nullable: true),
+                    ISEEMax = table.Column<int>(nullable: true),
+                    ISEEClassTypeId = table.Column<int>(nullable: true),
+                    IsPregnant = table.Column<bool>(nullable: false, defaultValue: false),
+                    OccupationTypeId = table.Column<int>(nullable: true),
+                    NumberOfChild = table.Column<int>(nullable: true),
+                    DaysToExpairJobContract = table.Column<int>(nullable: true),
+                    DaysToBeExpairedResidencePermit = table.Column<int>(nullable: true),
+                    IsEligibleForUnlimitedResidencePermit = table.Column<bool>(nullable: false, defaultValue: false),
+                    DaysToBeExpairedNationalId = table.Column<int>(nullable: true),
+                    DaysToBeExpairedPassport = table.Column<int>(nullable: true),
+                    IsEligibleForCityzenShipApply = table.Column<bool>(nullable: false, defaultValue: false),
+                    HasUnlimitedResidencePermit = table.Column<bool>(nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_JobInfos", x => x.JobInfoId);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_LU_AppUserStatus_AppUserStatusId",
-                        column: x => x.AppUserStatusId,
-                        principalTable: "LU_AppUserStatus",
-                        principalColumn: "AppUserStatusId",
+                        name: "FK_JobInfos_LU_ISEEClassType_ISEEClassTypeId",
+                        column: x => x.ISEEClassTypeId,
+                        principalTable: "LU_ISEEClassType",
+                        principalColumn: "ISEEClassTypeId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_LU_AppAppUserType_AppUserTypeId",
-                        column: x => x.AppUserTypeId,
-                        principalTable: "LU_AppAppUserType",
-                        principalColumn: "AppUserTypeId",
+                        name: "FK_JobInfos_LU_JobDeliveryType_JobDeliveryTypeId",
+                        column: x => x.JobDeliveryTypeId,
+                        principalTable: "LU_JobDeliveryType",
+                        principalColumn: "JobDeliveryTypeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobInfos_LU_OccupationType_OccupationTypeId",
+                        column: x => x.OccupationTypeId,
+                        principalTable: "LU_OccupationType",
+                        principalColumn: "OccupationTypeId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -574,7 +606,7 @@ namespace Architecture.Core.Migrations
                 name: "BranchInfos",
                 columns: table => new
                 {
-                    BranchId = table.Column<int>(nullable: false)
+                    BranchInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
@@ -593,7 +625,7 @@ namespace Architecture.Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BranchInfos", x => x.BranchId);
+                    table.PrimaryKey("PK_BranchInfos", x => x.BranchInfoId);
                     table.ForeignKey(
                         name: "FK_BranchInfos_RecordStatus_RecordStatusId",
                         column: x => x.RecordStatusId,
@@ -657,7 +689,7 @@ namespace Architecture.Core.Migrations
                     HasWorker = table.Column<bool>(nullable: true, defaultValue: false),
                     DigitalVatCode = table.Column<string>(maxLength: 100, nullable: true),
                     HasAppliedForCitizenship = table.Column<bool>(nullable: false, defaultValue: false),
-                    BranchId = table.Column<int>(nullable: true)
+                    BranchInfoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -719,88 +751,163 @@ namespace Architecture.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
+                name: "QuestionInfos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    QuestionInfoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<Guid>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    ModifiedBy = table.Column<Guid>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    RecordStatusId = table.Column<int>(nullable: true),
+                    QuestionDescription = table.Column<string>(maxLength: 500, nullable: false),
+                    PageToUrl = table.Column<string>(maxLength: 100, nullable: true),
+                    SectionNameId = table.Column<int>(nullable: true),
+                    Status = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.PrimaryKey("PK_QuestionInfos", x => x.QuestionInfoId);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_QuestionInfos_RecordStatus_RecordStatusId",
+                        column: x => x.RecordStatusId,
+                        principalTable: "RecordStatus",
+                        principalColumn: "RecordStatusId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_QuestionInfos_LU_SectionName_SectionNameId",
+                        column: x => x.SectionNameId,
+                        principalTable: "LU_SectionName",
+                        principalColumn: "SectionNameId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
+                name: "SectionLinks",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    SectionLinkId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    ModifiedBy = table.Column<Guid>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    RecordStatusId = table.Column<int>(nullable: true),
+                    Title = table.Column<string>(maxLength: 500, nullable: false),
+                    ActionLink = table.Column<string>(maxLength: 100, nullable: false),
+                    SectionNameId = table.Column<int>(nullable: true),
+                    Remarks = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_SectionLinks", x => x.SectionLinkId);
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_SectionLinks_RecordStatus_RecordStatusId",
+                        column: x => x.RecordStatusId,
+                        principalTable: "RecordStatus",
+                        principalColumn: "RecordStatusId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SectionLinks_LU_SectionName_SectionNameId",
+                        column: x => x.SectionNameId,
+                        principalTable: "LU_SectionName",
+                        principalColumn: "SectionNameId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
+                name: "JobSectionLinks",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
+                    JobSectionLinkId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    ModifiedBy = table.Column<Guid>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: false, computedColumnSql: "GetUtcDate()"),
+                    RecordStatusId = table.Column<int>(nullable: true),
+                    JobInfoId = table.Column<int>(nullable: true),
+                    SectionNameId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_JobSectionLinks", x => x.JobSectionLinkId);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_JobSectionLinks_JobInfos_JobInfoId",
+                        column: x => x.JobInfoId,
+                        principalTable: "JobInfos",
+                        principalColumn: "JobInfoId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_JobSectionLinks_RecordStatus_RecordStatusId",
+                        column: x => x.RecordStatusId,
+                        principalTable: "RecordStatus",
+                        principalColumn: "RecordStatusId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_JobSectionLinks_LU_SectionName_SectionNameId",
+                        column: x => x.SectionNameId,
+                        principalTable: "LU_SectionName",
+                        principalColumn: "SectionNameId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: true)
+                    Id = table.Column<Guid>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    SurName = table.Column<string>(nullable: true),
+                    GenderId = table.Column<int>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    LastPassword = table.Column<string>(nullable: true),
+                    LastPassChangeDate = table.Column<DateTime>(nullable: true),
+                    AppUserStatusId = table.Column<int>(nullable: true),
+                    AppUserTypeId = table.Column<int>(nullable: true),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<Guid>(nullable: true),
+                    Modified = table.Column<DateTime>(nullable: true),
+                    IsLocked = table.Column<bool>(nullable: false),
+                    BranchInfoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_AspNetUsers_LU_AppUserStatus_AppUserStatusId",
+                        column: x => x.AppUserStatusId,
+                        principalTable: "LU_AppUserStatus",
+                        principalColumn: "AppUserStatusId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_LU_AppAppUserType_AppUserTypeId",
+                        column: x => x.AppUserTypeId,
+                        principalTable: "LU_AppAppUserType",
+                        principalColumn: "AppUserTypeId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_BranchInfos_BranchInfoId",
+                        column: x => x.BranchInfoId,
+                        principalTable: "BranchInfos",
+                        principalColumn: "BranchInfoId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -817,7 +924,7 @@ namespace Architecture.Core.Migrations
                     ProfileId = table.Column<int>(nullable: false),
                     AddressTypeId = table.Column<int>(nullable: true),
                     RoadName = table.Column<string>(maxLength: 100, nullable: false),
-                    RoadNo = table.Column<string>(maxLength: 100, nullable: false),
+                    RoadNo = table.Column<string>(maxLength: 100, nullable: true),
                     BuildingNo = table.Column<string>(maxLength: 100, nullable: false),
                     FloorNo = table.Column<string>(maxLength: 100, nullable: true),
                     AppartmentNo = table.Column<string>(maxLength: 100, nullable: true),
@@ -868,13 +975,13 @@ namespace Architecture.Core.Migrations
                     NumberOfAsset = table.Column<int>(nullable: false),
                     EquivalentMoneyMax = table.Column<int>(nullable: false),
                     EquivalentMoneyMin = table.Column<int>(nullable: false),
-                    MoneyAverage = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    MoneyAverage = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     OwnerTypeId = table.Column<int>(nullable: false),
-                    OwnershipPercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    OwnershipPercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
                     OwnerFromDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    TaxAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    UseAblePercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    TaxAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    UseAblePercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
                     AnyRestrictionByGovt = table.Column<string>(maxLength: 100, nullable: true),
                     CityName = table.Column<string>(maxLength: 100, nullable: true),
                     Note = table.Column<string>(nullable: true)
@@ -1099,10 +1206,10 @@ namespace Architecture.Core.Migrations
                     PreviousNationalityId = table.Column<int>(nullable: true),
                     ResidenceScopeId = table.Column<int>(nullable: true),
                     IsDependent = table.Column<bool>(nullable: false),
-                    DependentPercentage = table.Column<decimal>(type: "decimal(3,2)", nullable: false, defaultValue: 0m),
+                    DependentPercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
                     IsDisabled = table.Column<bool>(nullable: false),
-                    DisabledPercentage = table.Column<decimal>(type: "decimal(3,2)", nullable: false, defaultValue: 0m),
-                    YearlyIncome = table.Column<decimal>(type: "decimal(8,2)", nullable: false, defaultValue: 0m),
+                    DisabledPercentage = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
+                    YearlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     IsAppliedForCitizenship = table.Column<bool>(nullable: false),
                     ApplicationCode = table.Column<string>(maxLength: 100, nullable: true),
                     ApplicationDate = table.Column<DateTime>(nullable: true),
@@ -1175,8 +1282,8 @@ namespace Architecture.Core.Migrations
                     HouseTypeId = table.Column<int>(nullable: true),
                     StartDate = table.Column<DateTime>(type: "Date", nullable: true),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: true),
-                    MonthlyRentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    ServiceChargeAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    MonthlyRentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    ServiceChargeAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     RegistrationInfo = table.Column<string>(maxLength: 100, nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "Date", nullable: true),
                     RegistrationOffice = table.Column<string>(maxLength: 100, nullable: true),
@@ -1184,7 +1291,7 @@ namespace Architecture.Core.Migrations
                     RegistrationNo = table.Column<string>(maxLength: 100, nullable: true),
                     RegistrationCity = table.Column<string>(maxLength: 100, nullable: true),
                     IsJoined = table.Column<bool>(nullable: true),
-                    SharePercent = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    SharePercent = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
                     FoglioNo = table.Column<string>(maxLength: 100, nullable: true),
                     PartiocellaNo = table.Column<string>(maxLength: 100, nullable: true),
                     SubNo = table.Column<string>(maxLength: 100, nullable: true),
@@ -1199,12 +1306,12 @@ namespace Architecture.Core.Migrations
                     HasLoan = table.Column<bool>(nullable: true),
                     LoanStatusTypeID = table.Column<int>(nullable: false),
                     LoanStartDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    LoanAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    PaidAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    LoanAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    PaidAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     LoanInterestTypeId = table.Column<int>(nullable: false),
                     LoanPeriod = table.Column<int>(nullable: true),
                     IsRentByOwner = table.Column<bool>(nullable: false),
-                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                    RentAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m)
                 },
                 constraints: table =>
                 {
@@ -1266,8 +1373,8 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     IncomeTypeId = table.Column<int>(nullable: true),
-                    YearlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    MonthlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    YearlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    MonthlyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     Year = table.Column<DateTime>(type: "date", nullable: false),
                     Month = table.Column<DateTime>(type: "date", nullable: false),
                     Document = table.Column<string>(maxLength: 100, nullable: true),
@@ -1351,12 +1458,12 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     ISEEClassTypeId = table.Column<int>(nullable: true),
-                    ISEEValue = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    Point = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    ISEEFamilyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    ISPAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    ISEAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    ISRAmount = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ISEEValue = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    Point = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    ISEEFamilyIncome = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    ISPAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    ISEAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
+                    ISRAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     IdentificationNumber = table.Column<string>(maxLength: 100, nullable: false),
                     SubmittedDate = table.Column<DateTime>(type: "Date", nullable: false),
                     DeliveryDate = table.Column<DateTime>(type: "Date", nullable: false),
@@ -1483,7 +1590,7 @@ namespace Architecture.Core.Migrations
                     RecordStatusId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false),
                     JobTypeId = table.Column<int>(nullable: true),
-                    JobHour = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    JobHour = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     ContractTypeId = table.Column<int>(nullable: true),
                     ContractStartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     ContractEndDate = table.Column<DateTime>(type: "Date", nullable: false),
@@ -1499,7 +1606,7 @@ namespace Architecture.Core.Migrations
                     SCIANo = table.Column<string>(maxLength: 100, nullable: true),
                     SCIACityName = table.Column<string>(maxLength: 100, nullable: true),
                     IsShareHolder = table.Column<bool>(nullable: true),
-                    PercentageOfShare = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    PercentageOfShare = table.Column<decimal>(type: "decimal(5,2)", nullable: false, defaultValue: 0m),
                     NotaioInfo = table.Column<string>(maxLength: 100, nullable: true),
                     CompanyRepresentative = table.Column<string>(maxLength: 100, nullable: true)
                 },
@@ -1549,7 +1656,7 @@ namespace Architecture.Core.Migrations
                     SurName = table.Column<string>(maxLength: 100, nullable: false),
                     TaxCode = table.Column<string>(maxLength: 100, nullable: false),
                     ContractNumber = table.Column<string>(maxLength: 100, nullable: false),
-                    MonthlySalary = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    MonthlySalary = table.Column<decimal>(type: "decimal(10,2)", nullable: false, defaultValue: 0m),
                     StartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: false),
                     Status = table.Column<string>(nullable: true)
@@ -1577,6 +1684,91 @@ namespace Architecture.Core.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "LU_AddressType",
                 columns: new[] { "AddressTypeId", "AddressTypeName", "IsActive" },
@@ -1592,9 +1784,10 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "AppUserTypeId", "AppUserTypeTitle", "IsActive" },
                 values: new object[,]
                 {
-                    { 1, "Client", true },
+                    { 1, "Admin", true },
                     { 2, "Branch User", true },
-                    { 3, "Other", true }
+                    { 3, "Operator", true },
+                    { 4, "Client", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1612,8 +1805,8 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "AssetTypeId", "AssetTypeName", "IsActive" },
                 values: new object[,]
                 {
-                    { 2, "Car", true },
-                    { 1, "House", true }
+                    { 1, "House", true },
+                    { 2, "Car", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1621,9 +1814,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "BankNameId", "BankDescription", "IsActive" },
                 values: new object[,]
                 {
+                    { 3, "UBI Bank", true },
                     { 1, "UniCredit Bank", true },
-                    { 2, "Intesa San Paolo", true },
-                    { 3, "UBI Bank", true }
+                    { 2, "Intesa San Paolo", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1641,9 +1834,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "CountryNameId", "CountryDescription", "IsActive" },
                 values: new object[,]
                 {
-                    { 3, "Germany", true },
                     { 1, "Italy", true },
-                    { 2, "Bangladesh", true }
+                    { 2, "Bangladesh", true },
+                    { 3, "Germany", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1652,8 +1845,8 @@ namespace Architecture.Core.Migrations
                 values: new object[,]
                 {
                     { 3, "High School", true },
-                    { 2, "Masters", true },
-                    { 1, "Bachelor", true }
+                    { 1, "Bachelor", true },
+                    { 2, "Masters", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1661,9 +1854,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "DocumentTypeId", "DocumentName", "IsActive" },
                 values: new object[,]
                 {
+                    { 3, "National Id", true },
                     { 1, "Passport", true },
-                    { 2, "Driving License", true },
-                    { 3, "National Id", true }
+                    { 2, "Driving License", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1679,16 +1872,21 @@ namespace Architecture.Core.Migrations
             migrationBuilder.InsertData(
                 table: "LU_Gender",
                 columns: new[] { "GenderId", "IsActive", "Name" },
-                values: new object[] { 1, true, "Male" });
+                values: new object[,]
+                {
+                    { 1, true, "Male" },
+                    { 2, true, "Female" },
+                    { 3, true, "Other" }
+                });
 
             migrationBuilder.InsertData(
                 table: "LU_HouseCategory",
                 columns: new[] { "HouseCategoryId", "HouseCategoryName", "IsActive" },
                 values: new object[,]
                 {
-                    { 2, "House Category 2", true },
                     { 3, "House Category 3", true },
-                    { 1, "House Category 1", true }
+                    { 1, "House Category 1", true },
+                    { 2, "House Category 2", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1696,9 +1894,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "HouseTypeId", "HouseTypeName", "IsActive" },
                 values: new object[,]
                 {
-                    { 1, "Rent", true },
+                    { 3, "Shared Rent", true },
                     { 2, "Owner", true },
-                    { 3, "Shared Rent", true }
+                    { 1, "Rent", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1726,8 +1924,8 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "InsuranceTypeId", "Description", "IsActive" },
                 values: new object[,]
                 {
-                    { 3, "Health Insurance", true },
                     { 2, "Home Insurance", true },
+                    { 3, "Health Insurance", true },
                     { 1, "Car Insurance", true }
                 });
 
@@ -1736,9 +1934,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "JobDeliveryTypeId", "IsActive", "JobDeliveryTypeName" },
                 values: new object[,]
                 {
-                    { 1, true, "Quick" },
-                    { 2, true, "Urgent" },
-                    { 3, true, "Normal" }
+                    { 2, true, "Standard" },
+                    { 3, true, "Urgent" },
+                    { 1, true, "Normal" }
                 });
 
             migrationBuilder.InsertData(
@@ -1756,9 +1954,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "LoanInterestTypeId", "IsActive", "LoanInterestTypeName" },
                 values: new object[,]
                 {
+                    { 1, true, "Fixed Interest" },
                     { 2, true, "Variable Interest" },
-                    { 3, true, "No Interest" },
-                    { 1, true, "Fixed Interest" }
+                    { 3, true, "No Interest" }
                 });
 
             migrationBuilder.InsertData(
@@ -1776,9 +1974,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "MeritalStatusId", "IsActive", "Name" },
                 values: new object[,]
                 {
-                    { 1, true, "Single" },
                     { 2, true, "Marrid" },
-                    { 3, true, "Divorce" }
+                    { 3, true, "Divorce" },
+                    { 1, true, "Single" }
                 });
 
             migrationBuilder.InsertData(
@@ -1786,9 +1984,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "MotiveTypeId", "IsActive", "MotiveTypeName" },
                 values: new object[,]
                 {
-                    { 3, true, "Worker" },
                     { 1, true, "Occupation" },
-                    { 2, true, "Family" }
+                    { 2, true, "Family" },
+                    { 3, true, "Worker" }
                 });
 
             migrationBuilder.InsertData(
@@ -1796,9 +1994,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "NationalIdTypeId", "IsActive", "NationalIdTypeName" },
                 values: new object[,]
                 {
+                    { 1, true, "Smart" },
                     { 2, true, "Paper" },
-                    { 3, true, "Pending" },
-                    { 1, true, "Smart" }
+                    { 3, true, "Pending" }
                 });
 
             migrationBuilder.InsertData(
@@ -1826,9 +2024,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "OccupationPositionId", "Description", "IsActive" },
                 values: new object[,]
                 {
+                    { 3, "Employee", true },
                     { 1, "Manager", true },
-                    { 2, "Worker", true },
-                    { 3, "Employee", true }
+                    { 2, "Worker", true }
                 });
 
             migrationBuilder.InsertData(
@@ -1836,9 +2034,19 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "OccupationTypeId", "IsActive", "OccupationTypeName" },
                 values: new object[,]
                 {
+                    { 1, true, "Occupation Type 1" },
                     { 2, true, "Occupation Type 2" },
-                    { 3, true, "Occupation Type 3" },
-                    { 1, true, "Occupation Type 1" }
+                    { 3, true, "Occupation Type 3" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "LU_OperatorKeyword",
+                columns: new[] { "OperatorKeywordId", "IsActive", "OperatorKeywordName" },
+                values: new object[,]
+                {
+                    { 1, true, "BabyBonus" },
+                    { 2, true, "BonusMamma" },
+                    { 3, true, "Naspi" }
                 });
 
             migrationBuilder.InsertData(
@@ -1846,8 +2054,8 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "OwnerTypeId", "IsActive", "OwnerTypeName" },
                 values: new object[,]
                 {
-                    { 1, true, "By Birth" },
-                    { 2, true, "Buy" }
+                    { 2, true, "Buy" },
+                    { 1, true, "By Birth" }
                 });
 
             migrationBuilder.InsertData(
@@ -1855,9 +2063,9 @@ namespace Architecture.Core.Migrations
                 columns: new[] { "RelationTypeId", "IsActive", "RelationTypeName" },
                 values: new object[,]
                 {
-                    { 1, true, "Father" },
                     { 2, true, "Mother" },
-                    { 3, true, "Son" }
+                    { 3, true, "Son" },
+                    { 1, true, "Father" }
                 });
 
             migrationBuilder.InsertData(
@@ -1868,6 +2076,21 @@ namespace Architecture.Core.Migrations
                     { 1, true, "Itally" },
                     { 2, true, "Out of Itally" },
                     { 3, true, "Not Permanent" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "LU_SectionName",
+                columns: new[] { "SectionNameId", "IsActive", "SectionDescription" },
+                values: new object[,]
+                {
+                    { 5, true, "Address Info" },
+                    { 6, true, "House Rent Info" },
+                    { 4, true, "Education Info" },
+                    { 7, true, "Document Info" },
+                    { 2, true, "Occupation Info" },
+                    { 1, true, "Basic Info" },
+                    { 3, true, "Family Info" },
+                    { 8, true, "Income Info" }
                 });
 
             migrationBuilder.InsertData(
@@ -1917,6 +2140,11 @@ namespace Architecture.Core.Migrations
                 column: "AppUserTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_BranchInfoId",
+                table: "AspNetUsers",
+                column: "BranchInfoId");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
@@ -1932,6 +2160,36 @@ namespace Architecture.Core.Migrations
                 name: "IX_BranchInfos_RecordStatusId",
                 table: "BranchInfos",
                 column: "RecordStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobInfos_ISEEClassTypeId",
+                table: "JobInfos",
+                column: "ISEEClassTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobInfos_JobDeliveryTypeId",
+                table: "JobInfos",
+                column: "JobDeliveryTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobInfos_OccupationTypeId",
+                table: "JobInfos",
+                column: "OccupationTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSectionLinks_JobInfoId",
+                table: "JobSectionLinks",
+                column: "JobInfoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSectionLinks_RecordStatusId",
+                table: "JobSectionLinks",
+                column: "RecordStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSectionLinks_SectionNameId",
+                table: "JobSectionLinks",
+                column: "SectionNameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfAddressInfos_AddressTypeId",
@@ -2247,6 +2505,26 @@ namespace Architecture.Core.Migrations
                 name: "IX_ProfWorkerInfos_WorkerTypeId",
                 table: "ProfWorkerInfos",
                 column: "WorkerTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestionInfos_RecordStatusId",
+                table: "QuestionInfos",
+                column: "RecordStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestionInfos_SectionNameId",
+                table: "QuestionInfos",
+                column: "SectionNameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SectionLinks_RecordStatusId",
+                table: "SectionLinks",
+                column: "RecordStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SectionLinks_SectionNameId",
+                table: "SectionLinks",
+                column: "SectionNameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -2267,19 +2545,19 @@ namespace Architecture.Core.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BranchInfos");
-
-            migrationBuilder.DropTable(
                 name: "Examples");
 
             migrationBuilder.DropTable(
-                name: "LU_JobDeliveryType");
+                name: "JobSectionLinks");
 
             migrationBuilder.DropTable(
                 name: "LU_NationalIdType");
 
             migrationBuilder.DropTable(
                 name: "LU_OccupationPositionType");
+
+            migrationBuilder.DropTable(
+                name: "LU_OperatorKeyword");
 
             migrationBuilder.DropTable(
                 name: "ProfAddressInfos");
@@ -2327,10 +2605,19 @@ namespace Architecture.Core.Migrations
                 name: "ProfWorkerInfos");
 
             migrationBuilder.DropTable(
+                name: "QuestionInfos");
+
+            migrationBuilder.DropTable(
+                name: "SectionLinks");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "JobInfos");
 
             migrationBuilder.DropTable(
                 name: "LU_AddressType");
@@ -2375,9 +2662,6 @@ namespace Architecture.Core.Migrations
                 name: "LU_InsuranceType");
 
             migrationBuilder.DropTable(
-                name: "LU_ISEEClassType");
-
-            migrationBuilder.DropTable(
                 name: "LU_CountryName");
 
             migrationBuilder.DropTable(
@@ -2390,10 +2674,22 @@ namespace Architecture.Core.Migrations
                 name: "LU_WorkerType");
 
             migrationBuilder.DropTable(
+                name: "LU_SectionName");
+
+            migrationBuilder.DropTable(
                 name: "LU_AppUserStatus");
 
             migrationBuilder.DropTable(
                 name: "LU_AppAppUserType");
+
+            migrationBuilder.DropTable(
+                name: "BranchInfos");
+
+            migrationBuilder.DropTable(
+                name: "LU_ISEEClassType");
+
+            migrationBuilder.DropTable(
+                name: "LU_JobDeliveryType");
 
             migrationBuilder.DropTable(
                 name: "LU_ContractType");
