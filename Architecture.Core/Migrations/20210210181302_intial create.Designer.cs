@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201212093040_added default decimal values")]
-    partial class addeddefaultdecimalvalues
+    [Migration("20210210181302_intial create")]
+    partial class intialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("AppUserTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BranchId")
+                    b.Property<int?>("BranchInfoId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -171,6 +171,8 @@ namespace Architecture.Core.Migrations
 
                     b.HasIndex("AppUserTypeId");
 
+                    b.HasIndex("BranchInfoId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -199,7 +201,7 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.BranchInfo", b =>
                 {
-                    b.Property<int>("BranchId")
+                    b.Property<int>("BranchInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -263,7 +265,7 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
-                    b.HasKey("BranchId");
+                    b.HasKey("BranchInfoId");
 
                     b.HasIndex("RecordStatusId");
 
@@ -310,6 +312,163 @@ namespace Architecture.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Examples");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.JobInfo", b =>
+                {
+                    b.Property<int>("JobInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ChildAgeMax")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ChildAgeMin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int?>("DaysToBeExpairedNationalId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DaysToBeExpairedPassport")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DaysToBeExpairedResidencePermit")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DaysToExpairJobContract")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("DocumentLink")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("Date");
+
+                    b.Property<bool>("HasUnlimitedResidencePermit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("ISEEClassTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ISEEMax")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ISEEMin")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsCommon")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsEligibleForCityzenShipApply")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsEligibleForUnlimitedResidencePermit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsHighlighted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsPregnant")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("JobDeliveryTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumberOfChild")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OccupationTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("OperatorTimeFrame")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(10,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("VideoLink")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.HasKey("JobInfoId");
+
+                    b.HasIndex("ISEEClassTypeId");
+
+                    b.HasIndex("JobDeliveryTypeId");
+
+                    b.HasIndex("OccupationTypeId");
+
+                    b.ToTable("JobInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.JobSectionLink", b =>
+                {
+                    b.Property<int>("JobSectionLinkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("JobInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Modified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SectionNameId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobSectionLinkId");
+
+                    b.HasIndex("JobInfoId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.HasIndex("SectionNameId");
+
+                    b.ToTable("JobSectionLinks");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.LU.AddressType", b =>
@@ -412,7 +571,7 @@ namespace Architecture.Core.Migrations
                         new
                         {
                             AppUserTypeId = 1,
-                            AppUserTypeTitle = "Client",
+                            AppUserTypeTitle = "Admin",
                             IsActive = true
                         },
                         new
@@ -424,7 +583,13 @@ namespace Architecture.Core.Migrations
                         new
                         {
                             AppUserTypeId = 3,
-                            AppUserTypeTitle = "Other",
+                            AppUserTypeTitle = "Operator",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            AppUserTypeId = 4,
+                            AppUserTypeTitle = "Client",
                             IsActive = true
                         });
                 });
@@ -953,19 +1118,19 @@ namespace Architecture.Core.Migrations
                         {
                             JobDeliveryTypeId = 1,
                             IsActive = true,
-                            JobDeliveryTypeName = "Quick"
+                            JobDeliveryTypeName = "Normal"
                         },
                         new
                         {
                             JobDeliveryTypeId = 2,
                             IsActive = true,
-                            JobDeliveryTypeName = "Urgent"
+                            JobDeliveryTypeName = "Standard"
                         },
                         new
                         {
                             JobDeliveryTypeId = 3,
                             IsActive = true,
-                            JobDeliveryTypeName = "Normal"
+                            JobDeliveryTypeName = "Urgent"
                         });
                 });
 
@@ -1359,6 +1524,45 @@ namespace Architecture.Core.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.LU.OperatorKeyword", b =>
+                {
+                    b.Property<int>("OperatorKeywordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OperatorKeywordName")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("OperatorKeywordId");
+
+                    b.ToTable("LU_OperatorKeyword");
+
+                    b.HasData(
+                        new
+                        {
+                            OperatorKeywordId = 1,
+                            IsActive = true,
+                            OperatorKeywordName = "BabyBonus"
+                        },
+                        new
+                        {
+                            OperatorKeywordId = 2,
+                            IsActive = true,
+                            OperatorKeywordName = "BonusMamma"
+                        },
+                        new
+                        {
+                            OperatorKeywordId = 3,
+                            IsActive = true,
+                            OperatorKeywordName = "Naspi"
+                        });
+                });
+
             modelBuilder.Entity("Architecture.Core.Entities.LU.OwnerType", b =>
                 {
                     b.Property<int>("OwnerTypeId")
@@ -1485,6 +1689,75 @@ namespace Architecture.Core.Migrations
                             ResidenceScopeId = 3,
                             IsActive = true,
                             ResidenceScopeName = "Not Permanent"
+                        });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.LU.SectionName", b =>
+                {
+                    b.Property<int>("SectionNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SectionDescription")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
+                    b.HasKey("SectionNameId");
+
+                    b.ToTable("LU_SectionName");
+
+                    b.HasData(
+                        new
+                        {
+                            SectionNameId = 1,
+                            IsActive = true,
+                            SectionDescription = "Basic Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 2,
+                            IsActive = true,
+                            SectionDescription = "Occupation Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 3,
+                            IsActive = true,
+                            SectionDescription = "Family Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 4,
+                            IsActive = true,
+                            SectionDescription = "Education Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 5,
+                            IsActive = true,
+                            SectionDescription = "Address Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 6,
+                            IsActive = true,
+                            SectionDescription = "House Rent Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 7,
+                            IsActive = true,
+                            SectionDescription = "Document Info"
+                        },
+                        new
+                        {
+                            SectionNameId = 8,
+                            IsActive = true,
+                            SectionDescription = "Income Info"
                         });
                 });
 
@@ -1779,7 +2052,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("BranchId")
+                    b.Property<int?>("BranchInfoId")
                         .HasColumnType("int");
 
                     b.Property<string>("CarNumberPlate")
@@ -3063,6 +3336,109 @@ namespace Architecture.Core.Migrations
                     b.ToTable("ProfWorkerInfos");
                 });
 
+            modelBuilder.Entity("Architecture.Core.Entities.QuestionInfo", b =>
+                {
+                    b.Property<int>("QuestionInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Modified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PageToUrl")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("QuestionDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SectionNameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("QuestionInfoId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.HasIndex("SectionNameId");
+
+                    b.ToTable("QuestionInfos");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.SectionLink", b =>
+                {
+                    b.Property<int>("SectionLinkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ActionLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Modified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int?>("SectionNameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.HasKey("SectionLinkId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.HasIndex("SectionNameId");
+
+                    b.ToTable("SectionLinks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
@@ -3158,6 +3534,10 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.AppUserType", "AppUserType")
                         .WithMany()
                         .HasForeignKey("AppUserTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.BranchInfo", "BranchInfo")
+                        .WithMany()
+                        .HasForeignKey("BranchInfoId");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.ApplicationUserRole", b =>
@@ -3180,6 +3560,38 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
                         .HasForeignKey("RecordStatusId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.JobInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.ISEEClassType", "ISEEClassType")
+                        .WithMany()
+                        .HasForeignKey("ISEEClassTypeId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.JobDeliveryType", "JobDeliveryType")
+                        .WithMany()
+                        .HasForeignKey("JobDeliveryTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.OccupationType", "OccupationType")
+                        .WithMany()
+                        .HasForeignKey("OccupationTypeId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.JobSectionLink", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.JobInfo", null)
+                        .WithMany("JobSectionLink")
+                        .HasForeignKey("JobInfoId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
+                        .WithMany()
+                        .HasForeignKey("SectionNameId");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.ProfAddressInfo", b =>
@@ -3516,6 +3928,28 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.WorkerType", "WorkerType")
                         .WithMany()
                         .HasForeignKey("WorkerTypeId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.QuestionInfo", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
+                        .WithMany()
+                        .HasForeignKey("SectionNameId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.SectionLink", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
+
+                    b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
+                        .WithMany()
+                        .HasForeignKey("SectionNameId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
