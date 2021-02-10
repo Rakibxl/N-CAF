@@ -8,6 +8,7 @@ using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
 using Architecture.Web.Core;
 using Architecture.Web.Models.ClientProfile;
+using Architecture.Web.Models.IdentityModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,7 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpGet("GetBranches")]
+        [Authorize(Permissions.Branches.ListView)]
         public async Task<IActionResult> GetBranches()
         {
             try

@@ -5,6 +5,15 @@ namespace Architecture.Web.Models.IdentityModels
     {
         public const string SuperAdmin = "Permissions.SuperAdmin";
 
+        public static class Branches
+        {
+            public const string ListView = "Permissions.Branches.ListView";
+            public const string DetailsView = "Permissions.Branches.DetailsView";
+            public const string Create = "Permissions.Branches.Create";
+            public const string Edit = "Permissions.Branches.Edit";
+            public const string Delete = "Permissions.Branches.Delete";
+        }
+
         public static class Users
         {
             public const string ListView = "Permissions.Users.ListView";

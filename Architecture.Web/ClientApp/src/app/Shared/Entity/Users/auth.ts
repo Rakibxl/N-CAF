@@ -8,6 +8,7 @@
     imageUrl: string;
     token?: string;
     BranchLocation: string;
+    Permission: string[];
 }
 
 export class Login {

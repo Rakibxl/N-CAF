@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 })
 export class BranchInformationComponent implements OnInit {
     branchList: any[] = [];
+    hideListView: boolean = true;
 
     constructor(private router: Router, private authService: AuthService, private branchService: BranchService, private alertService: AlertService, private commonService: CommonService) {
 
@@ -21,7 +22,9 @@ export class BranchInformationComponent implements OnInit {
     ngOnInit() {
         this.loadBranchList();
         this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-        console.log(this.authService.currentUserValue)
+        if (this.authService.currentUserValue.Permission.indexOf('Permissions.Branches.ListView') >= 0) {
+            this.hideListView = false;
+        }
     }
 
     public fnPtableCellClick(event) {
