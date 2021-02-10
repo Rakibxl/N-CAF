@@ -53,7 +53,7 @@ namespace Architecture.Web.Controllers.Users
                 var AppUserTypeId = GetClaimValue("AppUserTypeId");
                 if (AppUserTypeId == "1")
                 {
-                    data = new List<UserModel>();
+
                 }
                 else if (AppUserTypeId == "2")
                 {
@@ -66,10 +66,6 @@ namespace Architecture.Web.Controllers.Users
                     {
                         data = new List<UserModel>();
                     }
-                }
-                else if (AppUserTypeId == "3")
-                {
-
                 }
                 else
                 {

@@ -47,7 +47,7 @@ namespace Architecture.Web.Controllers.Users
                 {
                     data = data.Where(ex => ex.Name != "Super Admin").ToList();
                 }
-                else if (AppUserTypeId != "3")
+                else if (AppUserTypeId != "1")
                 {
                     data = new List<UserRoleModel>();
                 }

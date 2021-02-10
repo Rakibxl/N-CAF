@@ -39,7 +39,7 @@ namespace Architecture.Web.Controllers.Users
                 var AppUserTypeId = GetClaimValue("AppUserTypeId");
                 if (AppUserTypeId == "1")
                 {
-                    result = new List<UserRoleMapping>();
+
                 }
                 else if (AppUserTypeId == "2")
                 {
@@ -52,10 +52,6 @@ namespace Architecture.Web.Controllers.Users
                     {
                         result = new List<UserRoleMapping>();
                     }
-                }
-                else if (AppUserTypeId == "3")
-                {
-
                 }
                 else
                 {
