@@ -5,7 +5,7 @@
             <app-search-box></app-search-box>
         </div>
         <div class="app-header-right">
-            <div style="margin-right:200px;font-size: 20px;font-weight: bold;text-decoration: underline;" [hidden]="!authService.currentUserValue || !authService.currentUserValue.BranchLocation || authService.currentUserValue.AppUserTypeId != 2">
+            <div style="margin-right:200px;font-size: 20px;font-weight: bold;text-decoration: underline;" [hidden]="!authService.currentUserValue || !authService.currentUserValue.BranchLocation || authService.currentUserValue.appUserTypeId != 2">
                 {{authService.currentUserValue && authService.currentUserValue.BranchLocation}} Branch
             </div>
             <div class="group-buttons">

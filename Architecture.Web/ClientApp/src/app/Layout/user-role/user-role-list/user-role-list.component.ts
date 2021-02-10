@@ -40,10 +40,10 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		of(undefined).pipe(take(1), delay(1000)).subscribe(() => {
 			this.loadUserRolesPage();
 		});
-		this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
-		this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
-		this.ptableSettings.enabledEditBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
-		this.ptableSettings.enabledDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+		this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+		this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+		this.ptableSettings.enabledEditBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+		this.ptableSettings.enabledDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
 	}
 
 	ngOnDestroy() {

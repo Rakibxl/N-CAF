@@ -20,7 +20,7 @@ export class BranchInformationComponent implements OnInit {
 
     ngOnInit() {
         this.loadBranchList();
-        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
     }
 
     public fnPtableCellClick(event) {

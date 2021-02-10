@@ -77,7 +77,7 @@ export class AuthService {
                 if (authUser && authUser.token) {
                     this.currentUserSubject.next(authUser);
                     authUser.BranchLocation = this.getDecodedToken.BranchLocation;
-                    authUser.AppUserTypeId = this.getDecodedToken.AppUserTypeId;
+                    // authUser.AppUserTypeId = this.getDecodedToken.AppUserTypeId;
                     localStorage.setItem('currentUser', JSON.stringify(authUser));
                     // this.ngxPermissionsService.loadPermissions(this.getPermissions);
                 }

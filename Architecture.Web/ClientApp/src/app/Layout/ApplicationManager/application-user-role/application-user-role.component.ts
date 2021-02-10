@@ -19,8 +19,8 @@ export class ApplicationUserRoleComponent implements OnInit {
 
     ngOnInit() {
         this.getRoles();
-        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
-        this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.AppUserTypeId == 3 ? true : false;
+        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+        this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
     }
 
 
