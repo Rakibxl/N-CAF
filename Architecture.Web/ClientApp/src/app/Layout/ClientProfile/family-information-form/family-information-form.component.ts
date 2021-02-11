@@ -5,6 +5,7 @@ import { FamilyInfoService } from '../../../Shared/Services/ClientProfile/family
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-family-information-form',
@@ -13,10 +14,21 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class FamilyInformationFormComponent implements OnInit {
     public familyInfoForm = new ProfFamilyInfo();
-    constructor(private familyInfoService: FamilyInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute,) { }
+
+    public relationType = [];
+
+    public nationality = [];
+
+    public occupationType = [];
+
+    public residenceScope = [];
+
+
+
+    constructor(private familyInfoService: FamilyInfoService, private alertService: AlertService, private commonService: CommonService, private dropdownService: DropdownService, private router: Router, private route: ActivatedRoute,) { }
     private profileId: number;
     private familyInfoId: number;
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.familyInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 
@@ -24,6 +36,14 @@ export class FamilyInformationFormComponent implements OnInit {
         if (this.profileId != 0 && this.familyInfoId != 0) {
             this.getFamily()
         }
+
+        this.relationType = await this.dropdownService.getRelationType() || [];
+        this.nationality = await this.dropdownService.getNationality() || [];
+        this.occupationType = await this.dropdownService.getOccupationType() || [];
+        this.residenceScope = await this.dropdownService.getResidenceScope() || [];
+
+        console.log("relationType : ", this.relationType, "nationality : ", this.nationality, "occupationType : ", this.occupationType, "residenceScope : ", this.residenceScope);
+
     }
 
 

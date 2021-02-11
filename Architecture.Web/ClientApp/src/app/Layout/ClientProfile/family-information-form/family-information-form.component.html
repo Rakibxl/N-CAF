@@ -60,10 +60,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.relationtype.label' | translate}}</label>
                             <select id="" class="form-control" name="relationTypeId" #relationTypeId="ngModel" [(ngModel)]="familyInfoForm.relationTypeId">
-                                <!--<option>type here</option>-->
-                                <option value="1">Father</option>
-                                <option value="2">Mother</option>
-                                <option value="3">Son</option>
+                                <option *ngFor="let option of relationType" [value]="option.relationTypeId">{{option.relationTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -82,10 +79,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.nationality.label' | translate}}</label>
                             <select id="" class="form-control" name="nationlityId" #nationlityId="ngModel" [(ngModel)]="familyInfoForm.nationlityId">
-                                <!--<option>type here</option>-->
-                                <option value="1">Bangladeshi</option>
-                                <option value="2">Italian</option>
-                                <option value="3">Indian</option>
+                                <option *ngFor="let option of nationality" [value]="option.nationalityId">{{option.nationalityName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -96,10 +90,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.previousNationality.label' | translate}}</label>
                             <select id="" class="form-control" name="previousNationalityId" #previousNationalityId="ngModel" [(ngModel)]="familyInfoForm.previousNationalityId">
-                                <!--<option>type here</option>-->
-                                <option value="1">Bangladeshi</option>
-                                <option value="2">Italian</option>
-                                <option value="3">Indian</option>
+                                <option *ngFor="let option of nationality" [value]="option.nationalityId">{{option.nationalityName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -110,12 +101,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.occupation.label' | translate}}</label>
                             <select id="" class="form-control" name="occupationTypeId" #occupationTypeId="ngModel" [(ngModel)]="familyInfoForm.occupationTypeId">
-                                <!--<option>List of Profession</option>-->
-                                <option value="1">Lavoro Subordinato</option>
-                                <option value="2">Colf Badante - Care giver</option>
-                                <option value="3">disoccupazione - Unemployment</option>
-                                <option value="4">Lavoro Autonomo - self employment</option>
-                                <option value="5">lavoro agricoltura - agriculture work</option>
+                                <option *ngFor="let option of occupationType" [value]="option.occupationTypeId">{{option.occupationTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -126,9 +112,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'common.residenceScope.label' | translate}}</label>
                             <select id="" class="form-control" name="residenceScopeId" #residenceScopeId="ngModel" [(ngModel)]="familyInfoForm.residenceScopeId">
-                                <!--<option>type here</option>-->
-                                <option value="1">Italy</option>
-                                <option value="2">Out Of Italy</option>
+                                <option *ngFor="let option of residenceScope" [value]="option.residenceScopeId">{{option.residenceScopeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
