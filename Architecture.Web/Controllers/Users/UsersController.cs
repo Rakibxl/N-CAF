@@ -41,7 +41,7 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpGet]
-        [Authorize(Permissions.Users.ListView)]
+        //[Authorize(Permissions.Users.ListView)]
         public async Task<IActionResult> Get([FromQuery] UserQuery query)
         {
             try

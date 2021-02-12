@@ -5,6 +5,7 @@ import { BranchService } from '../../../Shared/Services/Users/branch.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
 import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 
 @Component({
     selector: 'app-branch-information',
@@ -15,15 +16,28 @@ export class BranchInformationComponent implements OnInit {
     branchList: any[] = [];
     hideListView: boolean = true;
 
-    constructor(private router: Router, private authService: AuthService, private branchService: BranchService, private alertService: AlertService, private commonService: CommonService) {
+    constructor(private router: Router,
+        private authService: AuthService,
+        private branchService: BranchService,
+        private alertService: AlertService,
+        private commonService: CommonService) {
 
     }
 
     ngOnInit() {
         this.loadBranchList();
-        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-        if (this.authService.currentUserValue.Permission.indexOf('Permissions.Branches.ListView') >= 0) {
+
+        if (this.commonService.hasPermission(RolePermissions.Branches.ListView)) {
             this.hideListView = false;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Branches.Create)) {
+            this.ptableSettings.enabledRecordCreateBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Branches.Edit)) {
+            this.ptableSettings.enabledEditBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Branches.Delete)) {
+            this.ptableSettings.enabledDeleteBtn = true;
         }
     }
 
@@ -63,8 +77,9 @@ export class BranchInformationComponent implements OnInit {
         enabledSerialNo: true,
         pageSize: 20,
         enabledPagination: true,
-        enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
+        // enabledEditDeleteBtn: true,
+        // enabledEditBtn: true,
+        // enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,

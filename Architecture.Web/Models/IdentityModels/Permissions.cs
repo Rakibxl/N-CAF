@@ -32,5 +32,15 @@ namespace Architecture.Web.Models.IdentityModels
             //public const string CreateOrEdit = "Permissions.UserRoles.CreateOrEdit";
             public const string Delete = "Permissions.UserRoles.Delete";
         }
+
+        public static class UserRoleMapping
+        {
+            public const string ListView = "Permissions.UserRoleMapping.ListView";
+            public const string DetailsView = "Permissions.UserRoleMapping.DetailsView";
+            public const string Create = "Permissions.UserRoleMapping.Create";
+            public const string Edit = "Permissions.UserRoleMapping.Edit";
+            //public const string CreateOrEdit = "Permissions.UserRoles.CreateOrEdit";
+            public const string Delete = "Permissions.UserRoleMapping.Delete";
+        }
     }
 }

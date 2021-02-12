@@ -4,6 +4,8 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { RoleService } from '../../../Shared/Services/Users/role.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
+import { CommonService } from 'src/app/Shared/Services/Common/common.service';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 
 @Component({
     selector: 'app-application-user-role',
@@ -12,15 +14,29 @@ import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
 })
 export class ApplicationUserRoleComponent implements OnInit {
     roleList: any[] = [];
+    hideListView: boolean = true;
 
-    constructor(private router: Router, private authService: AuthService, private roleService: RoleService, private alertService: AlertService) {
+    constructor(private router: Router, private authService: AuthService,
+        private roleService: RoleService, private alertService: AlertService,
+        private commonService: CommonService) {
     }
 
 
     ngOnInit() {
         this.getRoles();
-        this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-        this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+
+        if (this.commonService.hasPermission(RolePermissions.UserRoles.ListView)) {
+            this.hideListView = false;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoles.Create)) {
+            this.ptableSettings.enabledRecordCreateBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoles.Edit)) {
+            this.ptableSettings.enabledEditBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoles.Delete)) {
+            this.ptableSettings.enabledDeleteBtn = true;
+        }
     }
 
 
@@ -58,7 +74,7 @@ export class ApplicationUserRoleComponent implements OnInit {
         enabledPagination: false,
         enabledAutoScrolled: true,
         // enabledEditDeleteBtn: true,
-        enabledEditDeleteBtn: true,
+        // enabledEditDeleteBtn: true,
         //enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,

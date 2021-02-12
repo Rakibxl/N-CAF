@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Guid } from 'guid-typescript';
 import * as _moment from 'moment';
+import { AuthService } from '../Users/auth.service';
 declare var jQuery: any;
 
 @Injectable({
@@ -11,7 +12,7 @@ export class CommonService {
 
   public PAGE_SIZE: number = 10;
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private authService: AuthService) { }
 
   toQueryString(obj) {
     let parts = [];
@@ -114,5 +115,13 @@ export class CommonService {
 
   getDateDifference(start, end) {
     return _moment.duration(_moment(end).diff(_moment(start)));
+  }
+
+  hasPermission(permName: string) {
+    let permissions = this.authService.currentUserValue.Permission;
+    if (permissions.indexOf(permName) >= 0) {
+      return true;
+    }
+    return false;
   }
 }

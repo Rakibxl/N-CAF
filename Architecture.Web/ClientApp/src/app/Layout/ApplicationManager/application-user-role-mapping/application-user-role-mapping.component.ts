@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table/p-table.component';
 import { UserRoleService } from '../../../Shared/Services/Users/user-role.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { CommonService } from 'src/app/Shared/Services/Common/common.service';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 
 @Component({
     selector: 'app-application-user-role-mapping',
@@ -11,11 +13,28 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 })
 export class ApplicationUserRoleMappingComponent implements OnInit {
     userRoleList: any[] = [];
+    hideListView: boolean = true;
 
-    constructor(private router: Router, private userRoleService: UserRoleService, private alertService: AlertService) { }
+    constructor(private router: Router, private userRoleService: UserRoleService,
+        private alertService: AlertService, private commonService: CommonService) {
+
+    }
 
     ngOnInit() {
         this.getUserRoles();
+
+        if (this.commonService.hasPermission(RolePermissions.UserRoleMapping.ListView)) {
+            this.hideListView = false;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoleMapping.Create)) {
+            this.ptableSettings.enabledRecordCreateBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoleMapping.Edit)) {
+            this.ptableSettings.enabledEditBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.UserRoleMapping.Delete)) {
+            this.ptableSettings.enabledDeleteBtn = true;
+        }
     }
 
     public fnPtableCellClick(event) {

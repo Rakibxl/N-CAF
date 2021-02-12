@@ -13,20 +13,62 @@ import { QuestionInformationComponent } from './question-information/question-in
 import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
 import { SectionLinkComponent } from './section-link/section-link.component';
 import { SectionLinkFormComponent } from './section-link-form/section-link-form.component';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
+import { PermissionGuard } from 'src/app/Shared/Guards/permission.guard';
 
 const routes: Routes = [
     {
         path: '',
         children: [
             // { path: '', redirectTo: 'branch-info' },
-            { path: 'branch-info/:id', component: BranchInformationFormComponent, data: { extraParameter: 'analytics' } },
-            { path: 'branch-info', component: BranchInformationComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-info/:id', component: ApplicationUserFormComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-info', component: ApplicationUserComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role/:id', component: ApplicationUserRoleFormComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role', component: ApplicationUserRoleComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role-mapping', component: ApplicationUserRoleMappingComponent, data: { extraParameter: 'analytics' } },
-            { path: 'user-role-mapping/:id', component: ApplicationUserRoleMappingFormComponent, data: { extraParameter: 'analytics' } },
+            {
+                path: 'branch-info',
+                component: BranchInformationComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.Branches.ListView] }
+            },
+            {
+                path: 'branch-info/:id',
+                component: BranchInformationFormComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.Branches.Create, RolePermissions.Branches.Edit] }
+            },
+            {
+                path: 'user-info',
+                component: ApplicationUserComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.Users.ListView] }
+            },
+            {
+                path: 'user-info/:id',
+                component: ApplicationUserFormComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.Users.Create, RolePermissions.Users.Edit] }
+            },
+            {
+                path: 'user-role',
+                component: ApplicationUserRoleComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoles.ListView] }
+            },
+            {
+                path: 'user-role/:id',
+                component: ApplicationUserRoleFormComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoles.Create, RolePermissions.UserRoles.Edit] }
+            },
+            {
+                path: 'user-role-mapping',
+                component: ApplicationUserRoleMappingComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoleMapping.ListView] }
+            },
+            {
+                path: 'user-role-mapping/:id',
+                component: ApplicationUserRoleMappingFormComponent,
+                canActivate: [PermissionGuard],
+                data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoleMapping.Create, RolePermissions.UserRoleMapping.Edit] }
+            },
             { path: 'access-permission', component: ApplicationAccessPermissionComponent, data: { extraParameter: 'analytics' } },
             { path: 'question-info', component: QuestionInformationComponent, data: { extraParameter: 'analytics' } },
             { path: 'question-info/:id', component: QuestionInformationFormComponent, data: { extraParameter: 'analytics' } },

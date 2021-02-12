@@ -3,6 +3,8 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table/p-table.componen
 import { Router } from '@angular/router';
 import { UserService } from '../../../Shared/Services/Users/user.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { CommonService } from 'src/app/Shared/Services/Common/common.service';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 
 
 @Component({
@@ -12,12 +14,26 @@ import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 })
 export class ApplicationUserComponent implements OnInit {
     employeeList: any[] = [];
+    hideListView: boolean = true;
 
-    constructor(private router: Router, private userService: UserService, private alertService: AlertService) {
+    constructor(private router: Router, private userService: UserService, private alertService: AlertService, private commonService: CommonService) {
     }
 
     ngOnInit() {
         this.getUsers();
+
+        if (this.commonService.hasPermission(RolePermissions.Users.ListView)) {
+            this.hideListView = false;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Users.Create)) {
+            this.ptableSettings.enabledRecordCreateBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Users.Edit)) {
+            this.ptableSettings.enabledEditBtn = true;
+        }
+        if (this.commonService.hasPermission(RolePermissions.Users.Delete)) {
+            this.ptableSettings.enabledDeleteBtn = true;
+        }
     }
 
     public fnPtableCellClick(event) {
@@ -58,8 +74,8 @@ export class ApplicationUserComponent implements OnInit {
         enabledPagination: false,
         enabledAutoScrolled: true,
         // enabledEditDeleteBtn: true,
-        enabledEditDeleteBtn: true,
-        //enabledDeleteBtn: true,
+        // enabledEditDeleteBtn: true,
+        // enabledDeleteBtn: true,
         enabledCellClick: true,
         enabledColumnFilter: true,
         enabledDataLength: true,
@@ -69,9 +85,9 @@ export class ApplicationUserComponent implements OnInit {
         enabledExcelDownload: true,
         enabledPrint: true,
         enabledColumnSetting: true,
-        enabledRecordCreateBtn: true,
+        // enabledRecordCreateBtn: true,
         // enabledTotal: true,
-        //enabledCheckbox:true,
+        // enabledCheckbox:true,
         enabledRadioBtn: false,
         tableHeaderVisibility: true,
         // tableFooterVisibility:false,
