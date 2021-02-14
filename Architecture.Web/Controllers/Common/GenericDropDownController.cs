@@ -50,6 +50,7 @@ namespace Architecture.Web.Controllers.Common
         private readonly IResidenceScopeService residenceScopeService;
         private readonly ISectionNameService sectionNameService;
         private readonly IWorkerTypeService workerTypeService;
+        private readonly IOperatorKeywordService operatorKeywordService;
 
 
         public GenericDropDownController(
@@ -84,7 +85,8 @@ namespace Architecture.Web.Controllers.Common
             IRelationTypeService _relationTypeService,
             IResidenceScopeService _residenceScopeService,
             ISectionNameService _sectionNameService,
-            IWorkerTypeService _workerTypeService
+            IWorkerTypeService _workerTypeService,
+            IOperatorKeywordService _operatorKeywordService
             )
         {
             addressTypeService = _addressTypeService;
@@ -120,6 +122,7 @@ namespace Architecture.Web.Controllers.Common
             residenceScopeService = _residenceScopeService;
             sectionNameService = _sectionNameService;
             workerTypeService = _workerTypeService;
+            operatorKeywordService = _operatorKeywordService;
         }        
 
         [HttpGet("AddressType")]
@@ -541,5 +544,18 @@ namespace Architecture.Web.Controllers.Common
             }
         }
 
+        [HttpGet("OperatorKeyword")]
+        public async Task<IActionResult> GetOperatorKeyword()
+        {
+            try
+            {
+                var result = await operatorKeywordService.GetAll();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ import { RoleService } from 'src/app/Shared/Services/Users/role.service';
 import { NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserRoleFormComponent } from '../user-role-form/user-role-form.component';
 import { AuthService } from 'src/app/Shared/Services/Users/auth.service';
+import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 
 @Component({
 	selector: 'app-user-role-list',
@@ -21,6 +22,7 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 	query: UserRoleQuery;
 	PAGE_SIZE: number;
 	userroles: UserRole[];
+	hideListView: boolean = true;
 
 	// Subscriptions
 	private subscriptions: Subscription[] = [];
@@ -40,10 +42,19 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		of(undefined).pipe(take(1), delay(1000)).subscribe(() => {
 			this.loadUserRolesPage();
 		});
-		this.ptableSettings.enabledRecordCreateBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-		this.ptableSettings.enabledEditDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-		this.ptableSettings.enabledEditBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
-		this.ptableSettings.enabledDeleteBtn = this.authService.currentUserValue.appUserTypeId == 1 ? true : false;
+
+		if (this.commonService.hasPermission(RolePermissions.UserRoles.ListView)) {
+			this.hideListView = false;
+		}
+		if (this.commonService.hasPermission(RolePermissions.UserRoles.Create)) {
+			this.ptableSettings.enabledRecordCreateBtn = true;
+		}
+		if (this.commonService.hasPermission(RolePermissions.UserRoles.Edit)) {
+			this.ptableSettings.enabledEditBtn = true;
+		}
+		if (this.commonService.hasPermission(RolePermissions.UserRoles.Delete)) {
+			this.ptableSettings.enabledDeleteBtn = true;
+		}
 	}
 
 	ngOnDestroy() {
@@ -131,8 +142,8 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		pageSize: 10,
 		enabledPagination: true,
 		//enabledAutoScrolled:true,
-		enabledDeleteBtn: true,
-		enabledEditBtn: true,
+		// enabledDeleteBtn: true,
+		// enabledEditBtn: true,
 		// enabledCellClick: true,
 		enabledColumnFilter: true,
 		// enabledDataLength:true,
@@ -142,7 +153,7 @@ export class UserRoleListComponent implements OnInit, OnDestroy {
 		// enabledExcelDownload:true,
 		// enabledPrint:true,
 		// enabledColumnSetting:true,
-		enabledRecordCreateBtn: true,
+		// enabledRecordCreateBtn: true,
 		// enabledTotal:true,
 		newRecordButtonText: 'New Role'
 	};

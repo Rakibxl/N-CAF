@@ -1,22 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../Shared/Services/Users/user.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { BranchService } from '../../../Shared/Services/Users/branch.service';
 import { Guid } from 'guid-typescript';
+import { DropdownService } from 'src/app/Shared/Services/Common/dropdown.service';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NewKeywordComponent } from './new-keyword/new-keyword.component';
 
 @Component({
   selector: 'app-application-user-form',
   templateUrl: './application-user-form.component.html',
-  styleUrls: ['./application-user-form.component.css']
+  styleUrls: ['./application-user-form.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ApplicationUserFormComponent implements OnInit {
   appUserForm: FormGroup;
   userGuid: any;
   branchList: any[] = [];
+  keywords: any[] = [];
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private branchService: BranchService, private router: Router, private userService: UserService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private branchService: BranchService, private router: Router,
+    private userService: UserService, private alertService: AlertService, private dropdownService: DropdownService,
+    private modalService: NgbModal) {
     this.initForm();
     this.userGuid = this.route.snapshot.params.id || "";
   }
@@ -26,9 +33,12 @@ export class ApplicationUserFormComponent implements OnInit {
     return false;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loadBranchList();
     this.getUser();
+
+    this.keywords = await this.dropdownService.getOperatorKeyword() || [];
+    console.log(this.keywords)
   }
 
   initForm() {
@@ -42,6 +52,8 @@ export class ApplicationUserFormComponent implements OnInit {
       confirmPassword: [null],
       appUserTypeId: [null, Validators.required],
       branchInfoId: [null],
+      operatorBranchInfoIds: [null],
+      operatorKeywordIds: [null],
       createdBy: [null],
       modifiedBy: [null]
     });
@@ -75,10 +87,31 @@ export class ApplicationUserFormComponent implements OnInit {
     }
   }
 
-  getModel() {
-    let formData = this.appUserForm.value;
-    formData.id = formData.id || Guid.EMPTY;
-    return formData;
+  createNew(id?) {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: "static",
+      keyboard: false,
+      size: "lg",
+    };
+    const modalRef = this.modalService.open(
+      NewKeywordComponent,
+      ngbModalOptions
+    );
+    modalRef.componentInstance.operatorKeywords = this.keywords;
+
+    modalRef.result.then(
+      (result) => {
+        console.log(result);
+        if (!(result == 'Close click' || result == 'Cross click')) {
+          let maxId = Math.max(...this.keywords.map(o => o.operatorKeywordId), 0);
+          result.operatorKeywordId = ++maxId;
+          this.keywords.push(result);
+          this.keywords = [...this.keywords];
+        }
+      },
+      (reason) => {
+        console.log(reason);
+      });
   }
 
   save() {
@@ -88,6 +121,14 @@ export class ApplicationUserFormComponent implements OnInit {
       return;
     }
     formData.id = formData.id || Guid.EMPTY;
+    formData.branchInfoId = formData.appUserTypeId == 2 ? formData.branchInfoId : null;
+    let keywords = [];
+    this.keywords.forEach(ex => {
+      if (formData.operatorKeywordIds.indexOf(ex.operatorKeywordId) >= 0) {
+        keywords.push(ex);
+      }
+    });
+    formData.operatorKeywordIds = JSON.stringify(keywords);
     this.userService.createOrUpdateAppUser(formData).subscribe(res => {
       if (res && res.data && res.data.id) {
         this.alertService.tosterSuccess('User saved successfully');

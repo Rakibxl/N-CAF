@@ -1,0 +1,4 @@
+<div class="col col-md-12" *ngIf="!hideListView">
+    <app-p-table [pTableSetting]="ptableSettings" [pTableMasterData]="userroles" (customActivityOnRecord)="fnCustomTrigger($event)">
+    </app-p-table>
+</div>

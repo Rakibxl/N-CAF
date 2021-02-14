@@ -7,6 +7,7 @@ import { RoleService } from 'src/app/Shared/Services/Users/role.service';
 import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs/operators';
+import { CommonService } from 'src/app/Shared/Services/Common/common.service';
 
 @Component({
   selector: 'app-user-role-form',
@@ -30,6 +31,7 @@ export class UserRoleFormComponent implements OnInit, OnDestroy, AfterViewInit {
     private alertService: AlertService,
     public activeModal: NgbActiveModal,
     private cdr: ChangeDetectorRef,
+    private commonService: CommonService,
     private roleService: RoleService) {
     this.userRole = new UserRole();
     this.userRole.clear();
@@ -139,9 +141,10 @@ export class UserRoleFormComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.resetErrors();
     // this.loadingAfterSubmit = true;
     // this.viewLoading = true;
+    this.commonService.startLoading();
     this.alertService.fnLoading(true);
     const updateSubscription = this.roleService.update(_role)
-      .pipe(finalize(() => { this.alertService.fnLoading(false); }))
+      .pipe(finalize(() => { this.alertService.fnLoading(false); this.commonService.stopLoading(); }))
       .subscribe(() => {
         // this.viewLoading = false;
         // this.dialogRef.close({_role, isEdit: true}); 
@@ -159,9 +162,10 @@ export class UserRoleFormComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.loadingAfterSubmit = true;
     // this.viewLoading = true;
 
+    this.commonService.startLoading();
     this.alertService.fnLoading(true);
     const createSubscription = this.roleService.create(_role)
-      .pipe(finalize(() => { this.alertService.fnLoading(false); }))
+      .pipe(finalize(() => { this.alertService.fnLoading(false); this.commonService.stopLoading(); }))
       .subscribe(res => {
         if (!res) {
           return;

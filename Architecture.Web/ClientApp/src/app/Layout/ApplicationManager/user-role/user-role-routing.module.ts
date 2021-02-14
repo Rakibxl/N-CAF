@@ -12,15 +12,16 @@ const routes: Routes = [{
   children: [
     {
       path: '',
-      redirectTo: 'roles',
+      component: UserRoleListComponent,
+      // redirectTo: 'roles',
       pathMatch: 'full',
     },
-    {
-      path: 'roles',
-      component: UserRoleListComponent,
-      // canActivate: [AuthorizeGuard],
-      // data: { title: 'Users', permissions: [RolePermissions.SuperAdmin, RolePermissions.Users.ListView] },
-    },
+    // {
+    //   path: 'roles',
+    //   component: UserRoleListComponent,
+    //   // canActivate: [AuthorizeGuard],
+    //   // data: { title: 'Users', permissions: [RolePermissions.SuperAdmin, RolePermissions.Users.ListView] },
+    // },
   ],
 }];
 

@@ -17,15 +17,21 @@ import { QuestionInformationComponent } from './question-information/question-in
 import { QuestionInformationFormComponent } from './question-information-form/question-information-form.component';
 import { SectionLinkComponent } from './section-link/section-link.component';
 import { SectionLinkFormComponent } from './section-link-form/section-link-form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NewKeywordComponent } from './application-user-form/new-keyword/new-keyword.component';
 
 @NgModule({
-  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent, QuestionInformationComponent, QuestionInformationFormComponent, SectionLinkComponent, SectionLinkFormComponent],
+  declarations: [ApplicationUserComponent, ApplicationUserRoleComponent, BranchInformationComponent, ApplicationAccessPermissionComponent, ApplicationUserFormComponent, BranchInformationFormComponent, ApplicationUserRoleFormComponent, ApplicationUserRoleMappingComponent, ApplicationUserRoleMappingFormComponent, QuestionInformationComponent, QuestionInformationFormComponent, SectionLinkComponent, SectionLinkFormComponent, NewKeywordComponent],
   imports: [
     CommonModule,
     SharedMasterModule,
     ApplicationManagerRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
+  ],
+  entryComponents: [
+    NewKeywordComponent
   ]
 })
 export class ApplicationManagerModule { }

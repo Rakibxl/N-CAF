@@ -18,6 +18,7 @@ namespace Architecture.Core.Entities
         public AppUserStatus AppUserStatus { get; set; }
         public int? AppUserTypeId { get; set; }
         public AppUserType AppUserType { get; set; }
+        public string OperatorKeywordIds { get; set; }
         public Guid? CreatedBy { get; set; }
         public DateTime Created { get; set; }
         public Guid? ModifiedBy { get; set; }

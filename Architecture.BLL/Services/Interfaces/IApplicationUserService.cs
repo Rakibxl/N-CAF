@@ -14,6 +14,7 @@ namespace Architecture.BLL.Services.Interfaces
     {
         Task<QueryResult<ApplicationUser>> GetAllAsync(UserQuery queryObj);
         Task<ApplicationUser> GetByIdAsync(Guid id);
+        Task<string> AddUpdateOperatorBranch(Guid UserId, List<int> OperatorBranchInfoIds);
         //public Task<IdentityResult> AddOrUpdate(ApplicationUser basicInfo);
         //Task<QueryResult<ApplicationUser>> GetAllAsync(UserQuery queryObj);
         //Task<QueryResult<ApplicationUser>> GetAllExceptAppUsersAsync(UserQuery queryObj);

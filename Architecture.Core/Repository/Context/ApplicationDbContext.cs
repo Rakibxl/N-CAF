@@ -20,6 +20,7 @@ namespace Architecture.Core.Repository.Context
     {
         // Add DbSet here
         public DbSet<Example> Examples { get; set; }
+        public DbSet<OperatorBranchInfo> OperatorBranchInfos { get; set; }
         public DbSet<ProfBasicInfo> ProfBasicInfos { get; set; }
         public DbSet<ProfFamilyInfo> ProfFamilyInfo { get; set; }
         public DbSet<ProfDocumentInfo> ProfDocumentInfo { get; set; }
@@ -98,6 +99,13 @@ namespace Architecture.Core.Repository.Context
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
+            });
+
+            modelBuilder.Entity<OperatorBranchInfo>(operatorBranchInfo =>
+            {
+                operatorBranchInfo.HasNoKey();
+                operatorBranchInfo.Property(bs => bs.ApplicationUserId).IsRequired();
+                operatorBranchInfo.Property(bs => bs.BranchInfoId).IsRequired();
             });
 
             // Prof Basic Info

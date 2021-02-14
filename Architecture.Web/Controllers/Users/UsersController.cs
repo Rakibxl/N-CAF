@@ -122,10 +122,13 @@ namespace Architecture.Web.Controllers.Users
                         user.PhoneNumber = model.PhoneNumber;
                         user.AppUserTypeId = model.AppUserTypeId;
                         user.BranchInfoId = model.BranchInfoId;
+                        user.OperatorKeywordIds = model.OperatorKeywordIds;
                         user.ModifiedBy = UserId;
                         user.Modified = DateTime.Now;
 
                         await _userManager.UpdateAsync(user);
+
+                        await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranchInfoIds);
                     }
                 }
                 else
@@ -162,11 +165,13 @@ namespace Architecture.Web.Controllers.Users
                         AppUserTypeId = model.AppUserTypeId,
                         BranchInfoId = model.BranchInfoId,
                         GenderId = model.GenderId,
+                        OperatorKeywordIds = model.OperatorKeywordIds,
                         CreatedBy = UserId,
                         Created = DateTime.Now
                     };
                     
                     await _userManager.CreateAsync(user, model.Password);
+                    await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranchInfoIds);
                 };
 
                 //var result = await _applicationUserService.AddOrUpdate(user);

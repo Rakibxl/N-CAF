@@ -26,6 +26,7 @@ namespace Architecture.BLL.Services.Implements
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
+        protected ApplicationDbContext _db;
 
         public ApplicationUserService(
             UserManager<ApplicationUser> userManager,
@@ -35,6 +36,7 @@ namespace Architecture.BLL.Services.Implements
             ApplicationDbContext dbContext
             ) : base(dbContext)
         {
+            _db = dbContext;
             _userManager = userManager;
             _roleManager = roleManager;
             _currentUserService = currentUserService;
@@ -81,6 +83,35 @@ namespace Architecture.BLL.Services.Implements
             }
 
             return user;
+        }
+
+        public async Task<string> AddUpdateOperatorBranch(Guid UserId, List<int> OperatorBranchInfoIds)
+        {
+            try
+            {
+                var result = "Success";
+
+                var branches = await _db.OperatorBranchInfos.Where(ex => ex.ApplicationUserId == UserId).ToListAsync();
+                _dbContext.RemoveRange(branches);
+
+                List<OperatorBranchInfo> operatorBranchInfos = new List<OperatorBranchInfo>();
+                foreach (var branch in OperatorBranchInfoIds)
+                {
+                    operatorBranchInfos.Add(new OperatorBranchInfo
+                    {
+                        ApplicationUserId = UserId,
+                        BranchInfoId = branch
+                    });
+                }
+                await _dbContext.AddRangeAsync(operatorBranchInfos);
+                await _dbContext.SaveChangesAsync();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //public async Task<IdentityResult> AddOrUpdate(ApplicationUser model)

@@ -5,7 +5,7 @@ import { APIResponse } from '../../Entity/Response/api-response';
 declare var jQuery: any;
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DropdownService {
 
@@ -170,5 +170,9 @@ export class DropdownService {
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/SectionName`).toPromise().then(res => { result = res.data });
         return result;
     }
-
+    public async getOperatorKeyword() {
+        let result;
+        await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/OperatorKeyword`).toPromise().then(res => { result = res.data });
+        return result;
+    }
 }

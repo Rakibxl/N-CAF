@@ -45,9 +45,15 @@ const routes: Routes = [
                 canActivate: [PermissionGuard],
                 data: { extraParameter: 'analytics', permissions: [RolePermissions.Users.Create, RolePermissions.Users.Edit] }
             },
+            // {
+            //     path: 'user-role',
+            //     component: ApplicationUserRoleComponent,
+            //     canActivate: [PermissionGuard],
+            //     data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoles.ListView] }
+            // },
             {
                 path: 'user-role',
-                component: ApplicationUserRoleComponent,
+                loadChildren: () => import('./user-role/user-role.module').then(m => m.UserRoleModule),
                 canActivate: [PermissionGuard],
                 data: { extraParameter: 'analytics', permissions: [RolePermissions.UserRoles.ListView] }
             },

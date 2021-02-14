@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Architecture.Web.Models
 {
@@ -64,6 +65,8 @@ namespace Architecture.Web.Models
         public int? BranchInfoId { get; set; }
         [Required]
         public Guid UserRoleId { get; set; }
+        public string OperatorKeywordIds { get; set; }
+        public List<int> OperatorBranchInfoIds { get; set; }
 
         //public string UserName { get; set; }
         //public string ImageUrl { get; set; }
