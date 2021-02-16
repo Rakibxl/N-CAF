@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Architecture.Core.Entities.Core;
+using System;
 using System.Collections.Generic;
-using Architecture.Core.Entities.Core;
+using System.Text;
 
 namespace Architecture.Core.Entities
 {
-    public class OperatorBranchInfo : Auditable
+    public class OperatorBranch : Auditable
     {
         public Guid ApplicationUserId { get; set; }
         public int BranchInfoId { get; set; }

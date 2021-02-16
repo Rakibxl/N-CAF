@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210214100716_added table operatorbranchInfos")]
-    partial class addedtableoperatorbranchInfos
+    [Migration("20210216163016_OperatorBranch Table Add")]
+    partial class OperatorBranchTableAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1795,6 +1795,38 @@ namespace Architecture.Core.Migrations
                             IsActive = true,
                             WorkerTypeName = "Domestic Worker"
                         });
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.OperatorBranch", b =>
+                {
+                    b.Property<Guid>("ApplicationUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BranchInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("RecordStatusId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("BranchInfoId");
+
+                    b.HasIndex("RecordStatusId");
+
+                    b.ToTable("OperatorBranches");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.OperatorBranchInfo", b =>
@@ -3627,6 +3659,25 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.LU.SectionName", "SectionName")
                         .WithMany()
                         .HasForeignKey("SectionNameId");
+                });
+
+            modelBuilder.Entity("Architecture.Core.Entities.OperatorBranch", b =>
+                {
+                    b.HasOne("Architecture.Core.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.BranchInfo", "BranchInfo")
+                        .WithMany()
+                        .HasForeignKey("BranchInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
+                        .WithMany()
+                        .HasForeignKey("RecordStatusId");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.OperatorBranchInfo", b =>

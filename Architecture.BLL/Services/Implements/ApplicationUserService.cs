@@ -91,13 +91,13 @@ namespace Architecture.BLL.Services.Implements
             {
                 var result = "Success";
 
-                var branches = await _db.OperatorBranchInfos.Where(ex => ex.ApplicationUserId == UserId).ToListAsync();
+                var branches = await _db.OperatorBranches.Where(ex => ex.ApplicationUserId == UserId).ToListAsync();
                 _dbContext.RemoveRange(branches);
 
-                List<OperatorBranchInfo> operatorBranchInfos = new List<OperatorBranchInfo>();
+                List<OperatorBranch> operatorBranchInfos = new List<OperatorBranch>();
                 foreach (var branch in OperatorBranchInfoIds)
                 {
-                    operatorBranchInfos.Add(new OperatorBranchInfo
+                    operatorBranchInfos.Add(new OperatorBranch
                     {
                         ApplicationUserId = UserId,
                         BranchInfoId = branch
