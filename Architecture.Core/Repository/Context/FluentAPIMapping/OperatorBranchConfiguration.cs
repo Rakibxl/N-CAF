@@ -11,7 +11,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
     {
         public void Configure(EntityTypeBuilder<OperatorBranch> operatorBranchInfo)
         {
-            operatorBranchInfo.HasNoKey();
+            operatorBranchInfo.HasKey(dd => dd.OperatorBranchId);
             operatorBranchInfo.Property(bs => bs.ApplicationUserId).IsRequired();
             operatorBranchInfo.Property(bs => bs.BranchInfoId).IsRequired();
         }

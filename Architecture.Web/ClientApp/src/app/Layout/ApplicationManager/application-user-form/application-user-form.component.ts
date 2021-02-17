@@ -8,6 +8,7 @@ import { Guid } from 'guid-typescript';
 import { DropdownService } from 'src/app/Shared/Services/Common/dropdown.service';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NewKeywordComponent } from './new-keyword/new-keyword.component';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-application-user-form',
@@ -52,7 +53,7 @@ export class ApplicationUserFormComponent implements OnInit {
       confirmPassword: [null],
       appUserTypeId: [null, Validators.required],
       branchInfoId: [null],
-      operatorBranchInfoIds: [null],
+      operatorBranches: [null],
       operatorKeywordIds: [null],
       createdBy: [null],
       modifiedBy: [null]
@@ -75,7 +76,22 @@ export class ApplicationUserFormComponent implements OnInit {
       this.alertService.fnLoading(true);
       this.userService.getUser(this.userGuid).subscribe((res) => {
         if (res && res.data && res.data.id) {
-          this.appUserForm.patchValue(res.data);
+          if (res.data.operatorKeywordIds && res.data.operatorKeywordIds.length > 2) {
+            res.data.operatorKeywordIds = JSON.parse(res.data.operatorKeywordIds);
+
+            setTimeout(() => {
+              res.data.operatorKeywordIds.forEach(ex => {
+                let key = this.keywords.filter(dd => dd.operatorKeywordName == ex);
+                if (key.length == 0) {
+                  this.keywords.push({ operatorKeywordName: ex });
+                }
+              });
+              this.appUserForm.patchValue(res.data);
+              this.keywords = [...this.keywords];
+            }, 500);
+          } else {
+            this.appUserForm.patchValue(res.data);
+          }
           // this.user = res.data as User;
           // console.log(this.user);
           // let role = this.enumUserTypes.filter(a => a.id == this.user.userRoleName)[0];
@@ -103,10 +119,13 @@ export class ApplicationUserFormComponent implements OnInit {
       (result) => {
         console.log(result);
         if (!(result == 'Close click' || result == 'Cross click')) {
-          let maxId = Math.max(...this.keywords.map(o => o.operatorKeywordId), 0);
-          result.operatorKeywordId = ++maxId;
+          // let maxId = Math.max(...this.keywords.map(o => o.operatorKeywordId), 0);
+          // result.operatorKeywordId = ++maxId;
           this.keywords.push(result);
           this.keywords = [...this.keywords];
+          let formData = this.appUserForm.value;
+          formData.operatorKeywordIds.push(result.operatorKeywordName);
+          this.appUserForm.patchValue({ operatorKeywordIds: formData.operatorKeywordIds });
         }
       },
       (reason) => {
@@ -123,12 +142,14 @@ export class ApplicationUserFormComponent implements OnInit {
     formData.id = formData.id || Guid.EMPTY;
     formData.branchInfoId = formData.appUserTypeId == 2 ? formData.branchInfoId : null;
     let keywords = [];
-    this.keywords.forEach(ex => {
-      if (formData.operatorKeywordIds.indexOf(ex.operatorKeywordId) >= 0) {
-        keywords.push(ex);
-      }
-    });
-    formData.operatorKeywordIds = JSON.stringify(keywords);
+    if (formData.operatorKeywordIds) {
+      this.keywords.forEach(ex => {
+        if (formData.operatorKeywordIds.indexOf(ex.operatorKeywordName) >= 0) {
+          keywords.push(ex.operatorKeywordName);
+        }
+      });
+    }
+    formData.operatorKeywordIds = JSON.stringify(keywords) || '';
     this.userService.createOrUpdateAppUser(formData).subscribe(res => {
       if (res && res.data && res.data.id) {
         this.alertService.tosterSuccess('User saved successfully');

@@ -33,12 +33,15 @@ namespace Architecture.Web.Models
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
         public EnumApplicationUserStatus? Status { get; set; }
+        public string OperatorKeywordIds { get; set; }
+        public List<int> OperatorBranches { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ApplicationUser, UserModel>()
                 .ForMember(dest => dest.BranchLocation, opt => opt.MapFrom(src => src.BranchInfo.BranchLocation))
                 .ForMember(dest => dest.AppUserType, opt => opt.MapFrom(src => src.AppUserType.AppUserTypeTitle))
+                .ForMember(dest => dest.OperatorBranches, opt => opt.MapFrom(src => src.OperatorBranches.Select(dd => dd.BranchInfoId).ToList()))
                 .ForMember(dest => dest.UserRoleName, opt => opt.MapFrom(src =>
                     src.UserRoles.Any() ? (src.UserRoles.Select(ur => ur.Role).FirstOrDefault() != null ?
                     src.UserRoles.Select(ur => ur.Role.Name).FirstOrDefault() : null) : null))
@@ -66,7 +69,7 @@ namespace Architecture.Web.Models
         [Required]
         public Guid UserRoleId { get; set; }
         public string OperatorKeywordIds { get; set; }
-        public List<int> OperatorBranchInfoIds { get; set; }
+        public List<int> OperatorBranches { get; set; }
 
         //public string UserName { get; set; }
         //public string ImageUrl { get; set; }

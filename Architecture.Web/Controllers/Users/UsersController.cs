@@ -96,6 +96,7 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpPost("CreateOrUpdate")]
+        //[Authorize(Permissions.Users.Create)]
         public async Task<IActionResult> CreateOrUpdate([FromBody] SaveUserModel model)
         {
             if (!ModelState.IsValid)
@@ -128,7 +129,7 @@ namespace Architecture.Web.Controllers.Users
 
                         await _userManager.UpdateAsync(user);
 
-                        await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranchInfoIds);
+                        await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranches);
                     }
                 }
                 else
@@ -171,7 +172,7 @@ namespace Architecture.Web.Controllers.Users
                     };
                     
                     await _userManager.CreateAsync(user, model.Password);
-                    await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranchInfoIds);
+                    await _applicationUserService.AddUpdateOperatorBranch(model.Id, model.OperatorBranches);
                 };
 
                 //var result = await _applicationUserService.AddOrUpdate(user);

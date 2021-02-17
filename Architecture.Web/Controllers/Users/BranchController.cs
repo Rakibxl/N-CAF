@@ -36,7 +36,7 @@ namespace Architecture.Web.Controllers.Users
         }
 
         [HttpGet("GetBranches")]
-        [Authorize(Permissions.Branches.ListView)]
+        //[Authorize(Permissions.Branches.ListView)]
         public async Task<IActionResult> GetBranches()
         {
             try
