@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210216163647_Delete table OperatorBranchInfo")]
+    partial class DeletetableOperatorBranchInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1797,11 +1799,6 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.OperatorBranch", b =>
                 {
-                    b.Property<int>("OperatorBranchId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<Guid>("ApplicationUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1822,8 +1819,6 @@ namespace Architecture.Core.Migrations
 
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
-
-                    b.HasKey("OperatorBranchId");
 
                     b.HasIndex("ApplicationUserId");
 

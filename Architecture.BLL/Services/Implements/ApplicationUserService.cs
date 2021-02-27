@@ -73,7 +73,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<ApplicationUser> GetByIdAsync(Guid id)
         {
-            var query = _userManager.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
+            var query = _userManager.Users.Include(dd => dd.OperatorBranches).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).AsQueryable();
 
             var user = await query.FirstOrDefaultAsync(u => u.Id == id);
 
@@ -85,25 +85,25 @@ namespace Architecture.BLL.Services.Implements
             return user;
         }
 
-        public async Task<string> AddUpdateOperatorBranch(Guid UserId, List<int> OperatorBranchInfoIds)
+        public async Task<string> AddUpdateOperatorBranch(Guid UserId, List<int> OperatorBranchIds)
         {
             try
             {
                 var result = "Success";
 
-                var branches = await _db.OperatorBranchInfos.Where(ex => ex.ApplicationUserId == UserId).ToListAsync();
+                var branches = await _db.OperatorBranches.Where(ex => ex.ApplicationUserId == UserId).ToListAsync();
                 _dbContext.RemoveRange(branches);
 
-                List<OperatorBranchInfo> operatorBranchInfos = new List<OperatorBranchInfo>();
-                foreach (var branch in OperatorBranchInfoIds)
+                List<OperatorBranch> operatorBranches = new List<OperatorBranch>();
+                foreach (var branch in OperatorBranchIds)
                 {
-                    operatorBranchInfos.Add(new OperatorBranchInfo
+                    operatorBranches.Add(new OperatorBranch
                     {
                         ApplicationUserId = UserId,
                         BranchInfoId = branch
                     });
                 }
-                await _dbContext.AddRangeAsync(operatorBranchInfos);
+                await _dbContext.AddRangeAsync(operatorBranches);
                 await _dbContext.SaveChangesAsync();
 
                 return result;

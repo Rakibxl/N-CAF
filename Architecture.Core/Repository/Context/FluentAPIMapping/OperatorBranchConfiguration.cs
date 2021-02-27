@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Architecture.Core.Repository.Context.FluentAPIMapping
 {
-   public class OperatorBranchInfoConfiguration : IEntityTypeConfiguration<OperatorBranchInfo>
+   public class OperatorBranchConfiguration : IEntityTypeConfiguration<OperatorBranch>
     {
-        public void Configure(EntityTypeBuilder<OperatorBranchInfo> operatorBranchInfo)
+        public void Configure(EntityTypeBuilder<OperatorBranch> operatorBranchInfo)
         {
-            operatorBranchInfo.HasNoKey();
+            operatorBranchInfo.HasKey(dd => dd.OperatorBranchId);
             operatorBranchInfo.Property(bs => bs.ApplicationUserId).IsRequired();
             operatorBranchInfo.Property(bs => bs.BranchInfoId).IsRequired();
         }

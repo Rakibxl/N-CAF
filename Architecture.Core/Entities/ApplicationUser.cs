@@ -28,11 +28,13 @@ namespace Architecture.Core.Entities
         public BranchInfo BranchInfo { get; set; }
 
         public IList<ApplicationUserRole> UserRoles { get; set; }
+        public IList<OperatorBranch> OperatorBranches { get; set; }
 
         public ApplicationUser() : base()
         {
             this.IsLocked = false;
             this.UserRoles = new List<ApplicationUserRole>();
+            this.OperatorBranches = new List<OperatorBranch>();
         }
     }
 }
