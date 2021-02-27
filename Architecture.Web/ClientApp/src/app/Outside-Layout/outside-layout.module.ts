@@ -24,7 +24,6 @@ import { UnauthSlideComponent } from './unauth-slide/unauth-slide.component';
 import { TopOffersComponent } from './top-offers/top-offers.component';
 import { BannerSliderComponent } from './banner-slider/banner-slider.component';
 import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-master.module';
-// import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { SharedMasterModule } from '../Shared/Modules/shared-master/shared-maste
     UnauthSlideComponent,
     TopOffersComponent,
     BannerSliderComponent,
-    // LoginComponent,
   ],
   imports: [
     CommonModule,
