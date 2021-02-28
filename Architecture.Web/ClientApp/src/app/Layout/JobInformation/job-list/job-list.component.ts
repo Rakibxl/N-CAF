@@ -28,9 +28,7 @@ export class JobListComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/job-info/job-info-new/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/job-info/job-info-new/${event.record.jobInfoId}`]);
@@ -47,15 +45,12 @@ export class JobListComponent implements OnInit {
                     x.jobDeliveryType = x.jobDeliveryType.jobDeliveryTypeName || "";
                     x.iseeClassTypeName = x.iseeClassType.iseeClassTypeName || "";
                     x.occupationTypeName = x.occupationType.occupationTypeName || "";
-                    //x.sectionName = x.sectionName.sectionName || "";
                     x.startDate = this.commonService.getDateToSetForm(x.startDate);
                     x.endDate = this.commonService.getDateToSetForm(x.endDate);
-                })
-
+                });
             },
             error => {
             });
-
     }
 
 

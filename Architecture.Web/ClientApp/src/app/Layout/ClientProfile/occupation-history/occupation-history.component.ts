@@ -18,7 +18,6 @@ export class OccupationHistoryComponent implements OnInit {
 
     async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
-        debugger;
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
         }
@@ -44,7 +43,6 @@ export class OccupationHistoryComponent implements OnInit {
 
 
     public async getOccupationInfos() {
-        debugger;
         this.occupationService.getOccupationInfo(this.profileId).subscribe(
             (success) => {
                 this.occupationInfoList = success.data;

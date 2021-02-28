@@ -78,7 +78,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'common.nationality.label' | translate}}</label>
-                            <select id="" class="form-control" name="nationlityId" #nationlityId="ngModel" [(ngModel)]="familyInfoForm.nationlityId">
+                            <select id="" class="form-control" name="nationlityId" #nationlityId="ngModel" [(ngModel)]="familyInfoForm.nationalityId">
                                 <option *ngFor="let option of nationality" [value]="option.nationalityId">{{option.nationalityName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
@@ -110,6 +110,16 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
+                            <label class="label">{{'familyform.yearlyIncome.label' | translate}}*</label>
+                            <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="{{'familyform.yearlyIncome.placeholder' | translate}}"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">{{'familyform.yearlyIncome.required' | translate}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
                             <label class="label">{{'common.residenceScope.label' | translate}}</label>
                             <select id="" class="form-control" name="residenceScopeId" #residenceScopeId="ngModel" [(ngModel)]="familyInfoForm.residenceScopeId">
                                 <option *ngFor="let option of residenceScope" [value]="option.residenceScopeId">{{option.residenceScopeName}}</option>
@@ -121,19 +131,17 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.isDependent.label' | translate}}*</label>
+                            <label>{{'familyform.isDependent.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isDependent" #isDependent="ngModel" [(ngModel)]="familyInfoForm.isDependent" required>
+                                    <input type="checkbox" name="isDependent" #isDependent="ngModel" [(ngModel)]="familyInfoForm.isDependent">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isDependent.valid || isDependent.pristine" class="text-danger">{{'familyform.isDependent.required' | translate}}</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isDependent||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.dependentPercentage.label' | translate}}*</label>
                             <input type="text" autocomplete="off" name="dependentPercentage" #dependentPercentage="ngModel" [(ngModel)]="familyInfoForm.dependentPercentage" class="form-control" placeholder="{{'familyform.dependentPercentage.label' | translate}}"
@@ -145,19 +153,18 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.isDisabled.label' | translate}}*</label>
+                            <label>{{'familyform.isDisabled.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isDisabled" #isDisabled="ngModel" [(ngModel)]="familyInfoForm.isDisabled" required>
+                                    <input type="checkbox" name="isDisabled" #isDisabled="ngModel" [(ngModel)]="familyInfoForm.isDisabled">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isDisabled.valid || isDisabled.pristine" class="text-danger">{{'familyform.isDisabled.required' | translate}}</p>
+
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isDisabled||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.disabledPercentage.label' | translate}}*</label>
                             <input type="text" autocomplete="off" name="disabledPercentage" #disabledPercentage="ngModel" [(ngModel)]="familyInfoForm.disabledPercentage" class="form-control" placeholder="{{'familyform.disabledPercentage.placeholder' | translate}}"
@@ -168,30 +175,18 @@
                     </div>
 
                     <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">{{'familyform.yearlyIncome.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="{{'familyform.yearlyIncome.placeholder' | translate}}"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">{{'familyform.yearlyIncome.required' | translate}}</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'familyform.isAppliedForCitizenship.label' | translate}}*</label>
+                            <label>{{'familyform.isAppliedForCitizenship.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isAppliedForCitizenship" #isAppliedForCitizenship="ngModel" [(ngModel)]="familyInfoForm.isAppliedForCitizenship" required>
+                                    <input type="checkbox" name="isAppliedForCitizenship" #isAppliedForCitizenship="ngModel" [(ngModel)]="familyInfoForm.isAppliedForCitizenship">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isAppliedForCitizenship.valid || isAppliedForCitizenship.pristine" class="text-danger">{{'familyform.isAppliedForCitizenship.required' | translate}}</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.applicationCode.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" name="applicationCode" #applicationCode="ngModel" [(ngModel)]="familyInfoForm.applicationCode" placeholder="{{'familyform.applicationCode.placeholder' | translate}}" />
@@ -200,7 +195,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.applicationDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="applicationDate" #applicationDate="ngModel" [(ngModel)]="familyInfoForm.applicationDate" placeholder="{{'familyform.applicationDate.placeholder' | translate}}" />
@@ -209,7 +204,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.applicationCity.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" name="applicationCity" #applicationCity="ngModel" [(ngModel)]="familyInfoForm.applicationCity" placeholder="{{'familyform.applicationCity.placeholder' | translate}}" />
@@ -218,7 +213,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">
                                 {{'familyform.applicationPlacedAddress.label' | translate}}
@@ -229,7 +224,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.applicationFileNumber.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" name="applicationFileNumber" #applicationFileNumber="ngModel" [(ngModel)]="familyInfoForm.applicationFileNumber" placeholder="{{'familyform.applicationFileNumber.placeholder' | translate}}" />
@@ -238,7 +233,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="familyInfoForm.isAppliedForCitizenship||false">
                         <div class="caf-input-group">
                             <label class="label">{{'familyform.applicationPlacedDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="applicationPlacedDate" #applicationPlacedDate="ngModel" [(ngModel)]="familyInfoForm.applicationPlacedDate" placeholder="{{'familyform.applicationPlacedDate.placeholder' | translate}}" />

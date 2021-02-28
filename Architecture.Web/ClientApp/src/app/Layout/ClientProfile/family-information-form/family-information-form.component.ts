@@ -67,7 +67,6 @@ export class FamilyInformationFormComponent implements OnInit {
     }
 
     public getFamily() {
-        debugger;
         this.familyInfoService.getFamilyById(this.profileId, this.familyInfoId).subscribe(
             (success: APIResponse) => {
 

@@ -8,7 +8,6 @@ import { Guid } from 'guid-typescript';
 import { DropdownService } from 'src/app/Shared/Services/Common/dropdown.service';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NewKeywordComponent } from './new-keyword/new-keyword.component';
-import { debug } from 'console';
 
 @Component({
   selector: 'app-application-user-form',

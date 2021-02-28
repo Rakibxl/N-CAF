@@ -21,20 +21,6 @@ namespace Architecture.Web.Controllers.Job
             this.jobSectionLinkService = jobSectionLinkService;
         }
 
-        [HttpGet("/Test")]
-        public async Task<IActionResult> GetTest()
-        {
-            try
-            {
-                var result = "dfdsdfdsff";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] JobInfo model)
         {
@@ -42,26 +28,8 @@ namespace Architecture.Web.Controllers.Job
             {
                 var jobSectionLinks = model.JobSectionLink;
                 model.JobSectionLink = null;
-                //var result = await jobInfoService.AddOrUpdate(model);
-                //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(result.JobInfoId, jobSectionLinks);
-                //var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks);
-                var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(1, jobSectionLinks.ToList());
-                //return OkResult(result);
-
-
-                // save for job section link
-
-                //string[] split = model.SectionList.Split(',');
-
-                
-                //foreach (string item in split)
-                //{
-                //    JobSectionLink jobSectionLink = new JobSectionLink();
-                //    jobSectionLink.JobInfoId = model.JobInfoId;
-                //    jobSectionLink.SectionNameId = Int32.Parse(item) ;
-                //    var result2 = await jobSectionLinkService.AddOrUpdate(jobSectionLink);
-                //}
-
+                var result = await jobInfoService.AddOrUpdate(model);
+                var jobSectionResult = await jobSectionLinkService.AddOrUpdateOrDelete(model.JobInfoId, jobSectionLinks.ToList());
                 return OkResult("OK");
 
             });

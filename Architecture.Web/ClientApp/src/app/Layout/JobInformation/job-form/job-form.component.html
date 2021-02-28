@@ -52,15 +52,13 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsCommon*</label>
+                            <label>IsCommon</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isCommon" #isCommon="ngModel" [(ngModel)]="jobInfoForm.isCommon" required>
+                                    <input type="checkbox" name="isCommon" #isCommon="ngModel" [(ngModel)]="jobInfoForm.isCommon">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isCommon.valid || isCommon.pristine" class="text-danger">IsCommon is required.</p>
                         </div>
                     </div>
 
@@ -88,15 +86,13 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsHighlighted*</label>
+                            <label>IsHighlighted</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isHighlighted" #isHighlighted="ngModel" [(ngModel)]="jobInfoForm.isHighlighted" required>
+                                    <input type="checkbox" name="isHighlighted" #isHighlighted="ngModel" [(ngModel)]="jobInfoForm.isHighlighted">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isHighlighted.valid || isHighlighted.pristine" class="text-danger">IsHighlighted is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -166,15 +162,13 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsPregnant*</label>
+                            <label>IsPregnant</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isPregnant" #isPregnant="ngModel" [(ngModel)]="jobInfoForm.isPregnant" required>
+                                    <input type="checkbox" name="isPregnant" #isPregnant="ngModel" [(ngModel)]="jobInfoForm.isPregnant" >
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isPregnant.valid || isPregnant.pristine" class="text-danger">IsPregnant is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -219,15 +213,13 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsEligibleForUnlimitedResidencePermit*</label>
+                            <label>IsEligibleForUnlimitedResidencePermit</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isEligibleForUnlimitedResidencePermit" #isEligibleForUnlimitedResidencePermit="ngModel" [(ngModel)]="jobInfoForm.isEligibleForUnlimitedResidencePermit" required>
+                                    <input type="checkbox" name="isEligibleForUnlimitedResidencePermit" #isEligibleForUnlimitedResidencePermit="ngModel" [(ngModel)]="jobInfoForm.isEligibleForUnlimitedResidencePermit">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isEligibleForUnlimitedResidencePermit.valid || isEligibleForUnlimitedResidencePermit.pristine" class="text-danger">IsEligibleForUnlimitedResidencePermit is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -248,29 +240,25 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>IsEligibleForCitizenshipApply*</label>
+                            <label>IsEligibleForCitizenshipApply</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isEligibleForCityzenShipApply" #isEligibleForCityzenShipApply="ngModel" [(ngModel)]="jobInfoForm.isEligibleForCityzenShipApply" required>
+                                    <input type="checkbox" name="isEligibleForCityzenShipApply" #isEligibleForCityzenShipApply="ngModel" [(ngModel)]="jobInfoForm.isEligibleForCityzenShipApply">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isEligibleForCityzenShipApply.valid || isEligibleForCityzenShipApply.pristine" class="text-danger">IsEligibleForCitizenshipApply is required.</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>HasUnlimitedResidencePermit*</label>
+                            <label>HasUnlimitedResidencePermit</label>
                             <div class="pl-2">
                                 <label class="switch">
                                     <input type="checkbox" name="hasUnlimitedResidencePermit" #hasUnlimitedResidencePermit="ngModel" [(ngModel)]="jobInfoForm.hasUnlimitedResidencePermit">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="hasUnlimitedResidencePermit.valid || hasUnlimitedResidencePermit.pristine" class="text-danger">HasUnlimitedResidencePermit is required.</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">

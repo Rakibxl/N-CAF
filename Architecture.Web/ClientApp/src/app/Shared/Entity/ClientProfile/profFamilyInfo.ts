@@ -25,12 +25,12 @@ export class ProfFamilyInfo extends Auditable {
     public residenceScopeId: number;
     //public virtual ResidenceScope ResidenceScope { get; set; }
     public residenceScope: string;
-    public isDependent: boolean;
+    public isDependent: boolean=false;
     public dependentPercentage: number;
-    public isDisabled: boolean;
+    public isDisabled: boolean=false;
     public disabledPercentage: number;
     public yearlyIncome: number;
-    public isAppliedForCitizenship: boolean;
+    public isAppliedForCitizenship: boolean=false;
     public applicationCode: string;
     public applicationDate: Date;
     public applicationCity: string;
