@@ -55,8 +55,7 @@ export class ExcelService {
         ];
 
 
-        XLSX.utils.sheet_add_json(worksheet, json, { skipHeader: false, origin: "A5" });       
-        console.log('worksheet', worksheet);
+        XLSX.utils.sheet_add_json(worksheet, json, { skipHeader: false, origin: "A5" }); 
         const workbook: XLSX.WorkBook = {
             Sheets: { 'data': worksheet }, SheetNames: ['data'], Props: {
                 Title: "BRTC",

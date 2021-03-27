@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OfferInfo } from '../../../Shared/Entity/Dashboard/Offer-Info';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 import { GeneratePdfService } from '../../generate-pdf/services/generate-pdf.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { GeneratePdfService } from '../../generate-pdf/services/generate-pdf.ser
 export class GeneratePdfComponent implements OnInit {
   pdfSrc: any;
 
-  constructor(private alertService: AlertService, private sanitizer: DomSanitizer, private generatePdfService: GeneratePdfService) { }
+    constructor(private alertService: AlertService, private sanitizer: DomSanitizer, private generatePdfService: GeneratePdfService, private offerInfoService:OfferInfoService) { }
 
   ngOnInit() {
     this.generatePDF();
@@ -31,5 +33,24 @@ export class GeneratePdfComponent implements OnInit {
 
   onLoad(pdfData) {
       console.log('pdfData: ', pdfData);
-  }
+    }
+
+    public fnSubmitOffer() {
+        let offerInfo = new OfferInfo();
+        offerInfo.OfferInfoId = 0;
+        offerInfo.JobId = 1;
+        offerInfo.ProfileId = 1;
+        offerInfo.OfferStatusId = 1;
+        this.offerInfoService.submitOffer(offerInfo).subscribe((res) => {
+            console.log("Response:: ", res);
+        },
+            (error) => {
+                console.log("Error: ", error);
+            });
+        alert("ready to submit..");
+    }
+
+    public fnBackToOfferPage() {
+
+    }
 }

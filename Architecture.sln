@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Web", "Architecture.Web\Architecture.Web.csproj", "{D7DF4DCE-A111-4D44-987D-B47A31CD3A23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Core", "Architecture.Core\Architecture.Core.csproj", "{6D3A7E58-3CE6-4D6D-9502-65758CB4FFD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Core", "Architecture.Core\Architecture.Core.csproj", "{6D3A7E58-3CE6-4D6D-9502-65758CB4FFD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.BLL", "Architecture.BLL\Architecture.BLL.csproj", "{9473BAFC-BC69-4CD3-BA60-6FD5B715CC18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.BLL", "Architecture.BLL\Architecture.BLL.csproj", "{9473BAFC-BC69-4CD3-BA60-6FD5B715CC18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

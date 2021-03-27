@@ -4,7 +4,7 @@ import { OfferComponent } from './offer/offer.component';
 
 
 const routes: Routes = [
-  { path: '', component: OfferComponent }
+    { path: 'offer/:jobId/:id', component: OfferComponent }
 ];
 
 @NgModule({

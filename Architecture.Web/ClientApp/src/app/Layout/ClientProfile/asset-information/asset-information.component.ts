@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profAssetInfo } from '../../../Shared/Entity/ClientProfile/profAssetInfo';
@@ -11,11 +11,12 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
   styleUrls: ['./asset-information.component.css']
 })
 export class AssetInformationComponent implements OnInit {
-
+    @Input() profileId: number= null;
     constructor(private router: Router, private assetService: AssetInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
-    private profileId: number;
+    //private profileId: number;
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        debugger;
+        this.profileId = this.profileId ? this.profileId:( +this.route.snapshot.paramMap.get("profId") || 0);
         debugger;
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
@@ -29,11 +30,8 @@ export class AssetInformationComponent implements OnInit {
 
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
-        let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/asset-info/${this.profileId}/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate(['/client-profile/asset-info/0']);
@@ -45,6 +43,7 @@ export class AssetInformationComponent implements OnInit {
         debugger;
         this.assetService.getAssetInfo(this.profileId).subscribe(
             (success) => {
+                console.log(" success.data::", success.data);
                 this.assetInfoList = success.data;
                 this.assetInfoList.forEach(x => {
                     x.assetTypeName = x.assetType.assetTypeName || "";

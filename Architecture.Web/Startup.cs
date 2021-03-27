@@ -68,12 +68,12 @@ namespace Architecture.Web
 
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-            
+
             // Add repository and UnitOfWork here
             #region Repository and UnitOfWork
             services.AddScoped<IExampleRepository, ExampleRepository>();
             services.AddScoped<IExampleUnitOfWork, ExampleUnitOfWork>();
-           // services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
+            // services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
             #endregion
 
             services.AddHttpContextAccessor();
@@ -104,11 +104,11 @@ namespace Architecture.Web
             services.AddTransient<IISEEInfoService, ISEEInfoService>();
             services.AddTransient<IDocumentInfoService, DocumentInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
-            services.AddTransient<IBasicInfoService, BasicInfoService>();
-            services.AddTransient<IBranchService, BranchService>();
-            services.AddTransient<IQuestionService, QuestionService>();
-            services.AddTransient<IJobInformationService, JobInformationService>();
-            services.AddTransient<ISectionLinkService, SectionLinkService>();
+            //services.AddTransient<IBasicInfoService, BasicInfoService>();
+            //services.AddTransient<IBranchService, BranchService>();
+            //services.AddTransient<IQuestionService, QuestionService>();
+            //services.AddTransient<IJobInformationService, JobInformationService>();
+            //services.AddTransient<ISectionLinkService, SectionLinkService>();
             //services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
             #endregion
 
@@ -118,8 +118,8 @@ namespace Architecture.Web
                     .AsPublicImplementedInterfaces();
 
             services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
-                    .Where(c => c.Name.EndsWith("UnitOfWork"))
-                    .AsPublicImplementedInterfaces();
+                        .Where(c => c.Name.EndsWith("UnitOfWork"))
+                        .AsPublicImplementedInterfaces();
 
             (services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies()))
                     .Where(c => c.Name.EndsWith("Service"))
@@ -194,7 +194,7 @@ namespace Architecture.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-                       
+
 
             //Start Notification Service
             //new NotificationService().GetAllAsync();
@@ -229,7 +229,7 @@ namespace Architecture.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-             });
+            });
 
             app.UseSpa(spa =>
             {

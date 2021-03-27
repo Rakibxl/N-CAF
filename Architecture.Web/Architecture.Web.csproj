@@ -15,6 +15,10 @@
     <UserSecretsId>e3b0e125-b5f7-4fff-8ecf-b733b83d50ad</UserSecretsId>
   </PropertyGroup>
   
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -49,6 +53,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\Shared\Entity\NewFolder\" />
     <Folder Include="ClientApp\src\app\Shared\Services\LU\" />
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\Generated PDF\" />

@@ -43,7 +43,6 @@ export class FamilyInformationFormComponent implements OnInit {
         this.residenceScope = await this.dropdownService.getResidenceScope() || [];
 
         console.log("relationType : ", this.relationType, "nationality : ", this.nationality, "occupationType : ", this.occupationType, "residenceScope : ", this.residenceScope);
-
     }
 
 
@@ -67,12 +66,26 @@ export class FamilyInformationFormComponent implements OnInit {
     }
 
     public getFamily() {
-        this.familyInfoService.getFamilyById(this.profileId, this.familyInfoId).subscribe(
-            (success: APIResponse) => {
+        //this.familyInfoService.getFamilyById(this.profileId, this.familyInfoId).subscribe(
+        //    (success: APIResponse) => {
 
-                success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth); 
-                success.data.applicationDate = this.commonService.getDateToSetForm(success.data.applicationDate); 
-                success.data.applicationPlacedDate = this.commonService.getDateToSetForm(success.data.applicationPlacedDate); 
+        //        success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth); 
+        //        success.data.applicationDate = this.commonService.getDateToSetForm(success.data.applicationDate); 
+        //        success.data.applicationPlacedDate = this.commonService.getDateToSetForm(success.data.applicationPlacedDate); 
+
+        //        this.familyInfoForm = success.data
+        //    },
+        //    (error: any) => {
+        //        this.alertService.tosterWarning(error.message);
+        //        console.log("error", error);
+        //    });
+
+        this.familyInfoService.getFamilyByIdAsync(this.profileId, this.familyInfoId).then(
+            (success: APIResponse) => {
+                debugger
+                success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth);
+                success.data.applicationDate = this.commonService.getDateToSetForm(success.data.applicationDate);
+                success.data.applicationPlacedDate = this.commonService.getDateToSetForm(success.data.applicationPlacedDate);
 
                 this.familyInfoForm = success.data
             },

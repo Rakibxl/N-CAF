@@ -4,6 +4,9 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { ClientProfileService } from '../../../Shared/Services/ClientProfile/client-profile.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
 import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/occupation-info.service';
+import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
+import { JobInfoService } from '../../../Shared/Services/Users/job-info.service';
+import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 
 
 @Component({
@@ -12,17 +15,19 @@ import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/oc
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent implements OnInit {
-  basicInfo: any = {};
-  occupationInfoList: any[] = [];
-  ptableSettings: IPTableSetting;
+    public basicInfo: any = {};
+    public jobInfo: JobInfo = new JobInfo();
+  public occupationInfoList: any[] = [];
+  public ptableSettings: IPTableSetting;
 
-  constructor(private router: Router, private clientProfileService: ClientProfileService,
+    constructor(private router: Router, private clientProfileService: ClientProfileService, private jobInfoService:JobInfoService,
     private commonService: CommonService, private occupationService: OccupationInfoService) {
     this.initGrid();
   }
 
-  ngOnInit() {
-    this.loadBasicInfo();
+    ngOnInit() {
+        this.fnGetJobById();
+        this.loadBasicInfo();
   }
 
   initGrid() {
@@ -41,12 +46,6 @@ export class OfferComponent implements OnInit {
         { headerName: 'Legal Company Address', width: '10%', internalName: 'legalCompanyAddress', sort: true, type: "" },
         { headerName: 'Office Address', width: '10%', internalName: 'officeAddress', sort: true, type: "" },
         { headerName: 'Branch Address', width: '10%', internalName: 'branchAddress', sort: true, type: "" },
-       // { headerName: 'Chamber Of CommerceRegNo', width: '10%', internalName: 'chamberOfCommerceRegNo', sort: true, type: "" },
-        //{ headerName: 'Chamber OfCommerce CityName', width: '10%', internalName: 'chamberOfCommerceCityName', sort: true, type: "" },
-       // { headerName: 'REANo', width: '10%', internalName: 'reaNo', sort: true, type: "" },
-       // { headerName: 'ATECONo', width: '10%', internalName: 'atecoNo', sort: true, type: "" },
-        //{ headerName: 'SCIANo', width: '10%', internalName: 'sciaNo', sort: true, type: "" },
-        //{ headerName: 'SCIA CityName', width: '10%', internalName: 'sciaCityName', sort: true, type: "" },
         { headerName: 'IsShareHolder', width: '10%', internalName: 'isShareHolder', sort: true, type: "" },
         { headerName: 'Percentage of Share', width: '10%', internalName: 'percentageOfShare', sort: true, type: "" },
         { headerName: 'Notaio Info', width: '10%', internalName: 'notaioInfo', sort: true, type: "" },
@@ -118,5 +117,21 @@ export class OfferComponent implements OnInit {
         this.occupationInfoList = success.data;
       }, error => {
       });
-  }
+    }
+
+    fnGetJobById() {
+        this.jobInfoService.getJobById(1).subscribe((res: APIResponse) => {
+            this.jobInfo = res.data;
+        },
+            (error) => {
+                console.log("erros: ", error);
+            });
+    }
+
+    public fnGenerateOfferDocuments() {
+        const url = this.router.serializeUrl(
+            this.router.createUrlTree(['./generate-pdf/pdf/1/1/1'])
+        );
+        window.open(url, '_blank');
+    }
 }

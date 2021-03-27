@@ -25,4 +25,8 @@ export class FamilyInfoService {
         return this.http.get<APIResponse>(this.baseUrl + `v1/FamilyInfo/GetById/${profileId}/${familyInfoId}`);
     }
 
+    public async getFamilyByIdAsync(profileId: number, familyInfoId: number) {
+        return  await this.http.get<APIResponse>(this.baseUrl + `v1/FamilyInfo/GetById/${profileId}/${familyInfoId}`).toPromise();
+    }
+
 }

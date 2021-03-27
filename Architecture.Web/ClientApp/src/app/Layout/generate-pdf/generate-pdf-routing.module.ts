@@ -4,7 +4,7 @@ import { GeneratePdfComponent } from './generate-pdf/generate-pdf.component';
 
 
 const routes: Routes = [
-  { path: '', component: GeneratePdfComponent }
+     { path: 'pdf/:profileId/:jobId/:offerId', component: GeneratePdfComponent }
 ];
 
 @NgModule({

@@ -15,10 +15,11 @@ export class AssetInformationFormComponent implements OnInit {
     public assetInfoForm = new profAssetInfo();
 
     constructor(private assetInfoService: AssetInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
-    private profileId: number;
-    private assetInfoId: number;
+    private profileId: number = null;
+    private assetInfoId: number = null;
 
-    ngOnInit() {
+    public ngOnInit() {
+        debugger;
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.assetInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 
@@ -29,7 +30,6 @@ export class AssetInformationFormComponent implements OnInit {
    }
 
     public onSubmit() {
-        debugger;
         console.table(this.assetInfoForm);
         this.assetInfoForm.profileId = this.profileId;
 
@@ -46,11 +46,9 @@ export class AssetInformationFormComponent implements OnInit {
                 this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
-
     }
 
     public getAsset() {
-        debugger;
         this.assetInfoService.getAssetById(this.profileId, this.assetInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.ownerFromDate = this.commonService.getDateToSetForm(success.data.ownerFromDate);
@@ -60,12 +58,10 @@ export class AssetInformationFormComponent implements OnInit {
                 this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
-
     }
 
     public fnBackToList() {
         this.router.navigate([`/client-profile/asset-info/${this.profileId}`]);
         return false;
     }
-
 }

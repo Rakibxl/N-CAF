@@ -52,6 +52,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
       ClientProfleRoutingModule,
       PerfectScrollbarModule,
       AngularFontAwesomeModule
-  ]
+    ],
+  exports: [AssetInformationComponent],
 })
 export class ClientProfleModule { }

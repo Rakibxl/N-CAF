@@ -5,4 +5,14 @@
             <iframe #pdfData id="pdfData" (load)="onLoad(pdfData)" [src]="pdfSrc" style="width:100%;min-height:500px"></iframe>
         </div>
     </div>
-</div>
+
+    <div class="row sticky top-10">
+        <div class="col-12">
+            <div class="card-footer d-flex justify-content-end">
+                <button class="caf-btn-primary-outline back mr-2" (click)="fnBackToOfferPage()">
+                    <i class="pe-7s-back pr-1"></i>
+                    Back
+                </button>
+                <button type="button" (click)="fnSubmitOffer()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Save</button>
+            </div>
+        </div>

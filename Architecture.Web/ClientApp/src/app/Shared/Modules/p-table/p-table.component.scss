@@ -25,10 +25,14 @@
     border-top    : 5px solid $appColor;
     border-radius : 5px;
 }
+.p-table-hyperlink{
+    cursor:pointer;
+    color:blue;
+}
 
 .p-table {
     margin-bottom: 0px !important;
-    width        : 100%;
+    width: 100%;
 }
 
 .p-table .p-table-body .table-bordered>tbody>tr>td {

@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210301181953_Added Offer")]
+    partial class AddedOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1525,89 +1527,6 @@ namespace Architecture.Core.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Architecture.Core.Entities.LU.OfferStatus", b =>
-                {
-                    b.Property<int>("OfferStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsApplicationNotification")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEmailNotification")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("OfferStatusName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("OfferStatusId");
-
-                    b.ToTable("LU_OfferStatus");
-
-                    b.HasData(
-                        new
-                        {
-                            OfferStatusId = 1,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "New Offer"
-                        },
-                        new
-                        {
-                            OfferStatusId = 2,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Submitted"
-                        },
-                        new
-                        {
-                            OfferStatusId = 3,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Pending"
-                        },
-                        new
-                        {
-                            OfferStatusId = 4,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Received"
-                        },
-                        new
-                        {
-                            OfferStatusId = 5,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Completed"
-                        },
-                        new
-                        {
-                            OfferStatusId = 6,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Documents Required"
-                        },
-                        new
-                        {
-                            OfferStatusId = 7,
-                            IsActive = true,
-                            IsApplicationNotification = true,
-                            IsEmailNotification = true,
-                            OfferStatusName = "Information Required"
-                        });
-                });
-
             modelBuilder.Entity("Architecture.Core.Entities.LU.OperatorKeyword", b =>
                 {
                     b.Property<int>("OperatorKeywordId")
@@ -1885,16 +1804,10 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AcceptedOperatorId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CurrentUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("JobId")
@@ -1905,6 +1818,9 @@ namespace Architecture.Core.Migrations
 
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OfferAcceptedOperatorId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OfferStatusId")
                         .HasColumnType("int");
@@ -1919,12 +1835,6 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ValidationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ValidatorId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OfferInfoId");

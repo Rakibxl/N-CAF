@@ -57,6 +57,7 @@ export class AddressInformationComponent implements OnInit {
 
     }
 
+  
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
         tableName: 'Address List',

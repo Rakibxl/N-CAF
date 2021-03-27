@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferStatusComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
+
+    public onClickGeneratePDF() {
+        console.log("generate pdf.");
+    }
+
+    public onClickOffer() {
+
+    }
 
   ngOnInit() {
   }

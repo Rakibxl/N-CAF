@@ -41,6 +41,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<JobInfo> JobInfos { get; set; }
         public DbSet<SectionLink> SectionLinks { get; set; }
         public DbSet<JobSectionLink> JobSectionLinks { get; set; }
+        public DbSet<OfferInfo> OfferInfos { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
@@ -75,6 +76,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<InsuranceType> InsuranceType { get; set; }
         public DbSet<SectionName> SectionName { get; set; }
         public DbSet<OperatorKeyword> OperatorKeyword { get; set; }
+        public DbSet<OfferStatus> OfferStatus { get; set; }
 
         #endregion 
 
@@ -114,6 +116,22 @@ namespace Architecture.Core.Repository.Context
                     new Gender { GenderId = 1, Name = "Male", IsActive = true },
                     new Gender { GenderId = 2, Name = "Female", IsActive = true },
                     new Gender { GenderId = 3, Name = "Other", IsActive = true }
+                );
+            });
+
+            modelBuilder.Entity<OfferStatus>().ToTable("LU_OfferStatus");
+            modelBuilder.Entity<OfferStatus>(OfferStatus =>
+            {
+                OfferStatus.HasKey(g => g.OfferStatusId);
+                OfferStatus.Property(g => g.OfferStatusName).HasMaxLength(100);
+                OfferStatus.HasData(
+                    new OfferStatus { OfferStatusId = 1, OfferStatusName = "New Offer", IsEmailNotification=true,IsApplicationNotification=true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 2, OfferStatusName = "Submitted",IsEmailNotification=true, IsApplicationNotification = true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 3, OfferStatusName = "Pending",IsEmailNotification=true,IsApplicationNotification=true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 4, OfferStatusName = "Received",IsEmailNotification=true,IsApplicationNotification=true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 5, OfferStatusName = "Completed",IsEmailNotification=true,IsApplicationNotification=true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 6, OfferStatusName = "Documents Required",IsEmailNotification=true,IsApplicationNotification=true, IsActive = true },
+                    new OfferStatus { OfferStatusId = 7, OfferStatusName = "Information Required",IsEmailNotification=true,IsApplicationNotification=true, IsActive = true }
                 );
             });
 
@@ -472,7 +490,15 @@ namespace Architecture.Core.Repository.Context
                     new SectionName { SectionNameId = 5, SectionDescription = "Address Info", IsActive = true },
                     new SectionName { SectionNameId = 6, SectionDescription = "House Rent Info", IsActive = true },
                     new SectionName { SectionNameId = 7, SectionDescription = "Document Info", IsActive = true },
-                    new SectionName { SectionNameId = 8, SectionDescription = "Income Info", IsActive = true }
+                    new SectionName { SectionNameId = 8, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 9, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 10, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 11, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 12, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 13, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 14, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 15, SectionDescription = "Income Info", IsActive = true },
+                    new SectionName { SectionNameId = 16, SectionDescription = "Income Info", IsActive = true }
                 );
             });
             modelBuilder.Entity<OperatorKeyword>().ToTable("LU_OperatorKeyword");

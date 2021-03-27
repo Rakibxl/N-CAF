@@ -9,5 +9,8 @@ namespace Architecture.BLL.Services.Interfaces
    public interface IOfferInfoService
     {
         Task<IEnumerable<JobInfo>> GetMyOffer();
+        Task<OfferInfo> GetById(int offerInfoId);
+        Task<OfferInfo> AddOrUpdate(OfferInfo offerInfo);
+        Task<int> Delete(int offerInfoId);
     }
 }
