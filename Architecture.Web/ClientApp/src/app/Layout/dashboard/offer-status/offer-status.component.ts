@@ -15,7 +15,7 @@ export class OfferStatusComponent implements OnInit {
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
-        this.offerService.getMyOffer().subscribe((res: APIResponse) => {
+        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
             console.log("Success", res);
             this.myOffers = res.data || [];
 
@@ -54,10 +54,9 @@ export class OfferStatusComponent implements OnInit {
         tableColDef: [
             { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
             { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "" },
-            { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "hyperlink" },
-            { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
+            { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
+            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
 
         ],
         enabledSearch: true,

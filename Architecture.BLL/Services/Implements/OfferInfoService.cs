@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Architecture.BLL.Services.Implements
 {
@@ -65,7 +66,24 @@ namespace Architecture.BLL.Services.Implements
             var result = await DeleteAsync(x => x.OfferInfoId == offerInfoId);
             return result;
         }
-
-
+        public  dynamic GetCurrentStatusById(int profileId)
+        {
+            var result = from of in _dbContext.OfferInfos
+                         join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
+                         join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
+                         select new
+                         {
+                             OfferInfoId = of.OfferInfoId,
+                             JobId = of.JobId,
+                             ProfileId = of.ProfileId,
+                             OfferStatusId = of.OfferStatusId,
+                             OfferStatusName = os.OfferStatusName,
+                             Title = job.Title,
+                             Description = job.Description,
+                             Created = of.Created,
+                             Modified= of.Modified
+                         };
+            return result; 
+        }
     }
 }

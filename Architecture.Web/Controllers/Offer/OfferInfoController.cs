@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
 using Architecture.Core.Entities;
@@ -33,6 +34,20 @@ namespace Architecture.Web.Controllers.Offer
                 return ExceptionResult(ex);
             }
         }
+        [HttpGet("GetCurrentOffer/{profileId}")]
+        public IActionResult GetCurrentStatusById(int profileId)
+        {
+            try
+            {
+                var result =  OfferInfoService.GetCurrentStatusById(profileId);
+                var x = "Laboni";
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
 
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int offerInfoId)
@@ -51,6 +66,21 @@ namespace Architecture.Web.Controllers.Offer
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] OfferInfo model)
         {
+            var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
+
+            if (model.OfferInfoId > 0)
+            {
+                model.ModifiedBy = UserId;
+                model.Modified = DateTime.Now;
+            }
+            else
+            {
+                model.CreatedBy = UserId;
+                model.Created = DateTime.Now;
+                model.Modified = DateTime.Now;
+            }
+
             return await ModelValidation(async () =>
             {
                 var result = await OfferInfoService.AddOrUpdate(model);

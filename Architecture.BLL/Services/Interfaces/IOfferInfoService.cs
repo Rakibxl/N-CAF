@@ -10,6 +10,7 @@ namespace Architecture.BLL.Services.Interfaces
     {
         Task<IEnumerable<JobInfo>> GetMyOffer();
         Task<OfferInfo> GetById(int offerInfoId);
+        dynamic GetCurrentStatusById(int profileId);
         Task<OfferInfo> AddOrUpdate(OfferInfo offerInfo);
         Task<int> Delete(int offerInfoId);
     }
