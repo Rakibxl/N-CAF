@@ -11,13 +11,23 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
   styleUrls: ['./asset-information.component.css']
 })
 export class AssetInformationComponent implements OnInit {
-    @Input() profileId: number= null;
+    @Input() profileIdInput: number= 0;
     constructor(private router: Router, private assetService: AssetInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
-    //private profileId: number;
+    private profileId: number;
     ngOnInit() {
         debugger;
-        this.profileId = this.profileId ? this.profileId:( +this.route.snapshot.paramMap.get("profId") || 0);
-        debugger;
+        if (this.profileIdInput > 0) { // check the input value if not available then chekc the param
+            this.profileId = this.profileIdInput;
+            this.ptableSettings.enabledDeleteBtn = false;
+            this.ptableSettings.enabledPdfDownload = false;
+            this.ptableSettings.enabledExcelDownload = false;
+
+
+        } else {
+            this.profileId=(+this.route.snapshot.paramMap.get("profId") || 0);
+        } 
+
+
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
         }

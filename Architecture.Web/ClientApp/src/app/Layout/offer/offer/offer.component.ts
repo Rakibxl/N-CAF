@@ -16,6 +16,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 })
 export class OfferComponent implements OnInit {
     public basicInfo: any = {};
+    public profileId:number = 1;
     public jobInfo: JobInfo = new JobInfo();
   public occupationInfoList: any[] = [];
   public ptableSettings: IPTableSetting;
