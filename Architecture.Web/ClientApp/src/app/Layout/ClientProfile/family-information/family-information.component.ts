@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { ProfFamilyInfo } from '../../../Shared/Entity/ClientProfile/profFamilyInfo';
@@ -11,12 +11,24 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
   styleUrls: ['./family-information.component.css']
 })
 export class FamilyInformationComponent implements OnInit {
+    @Input() parentProfileId: number = 0;
     public familyInfos: ProfFamilyInfo[] = [];
     constructor(private router: Router, private familyService: FamilyInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        if (this.parentProfileId > 0) { // check the input value if not available then chekc the param
+            this.profileId = this.parentProfileId;
+            this.ptableSettings.enabledEditDeleteBtn = false;
+            this.ptableSettings.enabledEditBtn = true;
+            this.ptableSettings.enabledPdfDownload = false;
+            this.ptableSettings.enabledExcelDownload = false;
+            this.ptableSettings.enabledPrint = false;
+            this.ptableSettings.enabledColumnSetting = false;
+        } else {
+            this.profileId = (+this.route.snapshot.paramMap.get("profId") || 0);
+        } 
+
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
         }

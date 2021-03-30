@@ -11,16 +11,18 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
   styleUrls: ['./asset-information.component.css']
 })
 export class AssetInformationComponent implements OnInit {
-    @Input() profileIdInput: number= 0;
+    @Input() parentProfileId: number= 0;
     constructor(private router: Router, private assetService: AssetInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
     ngOnInit() {
-        debugger;
-        if (this.profileIdInput > 0) { // check the input value if not available then chekc the param
-            this.profileId = this.profileIdInput;
-            this.ptableSettings.enabledDeleteBtn = false;
+        if (this.parentProfileId > 0) { // check the input value if not available then chekc the param
+            this.profileId = this.parentProfileId;
+            this.ptableSettings.enabledEditDeleteBtn = false;
+            this.ptableSettings.enabledEditBtn = true;
             this.ptableSettings.enabledPdfDownload = false;
             this.ptableSettings.enabledExcelDownload = false;
+            this.ptableSettings.enabledPrint = false;
+            this.ptableSettings.enabledColumnSetting = false;
 
 
         } else {

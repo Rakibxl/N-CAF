@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { profDelegationInfo } from '../../../Shared/Entity/ClientProfile/profDelegationInfo';
@@ -11,13 +11,23 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
   styleUrls: ['./deligation-information.component.css']
 })
 export class DeligationInformationComponent implements OnInit {
-
+    @Input() parentProfileId: number = 0;
     constructor(private router: Router, private delegationService: DelegationInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
     private profileId: number;
 
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
-        debugger;
+        if (this.parentProfileId > 0) { // check the input value if not available then chekc the param
+            this.profileId = this.parentProfileId;
+            this.ptableSettings.enabledEditDeleteBtn = false;
+            this.ptableSettings.enabledEditBtn = true;
+            this.ptableSettings.enabledPdfDownload = false;
+            this.ptableSettings.enabledExcelDownload = false;
+            this.ptableSettings.enabledPrint = false;
+            this.ptableSettings.enabledColumnSetting = false;
+        } else {
+            this.profileId = (+this.route.snapshot.paramMap.get("profId") || 0);
+        } 
+
         if (this.profileId == 0) {
             this.router.navigate(['/dashboard/common']);
         }

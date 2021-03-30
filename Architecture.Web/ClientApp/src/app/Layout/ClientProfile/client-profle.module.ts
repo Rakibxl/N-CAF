@@ -53,6 +53,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
       PerfectScrollbarModule,
       AngularFontAwesomeModule
     ],
-  exports: [AssetInformationComponent],
+    exports: [BasicInformationComponent, OccupationHistoryComponent, FamilyInformationComponent, EducationalInformationComponent, AddressInformationComponent, HouseRentInformationComponent, DocumentInformationComponent, IncomeInformationComponent, MovementInformationComponent, LegalInformationComponent, InsuranceInformationComponent, BankInformationComponent, WorkerInformationComponent, AssetInformationComponent, DeligationInformationComponent, IseeInformationComponent, SectionToSectionLinkComponent],
 })
 export class ClientProfleModule { }

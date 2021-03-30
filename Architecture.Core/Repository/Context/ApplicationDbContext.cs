@@ -77,6 +77,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<SectionName> SectionName { get; set; }
         public DbSet<OperatorKeyword> OperatorKeyword { get; set; }
         public DbSet<OfferStatus> OfferStatus { get; set; }
+        public DbSet<Province> Province { get; set; }
 
         #endregion 
 
@@ -491,14 +492,14 @@ namespace Architecture.Core.Repository.Context
                     new SectionName { SectionNameId = 6, SectionDescription = "House Rent Info", IsActive = true },
                     new SectionName { SectionNameId = 7, SectionDescription = "Document Info", IsActive = true },
                     new SectionName { SectionNameId = 8, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 9, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 10, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 11, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 12, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 13, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 14, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 15, SectionDescription = "Income Info", IsActive = true },
-                    new SectionName { SectionNameId = 16, SectionDescription = "Income Info", IsActive = true }
+                    new SectionName { SectionNameId = 9, SectionDescription = "Movement Info", IsActive = true },
+                    new SectionName { SectionNameId = 10, SectionDescription = "Legal Info", IsActive = true },
+                    new SectionName { SectionNameId = 11, SectionDescription = "Insurance Info", IsActive = true },
+                    new SectionName { SectionNameId = 12, SectionDescription = "Bank Info", IsActive = true },
+                    new SectionName { SectionNameId = 13, SectionDescription = "Worker Info", IsActive = true },
+                    new SectionName { SectionNameId = 14, SectionDescription = "Asset Info", IsActive = true },
+                    new SectionName { SectionNameId = 15, SectionDescription = "Deligation Info", IsActive = true },
+                    new SectionName { SectionNameId = 16, SectionDescription = "ISEE Info", IsActive = true }
                 );
             });
             modelBuilder.Entity<OperatorKeyword>().ToTable("LU_OperatorKeyword");
@@ -510,6 +511,18 @@ namespace Architecture.Core.Repository.Context
                     new OperatorKeyword { OperatorKeywordId = 1, OperatorKeywordName = "BabyBonus", IsActive = true },
                     new OperatorKeyword { OperatorKeywordId = 2, OperatorKeywordName = "BonusMamma", IsActive = true },
                     new OperatorKeyword { OperatorKeywordId = 3, OperatorKeywordName = "Naspi", IsActive = true }
+                );
+            });
+
+            modelBuilder.Entity<Province>().ToTable("LU_Province");
+            modelBuilder.Entity<Province>(ms =>
+            {
+                ms.HasKey(g => g.ProvinceId);
+                ms.Property(g => g.Code).HasMaxLength(100);
+                ms.Property(g => g.Description).HasMaxLength(200);
+                ms.HasData(
+                    new Province { ProvinceId = 1, Code = "MI",Description= "MILAN", IsActive = true },
+                    new Province { ProvinceId = 2, Code = "CO", Description = "COMO", IsActive = true }
                 );
             });
         }
