@@ -69,7 +69,7 @@ export class OfferComponent implements OnInit {
 
     public fnGenerateOfferDocuments() {
         const url = this.router.serializeUrl(
-            this.router.createUrlTree(['./generate-pdf/pdf/1/1/1'])
+            this.router.createUrlTree(['./generate-pdf/pdf/1/1/0'])
         );
         window.open(url, '_blank');
     }

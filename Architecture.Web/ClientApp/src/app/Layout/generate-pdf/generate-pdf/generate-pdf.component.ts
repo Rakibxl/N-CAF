@@ -53,6 +53,7 @@ export class GeneratePdfComponent implements OnInit {
         offerInfo.JobId = this.jobId;
         offerInfo.ProfileId = this.profileId;
         offerInfo.OfferStatusId = 1;
+        offerInfo.OfferInfoId = this.offerInfoId;
         this.offerInfoService.submitOffer(offerInfo).subscribe((res) => {
             console.log("Response:: ", res);
         },
