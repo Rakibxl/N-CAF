@@ -32,8 +32,6 @@ import { DeligationInformationFormComponent } from './deligation-information-for
 import { IseeInformationFormComponent } from './isee-information-form/isee-information-form.component';
 import { AddressInformationFormComponent } from './address-information-form/address-information-form.component';
 import { ClientListComponent } from './client-list/client-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 
 

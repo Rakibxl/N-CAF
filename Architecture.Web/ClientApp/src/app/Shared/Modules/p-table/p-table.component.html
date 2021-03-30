@@ -345,11 +345,13 @@
                                                     </a>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='custom-button'" style="text-align:center;">
-                                                    <button *ngIf="body[dispCol.internalName]=='true'|| body[dispCol.internalName]==true"
-                                                            class="btn btn-outline-success p-table-custom-button"
+                                                    <button class="btn btn-outline-success p-table-custom-button"
                                                             (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
-                                                        {{dispCol.btnTitle}}
+                                                        <em class=" {{dispCol.innerBtnIcon}}"></em> {{dispCol.btnTitle}}
                                                     </button>
+                                                </div>
+                                                <div *ngIf="dispCol.type=='custom-badge'" style="text-align:center;">
+                                                    <span class="badge badge-primary"> {{body[dispCol.internalName]}}</span>                                                   
                                                 </div>
                                                 <div *ngIf="dispCol.type=='hyperlink'">
                                                     <a class="p-table-hyperlink"
@@ -358,8 +360,6 @@
                                                 <div *ngIf="(dispCol.type=='' || dispCol.type==null)&& dispCol.displayType!='number'">
                                                     {{body[dispCol.internalName]}}
                                                 </div>
-
-
                                             </td>
                                             <!-- <td align="center" *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn || pTableSetting.enabledDeleteBtn">
                                                 <a *ngIf="pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn" class="p-table-edit-icon" (click)="fnActivityOnRecord('edit-item',body)"><em
@@ -390,7 +390,6 @@
                                                 </div>
                                             </td>
                                             <td align="left" *ngIf="pTableSetting.enabledEditDeleteBtn">
-
                                             </td>
                                         </tr>
                                         <tr *ngIf="pTableDatalength<1" class="no-record-found">
