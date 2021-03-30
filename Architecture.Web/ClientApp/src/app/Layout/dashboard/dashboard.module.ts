@@ -18,6 +18,9 @@ import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree
 import { ChatBoxPopupComponent } from 'src/app/Shared/share-component/chat-box-popup/chat-box-popup.component';
 import { CurrentOfferComponent } from '../dashboard/current-offer/current-offer.component';
 import { OfferStatusComponent } from './offer-status/offer-status.component';
+import { OfferHistoryComponent } from './offer-history/offer-history.component';
+import { BranchUserDashboardComponent } from './branch-user-dashboard/branch-user-dashboard.component';
+import { OperatorUserDashboardComponent } from './operator-user-dashboard/operator-user-dashboard.component';
 //import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
 
 
@@ -29,7 +32,10 @@ import { OfferStatusComponent } from './offer-status/offer-status.component';
     ProfileTreeComponent,
         ChatBoxPopupComponent,
         CurrentOfferComponent,
-        OfferStatusComponent
+        OfferStatusComponent,
+        OfferHistoryComponent,
+        BranchUserDashboardComponent,
+        OperatorUserDashboardComponent
   ],
   
   imports: [

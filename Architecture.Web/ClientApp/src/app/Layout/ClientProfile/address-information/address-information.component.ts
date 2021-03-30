@@ -44,7 +44,6 @@ export class AddressInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/address/${this.profileId}/0`]);
         }
         else if (event.action == "edit-item") {
@@ -53,7 +52,6 @@ export class AddressInformationComponent implements OnInit {
     }
 
     public getAddressInfos() {
-        debugger;
         this.addressService.getAddressInfo(this.profileId).subscribe(
             (success) => {                
                 this.addressInfoList = success.data;

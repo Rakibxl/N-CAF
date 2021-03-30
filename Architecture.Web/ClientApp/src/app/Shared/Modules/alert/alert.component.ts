@@ -70,7 +70,7 @@ export class AlertComponent implements OnInit {
         console.log("message", message);
       this.message = message;
     }, err => {
-            debugger;
+            ;
       console.log("Error in Alert Service: ", err);
     });
 

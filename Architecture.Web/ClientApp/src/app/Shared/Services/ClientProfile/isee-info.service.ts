@@ -14,16 +14,13 @@ export class ISEEInfoService {
     }
 
     public saveISEEInfo(data: profISEEInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/ISEEInfo/CreateOrUpdate', data);
     }
     public getISEEInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/ISEEInfo/Profile/${profileId}`);
     }
 
     public getIseeById(profileId: number, iseeInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/IseeInfo/GetById/${profileId}/${iseeInfoId}`);
     }
 }

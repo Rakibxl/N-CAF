@@ -26,7 +26,6 @@ export class QuestionInformationFormComponent implements OnInit {
 
 
     public onSubmit() {
-        debugger;
         console.table(this.questionInfoForm);
 
         this.questionInfoService.saveQuestionInfo(this.questionInfoForm).subscribe(
@@ -45,7 +44,6 @@ export class QuestionInformationFormComponent implements OnInit {
     }
 
     public getQuestion() {
-        debugger;
         this.questionInfoService.getQuestionById(this.questionInfoId).subscribe(
             (success: APIResponse) => {
                 this.questionInfoForm = success.data

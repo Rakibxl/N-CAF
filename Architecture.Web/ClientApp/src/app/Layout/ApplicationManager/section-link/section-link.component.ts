@@ -28,9 +28,7 @@ export class SectionLinkComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/manager/section-link/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/manager/section-link/${event.record.sectionLinkId}`]);
@@ -38,7 +36,6 @@ export class SectionLinkComponent implements OnInit {
     }
 
     public getSectionLink() {
-        debugger;
         this.sectionLinkService.getSectionLinkInfo().subscribe(
             (success) => {
                 this.sectionLinkList = success.data;

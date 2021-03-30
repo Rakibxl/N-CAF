@@ -14,16 +14,13 @@ export class InsuranceInfoService {
     }
 
     public saveInsuranceInfo(data: profInsuranceInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/InsuranceInfo/CreateOrUpdate', data);
     }
     public getInsuranceInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/InsuranceInfo/Profile/${profileId}`);
     }
 
     public getInsuranceById(profileId: number, insuranceInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/InsuranceInfo/GetById/${profileId}/${insuranceInfoId}`);
     }
 }

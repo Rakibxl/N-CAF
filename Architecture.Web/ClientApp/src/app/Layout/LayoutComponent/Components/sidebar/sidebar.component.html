@@ -69,15 +69,33 @@
                                         </a>
                                     </div>
                                 </ng-template>
+
+                                <ng-template ngbPanelHeader>
+                                    <div class="vsm-item">
+                                        <a routerLink="/dashboard/branch-user" routerLinkActive="active-item" class="vsm-link">
+                                            <i class="vsm-icon pe-7s-home"></i>
+                                            <span class="vsm-title">Branch Dashboard</span>
+                                        </a>
+                                    </div>
+                                </ng-template>
+
+                                <ng-template ngbPanelHeader>
+                                    <div class="vsm-item">
+                                        <a routerLink="/dashboard/operator" routerLinkActive="active-item" class="vsm-link">
+                                            <i class="vsm-icon pe-7s-home"></i>
+                                            <span class="vsm-title">Operator Dashboard</span>
+                                        </a>
+                                    </div>
+                                </ng-template>
                             </ngb-panel>
                             <ngb-panel id="UserManagement">
-                                <ng-template ngbPanelHeader>
+                                <!--<ng-template ngbPanelHeader>
                                     <button ngbPanelToggle class="vsm-link">
                                         <i class="vsm-icon pe-7s-user"></i>
                                         <span class="vsm-title">User Management</span>
                                         <i class="vsm-arrow"></i>
                                     </button>
-                                </ng-template>
+                                </ng-template>-->
                                 <ng-template ngbPanelContent>
                                     <div class="vsm-dropdown">
                                         <div class="vsm-list">
@@ -274,26 +292,7 @@
         </a>
     </div> -->
 
-                                            <div class="vsm-item">
-                                                <a routerLinkActive="active-item" routerLink="/manager/question-info" class="vsm-link">
-                                                    <span class="vsm-title">Question Info</span>
-                                                </a>
-                                            </div>
-                                            <div class="vsm-item">
-                                                <a routerLinkActive="active-item" routerLink="/manager/question-info/:id" class="vsm-link">
-                                                    <span class="vsm-title">New Question Info</span>
-                                                </a>
-                                            </div>
-                                            <div class="vsm-item">
-                                                <a routerLinkActive="active-item" routerLink="/manager/section-link" class="vsm-link">
-                                                    <span class="vsm-title">Section link</span>
-                                                </a>
-                                            </div>
-                                            <div class="vsm-item">
-                                                <a routerLinkActive="active-item" routerLink="/manager/section-link/:id" class="vsm-link">
-                                                    <span class="vsm-title">New Section link</span>
-                                                </a>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </ng-template>

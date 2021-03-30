@@ -41,9 +41,7 @@ export class EducationalInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/education/${this.profileId}/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             console.log("event:", event);

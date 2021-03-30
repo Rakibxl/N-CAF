@@ -1,29 +1,28 @@
-/// <reference path="../common/common.component.ts" />
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
 @Component({
-  selector: 'app-current-offer',
-  templateUrl: './current-offer.component.html',
-  styleUrls: ['./current-offer.component.css']
+  selector: 'app-offer-history',
+  templateUrl: './offer-history.component.html',
+  styleUrls: ['./offer-history.component.css']
 })
-export class CurrentOfferComponent implements OnInit {
+export class OfferHistoryComponent implements OnInit {
     public myOffers: JobInfo[] = [];
-    public profileId: number = 0;
-    constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
-        this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
-        this.offerService.getMyOfferByProfileId(this.profileId).subscribe((res: APIResponse) => {
+        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
+            console.log("Success", res);
             this.myOffers = res.data || [];
+
         }, error => {
             console.log("Error ", error);
         });
-  }
+    }
     onClickGeneratePDF() {
         const url = this.router.serializeUrl(
             this.router.createUrlTree(['./generate-pdf'])
@@ -31,25 +30,33 @@ export class CurrentOfferComponent implements OnInit {
         window.open(url, '_blank');
     }
 
-    
+    onClickOffer() {
+        const url = this.router.serializeUrl(
+            this.router.createUrlTree(['./show-offer/offer/1/1'])
+        );
+        window.open(url, '_blank');
+    }
+
     public fnPtableCellClick(event: any) {
-        if (event.cellName=="apply") {
-            this.router.navigate([`/show-offer/offer/${this.profileId}/${event.record.jobInfoId}/0`]);
+        if (event.cellName == "apply") {
+            this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
         }
     }
 
-    
+    public fnCustomrTrigger(event: any) {
+
+    }
+
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
-        tableName: 'Your Offers',
+        tableName: 'Offer History',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
             { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
             { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "" },
-            { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "hyperlink" },
-            { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },           
-            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
+            { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
+            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
 
         ],
         enabledSearch: true,

@@ -27,9 +27,7 @@ export class QuestionInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/manager/question-info/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/manager/question-info/${event.record.questionInfoId}`]);
@@ -37,14 +35,11 @@ export class QuestionInformationComponent implements OnInit {
     }
 
     public getQuestionInfos() {
-        debugger;
         this.questionService.getQuestionInfo().subscribe(
             (success) => {
                 this.questionInfoList = success.data;
-                console.log("get question info: ", success);
                 this.questionInfoList.forEach(x => {
                     x.sectionName = x.sectionName.sectionDescription || "";
-                    console.log("Occupation Data", success.data);
                 })    
 
             },

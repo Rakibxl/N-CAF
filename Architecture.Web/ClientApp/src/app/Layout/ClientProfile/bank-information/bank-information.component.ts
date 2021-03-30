@@ -40,9 +40,7 @@ export class BankInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/bank-info/${this.profileId}/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/client-profile/bank-info/${this.profileId}/${event.record.bankInfoId}`]);
@@ -50,7 +48,6 @@ export class BankInformationComponent implements OnInit {
     }
 
     public getBankInfos() {
-        debugger;
         this.bankService.getBankInfo(this.profileId).subscribe(
             (success) => {
                 this.bankInfoList = success.data;

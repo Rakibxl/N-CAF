@@ -29,7 +29,6 @@ export class DeligationInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.delegationInfoForm);
         this.delegationInfoForm.profileId = this.profileId;
 
@@ -51,7 +50,6 @@ export class DeligationInformationFormComponent implements OnInit {
     }
 
     public getEducation() {
-        debugger;
         this.delegationInfoService.getDelegationById(this.profileId, this.delegationInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.dateOfBirth = this.commonService.getDateToSetForm(success.data.dateOfBirth);

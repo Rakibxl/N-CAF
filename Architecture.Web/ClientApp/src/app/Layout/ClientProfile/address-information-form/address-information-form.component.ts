@@ -29,7 +29,6 @@ export class AddressInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.addressInfoForm);
         this.addressInfoForm.profileId = this.profileId;
 
@@ -50,7 +49,6 @@ export class AddressInformationFormComponent implements OnInit {
     }
 
     public getAddress() {
-        debugger;
         this.addressInfoService.getAddressById(this.profileId, this.addressInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);

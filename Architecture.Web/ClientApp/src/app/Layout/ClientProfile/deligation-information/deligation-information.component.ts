@@ -42,9 +42,7 @@ export class DeligationInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/deligation-info/${this.profileId}/0`]);
-            debugger
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/client-profile/deligation-info/${this.profileId}/${event.record.delegationInfoId}`]);
@@ -52,7 +50,7 @@ export class DeligationInformationComponent implements OnInit {
     }
 
     public getDelegationInfos() {
-        debugger;
+        ;
         this.delegationService.getDelegationInfo(this.profileId).subscribe(
             (success) => {
                 console.log("get delegation: ", success);

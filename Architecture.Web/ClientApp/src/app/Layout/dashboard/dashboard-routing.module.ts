@@ -9,6 +9,8 @@ const routes: Routes = [
     children: [
         { path: '', redirectTo: 'common' },
         { path: 'common', component: CommonComponent, data: { extraParameter: 'dashboard' } },
+        { path: 'common/:profId', component: CommonComponent, data: { extraParameter: 'dashboard' } },
+        { path: 'common/:profId', component: CommonComponent, data: { extraParameter: 'dashboard' } },
        
     ]
 }

@@ -19,6 +19,10 @@ export class OfferInfoService {
     return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer');
     }
 
+    public getMyOfferByProfileId(profileId: number) {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer');
+    }
+
     public submitOffer(data: OfferInfo) {
         return this.http.post<APIResponse>(this.baseUrl + 'v1/OfferInfo/CreateOrUpdate', data);
     }

@@ -14,16 +14,13 @@ export class BankInfoService {
     }
 
     public saveBankInfo(data: profBankInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/BankInfo/CreateOrUpdate', data);
     }
     public getBankInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/BankInfo/Profile/${profileId}`);
     }
 
     public getBankById(profileId: number, bankInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/BankInfo/GetById/${profileId}/${bankInfoId}`);
     }
 }

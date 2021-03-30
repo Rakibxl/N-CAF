@@ -14,16 +14,16 @@ export class AssetInfoService {
     }
 
     public saveAssetInfo(data: profAssetInfo) {
-        debugger;
+       
         return this.http.post<APIResponse>(this.baseUrl + 'v1/AssetInfo/CreateOrUpdate', data);
     }
     public getAssetInfo(profileId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/AssetInfo/Profile/${profileId}`);
     }
 
     public getAssetById(profileId: number, assetInfoId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/AssetInfo/GetById/${profileId}/${assetInfoId}`);
     }
 }

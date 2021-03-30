@@ -23,7 +23,6 @@ export class SectionLinkFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.sectionInfoForm);
 
         this.sectionLinkService.saveSectionLinkInfo(this.sectionInfoForm).subscribe(
@@ -42,7 +41,6 @@ export class SectionLinkFormComponent implements OnInit {
     }
 
     public getSection() {
-        debugger;
         this.sectionLinkService.getSectionLinkById(this.sectionLinkId).subscribe(
             (success: APIResponse) => {
                 this.sectionInfoForm = success.data

@@ -14,16 +14,13 @@ export class LegalInfoService {
     }
 
     public saveLegalInfo(data: profLegalInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/LegalInfo/CreateOrUpdate', data);
     }
     public getLegalInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/LegalInfo/Profile/${profileId}`);
     }
 
     public getLegalById(profileId: number, legalInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/LegalInfo/GetById/${profileId}/${legalInfoId}`);
     }
 }

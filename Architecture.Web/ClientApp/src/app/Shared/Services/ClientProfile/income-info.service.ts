@@ -14,16 +14,13 @@ export class IncomeInfoService {
     }
 
     public saveIncomeInfo(data: profIncomeInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/IncomeInfo/CreateOrUpdate', data);
     }
     public getIncomeInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/IncomeInfo/Profile/${profileId}`);
     }
 
     public getIncomeById(profileId: number, incomeInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/IncomeInfo/GetById/${profileId}/${incomeInfoId}`);
     }
 }

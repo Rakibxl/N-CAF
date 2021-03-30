@@ -19,7 +19,6 @@ export class AssetInformationFormComponent implements OnInit {
     private assetInfoId: number = null;
 
     public ngOnInit() {
-        debugger;
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.assetInfoId = +this.route.snapshot.paramMap.get("id") || 0;
 

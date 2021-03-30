@@ -14,16 +14,13 @@ export class DelegationInfoService {
     }
 
     public saveDelegationInfo(data: profDelegationInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/DelegationInfo/CreateOrUpdate', data);
     }
     public getDelegationInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/DelegationInfo/Profile/${profileId}`);
     }
 
     public getDelegationById(profileId: number, delegationInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/DelegationInfo/GetById/${profileId}/${delegationInfoId}`);
     }
 }

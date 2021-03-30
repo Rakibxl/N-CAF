@@ -14,16 +14,13 @@ export class HouseRentInfoService {
     }
 
     public saveHouseRentInfo(data: profHouseRentInfo) {
-        debugger;
         return this.http.post<APIResponse>(this.baseUrl + 'v1/HouseRentInfo/CreateOrUpdate', data);
     }
     public getHouseRentInfo(profileId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/HouseRentInfo/Profile/${profileId}`);
     }
 
     public getHouseRentById(profileId: number, houserentInfoId: number) {
-        debugger;
         return this.http.get<APIResponse>(this.baseUrl + `v1/HouseRentInfo/GetById/${profileId}/${houserentInfoId}`);
     }
 }

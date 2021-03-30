@@ -52,7 +52,6 @@ export class AssetInformationComponent implements OnInit {
     }
 
     public getAssetInfos() {
-        debugger;
         this.assetService.getAssetInfo(this.profileId).subscribe(
             (success) => {
                 console.log(" success.data::", success.data);

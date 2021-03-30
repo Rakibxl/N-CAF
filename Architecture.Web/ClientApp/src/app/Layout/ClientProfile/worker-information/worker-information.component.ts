@@ -41,9 +41,8 @@ export class WorkerInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
             this.router.navigate([`/client-profile/worker-info/${this.profileId}/0`]);
-            debugger
+            
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/client-profile/worker-info/${this.profileId}/${event.record.workerInfoId}`]);
@@ -51,7 +50,6 @@ export class WorkerInformationComponent implements OnInit {
     }
 
     public getWorkerInfos() {
-        debugger;
         this.workerService.getWorkerInfo(this.profileId).subscribe(
             (success) => {
                 this.workerInfoList = success.data;
