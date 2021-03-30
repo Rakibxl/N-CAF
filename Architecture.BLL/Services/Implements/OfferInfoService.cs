@@ -44,6 +44,7 @@ namespace Architecture.BLL.Services.Implements
         {
             try
             {
+                offerInfo.Created = DateTime.Now;
                 OfferInfo result;
                 if (offerInfo.OfferInfoId > 0)
                 {
