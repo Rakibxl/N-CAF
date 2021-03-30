@@ -38,8 +38,9 @@ export class OfferStatusComponent implements OnInit {
     }
 
     public fnPtableCellClick(event: any) {
+        debugger
         if (event.cellName == "apply") {
-            this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
+            this.router.navigate([`/generate-pdf/pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
         }
     }
 
@@ -57,7 +58,7 @@ export class OfferStatusComponent implements OnInit {
             { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
             { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
             { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
-
+            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
         ],
         enabledSearch: true,
         enabledSerialNo: true,
