@@ -22,4 +22,7 @@ export class OfferInfoService {
     public submitOffer(data: OfferInfo) {
         return this.http.post<APIResponse>(this.baseUrl + 'v1/OfferInfo/CreateOrUpdate', data);
     }
+    public getCurrentStatus(id) {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetCurrentOffer/' + id);
+    }
 }
