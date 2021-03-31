@@ -21,7 +21,8 @@ namespace Architecture.BLL.Services.Implements
             IEnumerable<JobInfo> result;
             result = await GetAsync(x => x, null, null, x => x.Include(y => y.JobDeliveryType)
                                                               .Include(y => y.ISEEClassType)
-                                                              .Include(y => y.OccupationType));
+                                                              .Include(y => y.OccupationType)
+                                                              .Include(y => y.JobSectionLink).ThenInclude(x => x.SectionName));
             return result;
         }
 
@@ -30,7 +31,7 @@ namespace Architecture.BLL.Services.Implements
             var checkVal = await IsExistsAsync(x => x.JobInfoId == jobId);
             if (checkVal)
             {
-                JobInfo result = await GetFirstOrDefaultAsync(x=>x, x=>x.JobInfoId== jobId, x=>x.Include(y=>y.JobSectionLink));
+                JobInfo result = await GetFirstOrDefaultAsync(x=>x, x=>x.JobInfoId== jobId, x=>x.Include(y=>y.JobSectionLink).ThenInclude(x=>x.SectionName));
                 return result;
             }
             else

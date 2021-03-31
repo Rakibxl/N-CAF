@@ -3,7 +3,7 @@
         <div class="container-fluid p-0">
             <div class="row">
                 <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                    <h3><span class="bordered-title">Offer Details</span></h3>
+                    <h3><span class="bordered-title">Offer Details <span>( {{jobInfo.title}} )</span> </span></h3>
                     <div> <button type="button" (click)="fnGenerateOfferDocuments()" class="btn btn-primary">Generate Offer</button></div>
                 </div>
                 <hr>
@@ -276,50 +276,51 @@
                         </div>
                     </div>
                 </div>
-               
-                <div class="col col-lg-12 mt-2">
-                    <app-address-information [parentProfileId]="profileId">  </app-address-information>
-                </div>
-                <div class="col col-lg-12 mt-2">
-                    <app-asset-information [parentProfileId]="profileId">  </app-asset-information>
-                </div>
-                 <div class="col col-lg-12 mt-2">
-                    <app-bank-information [parentProfileId]="profileId">  </app-bank-information>
-                </div>
-                 <div class="col col-lg-12 mt-2">
-                    <app-deligation-information [parentProfileId]="profileId">  </app-deligation-information>
-                </div>
-                <div class="col col-lg-12 mt-1">
-                    <app-document-information [parentProfileId]="profileId">  </app-document-information>
-                </div>
-                <div class="col col-lg-12 mt-1">
-                    <app-educational-information [parentProfileId]="profileId">  </app-educational-information>
-                </div>
-                <div class="col col-lg-12 mt-1">
+
+                <div class="col col-lg-12 mt-1" *ngIf="fnCheckSectionVisible('Family Info')">
                     <app-family-information [parentProfileId]="profileId">  </app-family-information>
                 </div>
-                <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Address Info')">
+                    <app-address-information [parentProfileId]="profileId">  </app-address-information>
+                </div>
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Asset Info')">
+                    <app-asset-information [parentProfileId]="profileId">  </app-asset-information>
+                </div>
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Bank Info')">
+                    <app-bank-information [parentProfileId]="profileId">  </app-bank-information>
+                </div>
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Deligation Info')">
+                    <app-deligation-information [parentProfileId]="profileId">  </app-deligation-information>
+                </div>
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Document Info')">
+                    <app-document-information [parentProfileId]="profileId">  </app-document-information>
+                </div>
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Education Info')">
+                    <app-educational-information [parentProfileId]="profileId">  </app-educational-information>
+                </div>
+
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('House Rent Info')">
                     <app-house-rent-information [parentProfileId]="profileId">  </app-house-rent-information>
                 </div>
-                <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Income Info')">
                     <app-income-information [parentProfileId]="profileId">  </app-income-information>
                 </div>
-                <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Insurance Info')">
                     <app-insurance-information [parentProfileId]="profileId">  </app-insurance-information>
                 </div>
-                 <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('ISEE Info')">
                     <app-isee-information [parentProfileId]="profileId">  </app-isee-information>
                 </div>
-                <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Legal Info')">
                     <app-legal-information [parentProfileId]="profileId">  </app-legal-information>
                 </div>
-                 <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Movement Info')">
                     <app-movement-information [parentProfileId]="profileId">  </app-movement-information>
                 </div>
-                 <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Occupation Info')">
                     <app-occupation-history [parentProfileId]="profileId">  </app-occupation-history>
                 </div>
-                <div class="col col-lg-12 mt-1">
+                <div class="col col-lg-12 mt-2" *ngIf="fnCheckSectionVisible('Worker Info')">
                     <app-worker-information [parentProfileId]="profileId">  </app-worker-information>
                 </div>
 

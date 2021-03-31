@@ -26,7 +26,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<MaritalStatus> GetById(int id)
         {
-            var checkVal = await IsExistsAsync(x => x.MeritalStatusId == id);
+            var checkVal = await IsExistsAsync(x => x.MaritalStatusId == id);
             if (checkVal)
             {
                 MaritalStatus result = await GetByIdAsync(id);
@@ -43,7 +43,7 @@ namespace Architecture.BLL.Services.Implements.LU
             try
             {
                 MaritalStatus result;
-                if (data.MeritalStatusId > 0)
+                if (data.MaritalStatusId > 0)
                 {
                     result = await UpdateAsync(data);
                 }
@@ -61,7 +61,7 @@ namespace Architecture.BLL.Services.Implements.LU
 
         public async Task<int> Delete(int id)
         {
-            var result = await DeleteAsync(x => x.MeritalStatusId == id);
+            var result = await DeleteAsync(x => x.MaritalStatusId == id);
             return result;
         }
     }

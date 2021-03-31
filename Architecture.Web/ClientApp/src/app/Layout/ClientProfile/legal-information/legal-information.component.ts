@@ -41,7 +41,7 @@ export class LegalInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/legal-info/${this.profileId}/0`]);
             debugger
         }
@@ -51,7 +51,7 @@ export class LegalInformationComponent implements OnInit {
     }
 
     public getLegalInfos() {
-        debugger;
+       
         this.legalService.getLegalInfo(this.profileId).subscribe(
             (success) => {
                 this.legalInfoList = success.data;

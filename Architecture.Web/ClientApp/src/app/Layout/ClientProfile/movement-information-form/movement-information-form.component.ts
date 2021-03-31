@@ -29,7 +29,7 @@ export class MovementInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.movementInfoForm);
         this.movementInfoForm.profileId = this.profileId;
 
@@ -50,7 +50,7 @@ export class MovementInformationFormComponent implements OnInit {
     }
 
     public getMovement() {
-        debugger;
+       
         this.movementInfoService.getMovementById(this.profileId, this.movementInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);

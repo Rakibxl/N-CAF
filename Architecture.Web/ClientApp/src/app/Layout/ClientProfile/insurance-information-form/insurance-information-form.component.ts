@@ -28,7 +28,7 @@ export class InsuranceInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.insuranceInfoForm);
         this.insuranceInfoForm.profileId = this.profileId;
 
@@ -49,7 +49,7 @@ export class InsuranceInformationFormComponent implements OnInit {
     }
 
     public getInsurance() {
-        debugger;
+       
         this.insuranceInfoService.getInsuranceById(this.profileId, this.insuranceInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);

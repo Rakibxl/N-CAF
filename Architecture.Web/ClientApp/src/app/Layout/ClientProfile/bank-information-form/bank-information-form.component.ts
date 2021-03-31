@@ -28,7 +28,7 @@ export class BankInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.bankInfoForm);
         this.bankInfoForm.profileId = this.profileId;
 
@@ -49,7 +49,7 @@ export class BankInformationFormComponent implements OnInit {
     }
 
     public getBank() {
-        debugger;
+       
         this.bankInfoService.getBankById(this.profileId, this.bankInfoId).subscribe(
             (success: APIResponse) => {
                 this.bankInfoForm = success.data

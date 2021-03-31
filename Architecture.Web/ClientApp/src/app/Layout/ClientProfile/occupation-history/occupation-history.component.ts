@@ -44,7 +44,7 @@ export class OccupationHistoryComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/occupation/${this.profileId}/0`]);
         }
         else if (event.action == "edit-item") {

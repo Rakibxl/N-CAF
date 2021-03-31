@@ -42,7 +42,7 @@ export class InsuranceInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/insurance-info/${this.profileId}/0`]);
             debugger
         }
@@ -52,7 +52,7 @@ export class InsuranceInformationComponent implements OnInit {
     }
 
     public getInsuranceInfos() {
-        debugger;
+       
         this.insuranceService.getInsuranceInfo(this.profileId).subscribe(
             (success) => {
                 this.insuranceInfoList = success.data;

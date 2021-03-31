@@ -28,7 +28,6 @@ export class IseeInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.iseeInfoForm);
         this.iseeInfoForm.profileId = this.profileId;
 
@@ -50,7 +49,7 @@ export class IseeInformationFormComponent implements OnInit {
     }
 
     public getIsee() {
-        debugger;
+       
         this.iseeInfoService.getIseeById(this.profileId, this.iseeInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.submittedDate = this.commonService.getDateToSetForm(success.data.submittedDate);

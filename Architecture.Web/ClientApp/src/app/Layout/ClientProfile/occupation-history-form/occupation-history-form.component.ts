@@ -36,7 +36,7 @@ export class OccupationHistoryFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.occupationInfoForm);
         this.occupationInfoForm.profileId = this.profileId;
 
@@ -57,7 +57,7 @@ export class OccupationHistoryFormComponent implements OnInit {
     }
 
     public getOccupation() {
-        debugger;
+       
         this.occupationInfoService.getOccupationById(this.profileId, this.occupationInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.contractStartDate = this.commonService.getDateToSetForm(success.data.contractStartDate);

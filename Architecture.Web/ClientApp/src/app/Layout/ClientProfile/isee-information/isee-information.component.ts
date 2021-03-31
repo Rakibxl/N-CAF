@@ -42,7 +42,7 @@ export class IseeInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/isee-info/${this.profileId}/0`]);
             debugger
         }
@@ -52,7 +52,7 @@ export class IseeInformationComponent implements OnInit {
     }
 
     public getISEEInfos() {
-        debugger;
+       
         this.iseeService.getISEEInfo(this.profileId).subscribe(
             (success) => {
                 this.iseeInfoList = success.data;

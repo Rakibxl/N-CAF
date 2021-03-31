@@ -42,7 +42,7 @@ export class MovementInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/movement-info/${this.profileId}/0`]);
             debugger
         }
@@ -52,7 +52,7 @@ export class MovementInformationComponent implements OnInit {
     }
 
     public getMovementInfos() {
-        debugger;
+       
         this.movementService.getMovementInfo(this.profileId).subscribe(
             (success) => {
                 this.movementInfoList = success.data;

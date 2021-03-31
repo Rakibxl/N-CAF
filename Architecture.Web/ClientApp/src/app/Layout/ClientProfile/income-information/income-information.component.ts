@@ -42,7 +42,7 @@ export class IncomeInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;            
+                       
             this.router.navigate([`/client-profile/income-info/${this.profileId}/0`]);
             debugger
         }
@@ -52,7 +52,7 @@ export class IncomeInformationComponent implements OnInit {
     }
 
     public getIncomeInfos() {
-        debugger;
+       
         this.incomeService.getIncomeInfo(this.profileId).subscribe(
             (success) => {
                 this.incomeInfoList = success.data;

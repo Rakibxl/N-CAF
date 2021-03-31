@@ -14,15 +14,15 @@ export class EducationInfoService {
     }
 
     public saveEducationInfo(data: profEducationInfo) {
-        debugger;
+       
         return this.http.post<APIResponse>(this.baseUrl + 'v1/EducationInfo/CreateOrUpdate', data);
     }
     public getEducationInfo(profileId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/EducationInfo/Profile/${profileId}`);
     }
     public getEducationById(profileId: number, educationInfoId:number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/EducationInfo/GetById/${profileId}/${educationInfoId}`);
     }
 }

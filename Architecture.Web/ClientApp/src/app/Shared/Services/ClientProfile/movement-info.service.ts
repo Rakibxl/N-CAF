@@ -14,15 +14,15 @@ export class MovementInfoService {
     }
 
     public saveMovementInfo(data: profMovementInfo) {
-        debugger;
+       
         return this.http.post<APIResponse>(this.baseUrl + 'v1/MovementInfo/CreateOrUpdate', data);
     }
     public getMovementInfo(profileId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/MovementInfo/Profile/${profileId}`);
     }
     public getMovementById(profileId: number, movementInfoId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/MovementInfo/GetById/${profileId}/${movementInfoId}`);
     }
 }

@@ -17,7 +17,7 @@ export class CompletedJobComponent implements OnInit {
     ngOnInit() {
         this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
             console.log("Success", res);
-            this.myOffers = res.data || [];
+            this.myOffers = (res.data || []).filter(r=>r.offerStatusId==5)||[];
 
         }, error => {
             console.log("Error ", error);

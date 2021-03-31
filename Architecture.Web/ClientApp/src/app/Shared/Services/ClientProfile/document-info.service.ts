@@ -14,16 +14,16 @@ export class DocumentInfoService {
     }
 
     public saveDocumentInfo(data: any) {
-        debugger;
+       
         return this.http.post<APIResponse>(this.baseUrl + 'v1/DocumentInfo/document/save', data);
     }
     public getDocumentInfo(profileId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/DocumentInfo/Profile/${profileId}`);
     }
 
     public getDocumentById(profileId: number, addressInfoId: number) {
-        debugger;
+       
         return this.http.get<APIResponse>(this.baseUrl + `v1/DocumentInfo/GetById/${profileId}/${addressInfoId}`);
     }
 

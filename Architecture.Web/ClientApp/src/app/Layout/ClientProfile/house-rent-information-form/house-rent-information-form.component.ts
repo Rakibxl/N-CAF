@@ -29,7 +29,7 @@ export class HouseRentInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.houseRentInfoForm);
         this.houseRentInfoForm.profileId = this.profileId;
 
@@ -50,7 +50,7 @@ export class HouseRentInformationFormComponent implements OnInit {
     }
 
     public getHouseRent() {
-        debugger;
+       
         this.houseRentInfoService.getHouseRentById(this.profileId, this.houseRentInfoId).subscribe(
             (success: APIResponse) => {
 

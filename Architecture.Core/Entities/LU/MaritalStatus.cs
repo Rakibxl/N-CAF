@@ -2,7 +2,7 @@
 {
     public class MaritalStatus
     {
-        public int MeritalStatusId { get; set; }
+        public int MaritalStatusId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; } = true;
     }

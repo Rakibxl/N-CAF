@@ -12,7 +12,7 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
     styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-
+    public jobInfoList = [];
     constructor(private router: Router, private jobInfoService: JobInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
 
     ngOnInit() {
@@ -43,11 +43,14 @@ export class JobListComponent implements OnInit {
                 console.log("job info: ", success);
                 this.jobInfoList.forEach(x => {
                     x.jobDeliveryType = x.jobDeliveryType.jobDeliveryTypeName || "";
-                    x.iseeClassTypeName = x.iseeClassType.iseeClassTypeName || "";
-                    x.occupationTypeName = x.occupationType.occupationTypeName || "";
+                    x.iseeClassTypeName = "";// x?.iseeClassType?.iseeClassTypeName || "";
+                    x.occupationTypeName = "";// x?.occupationType?.occupationTypeName || "";
+                    x.jobSection = (x.jobSectionLink || []).map(section => section.sectionName.sectionDescription).join(", ")||"";
                     x.startDate = this.commonService.getDateToSetForm(x.startDate);
                     x.endDate = this.commonService.getDateToSetForm(x.endDate);
                 });
+
+                console.log(" this.jobInfoList:", this.jobInfoList);
             },
             error => {
             });
@@ -64,7 +67,8 @@ export class JobListComponent implements OnInit {
             { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "" },
             { headerName: 'Is Common', width: '10%', internalName: 'isCommon', sort: true, type: "" },
-            { headerName: 'Job Delivery Type', width: '10%', internalName: 'jobDeliveryType', sort: true, type: "" },
+            { headerName: 'Job Section', width: '10%', internalName: 'jobSection', sort: true, type: "" },
+            //{ headerName: 'Job Delivery Type', width: '10%', internalName: 'jobDeliveryType', sort: true, type: "" },
             { headerName: 'Time Frame For Operator', width: '10%', internalName: 'videoLink', sort: true, type: "", visible:false },
             { headerName: 'Is Highlighted', width: '10%', internalName: 'isHighlighted', sort: true, type: "" },
             { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "" },
@@ -104,8 +108,5 @@ export class JobListComponent implements OnInit {
         enabledRecordCreateBtn: true,
         enabledViewDetails: true
        
-    };
-
-    public jobInfoList = [];
-   
+    };   
 }

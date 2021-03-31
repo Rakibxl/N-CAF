@@ -55,7 +55,19 @@ export class OfferComponent implements OnInit {
 
 
 
+    public fnCheckSectionVisible(sectionName): boolean {
+        let returnVal = false;
+        if ((this.jobInfo.jobSectionLink || []).length > 0) {
+            this.jobInfo.jobSectionLink.forEach((sec:any) => {
+                if ((sec.sectionName.sectionDescription||"") == sectionName) {
+                    returnVal = true;
+                }
 
+            });
+
+        }
+        return returnVal;
+    }
 
     fnGetJobById() {
         this.jobInfoService.getJobById(this.jobId).subscribe((res: APIResponse) => {

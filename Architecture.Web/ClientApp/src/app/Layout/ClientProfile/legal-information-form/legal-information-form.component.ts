@@ -29,7 +29,7 @@ export class LegalInformationFormComponent implements OnInit {
     }
 
     public onSubmit() {
-        debugger;
+       
         console.table(this.legalInfoForm);
         this.legalInfoForm.profileId = this.profileId;
 
@@ -49,7 +49,7 @@ export class LegalInformationFormComponent implements OnInit {
     }
 
     public getLegal() {
-        debugger;
+       
         this.legalInfoService.getLegalById(this.profileId, this.legalInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startDate = this.commonService.getDateToSetForm(success.data.startDate);

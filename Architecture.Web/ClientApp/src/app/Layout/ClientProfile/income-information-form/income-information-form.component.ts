@@ -28,7 +28,7 @@ export class IncomeInformationFormComponent implements OnInit {
         }
   }
     public onSubmit() {
-        debugger;
+       
         console.table(this.incomeInfoForm);
         this.incomeInfoForm.profileId = this.profileId;
 
@@ -49,7 +49,7 @@ export class IncomeInformationFormComponent implements OnInit {
 
     
     public getIncome() {
-        debugger;
+       
         this.incomeInfoService.getIncomeById(this.profileId, this.incomeInfoId).subscribe(
             (success: APIResponse) => {
 

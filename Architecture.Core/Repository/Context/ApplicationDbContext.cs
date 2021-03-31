@@ -45,7 +45,7 @@ namespace Architecture.Core.Repository.Context
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
-        public DbSet<MaritalStatus> MeriatalStatus { get; set; }
+        public DbSet<MaritalStatus> MaritalStatus { get; set; }
         public DbSet<DocumentType> DocumentType { get; set; }
         public DbSet<OccupationPosition> OccupationPosition { get; set; }
         public DbSet<JobType> JobType { get; set; }
@@ -139,12 +139,12 @@ namespace Architecture.Core.Repository.Context
             modelBuilder.Entity<MaritalStatus>().ToTable("LU_MeriatalStatus");
             modelBuilder.Entity<MaritalStatus>(ms =>
             {
-                ms.HasKey(g => g.MeritalStatusId);
+                ms.HasKey(g => g.MaritalStatusId);
                 ms.Property(g => g.Name).HasMaxLength(100);
                 ms.HasData(
-                    new MaritalStatus { MeritalStatusId = 1, Name = "Single", IsActive = true },
-                    new MaritalStatus { MeritalStatusId = 2, Name = "Marrid", IsActive = true },
-                    new MaritalStatus { MeritalStatusId = 3, Name = "Divorce", IsActive = true }
+                    new MaritalStatus { MaritalStatusId = 1, Name = "Single", IsActive = true },
+                    new MaritalStatus { MaritalStatusId = 2, Name = "Marrid", IsActive = true },
+                    new MaritalStatus { MaritalStatusId = 3, Name = "Divorce", IsActive = true }
                 );
             });
 

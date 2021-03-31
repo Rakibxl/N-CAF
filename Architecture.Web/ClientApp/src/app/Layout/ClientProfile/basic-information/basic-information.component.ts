@@ -79,7 +79,7 @@ export class BasicInformationComponent implements OnInit {
       taxCodeEndDate: [null],
       phoneNumber: [null, Validators.required],
       genderId: [null],
-      MeritalStatusId: [null],
+      maritalStatusId: [null],
       selectedCity: [null],
       email: [null, Validators.required],
       postalElectronicCertificate: [null],
@@ -175,7 +175,8 @@ export class BasicInformationComponent implements OnInit {
   }
 
   save() {
-    let model = this.getModel();
+      let model = this.getModel();
+      debugger;
     this.clientProfileService.createOrUpdateBasicInfo(model).subscribe(res => {
       if (res && res.data && res.data.profileId) {
         this.alertService.tosterSuccess('Basic Info saved successfully');

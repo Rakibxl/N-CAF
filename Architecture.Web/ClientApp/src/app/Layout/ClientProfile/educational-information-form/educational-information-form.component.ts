@@ -49,7 +49,7 @@ export class EducationalInformationFormComponent implements OnInit {
     }
 
     public getEducation() {
-        debugger;
+       
         this.educationInfoService.getEducationById(this.profileId, this.educationInfoId).subscribe(
             (success: APIResponse) => {
                 success.data.startYear = this.commonService.getDateToSetForm(success.data.startYear);

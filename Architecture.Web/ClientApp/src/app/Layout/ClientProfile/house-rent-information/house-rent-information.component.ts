@@ -43,18 +43,18 @@ export class HouseRentInformationComponent implements OnInit {
         console.log("custom  click: ", event);
         let id = 0;
         if (event.action == "new-record") {
-            debugger;
+           
             this.router.navigate([`/client-profile/house-rent/${this.profileId}/0`]);
             debugger
         }
         else if (event.action == "edit-item") {
-            debugger;
+           
             this.router.navigate([`/client-profile/house-rent/${this.profileId}/${event.record.houseRentInfoId}`]);
         }
     }
 
     public getHouseRentInfos() {
-        debugger;
+       
         this.houseRentService.getHouseRentInfo(this.profileId).subscribe(
             (success) => {
                 this.houseRentInfoList = success.data;
