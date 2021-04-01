@@ -25,13 +25,13 @@ import { ClientProfileCollectionComponent } from './client-profile-collection/cl
 import { WaitingJobComponent } from './waiting-job/waiting-job.component';
 import { PendingJobComponent } from './pending-job/pending-job.component';
 import { CompletedJobComponent } from './completed-job/completed-job.component';
-//import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
+// import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
 
 
 
 @NgModule({
   declarations: [
-    CommonComponent,   
+    CommonComponent,
     JoblistComponent,
     ProfileTreeComponent,
         ChatBoxPopupComponent,
@@ -45,17 +45,17 @@ import { CompletedJobComponent } from './completed-job/completed-job.component';
         PendingJobComponent,
         CompletedJobComponent
   ],
-  
+
   imports: [
     CommonModule,
     DashboardRoutingModule,
     DemoModule,
     NgSelectModule,
-    
+
     DemoRoutingModule,
     SharedMasterModule,
     PerfectScrollbarModule,
-     //Charts
+     // Charts
     ChartsModule,
     AngularFontAwesomeModule,
     NgbModule,

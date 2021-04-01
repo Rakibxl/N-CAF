@@ -22,5 +22,6 @@
   },
   "angularCompilerOptions": {
     "enableIvy": false
-  }
+  },
+  "js/ts.implicitProjectConfig.experimentalDecorators": true
 }
