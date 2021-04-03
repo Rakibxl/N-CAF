@@ -29,4 +29,33 @@ export class OfferInfoService {
     public getCurrentStatus(id) {
         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetCurrentOffer/' + id);
     }
+
+    public getMyProgressOffer() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyProgressOffer');
+    }
+
+    //#region operator
+    public getOperatorProgressOffer() {
+         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/OperatorProgressOffer');
+    }
+
+    public getOperatorCompletedOffer() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/OperatorCompletedOffer');
+    }
+
+    public getOperatorPendingOffer() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/OperatorPendingOffer');
+    }
+   //#endr operator end
+
+
+    //#region Client
+    public getClientProgressOffer() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientProgressOffer');
+    }
+
+    public getClientCompletedOffer() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientCompletedOffer');
+    }
+   //#endr operator end
 }

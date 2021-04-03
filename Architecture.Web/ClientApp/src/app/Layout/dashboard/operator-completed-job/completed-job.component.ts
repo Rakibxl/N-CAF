@@ -6,18 +6,18 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
 @Component({
-  selector: 'app-pending-job',
-  templateUrl: './pending-job.component.html',
-  styleUrls: ['./pending-job.component.css']
+  selector: 'app-completed-job',
+  templateUrl: './completed-job.component.html',
+  styleUrls: ['./completed-job.component.css']
 })
-export class PendingJobComponent implements OnInit {
+export class CompletedJobComponent implements OnInit {
     public myOffers: JobInfo[] = [];
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
-        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
+        this.offerService.getOperatorCompletedOffer().subscribe((res: APIResponse) => {
             console.log("Success", res);
-            this.myOffers = res.data || [];
+            this.myOffers = (res.data || []).filter(r=>r.offerStatusId==5)||[];
 
         }, error => {
             console.log("Error ", error);
@@ -49,7 +49,7 @@ export class PendingJobComponent implements OnInit {
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
-        tableName: 'Job on Progress',
+        tableName: 'Completed Job',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
             { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
@@ -57,8 +57,6 @@ export class PendingJobComponent implements OnInit {
             { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
             { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
             { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
-            { headerName: 'Details', width: '7%', internalName: 'details-dashboard', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-close text-danger", btnTitle: 'Reject' },
-
 
         ],
         enabledSearch: true,
@@ -74,3 +72,4 @@ export class PendingJobComponent implements OnInit {
     };
 
 }
+

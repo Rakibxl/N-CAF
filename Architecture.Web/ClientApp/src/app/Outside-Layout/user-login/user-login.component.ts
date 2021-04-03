@@ -14,7 +14,9 @@ export class UserLoginComponent implements OnInit {
     email: '',
     password: '',
     // branch: '',
-  };
+    };
+
+    public errorMessage: string;
 
   constructor(private commonService: CommonService, private router: Router, private authService: AuthService, private alertService: AlertService) { }
 
@@ -40,7 +42,10 @@ export class UserLoginComponent implements OnInit {
       console.log("successfully login...");
       console.log(res)
       this.router.navigate(["/dashboard/common"]);
-      // this.alertService.fnLoading(false);
+      // 
+        setTimeout((r) => {
+            this.alertService.fnLoading(false);
+        }, 500);
       this.commonService.stopLoading();
     }, err => {
       // this.alertService.fnLoading(false);
@@ -48,7 +53,7 @@ export class UserLoginComponent implements OnInit {
       if (err.status == 400) {
         let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
           + err.error.errors[0].errorList[0];
-        alert(errorMsg);
+          this.errorMessage=errorMsg;
         this.alertService.tosterDanger(errorMsg);
       }
     });

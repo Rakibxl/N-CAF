@@ -15,7 +15,7 @@ export class WaitingJobComponent implements OnInit {
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
-        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
+        this.offerService.getOperatorPendingOffer().subscribe((res: APIResponse) => {
             console.log("Success", res);
             this.myOffers = res.data || [];
 

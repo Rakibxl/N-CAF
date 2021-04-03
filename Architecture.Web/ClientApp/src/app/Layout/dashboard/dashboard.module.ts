@@ -22,9 +22,9 @@ import { OfferHistoryComponent } from './offer-history/offer-history.component';
 import { BranchUserDashboardComponent } from './branch-user-dashboard/branch-user-dashboard.component';
 import { OperatorUserDashboardComponent } from './operator-user-dashboard/operator-user-dashboard.component';
 import { ClientProfileCollectionComponent } from './client-profile-collection/client-profile-collection.component';
-import { WaitingJobComponent } from './waiting-job/waiting-job.component';
-import { PendingJobComponent } from './pending-job/pending-job.component';
-import { CompletedJobComponent } from './completed-job/completed-job.component';
+import { WaitingJobComponent } from './operator-waiting-job/waiting-job.component';
+import { PendingJobComponent } from './operator-pending-job/pending-job.component';
+import { CompletedJobComponent } from './operator-completed-job/completed-job.component';
 // import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
 
 

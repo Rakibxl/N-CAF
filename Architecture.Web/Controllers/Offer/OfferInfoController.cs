@@ -26,7 +26,20 @@ namespace Architecture.Web.Controllers.Offer
             try
             {
                 var result = await OfferInfoService.GetMyOffer();
-                var x = "Laboni";
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("GetMyProgressOffer")]
+        public async Task<IActionResult> ProgressOffer()
+        {
+            try
+            {
+                var result = await OfferInfoService.GetMyProgressOffer();
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -40,7 +53,6 @@ namespace Architecture.Web.Controllers.Offer
             try
             {
                 var result =  OfferInfoService.GetCurrentStatusById(profileId);
-                var x = "Laboni";
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -55,6 +67,47 @@ namespace Architecture.Web.Controllers.Offer
             try
             {
                 var result = await OfferInfoService.GetById(offerInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("OperatorProgressOffer")]
+        public async Task<IActionResult> OperatorProgressOffer()
+        {
+            try
+            {
+                var result = await OfferInfoService.GetOperatorProgressOffer();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("OperatorCompletedOffer")]
+        public async Task<IActionResult> OperatorCompletedOffer()
+        {
+            try
+            {
+                var result = await OfferInfoService.GetOperatorCompletedOffer();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+        [HttpGet("OperatorPendingOffer")]
+        public async Task<IActionResult> OperatorPendingOffer()
+        {
+            try
+            {
+                var result = await OfferInfoService.GetOperatorPendingOffer();
                 return OkResult(result);
             }
             catch (Exception ex)
