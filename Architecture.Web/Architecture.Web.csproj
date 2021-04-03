@@ -53,6 +53,10 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Shared\Guards\dashboard.guard.ts" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\Shared\Entity\NewFolder\" />
     <Folder Include="ClientApp\src\app\Shared\Services\LU\" />
     <Folder Include="Logs\" />
@@ -67,6 +71,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Architecture.BLL\Architecture.BLL.csproj" />
     <ProjectReference Include="..\Architecture.Core\Architecture.Core.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Shared\Guards\dashboard.guard.ts" />
   </ItemGroup>
   
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

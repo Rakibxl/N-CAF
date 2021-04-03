@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseLayoutComponent } from './LayoutComponent/base-layout/base-layout.component';
 import { AuthGuard } from '../Shared/Guards/auth.guard';
+import { DashboardGuard } from '../Shared/Guards/dashboard.guard';
 
 const routes: Routes = [
     {
@@ -9,9 +10,11 @@ const routes: Routes = [
         component: BaseLayoutComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: '', redirectTo: 'dashboard' },
+            {
+                path: '', redirectTo: 'dashboard',
+            },
             { path: 'demo', loadChildren: () => import('./DemoPages/demo.module').then(m => m.DemoModule) },
-            { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+            { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule), },
             { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
             // { path: 'roles', loadChildren: () => import('./user-role/user-role.module').then(m => m.UserRoleModule) },
             { path: 'examples', loadChildren: () => import('./examples/example.module').then(m => m.ExampleModule) },

@@ -32,6 +32,7 @@ import { SelectModule } from 'ng-select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DashboardGuard } from './Shared/Guards/dashboard.guard';
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
@@ -104,7 +105,8 @@ export function tokenGetter(): string {
     },
         ConfigActions,
         AuthGuard,
-        PermissionGuard
+        PermissionGuard,
+        DashboardGuard
     ],
     bootstrap: [AppComponent]
 })
