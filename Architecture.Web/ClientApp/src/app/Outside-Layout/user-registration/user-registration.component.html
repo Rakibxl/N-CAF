@@ -1,4 +1,4 @@
-<form class="user-form" [formGroup]="userRegistrationForm">
+<form class="user-form" [formGroup]="userRegistrationForm" *ngIf="!otpEnable">
     <div class="container">
         <div class="form-row pb-3">
             <h3> <span class="bordered-title">User Registration</span></h3>
@@ -7,15 +7,16 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Name</label>
-                    <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="Enter name" required />
+                    <label class="label">Name<span class="text-danger">*</span> </label>
+                    <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="Enter name" required />                    
+                    <small><p class="text-danger" *ngIf="userRegistrationForm.controls.name.invalid && (userRegistrationForm.controls.name.dirty || userRegistrationForm.controls.name.touched)">Name is <strong>required</strong>.</p></small>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">SurName</label>
+                    <label class="label">SurName <span class="text-danger">*</span></label>
                     <input type="text" formControlName="surName" autocomplete="off" class="form-control" placeholder="Enter surname" required />
                 </div>
             </div>
@@ -31,8 +32,9 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Email</label>
-                    <input type="email" formControlName="email" autocomplete="off" class="form-control" placeholder="Email" required />
+                    <label class="label">Email <span class="text-danger">*</span></label>
+                    <input type="email" formControlName="email" autocomplete="off" class="form-control" placeholder="Email" email required />
+                    <p class="text-danger" *ngIf="userRegistrationForm.controls.email.invalid && (userRegistrationForm.controls.email.dirty || userRegistrationForm.controls.email.touched)">Valid email is required.</p>
                 </div>
             </div>
         </div>
@@ -40,23 +42,25 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Phone Number</label>
+                    <label class="label">Phone Number <span class="text-danger">*</span></label>
                     <input type="text" formControlName="phoneNumber" class="form-control" name="" placeholder="Phone number" required />
+                    <p class="text-danger" *ngIf="userRegistrationForm.controls.phoneNumber.invalid && (userRegistrationForm.controls.phoneNumber.dirty || userRegistrationForm.controls.phoneNumber.touched)">Phone number is required.</p>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Password</label>
+                    <label class="label">Password <span class="text-danger">*</span></label>
                     <input type="password" formControlName="password" class="form-control" name="" placeholder="Enter password" required />
+                    <p class="text-danger" *ngIf="userRegistrationForm.controls.password.invalid && (userRegistrationForm.controls.password.dirty || userRegistrationForm.controls.password.touched)">Password is required.</p>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Confirm Password</label>
+                    <label class="label">Confirm Password <span class="text-danger">*</span></label>
                     <input type="password" formControlName="confirm_password" class="form-control" name="" placeholder="Enter password again" />
                 </div>
             </div>
@@ -65,7 +69,7 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="caf-input-group">
-                    <label class="label">Gender/Sex</label>
+                    <label class="label">Gender/Sex <span class="text-danger">*</span></label>
                     <select formControlName="genderId" name="" id="" class="form-control" required>
                                 <option value="1">Male</option>
                                 <option value="2">Female</option>
@@ -79,6 +83,9 @@
 
         <div class="form-row">
             <div class="col-12">
+                <div class="alert alert-warning" role="alert" *ngIf="errorMessage!=null">
+                    {{errorMessage}}
+                </div>
                 <div class="position-relative form-group text-center">
                     <button type="button" [disabled]="userRegistrationForm.invalid" class="btn btn-primary btn-lg w-50" (click)="register()">Register</button>
                 </div>
@@ -99,7 +106,7 @@
         <div class="form-row pb-3 d-flex justify-content-center">
             <h3><span class="bordered-title">OTP Verify</span></h3>
             <div class="w-100"></div>
-            <h6>Please check your inbox in 0171*******67</h6>
+            <h6>Please check your inbox in <strong>{{this.maskingPhoneNumber()}}</strong></h6>
         </div>
 
         <div class="form-row">

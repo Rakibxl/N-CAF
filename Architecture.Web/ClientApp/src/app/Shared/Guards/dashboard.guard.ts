@@ -21,16 +21,16 @@ export class DashboardGuard implements CanActivate {
         if (this.authService.isLoggedIn && !this.authService.isTokenExpired) {
             this.authService.currentUser.subscribe(user => this.user = user);
             const path = next.routeConfig.path;
-            if (this.user.appUserTypeId === 1) {
-                if(path === 'common') return true;
-                this.router.navigate(['/dashboard/common']);
-            } else if (this.user.appUserTypeId === 2) {
+            if (this.user.appUserTypeId === 2 || this.user.appUserTypeId === 1) {
                 if(path === 'branch-user') return  true;
                 this.router.navigate(['/dashboard/branch-user']);
             } else if (this.user.appUserTypeId === 3) {
                 if(path === 'operator') return  true;
                 this.router.navigate(['/dashboard/operator']);
-            }
+            } else if (this.user.appUserTypeId === 4) {
+                if (path === 'common') return true;
+                this.router.navigate(['/dashboard/common']);
+            } 
             return true;
         }
         else {

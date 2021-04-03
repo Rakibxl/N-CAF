@@ -69,14 +69,14 @@ namespace Architecture.Web.Controllers.Users
                 var userExists = await _userManager.FindByEmailAsync(model.Email);
                 if (userExists != null)
                 {
-                    ModelState.AddModelError("", "User email already exists!");
+                    ModelState.AddModelError("Email", "User email already exists!");
                     return ValidationResult(ModelState);
                 }
 
                 userExists = _userManager.Users.Where(ex => ex.PhoneNumber == model.PhoneNumber).FirstOrDefault();
                 if (userExists != null)
                 {
-                    ModelState.AddModelError("", "User phone no already exists!");
+                    ModelState.AddModelError("PhoneNumber", "User phone number already exists!");
                     return ValidationResult(ModelState);
                 }
 
