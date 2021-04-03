@@ -23,3 +23,13 @@
 .mat-spinner circle {
     stroke: #3f51b5;
 }
+
+.form-control.ng-invalid.ng-touched {
+    border-color: #ecafaf;
+    box-shadow: 0 0 2px 0px #f56565;
+}
+
+.form-control.ng-touched.ng-valid {
+border-color: #a4d8bb;
+box-shadow: 0 0 3px 1px rgb(0 150 136 / 62%);
+}
