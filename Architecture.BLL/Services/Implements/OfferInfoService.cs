@@ -17,11 +17,13 @@ namespace Architecture.BLL.Services.Implements
     {
         private readonly IJobInformationService jobInformationService;
         private readonly ICurrentUserService CurrentUserService;
-        public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService CurrentUserService
-            ) : base(dbContext)
+        private readonly IApplicationUserService applicationUserService;
+        public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService CurrentUserService,
+           IApplicationUserService applicationUserService) : base(dbContext)
         {
             this.jobInformationService = jobInformationService;
             this.CurrentUserService = CurrentUserService;
+            this.applicationUserService = applicationUserService;
         }
 
         public async Task<IEnumerable<JobInfo>> GetMyOffer()
@@ -97,9 +99,12 @@ namespace Architecture.BLL.Services.Implements
         }
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorPendingOffer()
         {
-            var UserId = CurrentUserService.UserId.ToString();
+            var UserId = CurrentUserService.UserId;
+            var operatorDetails = await applicationUserService.GetByIdAsync(UserId);
 
-            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == 5 || x.OfferStatusId == 2))
+            List<OfferInfoVM> newOffer = new List<OfferInfoVM>();
+
+            var result = from of in _dbContext.OfferInfos.Where(x => (x.OfferStatusId == 1 || x.OfferStatusId == 3))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
@@ -110,6 +115,7 @@ namespace Architecture.BLL.Services.Implements
                              JobInfo = job,
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
+                             ProfBasicInfo=profile,
                              AcceptedOperatorId = of.AcceptedOperatorId,
                              AcceptedOperatorName = "",
                              OfferStatusId = of.OfferStatusId,
@@ -123,7 +129,24 @@ namespace Architecture.BLL.Services.Implements
                              Created = of.Created,
                              Modified = of.Modified
                          };
-            return result;
+
+            foreach (var offer in result)
+            {
+                if (offer.ProfBasicInfo.BranchInfoId != null && operatorDetails.OperatorBranches.Count > 0) {
+                    if (operatorDetails.OperatorBranches.Where(x => x.BranchInfoId == (int)offer.ProfBasicInfo.BranchInfoId).ToList().Count > 0) {
+                        offer.ProfBasicInfo = null;
+                        newOffer.Add(offer);
+                    }
+                }
+                //else if (operatorDetails.OperatorKeywordIds.Where(x=>x.) offer.JobInfo.Title.Contains()) { }
+
+                else if (offer.ProfBasicInfo.BranchInfoId == null) {
+                    offer.ProfBasicInfo = null;
+                    newOffer.Add(offer);
+                }
+            }
+
+            return newOffer;
 
         }
 

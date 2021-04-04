@@ -13,6 +13,7 @@ namespace Architecture.BLL.Services.Models
         public int JobId { get; set; }
         public virtual JobInfo JobInfo { get; set; }
         public int ProfileId { get; set; }
+        public ProfBasicInfo ProfBasicInfo { get; set; }
         public string ProfileName { get; set; }
         public string AcceptedOperatorId { get; set; }
         public string AcceptedOperatorName{ get; set; }

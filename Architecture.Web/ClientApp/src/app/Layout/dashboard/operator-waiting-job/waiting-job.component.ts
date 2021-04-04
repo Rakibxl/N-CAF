@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OfferInfo } from '../../../Shared/Entity/Dashboard/Offer-Info';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
@@ -12,13 +13,13 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 })
 export class WaitingJobComponent implements OnInit {
     public myOffers: JobInfo[] = [];
+    public waitingJobOffers: OfferInfo[] = [];
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
         this.offerService.getOperatorPendingOffer().subscribe((res: APIResponse) => {
             console.log("Success", res);
-            this.myOffers = res.data || [];
-
+            this.waitingJobOffers = res.data || [];
         }, error => {
             console.log("Error ", error);
         });

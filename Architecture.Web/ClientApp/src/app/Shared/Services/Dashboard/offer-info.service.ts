@@ -47,8 +47,7 @@ export class OfferInfoService {
         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/OperatorPendingOffer');
     }
    //#endr operator end
-
-
+   
     //#region Client
     public getClientProgressOffer() {
         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientProgressOffer');

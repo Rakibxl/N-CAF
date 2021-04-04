@@ -32,7 +32,7 @@ namespace Architecture.Web.Models
         public string UserRoleName { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
-        public EnumApplicationUserStatus? Status { get; set; }
+        public EnumApplicationUserType? Status { get; set; }
         public string OperatorKeywordIds { get; set; }
         public List<int> OperatorBranches { get; set; }
 

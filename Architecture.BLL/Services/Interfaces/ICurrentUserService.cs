@@ -8,5 +8,6 @@ namespace Architecture.BLL.Services.Interfaces
         public int UserTypeId { get; }
         public string Useremail { get; }
         bool IsAuthenticated { get; }
+        public string BranchInfoId { get; }
     }
 }
