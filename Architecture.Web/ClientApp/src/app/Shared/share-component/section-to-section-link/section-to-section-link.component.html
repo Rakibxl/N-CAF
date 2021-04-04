@@ -11,7 +11,7 @@
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-printer icon-gradient bg-ripe-malin"></i>
-                    <h4>Other Section for the New Offer</h4>
+                    <h4>Advanced Information for More Offer</h4>
                 </div>
 
                 <span class="chatbox-close" (click)="closeChatbox()">
@@ -29,7 +29,7 @@
                     <div class="ps-content">
                         <div class="chat-wrapper p-1">
                             <div *ngFor ="let sectionLink of sectionLinkCollection">
-                                <a href="#" class="chat-box-wrapper">
+                                <a href="javascript:void(0)" (click)="fnRedirectToActionPage(sectionLink)" class="chat-box-wrapper">
                                     <div>
                                         <div class="chat-box">
                                             {{sectionLink.title}}

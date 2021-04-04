@@ -20,21 +20,7 @@ namespace Architecture.Web.Controllers.ClientProfile
         {
             this.sectionLinkService = sectionLinkService;
         }
-
-        [HttpGet("/Test")]
-        public async Task<IActionResult> GetTest()
-        {
-            try
-            {
-                var result = "dfdsdfdsff";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
-
+               
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] SectionLink model)
         {

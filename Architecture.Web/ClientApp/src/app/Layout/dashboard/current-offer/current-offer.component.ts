@@ -1,4 +1,3 @@
-/// <reference path="../common/common.component.ts" />
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';

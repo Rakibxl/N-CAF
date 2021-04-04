@@ -23,34 +23,12 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="form-row">
-            <div class="col-12">
-                <div class="caf-input-group">
-                    <div class="custom-checkbox custom-control">
-                        <input class="custom-control-input" type="checkbox" id="org" name="hasBranch" [(ngModel)]="hasBranch" />
-                        <label class="custom-control-label" for="org">
-                            Login with your Branch?
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="form-row" *ngIf="hasBranch">
-            <div class="col-12 pb-4">
-                <div class="caf-input-group">
-                    <label class="label">Branch Name</label>
-                    <select class="form-control" name="branch" [(ngModel)]="loginModel.branch">
-                        <option>Organization?</option>
-                        <option>Organization 1</option>
-                        <option>Organization 2</option>
-                        <option>Organization 3</option>
-                    </select>
-                </div>
-            </div>
-        </div> -->
-
+        
         <div class="form-row">
             <div class="col-12">
+                <div class="alert alert-warning" role="alert" *ngIf="errorMessage!=null">
+                    {{errorMessage}}
+                </div>
                 <div class="position-relative form-group text-center">
                     <button type="button" class="caf-btn-primary-outline btn-sm w-100" (click)="fnLogin()">Login</button>
                 </div>

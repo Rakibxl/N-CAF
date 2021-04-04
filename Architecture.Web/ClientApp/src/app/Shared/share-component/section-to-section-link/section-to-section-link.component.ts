@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { scaleAnimation } from '../../Modules/animations/animationRightToggle';
 import { SectionLinkService } from '../../Services/Users/section-link.service';
 
@@ -11,7 +12,8 @@ import { SectionLinkService } from '../../Services/Users/section-link.service';
 })
 export class SectionToSectionLinkComponent implements OnInit {
     @Input() sectionName: string;
-    constructor(private sectionLinkService: SectionLinkService) { }
+    @Input() profileId: number = 0;
+    constructor(private sectionLinkService: SectionLinkService, private route: ActivatedRoute, private router: Router) { }
 
     animationOpen: string = 'out';
     public sectionLinkCollection: any[]=[];
@@ -24,6 +26,9 @@ export class SectionToSectionLinkComponent implements OnInit {
 
     ngOnInit() {
         console.log("sectionName: ", this.sectionName);
+        if (this.profileId == 0) {
+            this.profileId = (+this.route.snapshot.paramMap.get("profId") || 0);
+        }
         this.sectionLinkService.getSectionBySectionName(this.sectionName).subscribe((data) => {
             console.log("data:", data);
             this.sectionLinkCollection = data.data || [];
@@ -31,6 +36,32 @@ export class SectionToSectionLinkComponent implements OnInit {
             (err) => {
                 console.log("Error : ", err);
             });
+    }
+
+    public fnRedirectToActionPage(sectionLinkInfo: any) {
+        let jumpUrl = "";
+        console.log("sectionLinkInfo:", sectionLinkInfo);
+        if ((sectionLinkInfo.actionLink || "") != "") {
+            debugger;
+            var urlCheck =/http|https|www/;
+            if (urlCheck.test(sectionLinkInfo.actionLink)) {
+                console.log(urlCheck.test(sectionLinkInfo.actionLink));
+                jumpUrl = sectionLinkInfo.actionLink;
+            } else {
+                jumpUrl = window.location.hostname + sectionLinkInfo.actionLink;
+                sectionLinkInfo.actionLink = sectionLinkInfo.actionLink.replace("{profileId}", this.profileId);
+                const url = this.router.serializeUrl(
+                    this.router.createUrlTree([sectionLinkInfo.actionLink])
+                );
+                window.open(url, '_blank');
+            }
+
+
+            var redirectWindow = window.open(jumpUrl, '_blank');
+            redirectWindow.location;
+
+        }
+
     }
 
 }

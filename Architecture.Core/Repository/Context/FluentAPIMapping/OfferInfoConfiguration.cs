@@ -12,6 +12,9 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         public void Configure(EntityTypeBuilder<OfferInfo> offerInfo)
         {
             offerInfo.HasKey(dd => dd.OfferInfoId);
+            //offerInfo.HasOne(v => v.JobInfo).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
+            //delegationInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfDelegationInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
+
             offerInfo.Property(bs => bs.JobId).IsRequired();
             offerInfo.Property(bs => bs.ProfileId).IsRequired();
             offerInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

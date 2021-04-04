@@ -18,8 +18,10 @@ export class UserRegistrationComponent implements OnInit {
     this.initForm();
   }
 
-  otpEnable: boolean = false;
-  myOptions: any = [];
+    public otpEnable: boolean = false;
+    public myOptions: any = [];
+    public errorMessage: string;
+    public validationPhoneNumber: string;
 
   ngOnInit() {
 
@@ -40,24 +42,26 @@ export class UserRegistrationComponent implements OnInit {
 
   // public toggleOptEnable = () => this.otpEnable = !this.otpEnable;
 
-  public showingLoginForm() {
+    public showingLoginForm() {
+        this.errorMessage = null;
     this.OnClickChange.emit("loginForm");
   }
 
-  public fnLogin() {
+    public fnLogin() {
+        this.errorMessage = null;
     this.router.navigate(["/dashboard/common"]);
   }
 
   register() {
-    this.otpEnable = !this.otpEnable;
-
-    let formData = this.userRegistrationForm.value;
+      this.errorMessage = null;
+      let formData = this.userRegistrationForm.value;
+      this.validationPhoneNumber = formData.phoneNumber;
     if (formData.password != formData.confirm_password) {
-      alert('Password not matched!');
+        this.errorMessage=('Password not matched!');
       return;
     }
     if (formData.password.length < 6) {
-      alert('Password must not less than 6 character!');
+        this.errorMessage=('Password must more than 6 character!');
       return;
     }
     formData.genderId = formData.genderId ? parseInt(formData.genderId) : null;
@@ -68,18 +72,27 @@ export class UserRegistrationComponent implements OnInit {
       this.commonService.stopLoading();
       this.alertService.fnLoading(false);
       if (res && res.message) {
-        alert(res.message);
         this.userRegistrationForm.reset();
-      }
+        }
+        this.otpEnable = !this.otpEnable;
     }, err => {
       this.commonService.stopLoading();
       this.alertService.fnLoading(false);
       if (err.status == 400) {
-        let errorMsg = "Validation failed for " + err.error.errors[0].propertyName + ". "
+          this.errorMessage= "Validation failed for " + err.error.errors[0].propertyName + ". "
           + err.error.errors[0].errorList[0];
-        alert(errorMsg);
-        this.alertService.tosterDanger(errorMsg);
+          this.alertService.tosterDanger(this.errorMessage);
       }
     });
-  }
+    }
+
+    public maskingPhoneNumber(): string {
+        if (this.validationPhoneNumber.length > 4) {
+            let markingNumber = this.validationPhoneNumber.substr(0, this.validationPhoneNumber.length - 3).replace(/[0-9]/g, "X");;
+            var restNumber = this.validationPhoneNumber.substr(this.validationPhoneNumber.length - 3, 3);
+            return markingNumber + restNumber;
+        }
+        
+        return this.validationPhoneNumber;
+    }
 }

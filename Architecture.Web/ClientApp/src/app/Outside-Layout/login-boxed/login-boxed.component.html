@@ -16,7 +16,7 @@
             </div>
             <div *ngIf="errorMessage" class="text-danger font-weight-bold">{{errorMessage}}</div>
             <div class="position-relative form-group form-group-berger">
-                <label class="required mb-0">Email</label>
+                <label class="required mb-0">Email 1</label>
                 <input type="text" autocomplete="off" class="form-control form-control-berger" formControlName="email" placeholder="Enter your email"
                        [ngClass]="{'is-valid':ufControls.email.touched && !ufControls.email.errors,
                        'is-invalid':ufControls.email.touched && ufControls.email.errors }" />

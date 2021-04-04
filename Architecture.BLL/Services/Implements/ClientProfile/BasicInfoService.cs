@@ -81,6 +81,8 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 }
                 else
                 {
+                    basicInfo.BranchInfoId= _currentUserService.BranchInfoId!=null? int.Parse( _currentUserService.BranchInfoId) : null;
+                    //basicInfo
                     result = await AddAsync(basicInfo);
                 }
                 return result;
@@ -102,7 +104,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             ProfBasicInfo result = new ProfBasicInfo();
 
           
-            if (_currentUserService.UserTypeId == 1 )  // client type user
+            if (_currentUserService.UserTypeId ==(int) EnumApplicationUserType.Admin)  // client type user
             {
                 result = await GetFirstOrDefaultAsync(x => x, x => x.RefId == _currentUserService.UserId, x => x.Include(y => y.ProfBankInfos)
                                                                                                                 .Include(y => y.ProfOccupationInfos)

@@ -6,18 +6,18 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
 @Component({
-  selector: 'app-completed-job',
-  templateUrl: './completed-job.component.html',
-  styleUrls: ['./completed-job.component.css']
+  selector: 'app-pending-job',
+  templateUrl: './pending-job.component.html',
+  styleUrls: ['./pending-job.component.css']
 })
-export class CompletedJobComponent implements OnInit {
+export class PendingJobComponent implements OnInit {
     public myOffers: JobInfo[] = [];
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
-        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
+        this.offerService.getOperatorProgressOffer().subscribe((res: APIResponse) => {
             console.log("Success", res);
-            this.myOffers = (res.data || []).filter(r=>r.offerStatusId==5)||[];
+            this.myOffers = res.data || [];
 
         }, error => {
             console.log("Error ", error);
@@ -49,7 +49,7 @@ export class CompletedJobComponent implements OnInit {
 
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
-        tableName: 'Completed Job',
+        tableName: 'Job on Progress',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
             { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
@@ -57,6 +57,8 @@ export class CompletedJobComponent implements OnInit {
             { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
             { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
             { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
+            { headerName: 'Details', width: '7%', internalName: 'details-dashboard', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-close text-danger", btnTitle: 'Reject' },
+
 
         ],
         enabledSearch: true,
@@ -72,4 +74,3 @@ export class CompletedJobComponent implements OnInit {
     };
 
 }
-

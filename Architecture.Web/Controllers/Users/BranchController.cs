@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
+using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
 using Architecture.Web.Core;
@@ -44,11 +45,11 @@ namespace Architecture.Web.Controllers.Users
                 var result = await _branchService.GetAll();
 
                 var AppUserTypeId = GetClaimValue("AppUserTypeId");
-                if (AppUserTypeId == "1")
+                if (AppUserTypeId == EnumApplicationUserType.Admin.ToString())
                 {
 
                 }
-                else if (AppUserTypeId == "2")
+                else if (AppUserTypeId == EnumApplicationUserType.BranchUser.ToString())
                 {
                     var BranchInfoId = GetClaimValue("BranchInfoId");
                     if (BranchInfoId != null && !string.IsNullOrEmpty(BranchInfoId))

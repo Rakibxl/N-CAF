@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Architecture.Core.Common.Enums
 {
-    public enum EnumApplicationUserStatus
+    public enum EnumApplicationUserType
     {
-        SuperAdmin = 1,
-        GeneralUser = 2,
+        Admin = 1,
+        BranchUser = 2,
+        Operator = 3,
+        Client = 4,
+        SuperAdmin = 5,
     }
 }
