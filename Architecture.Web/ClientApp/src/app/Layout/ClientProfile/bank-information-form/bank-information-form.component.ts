@@ -4,6 +4,7 @@ import { profBankInfo } from '../../../Shared/Entity/ClientProfile/profBankInfo'
 import { BankInfoService } from '../../../Shared/Services/ClientProfile/bank-info.service';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 
 @Component({
@@ -14,12 +15,14 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 export class BankInformationFormComponent implements OnInit {
     public bankInfoForm = new profBankInfo();
 
-    constructor(private bankInfoService: BankInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private bankInfoService: BankInfoService, private alertService: AlertService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private bankInfoId: number;
-    ngOnInit() {
+    public bankNameDropdown: any[] = [];
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.bankInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.bankNameDropdown = await this.dropdownService.getBankName() || [];
 
         console.log("this.profileId:", this.profileId, "this.bankInfoId", this.bankInfoId);
         if (this.profileId != 0 && this.bankInfoId != 0) {

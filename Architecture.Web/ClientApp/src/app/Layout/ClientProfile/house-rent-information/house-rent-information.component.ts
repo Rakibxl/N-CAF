@@ -59,17 +59,16 @@ export class HouseRentInformationComponent implements OnInit {
             (success) => {
                 this.houseRentInfoList = success.data;
                 this.houseRentInfoList.forEach(x => {
-                    x.contractTypeName = x.contractType.contractTypeName || "";
-                    x.houseTypeName = x.houseType.houseTypeName || "";
-                    x.houseCategoryName = x.houseCategory.houseCategoryName || "";
-                    x.loanStatusTypeName = x.loanStatusType.loanStatusTypeName || "";
-                    x.loanInterestTypeName = x.loanInterestType.loanInterestTypeName || "";
+                    x.contractTypeName = (x.contractType ? x.contractType.contractTypeName:"") || "";
+                    x.houseTypeName = (x.houseType ? x.houseType.houseTypeName:"") || "";
+                    x.houseCategoryName = (x.houseCategory ? x.houseCategory.houseCategoryName:"") || "";
+                    x.loanStatusTypeName = (x.loanStatusType ? x.loanStatusType.loanStatusTypeName:"") || "";
+                    x.loanInterestTypeName = (x.loanInterestType ? x.loanInterestType.loanInterestTypeName:"") || "";
                     x.contractDate = this.commonService.getDateToSetForm(x.contractDate);
                     x.startDate = this.commonService.getDateToSetForm(x.startDate);
                     x.endDate = this.commonService.getDateToSetForm(x.endDate);
                     x.loanStartDate = this.commonService.getDateToSetForm(x.loanStartDate);
                     x.registrationDate = this.commonService.getDateToSetForm(x.registrationDate);
-
                 })    
 
             },
@@ -88,8 +87,8 @@ export class HouseRentInformationComponent implements OnInit {
             { headerName: 'Contract Date', width: '5%', internalName: 'contractDate', sort: true, type: "" },
             { headerName: 'Start Date', width: '5%', internalName: 'startDate', sort: true, type: "" },
             { headerName: 'End Date', width: '5%', internalName: 'endDate', sort: true, type: "" },
-            { headerName: 'Monthly Rent Amount', width: '5%', internalName: 'monthlyRentAmount', sort: true, type: "" },
-            { headerName: 'Service Charge Amount', width: '5%', internalName: 'serviceChargeAmount', sort: true, type: "" },
+            { headerName: 'Monthly Rent Amount', width: '5%', internalName: 'monthlyRentAmount', sort: true, type: "", displayType:"number" },
+            { headerName: 'Service Charge Amount', width: '5%', internalName: 'serviceChargeAmount', sort: true, type: "", displayType: "number"},
             { headerName: 'Registration Info', width: '10%', internalName: 'registrationInfo', sort: true, type: "", visible: false },
             { headerName: 'Registration Date', width: '10%', internalName: 'registrationDate', sort: true, type: "", visible: false },
             { headerName: 'Registration Office', width: '10%', internalName: 'registrationOffice', sort: true, type: "", visible: false },

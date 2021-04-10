@@ -5,6 +5,7 @@ import { EducationInfoService } from '../../../Shared/Services/ClientProfile/edu
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 
 @Component({
@@ -14,13 +15,17 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class EducationalInformationFormComponent implements OnInit {
     public educationInfoForm = new profEducationInfo();
+    public degreeNameDropdown:any[] = [];
 
-    constructor(private educationInfoService: EducationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private educationInfoService: EducationInfoService, private commonService: CommonService, private alertService: AlertService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private educationInfoId: number;
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
-        this.educationInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.educationInfoId = +this.route.snapshot.paramMap.get("id") || 0
+
+        this.degreeNameDropdown = await this.dropdownService.getDegreeName() || [];
+
 
         console.log("this.profileId:", this.profileId, "this.educationInfoId", this.educationInfoId);
         if (this.profileId != 0 && this.educationInfoId != 0) {

@@ -18,10 +18,11 @@ export class FamilyInformationFormComponent implements OnInit {
     public relationType = [];
 
     public nationality = [];
-
+    public nationalityId = "";
     public occupationType = [];
-
     public residenceScope = [];
+    public genderDropdown:any[] = [];
+    public provinceDropdown:any[] = [];
 
 
 
@@ -41,6 +42,9 @@ export class FamilyInformationFormComponent implements OnInit {
         this.nationality = await this.dropdownService.getNationality() || [];
         this.occupationType = await this.dropdownService.getOccupationType() || [];
         this.residenceScope = await this.dropdownService.getResidenceScope() || [];
+        this.genderDropdown = await this.dropdownService.getGender() || [];
+        this.genderDropdown = await this.dropdownService.getGender() || [];
+        this.provinceDropdown = await this.dropdownService.getProvince() || [];
 
         console.log("relationType : ", this.relationType, "nationality : ", this.nationality, "occupationType : ", this.occupationType, "residenceScope : ", this.residenceScope);
     }
@@ -59,7 +63,7 @@ export class FamilyInformationFormComponent implements OnInit {
                 }, 200);
             },
             (error: any) => {
-                this.alertService.tosterWarning(error.message);
+                //this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

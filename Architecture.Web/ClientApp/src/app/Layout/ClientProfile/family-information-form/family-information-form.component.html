@@ -14,7 +14,7 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.name.label' | translate}}*</label>
+                            <label class="label">{{'familyform.name.label' | translate}}<span class="text-danger">* </span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'familyform.name.placeholder' | translate}}"
                                    required name="name" [(ngModel)]="familyInfoForm.name" #name="ngModel" />
                             <p class="text-info d-none">Info message</p>
@@ -23,17 +23,27 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.surname.label' | translate}}*</label>
+                            <label class="label">{{'familyform.surname.label' | translate}}<span class="text-danger">* </span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'familyform.surname.placeholder' | translate}}"
                                    required name="surName" [(ngModel)]="familyInfoForm.surName" #surName="ngModel" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="surName.valid || surName.pristine" class="text-danger">{{'familyform.surname.required' | translate}}</p>
                         </div>
                     </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">{{'common.gender.label' | translate}}</label>
+                            <select class="form-control" name="genderId" #genderId="ngModel" [(ngModel)]="familyInfoForm.genderId">
+                                <option *ngFor="let option of genderDropdown" [value]="option.genderId">{{option.name}}</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p class="text-danger d-none">Danger message</p>
+                        </div>
+                    </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.dateOfBirth.label' | translate}}*</label>
+                            <label class="label">{{'common.dateOfBirth.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" placeholder="{{'common.dateOfBirth.placeholder' | translate}}" #surName="ngModel" name="dateOfBirth" [(ngModel)]="familyInfoForm.dateOfBirth"
                                    required #dateOfBirth="ngModel" />
                             <p class="text-info d-none">Info message</p>
@@ -51,6 +61,15 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
+                            <label class="label">{{'common.province.label' | translate}}</label>
+                            <select class="form-control" name="province" #genderId="ngModel" [(ngModel)]="familyInfoForm.provinceId">
+                                <option *ngFor="let option of provinceDropdown" [value]="option.provinceId">{{option.description}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
                             <label class="label">{{'common.phoneNumber.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="familyInfoForm.phoneNumber" placeholder="{{'common.phoneNumber.placeholder' | translate}}" />
                         </div>
@@ -58,12 +77,10 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.relationtype.label' | translate}}</label>
+                            <label class="label">{{'familyform.relationtype.label' | translate}} <span class="text-danger">* </span></label>
                             <select id="" class="form-control" name="relationTypeId" #relationTypeId="ngModel" [(ngModel)]="familyInfoForm.relationTypeId">
                                 <option *ngFor="let option of relationType" [value]="option.relationTypeId">{{option.relationTypeName}}</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -110,7 +127,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'familyform.yearlyIncome.label' | translate}}*</label>
+                            <label class="label">{{'familyform.yearlyIncome.label' | translate}}<span class="text-danger">* </span></label>
                             <input type="text" autocomplete="off" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="familyInfoForm.yearlyIncome" class="form-control" placeholder="{{'familyform.yearlyIncome.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -124,8 +141,6 @@
                             <select id="" class="form-control" name="residenceScopeId" #residenceScopeId="ngModel" [(ngModel)]="familyInfoForm.residenceScopeId">
                                 <option *ngFor="let option of residenceScope" [value]="option.residenceScopeId">{{option.residenceScopeName}}</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 

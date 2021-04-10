@@ -1989,6 +1989,9 @@ namespace Architecture.Core.Migrations
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("JobInfoId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
@@ -2002,6 +2005,9 @@ namespace Architecture.Core.Migrations
 
                     b.Property<DateTime?>("OperatorAcceptedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ProfBasicInfoProfileId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
@@ -2019,6 +2025,10 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OfferInfoId");
+
+                    b.HasIndex("JobInfoId");
+
+                    b.HasIndex("ProfBasicInfoProfileId");
 
                     b.HasIndex("RecordStatusId");
 
@@ -2097,8 +2107,8 @@ namespace Architecture.Core.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FloorNo")
                         .HasColumnType("nvarchar(100)")
@@ -2120,10 +2130,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Province")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.Property<int?>("ProvinceId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
@@ -2137,8 +2145,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -2150,6 +2158,8 @@ namespace Architecture.Core.Migrations
                     b.HasIndex("AddressTypeId");
 
                     b.HasIndex("ProfileId");
+
+                    b.HasIndex("ProvinceId");
 
                     b.HasIndex("RecordStatusId");
 
@@ -2635,6 +2645,11 @@ namespace Architecture.Core.Migrations
                     b.Property<string>("DocumentName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DocumentNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<int?>("DocumentTypeId")
                         .HasColumnType("int");
 
@@ -2663,8 +2678,8 @@ namespace Architecture.Core.Migrations
 
                     b.Property<string>("PurposeOfDocument")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
@@ -2702,8 +2717,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("DegreeTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndYear")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("EndYear")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("InstitutionName")
                         .IsRequired()
@@ -2728,8 +2743,8 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("StartYear")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("StartYear")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UniversityAddress")
                         .HasColumnType("nvarchar(500)")
@@ -2796,6 +2811,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("decimal(5,2)")
                         .HasDefaultValue(0m);
 
+                    b.Property<int?>("GenderId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsAppliedForCitizenship")
                         .HasColumnType("bit");
 
@@ -2841,6 +2859,9 @@ namespace Architecture.Core.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProvinceId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
@@ -2866,6 +2887,8 @@ namespace Architecture.Core.Migrations
 
                     b.HasKey("FamilyInfoId");
 
+                    b.HasIndex("GenderId");
+
                     b.HasIndex("NationalityId");
 
                     b.HasIndex("OccupationTypeId");
@@ -2873,6 +2896,8 @@ namespace Architecture.Core.Migrations
                     b.HasIndex("PreviousNationalityId");
 
                     b.HasIndex("ProfileId");
+
+                    b.HasIndex("ProvinceId");
 
                     b.HasIndex("RecordStatusId");
 
@@ -2895,7 +2920,6 @@ namespace Architecture.Core.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("ContractDate")
-                        .IsRequired()
                         .HasColumnType("Date");
 
                     b.Property<int?>("ContractTypeId")
@@ -2908,7 +2932,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FoglioNo")
                         .HasColumnType("nvarchar(100)")
@@ -2934,16 +2958,16 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("decimal(10,2)")
                         .HasDefaultValue(0m);
 
-                    b.Property<int>("LoanInterestTypeId")
+                    b.Property<int?>("LoanInterestTypeId")
                         .HasColumnType("int");
 
                     b.Property<int?>("LoanPeriod")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LoanStartDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("LoanStartDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("LoanStatusTypeID")
+                    b.Property<int?>("LoanStatusTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("MicroZona")
@@ -3027,7 +3051,7 @@ namespace Architecture.Core.Migrations
                         .HasDefaultValue(0m);
 
                     b.Property<DateTime?>("StartDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SubNo")
                         .HasColumnType("nvarchar(100)")
@@ -3051,7 +3075,7 @@ namespace Architecture.Core.Migrations
 
                     b.HasIndex("LoanInterestTypeId");
 
-                    b.HasIndex("LoanStatusTypeID");
+                    b.HasIndex("LoanStatusTypeId");
 
                     b.HasIndex("ProfileId");
 
@@ -3075,11 +3099,11 @@ namespace Architecture.Core.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("DeliveryDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("ExpiryDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("ISEAmount")
                         .ValueGeneratedOnAdd()
@@ -3133,8 +3157,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("SubmittedDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("SubmittedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ISEEInfoId");
 
@@ -3177,8 +3201,9 @@ namespace Architecture.Core.Migrations
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Month")
-                        .HasColumnType("date");
+                    b.Property<string>("Month")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<decimal>("MonthlyIncome")
                         .ValueGeneratedOnAdd()
@@ -3195,8 +3220,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("date");
+                    b.Property<string>("Year")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<decimal>("YearlyIncome")
                         .ValueGeneratedOnAdd()
@@ -3230,8 +3256,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("InsuranceAmount")
                         .ValueGeneratedOnAdd()
@@ -3265,8 +3290,7 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("InsuranceInfoId");
 
@@ -3438,12 +3462,10 @@ namespace Architecture.Core.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("ContractEndDate")
-                        .IsRequired()
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ContractStartDate")
-                        .IsRequired()
-                        .HasColumnType("Date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ContractTypeId")
                         .HasColumnType("int");
@@ -3547,8 +3569,8 @@ namespace Architecture.Core.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Modified")
                         .ValueGeneratedOnAddOrUpdate()
@@ -3574,8 +3596,8 @@ namespace Architecture.Core.Migrations
                     b.Property<int?>("RecordStatusId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("Date");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -3864,6 +3886,14 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.OfferInfo", b =>
                 {
+                    b.HasOne("Architecture.Core.Entities.JobInfo", "JobInfo")
+                        .WithMany()
+                        .HasForeignKey("JobInfoId");
+
+                    b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
+                        .WithMany()
+                        .HasForeignKey("ProfBasicInfoProfileId");
+
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
                         .HasForeignKey("RecordStatusId");
@@ -3893,6 +3923,10 @@ namespace Architecture.Core.Migrations
                         .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId");
 
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
@@ -4027,6 +4061,10 @@ namespace Architecture.Core.Migrations
 
             modelBuilder.Entity("Architecture.Core.Entities.ProfFamilyInfo", b =>
                 {
+                    b.HasOne("Architecture.Core.Entities.LU.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId");
+
                     b.HasOne("Architecture.Core.Entities.LU.Nationality", "Nationality")
                         .WithMany()
                         .HasForeignKey("NationalityId");
@@ -4044,6 +4082,10 @@ namespace Architecture.Core.Migrations
                         .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Architecture.Core.Entities.LU.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId");
 
                     b.HasOne("Architecture.Core.Entities.LU.RecordStatus", "RecordStatus")
                         .WithMany()
@@ -4074,15 +4116,11 @@ namespace Architecture.Core.Migrations
 
                     b.HasOne("Architecture.Core.Entities.LU.LoanInterestType", "LoanInterestType")
                         .WithMany()
-                        .HasForeignKey("LoanInterestTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LoanInterestTypeId");
 
                     b.HasOne("Architecture.Core.Entities.LU.LoanStatusType", "LoanStatusType")
                         .WithMany()
-                        .HasForeignKey("LoanStatusTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LoanStatusTypeId");
 
                     b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
                         .WithMany("ProfHouseRentInfos")

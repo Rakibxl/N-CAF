@@ -18,7 +18,7 @@
     "citizenStateCode.label": "CitizenStateCode",
     "citizenStateCode.placeholder": "Enter citizen state code",
     "eyesColor.label": "EyesColor",
-    "height.label": "Height(in)CM*",
+    "height.label": "Height(in)CM",
     "height.placeholder": "Enter height (in) CM",
     "hasUnEmployedCertificate.label": "HasUnEmployedCertificate",
     "unemployedcertficateIssueDate.label": "Unemployedcertficate issueDate",

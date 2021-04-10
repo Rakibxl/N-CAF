@@ -41,12 +41,12 @@ namespace Architecture.Core.Entities
         public string Rendita { get; set; }
         public string NotaioInfo { get; set; }
         public bool? HasLoan { get; set; }
-        public int LoanStatusTypeID { get; set; }
+        public int? LoanStatusTypeId { get; set; }
         public virtual LoanStatusType LoanStatusType { get; set; }
-        public DateTime LoanStartDate { get; set; }
+        public DateTime? LoanStartDate { get; set; }
         public decimal LoanAmount { get; set; }
         public decimal PaidAmount { get; set; }
-        public int LoanInterestTypeId { get; set; }
+        public int? LoanInterestTypeId { get; set; }
         public virtual LoanInterestType LoanInterestType { get; set; }
         public int? LoanPeriod { get; set; }
         public bool IsRentByOwner { get; set; }

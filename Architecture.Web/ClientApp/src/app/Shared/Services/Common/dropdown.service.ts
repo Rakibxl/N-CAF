@@ -175,4 +175,15 @@ export class DropdownService {
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/OperatorKeyword`).toPromise().then(res => { result = res.data });
         return result;
     }
+    public async getProvince() {
+        let result;
+        await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/Province`).toPromise().then(res => { result = res.data });
+        return result;
+    }
+
+    public async getWorkerType() {
+        let result;
+        await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/WorkerType`).toPromise().then(res => { result = res.data });
+        return result;
+    }
 }

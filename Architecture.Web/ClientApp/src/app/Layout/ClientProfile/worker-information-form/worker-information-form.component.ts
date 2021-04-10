@@ -5,6 +5,7 @@ import { WorkerInfoService } from '../../../Shared/Services/ClientProfile/worker
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
     selector: 'app-worker-information-form',
@@ -14,21 +15,22 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class WorkerInformationFormComponent implements OnInit {
     public workerInfoForm = new profWorkerInfo();
 
-    constructor(private workerInfoService: WorkerInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private workerInfoService: WorkerInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private workerInfoId: number;
-    ngOnInit() {
+    public workerTypeDropdown: any[] = [];
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.workerInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.workerTypeDropdown = await this.dropdownService.getWorkerType() || [];
 
-        console.log("this.profileId:", this.profileId, "this.workerInfoId", this.workerInfoId);
+        console.log("this.profileId:", this.profileId, "this.workerInfoId", this.workerInfoId, "this.workerTypeDropdown::", this.workerTypeDropdown);
         if (this.profileId != 0 && this.workerInfoId != 0) {
             this.getWorker()
         }
     }
 
     public onSubmit() {
-        debugger;
         console.table(this.workerInfoForm);
         this.workerInfoForm.profileId = this.profileId;
 
@@ -42,7 +44,7 @@ export class WorkerInformationFormComponent implements OnInit {
 
             },
             (error: any) => {
-                this.alertService.tosterWarning(error.message);
+                //this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

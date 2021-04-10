@@ -187,7 +187,7 @@ export class BasicInformationComponent implements OnInit {
       }
     }, (error: any) => {
       console.log(error);
-      this.alertService.tosterDanger(error);
+      //this.alertService.tosterDanger(error);
     });
   }
 }

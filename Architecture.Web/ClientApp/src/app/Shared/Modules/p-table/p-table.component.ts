@@ -705,7 +705,22 @@ export class PTableComponent implements OnInit, DoCheck {
 
   public fnCreateNewRecord(){
     this.customActivityOnRecord.emit({ action: "new-record", record: null });
-  }
+    }
+
+    public fnGetDataFromArraySet(body: any, columnSettings: any): string {
+        let internalName = columnSettings.internalName;
+        if (internalName.includes(".")) {
+            let internalNameSplitter = internalName.split(".");
+            if (internalNameSplitter.length == 2) {
+                return (body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]]:"")||"";
+            } else if (internalNameSplitter.length == 3) {
+                return body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]] ? body[(internalNameSplitter[0])][internalNameSplitter[1]][internalNameSplitter[2]]:"":"";
+            }          
+
+        } else {
+            return body[internalName];
+        }
+    }
 
 }
 

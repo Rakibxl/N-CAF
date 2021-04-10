@@ -54,17 +54,18 @@ export class FamilyInformationComponent implements OnInit {
         this.familyService.getFamilyInfo(this.profileId).subscribe(
             (success) => {
                 this.familyInfoList = success.data;
-                console.log("get family: ", success);
+                console.log("this.familyInfoList ::::", this.familyInfoList );
                 this.familyInfoList .forEach(x => {
                     x.relationTypeName = x.relationType.relationTypeName|| "";
-                    //x.NationalityName = x.Nationality.NationalityName || "";
-                    x.nationalityName = x.previousNationality.nationalityName || "";
-                    x.residenceScopeName = x.residenceScope.residenceScopeName || "";
-                    x.occupationTypeName = x.occupationType.occupationTypeName || "";
+                    x.nationalityName = (x.previousNationality ? x.previousNationality.nationalityName:"") || "";
+                    x.residenceScopeName = (x.residenceScope ? x.residenceScope.residenceScopeName:"") || "";
+                    x.occupationTypeName = (x.occupationType ? x.occupationType.occupationTypeName:"") || "";
                     x.dateOfBirth = this.commonService.getDateToSetForm(x.dateOfBirth);
                     x.applicationDate = this.commonService.getDateToSetForm(x.applicationDate);
                     x.applicationPlacedDate = this.commonService.getDateToSetForm(x.applicationPlacedDate);
                 })
+
+                console.log("this.familyInfoList ::::", this.familyInfoList);
             },
             error => {
             });

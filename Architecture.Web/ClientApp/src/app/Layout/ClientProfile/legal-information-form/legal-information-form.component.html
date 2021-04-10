@@ -15,10 +15,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'movementform.countryName.label' | translate}}*</label>
+                            <label class="label">{{'movementform.countryName.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="countryNameId" #countryNameId="ngModel" [(ngModel)]="legalInfoForm.countryNameId" required>
-                                <option value="1">Italy</option>
-                                <option value="2">Bangladesh</option>
+                                <option *ngFor="let option of countryNameDropdown" [value]="option.countryNameId">{{option.countryDescription}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="countryNameId.valid || countryNameId.pristine" class="text-danger">{{'movementform.countryName.label' | translate}}Country name is required.</p>
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.cityName.label' | translate}}*</label>
+                            <label class="label">{{'common.cityName.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.cityName.placeholder' | translate}}" name="cityName" #cityName="ngModel" [(ngModel)]="legalInfoForm.cityName"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -59,37 +58,29 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="legalInfoForm.isAnyCase">
                         <div class="caf-input-group">
                             <label class="label">{{'legalform.refNo.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.refNo.placeholder' | translate}}" name="refNo" #refNo="ngModel" [(ngModel)]="legalInfoForm.refNo"
                                     />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="legalInfoForm.isAnyCase">
                         <div class="caf-input-group">
                             <label class="label">{{'legalform.reason.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.reason.placeholder' | translate}}" name="reason" #reason="ngModel" [(ngModel)]="legalInfoForm.reason"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <textarea rows="3" autocomplete="off" class="form-control" placeholder="{{'legalform.reason.placeholder' | translate}}" name="reason" #reason="ngModel" [(ngModel)]="legalInfoForm.reason"
+                                    ></textarea>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'legalform.note.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'legalform.note.placeholder' | translate}}" name="note" #note="ngModel" [(ngModel)]="legalInfoForm.note"
-                                   />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <textarea rows="3" autocomplete="off" class="form-control" placeholder="{{'legalform.note.placeholder' | translate}}" name="note" #note="ngModel" [(ngModel)]="legalInfoForm.note"
+                                   ></textarea>
                         </div>
                     </div>
                 </div>

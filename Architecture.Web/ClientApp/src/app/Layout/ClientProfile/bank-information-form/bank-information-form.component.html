@@ -14,36 +14,28 @@
                     <div class="pt-3"></div>                    
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'bankform.bankName.label' | translate}}*</label>
+                            <label class="label">{{'bankform.bankName.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="bankNameId" #bankNameId="ngModel" [(ngModel)]="bankInfoForm.bankNameId" required>
-                                <option value="1">UniCredit Bank</option>
-                                <option value="2">Intesa San Paolo</option>
-                                <option value="3">UBI Bank</option>
+                                <option *ngFor="let option of bankNameDropdown" [value]="option.bankNameId">{{option.bankDescription}}</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="bankNameId.valid || bankNameId.pristine" class="text-danger">{{'bankform.bankName.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'bankform.branchName.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="{{'bankform.branchName.placeholder' | translate}}"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" name="branchName" #branchName="ngModel" [(ngModel)]="bankInfoForm.branchName" placeholder="{{'bankform.branchName.placeholder' | translate}}"/>
+                            
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                {{'bankform.accountNumber.label' | translate}}*
+                                {{'bankform.accountNumber.label' | translate}}<span class="text-danger">*</span>
                             </label>
                             <input type="text" autocomplete="off" class="form-control" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="bankInfoForm.accountNumber" placeholder="{{'bankform.accountNumber.placeholder' | translate}}"
                                    required />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
@@ -52,8 +44,6 @@
                             <label class="label">{{'bankform.swiftNumber.label' | translate}}</label>
                             <input type="text" autocomplete="off" class="form-control" name="swiftNumber" #swiftNumber="ngModel" [(ngModel)]="bankInfoForm.swiftNumber" placeholder="{{'bankform.swiftNumber.placeholder' | translate}}"
                                     />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
@@ -63,8 +53,6 @@
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                 </div>

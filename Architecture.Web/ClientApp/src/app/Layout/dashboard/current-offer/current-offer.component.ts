@@ -37,6 +37,12 @@ export class CurrentOfferComponent implements OnInit {
         }
     }
 
+    public fnCustomrTrigger(event) {
+        if (event.action == "new-record") {
+            this.router.navigate([`/client-profile/basic-info/0/${this.profileId}`]);
+        }
+    }
+
     
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
@@ -60,7 +66,9 @@ export class CurrentOfferComponent implements OnInit {
         enabledColumnFilter: false,
         enabledDataLength: true,
         enabledReflow: true,
-        enabledViewDetails: false
+        enabledViewDetails: false,
+        enabledRecordCreateBtn: true,
+        newRecordButtonText: "Create New Profile"
     };
 
 }

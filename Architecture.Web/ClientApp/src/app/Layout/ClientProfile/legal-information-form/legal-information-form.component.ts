@@ -5,6 +5,7 @@ import { LegalInfoService } from '../../../Shared/Services/ClientProfile/legal-i
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
     selector: 'app-legal-information-form',
@@ -14,13 +15,16 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class LegalInformationFormComponent implements OnInit {
     public legalInfoForm = new profLegalInfo();
 
-    constructor(private legalInfoService: LegalInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private legalInfoService: LegalInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private legalInfoId: number;
+    public countryNameDropdown: any[] = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.legalInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
+        this.countryNameDropdown = await this.dropdownService.getCountryName() || [];
 
         console.log("this.profileId:", this.profileId, "this.legalInfoId", this.legalInfoId);
         if (this.profileId != 0 && this.legalInfoId != 0) {
@@ -42,7 +46,7 @@ export class LegalInformationFormComponent implements OnInit {
                 }, 200);
             },
             (error: any) => {
-                this.alertService.tosterWarning(error.message);
+                //this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

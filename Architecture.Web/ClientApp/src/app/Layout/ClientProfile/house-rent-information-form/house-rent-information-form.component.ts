@@ -5,6 +5,7 @@ import { HouseRentInfoService } from '../../../Shared/Services/ClientProfile/hou
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-house-rent-information-form',
@@ -14,13 +15,24 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class HouseRentInformationFormComponent implements OnInit {
     public houseRentInfoForm = new profHouseRentInfo();
 
-    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private houseRentInfoService: HouseRentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private houseRentInfoId: number;
+    public HouseTypeDropdown: any[] = [];
+    public contractTypeDropdown: any[] = [];
+    public houseCategoryDropdown: any[] = [];
+    public loanInterestTypeDropdown: any[] = [];
+    public loanStatusTypeDropdown: any[] = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.houseRentInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
+        this.HouseTypeDropdown = await this.dropdownService.getHouseType() || [];
+        this.contractTypeDropdown = await this.dropdownService.getContractType() || [];
+        this.loanInterestTypeDropdown = await this.dropdownService.getLoanInterestType() || [];
+        this.houseCategoryDropdown = await this.dropdownService.getHouseCategory() || [];
+        this.loanStatusTypeDropdown = await this.dropdownService.getLoanStatusType() || [];
 
         console.log("this.profileId:", this.profileId, "this.houserentInfoId", this.houseRentInfoId);
         if (this.profileId != 0 && this.houseRentInfoId != 0) {
@@ -43,7 +55,7 @@ export class HouseRentInformationFormComponent implements OnInit {
                 }, 200);
             },
             (error: any) => {
-                this.alertService.tosterWarning(error.message);
+                //this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

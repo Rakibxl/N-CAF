@@ -16,11 +16,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.iseeClassType.label' | translate}}*</label>
+                            <label class="label">{{'iseeform.iseeClassType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="iseeClassTypeId" #iseeClassTypeId="ngModel" [(ngModel)]="iseeInfoForm.iseeClassTypeId" required>
-                                <option value="1">High</option>
-                                <option value="2">Middle</option>
-                                <option value="3">Low</option>
+                                <option *ngFor="let option of iseeClassTypeDropdown" [value]="option.iseeClassTypeId">{{option.iseeClassTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="iseeClassTypeId.valid || iseeClassTypeId.pristine" class="text-danger">{{'iseeform.iseeClassType.required' | translate}}</p>
@@ -28,8 +26,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.iseeValue.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeValue.placeholder' | translate}}" name="iseeValue" #iseeValue="ngModel" [(ngModel)]="iseeInfoForm.iseeValue"
+                            <label class="label">{{'iseeform.iseeValue.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeValue.placeholder' | translate}}" name="iseeValue" #iseeValue="ngModel" [(ngModel)]="iseeInfoForm.iseeValue"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="iseeValue.valid || iseeValue.pristine" class="text-danger">{{'iseeform.iseeValue.required' | translate}}</p>
@@ -38,8 +36,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.point.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.point.placeholder' | translate}}" name="point" #point="ngModel" [(ngModel)]="iseeInfoForm.point"
+                            <label class="label">{{'iseeform.point.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'iseeform.point.placeholder' | translate}}" name="point" #point="ngModel" [(ngModel)]="iseeInfoForm.point"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="point.valid || point.pristine" class="text-danger">{{'iseeform.point.required' | translate}}</p>
@@ -48,8 +46,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.iseeFamilyIncome.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeFamilyIncome.placeholder' | translate}}" name="iseeFamilyIncome" #iseeFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.iseeFamilyIncome"
+                            <label class="label">{{'iseeform.iseeFamilyIncome.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseeFamilyIncome.placeholder' | translate}}" name="iseeFamilyIncome" #iseeFamilyIncome="ngModel" [(ngModel)]="iseeInfoForm.iseeFamilyIncome"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="iseeFamilyIncome.valid || iseeFamilyIncome.pristine" class="text-danger">{{'iseeform.iseeFamilyIncome.required' | translate}}</p>
@@ -58,8 +56,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.ispAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.ispAmount.placeholder' | translate}}" name="ispAmount" #ispAmount="ngModel" [(ngModel)]="iseeInfoForm.ispAmount"
+                            <label class="label">{{'iseeform.ispAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'iseeform.ispAmount.placeholder' | translate}}" name="ispAmount" #ispAmount="ngModel" [(ngModel)]="iseeInfoForm.ispAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="ispAmount.valid || ispAmount.pristine" class="text-danger">{{'iseeform.name.required' | translate}}</p>
@@ -68,8 +66,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.iseAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseAmount.placeholder' | translate}}" name="iseAmount" #iseAmount="ngModel" [(ngModel)]="iseeInfoForm.iseAmount"
+                            <label class="label">{{'iseeform.iseAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'iseeform.iseAmount.placeholder' | translate}}" name="iseAmount" #iseAmount="ngModel" [(ngModel)]="iseeInfoForm.iseAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="iseAmount.valid || iseAmount.pristine" class="text-danger">{{'iseeform.iseAmount.required' | translate}}</p>
@@ -78,7 +76,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.isrAmount.label' | translate}}*</label>
+                            <label class="label">{{'iseeform.isrAmount.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.isrAmount.placeholder' | translate}}" name="isrAmount" #isrAmount="ngModel" [(ngModel)]="iseeInfoForm.isrAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -88,7 +86,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.identificationNumber.label' | translate}}*</label>
+                            <label class="label">{{'iseeform.identificationNumber.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'iseeform.identificationNumber.placeholder' | translate}}" name="identificationNumber" #identificationNumber="ngModel" [(ngModel)]="iseeInfoForm.identificationNumber"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -98,7 +96,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.submittedDate.label' | translate}}*</label>
+                            <label class="label">{{'iseeform.submittedDate.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="sumittedDate" #submittedDate="ngModel" [(ngModel)]="iseeInfoForm.submittedDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="submittedDate.valid || submittedDate.pristine" class="text-danger">{{'iseeform.submittedDate.required' | translate}}</p>
@@ -107,7 +105,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.deliveryDate.label' | translate}}*</label>
+                            <label class="label">{{'iseeform.deliveryDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="deliveryDate" #deliveryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="deliveryDate.valid || deliveryDate.pristine" class="text-danger">{{'iseeform.deliveryDate.required' | translate}}</p>
@@ -116,8 +114,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'iseeform.expiryDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" required />
+                            <label class="label">{{'iseeform.expiryDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="iseeInfoForm.deliveryDate" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">{{'iseeform.expiryDate.required' | translate}}</p>
                         </div>

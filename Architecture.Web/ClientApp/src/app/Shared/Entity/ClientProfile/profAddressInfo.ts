@@ -27,6 +27,7 @@ export class profAddressInfo extends Auditable {
     public cityName: string;
 
     public province: string;
+    public provinceId: number;
 
     public state: string;
 

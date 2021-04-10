@@ -5,6 +5,7 @@ import { IncomeInfoService } from '../../../Shared/Services/ClientProfile/income
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-income-information-form',
@@ -14,13 +15,15 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class IncomeInformationFormComponent implements OnInit {
     public incomeInfoForm = new profIncomeInfo();
 
-    constructor(private incomeInfoService: IncomeInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private incomeInfoService: IncomeInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private incomeInfoId: number;
+    public incomeTypeDropdown: any[] = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.incomeInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.incomeTypeDropdown = await this.dropdownService.getIncomeType() || [];
 
         console.log("this.profileId:", this.profileId, "this.incomeInfoId", this.incomeInfoId);
         if (this.profileId != 0 && this.incomeInfoId != 0) {
@@ -47,6 +50,8 @@ export class IncomeInformationFormComponent implements OnInit {
 
     }
 
+    public monthNames = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
     
     public getIncome() {
        

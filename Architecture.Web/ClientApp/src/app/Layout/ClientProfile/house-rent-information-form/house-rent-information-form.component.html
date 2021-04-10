@@ -14,11 +14,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.houseType.label' | translate}}*</label>
+                            <label class="label">{{'houserentform.houseType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" name="houseTypeId" #houseTypeId="ngModel" [(ngModel)]="houseRentInfoForm.houseTypeId" class="form-control" required>
-                                <option value="1">Rent</option>
-                                <option value="2">Owner</option>
-                                <option value="3">SharedRent</option>
+                                <option *ngFor="let option of HouseTypeDropdown" [value]="option.houseTypeId">{{option.houseTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="houseTypeId.valid || houseTypeId.pristine" class="text-danger">{{'houserentform.houseType.required' | translate}}</p>
@@ -27,8 +25,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.contractDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" name="contractDate" #contractDate="ngModel" [(ngModel)]="houseRentInfoForm.contractDate" class="form-control" required />
+                            <label class="label">{{'houserentform.contractDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" name="contractDate" #contractDate="ngModel" [(ngModel)]="houseRentInfoForm.contractDate" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="contractDate.valid || contractDate.pristine" class="text-danger">{{'houserentform.contractDate.required' | translate}}</p>
                         </div>
@@ -36,11 +34,9 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.contractType.label' | translate}}*</label>
-                            <select id="" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="houseRentInfoForm.contractTypeId" class="form-control" required>
-                                <option value="1">No Limit</option>
-                                <option value="2">Limited</option>
-                                <option value="3">Occational</option>
+                            <label class="label">{{'houserentform.contractType.label' | translate}}</label>
+                            <select id="" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="houseRentInfoForm.contractTypeId" class="form-control">
+                                <option *ngFor="let option of contractTypeDropdown" [value]="option.contractTypeId">{{option.contractTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">{{'houserentform.contractType.required' | translate}}</p>
@@ -67,8 +63,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.monthlyRentAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="monthlyRentAmount" #monthlyRentAmount="ngModel" [(ngModel)]="houseRentInfoForm.monthlyRentAmount" class="form-control" placeholder="{{'houserentform.monthlyRentAmount.placeholder' | translate}}"
+                            <label class="label">{{'houserentform.monthlyRentAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="monthlyRentAmount" #monthlyRentAmount="ngModel" [(ngModel)]="houseRentInfoForm.monthlyRentAmount" class="form-control" placeholder="{{'houserentform.monthlyRentAmount.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="monthlyRentAmount.valid || monthlyRentAmount.pristine" class="text-danger">{{'houserentform.monthlyRentAmount.required' | translate}}</p>
@@ -77,8 +73,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.serviceChargeAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="serviceChargeAmount" #serviceChargeAmount="ngModel" [(ngModel)]="houseRentInfoForm.serviceChargeAmount" class="form-control" placeholder="{{'houserentform.serviceChargeAmount.placeholder' | translate}}"
+                            <label class="label">{{'houserentform.serviceChargeAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="serviceChargeAmount" #serviceChargeAmount="ngModel" [(ngModel)]="houseRentInfoForm.serviceChargeAmount" class="form-control" placeholder="{{'houserentform.serviceChargeAmount.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="serviceChargeAmount.valid || serviceChargeAmount.pristine" class="text-danger">{{'houserentform.serviceChargeAmount.required' | translate}}</p>
@@ -88,8 +84,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.registrationInfo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="registrationInfo" #registrationInfo="ngModel" [(ngModel)]="houseRentInfoForm.registrationInfo"  class="form-control" placeholder="{{'houserentform.registrationInfo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="registrationInfo" #registrationInfo="ngModel" [(ngModel)]="houseRentInfoForm.registrationInfo" class="form-control" placeholder="{{'houserentform.registrationInfo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -107,8 +102,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.registrationOffice.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="registrationOffice" #registrationOffice="ngModel" [(ngModel)]="houseRentInfoForm.registrationOffice" class="form-control" placeholder="{{'houserentform.registrationOffice.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="registrationOffice" #registrationOffice="ngModel" [(ngModel)]="houseRentInfoForm.registrationOffice" class="form-control" placeholder="{{'houserentform.registrationOffice.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -117,8 +111,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.registrationCode.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="registrationCode" #registrationCode="ngModel" [(ngModel)]="houseRentInfoForm.registrationCode" class="form-control" placeholder="{{'houserentform.registrationCode.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="registrationCode" #registrationCode="ngModel" [(ngModel)]="houseRentInfoForm.registrationCode" class="form-control" placeholder="{{'houserentform.registrationCode.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -127,8 +120,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.registrationNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="registrationNo" #registrationNo="ngModel" [(ngModel)]="houseRentInfoForm.registrationNo" class="form-control" placeholder="{{'houserentform.registrationNo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="registrationNo" #registrationNo="ngModel" [(ngModel)]="houseRentInfoForm.registrationNo" class="form-control" placeholder="{{'houserentform.registrationNo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -137,8 +129,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.registrationCity.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="registrationCity" #registrationCity="ngModel" [(ngModel)]="houseRentInfoForm.registrationCity" class="form-control" placeholder="{{'houserentform.registrationCity.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="registrationCity" #registrationCity="ngModel" [(ngModel)]="houseRentInfoForm.registrationCity" class="form-control" placeholder="{{'houserentform.registrationCity.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -149,20 +140,17 @@
                             <label>{{'houserentform.isJoined.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isJoined" #isJoined="ngModel" [(ngModel)]="houseRentInfoForm.isJoined" >
+                                    <input type="checkbox" name="isJoined" #isJoined="ngModel" [(ngModel)]="houseRentInfoForm.isJoined">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.isJoined">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.sharePercent.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="sharePercent" #sharePercent="ngModel" [(ngModel)]="houseRentInfoForm.sharePercent" class="form-control" placeholder="{{'houserentform.sharePercent.placeholder' | translate}}"
-                                   required />
+                            <label class="label">{{'houserentform.sharePercent.label' | translate}}</label>
+                            <input type="number" autocomplete="off" name="sharePercent" #sharePercent="ngModel" [(ngModel)]="houseRentInfoForm.sharePercent" class="form-control" placeholder="{{'houserentform.sharePercent.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="sharePercent.valid || sharePercent.pristine" class="text-danger">{{'houserentform.sharePercent.required' | translate}}</p>
                         </div>
@@ -171,8 +159,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.foglioNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="foglioNo" #foglioNo="ngModel" [(ngModel)]="houseRentInfoForm.foglioNo" class="form-control" placeholder="{{'houserentform.foglioNo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="foglioNo" #foglioNo="ngModel" [(ngModel)]="houseRentInfoForm.foglioNo" class="form-control" placeholder="{{'houserentform.foglioNo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -180,8 +167,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.partiocellaNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="partiocellaNo" #partiocellaNo="ngModel" [(ngModel)]="houseRentInfoForm.partiocellaNo"  class="form-control" placeholder="{{'houserentform.partiocellaNo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="partiocellaNo" #partiocellaNo="ngModel" [(ngModel)]="houseRentInfoForm.partiocellaNo" class="form-control" placeholder="{{'houserentform.partiocellaNo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -190,8 +176,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.subNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="subNo" #subNo="ngModel" [(ngModel)]="houseRentInfoForm.subNo" class="form-control" placeholder="{{'houserentform.subNo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="subNo" #subNo="ngModel" [(ngModel)]="houseRentInfoForm.subNo" class="form-control" placeholder="{{'houserentform.subNo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -200,8 +185,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.sectionNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="sectionNo" #sectionNo="ngModel" [(ngModel)]="houseRentInfoForm.sectionNo" class="form-control" placeholder="{{'houserentform.sectionNo.label' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="sectionNo" #sectionNo="ngModel" [(ngModel)]="houseRentInfoForm.sectionNo" class="form-control" placeholder="{{'houserentform.sectionNo.label' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -211,20 +195,15 @@
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.houseCategory.label' | translate}}</label>
                             <select id="" name="houseCategoryId" #houseCategoryId="ngModel" [(ngModel)]="houseRentInfoForm.houseCategoryId" class="form-control">
-                                <option value="1">House Category 1</option>
-                                <option value="2">House Category 2</option>
-                                <option value="3">House Category 3</option>
+                                <option *ngFor="let option of houseCategoryDropdown" [value]="option.houseCategoryId">{{option.houseCategoryName}}</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.zona.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="zona" #zona="ngModel" [(ngModel)]="houseRentInfoForm.zona" class="form-control" placeholder=" {{'houserentform.zona.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="zona" #zona="ngModel" [(ngModel)]="houseRentInfoForm.zona" class="form-control" placeholder=" {{'houserentform.zona.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -233,8 +212,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.microZona.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="microZona" #microZona="ngModel" [(ngModel)]="houseRentInfoForm.microZona" class="form-control" placeholder="{{'houserentform.microZona.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="microZona" #microZona="ngModel" [(ngModel)]="houseRentInfoForm.microZona" class="form-control" placeholder="{{'houserentform.microZona.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -243,8 +221,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.consistenza.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="consistenza" #consistenza="ngModel" [(ngModel)]="houseRentInfoForm.consistenza" class="form-control" placeholder="{{'houserentform.consistenza.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="consistenza" #consistenza="ngModel" [(ngModel)]="houseRentInfoForm.consistenza" class="form-control" placeholder="{{'houserentform.consistenza.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -253,8 +230,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.superficieCatastale.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="superficieCatastale" #superficieCatastale="ngModel" [(ngModel)]="houseRentInfoForm.superficieCatastale" class="form-control" placeholder="{{'houserentform.superficieCatastale.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="superficieCatastale" #superficieCatastale="ngModel" [(ngModel)]="houseRentInfoForm.superficieCatastale" class="form-control" placeholder="{{'houserentform.superficieCatastale.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -263,8 +239,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.rendita.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="rendita" #rendita="ngModel" [(ngModel)]="houseRentInfoForm.rendita" class="form-control" placeholder="{{'houserentform.rendita.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="rendita" #rendita="ngModel" [(ngModel)]="houseRentInfoForm.rendita" class="form-control" placeholder="{{'houserentform.rendita.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -273,8 +248,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'houserentform.notaioInfo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="houseRentInfoForm.notaioInfo" class="form-control" placeholder="{{'houserentform.notaioInfo.placeholder' | translate}}"
-                                    />
+                            <input type="text" autocomplete="off" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="houseRentInfoForm.notaioInfo" class="form-control" placeholder="{{'houserentform.notaioInfo.placeholder' | translate}}" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -285,7 +259,7 @@
                             <label>{{'houserentform.hasLoan.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="hasLoan" #hasLoan="ngModel" [(ngModel)]="houseRentInfoForm.hasLoan" >
+                                    <input type="checkbox" name="hasLoan" #hasLoan="ngModel" [(ngModel)]="houseRentInfoForm.hasLoan">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
@@ -294,85 +268,77 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.loanInterestType.label' | translate}}*</label>
-                            <select id="" name="loanStatusTypeID" #loanStatusTypeID="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeID" class="form-control" required>
-                                <option value="1">Pending</option>
-                                <option value="2">Active</option>
-                                <option value="3">Past Due</option>
-                            </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="loanStatusTypeID.valid || loanStatusTypeID.pristine" class="text-danger">{{'houserentform.loanInterestType.required' | translate}}</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">{{'houserentform.loanStartDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" name="loanStartDate" #loanStartDate="ngModel" [(ngModel)]="houseRentInfoForm.loanStartDate" class="form-control" required/>
+                            <label class="label">{{'houserentform.loanStartDate.label' | translate}} <span class="text-danger">*</span></label>
+                            <input type="date" autocomplete="off" name="loanStartDate" #loanStartDate="ngModel" [(ngModel)]="houseRentInfoForm.loanStartDate" class="form-control"  required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="loanStartDate.valid || loanStartDate.pristine" class="text-danger">{{'houserentform.loanStartDate.required' | translate}}</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.loanAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="loanAmount" #loanAmount="ngModel" [(ngModel)]="houseRentInfoForm.loanAmount" class="form-control" placeholder="Enter loan amount"
-                                   required />
+                            <label class="label">{{'houserentform.loanInterestType.label' | translate}}</label>
+                            <select id="" name="loanStatusTypeId" #loanStatusTypeId="ngModel" [(ngModel)]="houseRentInfoForm.loanStatusTypeId" class="form-control" required>
+                                <option *ngFor="let option of loanStatusTypeDropdown" [value]="option.loanStatusTypeId">{{option.loanStatusTypeName}}</option>
+                            </select>
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="loanStatusTypeId.valid || loanStatusTypeId.pristine" class="text-danger">{{'houserentform.loanInterestType.required' | translate}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
+                        <div class="caf-input-group">
+                            <label class="label">{{'houserentform.loanAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="text" autocomplete="off" name="loanAmount" #loanAmount="ngModel" [(ngModel)]="houseRentInfoForm.loanAmount" class="form-control" placeholder="Enter loan amount" required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="loanAmount.valid || loanAmount.pristine" class="text-danger">{{'houserentform.loanAmount.required' | translate}}</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.paidAmount.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="paidAmount" #paidAmount="ngModel" [(ngModel)]="houseRentInfoForm.paidAmount" class="form-control" placeholder="Enter paid amount"
-                                   required />
+                            <label class="label">{{'houserentform.paidAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="paidAmount" #paidAmount="ngModel" [(ngModel)]="houseRentInfoForm.paidAmount" class="form-control" placeholder="Enter paid amount" required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="paidAmount.valid || paidAmount.pristine" class="text-danger">{{'houserentform.paidAmount.required' | translate}}</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.loanInterestType.label' | translate}}*</label>
+                            <label class="label">{{'houserentform.loanInterestType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" name="loanInterestTypeId" #loanInterestTypeId="ngModel" [(ngModel)]="houseRentInfoForm.loanInterestTypeId" class="form-control" required>
-                                <option value="1">Fixed Interest</option>
-                                <option value="2">Variable Interest</option>
-                                <option value="3">No Interest</option>
+                                <option *ngFor="let option of loanInterestTypeDropdown" [value]="option.loanInterestTypeId">{{option.loanInterestTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="loanInterestTypeId.valid || loanInterestTypeId.pristine" class="text-danger">{{'houserentform.loanInterestType.required' | translate}}</p>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.hasLoan">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.loanPeriod.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="loanPeriod" #loanPeriod="ngModel" [(ngModel)]="houseRentInfoForm.loanPeriod" class="form-control" placeholder="{{'houserentform.loanPeriod.label' | translate}}"
-                                   required />
+                            <label class="label">{{'houserentform.loanPeriod.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="loanPeriod" #loanPeriod="ngModel" [(ngModel)]="houseRentInfoForm.loanPeriod" class="form-control" placeholder="{{'houserentform.loanPeriod.label' | translate}}" required/>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>{{'houserentform.isRentByOwner.label' | translate}}*</label>
+                            <label>{{'houserentform.isRentByOwner.label' | translate}}</label>
                             <div class="pl-2">
                                 <label class="switch">
-                                    <input type="checkbox" name="isRentByOwner" #isRentByOwner="ngModel" [(ngModel)]="houseRentInfoForm.isRentByOwner" required>
+                                    <input type="checkbox" name="isRentByOwner" #isRentByOwner="ngModel" [(ngModel)]="houseRentInfoForm.isRentByOwner">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="isRentByOwner.valid || isRentByOwner.pristine" class="text-danger">{{'houserentform.isRentByOwner.label' | translate}}</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="houseRentInfoForm.isRentByOwner">
                         <div class="caf-input-group">
-                            <label class="label">{{'houserentform.rentAmount.label' | translate}}</label>
-                            <input type="text" autocomplete="off" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="houseRentInfoForm.rentAmount" class="form-control" placeholder="{{'houserentform.rentAmount.placeholder' | translate}}"
+                            <label class="label">{{'houserentform.rentAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="houseRentInfoForm.rentAmount" class="form-control" placeholder="{{'houserentform.rentAmount.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="rentAmount.valid || rentAmount.pristine" class="text-danger">{{'houserentform.rentAmount.required' | translate}}</p>

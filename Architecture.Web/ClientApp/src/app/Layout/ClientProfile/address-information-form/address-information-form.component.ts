@@ -5,6 +5,7 @@ import { AddressInfoService } from '../../../Shared/Services/ClientProfile/addre
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
     selector: 'app-address-information-form',
@@ -14,20 +15,24 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class AddressInformationFormComponent implements OnInit {
     public addressInfoForm = new profAddressInfo();
 
-    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private addressInfoService: AddressInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private addressInfoId: number;
+    public addressTypeDropdown: any[];
+    public provinceDropdown: any[];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.addressInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.addressTypeDropdown = await this.dropdownService.getAddressInfo() || [];
+        this.provinceDropdown = await this.dropdownService.getProvince() || [];
 
         console.log("this.profileId:", this.profileId, "this.addressInfoId", this.addressInfoId);
         if (this.profileId != 0 && this.addressInfoId != 0) {
             this.getAddress()
         }
     }
-
+    
     public onSubmit() {
         console.table(this.addressInfoForm);
         this.addressInfoForm.profileId = this.profileId;
@@ -42,7 +47,7 @@ export class AddressInformationFormComponent implements OnInit {
 
             },
             (error: any) => {
-                this.alertService.tosterWarning(error.message);
+                //this.alertService.tosterWarning(error.message);
                 console.log("error", error);
             });
 

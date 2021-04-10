@@ -15,9 +15,9 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             houserentInfo.HasKey(bs => bs.HouseRentInfoId);
             houserentInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfHouseRentInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
-            houserentInfo.Property(bs => bs.ContractDate).HasColumnType("Date").IsRequired();
-            houserentInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired(false);
-            houserentInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired(false);
+            houserentInfo.Property(bs => bs.ContractDate).HasColumnType("Date").IsRequired(false);
+            //houserentInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired(false);
+            //houserentInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired(false);
 
             houserentInfo.Property(bs => bs.MonthlyRentAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             houserentInfo.Property(bs => bs.ServiceChargeAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
@@ -38,7 +38,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             houserentInfo.Property(bs => bs.SuperficieCatastale).HasMaxLength(100);
             houserentInfo.Property(bs => bs.Rendita).HasMaxLength(100);
             houserentInfo.Property(bs => bs.NotaioInfo).HasMaxLength(100);
-            houserentInfo.Property(bs => bs.LoanStartDate).HasColumnType("Date").IsRequired();
+            //houserentInfo.Property(bs => bs.LoanStartDate).HasColumnType("Date").IsRequired(false);
             houserentInfo.Property(bs => bs.LoanAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             houserentInfo.Property(bs => bs.PaidAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             houserentInfo.Property(bs => bs.RentAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);

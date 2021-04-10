@@ -14,8 +14,6 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             insuranceInfo.Property(bs => bs.InsuranceTitle).HasMaxLength(100).IsRequired();
             insuranceInfo.Property(bs => bs.InsuranceAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
             insuranceInfo.Property(bs => bs.InsuranceReturnPercentage).HasMaxLength(100);
-            insuranceInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
-            insuranceInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             insuranceInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             insuranceInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 

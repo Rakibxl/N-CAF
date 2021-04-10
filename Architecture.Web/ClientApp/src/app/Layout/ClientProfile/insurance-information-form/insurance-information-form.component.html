@@ -14,11 +14,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'insuranceform.insuranceType.label' | translate}}*</label>
+                            <label class="label">{{'insuranceform.insuranceType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="insuranceTypeId" #insuranceTypeId="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTypeId" required>
-                                <option value="1">Car Insurance</option>
-                                <option value="2">Home Insurance</option>
-                                <option value="3">Health Insurance</option>
+                                <option *ngFor="let option of insuranceTypeDropdown" [value]="option.insuranceTypeId">{{option.description}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="insuranceTypeId.valid || insuranceTypeId.pristine" class="text-danger">{{'insuranceform.insuranceType.required' | translate}}</p>
@@ -26,7 +24,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'insuranceform.insuranceTitle.label' | translate}}*</label>
+                            <label class="label">{{'insuranceform.insuranceTitle.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'insuranceform.insuranceTitle.placeholder' | translate}}" name="insuranceTitle" #insuranceTitle="ngModel" [(ngModel)]="insuranceInfoForm.insuranceTitle"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -35,7 +33,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.startDate.label' | translate}}*</label>
+                            <label class="label">{{'common.startDate.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="insuranceInfoForm.startDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.label' | translate}}</p>
@@ -43,8 +41,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.endDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="insuranceInfoForm.endDate" required />
+                            <label class="label">{{'common.endDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="insuranceInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
                         </div>
@@ -52,7 +50,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'insuranceform.insuranceAmount.label' | translate}}*</label>
+                            <label class="label">{{'insuranceform.insuranceAmount.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'insuranceform.insuranceAmount.placeholder' | translate}}" name="insuranceAmount" #insuranceAmount="ngModel" [(ngModel)]="insuranceInfoForm.insuranceAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>

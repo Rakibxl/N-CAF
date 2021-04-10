@@ -39,5 +39,10 @@ namespace Architecture.Core.Entities
         public string ApplicationPlacedAddress { get; set; }
         public string ApplicationFileNumber { get; set; }
         public DateTime? ApplicationPlacedDate { get; set; }
+        public int? GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
+        public int? ProvinceId { get; set; }
+        public virtual Province Province { get; set; }
+
     }
 }

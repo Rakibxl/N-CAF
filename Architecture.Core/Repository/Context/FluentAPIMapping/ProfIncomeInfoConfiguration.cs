@@ -14,8 +14,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
 
             incomeInfo.Property(bs => bs.YearlyIncome).HasColumnType("decimal(10,2)").HasDefaultValue(0.0).IsRequired();
             incomeInfo.Property(bs => bs.MonthlyIncome).HasColumnType("decimal(10,2)").HasDefaultValue(0.0).IsRequired();
-            incomeInfo.Property(bs => bs.Year).HasColumnType("date").IsRequired();
-            incomeInfo.Property(bs => bs.Month).HasColumnType("date").IsRequired();
+            incomeInfo.Property(bs => bs.Year).HasMaxLength(100);
+            incomeInfo.Property(bs => bs.Month).HasMaxLength(100);
             incomeInfo.Property(bs => bs.Document).HasMaxLength(100);
             incomeInfo.Property(bs => bs.Status).HasMaxLength(100);
             incomeInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");

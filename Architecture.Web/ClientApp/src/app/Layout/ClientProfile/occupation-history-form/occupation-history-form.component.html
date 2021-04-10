@@ -14,7 +14,7 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.jobType.label' | translate}}*</label>
+                            <label class="label">   {{'occupationform.jobType.label' | translate}}<span class="text-danger">* </span></label>
                             <select id="" class="form-control" name="jobTypeId" #jobTypeId="ngModel" [(ngModel)]="occupationInfoForm.jobTypeId" required>
                                 <option *ngFor="let option of jobType" [value]="option.jobTypeId">{{option.jobTypeName}}</option>
                             </select>
@@ -24,8 +24,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.jobHour.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.jobHour.placeholder' | translate}}" name="jobHour" #jobHour="ngModel" [(ngModel)]="occupationInfoForm.jobHour"
+                            <label class="label">   {{'occupationform.jobHour.label' | translate}}<span class="text-danger">* </span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="   {{'occupationform.jobHour.placeholder' | translate}}" name="jobHour" #jobHour="ngModel" [(ngModel)]="occupationInfoForm.jobHour"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="jobHour.valid || jobHour.pristine" class="text-danger">   {{'occupationform.jobHour.required' | translate}}</p>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.contractType.label' | translate}}*</label>
+                            <label class="label">   {{'occupationform.contractType.label' | translate}}<span class="text-danger">* </span></label>
                             <select id="" class="form-control" name="contractTypeId" #contractTypeId="ngModel" [(ngModel)]="occupationInfoForm.contractTypeId" required>
                                 <option *ngFor="let option of contractType" [value]="option.contractTypeId">{{option.contractTypeName}}</option>
                             </select>
@@ -41,28 +41,10 @@
                             <p [hidden]="contractTypeId.valid || contractTypeId.pristine" class="text-danger">   {{'occupationform.contractType.required' | translate}}</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.contractStartDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter   {{'occupationform.username.label' | translate}} startdate" name="contractStartDate" #contractStartDate="ngModel" [(ngModel)]="occupationInfoForm.contractStartDate"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="contractStartDate.valid || contractStartDate.pristine" class="text-danger">   {{'occupationform.contractStartDate.required' | translate}}</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.contractEndDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="contractEndDate" #contractEndDate="ngModel" [(ngModel)]="occupationInfoForm.contractEndDate"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="contractEndDate.valid || contractEndDate.pristine" class="text-danger">   {{'occupationform.contractEndDate.required' | translate}}</p>
-                        </div>
-                    </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.companyName.label' | translate}}*</label>
+                            <label class="label">   {{'occupationform.companyName.label' | translate}}<span class="text-danger">* </span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.companyName.placeholder' | translate}}" name="companyName" #companyName="ngModel" [(ngModel)]="occupationInfoForm.companyName"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -72,9 +54,26 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
+                            <label class="label">   {{'occupationform.contractStartDate.label' | translate}}<span class="text-danger">* </span></label>
+                            <input type="date" autocomplete="off" class="form-control" placeholder="Enter   {{'occupationform.username.label' | translate}} startdate" name="contractStartDate" #contractStartDate="ngModel" [(ngModel)]="occupationInfoForm.contractStartDate"
+                                   required />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="contractStartDate.valid || contractStartDate.pristine" class="text-danger">   {{'occupationform.contractStartDate.required' | translate}}</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">   {{'occupationform.contractEndDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" class="form-control" name="contractEndDate" #contractEndDate="ngModel" [(ngModel)]="occupationInfoForm.contractEndDate" />
+                            <p class="text-info d-none">Info message</p>
+                            <p [hidden]="contractEndDate.valid || contractEndDate.pristine" class="text-danger">   {{'occupationform.contractEndDate.required' | translate}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
                             <label class="label">   {{'occupationform.vatNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.vatNo.placeholder' | translate}}" name="vatNo" #vatNo="ngModel" [(ngModel)]="occupationInfoForm.vatNo"
-                                    />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.vatNo.placeholder' | translate}}" name="vatNo" #vatNo="ngModel" [(ngModel)]="occupationInfoForm.vatNo" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -83,20 +82,14 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.legalCompanyAddress.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.legalCompanyAddress.placeholder' | translate}}" name="legalCompanyAddress" #legalCompanyAddress="ngModel" [(ngModel)]="occupationInfoForm.legalCompanyAddress"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.legalCompanyAddress.placeholder' | translate}}" name="legalCompanyAddress" #legalCompanyAddress="ngModel" [(ngModel)]="occupationInfoForm.legalCompanyAddress" />
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.officeAddress.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.officeAddress.placeholder' | translate}}" name="officeAddress" #officeAddress="ngModel" [(ngModel)]="occupationInfoForm.officeAddress"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.officeAddress.placeholder' | translate}}" name="officeAddress" #officeAddress="ngModel" [(ngModel)]="occupationInfoForm.officeAddress" />
                         </div>
                     </div>
 
@@ -104,64 +97,43 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.branchAddress.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.branchAddress.placeholder' | translate}}" name="branchAddress" #branchAddress="ngModel" [(ngModel)]="occupationInfoForm.branchAddress"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.branchAddress.placeholder' | translate}}" name="branchAddress" #branchAddress="ngModel" [(ngModel)]="occupationInfoForm.branchAddress" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.chamberOfCommerceRegNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.chamberOfCommerceRegNo.placeholder' | translate}}" name="chamberOfCommerceRegNo" #chamberOfCommerceRegNo="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceRegNo"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.chamberOfCommerceRegNo.placeholder' | translate}}" name="chamberOfCommerceRegNo" #chamberOfCommerceRegNo="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceRegNo" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.chamberOfCommerceCityName.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.chamberOfCommerceCityName.placeholder' | translate}}" name="chamberOfCommerceCityName" #chamberOfCommerceCityName="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceCityName"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.chamberOfCommerceCityName.placeholder' | translate}}" name="chamberOfCommerceCityName" #chamberOfCommerceCityName="ngModel" [(ngModel)]="occupationInfoForm.chamberOfCommerceCityName" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.reaNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.reaNo.placeholder' | translate}}" name="reaNo" #reaNo="ngModel" [(ngModel)]="occupationInfoForm.reaNo"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.reaNo.placeholder' | translate}}" name="reaNo" #reaNo="ngModel" [(ngModel)]="occupationInfoForm.reaNo" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.atecoNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.atecoNo.placeholder' | translate}}" name="atecoNo" #atecoNo="ngModel" [(ngModel)]="occupationInfoForm.atecoNo"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.atecoNo.placeholder' | translate}}" name="atecoNo" #atecoNo="ngModel" [(ngModel)]="occupationInfoForm.atecoNo" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.sciaNo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.sciaNo.placeholder' | translate}}" name="sciaNo" #sciaNo="ngModel" [(ngModel)]="occupationInfoForm.sciaNo"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.sciaNo.placeholder' | translate}}" name="sciaNo" #sciaNo="ngModel" [(ngModel)]="occupationInfoForm.sciaNo" />
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.sciaCityName.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.sciaCityName.placeholder' | translate}}" name="sciaCityName" #sciaCityName="ngModel" [(ngModel)]="occupationInfoForm.sciaCityName"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.sciaCityName.placeholder' | translate}}" name="sciaCityName" #sciaCityName="ngModel" [(ngModel)]="occupationInfoForm.sciaCityName" />
                         </div>
                     </div>
 
@@ -179,21 +151,17 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6" *ngIf="occupationInfoForm.isShareHolder">
                         <div class="caf-input-group">
-                            <label class="label">   {{'occupationform.percentageOfShare.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.percentageOfShare.placeholder' | translate}}" name="percentageOfShare" #percentageOfShare="ngModel" [(ngModel)]="occupationInfoForm.percentageOfShare"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="percentageOfShare.valid || percentageOfShare.pristine" class="text-danger">   {{'occupationform.percentageOfShare.required' | translate}}</p>
+                            <label class="label">   {{'occupationform.percentageOfShare.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.percentageOfShare.placeholder' | translate}}" name="percentageOfShare" #percentageOfShare="ngModel" [(ngModel)]="occupationInfoForm.percentageOfShare" />                            
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.notaioInfo.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.notaioInfo.placeholder' | translate}}" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="occupationInfoForm.notaioInfo"
-                                    />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.notaioInfo.placeholder' | translate}}" name="notaioInfo" #notaioInfo="ngModel" [(ngModel)]="occupationInfoForm.notaioInfo" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>
@@ -202,8 +170,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">   {{'occupationform.companyRepresentative.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.companyRepresentative.placeholder' | translate}}" name="companyRepresentative" #companyRepresentative="ngModel" [(ngModel)]="occupationInfoForm.companyRepresentative"
-                                    />
+                            <input type="text" autocomplete="off" class="form-control" placeholder="   {{'occupationform.companyRepresentative.placeholder' | translate}}" name="companyRepresentative" #companyRepresentative="ngModel" [(ngModel)]="occupationInfoForm.companyRepresentative" />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
                         </div>

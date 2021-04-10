@@ -10,13 +10,10 @@ export class profDocumentInfo extends Auditable {
     //public virtual DocumentType DocumentType { get; set; }
 
     public DocumentTypeName: string;
-
     public documentTypeId: number;
-
     public documentName: string;
-
+    public documentNumber: string;
     public purposeOfDocument: string;
-
     public issuedBy: string
 
     public issuedDate: Date;

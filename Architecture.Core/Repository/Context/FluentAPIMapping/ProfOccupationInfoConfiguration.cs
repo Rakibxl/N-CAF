@@ -16,8 +16,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             occupationInfo.HasOne(v => v.ProfBasicInfo).WithMany(m => m.ProfOccupationInfos).HasForeignKey(f => f.ProfileId).OnDelete(DeleteBehavior.Cascade);
 
             occupationInfo.Property(bs => bs.JobHour).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
-            occupationInfo.Property(bs => bs.ContractStartDate).HasColumnType("Date").IsRequired();
-            occupationInfo.Property(bs => bs.ContractEndDate).HasColumnType("Date").IsRequired();
+            //occupationInfo.Property(bs => bs.ContractStartDate).HasColumnType("Date").IsRequired();
+            //occupationInfo.Property(bs => bs.ContractEndDate).HasColumnType("Date").IsRequired();
             occupationInfo.Property(bs => bs.CompanyName).HasMaxLength(100).IsRequired();
             occupationInfo.Property(bs => bs.VATNo).HasMaxLength(100);
             occupationInfo.Property(bs => bs.LegalCompanyAddress).HasMaxLength(500);

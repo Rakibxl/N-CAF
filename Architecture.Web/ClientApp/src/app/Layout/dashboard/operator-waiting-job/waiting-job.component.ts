@@ -18,8 +18,11 @@ export class WaitingJobComponent implements OnInit {
 
     ngOnInit() {
         this.offerService.getOperatorPendingOffer().subscribe((res: APIResponse) => {
-            console.log("Success", res);
+            console.log("oeprator pending job:", res);
             this.waitingJobOffers = res.data || [];
+            this.waitingJobOffers.forEach(item => {
+                item.jobTitle = item.jobInfo.title || ""
+            })
         }, error => {
             console.log("Error ", error);
         });
@@ -53,9 +56,9 @@ export class WaitingJobComponent implements OnInit {
         tableName: 'New Job',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
-            { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
-            { headerName: 'Description', width: '15%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
+            { headerName: 'Offer Name', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
+            { headerName: 'Request By', width: '15%', internalName: 'profileName', sort: true, type: "" },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
             { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
             { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
             { headerName: 'Details', width: '7%', internalName: 'details-dashboard', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-check text-success", btnTitle: 'Accept' },

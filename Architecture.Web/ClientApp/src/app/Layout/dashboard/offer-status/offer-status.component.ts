@@ -69,7 +69,7 @@ export class OfferStatusComponent implements OnInit {
         enabledColumnFilter: false,
         enabledDataLength: true,
         enabledReflow: true,
-        enabledViewDetails: false
+        enabledViewDetails: false,
     };
 
 }

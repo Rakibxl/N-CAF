@@ -5,6 +5,7 @@ import { DocumentInfoService } from '../../../Shared/Services/ClientProfile/docu
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 
 @Component({
@@ -16,14 +17,15 @@ export class DocumentInformationFormComponent implements OnInit {
 
     public documentInfoForm = new profDocumentInfo();
     fileToUpload: File = null;
-    constructor(private documentInfoService: DocumentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private documentInfoService: DocumentInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private documentInfoId: number;
+    public documentTypeDropdown: any[] = [];
 
-    ngOnInit() {
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.documentInfoId = +this.route.snapshot.paramMap.get("id") || 0;
-
+        this.documentTypeDropdown = await this.dropdownService.getDocumentType() || [];
         console.log("this.profileId:", this.profileId, "this.documentInfoId", this.documentInfoId);
         if (this.profileId != 0 && this.documentInfoId != 0) {
             this.getDocument()

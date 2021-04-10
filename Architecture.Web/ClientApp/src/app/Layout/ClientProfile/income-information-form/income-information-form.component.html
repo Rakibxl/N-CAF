@@ -16,11 +16,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'incomeform.incomeType.label' | translate}}*</label>
+                            <label class="label">{{'incomeform.incomeType.label' | translate}}<span class="text-danger">*</span></label>
                             <select class="form-control" name="incomeTypeId" #incomeTypeId="ngModel" [(ngModel)]="incomeInfoForm.incomeTypeId" required>
-                                <option value="1">Single Income</option>
-                                <option value="2">Double Income</option>
-                                <option value="3">Business Income</option>
+                                <option *ngFor="let option of incomeTypeDropdown" [value]="option.incomeTypeId">{{option.incomeTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="incomeTypeId.valid || incomeTypeId.pristine" class="text-danger">{{'incomeform.documenttype.label' | translate}}IncomeType is required.</p>
@@ -28,38 +26,42 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'incomeform.yearlyIncome.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="{{'incomeform.yearlyIncome.placeholder' | translate}}"
+                            <label class="label">{{'incomeform.yearlyIncome.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" name="yearlyIncome" #yearlyIncome="ngModel" [(ngModel)]="incomeInfoForm.yearlyIncome" placeholder="{{'incomeform.yearlyIncome.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="yearlyIncome.valid || yearlyIncome.pristine" class="text-danger">{{'incomeform.yearlyIncome.label' | translate}}</p>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'incomeform.monthlyIncome.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="{{'incomeform.monthlyIncome.placeholder' | translate}}"
+                            <label class="label">{{'incomeform.monthlyIncome.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" name="monthlyIncome" #monthlyIncome="ngModel" [(ngModel)]="incomeInfoForm.monthlyIncome" class="form-control" placeholder="{{'incomeform.monthlyIncome.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="monthlyIncome.valid || monthlyIncome.pristine" class="text-danger">{{'incomeform.monthlyIncome.required' | translate}}</p>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'incomeform.year.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="year" #year="ngModel" [(ngModel)]="incomeInfoForm.year" required />
+                            <label class="label">{{'incomeform.year.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" name="year" #year="ngModel" [(ngModel)]="incomeInfoForm.year" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="year.valid || year.pristine" class="text-danger">{{'incomeform.year.required' | translate}}</p>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'incomeform.month.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="month" #month="ngModel" [(ngModel)]="incomeInfoForm.month" required />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="month.valid || month.pristine" class="text-danger">{{'incomeform.month.label' | translate}}Month is required.</p>
+                            <label class="label">{{'incomeform.month.label' | translate}}<span class="text-danger">*</span></label>
+                            <select class="form-control" name="incomeTypeId" #incomeTypeId="ngModel" [(ngModel)]="incomeInfoForm.month" required>
+                                <option *ngFor="let option of monthNames" [value]="option">{{option}}</option>
+                            </select>                            
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'incomeform.documents.label' | translate}}</label>
@@ -69,6 +71,7 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'common.status.label' | translate}}</label>
@@ -80,6 +83,7 @@
                             <p class="text-danger d-none">Danger message</p>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-12">

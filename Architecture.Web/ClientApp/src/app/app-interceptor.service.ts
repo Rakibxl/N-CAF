@@ -17,6 +17,7 @@ export class AppInterceptorService implements HttpInterceptor {
     handleError = (error: HttpErrorResponse, request?, next?) => {
         console.log("api error:", error);
         console.log("api error.message:", error.error.message);
+        debugger;
         setTimeout(() => {
             this.alertService.fnLoading(false);   
             let statusCode = error.status;
@@ -32,8 +33,8 @@ export class AppInterceptorService implements HttpInterceptor {
             else if (statusCode == 400) {
                 errorMsg = "Validation failed for " + error.error.errors[0].propertyName + ". " 
                 + error.error.errors[0].errorList[0];
-            }else if (statusCode == 500) {
-                errorMsg = error.error;
+            } else if (statusCode == 500) {
+                errorMsg = (error.error.message) ||"You may have application issues. Please contact with system admin.";
             }
 
             //showing message            

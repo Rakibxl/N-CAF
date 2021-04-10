@@ -17,8 +17,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             workerInfo.Property(bs => bs.TaxCode).HasMaxLength(100).IsRequired();
             workerInfo.Property(bs => bs.ContractNumber).HasMaxLength(100).IsRequired();
             workerInfo.Property(bs => bs.MonthlySalary).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
-            workerInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
-            workerInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
+            //workerInfo.Property(bs => bs.StartDate).HasColumnType("Date").IsRequired();
+            //workerInfo.Property(bs => bs.EndDate).HasColumnType("Date").IsRequired();
             workerInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             workerInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
 

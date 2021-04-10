@@ -18,10 +18,11 @@ namespace Architecture.Core.Entities
         public string AppartmentNo { get; set; }
         public string PostalCode { get; set; }
         public string CityName { get; set; }
-        public string Province { get; set; }
+        public int? ProvinceId { get; set; }
+        public Province Province { get; set; }
         public string State { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string Active { get; set; }
 
     }

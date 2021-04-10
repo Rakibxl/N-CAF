@@ -5,6 +5,7 @@ import { AssetInfoService } from '../../../Shared/Services/ClientProfile/asset-i
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-asset-information-form',
@@ -14,13 +15,17 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class AssetInformationFormComponent implements OnInit {
     public assetInfoForm = new profAssetInfo();
 
-    constructor(private assetInfoService: AssetInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private assetInfoService: AssetInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number = null;
     private assetInfoId: number = null;
+    public assetTypeDropdown: any[] = [];
+    public ownerTypeDropdown: any[] = [];
 
-    public ngOnInit() {
+    public async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.assetInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.assetTypeDropdown = await this.dropdownService.getAssetType() || [];
+        this.ownerTypeDropdown = await this.dropdownService.getOwnerType() || [];
 
         console.log("this.profileId:", this.profileId, "this.assetInfoId", this.assetInfoId);
         if (this.profileId != 0 && this.assetInfoId != 0) {

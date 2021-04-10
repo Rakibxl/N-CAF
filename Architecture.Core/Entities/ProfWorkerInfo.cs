@@ -16,8 +16,8 @@ namespace Architecture.Core.Entities
         public string TaxCode { get; set; }
         public string ContractNumber { get; set; }
         public decimal MonthlySalary { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string Status { get; set; }
 
     }

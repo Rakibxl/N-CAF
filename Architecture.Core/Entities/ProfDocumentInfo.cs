@@ -15,6 +15,7 @@ namespace Architecture.Core.Entities
         public int? DocumentTypeId { get; set; }
         public virtual DocumentType DocumentType { get; set; }
         public string DocumentName { get; set; }
+        public string DocumentNumber { get; set; }
         public string IssuedBy { get; set; }
         public DateTime? IssuedDate { get; set; }
         public DateTime? ExpiryDate { get; set; }

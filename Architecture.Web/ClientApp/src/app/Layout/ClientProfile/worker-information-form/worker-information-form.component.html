@@ -16,10 +16,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'workerform.workerType.label' | translate}}*</label>
+                            <label class="label">{{'workerform.workerType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="workerTypeId" #workerTypeId="ngModel" [(ngModel)]="workerInfoForm.workerTypeId" required>
-                                <option value="1">Company Worker</option>
-                                <option value="2">Domestic Worker</option>
+                                <option *ngFor="let option of workerTypeDropdown" [value]="option.workerTypeId">{{option.workerTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="workerTypeId.valid || workerTypeId.pristine" class="text-danger">{{'workerform.workerType.placeholder' | translate}}</p>
@@ -27,7 +26,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'workerform.name.label' | translate}}*</label>
+                            <label class="label">{{'workerform.name.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.name.placeholder' | translate}}" name="name" #name="ngModel" [(ngModel)]="workerInfoForm.name"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -36,7 +35,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'workerform.surname.label' | translate}}*</label>
+                            <label class="label">{{'workerform.surname.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.surname.placeholder' | translate}}" name="surName" #surName="ngModel" [(ngModel)]="workerInfoForm.surName"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -45,7 +44,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.taxCode.label' | translate}}*</label>
+                            <label class="label">{{'common.taxCode.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.taxCode.placeholder' | translate}}" name="taxCode" #taxCode="ngModel" [(ngModel)]="workerInfoForm.taxCode"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -54,7 +53,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'workerform.contractNumber.label' | translate}}*</label>
+                            <label class="label">{{'workerform.contractNumber.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.contractNumber.label' | translate}}" name="contractNumber" #contractNumber="ngModel" [(ngModel)]="workerInfoForm.contractNumber"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -63,8 +62,8 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'workerform.monthlySalary.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'workerform.monthlySalary.placeholder' | translate}}" name="monthlySalary" #monthlySalary="ngModel" [(ngModel)]="workerInfoForm.monthlySalary"
+                            <label class="label">{{'workerform.monthlySalary.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'workerform.monthlySalary.placeholder' | translate}}" name="monthlySalary" #monthlySalary="ngModel" [(ngModel)]="workerInfoForm.monthlySalary"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="monthlySalary.valid || monthlySalary.pristine" class="text-danger">{{'workerform.monthlySalary.required' | translate}}</p>
@@ -72,15 +71,15 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.startDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="workerInfoForm.startDate" />
+                            <label class="label">{{'common.startDate.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="workerInfoForm.startDate"  required/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">{{'common.startDate.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.endDate.label' | translate}}*</label>
+                            <label class="label">{{'common.endDate.label' | translate}}</label>
                             <input type="date" autocomplete="off" class="form-control" name="endDate" #endDate="ngModel" [(ngModel)]="workerInfoForm.endDate" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
@@ -105,7 +104,7 @@
                                 <i class="pe-7s-back pr-1"></i>
                                 {{'common.back.label' | translate}}
                             </button>
-                            <button class="caf-btn-primary-outline">
+                            <button class="caf-btn-primary-outline" type="submit"  [disabled]="!workerInfoInputForm.form.valid">
                                 <i class="fa fa-save pr-1"></i>  {{'common.save.label' | translate}}
                             </button>
                         </div>

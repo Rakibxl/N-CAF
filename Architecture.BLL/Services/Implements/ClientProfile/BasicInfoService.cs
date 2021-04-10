@@ -81,8 +81,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 }
                 else
                 {
-                    basicInfo.BranchInfoId= _currentUserService.BranchInfoId!=null? int.Parse( _currentUserService.BranchInfoId) : null;
-                    //basicInfo
+                    basicInfo.BranchInfoId= (_currentUserService.BranchInfoId!=null && _currentUserService.BranchInfoId != "") ? int.Parse( _currentUserService.BranchInfoId) : null;                    
                     result = await AddAsync(basicInfo);
                 }
                 return result;

@@ -5,6 +5,7 @@ import { MovementInfoService } from '../../../Shared/Services/ClientProfile/move
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-movement-information-form',
@@ -15,12 +16,16 @@ export class MovementInformationFormComponent implements OnInit {
 
     public movementInfoForm = new profMovementInfo();
 
-    constructor(private movementInfoService: MovementInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private movementInfoService: MovementInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private movementInfoId: number;
-    ngOnInit() {
+    public countryNameDropdown: any[] = [];
+
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.movementInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+
+        this.countryNameDropdown = await this.dropdownService.getCountryName() || [];
 
         console.log("this.profileId:", this.profileId, "this.movementInfoId", this.movementInfoId);
         if (this.profileId != 0 && this.movementInfoId != 0) {

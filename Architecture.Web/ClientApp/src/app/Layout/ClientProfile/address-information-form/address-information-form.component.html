@@ -14,11 +14,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'addressform.addressType.label' | translate}}*</label>
+                            <label class="label">{{'addressform.addressType.label' | translate}} <span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.addressTypeId" required>
-                                <option value="1">Permanent</option>
-                                <option value="2">Temporary</option>
-                                <option value="3">Previous Permanent</option>
+                                <option *ngFor="let option of addressTypeDropdown" [value]="option.addressTypeId">{{option.addressTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="addressTypeId.valid || addressTypeId.pristine" class="text-danger">{{'addressform.addressType.required' | translate}}</p>
@@ -26,7 +24,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.cityName.label' | translate}}*</label>
+                            <label class="label">{{'common.cityName.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="cityName" [(ngModel)]="addressInfoForm.cityName" #cityName="ngModel" class="form-control" placeholder="{{'common.cityName.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -36,17 +34,20 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.province.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" name="province" [(ngModel)]="addressInfoForm.province" #province="ngModel" class="form-control" placeholder="{{'common.province.placeholder' | translate}}"
-                                   required />
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="province.valid || province.pristine" class="text-danger">{{'common.province.required' | translate}}</p>
+                            <label class="label">{{'common.province.label' | translate}}<span class="text-danger">*</span></label>
+                            <select id="" class="form-control" name="addressTypeId" #addressTypeId="ngModel" [(ngModel)]="addressInfoForm.provinceId" required>
+                                <option *ngFor="let option of provinceDropdown" [value]="option.provinceId">{{option.description}}</option>
+                            </select>
+                            <!--<input type="text" autocomplete="off" name="province" [(ngModel)]="addressInfoForm.province" #province="ngModel" class="form-control" placeholder="{{'common.province.placeholder' | translate}}"
+           required />
+    <p class="text-info d-none">Info message</p>
+    <p [hidden]="province.valid || province.pristine" class="text-danger">{{'common.province.required' | translate}}</p>-->
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.state.label' | translate}}*</label>
+                            <label class="label">{{'common.state.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="state" [(ngModel)]="addressInfoForm.state" #state="ngModel" class="form-control" placeholder="{{'common.state.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -56,7 +57,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.postalCode.label' | translate}}*</label>
+                            <label class="label">{{'common.postalCode.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="postalCode" [(ngModel)]="addressInfoForm.postalCode" #postalCode="ngModel" class="form-control" placeholder="{{'common.postalCode.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -65,7 +66,7 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'addressform.roadName.label' | translate}}*</label>
+                            <label class="label">{{'addressform.roadName.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="roadName" [(ngModel)]="addressInfoForm.roadName" #roadName="ngModel" class="form-control" placeholder="{{'addressform.roadName.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -85,7 +86,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'addressform.buildingNo.label' | translate}}*</label>
+                            <label class="label">{{'addressform.buildingNo.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="buildingNo" [(ngModel)]="addressInfoForm.buildingNo" #buildingNo="ngModel" class="form-control" placeholder="{{'addressform.buildingNo.placeholder' | translate}}"
                                   required  />
                             <p class="text-info d-none">Info message</p>
@@ -95,7 +96,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'addressform.floorNo.label' | translate}}*</label>
+                            <label class="label">{{'addressform.floorNo.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" name="floorNo" [(ngModel)]="addressInfoForm.floorNo" #floorNo="ngModel" class="form-control" placeholder="{{'addressform.floorNo.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -115,16 +116,16 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.startDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate="ngModel" class="form-control" required />
+                            <label class="label">{{'common.startDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" name="startDate" [(ngModel)]="addressInfoForm.startDate" #startDate="ngModel" class="form-control" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger"> {{'common.startDate.required' | translate}}</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'common.endDate.label' | translate}}*</label>
-                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate="ngModel" class="form-control" required/>
+                            <label class="label">{{'common.endDate.label' | translate}}</label>
+                            <input type="date" autocomplete="off" name="endDate" [(ngModel)]="addressInfoForm.endDate" #endDate="ngModel" class="form-control"/>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="endDate.valid || endDate.pristine" class="text-danger">{{'common.endDate.required' | translate}}</p>
                         </div>

@@ -14,10 +14,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.assetType.label' | translate}}*</label>
+                            <label class="label">{{'assetform.assetType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="assetTypeId" #assetTypeId="ngModel" [(ngModel)]="assetInfoForm.assetTypeId" required>
-                                <option value="1">House</option>
-                                <option value="2">Car</option>
+                                <option *ngFor="let option of assetTypeDropdown" [value]="option.assetTypeId">{{option.assetTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="assetTypeId.valid || assetTypeId.pristine" class="text-danger">{{'assetform.assetType.required' | translate}}</p>
@@ -26,8 +25,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.numberOfAsset.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.numberOfAsset.placeholder' | translate}}" name="numberOfAsset" #numberOfAsset="ngModel" [(ngModel)]="assetInfoForm.numberOfAsset"
+                            <label class="label">{{'assetform.numberOfAsset.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.numberOfAsset.placeholder' | translate}}" name="numberOfAsset" #numberOfAsset="ngModel" [(ngModel)]="assetInfoForm.numberOfAsset"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="numberOfAsset.valid || numberOfAsset.pristine" class="text-danger">{{'assetform.numberOfAsset.placeholder' | translate}}</p>
@@ -36,8 +35,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.equivalentMoneyMax.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.equivalentMoneyMax.placeholder' | translate}}" name="equivalentMoneyMax" #equivalentMoneyMax="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMax"
+                            <label class="label">{{'assetform.equivalentMoneyMax.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.equivalentMoneyMax.placeholder' | translate}}" name="equivalentMoneyMax" #equivalentMoneyMax="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMax"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="equivalentMoneyMax.valid || equivalentMoneyMax.pristine" class="text-danger">{{'assetform.equivalentMoneyMax.required' | translate}}</p>
@@ -46,8 +45,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.equivalentMoneyMin.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.equivalentMoneyMin.placeholder' | translate}}" name="equivalentMoneyMin" #equivalentMoneyMin="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMin"
+                            <label class="label">{{'assetform.equivalentMoneyMin.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.equivalentMoneyMin.placeholder' | translate}}" name="equivalentMoneyMin" #equivalentMoneyMin="ngModel" [(ngModel)]="assetInfoForm.equivalentMoneyMin"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="equivalentMoneyMin.valid || equivalentMoneyMin.pristine" class="text-danger">{{'assetform.equivalentMoneyMin.label' | translate}}</p>
@@ -56,8 +55,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.moneyAverage.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.moneyAverage.placeholder' | translate}}" name="moneyAverage" #moneyAverage="ngModel" [(ngModel)]="assetInfoForm.moneyAverage"
+                            <label class="label">{{'assetform.moneyAverage.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.moneyAverage.placeholder' | translate}}" name="moneyAverage" #moneyAverage="ngModel" [(ngModel)]="assetInfoForm.moneyAverage"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="moneyAverage.valid || moneyAverage.pristine" class="text-danger">{{'assetform.moneyAverage.required' | translate}}</p>
@@ -66,20 +65,17 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.ownerType.label' | translate}}*</label>
+                            <label class="label">{{'assetform.ownerType.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="ownerTypeId" #ownerTypeId="ngModel" [(ngModel)]="assetInfoForm.ownerTypeId" required>
-                                <option value="1">ByBirth</option>
-                                <option value="2">Buy</option>
+                                <option *ngFor="let option of ownerTypeDropdown" [value]="option.ownerTypeId">{{option.ownerTypeName}}</option>
                             </select>
-                            <p class="text-info d-none">Info message</p>
-                            <p [hidden]="ownerTypeId.valid || ownerTypeId.pristine" class="text-danger">{{'assetform.ownerType.required' | translate}}</p>
                         </div>
                     </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.ownershipPercentage.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.ownershipPercentage.placeholder' | translate}}" name="ownershipPercentage" #ownershipPercentage="ngModel" [(ngModel)]="assetInfoForm.ownershipPercentage"
+                            <label class="label">{{'assetform.ownershipPercentage.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.ownershipPercentage.placeholder' | translate}}" name="ownershipPercentage" #ownershipPercentage="ngModel" [(ngModel)]="assetInfoForm.ownershipPercentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="ownershipPercentage.valid || ownershipPercentage.pristine" class="text-danger">{{'assetform.ownershipPercentage.required' | translate}}</p>
@@ -88,7 +84,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.ownerFromDate.label' | translate}}*</label>
+                            <label class="label">{{'assetform.ownerFromDate.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="ownerFromDate" #ownerFromDate="ngModel" [(ngModel)]="assetInfoForm.ownerFromDate" />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="ownerFromDate.valid || ownerFromDate.pristine" class="text-danger">{{'assetform.ownerFromDate.required' | translate}}</p>
@@ -97,8 +93,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.rentAmount.label' | translate}}RentAmount*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.rentAmount.placeholder' | translate}}" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="assetInfoForm.rentAmount"
+                            <label class="label">{{'assetform.rentAmount.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.rentAmount.placeholder' | translate}}" name="rentAmount" #rentAmount="ngModel" [(ngModel)]="assetInfoForm.rentAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="rentAmount.valid || rentAmount.pristine" class="text-danger">{{'assetform.rentAmount.required' | translate}}</p>
@@ -107,7 +103,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.taxAmount.label' | translate}}*</label>
+                            <label class="label">{{'assetform.taxAmount.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.taxAmount.placeholder' | translate}}" name="taxAmount" #taxAmount="ngModel" [(ngModel)]="assetInfoForm.taxAmount"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -117,8 +113,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'assetform.useAblePercentage.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'assetform.useAblePercentage.placeholder' | translate}}" name="useAblePercentage" #useAblePercentage="ngModel" [(ngModel)]="assetInfoForm.useAblePercentage"
+                            <label class="label">{{'assetform.useAblePercentage.label' | translate}}<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" placeholder="{{'assetform.useAblePercentage.placeholder' | translate}}" name="useAblePercentage" #useAblePercentage="ngModel" [(ngModel)]="assetInfoForm.useAblePercentage"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="useAblePercentage.valid || useAblePercentage.pristine" class="text-danger">{{'assetform.useAblePercentage.required' | translate}}</p>
@@ -147,10 +143,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">{{'common.note.label' | translate}}</label>
-                            <input type="text" autocomplete="off" class="form-control" placeholder="{{'common.note.placeholder' | translate}}" name="note" #note="ngModel" [(ngModel)]="assetInfoForm.note"
-                                    />
-                            <p class="text-info d-none">Info message</p>
-                            <p class="text-danger d-none">Danger message</p>
+                            <textarea rows="3" autocomplete="off" class="form-control" placeholder="{{'common.note.placeholder' | translate}}" name="note" #note="ngModel" [(ngModel)]="assetInfoForm.note"> </textarea>
                         </div>
                     </div>
 

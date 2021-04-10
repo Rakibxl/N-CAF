@@ -26,9 +26,9 @@ export class profHouseRentInfo extends Auditable {
 
     public endDate: Date;
 
-    public monthlyRentAmount: number;
+    public monthlyRentAmount: number=0;
 
-    public serviceChargeAmount: number;
+    public serviceChargeAmount: number=0;
 
     public registrationInfo: string;
 
@@ -44,7 +44,7 @@ export class profHouseRentInfo extends Auditable {
 
     public isJoined: boolean
 
-    public sharePercent: number;
+    public sharePercent: number=0;
 
     public foglioNo: string;
 
@@ -74,16 +74,16 @@ export class profHouseRentInfo extends Auditable {
 
     public hasLoan: boolean
 
-    public loanStatusTypeID: number
+    public loanStatusTypeId: number
 
         //    public int LoanStatusTypeID { get; set; }
     //    public virtual LoanStatusType LoanStatusType { get; set; }
     
     public loanStartDate: Date
 
-    public loanAmount: number
+    public loanAmount: number = 0;
 
-    public paidAmount: number
+    public paidAmount: number = 0;
 
     public loanInterestTypeId: number
 
@@ -91,11 +91,11 @@ export class profHouseRentInfo extends Auditable {
 
     //    public virtual LoanInterestType LoanInterestType { get; set; }
     
-    public loanPeriod: number
+    public loanPeriod: number = 0;
 
     public isRentByOwner: boolean
 
-    public rentAmount: boolean
+    public rentAmount: number = 0;
     
     
 

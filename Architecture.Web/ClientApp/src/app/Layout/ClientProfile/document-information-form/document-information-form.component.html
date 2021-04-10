@@ -14,11 +14,9 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.documenttype.label' | translate}}*</label>
+                            <label class="label">{{'documentform.documenttype.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId" required>
-                                <option value="1">Passport</option>
-                                <option value="2">Driving License</option>
-                                <option value="3">National Id</option>
+                                <option *ngFor="let option of documentTypeDropdown" [value]="option.documentTypeId">{{option.documentTypeName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="documentTypeId.valid || documentTypeId.pristine" class="text-danger">{{'documentform.documenttype.required' | translate}}</p>
@@ -26,17 +24,23 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.documentname.label' | translate}}*</label>
+                            <label class="label">{{'documentform.documentname.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" name="documentName" #documentName="ngModel" [(ngModel)]="documentInfoForm.documentName" placeholder="{{'documentform.documentname.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="documentName.valid || documentName.pristine" class="text-danger">{{'documentform.documentname.required' | translate}}</p>
                         </div>
                     </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">{{'documentform.documentnumber.label' | translate}}</label>
+                            <input type="text" autocomplete="off" class="form-control" name="documentNumber" #documentNumber="ngModel" [(ngModel)]="documentInfoForm.documentNumber" placeholder="{{'documentform.documentnumber.placeholder' | translate}}"/>
+                        </div>
+                    </div>
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.issuedBy.label' | translate}}*</label>
+                            <label class="label">{{'documentform.issuedBy.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" name="issuedBy" #issuedBy="ngModel" [(ngModel)]="documentInfoForm.issuedBy" placeholder="{{'documentform.issuedBy.placeholder' | translate}}"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -46,7 +50,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.issuedDate.label' | translate}}*</label>
+                            <label class="label">{{'documentform.issuedDate.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="issuedDate" #issuedDate="ngModel" [(ngModel)]="documentInfoForm.issuedDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="issuedDate.valid || issuedDate.pristine" class="text-danger">{{'documentform.issuedDate.required' | translate}}</p>
@@ -55,7 +59,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.expiryDate.label' | translate}}*</label>
+                            <label class="label">{{'documentform.expiryDate.label' | translate}}<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="expiryDate" #expiryDate="ngModel" [(ngModel)]="documentInfoForm.expiryDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="expiryDate.valid || expiryDate.pristine" class="text-danger">{{'documentform.expiryDate.required' | translate}}</p>
@@ -64,9 +68,9 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">{{'documentform.purposeOfDocument.label' | translate}}*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="purposeOfDocument" #purposeOfDocument="ngModel" [(ngModel)]="documentInfoForm.purposeOfDocument" placeholder="{{'documentform.purposeOfDocument.placeholder' | translate}}"
-                                   required />
+                            <label class="label">{{'documentform.purposeOfDocument.label' | translate}}<span class="text-danger">*</span></label>
+                            <textarea autocomplete="off" class="form-control" name="purposeOfDocument" #purposeOfDocument="ngModel" [(ngModel)]="documentInfoForm.purposeOfDocument" placeholder="{{'documentform.purposeOfDocument.placeholder' | translate}}"
+                                     rows="3" required ></textarea>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="purposeOfDocument.valid || purposeOfDocument.pristine" class="text-danger">{{'documentform.purposeOfDocument.required' | translate}}</p>
                         </div>
@@ -89,7 +93,7 @@
                                     </div>
 
                                 <!-- Upload Finished -->
-                                    <div class="js-upload-finished mt-3">
+                                    <div class="js-upload-finished mt-3" *ngIf="(documentInfoForm.urls||[]).length>0">
                                         <h3>{{'documentform.documents.label' | translate}}</h3>
                                         <div class="list-group" *ngFor="let file of documentInfoForm.urls">
                                             <a href="{{file}}"

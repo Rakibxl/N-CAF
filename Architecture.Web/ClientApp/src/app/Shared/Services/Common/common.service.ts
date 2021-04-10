@@ -63,10 +63,10 @@ export class CommonService {
     jQuery('.spinner-overlay').hide();
   }
 
-  getDateToSetForm(dateVal: any) {
+    getDateToSetForm(dateVal: any) {
     if (!dateVal || dateVal == '0000-00-00' || dateVal == '0000-00-00 00:00:00') {
       return '';
-    }
+        }
     return _moment(dateVal).isValid() ? _moment(dateVal).format('YYYY-MM-DD') : '';
   }
 

@@ -5,6 +5,7 @@ import { ISEEInfoService } from '../../../Shared/Services/ClientProfile/isee-inf
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { DropdownService } from '../../../Shared/Services/Common/dropdown.service';
 
 @Component({
   selector: 'app-isee-information-form',
@@ -14,12 +15,14 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 export class IseeInformationFormComponent implements OnInit {
     public iseeInfoForm = new profISEEInfo();
 
-    constructor(private iseeInfoService: ISEEInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private iseeInfoService: ISEEInfoService, private alertService: AlertService, private commonService: CommonService, private router: Router, private route: ActivatedRoute, private dropdownService: DropdownService) { }
     private profileId: number;
     private iseeInfoId: number;
-    ngOnInit() {
+    public iseeClassTypeDropdown: any[] = [];
+    async ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.iseeInfoId = +this.route.snapshot.paramMap.get("id") || 0;
+        this.iseeClassTypeDropdown = await this.dropdownService.getISEEClassType() || [];
 
         console.log("this.profileId:", this.profileId, "this.iseeInfoId", this.iseeInfoId);
         if (this.profileId != 0 && this.iseeInfoId != 0) {

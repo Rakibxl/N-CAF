@@ -67,19 +67,8 @@ namespace Architecture.Web.Controllers.BasicInfo
         {
             try
             {
-                var result = new ProfBasicInfo();
-                //var appUserTypeId = User.FindFirst("AppUserTypeId")?.Value;
-                //if (appUserTypeId != null && int.Parse(appUserTypeId) == 1)
-                //{
-                //    //var user = await _userManager.GetUserAsync(User);
-                //    var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                //    var UserId = (uId != null && uId != string.Empty) ? Guid.Parse(uId) : Guid.Empty;
-                //    result = await _basicInfoService.GetByRefId(UserId);
-                //}
-                //else
-                //{
+                var result = new ProfBasicInfo();               
                 result = await _basicInfoService.GetById(profileId);
-                //}
                 return OkResult(result);
             }
             catch (Exception ex)

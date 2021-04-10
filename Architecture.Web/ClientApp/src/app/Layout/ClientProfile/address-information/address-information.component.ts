@@ -57,17 +57,14 @@ export class AddressInformationComponent implements OnInit {
                 this.addressInfoList = success.data;
 
                 console.log("get address: ", success);
-                this.addressInfoList.forEach(x => {
-                    x.addressTypeName = x.addressType.addressTypeName || "";                   
+                this.addressInfoList.forEach(x => {                  
                     x.startDate = this.commonService.getDateToSetForm(x.startDate);
                     x.endDate = this.commonService.getDateToSetForm(x.endDate);
                 })    
             },
             error => {
             });
-
     }
-
   
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
@@ -75,7 +72,7 @@ export class AddressInformationComponent implements OnInit {
         tableRowIDInternalName: "addressinfoid",
         tableColDef: [
 
-            { headerName: 'Address Type', width: '10%', internalName: 'addressTypeName', sort: true, type: "" },
+            { headerName: 'Address Type', width: '10%', internalName: 'addressType.addressTypeName', sort: true, type: "" },
             { headerName: 'Road Name ', width: '5%', internalName: 'roadName', sort: true, type: "" },
             { headerName: 'Road Number ', width: '5%', internalName: 'roadNo', sort: true, type: "", visible: false },
             { headerName: 'Building Number', width: '5%', internalName: 'buildingNo', sort: true, type: "" },

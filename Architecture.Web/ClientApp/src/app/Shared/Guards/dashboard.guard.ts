@@ -21,6 +21,7 @@ export class DashboardGuard implements CanActivate {
         if (this.authService.isLoggedIn && !this.authService.isTokenExpired) {
             this.authService.currentUser.subscribe(user => this.user = user);
             const path = next.routeConfig.path;
+            debugger;
             if (this.user.appUserTypeId === 2 || this.user.appUserTypeId === 1) {
                 if(path === 'branch-user') return  true;
                 this.router.navigate(['/dashboard/branch-user']);
