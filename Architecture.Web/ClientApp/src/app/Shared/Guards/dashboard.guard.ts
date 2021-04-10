@@ -26,7 +26,7 @@ export class DashboardGuard implements CanActivate {
                 if(path === 'branch-user') return  true;
                 this.router.navigate(['/dashboard/branch-user']);
             } else if (this.user.appUserTypeId === 3) {
-                if(path === 'operator') return  true;
+                if (path === 'operator') return true;
                 this.router.navigate(['/dashboard/operator']);
             } else if (this.user.appUserTypeId === 4) {
                 if (path === 'common') return true;

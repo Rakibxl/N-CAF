@@ -10,8 +10,7 @@ const routes: Routes = [
   {
     path: '',
         children: [
-            { path: '', pathMatch:'full',
-            canActivate: [DashboardGuard]},
+            { path: '', redirectTo: 'branch-user', pathMatch: 'full' },
         { path: 'common',
             component: CommonComponent, data: { extraParameter: 'dashboard' },
         },

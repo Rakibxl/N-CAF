@@ -41,7 +41,8 @@ export class UserLoginComponent implements OnInit {
     this.authService.login(this.loginModel).subscribe(res => {
       console.log("successfully login...");
       console.log(res)
-      this.router.navigate(["/dashboard/common"]);
+      // this.alertService.fnLoading(false);
+      this.router.navigate(["/dashboard/branch-user"]);
       // 
         setTimeout((r) => {
             this.alertService.fnLoading(false);
