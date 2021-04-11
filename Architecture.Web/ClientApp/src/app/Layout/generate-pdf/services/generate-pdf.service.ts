@@ -15,7 +15,11 @@ export class GeneratePdfService {
     this.generatePDFEndPoint = this.baseUrl + 'api/' + 'PDFGenerator/get-pdf';
   }
 
-  generatePDF() {
+  public generatePDF() {
     return this.http.get<APIResponse>(`${this.generatePDFEndPoint}`);
+    }
+
+    public getGeneratePDF(profileId: number, offerInfoId: number) {
+        return this.http.get<APIResponse>(`${this.baseUrl}api/PDFGenerator/GetGeneratedOfferPDF/${profileId}/${offerInfoId}`);
   }
 }

@@ -250,7 +250,7 @@
                                                 </span>
                                                 <span *ngIf="head.sort" class="sort-icon pull-right"> </span>
                                                 <div
-                                                    *ngIf="head.type==''||head.type=='text'||head.type=='hyperlink'||head.type=='checkbox' || head.type==null">
+                                                    *ngIf="head.type==''||head.type=='text'||head.type=='hyperlink'||head.type=='checkbox' || head.type==null || head.type.toLowerCase()=='date' || head.type.toLowerCase()=='custom-badge'">
                                                     {{head.headerName}}
                                                 </div>
                                                 <div *ngIf="head.type=='checkbox-all'"><input type="checkbox"
@@ -311,7 +311,7 @@
                                                 </div>
 
                                                 <div class="d-flex align-items-center" *ngIf="cellCounter+1==fnFilterColDef().length && (dispCol.type=='button'||pTableSetting.enabledEditDeleteBtn || pTableSetting.enabledEditBtn|| pTableSetting.enabledDeleteBtn||pTableSetting.enabledViewDetails)" style="text-align:center;">
-                                                    <div class="action-inline-popup d-flex flex-nowrap" >
+                                                    <div class="action-inline-popup d-flex flex-nowrap">
                                                         <a class="btn text-link d-flex align-items-center" *ngIf="dispCol.type=='button'"
                                                            (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                             <i class="pr-2 {{dispCol.innerBtnIcon}}" *ngIf="(dispCol.innerBtnIcon||'')!=''"> </i> {{body[dispCol.internalName]}}
@@ -339,8 +339,8 @@
                                                     </a>
                                                 </div>
                                                 <div *ngIf="dispCol.type!='hrefLink' && dispCol.displayType=='number'"
-                                                     style="text-align:center;">                                                    
-                                                        {{body[dispCol.internalName]|number}}
+                                                     style="text-align:center;">
+                                                    {{body[dispCol.internalName]|number}}
                                                 </div>
                                                 <div *ngIf="dispCol.type=='custom-button'" style="text-align:center;">
                                                     <button class="btn btn-outline-success p-table-custom-button"
@@ -349,13 +349,16 @@
                                                     </button>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='custom-badge'" style="text-align:center;">
-                                                    <span class="badge badge-primary"> {{fnGetDataFromArraySet(body,dispCol)}}</span>                                                   
+                                                    <span class="badge badge-primary"> {{fnGetDataFromArraySet(body,dispCol)}}</span>
                                                 </div>
                                                 <div *ngIf="dispCol.type=='hyperlink'">
                                                     <a class="p-table-hyperlink"
                                                        (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">{{body[dispCol.internalName]}}</a>
                                                 </div>
                                                 <div *ngIf="(dispCol.type=='' || dispCol.type==null)&& dispCol.displayType!='number'">
+                                                    {{fnGetDataFromArraySet(body,dispCol)}}
+                                                </div>
+                                                <div *ngIf="(dispCol.type=='Date')">
                                                     {{fnGetDataFromArraySet(body,dispCol)}}
                                                 </div>
                                             </td>

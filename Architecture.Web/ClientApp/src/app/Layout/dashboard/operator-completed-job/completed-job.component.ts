@@ -40,6 +40,8 @@ export class CompletedJobComponent implements OnInit {
     public fnPtableCellClick(event: any) {
         if (event.cellName == "apply") {
             this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
+        } else if (event.cellName == "view-details") {
+            this.router.navigate([`/generate-pdf/completed-offer-pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
         }
     }
 
@@ -51,13 +53,14 @@ export class CompletedJobComponent implements OnInit {
         tableClass: "table table-border ",
         tableName: 'Completed Job',
         tableRowIDInternalName: "jobInfoId",
-        tableColDef: [
-            { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
-            { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
-            { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
-            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
-
+        tableColDef: [          
+            { headerName: 'Offer Title', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
+            { headerName: 'Profile Name', width: '15%', internalName: 'profileName', sort: true, type: "" },
+            { headerName: 'Operator Name', width: '25%', internalName: 'acceptedOperatorName', sort: true, type: "" },
+            { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date" },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
+            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "Date" },
+            { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'View' },
         ],
         enabledSearch: true,
         enabledSerialNo: true,

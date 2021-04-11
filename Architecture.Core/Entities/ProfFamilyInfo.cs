@@ -21,7 +21,7 @@ namespace Architecture.Core.Entities
         public string PhoneNumber { get; set; }
         public int? OccupationTypeId { get; set; }
         public virtual OccupationType OccupationType { get; set; }
-        public int? NationlityId { get; set; }
+        public int? NationalityId { get; set; }
         public virtual Nationality Nationality { get; set; }
         public virtual Nationality PreviousNationality { get; set; }
         public int? PreviousNationalityId { get; set; }

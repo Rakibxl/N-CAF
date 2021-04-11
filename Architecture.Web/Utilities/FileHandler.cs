@@ -52,9 +52,9 @@ namespace Architecture.Web.Utilities
             System.IO.Directory.CreateDirectory(path);
             return path;
         }
-        public static string[] GetFiles(string folder)
+        public static string[] GetFiles(string folder,string documents= "documents")
         {
-            var filePath =  Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + "/documents", folder);
+            var filePath =  Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + documents, folder);
             if (Directory.Exists(filePath))
             {
                 string[] fileEntries = Directory.GetFiles(filePath);
@@ -64,7 +64,7 @@ namespace Architecture.Web.Utilities
                     if (uri.IsFile)
                     {
                         string filename = System.IO.Path.GetFileName(uri.LocalPath);
-                        fileEntries[i] ="/assets/documents/" +folder + "/" + filename;
+                        fileEntries[i] ="/assets/"+ documents + "/" +folder + "/" + filename;
                     }
                 }
                

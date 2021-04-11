@@ -4,6 +4,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
+import { AuthService } from '../../../Shared/Services/Users/auth.service';
 
 @Component({
   selector: 'app-current-offer',
@@ -13,10 +14,17 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 export class CurrentOfferComponent implements OnInit {
     public myOffers: JobInfo[] = [];
     public profileId: number = 0;
-    constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute) { }
+    user: import("C:/Working Directory/Projects/C-sharp Projects/National CAF/N-CAF/Architecture.Web/ClientApp/src/app/Shared/Entity/Users/auth").IAuthUser;
+    constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute, private authService: AuthService) { }
 
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
+        if (this.profileId==0) {
+            this.authService.currentUser.subscribe(user => this.user = user);
+            if (this.user.appUserTypeId === 4) {
+
+            }
+        }
         this.offerService.getMyOfferByProfileId(this.profileId).subscribe((res: APIResponse) => {
             this.myOffers = res.data || [];
         }, error => {

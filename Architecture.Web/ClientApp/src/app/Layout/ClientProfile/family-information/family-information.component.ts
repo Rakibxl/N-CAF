@@ -56,10 +56,6 @@ export class FamilyInformationComponent implements OnInit {
                 this.familyInfoList = success.data;
                 console.log("this.familyInfoList ::::", this.familyInfoList );
                 this.familyInfoList .forEach(x => {
-                    x.relationTypeName = x.relationType.relationTypeName|| "";
-                    x.nationalityName = (x.previousNationality ? x.previousNationality.nationalityName:"") || "";
-                    x.residenceScopeName = (x.residenceScope ? x.residenceScope.residenceScopeName:"") || "";
-                    x.occupationTypeName = (x.occupationType ? x.occupationType.occupationTypeName:"") || "";
                     x.dateOfBirth = this.commonService.getDateToSetForm(x.dateOfBirth);
                     x.applicationDate = this.commonService.getDateToSetForm(x.applicationDate);
                     x.applicationPlacedDate = this.commonService.getDateToSetForm(x.applicationPlacedDate);
@@ -78,17 +74,17 @@ export class FamilyInformationComponent implements OnInit {
         tableName: 'Family List',
         tableRowIDInternalName: "assetinfoid",
         tableColDef: [
-            { headerName: 'Relation Type', width: '5%', internalName: 'relationTypeName', sort: true, type: "" },
+            { headerName: 'Relation Type', width: '5%', internalName: 'relationType.relationTypeName', sort: true, type: "" },
             { headerName: 'Name', width: '5%', internalName: 'name', sort: true, type: "" },
             { headerName: 'SurName', width: '5%', internalName: 'surName', sort: true, type: "" },
             { headerName: 'TaxCode', width: '5%', internalName: 'taxCode', sort: true, type: "" },
             { headerName: 'Date Of Birth', width: '5%', internalName: 'dateOfBirth', sort: true, type: "" },
             { headerName: 'Place Of Birth', width: '5%', internalName: 'placeOfBirth', sort: true, type: "" },
             { headerName: 'Phone Number', width: '5%', internalName: 'phoneNumber', sort: true, type: "" },
-            { headerName: 'Nationality', width: '5%', internalName: 'nationalityName', sort: true, type: "" },
-            { headerName: 'Previous Nationality', width: '5%', internalName: 'nationalityName', sort: true, type: "" },
-            { headerName: 'Residence Scope', width: '5%', internalName: 'residenceScopeName', sort: true, type: "" },
-            { headerName: 'Occupation Type', width: '5%', internalName: 'occupationTypeName', sort: true, type: "" },
+            { headerName: 'Nationality', width: '5%', internalName: 'nationality.nationalityName', sort: true, type: "" },
+            { headerName: 'Previous Nationality', width: '5%', internalName: 'previousNationality.nationalityName', sort: true, type: "" },
+            { headerName: 'Residence Scope', width: '5%', internalName: 'residenceScope.residenceScopeName', sort: true, type: "" },
+            { headerName: 'Occupation Type', width: '5%', internalName: 'occupationType.occupationTypeName', sort: true, type: "" },
             { headerName: 'Is Disabled', width: '10%', internalName: 'isDisabled', sort: true, type: "", visible: false },
             { headerName: 'Disabled Percentage', width: '10%', internalName: 'disabledPercentage', sort: true, type: "", visible: false },
             { headerName: 'Yearly Income', width: '10%', internalName: 'yearlyIncome', sort: true, type: "", visible: false },

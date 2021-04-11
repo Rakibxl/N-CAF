@@ -20,6 +20,9 @@ namespace Architecture.BLL.Services.Interfaces
         Task<IEnumerable<OfferInfoVM>> GetOperatorPendingOffer();
         Task<IEnumerable<OfferInfoVM>> GetOperatorCompletedOffer();
         Task<IEnumerable<OfferInfoVM>> GetOperatorProgressOffer();
+        Task<string> OperatorOfferAcceptRequest(int offerInfoId);
+        Task<string> OperatorAcceptedOfferRevertRequest(int offerInfoId);
+        Task<OfferInfo> OperatorChangeOfferStatusRequest(int profileId, int offerInfoId, string status);
         #endregion
     }
 }

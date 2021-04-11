@@ -6,6 +6,7 @@ import { ExcelService } from './service/excel.service';
 import { PrintService } from './service/print.service';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 declare var jQuery: any;
 @Component({
   selector: 'app-p-table',
@@ -709,16 +710,25 @@ export class PTableComponent implements OnInit, DoCheck {
 
     public fnGetDataFromArraySet(body: any, columnSettings: any): string {
         let internalName = columnSettings.internalName;
+        let type = columnSettings.type;
+        let responseValue: any;
         if (internalName.includes(".")) {
             let internalNameSplitter = internalName.split(".");
             if (internalNameSplitter.length == 2) {
-                return (body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]]:"")||"";
+                responseValue= (body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]]:"")||"";
             } else if (internalNameSplitter.length == 3) {
-                return body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]] ? body[(internalNameSplitter[0])][internalNameSplitter[1]][internalNameSplitter[2]]:"":"";
+                responseValue= body[(internalNameSplitter[0])] ? body[(internalNameSplitter[0])][internalNameSplitter[1]] ? body[(internalNameSplitter[0])][internalNameSplitter[1]][internalNameSplitter[2]]:"":"";
             }          
 
         } else {
-            return body[internalName];
+            responseValue= body[internalName];
+        }
+
+        if (type.toLowerCase() == "date") {
+            var datePipe = new DatePipe("en-US");
+            return datePipe.transform(responseValue, 'MM/dd/yyyy');
+        } else {
+            return responseValue;
         }
     }
 

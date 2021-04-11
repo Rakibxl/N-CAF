@@ -116,6 +116,48 @@ namespace Architecture.Web.Controllers.Offer
             }
         }
 
+        [HttpGet("OperatorOfferAcceptRequest/{offerInfoId}")]
+        public async Task<IActionResult> OperatorOfferAcceptRequest(int offerInfoId)
+        {
+            try
+            {
+                var result = await OfferInfoService.OperatorOfferAcceptRequest(offerInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+        
+        [HttpGet("OperatorOfferRevertRequest/{offerInfoId}")]
+        public async Task<IActionResult> OperatorOfferRevertRequest(int offerInfoId)
+        {
+            try
+            {
+                var result = await OfferInfoService.OperatorAcceptedOfferRevertRequest(offerInfoId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        } 
+        
+        [HttpGet("OperatorOfferStatusChange")]
+        public async Task<IActionResult> OperatorOfferStatusChange(int profileId, int offerInfoId, string status)
+        {
+            try
+            {
+                var result = await OfferInfoService.OperatorChangeOfferStatusRequest(profileId, offerInfoId, status);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] OfferInfo model)
         {

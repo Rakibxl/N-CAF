@@ -15,5 +15,6 @@ export class OfferInfo extends Auditable {
     public ValidationDate: Date;
     public OfferStatusId: number;
     public Status: string; 
-    public CurrentUserId: string;                
+    public CurrentUserId: string;
+    public createdDate: string;
 }

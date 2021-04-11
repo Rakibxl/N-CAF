@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
 using Architecture.Web.Controllers.Common;
 using Architecture.Web.Core;
+using Architecture.Web.Utilities;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,22 @@ namespace Architecture.Web.Controllers.PDFGenerator
             {
                 var result = _pdfGeneratorService.GeneratePDF();
                 return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+
+        [HttpGet("GetGeneratedOfferPDF/{profileId}/{offerInfoId}")]
+        public async Task<IActionResult> GetGeneratedOfferPDF(int profileId, int offerInfoId)
+        {
+            try
+            {
+                string folder = profileId.ToString() + "/" + offerInfoId;
+                var urls = FileHandler.GetFiles("BabyBonus", "GeneratedDocuments");
+                return OkResult(urls);
             }
             catch (Exception ex)
             {

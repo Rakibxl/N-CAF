@@ -285,10 +285,11 @@ namespace Architecture.Core.Repository.Context
             {
                 ms.HasKey(g => g.NationalityId);
                 ms.Property(g => g.NationalityName).HasMaxLength(100);
+                ms.Property(g => g.NationalityCode).HasMaxLength(100);
                 ms.HasData(
-                    new Nationality { NationalityId = 1, NationalityName = "Bangladeshi", IsActive = true },
-                    new Nationality { NationalityId = 2, NationalityName = "Italian", IsActive = true },
-                    new Nationality { NationalityId = 3, NationalityName = "Indian", IsActive = true }
+                    new Nationality { NationalityId = 1, NationalityName = "Bangladeshi", NationalityCode="BD", IsActive = true },
+                    new Nationality { NationalityId = 2, NationalityName = "Italian", NationalityCode = "IT", IsActive = true },
+                    new Nationality { NationalityId = 3, NationalityName = "Indian", NationalityCode = "IN", IsActive = true }
                 );
             });
 

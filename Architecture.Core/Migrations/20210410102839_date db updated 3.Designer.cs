@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210410102839_date db updated 3")]
+    partial class datedbupdated3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1993,9 +1995,6 @@ namespace Architecture.Core.Migrations
                     b.Property<Guid?>("CurrentUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DocumentSrc")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
@@ -2037,8 +2036,6 @@ namespace Architecture.Core.Migrations
                     b.HasKey("OfferInfoId");
 
                     b.HasIndex("JobInfoId");
-
-                    b.HasIndex("OfferStatusId");
 
                     b.HasIndex("ProfBasicInfoProfileId");
 
@@ -3898,10 +3895,6 @@ namespace Architecture.Core.Migrations
                     b.HasOne("Architecture.Core.Entities.JobInfo", "JobInfo")
                         .WithMany()
                         .HasForeignKey("JobInfoId");
-
-                    b.HasOne("Architecture.Core.Entities.LU.OfferStatus", "OfferStatus")
-                        .WithMany()
-                        .HasForeignKey("OfferStatusId");
 
                     b.HasOne("Architecture.Core.Entities.ProfBasicInfo", "ProfBasicInfo")
                         .WithMany()

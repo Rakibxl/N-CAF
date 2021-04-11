@@ -7,6 +7,9 @@ import { OccupationInfoService } from '../../../Shared/Services/ClientProfile/oc
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { JobInfoService } from '../../../Shared/Services/Users/job-info.service';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
+import { OfferInfo } from '../../../Shared/Entity/Dashboard/Offer-Info';
+import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
 
 @Component({
@@ -19,15 +22,18 @@ export class OfferComponent implements OnInit {
     public profileId: number = 1;
     public jobInfo: JobInfo = new JobInfo();
     public jobId: number = 0;
+    public offerInfoId: number = 0;
     public occupationInfoList: any[] = [];
     public ptableSettings: IPTableSetting;
 
-    constructor(private router: Router, private clientProfileService: ClientProfileService, private jobInfoService: JobInfoService,
-        private commonService: CommonService, private occupationService: OccupationInfoService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private clientProfileService: ClientProfileService, private jobInfoService: JobInfoService, private offerInfoService: OfferInfoService,
+        private commonService: CommonService, private route: ActivatedRoute, private alertService: AlertService) { }
 
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
         this.jobId = +this.route.snapshot.paramMap.get("jobId") || 0;
+        this.offerInfoId = +this.route.snapshot.paramMap.get("offerId") || 0;
+       
         console.log("profile Id: " + this.profileId, "job Id: ", this.jobId);
         this.fnGetJobById();
         this.loadBasicInfo();
@@ -79,10 +85,29 @@ export class OfferComponent implements OnInit {
             });
     }
 
-    public fnGenerateOfferDocuments() {
-        const url = this.router.serializeUrl(
-            this.router.createUrlTree(['./generate-pdf/pdf/1/1/0'])
-        );
-        window.open(url, '_blank');
+    public fnSubmitOffer() {
+        this.alertService.confirm("Are you confirm, that you will submit this offer for the next level. Before submitting review the documents again",
+            () => {
+                let offerInfo = new OfferInfo();
+                offerInfo.JobId = this.jobId;
+                offerInfo.ProfileId = this.profileId;
+                offerInfo.OfferStatusId = 1;
+                offerInfo.OfferInfoId = this.offerInfoId;
+                this.offerInfoService.submitOffer(offerInfo).subscribe((res) => {
+                    console.log("Response:: ", res);
+                    this.alertService.tosterSuccess("Successfully your offer submitted.");
+                    this.router.navigate([`/dashboard/common/${this.profileId}`]);
+                },
+                    (error) => {
+                        console.log("Error: ", error);
+                    });
+            },
+
+           () => { }        );
+        //const url = this.router.serializeUrl(
+        //    this.router.createUrlTree(['./generate-pdf/pdf/1/1/0'])
+        //);
+        //window.open(url, '_blank');
     }
+
 }

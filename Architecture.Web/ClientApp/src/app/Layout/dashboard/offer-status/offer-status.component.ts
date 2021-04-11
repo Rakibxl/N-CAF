@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OfferInfo } from '../../../Shared/Entity/Dashboard/Offer-Info';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
@@ -11,7 +12,7 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
   styleUrls: ['./offer-status.component.css']
 })
 export class OfferStatusComponent implements OnInit {
-    public myOffers: JobInfo[] = [];
+    public myOffers: OfferInfo[] = [];
     constructor(private router: Router, private offerService: OfferInfoService) { }
 
     ngOnInit() {
@@ -38,7 +39,6 @@ export class OfferStatusComponent implements OnInit {
     }
 
     public fnPtableCellClick(event: any) {
-        debugger
         if (event.cellName == "apply") {
             this.router.navigate([`/generate-pdf/pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
         }
@@ -53,12 +53,13 @@ export class OfferStatusComponent implements OnInit {
         tableName: 'Current Offers',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
-            { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
-            { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
-            { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
-            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Offer Title', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
+            { headerName: 'Profile Name', width: '15%', internalName: 'profileName', sort: true, type: "" },
+            { headerName: 'Operator Name', width: '25%', internalName: 'acceptedOperatorName', sort: true, type: "" },
+            { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date" },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
+            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "Date" },
+            { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'View' },
         ],
         enabledSearch: true,
         enabledSerialNo: true,

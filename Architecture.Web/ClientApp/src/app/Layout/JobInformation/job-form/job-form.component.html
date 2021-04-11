@@ -14,7 +14,7 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">JobTitle*</label>
+                            <label class="label">JobTitle<span class="text-danger">*</span></label>
                             <input type="text" autocomplete="off" class="form-control" name="title" #title="ngModel" [(ngModel)]="jobInfoForm.title" placeholder="Enter job title"
                                    required />
                             <p class="text-info d-none">Info message</p>
@@ -34,7 +34,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">StartDate*</label>
+                            <label class="label">StartDate<span class="text-danger">*</span></label>
                             <input type="date" autocomplete="off" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="jobInfoForm.startDate" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="startDate.valid || startDate.pristine" class="text-danger">StartDate is required.</p>
@@ -64,7 +64,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">JobDeliveryType*</label>
+                            <label class="label">JobDeliveryType<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="jobDeliveryTypeId" #jobDeliveryTypeId="ngModel" [(ngModel)]="jobInfoForm.jobDeliveryTypeId" required>
                                 <option value="1">Normal</option>
                                 <option value="2">Standard</option>
@@ -77,8 +77,8 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">TimeFrameForOperator*</label>
-                            <input type="text" autocomplete="off" class="form-control" name="operatorTimeFrame" #operatorTimeFrame="ngModel" [(ngModel)]="jobInfoForm.operatorTimeFrame" placeholder="Enter time frame" required />
+                            <label class="label">TimeFrameForOperator (Min)<span class="text-danger">*</span></label>
+                            <input type="number" autocomplete="off" class="form-control" name="operatorTimeFrame" #operatorTimeFrame="ngModel" [(ngModel)]="jobInfoForm.operatorTimeFrame" placeholder="Enter time frame" required />
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="operatorTimeFrame.valid || operatorTimeFrame.pristine" class="text-danger">TimeFrameForOperator is required.</p>
                         </div>
