@@ -98,7 +98,6 @@ export class CommonComponent implements OnInit {
 
 
   ngOnInit() {
-    this.generateQuestion();
   }
 
   generateChart() {
@@ -150,73 +149,5 @@ export class CommonComponent implements OnInit {
   viewAppUserReports() {
     this.router.navigate(['/users/app-users']);
   }
-
-
-  generateQuestion() {
-
-    var questionInfoList = [];
-    // basic service , occupation and everything call
-
-    this.questionService.GetUserQuestion().subscribe(
-      (success) => {
-        console.log("get question info: ", success);
-        questionInfoList = success.data;
-
-        // save in session storage array 
-        if ((JSON.parse(sessionStorage.getItem('questioninfo')) || []).length == 0) {
-          sessionStorage.setItem('questioninfo', JSON.stringify(success.data));
-        }
-
-        this.questiontimerSubscribe = timer(4000, 30000).subscribe(x => {
-          let questionInfos = JSON.parse(sessionStorage.getItem('questioninfo')) || [];
-          let displayQuestion = questionInfos.filter(x => x.status == "InActive").length > 0 ? questionInfos.filter(x => x.status == "InActive")[0] : null;
-          if (displayQuestion != null) {
-            questionInfos.forEach(r => { if (r.questionDescription == displayQuestion.questionDescription) r.status = "Active" });
-            console.log("questionInfos", questionInfos);
-            sessionStorage.setItem('questioninfo', JSON.stringify(questionInfos));
-            this.alertService.questionToster(displayQuestion.questionDescription,
-              () => {
-                console.log("Clicked Yes");
-                console.log("displayQuestion", displayQuestion.pageToUrl);
-                if ((displayQuestion.pageToUrl || "") != "") {
-                  window.open(`${displayQuestion.pageToUrl.replace("{profileId}", displayQuestion.sectionNameId)}`);
-                }
-              },
-              () => {
-                console.log("clicked No");
-              });
-
-          } else {
-            this.questiontimerSubscribe.unsubscribe();
-          }
-
-        });
-
-
-
-        //numbers.subscribe(x => console.log(x));
-
-
-        //console.log("sessiondata" + data);
-
-
-
-        //for (let i = 0; i < success.data.length; i++) {
-        //    if (success.data[i].status == "InActive") {
-        //        this.alertService.questionToster(success.data[i].questionDescription,
-        //            () => {
-        //                alert("Clicked Yes");
-        //            },
-        //            () => {
-        //                alert("clicked No");
-        //            });
-        //        }
-        //}
-      },
-      error => {
-      });
-
-  }
-
 
 }

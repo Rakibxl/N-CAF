@@ -24,6 +24,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Architecture.Core.Common.Enums;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
 
 namespace Architecture.Web.Controllers.Users
 {
@@ -88,7 +90,7 @@ namespace Architecture.Web.Controllers.Users
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     GenderId = model.GenderId,
-                    AppUserTypeId = 1,
+                    AppUserTypeId =(int) EnumAppUserType.Client,// client user
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -161,7 +163,6 @@ namespace Architecture.Web.Controllers.Users
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this._appSettings.TokenSecretKey);
             var userDetails = _userManager.Users.Include(dd => dd.BranchInfo).Where(ex => ex.Email == user.Email).FirstOrDefault();
-
             var claims = new List<Claim>()
             {
                 //new Claim(ClaimTypes.Name, user.Id.ToString())

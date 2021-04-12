@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
@@ -12,7 +13,7 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 })
 export class CompletedJobComponent implements OnInit {
     public myOffers: JobInfo[] = [];
-    constructor(private router: Router, private offerService: OfferInfoService) { }
+    constructor(private router: Router, private offerService: OfferInfoService, private alertService: AlertService) { }
 
     ngOnInit() {
         this.offerService.getOperatorCompletedOffer().subscribe((res: APIResponse) => {
@@ -42,6 +43,8 @@ export class CompletedJobComponent implements OnInit {
             this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
         } else if (event.cellName == "view-details") {
             this.router.navigate([`/generate-pdf/completed-offer-pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
+        } else if (event.cellName == "download-recipt") {
+            this.alertService.titleTosterSuccess("Feature will be enable soon. Thanks for clicking.");
         }
     }
 
@@ -60,6 +63,7 @@ export class CompletedJobComponent implements OnInit {
             { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date" },
             { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
             { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "Date" },
+            { headerName: 'Details', width: '7%', internalName: 'download-recipt', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'Receipt' },
             { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'View' },
         ],
         enabledSearch: true,

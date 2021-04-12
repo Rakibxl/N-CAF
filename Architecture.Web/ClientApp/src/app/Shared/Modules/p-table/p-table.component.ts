@@ -725,8 +725,13 @@ export class PTableComponent implements OnInit, DoCheck {
         }
 
         if (type.toLowerCase() == "date") {
-            var datePipe = new DatePipe("en-US");
-            return datePipe.transform(responseValue, 'MM/dd/yyyy');
+            if (columnSettings.displayType == "datetime") {
+                var datePipe = new DatePipe("en-US");
+                return datePipe.transform(responseValue, 'MM/dd/yyyy, h:mm a');
+            } else {
+                var datePipe = new DatePipe("en-US");
+                return datePipe.transform(responseValue, 'MM/dd/yyyy');
+            }            
         } else {
             return responseValue;
         }

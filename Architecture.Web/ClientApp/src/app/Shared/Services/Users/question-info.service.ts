@@ -23,7 +23,4 @@ export class QuestionInfoService {
     public getQuestionById(questionInfoId: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/QuestionInfo/GetById/${questionInfoId}`);
     }
-    public GetUserQuestion() {
-        return this.http.get<APIResponse>(this.baseUrl + `v1/QuestionInfo/GetUserQuestion`);
-    }
 }

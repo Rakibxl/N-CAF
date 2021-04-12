@@ -24,7 +24,11 @@ export class ClientProfileService {
   getBasicInfo(profileId) {
     let url = this.basicInfoEndpoint + "/GetBasicInfo?profileId=" + profileId;
     return this.http.get<APIResponse>(`${url}`);
-  }
+    }
+    getBasicInfoByEmailId(emailId) {
+        let url = this.basicInfoEndpoint + "/GetBasicInfo?EmailId=" + emailId;
+        return this.http.get<APIResponse>(`${url}`);
+    }
 
   getCurrentUserBasicInfo() {
     let url = this.basicInfoEndpoint + "/GetCurrentUserBasicInfo";

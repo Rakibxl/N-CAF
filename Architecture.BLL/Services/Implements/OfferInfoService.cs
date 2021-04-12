@@ -11,6 +11,7 @@ using System.Linq;
 using Architecture.BLL.Services.Models;
 using System.Security.Claims;
 using Architecture.Core.Common.Enums;
+using Architecture.BLL.Services.Interfaces.ClientProfile;
 
 namespace Architecture.BLL.Services.Implements
 {
@@ -19,30 +20,28 @@ namespace Architecture.BLL.Services.Implements
         private readonly IJobInformationService jobInformationService;
         private readonly ICurrentUserService CurrentUserService;
         private readonly IApplicationUserService applicationUserService;
+        private readonly IBasicInfoService basicInfoService;
         public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService CurrentUserService,
-           IApplicationUserService applicationUserService) : base(dbContext)
+           IApplicationUserService applicationUserService, IBasicInfoService basicInfoService) : base(dbContext)
         {
             this.jobInformationService = jobInformationService;
             this.CurrentUserService = CurrentUserService;
             this.applicationUserService = applicationUserService;
+            this.basicInfoService = basicInfoService;
         }
-
-        public async Task<IEnumerable<JobInfo>> GetMyOffer()
-        {
-            var result = await jobInformationService.GetAll();
-            return result;
-        }
-
 
         #region Operator
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorProgressOffer()
         {
             var UserId = CurrentUserService.UserId.ToString();
 
-            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == 3 || x.OfferStatusId == 4 || x.OfferStatusId == 6 || x.OfferStatusId == 7))
+            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == (int)EnumOfferStatus.Received || x.OfferStatusId == (int)EnumOfferStatus.DocumentsRequired || x.OfferStatusId == (int)EnumOfferStatus.InformationRequired))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
-                         join operatorObj in _dbContext.Users on of.AcceptedOperatorId equals operatorObj.Id.ToString()
+
+                         join op in _dbContext.Users on of.AcceptedOperatorId equals op.Id.ToString() into opObj
+                         from operatorObj in opObj.DefaultIfEmpty()
+
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
                          select new OfferInfoVM()
                          {
@@ -52,7 +51,7 @@ namespace Architecture.BLL.Services.Implements
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
                              AcceptedOperatorId = of.AcceptedOperatorId,
-                             AcceptedOperatorName = operatorObj.Name,
+                             AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                              OfferStatusId = of.OfferStatusId,
                              OperatorAcceptedDate = of.OperatorAcceptedDate,
                              ValidatorId = of.ValidatorId,
@@ -72,10 +71,13 @@ namespace Architecture.BLL.Services.Implements
         {
             var UserId = CurrentUserService.UserId.ToString();
 
-            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == 5 || x.OfferStatusId == 2))
+            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == (int)EnumOfferStatus.Completed))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
-                         join operatorObj in _dbContext.Users on of.AcceptedOperatorId equals operatorObj.Id.ToString()
+
+                         join op in _dbContext.Users on of.AcceptedOperatorId equals op.Id.ToString() into opObj
+                         from operatorObj in opObj.DefaultIfEmpty()
+
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
                          select new OfferInfoVM()
                          {
@@ -85,7 +87,7 @@ namespace Architecture.BLL.Services.Implements
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
                              AcceptedOperatorId = of.AcceptedOperatorId,
-                             AcceptedOperatorName = operatorObj.Name,
+                             AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                              OfferStatusId = of.OfferStatusId,
                              OperatorAcceptedDate = of.OperatorAcceptedDate,
                              ValidatorId = of.ValidatorId,
@@ -282,14 +284,27 @@ namespace Architecture.BLL.Services.Implements
         #endregion Operator
 
         #region client
-        public async Task<IEnumerable<OfferInfoVM>> GetClientProgressOffer()
+        public async Task<IEnumerable<JobInfo>> GetMyOffer(int profileId)
+        {
+            var result = await jobInformationService.GetAll();
+            return result;
+        }
+        public async Task<IEnumerable<OfferInfoVM>> GetClientProgressOffer(int profileId)
         {
             var UserId = CurrentUserService.UserId.ToString();
+            var userType = CurrentUserService.UserTypeId;
+            if (profileId==0 && userType==(int)EnumAppUserType.Client) {
+              var profileInfo =await basicInfoService.GetCurrentUserBasicInfo();
+                profileId = profileInfo.ProfileId;
+            }
 
-            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == 3 || x.OfferStatusId == 4 || x.OfferStatusId == 6 || x.OfferStatusId == 7))
+            var result = from of in _dbContext.OfferInfos.Where(x => x.ProfileId == profileId && (x.OfferStatusId == (int)EnumOfferStatus.Pending || x.OfferStatusId == (int)EnumOfferStatus.NewOffer || x.OfferStatusId == (int)EnumOfferStatus.Submitted || x.OfferStatusId == (int)EnumOfferStatus.Received || x.OfferStatusId == (int)EnumOfferStatus.DocumentsRequired || x.OfferStatusId == (int)EnumOfferStatus.InformationRequired))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
-                         join operatorObj in _dbContext.Users on of.AcceptedOperatorId equals operatorObj.Id.ToString()
+
+                         join op in _dbContext.Users on of.AcceptedOperatorId equals op.Id.ToString() into opObj
+                         from operatorObj in opObj.DefaultIfEmpty()
+
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
                          select new OfferInfoVM()
                          {
@@ -299,7 +314,7 @@ namespace Architecture.BLL.Services.Implements
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
                              AcceptedOperatorId = of.AcceptedOperatorId,
-                             AcceptedOperatorName = operatorObj.Name,
+                             AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                              OfferStatusId = of.OfferStatusId,
                              OperatorAcceptedDate = of.OperatorAcceptedDate,
                              ValidatorId = of.ValidatorId,
@@ -315,13 +330,23 @@ namespace Architecture.BLL.Services.Implements
 
         }
 
-        public async Task<IEnumerable<OfferInfoVM>> GetClientCompletedOffer()
+        public async Task<IEnumerable<OfferInfoVM>> GetClientCompletedOffer(int profileId)
         {
             var UserId = CurrentUserService.UserId.ToString();
+            var userType = CurrentUserService.UserTypeId;
+            if (profileId == 0 && userType == (int)EnumAppUserType.Client)
+            {
+                var profileInfo = await basicInfoService.GetCurrentUserBasicInfo();
+                profileId = profileInfo.ProfileId;
+            }
 
-            var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == 5 || x.OfferStatusId == 2))
+            var result = from of in _dbContext.OfferInfos.Where(x => x.ProfileId == profileId && (x.OfferStatusId == (int)EnumOfferStatus.Completed))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
+
+                         join op in _dbContext.Users on of.AcceptedOperatorId equals op.Id.ToString() into opObj
+                         from operatorObj in opObj.DefaultIfEmpty()
+
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
                          select new OfferInfoVM()
                          {
@@ -331,7 +356,7 @@ namespace Architecture.BLL.Services.Implements
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
                              AcceptedOperatorId = of.AcceptedOperatorId,
-                             AcceptedOperatorName = "",
+                             AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                              OfferStatusId = of.OfferStatusId,
                              OperatorAcceptedDate = of.OperatorAcceptedDate,
                              ValidatorId = of.ValidatorId,
@@ -355,7 +380,6 @@ namespace Architecture.BLL.Services.Implements
             var checkVal = await IsExistsAsync(x => x.OfferInfoId == offerInfoId);
             if (checkVal)
             {
-                //OfferInfo result = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId, x => x.Include(y => y.JobSectionLink));
                 OfferInfo result = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId);
                 return result;
             }
@@ -419,6 +443,10 @@ namespace Architecture.BLL.Services.Implements
             var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId)
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
+
+                         join op in _dbContext.Users on of.AcceptedOperatorId equals op.Id.ToString() into opObj
+                         from operatorObj in opObj.DefaultIfEmpty()
+
                          join job in _dbContext.JobInfos on of.JobId equals job.JobInfoId
                          select new OfferInfoVM()
                          {
@@ -428,7 +456,7 @@ namespace Architecture.BLL.Services.Implements
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
                              AcceptedOperatorId = of.AcceptedOperatorId,
-                             AcceptedOperatorName = "",
+                             AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                              OfferStatusId = of.OfferStatusId,
                              OperatorAcceptedDate = of.OperatorAcceptedDate,
                              ValidatorId = of.ValidatorId,

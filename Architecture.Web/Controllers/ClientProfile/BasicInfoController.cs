@@ -76,6 +76,21 @@ namespace Architecture.Web.Controllers.BasicInfo
                 return ExceptionResult(ex);
             }
         }
+        
+        [HttpGet("GetByEmailId/{emailId}")]
+        public async Task<IActionResult> GetByEmailId(string emailId)
+        {
+            try
+            {
+                var result = new ProfBasicInfo();               
+                result = await _basicInfoService.GetByEmailId(emailId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
 
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] ProfBasicInfo model)

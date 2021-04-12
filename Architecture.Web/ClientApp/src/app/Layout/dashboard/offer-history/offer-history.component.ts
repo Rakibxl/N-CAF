@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
 
@@ -12,10 +13,12 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 })
 export class OfferHistoryComponent implements OnInit {
     public myOffers: JobInfo[] = [];
-    constructor(private router: Router, private offerService: OfferInfoService) { }
+    public profileId: number;
+    constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute, private alertService: AlertService) { }
 
     ngOnInit() {
-        this.offerService.getCurrentStatus(1).subscribe((res: APIResponse) => {
+        this.profileId = (+this.route.snapshot.paramMap.get("profId") || 0);
+        this.offerService.getClientCompletedOffer(this.profileId).subscribe((res: APIResponse) => {
             console.log("Success", res);
             this.myOffers = res.data || [];
 
@@ -40,6 +43,8 @@ export class OfferHistoryComponent implements OnInit {
     public fnPtableCellClick(event: any) {
         if (event.cellName == "apply") {
             this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
+        } else if (event.cellName == "download-recipt") {
+            this.alertService.titleTosterSuccess("Feature will be enable soon. Thanks for clicking.");
         }
     }
 
@@ -52,11 +57,14 @@ export class OfferHistoryComponent implements OnInit {
         tableName: 'Offer History',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
-            { headerName: 'Offer Title', width: '10%', internalName: 'title', sort: true, type: "" },
-            { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'Status', width: '10%', internalName: 'offerStatusName', sort: false, type: "" },
-            { headerName: 'Created Date', width: '10%', internalName: 'created', sort: true, type: "" },
-            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "" },
+            { headerName: 'Offer Title', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
+            { headerName: 'Profile Name', width: '15%', internalName: 'profileName', sort: true, type: "" },
+            { headerName: 'Operator Name', width: '25%', internalName: 'acceptedOperatorName', sort: true, type: "" },
+            { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date", displayType: 'datetime' },
+            { headerName: 'Completed Date', width: '10%', internalName: 'modified', sort: true, type: "Date", displayType: 'datetime' },
+            { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
+            { headerName: 'Details', width: '7%', internalName: 'download-recipt', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'Receipt' },
+            { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'History' },
 
         ],
         enabledSearch: true,

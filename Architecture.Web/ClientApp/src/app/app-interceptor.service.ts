@@ -17,7 +17,6 @@ export class AppInterceptorService implements HttpInterceptor {
     handleError = (error: HttpErrorResponse, request?, next?) => {
         console.log("api error:", error);
         console.log("api error.message:", error.error.message);
-        debugger;
         setTimeout(() => {
             this.alertService.fnLoading(false);   
             let statusCode = error.status;

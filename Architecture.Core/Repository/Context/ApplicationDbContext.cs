@@ -327,7 +327,7 @@ namespace Architecture.Core.Repository.Context
                     new AppUserStatus { AppUserStatusId = 3, AppUserStatusTitle = "Request For Approval", IsActive = true }
                 );
             });
-            modelBuilder.Entity<AppUserType>().ToTable("LU_AppAppUserType");
+            modelBuilder.Entity<AppUserType>().ToTable("LU_AppUserType");
             modelBuilder.Entity<AppUserType>(ms =>
             {
                 ms.HasKey(g => g.AppUserTypeId);

@@ -343,7 +343,7 @@
                                                     {{body[dispCol.internalName]|number}}
                                                 </div>
                                                 <div *ngIf="dispCol.type=='custom-button'" style="text-align:center;">
-                                                    <button class="btn btn-outline-success p-table-custom-button"
+                                                    <button class="btn btn-outline-success p-table-custom-button text-nowrap"
                                                             (click)="fnClickPTableCell($event,pTableSetting.enabledCellClick,dispCol.internalName,dispCol.onClick,body)">
                                                         <em class=" {{dispCol.innerBtnIcon}}"></em> {{dispCol.btnTitle}}
                                                     </button>

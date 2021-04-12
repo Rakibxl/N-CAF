@@ -20,12 +20,12 @@ namespace Architecture.Web.Controllers.Offer
             this.OfferInfoService = OfferInfoService;
         }
 
-        [HttpGet("GetMyOffer")]
-        public async Task<IActionResult> GetMyOffer()
+        [HttpGet("GetMyOffer/{profileId}")]
+        public async Task<IActionResult> GetMyOffer(int profileId)
         {
             try
             {
-                var result = await OfferInfoService.GetMyOffer();
+                var result = await OfferInfoService.GetMyOffer(profileId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -40,6 +40,34 @@ namespace Architecture.Web.Controllers.Offer
             try
             {
                 var result = await OfferInfoService.GetMyProgressOffer();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("ClientProgressOffer/{profileId}")] 
+        public async Task<IActionResult> ClientProgressOffer( int profileId)
+        {
+            try
+            {
+                var result = await OfferInfoService.GetClientProgressOffer(profileId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpGet("ClientCompletedOffer/{profileId}")]
+        public async Task<IActionResult> ClientCompletedOffer(int profileId)
+        {
+            try
+            {
+                var result = await OfferInfoService.GetClientCompletedOffer(profileId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -74,7 +102,7 @@ namespace Architecture.Web.Controllers.Offer
                 return ExceptionResult(ex);
             }
         }
-
+        #region Operator
         [HttpGet("OperatorProgressOffer")]
         public async Task<IActionResult> OperatorProgressOffer()
         {
@@ -182,5 +210,7 @@ namespace Architecture.Web.Controllers.Offer
                 return OkResult(result);
             });
         }
+
+        #endregion operator
     }
 }

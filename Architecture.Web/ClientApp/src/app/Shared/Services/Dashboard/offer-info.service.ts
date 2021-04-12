@@ -18,12 +18,12 @@ export class OfferInfoService {
 
   public static subjectToReloadComponent = new Subject<any>();
 
-  public getMyOffer() {
-    return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer');
+    public getMyOffer(profileId: number) {
+      return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer/' + profileId);
     }
 
     public getMyOfferByProfileId(profileId: number) {
-        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer');
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer/' + profileId);
     }
 
     public submitOffer(data: OfferInfo) {
@@ -63,12 +63,12 @@ export class OfferInfoService {
    //#endr operator end
    
     //#region Client
-    public getClientProgressOffer() {
-        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientProgressOffer');
+    public getClientProgressOffer(profileId:number) {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientProgressOffer/' + profileId);
     }
 
-    public getClientCompletedOffer() {
-        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientCompletedOffer');
+    public getClientCompletedOffer(profileId: number) {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientCompletedOffer/' + profileId);
     }
    //#endr operator end
 }

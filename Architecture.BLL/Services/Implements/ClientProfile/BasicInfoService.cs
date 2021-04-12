@@ -54,6 +54,19 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 throw new Exception("Information is not exists.");
             }
         }
+         public async Task<ProfBasicInfo> GetByEmailId(string emailId)
+        {
+            var checkVal = await IsExistsAsync(x => x.Email == emailId);
+            if (checkVal)
+            {
+                IEnumerable<ProfBasicInfo> result = await GetAsync(x => x, x => x.Email == emailId);
+                return result.FirstOrDefault();
+            }
+            else
+            {
+                throw new Exception("Information is not exists.");
+            }
+        }
 
         public async Task<ProfBasicInfo> GetCurrentUserBasicInfo()
         {
@@ -66,7 +79,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             }
             else
             {
-                throw new Exception("Information is not exists.");
+                throw new Exception("Profile Information is not exists. Please try to complete your profile information.");
             }
         }
 

@@ -16,6 +16,7 @@ namespace Architecture.Web.Services
             Useremail = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
             IsAuthenticated = httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated??false;
             BranchInfoId = httpContextAccessor.HttpContext?.User?.FindFirst("BranchInfoId").Value;
+            CurrentUserProfileId = Int32.Parse(String.IsNullOrEmpty(httpContextAccessor.HttpContext?.User?.FindFirst("ProfileId")?.Value)?"0": httpContextAccessor.HttpContext?.User?.FindFirst("ProfileId")?.Value);
         }
 
         public Guid UserId { get; }
@@ -23,5 +24,6 @@ namespace Architecture.Web.Services
         public string Useremail { get; }
         public bool IsAuthenticated { get; }
         public string BranchInfoId { get; }
+        public int CurrentUserProfileId { get; }
     }
 }

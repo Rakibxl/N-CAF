@@ -9,8 +9,10 @@ namespace Architecture.BLL.Services.Interfaces
 {
    public interface IOfferInfoService
     {
-        Task<IEnumerable<JobInfo>> GetMyOffer();
+        Task<IEnumerable<JobInfo>> GetMyOffer(int profileId);
         Task<IEnumerable<OfferInfoVM>> GetMyProgressOffer();
+        Task<IEnumerable<OfferInfoVM>> GetClientProgressOffer(int profileId);
+        Task<IEnumerable<OfferInfoVM>> GetClientCompletedOffer(int profileId);
         Task<OfferInfo> GetById(int offerInfoId);
         dynamic GetCurrentStatusById(int profileId);
         Task<OfferInfo> AddOrUpdate(OfferInfo offerInfo);
