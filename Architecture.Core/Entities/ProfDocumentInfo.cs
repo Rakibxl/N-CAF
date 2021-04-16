@@ -20,6 +20,7 @@ namespace Architecture.Core.Entities
         public DateTime? IssuedDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public string PurposeOfDocument { get; set; }
+        public string DocumentSrc { get; set; }
 
         [NotMapped]
         public string[] Urls { get; set; }

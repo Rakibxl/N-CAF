@@ -16,7 +16,7 @@
                         <div class="caf-input-group">
                             <label class="label">{{'documentform.documenttype.label' | translate}}<span class="text-danger">*</span></label>
                             <select id="" class="form-control" name="documentTypeId" #documentTypeId="ngModel" [(ngModel)]="documentInfoForm.documentTypeId" required>
-                                <option *ngFor="let option of documentTypeDropdown" [value]="option.documentTypeId">{{option.documentTypeName}}</option>
+                                <option *ngFor="let option of documentTypeDropdown" [value]="option.documentTypeId">{{option.documentName}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p [hidden]="documentTypeId.valid || documentTypeId.pristine" class="text-danger">{{'documentform.documenttype.required' | translate}}</p>
@@ -93,12 +93,13 @@
                                     </div>
 
                                 <!-- Upload Finished -->
-                                    <div class="js-upload-finished mt-3" *ngIf="(documentInfoForm.urls||[]).length>0">
+                                    <div class="js-upload-finished mt-3" *ngIf="(documentInfoForm.documentSrc||'')!=''">
                                         <h3>{{'documentform.documents.label' | translate}}</h3>
-                                        <div class="list-group" *ngFor="let file of documentInfoForm.urls">
-                                            <a href="{{file}}"
+                                        <!--<div class="list-group" *ngFor="let file of documentInfoForm.urls">-->
+                                        <div class="list-group" >
+                                            <a href="{{documentInfoForm.documentSrc}}"
                                                target="_blank" class="list-group-item list-group-item-success">
-                                                <span class="badge alert-success pull-right">{{'documentform.download.label' | translate}}</span>{{file.split('/').pop()}}
+                                                <span class="badge alert-success pull-right">{{'documentform.download.label' | translate}}</span>{{(documentInfoForm.documentSrc||'').split('/').pop()}}
                                             </a>
                                         </div>
                                     </div>

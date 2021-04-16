@@ -14,6 +14,7 @@ export class profDocumentInfo extends Auditable {
     public documentName: string;
     public documentNumber: string;
     public purposeOfDocument: string;
+    public documentSrc: string;
     public issuedBy: string
 
     public issuedDate: Date;

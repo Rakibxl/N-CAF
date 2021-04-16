@@ -21,7 +21,7 @@ namespace Architecture.Web.Utilities
 
             try
             {
-                string fileName = RemoveSpecialCharacters(file.FileName);
+                string fileName = docName==null? RemoveSpecialCharacters(file.FileName): docName;
                 //Get url To Save
                 string SavePath = Path.Combine(Directory.GetCurrentDirectory(), defaultRoot + "/documents", folder);
                 CreateFolder(SavePath);

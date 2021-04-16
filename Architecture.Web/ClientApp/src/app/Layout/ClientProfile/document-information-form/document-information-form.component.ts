@@ -64,7 +64,7 @@ export class DocumentInformationFormComponent implements OnInit {
                 console.log("error", error);
             });
 
-    }
+    }   
 
     public fnBackToList() {
         this.router.navigate([`/client-profile/document-info/${this.profileId}`]);

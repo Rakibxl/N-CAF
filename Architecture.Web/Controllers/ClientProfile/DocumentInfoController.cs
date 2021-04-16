@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
-
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
+using Architecture.BLL.Services.Interfaces.LU;
 using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
 using Architecture.Web.Utilities;
@@ -18,24 +20,9 @@ namespace Architecture.Web.Controllers.ClientProfile
     public class DocumentInfoController : BaseController
     {
         private readonly IDocumentInfoService documentInfoService;
-
         public DocumentInfoController(IDocumentInfoService documentInfoService)
         {
             this.documentInfoService = documentInfoService;
-        }
-
-        [HttpGet("/Test")]
-        public async Task<IActionResult> GetTest()
-        {
-            try
-            {
-                var result = "dfdsdfdsff";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
         }
 
         [HttpPost("CreateOrUpdate")]
@@ -47,10 +34,12 @@ namespace Architecture.Web.Controllers.ClientProfile
                 return OkResult(result);
             });
         }
+
+
         [HttpPost("document/save")]
         public async Task<IActionResult> SaveDocument()
         {
-            var entity = SaveFile();
+            var entity =await SaveFileAsync();
             return await ModelValidation(async () =>
             {
                 var result = await documentInfoService.AddOrUpdate(entity);
@@ -58,7 +47,7 @@ namespace Architecture.Web.Controllers.ClientProfile
             });
 
         }
-        private ProfDocumentInfo  SaveFile()
+        private async Task<ProfDocumentInfo> SaveFileAsync()
         {
             string file_key = "doc";
             var entity = new ProfDocumentInfo();
@@ -72,9 +61,17 @@ namespace Architecture.Web.Controllers.ClientProfile
                         HttpContext.Request.Form.Files : null;
 
                 if (files != null && files[file_key] != null)
-                {
-                    string folder = entity.ProfileId.ToString() + "/" + entity.DocumentTypeId;
-                   var  name =  FileHandler.SaveFile(files[file_key], folder, entity.DocumentName);
+                {                   
+                    string folder = entity.ProfileId.ToString();
+                    string fileName = Path.GetFileNameWithoutExtension( files[file_key].FileName);
+                        string fileExt = Path.GetExtension(files[file_key].FileName);
+                    string docName = $"{fileName}-{entity.DocumentTypeId}-{DateTime.Now.ToString("yyyyMMddHHmmss")}{fileExt}";
+                    string regex = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                    Regex reg = new Regex(string.Format("[{0}]", Regex.Escape(regex)));
+                    docName = reg.Replace(docName, "-");
+                    //string folder = entity.ProfileId.ToString() + "/" + entity.DocumentTypeId;
+                    var  name =  FileHandler.SaveFile(files[file_key], folder, docName);
+                    entity.DocumentSrc =$"/assets/documents/{folder}/{docName}";
                 }
                 return entity;
             }
@@ -116,20 +113,6 @@ namespace Architecture.Web.Controllers.ClientProfile
             }
         }
 
-
-        [HttpGet("GetTestData")]
-        public async Task<IActionResult> GetTestData()
-        {
-            try
-            {
-                var result = "tstrrrggsdfdfdfd";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
