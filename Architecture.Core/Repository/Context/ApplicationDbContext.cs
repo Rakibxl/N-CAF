@@ -1,6 +1,7 @@
 ﻿using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities;
 using Architecture.Core.Entities.LU;
+using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context.FluentAPIMapping;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -42,6 +43,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<SectionLink> SectionLinks { get; set; }
         public DbSet<JobSectionLink> JobSectionLinks { get; set; }
         public DbSet<OfferInfo> OfferInfos { get; set; }
+        public DbSet<NotificationInfo> Notifications { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }

@@ -71,4 +71,8 @@ export class OfferInfoService {
         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ClientCompletedOffer/' + profileId);
     }
    //#endr operator end
+    public getProgressOfferForChatting() {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/ProgressOfferForChatting');
+    }
+
 }

@@ -57,5 +57,5 @@ export class UserService {
 
   activeInactive(id) {
     return this.http.post<APIResponse>(`${this.usersEndpoint}/activeInactive/${id}`, null);
-  }
+    }
 }

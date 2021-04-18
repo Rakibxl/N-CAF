@@ -212,5 +212,19 @@ namespace Architecture.Web.Controllers.Offer
         }
 
         #endregion operator
+
+        [HttpGet("ProgressOfferForChatting")]
+        public async Task<IActionResult> GetProgressOfferForChattingAsync()
+        {
+            try
+            {
+                var result =await OfferInfoService.GetProgressOfferForChatting();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
     }
 }

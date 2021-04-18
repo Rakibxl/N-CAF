@@ -10,7 +10,7 @@
                         d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                 </svg>
 
-                <span class="notify-counter">10</span>
+                <span class="notify-counter">{{this.unSeenNotificationCount}}</span>
                 
                 <div class="badge badge-dot badge-dot-sm badge-danger d-none">Notifications</div>
             </div>
@@ -31,7 +31,7 @@
                         <div class="p-4">
                             <div
                                 class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                <div class="dot-danger vertical-timeline-element">
+                                <!--<div class="dot-danger vertical-timeline-element">
                                     <div>
                                         <span class="vertical-timeline-element-icon bounce-in"></span>
                                         <div class="vertical-timeline-element-content bounce-in">
@@ -59,94 +59,32 @@
                                             <p>Request id: 659875 are approved <a href="#">view details</a></p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="dot-danger vertical-timeline-element">
+                                </div>-->
+                               
+                                <div class="dot-success vertical-timeline-element" *ngFor="let notification of notificationCollection">
                                     <div>
                                         <span class="vertical-timeline-element-icon bounce-in"></span>
                                         <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title"><a href="#">New offer posted</a> </h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h4 class="timeline-title">
+                                                {{notification.messageContent}}
+                                                <div class="badge badge-success ml-2" *ngIf="!notification.isSeen">New</div>
+                                            </h4>
+                                            <p>{{notification.created}} <a href="#">view details</a></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="dot-warning vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title">Declined your request</h4>
-                                            <p>from admin <span class="text-success">15:00 PM</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-success vertical-timeline-element">
+                               
+                                <!--<div class="dot-success vertical-timeline-element">
                                     <div>
                                         <span class="vertical-timeline-element-icon bounce-in"></span>
                                         <div class="vertical-timeline-element-content bounce-in">
                                             <h4 class="timeline-title">Approved your request
                                                 <div class="badge badge-danger ml-2">NEW</div>
                                             </h4>
-                                            <p>Request id: 659875 are approved <a href="#">view details</a></p>
+                                            <p>Request id: 659875 are approved <a href="javascript:void(0)"  (click)="sendMessage()">view details</a></p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="dot-danger vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title"><a href="#">New offer posted</a> </h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-warning vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title">Declined your request</h4>
-                                            <p>from admin <span class="text-success">15:00 PM</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-success vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title">Approved your request
-                                                <div class="badge badge-danger ml-2">NEW</div>
-                                            </h4>
-                                            <p>Request id: 659875 are approved <a href="#">view details</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-danger vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title"><a href="#">New offer posted</a> </h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-warning vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title">Declined your request</h4>
-                                            <p>from admin <span class="text-success">15:00 PM</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dot-success vertical-timeline-element">
-                                    <div>
-                                        <span class="vertical-timeline-element-icon bounce-in"></span>
-                                        <div class="vertical-timeline-element-content bounce-in">
-                                            <h4 class="timeline-title">Approved your request
-                                                <div class="badge badge-danger ml-2">NEW</div>
-                                            </h4>
-                                            <p>Request id: 659875 are approved <a href="#">view details</a></p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>-->
                                 
                             </div>
                         </div>

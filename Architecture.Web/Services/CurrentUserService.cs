@@ -15,7 +15,7 @@ namespace Architecture.Web.Services
             UserTypeId = Int32.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("AppUserTypeId").Value);
             Useremail = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
             IsAuthenticated = httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated??false;
-            BranchInfoId = httpContextAccessor.HttpContext?.User?.FindFirst("BranchInfoId").Value;
+            BranchInfoId = String.IsNullOrEmpty(httpContextAccessor.HttpContext?.User?.FindFirst("BranchInfoId")?.Value) ? "0" : httpContextAccessor.HttpContext?.User?.FindFirst("BranchInfoId")?.Value;
             CurrentUserProfileId = Int32.Parse(String.IsNullOrEmpty(httpContextAccessor.HttpContext?.User?.FindFirst("ProfileId")?.Value)?"0": httpContextAccessor.HttpContext?.User?.FindFirst("ProfileId")?.Value);
         }
 

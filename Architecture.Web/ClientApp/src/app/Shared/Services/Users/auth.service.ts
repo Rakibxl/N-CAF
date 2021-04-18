@@ -43,7 +43,6 @@ export class AuthService {
     public get currentUserToken(): string {
         if (!this.isLoggedIn) return "";
         const token = this.currentUserSubject.value.token;
-        console.log("token:", token);
         return token;
     }
 

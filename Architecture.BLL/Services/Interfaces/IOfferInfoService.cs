@@ -17,6 +17,7 @@ namespace Architecture.BLL.Services.Interfaces
         dynamic GetCurrentStatusById(int profileId);
         Task<OfferInfo> AddOrUpdate(OfferInfo offerInfo);
         Task<int> Delete(int offerInfoId);
+        Task<IEnumerable<OfferInfoVM>> GetProgressOfferForChatting();
 
         #region operator
         Task<IEnumerable<OfferInfoVM>> GetOperatorPendingOffer();

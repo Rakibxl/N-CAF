@@ -58,8 +58,8 @@ export class IncomeInformationComponent implements OnInit {
                 this.incomeInfoList = success.data;
                 this.incomeInfoList.forEach(x => {
                     x.incomeTypeName = x.incomeType.incomeTypeName || "";
-                    x.year = this.commonService.getDateToSetForm(x.year);
-                    x.month = this.commonService.getDateToSetForm(x.month);
+                    x.year = x.year;
+                    x.month = x.month;
 
                 })    
                 console.log("get income: ", success);

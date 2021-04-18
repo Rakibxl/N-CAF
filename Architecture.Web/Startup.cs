@@ -25,12 +25,13 @@ using Architecture.Core.Repository.Implements;
 using Architecture.Core.Repository.Interfaces;
 using System;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Architecture.BLL.Services.Notification;
 using Serilog;
 using System.IO;
 using System.Diagnostics;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.BLL.Services.Implements.ClientProfile;
+using Architecture.Core.Entities.Notification;
+using Architecture.Web.Hubs;
 
 namespace Architecture.Web
 {
@@ -81,29 +82,28 @@ namespace Architecture.Web
 
             // Add service here
             #region Service
-            services.AddTransient<IDateTime, DateTimeService>();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<IApplicationUserService, ApplicationUserService>();
-            services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
-            services.AddTransient<IApplicationUserRoleMappingService, ApplicationUserRoleMappingService>();
-            services.AddTransient<IDashboardService, DashboardService>();
-            services.AddTransient<IExampleService, ExampleService>();
-            services.AddSingleton<IHostedService, NotificationService>();
-            services.AddTransient<IFamilyInfoService, FamilyInfoService>();
-            services.AddTransient<IEducationInfoService, EducationInfoService>();
-            services.AddTransient<IAddressInfoService, AddressInfoService>();
-            services.AddTransient<IHouseRentInfoService, HouseRentInfoService>();
-            services.AddTransient<IIncomeInfoService, IncomeInfoService>();
-            services.AddTransient<IMovementInfoService, MovementInfoService>();
-            services.AddTransient<ILegalInfoService, LegalInfoService>();
-            services.AddTransient<IInsuranceInfoService, InsuranceInfoService>();
-            services.AddTransient<IBankInfoService, BankInfoService>();
-            services.AddTransient<IWorkerInfoService, WorkerInfoService>();
-            services.AddTransient<IOccupationInfoService, OccupationInfoService>();
-            services.AddTransient<IAssetInfoService, AssetInfoService>();
-            services.AddTransient<IDelegationInfoService, DelegationInfoService>();
-            services.AddTransient<IISEEInfoService, ISEEInfoService>();
-            services.AddTransient<IDocumentInfoService, DocumentInfoService>();
+            //services.AddTransient<IDateTime, DateTimeService>();
+            //services.AddScoped<ICurrentUserService, CurrentUserService>();
+            //services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            //services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
+            //services.AddTransient<IApplicationUserRoleMappingService, ApplicationUserRoleMappingService>();
+            //services.AddTransient<IDashboardService, DashboardService>();
+            //services.AddTransient<IExampleService, ExampleService>();
+            //services.AddTransient<IFamilyInfoService, FamilyInfoService>();
+            //services.AddTransient<IEducationInfoService, EducationInfoService>();
+            //services.AddTransient<IAddressInfoService, AddressInfoService>();
+            //services.AddTransient<IHouseRentInfoService, HouseRentInfoService>();
+            //services.AddTransient<IIncomeInfoService, IncomeInfoService>();
+            //services.AddTransient<IMovementInfoService, MovementInfoService>();
+            //services.AddTransient<ILegalInfoService, LegalInfoService>();
+            //services.AddTransient<IInsuranceInfoService, InsuranceInfoService>();
+            //services.AddTransient<IBankInfoService, BankInfoService>();
+            //services.AddTransient<IWorkerInfoService, WorkerInfoService>();
+            //services.AddTransient<IOccupationInfoService, OccupationInfoService>();
+            //services.AddTransient<IAssetInfoService, AssetInfoService>();
+            //services.AddTransient<IDelegationInfoService, DelegationInfoService>();
+            //services.AddTransient<IISEEInfoService, ISEEInfoService>();
+            //services.AddTransient<IDocumentInfoService, DocumentInfoService>();
             //services.AddTransient<IClientProfileService, ClientProfileService>();
             //services.AddTransient<IBasicInfoService, BasicInfoService>();
             //services.AddTransient<IBranchService, BranchService>();
@@ -141,6 +141,8 @@ namespace Architecture.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddClaimsPrincipalFactory<ApplicationClaimsPrincipalFactory>();
+
+            services.AddSignalR();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -230,6 +232,11 @@ namespace Architecture.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSignalR(options =>
+            {
+                options.MapHub<NotificationHub>("/notificationHub");
             });
 
             app.UseSpa(spa =>

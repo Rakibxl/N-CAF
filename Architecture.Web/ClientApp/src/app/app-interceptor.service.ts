@@ -47,8 +47,6 @@ export class AppInterceptorService implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.alertService.fnLoading(true);
-        console.log('processing request', request);
-        console.log('url', request.url);
 
         const token = this.authService.currentUserToken;
 

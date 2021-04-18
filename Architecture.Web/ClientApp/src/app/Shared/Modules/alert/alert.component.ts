@@ -36,7 +36,6 @@ export class AlertComponent implements OnInit {
         });
 
         setTimeout(() => {
-          console.log("tosterId: ", tosterId,this.tosterCollection);
           this.tosterCollection= this.tosterCollection.filter(res=>res.id!=tosterId)
         }, 5000);
       }
@@ -50,7 +49,6 @@ export class AlertComponent implements OnInit {
         });
 
         setTimeout(() => {
-          console.log("tosterId: ", tosterId,this.titleTosterCollection);
           this.titleTosterCollection= this.titleTosterCollection.filter(res=>res.id!=tosterId)
         }, 300000);
       }
@@ -63,11 +61,9 @@ export class AlertComponent implements OnInit {
         });
 
         setTimeout(() => {
-            console.log("tosterId: ", tosterId, this.questionTosterCollection);
             this.questionTosterCollection = this.questionTosterCollection.filter(res=>res.id!=tosterId)
         }, 300000);
         }
-        console.log("message", message);
       this.message = message;
     }, err => {
             ;
