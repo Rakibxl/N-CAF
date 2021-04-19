@@ -58,7 +58,14 @@ namespace Architecture.BLL.Services.Notification
         {
             IEnumerable<NotificationInfo> allSection;
             var currentUserId = currentUserService.UserId;
-            allSection = await GetAsync(x => x, x=>x.MessageFor==currentUserId, x=>x.OrderBy(x=>x.Created));           
+            allSection = await GetAsync(x => x, x=>x.MessageFor==currentUserId, x=>x.OrderByDescending(x=>x.Created));           
+            return allSection.ToList();
+        }
+         public async Task<List<NotificationInfo>> GetByApplicationByAppUserId(Guid? applicationUserId)
+        {
+            IEnumerable<NotificationInfo> allSection;
+            var currentUserId = currentUserService.UserId;
+            allSection = await GetAsync(x => x, x=>(x.MessageFor== applicationUserId && x.CreatedBy== currentUserId) || (x.MessageFor == currentUserId && x.CreatedBy == applicationUserId), x=>x.OrderByDescending(x=>x.Created));           
             return allSection.ToList();
         }
 
@@ -69,11 +76,12 @@ namespace Architecture.BLL.Services.Notification
                 NotificationInfo result;
                 if (notification.NotificationInfoId > 0)
                 {
-                    notification.CreatedBy = currentUserService.UserId;
+                    notification.ModifiedBy = currentUserService.UserId;
                     result = await UpdateAsync(notification);
                 }
                 else
                 {
+                    notification.CreatedBy = currentUserService.UserId;
                     result = await AddAsync(notification);
                 }
                 return result;

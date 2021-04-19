@@ -37,7 +37,7 @@ namespace Architecture.Web.Controllers.Notification
             return await ModelValidation(async () =>
             {
                 var result = await notificationService.AddOrUpdate(model);
-               await notificationHubContext.Clients.All.SendAsync(result.MessageFor.ToString(), "This is test megs...");
+               await notificationHubContext.Clients.All.SendAsync(result.MessageFor.ToString(), result);
                 return OkResult(result);
             });
         }
@@ -70,12 +70,12 @@ namespace Architecture.Web.Controllers.Notification
             }
         }
 
-        [HttpGet("GetByApplicationUserId/{applicationUserId}")]
-        public async Task<IActionResult> GetByApplicationUserId(int applicationUserId)
+        [HttpGet("GetByApplicationByAppUserId/{applicationUserId}")]
+        public async Task<IActionResult> GetByApplicationUserId(Guid? applicationUserId)
         {
             try
             {
-                var result = await notificationService.GetByOfferInfoId(applicationUserId);
+                var result = await notificationService.GetByApplicationByAppUserId(applicationUserId);
                 return OkResult(result);
             }
             catch (Exception ex)

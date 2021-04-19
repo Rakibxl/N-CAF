@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationInfo } from '../../../../../../Shared/Entity/Notifiation/NotificationInfo';
+import { AlertService } from '../../../../../../Shared/Modules/alert/alert.service';
 import { MessageService } from '../../../../../../Shared/Services/Message/message.service';
 
 @Component({
@@ -15,22 +16,16 @@ export class HeaderNotificationComponent implements OnInit {
     public unSeenNotificationCount: number = 0;
     public notificationCollection: NotificationInfo[] = [];
     //message = new Message();
-    constructor(private messageService: MessageService) { }
+    constructor(private messageService: MessageService, private alertService: AlertService) { }
 
     ngOnInit() {
         this.subscribeToEvents();
         this.fnGetMessage();
-    }
 
-    private sendMessage(): void {
-            //this.message = new Message();
-            this.message.clientuniqueid = new Date().getTime().toString();
-            this.message.type = "sent";
-            this.message.message ="Palash";
-            this.message.date = new Date();
-            this.messages.push(this.message);
-            this.messageService.sendMessage(this.message);
-            this.txtMessage = '';
+        MessageService.notify.subscribe((res: NotificationInfo) => {
+            this.unSeenNotificationCount = this.unSeenNotificationCount + 1;
+            this.alertService.titleTosterSuccess(`You have received a notification: ${res.messageContent}`);
+        });
     }
 
     public fnGetMessage() {
@@ -41,14 +36,5 @@ export class HeaderNotificationComponent implements OnInit {
     }
     private subscribeToEvents(): void {
         this.messageService.registerOnServerEvents();
-        //this.chatService.messageReceived.subscribe((message: any) => {
-        //    this._ngZone.run(() => {
-        //        if (message.clientuniqueid !== this.uniqueID) {
-        //            message.type = "received";
-        //            this.messages.push(message);
-        //        }
-        //    });
-        //});
-    }  
-
+    } 
 }

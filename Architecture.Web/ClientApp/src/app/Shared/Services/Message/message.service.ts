@@ -5,6 +5,7 @@ import { APIResponse } from '../../Entity/Response/api-response';
 import { NotificationInfo } from '../../Entity/Notifiation/NotificationInfo';
 import { AuthService } from '../Users/auth.service';
 import { IAuthUser } from '../../Entity/Users/auth';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class MessageService {
 
     public baseUrl: string;
     public user: IAuthUser;
+    public static notify = new Subject<any>();
     private _hubConnection: HubConnection;
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private authService: AuthService) {
     console.log("baseUrl: ", baseUrl);
@@ -50,7 +52,7 @@ export class MessageService {
     public registerOnServerEvents(): void {
         this.authService.currentUser.subscribe(user => this.user = user);
         this._hubConnection.on(this.user.id, (data: any) => {
-            //this.messageReceived.emit(data);
+            MessageService.notify.next(data);
         });
     }
 
@@ -67,7 +69,7 @@ export class MessageService {
         return this.http.get<APIResponse>(this.baseUrl + `v1/notification/GetByOfferId/${offerInfoId}`);
     }
     public getNotificationByApplicatonUserId(applicationUserId: number) {
-        return this.http.get<APIResponse>(this.baseUrl + `v1/notification/GetByApplicationUserId/${applicationUserId}`);
+        return this.http.get<APIResponse>(this.baseUrl + `v1/notification/GetByApplicationByAppUserId/${applicationUserId}`);
     }
     public getCurrentUserNotification(pageNumber: number, pageSize: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/notification/CurrentUserNotification/${pageNumber}/${pageSize}`);

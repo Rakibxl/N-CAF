@@ -48,6 +48,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 //import { CurrentOfferComponent } from './LayoutComponent/Components/current-offer/current-offer.component';
 import { OfferHistoryComponent } from './LayoutComponent/Components/offer-history/offer-history.component';
 import { LanguageChangeComponent } from './LayoutComponent/Components/header/elements/language-change/language-change.component';
+import { ChatBoxPopupComponent } from '../Shared/share-component/chat-box-popup/chat-box-popup.component';
 //import { UserInfoListComponent } from './user-info/user-info-list/user-info-list.component';
 //import { UserInfoInsertComponent } from './user-info/user-info-insert/user-info-insert.component';
 //import { UserInfoComponent } from './user-details/user-info/user-info.component';
@@ -90,7 +91,8 @@ import { LanguageChangeComponent } from './LayoutComponent/Components/header/ele
 
     OfferHistoryComponent,
 
-    LanguageChangeComponent,   
+        LanguageChangeComponent,   
+        ChatBoxPopupComponent
 
   ],
   imports: [

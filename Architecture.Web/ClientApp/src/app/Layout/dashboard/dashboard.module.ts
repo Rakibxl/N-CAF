@@ -15,7 +15,7 @@ import { DemoModule } from '../DemoPages/demo.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { JoblistComponent } from '../LayoutComponent/Components/joblist/joblist.component';
 import { ProfileTreeComponent } from '../LayoutComponent/Components/profile-tree/profile-tree.component';
-import { ChatBoxPopupComponent } from 'src/app/Shared/share-component/chat-box-popup/chat-box-popup.component';
+//import { ChatBoxPopupComponent } from 'src/app/Shared/share-component/chat-box-popup/chat-box-popup.component';
 import { CurrentOfferComponent } from '../dashboard/current-offer/current-offer.component';
 import { OfferStatusComponent } from './offer-status/offer-status.component';
 import { OfferHistoryComponent } from './offer-history/offer-history.component';
@@ -34,7 +34,7 @@ import { CompletedJobComponent } from './operator-completed-job/completed-job.co
     CommonComponent,
     JoblistComponent,
     ProfileTreeComponent,
-        ChatBoxPopupComponent,
+        //ChatBoxPopupComponent,
         CurrentOfferComponent,
         OfferStatusComponent,
         OfferHistoryComponent,

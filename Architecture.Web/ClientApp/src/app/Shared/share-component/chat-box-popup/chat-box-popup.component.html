@@ -22,7 +22,7 @@
                             <div class="pl-2" [ngStyle]="{'width':100+'1%'}">
                                 <ng-select name="chattingUserId"
                                            [items]="applicationUserData"
-                                           bindLabel="name"
+                                           bindLabel="email"
                                            bindValue="id"
                                            [multiple]="false"
                                            [dropdownPosition]="'top'"
@@ -41,11 +41,12 @@
                             <div class="pl-2" [ngStyle]="{'width':100+'1%'}">
                                 <ng-select name="chattingOfferInfoId"
                                            [items]="applicationOfferData"
-                                           bindLabel="name"
+                                           bindLabel="offerInfoId"
                                            bindValue="offerInfoId"
                                            [multiple]="false"
                                            [dropdownPosition]="'top'"
                                            [readonly]="(chattingUserId||null)!=null"
+                                           (change)="fnChangeOfferId()"
                                            [(ngModel)]="chattingOfferInfoId">
                                 </ng-select>
                             </div>
@@ -69,8 +70,8 @@
                 <perfect-scrollbar style="max-height: 80vh;" [autoPropagation]="true">
                     <div class="ps-content">
                         <div class="chat-wrapper p-1">
-                            <div class="chat-box-wrapper">
-                                <div>
+                            <div *ngFor="let notification of this.notificationCollection" [ngClass]="notification.createdBy ==this.chattingUserId ? 'float-right' : 'chat-box-wrapper'">
+                                <div >
                                     <div class="avatar-icon-wrapper mr-1">
                                         <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
                                         </div>
@@ -81,11 +82,7 @@
                                 </div>
 
                                 <div>
-                                    <div class="chat-box">But I must explain to you how all this mistaken idea of
-                                        denouncing
-                                        pleasure and praising pain was born and I will give you a complete account
-                                        of the
-                                        system. </div><small class="opacity-6">
+                                    <div class="chat-box">{{notification.messageContent}} </div><small class="opacity-6">
                                         <fa class="mr-1" name="calendar-alt" _nghost-twc-c2=""
                                             ng-reflect-name="calendar-alt"><i _ngcontent-twc-c2="" aria-hidden="true"
                                                 class="fa fa-calendar-alt" ng-reflect-klass="fa fa-calendar-alt"
@@ -97,7 +94,7 @@
                                 </div>
                             </div>
                             
-                            <div class="float-right">
+                            <!--<div class="float-right">
                                 <div class="chat-box-wrapper chat-box-wrapper-right">
                                     <div>
                                         <div class="chat-box">Denouncing pleasure and praising pain was born and I
@@ -122,32 +119,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="float-right">
-                                <div class="chat-box-wrapper chat-box-wrapper-right">
-                                    <div>
-                                        <div class="chat-box">The master-builder of human happiness.</div><small
-                                            class="opacity-6">
-                                            <fa class="mr-1" name="calendar-alt" _nghost-twc-c2=""
-                                                ng-reflect-name="calendar-alt"><i _ngcontent-twc-c2=""
-                                                    aria-hidden="true" class="fa fa-calendar-alt"
-                                                    ng-reflect-klass="fa fa-calendar-alt" ng-reflect-ng-class=""
-                                                    style="font-family: FontAwesome, Bangla1000, sans-serif;"></i>
-                                            </fa>
-                                            11:01 AM | Yesterday
-                                        </small>
-                                    </div>
-                                    <div>
-                                        <div class="avatar-icon-wrapper ml-1">
-                                            <div
-                                                class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
-                                            </div>
-                                            <div class="avatar-icon avatar-icon-lg rounded"><img alt=""
-                                                    src="./assets/images/avatars/2.jpg"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>-->
+                            
                         </div>
                     </div>
                     <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

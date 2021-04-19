@@ -104,6 +104,7 @@ export class AuthService {
     }
     logout() {
         localStorage.removeItem('currentUser');
+        sessionStorage.clear();
         this.currentUserSubject.next(null);
         // this.ngxPermissionsService.flushPermissions();
     }

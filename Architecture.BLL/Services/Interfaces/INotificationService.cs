@@ -14,6 +14,7 @@ namespace Architecture.BLL.Services.Interfaces
         Task<NotificationInfo> AddOrUpdate(NotificationInfo notification);
         Task<int> Delete(int notificationId);
         Task<List<NotificationInfo>> GetByOfferInfoId(int offerInfoId);
+        Task<List<NotificationInfo>> GetByApplicationByAppUserId(Guid? applicationUserId);
 
     }
 }

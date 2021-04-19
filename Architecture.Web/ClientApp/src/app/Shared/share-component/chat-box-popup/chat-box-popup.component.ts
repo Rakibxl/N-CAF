@@ -19,6 +19,7 @@ export class ChatBoxPopupComponent implements OnInit {
     public messageInfo: string;
     public chattingUserId: any;
     public chattingOfferInfoId: any;
+    public notificationCollection: NotificationInfo[] = [];
   animationOpen: string = 'out';
   toggleClick() {
     this.animationOpen = this.animationOpen === 'out' ? 'in' : 'out';
@@ -29,7 +30,12 @@ export class ChatBoxPopupComponent implements OnInit {
     ngOnInit() {
         this.fnGetApplicationUsers();
         this.fnGetProgressOffer();
-        this.messageService.registerOnServerEvents();
+        MessageService.notify.subscribe((res) => {
+            let message: NotificationInfo = res;
+            if ((message.createdBy == this.chattingUserId) || (message.offerInfoId == this.chattingOfferInfoId && (message.offerInfoId || null) != null)) {
+                this.notificationCollection.push(message);
+            }
+        });
     }
 
     fnGetProgressOffer() {
@@ -72,7 +78,8 @@ export class ChatBoxPopupComponent implements OnInit {
             
             this.messageService.saveNotificationInfo(nofiticationInfo).subscribe(res => {
                 this.messageInfo = "";
-                console.log();
+                this.notificationCollection.push(res.data);
+                console.log(res);
             });
 
         } else {
@@ -81,8 +88,23 @@ export class ChatBoxPopupComponent implements OnInit {
     }
 
     public fnChangeApplicationUser() {
-        alert("yes");
-        console.log(event);
+        this.fnGetMessage();
+    }
+
+    public fnChangeOfferId() {
+
+    }
+
+    public fnGetMessage() {
+        if ((this.chattingUserId || null) == null) {
+            this.notificationCollection =  [];
+            return false;
+        }
+
+        this.messageService.getNotificationByApplicatonUserId(this.chattingUserId).subscribe(res => {
+            console.log("notification: ", res);
+            this.notificationCollection = res.data || [];
+        })
     }
 
 }
