@@ -4,14 +4,16 @@ using Architecture.Core.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Architecture.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210420040153_Remove computed column")]
+    partial class Removecomputedcolumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1737,44 +1739,11 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RecordStatusId");
 
-                    b.ToTable("LU_RecordStatus");
-
-                    b.HasData(
-                        new
-                        {
-                            RecordStatusId = 1,
-                            IsActive = true,
-                            Name = "Active"
-                        },
-                        new
-                        {
-                            RecordStatusId = 2,
-                            IsActive = true,
-                            Name = "New"
-                        },
-                        new
-                        {
-                            RecordStatusId = 3,
-                            IsActive = true,
-                            Name = "Deleted"
-                        },
-                        new
-                        {
-                            RecordStatusId = 4,
-                            IsActive = true,
-                            Name = "Waiting for Approval"
-                        },
-                        new
-                        {
-                            RecordStatusId = 5,
-                            IsActive = true,
-                            Name = "Approved"
-                        });
+                    b.ToTable("RecordStatus");
                 });
 
             modelBuilder.Entity("Architecture.Core.Entities.LU.RelationType", b =>
@@ -2072,7 +2041,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -2090,7 +2061,9 @@ namespace Architecture.Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GetUtcDate()");
 
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");

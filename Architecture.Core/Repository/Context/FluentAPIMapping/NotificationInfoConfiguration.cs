@@ -13,8 +13,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
         {
             mgs.HasKey(dd => dd.NotificationInfoId);
             mgs.Property(bs => bs.Type).HasMaxLength(100);
-            mgs.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            mgs.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+            //mgs.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+            //mgs.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }
     }
 }

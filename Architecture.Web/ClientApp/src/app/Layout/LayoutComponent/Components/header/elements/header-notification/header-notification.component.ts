@@ -11,7 +11,6 @@ export class HeaderNotificationComponent implements OnInit {
     message: any; 
     title = 'ClientApp';
     txtMessage: string = '';
-    uniqueID: string = new Date().getTime().toString();
     messages = new Array<any>();
     public unSeenNotificationCount: number = 0;
     public notificationCollection: NotificationInfo[] = [];

@@ -80,6 +80,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<OperatorKeyword> OperatorKeyword { get; set; }
         public DbSet<OfferStatus> OfferStatus { get; set; }
         public DbSet<Province> Province { get; set; }
+        public DbSet<RecordStatus> RecordStatus { get; set; }
 
         #endregion 
 
@@ -526,6 +527,21 @@ namespace Architecture.Core.Repository.Context
                 ms.HasData(
                     new Province { ProvinceId = 1, Code = "MI",Description= "MILAN", IsActive = true },
                     new Province { ProvinceId = 2, Code = "CO", Description = "COMO", IsActive = true }
+                );
+            });
+            
+            
+            modelBuilder.Entity<RecordStatus>().ToTable("LU_RecordStatus");
+            modelBuilder.Entity<RecordStatus>(ms =>
+            {
+                ms.HasKey(g => g.RecordStatusId);
+                ms.Property(g => g.Name).HasMaxLength(100);
+                ms.HasData(
+                    new RecordStatus { RecordStatusId = 1, Name = "Active", IsActive = true },
+                    new RecordStatus { RecordStatusId = 2, Name = "New", IsActive = true },
+                    new RecordStatus { RecordStatusId = 3, Name = "Deleted", IsActive = true },
+                    new RecordStatus { RecordStatusId = 4, Name = "Waiting for Approval", IsActive = true },
+                    new RecordStatus { RecordStatusId = 5, Name = "Approved", IsActive = true }
                 );
             });
         }

@@ -5,6 +5,7 @@ export class Auditable extends Entity {
     modified: Date = new Date();
     createdBy: string = '';
     modifiedBy: string = '';
+    recordStatusId: number = 1;
 
     //clear() {
     //    super.clear();

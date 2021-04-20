@@ -18,7 +18,8 @@ export class OfferInfo extends Auditable {
     public offerStatusId: string;
     public offerStatus: any;
     public Status: string;
-    public CurrentUserId: string;
+    public currentUserId: string;
+    public code: string;
 }
 
 

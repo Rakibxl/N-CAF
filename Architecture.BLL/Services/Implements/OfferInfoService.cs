@@ -47,6 +47,7 @@ namespace Architecture.BLL.Services.Implements
                          {
                              OfferInfoId = of.OfferInfoId,
                              JobId = of.JobId,
+                             Code = of.Code,
                              JobInfo = job,
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
@@ -83,6 +84,7 @@ namespace Architecture.BLL.Services.Implements
                          {
                              OfferInfoId = of.OfferInfoId,
                              JobId = of.JobId,
+                             Code = of.Code,
                              JobInfo = job,
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
@@ -172,6 +174,7 @@ namespace Architecture.BLL.Services.Implements
                     offer.OfferStatusId = (int)EnumOfferStatus.Received;
                     offer.OperatorAcceptedDate = DateTime.Now;
                     offer.AcceptedOperatorId = UserId.ToString();
+                    offer.CurrentUserId = UserId;
                     offer.ModifiedBy = UserId;
                     var offerUpdate = await AddOrUpdate(offer);
                     return "Request has been accepted successfully.";
@@ -219,6 +222,7 @@ namespace Architecture.BLL.Services.Implements
                     offer.OfferStatusId = (int)EnumOfferStatus.Pending;
                     //offer.OperatorAcceptedDate = DateTime.Now;
                     offer.AcceptedOperatorId = null;
+                    offer.CurrentUserId = null;
                     offer.ModifiedBy = UserId;
                     var offerUpdate = await AddOrUpdate(offer);
                     return "This job is again open for all. Anyone can accept this request and proceed.";
@@ -310,6 +314,7 @@ namespace Architecture.BLL.Services.Implements
                          {
                              OfferInfoId = of.OfferInfoId,
                              JobId = of.JobId,
+                             Code = of.Code,
                              JobInfo = job,
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
@@ -352,6 +357,7 @@ namespace Architecture.BLL.Services.Implements
                          {
                              OfferInfoId = of.OfferInfoId,
                              JobId = of.JobId,
+                             Code = of.Code,
                              JobInfo = job,
                              ProfileId = of.ProfileId,
                              ProfileName = profile.Name,
@@ -393,14 +399,19 @@ namespace Architecture.BLL.Services.Implements
         {
             try
             {
-                offerInfo.Created = DateTime.Now;
                 OfferInfo result;
                 if (offerInfo.OfferInfoId > 0)
                 {
+                    offerInfo.Modified = DateTime.Now;
+                    offerInfo.ModifiedBy = CurrentUserService.UserId;
                     result = await UpdateAsync(offerInfo);
                 }
                 else
                 {
+                    offerInfo.Created = DateTime.Now;
+                    offerInfo.CreatedBy = CurrentUserService.UserId;
+                    offerInfo.CurrentUserId = CurrentUserService.UserId;
+                    offerInfo.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(offerInfo);
                 }
                 return result;
@@ -491,10 +502,11 @@ namespace Architecture.BLL.Services.Implements
                              {
                                  OfferInfoId = of.OfferInfoId,
                                  JobId = of.JobId,
+                                 Code=of.Code,
                                 // JobInfo = job,
                                  ProfileId = of.ProfileId,
                                  ProfileName = profile.Name,
-                                 //AcceptedOperatorId = of.AcceptedOperatorId,
+                                 AcceptedOperatorId = of.AcceptedOperatorId,
                                  //AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                                  //OfferStatusId = of.OfferStatusId,
                                  //OperatorAcceptedDate = of.OperatorAcceptedDate,
@@ -504,6 +516,7 @@ namespace Architecture.BLL.Services.Implements
                                  OfferStatus = os,
                                  //Status = of.Status,
                                  CurrentUserId = of.CurrentUserId,
+                                 CreatedBy = of.CreatedBy,
                                  //Created = of.Created,
                                  //Modified = of.Modified
                              };
@@ -530,10 +543,11 @@ namespace Architecture.BLL.Services.Implements
                              {
                                  OfferInfoId = of.OfferInfoId,
                                  JobId = of.JobId,
+                                 Code = of.Code,
                                  JobInfo = job,
                                  ProfileId = of.ProfileId,
                                  ProfileName = profile.Name,
-                                 //AcceptedOperatorId = of.AcceptedOperatorId,
+                                 AcceptedOperatorId = of.AcceptedOperatorId,
                                  //AcceptedOperatorName = $"{operatorObj.Name} {operatorObj.SurName}",
                                  //OfferStatusId = of.OfferStatusId,
                                  //OperatorAcceptedDate = of.OperatorAcceptedDate,
@@ -543,6 +557,7 @@ namespace Architecture.BLL.Services.Implements
                                  OfferStatus = os,
                                  Status = of.Status,
                                  CurrentUserId = of.CurrentUserId,
+                                 CreatedBy = of.CreatedBy,
                                  //Created = of.Created,
                                  //Modified = of.Modified
                              };

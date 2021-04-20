@@ -8,7 +8,7 @@ namespace Architecture.Core.Entities
 {
     public class OfferInfo : Auditable
     {
-        public int OfferInfoId { get; set; }
+        public int OfferInfoId { get; set; }       
         public int JobId { get; set; }
         public virtual JobInfo JobInfo { get; set; }
         public int ProfileId { get; set; }
@@ -22,6 +22,7 @@ namespace Architecture.Core.Entities
         public string Status { get; set; }
         public Guid? CurrentUserId { get; set; }
         public string DocumentSrc { get; set; }
+        public string Code { get { return $"NC-{this.OfferInfoId.ToString("D4")}"; } }
 
     }
 }

@@ -11,13 +11,9 @@ namespace Architecture.Core.Entities.Core
     public abstract class Auditable
     {
         public Guid? CreatedBy { get; set; }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Created { get; set; }
 
         public Guid? ModifiedBy { get; set; }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Modified { get; set; }
         public int? RecordStatusId { get; set; }
         public RecordStatus RecordStatus { get; set; }

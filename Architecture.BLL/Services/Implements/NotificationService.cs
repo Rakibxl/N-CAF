@@ -1,4 +1,5 @@
 ﻿using Architecture.BLL.Services.Interfaces;
+using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
@@ -42,17 +43,9 @@ namespace Architecture.BLL.Services.Notification
             }
         }
         public async Task<List<NotificationInfo>> GetByOfferInfoId(int offerInfoId)
-        {
-            var checkVal = await IsExistsAsync(x => x.OfferInfoId == offerInfoId);
-            if (checkVal)
-            {
+        {            
                 var result = await GetAsync(x=>x,x=>x.OfferInfoId==offerInfoId);
-                return result.ToList();
-            }
-            else
-            {
-                throw new Exception("Information is not exists.");
-            }
+                return result.ToList();           
         }
         public async Task<List<NotificationInfo>> GetCurrentUserNotification(int pageNumber, int pageSize)
         {
@@ -77,11 +70,14 @@ namespace Architecture.BLL.Services.Notification
                 if (notification.NotificationInfoId > 0)
                 {
                     notification.ModifiedBy = currentUserService.UserId;
+                    notification.Modified = DateTime.Now;
                     result = await UpdateAsync(notification);
                 }
                 else
                 {
                     notification.CreatedBy = currentUserService.UserId;
+                    notification.Created = DateTime.Now;
+                    notification.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(notification);
                 }
                 return result;

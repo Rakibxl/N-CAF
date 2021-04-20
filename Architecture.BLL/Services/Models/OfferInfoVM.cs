@@ -11,6 +11,7 @@ namespace Architecture.BLL.Services.Models
     {
         public int OfferInfoId { get; set; }
         public int JobId { get; set; }
+        public string Code { get; set; }
         public virtual JobInfo JobInfo { get; set; }
         public int ProfileId { get; set; }
         public ProfBasicInfo ProfBasicInfo { get; set; }
@@ -25,5 +26,6 @@ namespace Architecture.BLL.Services.Models
         public virtual OfferStatus OfferStatus { get; set; }
         public string Status { get; set; }
         public Guid? CurrentUserId { get; set; }
+        public Guid? CreatedBy { get; set; }
     }
 }
