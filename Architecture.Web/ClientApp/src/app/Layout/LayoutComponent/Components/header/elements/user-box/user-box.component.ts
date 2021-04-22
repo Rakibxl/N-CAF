@@ -22,7 +22,18 @@ export class UserBoxComponent implements OnInit {
   ngOnInit() {
     // this.production = environment.production;
     this.authService.currentUser.subscribe(user => this.user = user);
-  }
+    }
+
+    fnRedirectToNotificationPage() {
+        this.router.navigate(['/profile/notification']);
+    }
+
+    fnRedirectToChangePasswordPage() {
+        this.router.navigate(['/profile/change-password']);
+    }
+    fnRedirectToProfileSettingsPage() {
+        this.router.navigate(['/profile/settings']);
+    }
 
   logout() {
       this.authService.logout();

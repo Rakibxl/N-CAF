@@ -57,9 +57,10 @@ export class OfferHistoryComponent implements OnInit {
         tableName: 'Offer History',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
+            { headerName: 'Code', width: '8%', internalName: 'code', sort: true, type: "" },
             { headerName: 'Offer Title', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
             { headerName: 'Profile Name', width: '15%', internalName: 'profileName', sort: true, type: "" },
-            { headerName: 'Operator Name', width: '25%', internalName: 'acceptedOperatorName', sort: true, type: "" },
+            { headerName: 'Operator Name', width: '15%', internalName: 'acceptedOperatorName', sort: true, type: "" },
             { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date", displayType: 'datetime' },
             { headerName: 'Completed Date', width: '10%', internalName: 'modified', sort: true, type: "Date", displayType: 'datetime' },
             { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },

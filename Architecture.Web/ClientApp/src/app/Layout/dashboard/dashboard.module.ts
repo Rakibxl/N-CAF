@@ -25,6 +25,7 @@ import { ClientProfileCollectionComponent } from './client-profile-collection/cl
 import { WaitingJobComponent } from './operator-waiting-job/waiting-job.component';
 import { PendingJobComponent } from './operator-pending-job/pending-job.component';
 import { CompletedJobComponent } from './operator-completed-job/completed-job.component';
+import { JobNotificationHistoryComponent } from './job-notification-history/job-notification-history.component';
 // import { SectionToSectionLinkComponent } from '../../Shared/share-component/section-to-section-link/section-to-section-link.component';
 
 
@@ -43,7 +44,8 @@ import { CompletedJobComponent } from './operator-completed-job/completed-job.co
         ClientProfileCollectionComponent,
         WaitingJobComponent,
         PendingJobComponent,
-        CompletedJobComponent
+        CompletedJobComponent,
+        JobNotificationHistoryComponent
   ],
 
   imports: [

@@ -65,6 +65,7 @@ export class ResetPasswordBoxedComponent implements OnInit, OnDestroy {
 
 	createForm() {
 		this.resetPassForm = this.resetPassFB.group({
+			email: ['', [Validators.required]],
 			newPassword: ['', [Validators.required]],
 			confirmPassword: ['', [Validators.required]],
 		},
