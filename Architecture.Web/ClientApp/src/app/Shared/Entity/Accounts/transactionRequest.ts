@@ -1,5 +1,5 @@
-﻿import { Data } from '@angular/router';
-import { Auditable } from '../Common/auditable';
+﻿import { Auditable } from '../Common/auditable';
+import { PaymentType } from '../LU/paymentType';
 
 export class TransactionRequest extends Auditable {
     public transactionRequestId: number;
@@ -8,11 +8,9 @@ export class TransactionRequest extends Auditable {
     public approvedDate: Date;
     public requestBy: string;
     public transactionId: number;
-    public paymentType: number;
-    public ownerTypeName: string;
+    public paymentTypeId: number;
+    public paymentType: PaymentType;
     public paymentReceivedBy: string;
     public paymentReceivedDate: Date;
-        
+    public amount: number;
 }
-
-

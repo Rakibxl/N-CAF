@@ -89,10 +89,10 @@ export class OfferComponent implements OnInit {
         this.alertService.confirm("Are you confirm, that you will submit this offer for the next level. Before submitting review the documents again",
             () => {
                 let offerInfo = new OfferInfo();
-                offerInfo.JobId = this.jobId;
-                offerInfo.ProfileId = this.profileId;
-                offerInfo.OfferStatusId = 1;
-                offerInfo.OfferInfoId = this.offerInfoId;
+                offerInfo.jobId = this.jobId;
+                offerInfo.profileId = this.profileId;
+                offerInfo.offerStatusId = 1;
+                offerInfo.offerInfoId = this.offerInfoId;
                 this.offerInfoService.submitOffer(offerInfo).subscribe((res) => {
                     console.log("Response:: ", res);
                     this.alertService.tosterSuccess("Successfully your offer submitted.");

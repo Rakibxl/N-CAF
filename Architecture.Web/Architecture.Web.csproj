@@ -54,6 +54,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Shared\Entity\LU\appUserType.ts" />
+    <None Remove="ClientApp\src\app\Shared\Entity\LU\paymentType.ts" />
     <None Remove="ClientApp\src\app\Shared\Guards\dashboard.guard.ts" />
   </ItemGroup>
   
@@ -74,7 +76,20 @@
   </ItemGroup>
   
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Shared\Entity\LU\paymentType.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Shared\Entity\LU\appUserType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Shared\Guards\dashboard.guard.ts" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="ClientApp\src\app\Shared\Entity\LU\appUserType - Copy.js">
+      <DependentUpon>appUserType.js</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\Shared\Entity\LU\appUserType - Copy.js.map">
+      <DependentUpon>appUserType.js.map</DependentUpon>
+    </None>
   </ItemGroup>
   
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

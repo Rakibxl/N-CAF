@@ -36,6 +36,7 @@ export class JobInfo extends Auditable {
     public sectionName: string;
     public sectionList: string;
     public jobSectionLink: JobSectionLink[] = [];
+    public clientRequiredAmount: number=0;
+    public operatorRequiredAmount: number=0;
+    public branchRequiredAmount: number=0;
 }
-
-

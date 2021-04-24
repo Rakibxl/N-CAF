@@ -128,7 +128,7 @@ namespace Architecture.Web.Controllers.Common
             workerTypeService = _workerTypeService;
             operatorKeywordService = _operatorKeywordService;
             provinceService = _provinceService;
-            paymentTypeService = paymentTypeService;
+            this.paymentTypeService = paymentTypeService;
         }        
 
         [HttpGet("AddressType")]

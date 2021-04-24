@@ -8,6 +8,6 @@ namespace Architecture.Core.Entities.LU
     {
         public int PaymentTypeId { get; set; }
         public string PaymentTypeName { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
     }
 }

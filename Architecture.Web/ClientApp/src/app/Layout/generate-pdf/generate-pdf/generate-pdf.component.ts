@@ -50,10 +50,10 @@ export class GeneratePdfComponent implements OnInit {
 
     public fnSubmitOffer() {
         let offerInfo = new OfferInfo();
-        offerInfo.JobId = this.jobId;
-        offerInfo.ProfileId = this.profileId;
-        offerInfo.OfferStatusId = 1;
-        offerInfo.OfferInfoId = this.offerInfoId;
+        offerInfo.jobId = this.jobId;
+        offerInfo.profileId = this.profileId;
+        offerInfo.offerStatusId = 1;
+        offerInfo.offerInfoId = this.offerInfoId;
         this.offerInfoService.submitOffer(offerInfo).subscribe((res) => {
             console.log("Response:: ", res);
         },

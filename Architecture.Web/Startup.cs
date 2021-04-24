@@ -80,39 +80,7 @@ namespace Architecture.Web
 
             services.AddHttpContextAccessor();
 
-            // Add service here
-            #region Service
-            //services.AddTransient<IDateTime, DateTimeService>();
-            //services.AddScoped<ICurrentUserService, CurrentUserService>();
-            //services.AddTransient<IApplicationUserService, ApplicationUserService>();
-            //services.AddTransient<IApplicationRoleService, ApplicationRoleService>();
-            //services.AddTransient<IApplicationUserRoleMappingService, ApplicationUserRoleMappingService>();
-            //services.AddTransient<IDashboardService, DashboardService>();
-            //services.AddTransient<IExampleService, ExampleService>();
-            //services.AddTransient<IFamilyInfoService, FamilyInfoService>();
-            //services.AddTransient<IEducationInfoService, EducationInfoService>();
-            //services.AddTransient<IAddressInfoService, AddressInfoService>();
-            //services.AddTransient<IHouseRentInfoService, HouseRentInfoService>();
-            //services.AddTransient<IIncomeInfoService, IncomeInfoService>();
-            //services.AddTransient<IMovementInfoService, MovementInfoService>();
-            //services.AddTransient<ILegalInfoService, LegalInfoService>();
-            //services.AddTransient<IInsuranceInfoService, InsuranceInfoService>();
-            //services.AddTransient<IBankInfoService, BankInfoService>();
-            //services.AddTransient<IWorkerInfoService, WorkerInfoService>();
-            //services.AddTransient<IOccupationInfoService, OccupationInfoService>();
-            //services.AddTransient<IAssetInfoService, AssetInfoService>();
-            //services.AddTransient<IDelegationInfoService, DelegationInfoService>();
-            //services.AddTransient<IISEEInfoService, ISEEInfoService>();
-            //services.AddTransient<IDocumentInfoService, DocumentInfoService>();
-            //services.AddTransient<IClientProfileService, ClientProfileService>();
-            //services.AddTransient<IBasicInfoService, BasicInfoService>();
-            //services.AddTransient<IBranchService, BranchService>();
-            //services.AddTransient<IQuestionService, QuestionService>();
-            //services.AddTransient<IJobInformationService, JobInformationService>();
-            //services.AddTransient<ISectionLinkService, SectionLinkService>();
-            //services.AddTransient<IJobSectionLinkService, JobSectionLinkService>();
-            #endregion
-
+           
             #region dynamic service inject
             services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
                     .Where(c => c.Name.EndsWith("Repository"))

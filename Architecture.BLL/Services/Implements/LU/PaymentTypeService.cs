@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.BLL.Services.Implements.LU
 {
-    class PaymentTypeService :Repository<PaymentType>, IPaymentTypeService
+   public class PaymentTypeService : Repository<PaymentType>, IPaymentTypeService
     {
         public PaymentTypeService(ApplicationDbContext dbContext) : base(dbContext)
     {
