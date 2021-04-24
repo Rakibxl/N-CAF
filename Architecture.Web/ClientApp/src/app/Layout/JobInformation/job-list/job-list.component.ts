@@ -36,7 +36,7 @@ export class JobListComponent implements OnInit {
             this.router.navigate([`/job-info/job-info-new/${event.record.jobInfoId}`]);
         }
         else if (event.action == "delete-item") {
-            this.alertService.confirm(`Do you want to delete JOB ${record.title}`,
+            this.alertService.confirm(`Do you want to delete job <b>${record.title}</b>`,
                 () => {
                     this.jobInfoService.deleteByJobId(record.jobInfoId).subscribe((res) => {
                         this.alertService.titleTosterWarning(res.data);
