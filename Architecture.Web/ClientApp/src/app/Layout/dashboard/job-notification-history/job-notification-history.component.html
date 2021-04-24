@@ -1,7 +1,7 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Details Information </h4>
+        <h4 class="modal-title">Details Information of {{this.selectedOfferInfoId.code}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -9,7 +9,8 @@
     <div class="modal-body">
         <div class="d-flex col-sm-12 row">
                     <ul class="list-group w-100">
-                        <li class="list-group-item" *ngFor="let noti of this.notificationCollection ">{{noti.messageContent}}<small>By {{noti.createdBy}}</small> <small>on {{noti.created}}</small></li>
+                        <li class="list-group-item" *ngFor="let noti of this.notificationCollection ">{{noti.messageContent}}<small> By {{noti.createdByName}}</small> <small>on {{this.commonService.getDatePipe(noti.created, 'datetime')}}</small></li>
+                        <li class="list-group-item" *ngIf="this.notificationCollection.length==0"><strong>No Information Available!</strong></li>
                     </ul>
         </div>
     </div>
@@ -17,5 +18,3 @@
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
     </div>
 </ng-template>
-
-<button (click)="fnShowDetailsModal(content)" >Modal</button>

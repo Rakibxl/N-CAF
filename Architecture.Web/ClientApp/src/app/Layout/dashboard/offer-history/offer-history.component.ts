@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
+import { OfferInfo } from '../../../Shared/Entity/Users/OfferInfo';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
@@ -13,10 +14,11 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 })
 export class OfferHistoryComponent implements OnInit {
     public myOffers: JobInfo[] = [];
+    public selectedOffer: OfferInfo = new OfferInfo();
     public profileId: number;
     constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute, private alertService: AlertService) { }
 
-    ngOnInit() {
+   public ngOnInit() {
         this.profileId = (+this.route.snapshot.paramMap.get("profId") || 0);
         this.offerService.getClientCompletedOffer(this.profileId).subscribe((res: APIResponse) => {
             console.log("Success", res);
@@ -26,14 +28,14 @@ export class OfferHistoryComponent implements OnInit {
             console.log("Error ", error);
         });
     }
-    onClickGeneratePDF() {
+   public onClickGeneratePDF() {
         const url = this.router.serializeUrl(
             this.router.createUrlTree(['./generate-pdf'])
         );
         window.open(url, '_blank');
     }
 
-    onClickOffer() {
+   public onClickOffer() {
         const url = this.router.serializeUrl(
             this.router.createUrlTree(['./show-offer/offer/1/1'])
         );
@@ -44,7 +46,13 @@ export class OfferHistoryComponent implements OnInit {
         if (event.cellName == "apply") {
             this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
         } else if (event.cellName == "download-recipt") {
+            this.selectedOffer = event.record;
             this.alertService.titleTosterSuccess("Feature will be enable soon. Thanks for clicking.");
+        } else if (event.cellName == "view-history") {
+            this.selectedOffer = new OfferInfo();
+            setTimeout(() => {
+                this.selectedOffer = event.record;
+            }, 700);
         }
     }
 
@@ -65,7 +73,7 @@ export class OfferHistoryComponent implements OnInit {
             { headerName: 'Completed Date', width: '10%', internalName: 'modified', sort: true, type: "Date", displayType: 'datetime' },
             { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
             { headerName: 'Details', width: '7%', internalName: 'download-recipt', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'Receipt' },
-            { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'History' },
+            { headerName: 'Details', width: '7%', internalName: 'view-history', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'History' },
 
         ],
         enabledSearch: true,

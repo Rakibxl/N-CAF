@@ -35,6 +35,10 @@ export class UserBoxComponent implements OnInit {
         this.router.navigate(['/profile/settings']);
     }
 
+    fnRedirectToAccountsPage() {
+        this.router.navigate(['/accounts/accounts-history']);
+    }
+
   logout() {
       this.authService.logout();
     this.router.navigate(['/auth/login']);

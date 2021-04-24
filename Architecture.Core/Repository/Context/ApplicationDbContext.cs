@@ -1,5 +1,6 @@
 ﻿using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities;
+using Architecture.Core.Entities.Accounts;
 using Architecture.Core.Entities.LU;
 using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context.FluentAPIMapping;
@@ -44,6 +45,10 @@ namespace Architecture.Core.Repository.Context
         public DbSet<JobSectionLink> JobSectionLinks { get; set; }
         public DbSet<OfferInfo> OfferInfos { get; set; }
         public DbSet<NotificationInfo> Notifications { get; set; }
+        public DbSet<AccountInfo> AccountInfos { get; set; }
+        public DbSet<TransactionRequest> TransactionRequests { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<TransactionDetail> TransactionDetails { get; set; }
 
         #region Lookup Table
         public DbSet<Gender> Gender { get; set; }
@@ -81,6 +86,7 @@ namespace Architecture.Core.Repository.Context
         public DbSet<OfferStatus> OfferStatus { get; set; }
         public DbSet<Province> Province { get; set; }
         public DbSet<RecordStatus> RecordStatus { get; set; }
+        public DbSet<PaymentType> PaymentType { get; set; }
 
         #endregion 
 
@@ -542,6 +548,19 @@ namespace Architecture.Core.Repository.Context
                     new RecordStatus { RecordStatusId = 3, Name = "Deleted", IsActive = true },
                     new RecordStatus { RecordStatusId = 4, Name = "Waiting for Approval", IsActive = true },
                     new RecordStatus { RecordStatusId = 5, Name = "Approved", IsActive = true }
+                );
+            }); 
+            
+            modelBuilder.Entity<PaymentType>().ToTable("LU_PaymentType");
+            modelBuilder.Entity<PaymentType>(ms =>
+            {
+                ms.HasKey(g => g.PaymentTypeId);
+                ms.Property(g => g.PaymentTypeName).HasMaxLength(100);
+                ms.HasData(
+                    new PaymentType { PaymentTypeId = 1, PaymentTypeName = "Cash", IsActive = true },
+                    new PaymentType { PaymentTypeId = 2, PaymentTypeName = "Online Payment", IsActive = true },
+                    new PaymentType { PaymentTypeId = 3, PaymentTypeName = "Paypal Payment", IsActive = true },
+                    new PaymentType { PaymentTypeId = 4, PaymentTypeName = "Bank Payment", IsActive = true }
                 );
             });
         }

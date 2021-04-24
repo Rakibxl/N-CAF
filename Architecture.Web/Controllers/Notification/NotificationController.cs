@@ -24,20 +24,14 @@ namespace Architecture.Web.Controllers.Notification
             this.notificationService = notificationService;
         }
 
-        //[HttpPost]
-        //public IActionResult post()
-        //{
-        //    notificationHubContext.Clients.All.SendAsync("MessageReceived", "This is test megs...");
-        //    return Ok();
-        //}
-
+      
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] NotificationInfo model)
         {
             return await ModelValidation(async () =>
             {
                 var result = await notificationService.AddOrUpdate(model);
-               await notificationHubContext.Clients.All.SendAsync(result.MessageFor.ToString(), result);
+               //await notificationHubContext.Clients.All.SendAsync(result.MessageFor.ToString(), result);
                 return OkResult(result);
             });
         }

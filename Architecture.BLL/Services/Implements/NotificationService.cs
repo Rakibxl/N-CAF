@@ -3,10 +3,12 @@ using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
+using Architecture.Web.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Architecture.BLL.Services.Notification
@@ -15,10 +17,11 @@ namespace Architecture.BLL.Services.Notification
     {
 
         private readonly ICurrentUserService currentUserService;
-        //private IHubContext<NotificationHub> notificationHubContext;
-        public NotificationService(ApplicationDbContext dbContext, ICurrentUserService currentUserService) : base(dbContext)
+        private IHubContext<NotificationHub> notificationHubContext;
+        public NotificationService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, IHubContext<NotificationHub> notificationHubContext) : base(dbContext)
         {
             this.currentUserService = currentUserService;
+            this.notificationHubContext = notificationHubContext;
         }
 
         public async Task<IEnumerable<NotificationInfo>> GetAll()
@@ -45,7 +48,14 @@ namespace Architecture.BLL.Services.Notification
         public async Task<List<NotificationInfo>> GetByOfferInfoId(int offerInfoId)
         {            
                 var result = await GetAsync(x=>x,x=>x.OfferInfoId==offerInfoId);
-                return result.ToList();           
+
+            //var parameter = Expression.Parameter(typeof());
+            //Expression predicate = Expression.Constant(true);
+            //Expression property = Expression.Property(parameter, nameOfParameter);
+            //Expression equal = Expression.Equal(property, Expression.Constant(valueToCompare));
+            //predicate = Expression.AndAlso(predicate, equal);
+
+            return result.ToList();           
         }
         public async Task<List<NotificationInfo>> GetCurrentUserNotification(int pageNumber, int pageSize)
         {
@@ -80,6 +90,7 @@ namespace Architecture.BLL.Services.Notification
                     notification.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(notification);
                 }
+                await notificationHubContext.Clients.All.SendAsync(result.MessageFor.ToString(), result);
                 return result;
             }
             catch (Exception ex)

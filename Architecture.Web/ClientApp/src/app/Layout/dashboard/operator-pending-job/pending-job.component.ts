@@ -14,6 +14,7 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 })
 export class PendingJobComponent implements OnInit {
     public myOffers: OfferInfo[] = [];
+    public selectedOffer: OfferInfo = new OfferInfo();
     constructor(private router: Router, private offerService: OfferInfoService, private alertService: AlertService, private commonService: CommonService) { }
 
     ngOnInit() {
@@ -52,8 +53,12 @@ export class PendingJobComponent implements OnInit {
                 () => { }
             );
         } else if (event.cellName == "view-details") {
-            //completed-offer-pdf/:profileId/:jobId/:offerId
             this.router.navigate([`/generate-pdf/completed-offer-pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
+        } else if (event.cellName == "view-history") {
+            this.selectedOffer = new OfferInfo();
+            setTimeout(() => {
+                this.selectedOffer = event.record;
+            }, 700);
         }
     }
 
@@ -83,12 +88,13 @@ export class PendingJobComponent implements OnInit {
         tableName: 'Job on Progress',
         tableRowIDInternalName: "jobInfoId",
         tableColDef: [
+            { headerName: 'Code', width: '8%', internalName: 'code', sort: true, type: "" },
             { headerName: 'Offer Title', width: '10%', internalName: 'jobInfo.title', sort: true, type: "" },
             { headerName: 'Profile Name', width: '15%', internalName: 'profileName', sort: true, type: "" },
             { headerName: 'Operator Name', width: '10%', internalName: 'acceptedOperatorName', sort: true, type: "" },
-            { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date" },
+            { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date", displayType:'datetime' },
             { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
-            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "Date" },
+            { headerName: 'Modified Date ', width: '10%', internalName: 'modified', sort: true, type: "Date", displayType: 'datetime'},
             { headerName: 'Details', width: '7%', internalName: 'view-history', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'History' },
             { headerName: 'Details', width: '7%', internalName: 'view-details', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'View' },
             { headerName: 'Details', width: '7%', internalName: 'revert-request', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-close text-danger", btnTitle: 'Revert' },

@@ -1,6 +1,7 @@
 ﻿using Architecture.Core.Entities.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Architecture.Core.Entities.Notification
@@ -17,5 +18,9 @@ namespace Architecture.Core.Entities.Notification
         public int? OfferInfoId { get; set; }
         public virtual OfferInfo OfferInfo { get; set; }
         public string Type { get; set; }
+        [NotMapped]
+        public string CreatedByName { get; set; }
+        [NotMapped]
+        public string MessageForName { get; set; }
     }
 }

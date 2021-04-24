@@ -12,5 +12,7 @@ export class NotificationInfo extends Auditable {
     public offerInfoId: number;
     public type: string;
     public offerInfo: OfferInfo;
+    public createdByName: string;
+    public messageForName: string;
 }
 

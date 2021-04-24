@@ -36,6 +36,11 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
 
             //jobInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             //jobInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+
+            jobInfo.Property(bs => bs.ClientRequiredAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
+            jobInfo.Property(bs => bs.OperatorRequiredAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
+            jobInfo.Property(bs => bs.BranchRequiredAmount).HasColumnType("decimal(10,2)").HasDefaultValue(0.0);
+
         }
     }
 }

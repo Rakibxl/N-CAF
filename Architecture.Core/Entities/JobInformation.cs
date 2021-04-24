@@ -44,6 +44,11 @@ namespace Architecture.Core.Entities
         #endregion
 
         public virtual ICollection<JobSectionLink> JobSectionLink { get; set; }
+        #region accounts
+        public decimal ClientRequiredAmount { get; set; }
+        public decimal OperatorRequiredAmount { get; set; }
+        public decimal BranchRequiredAmount { get; set; }
+        #endregion accounts
     }
 }
 

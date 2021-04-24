@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationInfo } from '../../../../../../Shared/Entity/Notifiation/NotificationInfo';
 import { AlertService } from '../../../../../../Shared/Modules/alert/alert.service';
+import { CommonService } from '../../../../../../Shared/Services/Common/common.service';
 import { MessageService } from '../../../../../../Shared/Services/Message/message.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderNotificationComponent implements OnInit {
     public unSeenNotificationCount: number = 0;
     public notificationCollection: NotificationInfo[] = [];
     //message = new Message();
-    constructor(private messageService: MessageService, private alertService: AlertService) { }
+    constructor(private messageService: MessageService, private alertService: AlertService, private commonService: CommonService) { }
 
     ngOnInit() {
         this.subscribeToEvents();
@@ -34,6 +35,6 @@ export class HeaderNotificationComponent implements OnInit {
         })
     }
     private subscribeToEvents(): void {
-        this.messageService.registerOnServerEvents();
+        this.messageService.registerOnServerEvents();        
     } 
 }

@@ -15,6 +15,7 @@ import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.
 export class OfferStatusComponent implements OnInit {
     public myOffers: OfferInfo[] = [];
     public profileId: number;
+    public selectedOffer: OfferInfo = new OfferInfo();
     constructor(private router: Router, private offerService: OfferInfoService, private route: ActivatedRoute, private alertService: AlertService) { }
 
     ngOnInit() {
@@ -47,7 +48,10 @@ export class OfferStatusComponent implements OnInit {
         } else if (event.cellName == "view-details") {
             this.router.navigate([`show-offer/offer/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
         } else if (event.cellName == "view-history") {
-            this.alertService.titleTosterSuccess("Details history of offer is coming...");
+            this.selectedOffer = new OfferInfo();
+            setTimeout(() => {
+                this.selectedOffer = event.record;
+            }, 700);
         }
     }
 

@@ -12,6 +12,8 @@ using Architecture.BLL.Services.Models;
 using System.Security.Claims;
 using Architecture.Core.Common.Enums;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
+using Microsoft.AspNetCore.SignalR;
+using Architecture.Web.Hubs;
 
 namespace Architecture.BLL.Services.Implements
 {
@@ -21,20 +23,21 @@ namespace Architecture.BLL.Services.Implements
         private readonly ICurrentUserService CurrentUserService;
         private readonly IApplicationUserService applicationUserService;
         private readonly IBasicInfoService basicInfoService;
+        private IHubContext<NotificationHub> notificationHubContext;
         public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService CurrentUserService,
-           IApplicationUserService applicationUserService, IBasicInfoService basicInfoService) : base(dbContext)
+           IApplicationUserService applicationUserService, IBasicInfoService basicInfoService, IHubContext<NotificationHub> notificationHubContext) : base(dbContext)
         {
             this.jobInformationService = jobInformationService;
             this.CurrentUserService = CurrentUserService;
             this.applicationUserService = applicationUserService;
             this.basicInfoService = basicInfoService;
+            this.notificationHubContext = notificationHubContext;
         }
 
         #region Operator
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorProgressOffer()
         {
             var UserId = CurrentUserService.UserId.ToString();
-
             var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == (int)EnumOfferStatus.Received || x.OfferStatusId == (int)EnumOfferStatus.DocumentsRequired || x.OfferStatusId == (int)EnumOfferStatus.InformationRequired))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId

@@ -1,8 +1,8 @@
-<div ngbDropdown autoclose="outside" class="btn-group dropdown notify-dropdown" placement="bottom"
+<div ngbDropdown autoclose="outside" class="btn-group dropdown notify-dropdown" placement="bottom" 
     ng-reflect-auto-close="outside" ng-reflect-placement="bottom">
     <button ngbDropdownToggle aria-haspopup="true" class="btn btn-link p-0 mr-2 dropdown-toggle" ngbdropdowntoggle=""
-        type="button" aria-expanded="false" (click)="fnGetMessage"><span>
-            <div class="icon-wrapper overflow-visiable icon-wrapper-alt rounded-circle d-flex align-items-center justify-content-center">
+        type="button" aria-expanded="false" ><span>
+            <div class="icon-wrapper overflow-visiable icon-wrapper-alt rounded-circle d-flex align-items-center justify-content-center" (click)="fnGetMessage()">
                 <div class="icon-wrapper-bg bg-danger"></div>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@
                                                 {{notification.messageContent}}
                                                 <div class="badge badge-success ml-2" *ngIf="!notification.isSeen">New</div>
                                             </h4>
-                                            <p>{{notification.created}} <a href="#">view details</a></p>
+                                            <p>{{this.commonService.getDatePipe(notification.created,'datetime')}} <a href="#">view details</a></p>
                                         </div>
                                     </div>
                                 </div>

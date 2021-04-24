@@ -51,7 +51,9 @@ export class MessageService {
     }
     public registerOnServerEvents(): void {
         this.authService.currentUser.subscribe(user => this.user = user);
+
         this._hubConnection.on(this.user.id, (data: any) => {
+            console.log("notification success:::", data);
             MessageService.notify.next(data);
         });
     }

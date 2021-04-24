@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Guid } from 'guid-typescript';
@@ -111,7 +112,20 @@ export class CommonService {
       return '';
     }
     return _moment(dateString).isValid ? _moment(dateString).toDate() : '';
-  }
+    }
+
+    getDatePipe(date: Date, type: string="") {
+        if (date == null) {
+            return "";
+        }
+        if (type == "datetime") {
+            var datePipe = new DatePipe("en-US");
+            return datePipe.transform(date, 'MM/dd/yyyy, h:mm a');
+        } else {
+            var datePipe = new DatePipe("en-US");
+            return datePipe.transform(date, 'MM/dd/yyyy');
+        }
+    }
 
   getDateDifference(start, end) {
     return _moment.duration(_moment(end).diff(_moment(start)));
