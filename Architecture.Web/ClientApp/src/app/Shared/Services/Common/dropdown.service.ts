@@ -186,4 +186,10 @@ export class DropdownService {
         await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/WorkerType`).toPromise().then(res => { result = res.data });
         return result;
     }
+    public async getPaymentType() {
+        let result;
+        await this.http.get<APIResponse>(this.baseUrl + `v1/GenericDropDown/PaymentType`).toPromise().then(res => { result = res.data });
+        return result;
+    }
+
 }

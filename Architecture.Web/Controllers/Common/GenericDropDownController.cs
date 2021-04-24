@@ -52,6 +52,7 @@ namespace Architecture.Web.Controllers.Common
         private readonly IWorkerTypeService workerTypeService;
         private readonly IOperatorKeywordService operatorKeywordService;
         private readonly IProvinceService provinceService;
+        private readonly IPaymentTypeService paymentTypeService;
 
 
         public GenericDropDownController(
@@ -88,7 +89,8 @@ namespace Architecture.Web.Controllers.Common
             ISectionNameService _sectionNameService,
             IWorkerTypeService _workerTypeService,
             IOperatorKeywordService _operatorKeywordService,
-            IProvinceService _provinceService
+            IProvinceService _provinceService,
+            IPaymentTypeService paymentTypeService
             )
         {
             addressTypeService = _addressTypeService;
@@ -126,6 +128,7 @@ namespace Architecture.Web.Controllers.Common
             workerTypeService = _workerTypeService;
             operatorKeywordService = _operatorKeywordService;
             provinceService = _provinceService;
+            paymentTypeService = paymentTypeService;
         }        
 
         [HttpGet("AddressType")]
@@ -574,5 +577,20 @@ namespace Architecture.Web.Controllers.Common
                 return ExceptionResult(ex);
             }
         }
+        [HttpGet("PaymentType")]
+        public async Task<IActionResult> GetPaymentType()
+        {
+            try
+            {
+                var result = await paymentTypeService.GetAll();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+
     }
 }
