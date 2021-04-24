@@ -9,6 +9,6 @@ namespace Architecture.BLL.Services.Interfaces
         public Task<IEnumerable<JobInfo>> GetAll();
         public Task<JobInfo> GetById(int jobId);
         public Task<JobInfo> AddOrUpdate(JobInfo jobInfo);
-        public Task<int> Delete(int jobId);
+        public Task<string> Delete(int jobId);
     }
 }

@@ -1,11 +1,12 @@
-﻿using Architecture.Core.Entities.LU;
+﻿using Architecture.Core.Entities.Core;
+using Architecture.Core.Entities.LU;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Architecture.Core.Entities
 {
-    public class JobInfo
+    public class JobInfo:Auditable
     {
         [Key]
         public int JobInfoId { get; set; }
