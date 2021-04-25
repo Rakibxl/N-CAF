@@ -26,6 +26,7 @@ namespace Architecture.Core.Entities
         public bool IsLocked { get; set; }
         public int? BranchInfoId { get; set; }
         public BranchInfo BranchInfo { get; set; }
+        public string FullName { get { return $"{Name} {SurName}"; } }
 
         public IList<ApplicationUserRole> UserRoles { get; set; }
         public IList<OperatorBranch> OperatorBranches { get; set; }

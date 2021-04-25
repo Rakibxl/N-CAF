@@ -80,7 +80,7 @@ namespace Architecture.Web
 
             services.AddHttpContextAccessor();
 
-           
+
             #region dynamic service inject
             services.RegisterAssemblyPublicNonGenericClasses(AppDomain.CurrentDomain.GetAssemblies())
                     .Where(c => c.Name.EndsWith("Repository"))

@@ -11,5 +11,7 @@ namespace Architecture.Core.Entities.Accounts
         public int TransactionId { get; set; }
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
+        public int? AccountInfoId { get; set; }
+        public virtual AccountInfo AccountInfo { get; set; }
     }
 }

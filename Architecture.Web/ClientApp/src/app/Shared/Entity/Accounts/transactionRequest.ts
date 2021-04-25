@@ -1,6 +1,5 @@
 ﻿import { Auditable } from '../Common/auditable';
 import { PaymentType } from '../LU/paymentType';
-import { QueryObject } from "../Common/query-object";
 
 export class TransactionRequest extends Auditable {
     public transactionRequestId: number;
@@ -14,17 +13,4 @@ export class TransactionRequest extends Auditable {
     public paymentReceivedBy: string;
     public paymentReceivedDate: Date;
     public amount: number = 0.0;
-}
-
-export class TransactionRequestQuery extends QueryObject {
-    name: string;
-
-    constructor(init?: Partial<TransactionRequestQuery>) {
-        super();
-        Object.assign(this, init);
-    }
-
-    clear() {
-        this.name = '';
-    }
 }

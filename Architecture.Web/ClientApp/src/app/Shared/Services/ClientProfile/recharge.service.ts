@@ -22,7 +22,7 @@ export class RechargeService {
     }
 
     getPendingRechargeApprovals() {
-        return this.http.get<APIResponse>(this.endpoint + '/Pending');
+        return this.http.get<APIResponse>(this.endpoint + '/Requests');
     }
 
     approvePendingRechargeRequest(transactionRequestId: any) {
@@ -33,4 +33,7 @@ export class RechargeService {
         return this.http.get<APIResponse>(this.endpoint + `/Reject/${transactionRequestId}`);
     }
 
+    getTransactionHistory() {
+        return this.http.get<APIResponse>(this.endpoint + '/History');
+    }
 }

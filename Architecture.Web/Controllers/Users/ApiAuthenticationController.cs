@@ -168,7 +168,7 @@ namespace Architecture.Web.Controllers.Users
                 //new Claim(ClaimTypes.Name, user.Id.ToString())
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email??string.Empty),
-                new Claim(ClaimTypes.Name, user.UserName??string.Empty),
+                new Claim(ClaimTypes.Name, user.FullName??string.Empty),
                 new Claim("AppUserTypeId", user.AppUserTypeId?.ToString()??string.Empty),
                 new Claim("BranchInfoId", userDetails.BranchInfo != null ? userDetails.BranchInfo.BranchInfoId.ToString() : ""),
                 new Claim("BranchLocation", userDetails.BranchInfo != null ? userDetails.BranchInfo.BranchLocation : "")

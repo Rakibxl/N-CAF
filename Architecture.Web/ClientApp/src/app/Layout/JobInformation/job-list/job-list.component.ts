@@ -4,6 +4,7 @@ import { IPTableSetting } from '../../../Shared/Modules/p-table';
 import { JobInfo } from '../../../Shared/Entity/Users/JobInfo';
 import { JobInfoService } from '../../../Shared/Services/Users/job-info.service';
 import { CommonService } from '../../../Shared/Services/Common/common.service';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { CommonService } from '../../../Shared/Services/Common/common.service';
 })
 export class JobListComponent implements OnInit {
     public jobInfoList = [];
-    constructor(private router: Router, private jobInfoService: JobInfoService, private commonService: CommonService, private route: ActivatedRoute) { }
+    constructor(private router: Router, private jobInfoService: JobInfoService, private alertService: AlertService, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.getJobInfos();
@@ -27,11 +28,23 @@ export class JobListComponent implements OnInit {
     public fnCustomrTrigger(event) {
         console.log("custom  click: ", event);
         let id = 0;
+        let record = event.record;
         if (event.action == "new-record") {
             this.router.navigate([`/job-info/job-info-new/0`]);
         }
         else if (event.action == "edit-item") {
             this.router.navigate([`/job-info/job-info-new/${event.record.jobInfoId}`]);
+        }
+        else if (event.action == "delete-item") {
+            this.alertService.confirm(`Do you want to delete job <b>${record.title}</b>`,
+                () => {
+                    this.jobInfoService.deleteByJobId(record.jobInfoId).subscribe((res) => {
+                        this.alertService.titleTosterWarning(res.data);
+                        this.getJobInfos();
+                    });
+                },
+                () => { }
+            );
         }
     }
 
@@ -39,15 +52,10 @@ export class JobListComponent implements OnInit {
     public getJobInfos() {
         this.jobInfoService.getJobInfo().subscribe(
             (success) => {
-                this.jobInfoList = success.data;
-                console.log("job info: ", success);
+                this.jobInfoList = success.data||[];
                 this.jobInfoList.forEach(x => {
                     x.jobDeliveryType = x.jobDeliveryType.jobDeliveryTypeName || "";
-                    x.iseeClassTypeName = "";// x?.iseeClassType?.iseeClassTypeName || "";
-                    x.occupationTypeName = "";// x?.occupationType?.occupationTypeName || "";
                     x.jobSection = (x.jobSectionLink || []).map(section => section.sectionName.sectionDescription).join(", ")||"";
-                    x.startDate = this.commonService.getDateToSetForm(x.startDate);
-                    x.endDate = this.commonService.getDateToSetForm(x.endDate);
                 });
 
                 console.log(" this.jobInfoList:", this.jobInfoList);
@@ -64,13 +72,13 @@ export class JobListComponent implements OnInit {
         tableColDef: [
             { headerName: 'Job Title', width: '10%', internalName: 'title', sort: true, type: "" },
             { headerName: 'Description', width: '10%', internalName: 'description', sort: true, type: "" },
-            { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "" },
-            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "" },
-            { headerName: 'Is Common', width: '10%', internalName: 'isCommon', sort: true, type: "" },
+            { headerName: 'Start Date', width: '10%', internalName: 'startDate', sort: true, type: "Date" },
+            { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "Date" },
+            { headerName: 'Is Common', width: '10%', internalName: 'isCommon', sort: true, type: "", visible: false },
             { headerName: 'Job Section', width: '10%', internalName: 'jobSection', sort: true, type: "" },
-            //{ headerName: 'Job Delivery Type', width: '10%', internalName: 'jobDeliveryType', sort: true, type: "" },
+            { headerName: 'Job Delivery Type', width: '10%', internalName: 'jobDeliveryType.jobDeliveryTypeName', sort: true, type: "" },
             { headerName: 'Time Frame For Operator', width: '10%', internalName: 'videoLink', sort: true, type: "", visible:false },
-            { headerName: 'Is Highlighted', width: '10%', internalName: 'isHighlighted', sort: true, type: "" },
+            { headerName: 'Is Highlighted', width: '10%', internalName: 'isHighlighted', sort: true, type: "", visible: false },
             { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "" },
             { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },
             { headerName: 'Child Age Min', width: '10%', internalName: 'childAgeMin', sort: true, type: "", visible: false  },

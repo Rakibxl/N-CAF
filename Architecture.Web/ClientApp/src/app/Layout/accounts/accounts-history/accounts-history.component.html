@@ -1,1 +1,4 @@
-<p>accounts-history works!</p>
+<div class="col col-md-12" *ngIf="!hideListView">
+    <app-p-table [pTableSetting]="pTableSettings" [pTableMasterData]="transactionHistory" >
+    </app-p-table>
+</div>

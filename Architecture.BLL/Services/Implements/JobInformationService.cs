@@ -6,20 +6,23 @@ using Architecture.Core.Repository.Core;
 using Architecture.Core.Repository.Context;
 using Architecture.BLL.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Architecture.Core.Common.Enums;
 
 namespace Architecture.BLL.Services.Implements
 {
 
     public class JobInformationService : Repository<JobInfo>, IJobInformationService
-    {       
-        public JobInformationService(ApplicationDbContext dbContext) : base(dbContext)
+    {
+        private readonly ICurrentUserService currentUserService;
+        public JobInformationService(ApplicationDbContext dbContext, ICurrentUserService currentUserService) : base(dbContext)
         {
+            this.currentUserService = currentUserService;
         }
 
         public async Task<IEnumerable<JobInfo>> GetAll()
         {
             IEnumerable<JobInfo> result;
-            result = await GetAsync(x => x, null, null, x => x.Include(y => y.JobDeliveryType)
+            result = await GetAsync(x => x, x=>x.RecordStatusId== (int)EnumRecordStatus.Active, null, x => x.Include(y => y.JobDeliveryType)
                                                               .Include(y => y.ISEEClassType)
                                                               .Include(y => y.OccupationType)
                                                               .Include(y => y.JobSectionLink).ThenInclude(x => x.SectionName));
@@ -47,10 +50,15 @@ namespace Architecture.BLL.Services.Implements
                 JobInfo result;
                 if (jobInfo.JobInfoId > 0)
                 {
+                    jobInfo.CreatedBy = currentUserService.UserId;
+                    jobInfo.Created = DateTime.Now;
                     result = await UpdateAsync(jobInfo);
                 }
                 else
                 {
+                    jobInfo.ModifiedBy = currentUserService.UserId;
+                    jobInfo.Modified = DateTime.Now;
+                    jobInfo.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(jobInfo);
                 }
                 return result;
@@ -61,10 +69,17 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
-        public async Task<int> Delete(int jobId)
+        public async Task<string> Delete(int jobId)
         {
-            var result = await DeleteAsync(x => x.JobInfoId == jobId);
-            return result;
+            JobInfo result = await GetFirstOrDefaultAsync(x => x, x => x.JobInfoId == jobId);
+            if (result==null) {
+                return "Job infomration is not available. Please contact with admin.";
+            }
+            result.Modified = DateTime.Now;
+            result.ModifiedBy = currentUserService.UserId;
+            result.RecordStatusId = (int)EnumRecordStatus.Deleted;
+            await UpdateAsync(result);
+            return "Information deleted successfully.";
         }
     }
 }

@@ -5,7 +5,7 @@ import { CommonService } from 'src/app/Shared/Services/Common/common.service';
 import { IPTableSetting } from 'src/app/Shared/Modules/p-table';
 import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
 import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
-import { TransactionRequest, TransactionRequestQuery } from "../../../Shared/Entity/Accounts/transactionRequest";
+import { TransactionRequest } from "../../../Shared/Entity/Accounts/transactionRequest";
 import { RechargeService } from "../../../Shared/Services/ClientProfile/recharge.service";
 
 @Component({
@@ -15,7 +15,6 @@ import { RechargeService } from "../../../Shared/Services/ClientProfile/recharge
 })
 export class RechargeApprovalComponent implements OnInit {
 
-    query: TransactionRequestQuery;
     pageSize: number;
     pendingRechargeApprovals: TransactionRequest[];
     hideListView: boolean = true;
@@ -92,7 +91,7 @@ export class RechargeApprovalComponent implements OnInit {
             { headerName: 'Created By', internalName: 'createdBy', sort: true, type: "" },
             { headerName: 'Amount', internalName: 'amount', sort: true, type: "" },
             { headerName: 'Purpose', internalName: 'purpose', sort: true, type: "" },
-            { headerName: 'Status', internalName: 'requestStatusId', sort: true, type: "" },
+            { headerName: 'Status', internalName: 'recordStatus.name', sort: true, type: "" },
             { headerName: 'Date Created', internalName: 'created', sort: true, type: "Date", displayType: "datetime" }
         ],
         enabledSearch: true,

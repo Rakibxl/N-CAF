@@ -23,5 +23,8 @@ export class JobInfoService {
     public getJobById(jobInfoId: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/JobInfo/GetById/${jobInfoId}`);
     }
+    public deleteByJobId(jobInfoId: number) {
+        return this.http.delete<APIResponse>(this.baseUrl + `v1/JobInfo/DeleteById/${jobInfoId}`);
+    }
     
 }

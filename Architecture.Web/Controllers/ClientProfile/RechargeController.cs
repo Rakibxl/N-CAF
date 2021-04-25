@@ -31,10 +31,10 @@ namespace Architecture.Web.Controllers.ClientProfile
             });
         }
 
-        [HttpGet("Pending")]
-        public async Task<IActionResult> GetAllPendingApprovalsAsync()
+        [HttpGet("Requests")]
+        public async Task<IActionResult> GetRechargeRequestsAsync()
         {
-            return await ModelValidation(async () => OkResult(await _rechargeService.GetAllAsync()));
+            return await ModelValidation(async () => OkResult(await _rechargeService.GetRechargeRequestsAsync()));
         }
 
         [HttpGet("Approve/{transactionRequestId}")]
@@ -47,6 +47,12 @@ namespace Architecture.Web.Controllers.ClientProfile
         public async Task<IActionResult> RejectPendingRechargeAsync(int transactionRequestId)
         {
             return await ModelValidation(async () => OkResult(await _rechargeService.RejectPendingRechargeAsync(transactionRequestId)));
+        }
+
+        [HttpGet("History")]
+        public async Task<IActionResult> GetTransactionHistoriesAsync()
+        {
+            return await ModelValidation(async () => OkResult(await _rechargeService.GetTransactionHistoriesAsync()));
         }
     }
 }

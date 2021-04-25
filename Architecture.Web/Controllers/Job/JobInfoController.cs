@@ -63,34 +63,19 @@ namespace Architecture.Web.Controllers.Job
             }
         }
 
-
-        [HttpGet("GetTestData")]
-        public async Task<IActionResult> GetTestData()
+        [HttpDelete("DeleteById/{jobInfoId}")]
+        public async Task<IActionResult> DeleteById(int jobInfoId)
         {
             try
             {
-                var result = "tstrrrggsdfdfdfd";
+                var result = await jobInfoService.Delete(jobInfoId);
                 return OkResult(result);
             }
             catch (Exception ex)
             {
                 return ExceptionResult(ex);
             }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                var result = "Palash Kanti Habijabi";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        }        
     }
 
 }
