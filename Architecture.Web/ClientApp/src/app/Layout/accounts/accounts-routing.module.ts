@@ -11,16 +11,17 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: 'accounts-history' },
-            { path: 'accounts-history', component: AccountsHistoryComponent, data: { extraParameter: 'dashboard' } },
             { path: 'accounts-info', component: AccountInfoListComponent, data: { extraParameter: 'dashboard' } },
-            { path: 'transaction-approval', component: RechargeApprovalComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'accounts-history', component: AccountsHistoryComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'recharge-approval', component: RechargeApprovalComponent, data: { extraParameter: 'dashboard' } },
             { path: 'recharge-request', component: RechargeMoneyComponent, data: { extraParameter: 'dashboard' } },
         ]
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class AccountsRoutingModule {}
+
+export class AccountsRoutingModule { }

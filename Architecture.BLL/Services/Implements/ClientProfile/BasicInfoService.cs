@@ -54,7 +54,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 throw new Exception("Information is not exists.");
             }
         }
-         public async Task<ProfBasicInfo> GetByEmailId(string emailId)
+        public async Task<ProfBasicInfo> GetByEmailId(string emailId)
         {
             var checkVal = await IsExistsAsync(x => x.Email == emailId);
             if (checkVal)
@@ -70,7 +70,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<ProfBasicInfo> GetCurrentUserBasicInfo()
         {
-            
+
             var checkVal = await IsExistsAsync(x => x.RefId == _currentUserService.UserId);
             if (checkVal)
             {
@@ -94,7 +94,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 }
                 else
                 {
-                    basicInfo.BranchInfoId= (_currentUserService.BranchInfoId!=null && _currentUserService.BranchInfoId != "") ? int.Parse( _currentUserService.BranchInfoId) : null;                    
+                    basicInfo.BranchInfoId = (_currentUserService.BranchInfoId != null && _currentUserService.BranchInfoId != "") ? int.Parse(_currentUserService.BranchInfoId) : (int?)null;
                     result = await AddAsync(basicInfo);
                 }
                 return result;
@@ -115,8 +115,8 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         {
             ProfBasicInfo result = new ProfBasicInfo();
 
-          
-            if (_currentUserService.UserTypeId ==(int) EnumApplicationUserType.Admin)  // client type user
+
+            if (_currentUserService.UserTypeId == (int)EnumApplicationUserType.Admin)  // client type user
             {
                 result = await GetFirstOrDefaultAsync(x => x, x => x.RefId == _currentUserService.UserId, x => x.Include(y => y.ProfBankInfos)
                                                                                                                 .Include(y => y.ProfOccupationInfos)
@@ -134,7 +134,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                                                                                                                 .Include(y => y.ProfWorkerInfos)
                                                                                                                 .Include(y => y.ProfDelegationInfos));
             }
- 
+
             return result;
 
         }

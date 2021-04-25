@@ -1,8 +1,6 @@
 ﻿using Architecture.Core.Entities.Core;
 using Architecture.Core.Entities.LU;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Architecture.Core.Entities.Accounts
 {

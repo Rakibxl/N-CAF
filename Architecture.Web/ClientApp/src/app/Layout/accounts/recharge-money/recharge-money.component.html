@@ -1,1 +1,65 @@
-<p>recharge-money works!</p>
+<div class="card mb-4">
+    <div class="card-body caf-card card-shadow">
+        <form action="" (ngSubmit)="onSubmit()" #rechargeMoneyInputForm="ngForm">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
+                        <h3><span class="bordered-title">Recharge Money</span></h3>
+                    </div>
+                    <hr>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">
+                                Payment Type<strong class="text-danger">*</strong>
+                            </label>
+                            <select id="" class="form-control" name="paymentTypeId" #bankNameId="ngModel" [(ngModel)]="transactionRequest.paymentTypeId" required>
+                                <option *ngFor="let option of paymentTypeDropdown" [value]="option.paymentTypeId">{{option.paymentTypeName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">Amount<strong class="text-danger">*</strong></label>
+                            <input type="number"
+                                   autocomplete="off"
+                                   class="form-control"
+                                   name="amount"
+                                   #amount="ngModel"
+                                   [(ngModel)]="transactionRequest.amount"
+                                   placeholder="Amount.."
+                                   required />
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="caf-input-group">
+                            <label class="label">
+                                Purpose<strong class="text-danger">*</strong>
+                            </label>
+                            <input type="text"
+                                   autocomplete="off"
+                                   class="form-control"
+                                   name="purpose"
+                                   #purpose="ngModel"
+                                   [(ngModel)]="transactionRequest.purpose"
+                                   placeholder="Purpose.."
+                                   required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-footer d-flex justify-content-end">
+                            <button type="submit" [disabled]="!rechargeMoneyInputForm.form.valid" class="caf-btn-primary-outline">
+                                <i class="fa fa-save pr-1"></i>{{'common.save.label' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body caf-card card-shadow">
+        <app-recharge-approval></app-recharge-approval>
+    </div>
+</div>

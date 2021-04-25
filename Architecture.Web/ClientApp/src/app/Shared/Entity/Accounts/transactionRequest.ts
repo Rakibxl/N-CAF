@@ -12,5 +12,5 @@ export class TransactionRequest extends Auditable {
     public paymentType: PaymentType;
     public paymentReceivedBy: string;
     public paymentReceivedDate: Date;
-    public amount: number;
+    public amount: number = 0.0;
 }
