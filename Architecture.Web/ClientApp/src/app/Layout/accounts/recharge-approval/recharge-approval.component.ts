@@ -70,7 +70,7 @@ export class RechargeApprovalComponent implements OnInit {
     loadPendingRechargeApprovals() {
         this.hideListView = false;
         this.alertService.fnLoading(true);
-        const rolesSubscription = this.rechargeService.getPendingRechargeApprovals()
+        const pendingRechargeApprovalSubscription = this.rechargeService.getPendingRechargeApprovals()
             .pipe(finalize(() => { this.alertService.fnLoading(false); }))
             .subscribe(
                 (res) => {
@@ -79,7 +79,7 @@ export class RechargeApprovalComponent implements OnInit {
                 (error) => {
                     console.log(error);
                 });
-        this.subscriptions.push(rolesSubscription);
+        this.subscriptions.push(pendingRechargeApprovalSubscription);
     }
 
     public pTableSettings: IPTableSetting = {

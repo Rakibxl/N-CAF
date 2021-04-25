@@ -58,8 +58,20 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<IEnumerable<TransactionDetail>> GetTransactionHistoriesAsync()
         {
+            AccountInfo requestAccountInfo = null;
+
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == _currentUserService.UserId);
+            if (user != null)
+            {
+                if (user.AppUserTypeId == (int)EnumAppUserType.BranchUser)
+                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.BranchInfoId.ToString());
+
+                else
+                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.Id.ToString());
+            }
+
             return await _context.TransactionDetails.Include(z => z.RecordStatus)
-                     .Where(x => x.CreatedBy == _currentUserService.UserId)
+                     .Where(x => x.CreatedBy.ToString() == requestAccountInfo.MasterId)
                      .OrderByDescending(x => x.Created)
                      .ToListAsync();
         }
@@ -136,14 +148,14 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
             AccountInfo requestAccountInfo = null;
 
-            var users = await _context.Users.FirstOrDefaultAsync(x => x.Id == result.RequestBy);
-            if (users != null)
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == result.RequestBy);
+            if (user != null)
             {
-                if (users.AppUserTypeId == (int)EnumAppUserType.BranchUser)
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == users.BranchInfoId.ToString());
+                if (user.AppUserTypeId == (int)EnumAppUserType.BranchUser)
+                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.BranchInfoId.ToString());
 
                 else
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == result.RequestBy.ToString());
+                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.Id.ToString());
             }
 
             var transactionDetailsDebitObj = new TransactionDetail

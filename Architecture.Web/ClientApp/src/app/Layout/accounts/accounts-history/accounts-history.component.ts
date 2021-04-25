@@ -43,7 +43,7 @@ export class AccountsHistoryComponent implements OnInit {
     loadAccountTransactionHistory() {
         this.hideListView = false;
         this.alertService.fnLoading(true);
-        const rolesSubscription = this.rechargeService.getTransactionHistory()
+        const transferHistorySubscription = this.rechargeService.getTransactionHistory()
             .pipe(finalize(() => { this.alertService.fnLoading(false); }))
             .subscribe(
                 (res) => {
@@ -52,7 +52,7 @@ export class AccountsHistoryComponent implements OnInit {
                 (error) => {
                     console.log(error);
                 });
-        this.subscriptions.push(rolesSubscription);
+        this.subscriptions.push(transferHistorySubscription);
     }
 
     public pTableSettings: IPTableSetting = {
