@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountsHistoryComponent } from './accounts-history/accounts-history.component';
+import { RechargeMoneyComponent } from "./recharge-money/recharge-money.component";
+import { RechargeApprovalComponent } from "./recharge-approval/recharge-approval.component";
 
 
 const routes: Routes = [
@@ -9,7 +11,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'accounts-history' },
             { path: 'accounts-history', component: AccountsHistoryComponent, data: { extraParameter: 'dashboard' } },
-
+            { path: 'recharge-money', component: RechargeMoneyComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'recharge-approval', component: RechargeApprovalComponent, data: { extraParameter: 'dashboard' } }
         ]
     }
 ];
@@ -18,4 +21,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class AccountsRoutingModule { }

@@ -36,7 +36,8 @@ export class UserBoxComponent implements OnInit {
     }
 
     fnRedirectToAccountsPage() {
-        this.router.navigate(['/accounts/accounts-history']);
+        //this.router.navigate(['/accounts/accounts-history']);
+        this.router.navigate(['/accounts/recharge-money']);
     }
 
   logout() {
