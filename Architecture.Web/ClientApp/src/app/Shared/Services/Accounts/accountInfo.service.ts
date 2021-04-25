@@ -21,6 +21,9 @@ export class AccountInfoService {
     public getAllAccountInfo() {
         return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/GetAllAccountInfo`);
     }
+    public syncYourAccountInformation() {
+        return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/SyncAccountInfo`);
+    }
     public deleteById(accountInfoId: number) {
         return this.http.delete<APIResponse>(this.baseUrl + `v1/AddressInfo/DeleteById/${accountInfoId}`);
     }

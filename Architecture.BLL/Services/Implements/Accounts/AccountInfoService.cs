@@ -41,6 +41,31 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 throw new Exception("Information is not availalbe. Please contact with admin.");
             }
         }
+         public async Task<string> SyncAccountInfo()
+        {
+            var returnResult = "";
+            var applicationUserType = currentUserService.UserTypeId;
+            if (applicationUserType==(int) EnumApplicationUserType.Client|| applicationUserType == (int)EnumApplicationUserType.Operator) {
+                AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId== applicationUserType);
+                if (accountInfo == null)
+                {
+                    var newAccountInfo = await AddOrUpdate(new AccountInfo
+                    {
+                        AccountName = currentUserService.UserName.ToString(),
+                        AppUserTypeId = applicationUserType,
+                        MasterId = currentUserService.UserId.ToString(),                        
+                    });
+                }
+                else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
+                {
+                    returnResult = "Your account information is available but deactive now. Please contact with admin.";
+                }
+                else {
+                    returnResult = "Your account information synchronized. Thanks for connecting with us.";
+                }
+            }
+                return returnResult;           
+        }
         
         
         public async Task<AccountInfo> AddOrUpdate(AccountInfo accountInfo)
@@ -52,7 +77,7 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 {
                     accountInfo.ModifiedBy = currentUserService.UserId;
                     accountInfo.Modified = DateTime.Now;
-                    accountInfo.AccountNumber = new Guid().ToString();
+                    accountInfo.AccountNumber = $"NC-{new Guid().ToString().Substring(1,6)}";
                     result = await UpdateAsync(accountInfo);
                 }
                 else

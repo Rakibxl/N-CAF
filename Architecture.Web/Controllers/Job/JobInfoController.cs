@@ -75,21 +75,7 @@ namespace Architecture.Web.Controllers.Job
             {
                 return ExceptionResult(ex);
             }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            try
-            {
-                var result = "Palash Kanti Habijabi";
-                return OkResult(result);
-            }
-            catch (Exception ex)
-            {
-                return ExceptionResult(ex);
-            }
-        }
+        }        
     }
 
 }

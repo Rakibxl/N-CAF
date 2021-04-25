@@ -34,6 +34,11 @@ export class AccountInfoListComponent implements OnInit {
         console.log("cell click: ", event);
     }
 
+    public fnUpdateYourAccountInfo() {
+        this.accountInfoService.syncYourAccountInformation().subcribe((res) => {
+
+        });
+    }
     //public ptableSettings: IPTableSetting = {
     //    tableClass: "table table-border ",
     //    tableName: 'Account Information',

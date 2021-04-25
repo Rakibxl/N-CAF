@@ -10,5 +10,6 @@ namespace Architecture.BLL.Services.Interfaces
         bool IsAuthenticated { get; }
         public string BranchInfoId { get; }
         public int CurrentUserProfileId { get; }
+        public string UserName { get; }
     }
 }
