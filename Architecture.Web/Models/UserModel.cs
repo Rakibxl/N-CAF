@@ -31,6 +31,7 @@ namespace Architecture.Web.Models
         public Guid? UserRoleId { get; set; }
         public string UserRoleName { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsBranchAdmin { get; set; }
         public bool IsActive { get; set; }
         public EnumApplicationUserType? Status { get; set; }
         public string OperatorKeywordIds { get; set; }
@@ -68,6 +69,7 @@ namespace Architecture.Web.Models
         public int? BranchInfoId { get; set; }
         [Required]
         public Guid UserRoleId { get; set; }
+        public Boolean IsBranchAdmin { get; set; }
         public string OperatorKeywordIds { get; set; }
         public List<int> OperatorBranches { get; set; }
 

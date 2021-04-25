@@ -20,6 +20,7 @@ export class ApplicationUserFormComponent implements OnInit {
   userGuid: any;
   branchList: any[] = [];
   keywords: any[] = [];
+  applicationUserType: any[] = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private branchService: BranchService, private router: Router,
     private userService: UserService, private alertService: AlertService, private dropdownService: DropdownService,
@@ -33,12 +34,11 @@ export class ApplicationUserFormComponent implements OnInit {
     return false;
   }
 
-  async ngOnInit() {
+    async ngOnInit() {
+        this.keywords = await this.dropdownService.getOperatorKeyword() || [];
+        this.applicationUserType = await this.dropdownService.getAppUserType() || [];
     this.loadBranchList();
     this.getUser();
-
-    this.keywords = await this.dropdownService.getOperatorKeyword() || [];
-    console.log(this.keywords)
   }
 
   initForm() {
@@ -55,11 +55,12 @@ export class ApplicationUserFormComponent implements OnInit {
       operatorBranches: [null],
       operatorKeywordIds: [null],
       createdBy: [null],
-      modifiedBy: [null]
+        modifiedBy: [null],
+        isBranchAdmin:[false]
     });
   }
 
-  loadBranchList() {
+  public loadBranchList() {
     this.branchService.getBranchList().subscribe((res) => {
       this.alertService.fnLoading(false);
       if (res && res.data && res.data.length) {
@@ -70,7 +71,7 @@ export class ApplicationUserFormComponent implements OnInit {
     });
   }
 
-  getUser() {
+  public getUser() {
     if (this.userGuid && Guid.isGuid(this.userGuid)) {
       this.alertService.fnLoading(true);
       this.userService.getUser(this.userGuid).subscribe((res) => {
@@ -91,10 +92,6 @@ export class ApplicationUserFormComponent implements OnInit {
           } else {
             this.appUserForm.patchValue(res.data);
           }
-          // this.user = res.data as User;
-          // console.log(this.user);
-          // let role = this.enumUserTypes.filter(a => a.id == this.user.userRoleName)[0];
-          // this.user.userRoleDisplayName = (role) ? role.label : "";
         }
       });
     } else {
@@ -102,7 +99,7 @@ export class ApplicationUserFormComponent implements OnInit {
     }
   }
 
-  createNew(id?) {
+  public createNew(id?) {
     let ngbModalOptions: NgbModalOptions = {
       backdrop: "static",
       keyboard: false,
@@ -118,8 +115,6 @@ export class ApplicationUserFormComponent implements OnInit {
       (result) => {
         console.log(result);
         if (!(result == 'Close click' || result == 'Cross click')) {
-          // let maxId = Math.max(...this.keywords.map(o => o.operatorKeywordId), 0);
-          // result.operatorKeywordId = ++maxId;
           this.keywords.push(result);
           this.keywords = [...this.keywords];
           let formData = this.appUserForm.value;
@@ -132,8 +127,10 @@ export class ApplicationUserFormComponent implements OnInit {
       });
   }
 
-  save() {
-    let formData = this.appUserForm.value;
+ public save() {
+     let formData = this.appUserForm.value;
+
+     console.log("formData:::", formData);
     if (!formData.id && formData.password != formData.confirmPassword) {
       this.alertService.tosterDanger('Password not matched!!');
       return;

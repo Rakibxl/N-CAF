@@ -1,5 +1,3 @@
-
-using Architecture.BLL.Services.Interfaces;
 using Architecture.Web.Core;
 using Architecture.Web.Models.IdentityModels;
 using Architecture.Web.Services;
@@ -20,7 +18,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using NetCore.AutoRegisterDi;
-using Architecture.BLL.Services.Implements;
 using Architecture.Core.Repository.Implements;
 using Architecture.Core.Repository.Interfaces;
 using System;
@@ -28,9 +25,6 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Serilog;
 using System.IO;
 using System.Diagnostics;
-using Architecture.BLL.Services.Interfaces.ClientProfile;
-using Architecture.BLL.Services.Implements.ClientProfile;
-using Architecture.Core.Entities.Notification;
 using Architecture.Web.Hubs;
 
 namespace Architecture.Web

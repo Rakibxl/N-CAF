@@ -55,17 +55,16 @@ export class ApplicationUserComponent implements OnInit {
         tableName: 'Application User List',
         tableRowIDInternalName: "userId",
         tableColDef: [
-            { headerName: 'User Id', width: '20%', internalName: 'id', sort: true, type: "" },
-            { headerName: 'Name ', width: '10%', internalName: 'name', sort: true, type: "" },
+            { headerName: 'User Id', width: '15%', internalName: 'id', sort: true, type: "" },
+            { headerName: 'Name ', width: '10%', internalName: 'fullName', sort: true, type: "" },
             { headerName: 'Email', width: '10%', internalName: 'email', sort: true, type: "" },
-            { headerName: 'User Type ', width: '15%', internalName: 'appUserType', sort: true, type: "" },
-            { headerName: 'Branch Location', width: '15%', internalName: 'branchLocation', sort: true, type: "" },
+            { headerName: 'User Type ', width: '10%', internalName: 'appUserType', sort: true, type: "" },
+            { headerName: 'Branch Location', width: '10%', internalName: 'branchLocation', sort: true, type: "" },
             { headerName: 'Contact Number', width: '10%', internalName: 'phoneNumber', sort: true, type: "" },
-            { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "" },
-            { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "" },
-            { headerName: 'IsLocked', width: '10%', internalName: 'islocked', sort: true, type: "" },
-            { headerName: 'Status', width: '20%', internalName: 'status', sort: true, type: "" },
-            { headerName: 'Details', width: '15%', internalName: 'details', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
+            { headerName: 'Last Login', width: '10%', internalName: 'lastlogin', sort: true, type: "", visible: false },
+            { headerName: 'Ip Address', width: '10%', internalName: 'ipaddress', sort: true, type: "", visible:false },
+            { headerName: 'IsLocked', width: '8%', internalName: 'islocked', sort: true, type: "" },
+            { headerName: 'Status', width: '8%', internalName: 'status', sort: true, type: "" },
 
         ],
         enabledSearch: true,
@@ -90,30 +89,18 @@ export class ApplicationUserComponent implements OnInit {
         // enabledCheckbox:true,
         enabledRadioBtn: false,
         tableHeaderVisibility: true,
-        // tableFooterVisibility:false,
-        pTableStyle: {
-            tableOverflowY: true,
-            overflowContentHeight: '460px'
-        }
+        // tableFooterVisibility:false,       
     };
 
     getUsers() {
         this.userService.getUsers().subscribe((res) => {
             this.alertService.fnLoading(false);
             if (res && res.data && res.data.length) {
-                this.employeeList = res.data;
-                this.employeeList.map(ex => {
-                    ex.name = ex.surName ? (ex.name + ' ' + ex.surName) : ex.name;
-                    return ex;
-                });
+                this.employeeList = res.data||[];                
             }
         }, err => {
             this.alertService.tosterDanger(err);
         });
     }
-
-    // public employeeList = [
-    //     { userId: "NC-120", username: "palash@gmail.com", usertype: "Branch User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-    //     { userId: "NC-155", username: "palash@gmail.com", usertype: "Client User", branchlocation: "Milan", contactnumber: "3896883996", lastlogin: "10/4/2020", ipaddress: "151.30.143.116", islocked: "No", status: "Active", managerName: "Rakibul Tanvi", details: "More.." },
-    // ];
+    
 }

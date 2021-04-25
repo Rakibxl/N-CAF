@@ -342,10 +342,10 @@ namespace Architecture.Core.Repository.Context
                 ms.HasKey(g => g.AppUserTypeId);
                 ms.Property(g => g.AppUserTypeTitle).HasMaxLength(100);
                 ms.HasData(
-                    new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Admin", IsActive = true },
-                    new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true },
-                    new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Operator", IsActive = true },
-                    new AppUserType { AppUserTypeId = 4, AppUserTypeTitle = "Client", IsActive = true }
+                    new AppUserType { AppUserTypeId = 1, AppUserTypeTitle = "Admin", IsActive = true,VisibleForAdmin=true },
+                    new AppUserType { AppUserTypeId = 2, AppUserTypeTitle = "Branch User", IsActive = true, VisibleForAdmin = false },
+                    new AppUserType { AppUserTypeId = 3, AppUserTypeTitle = "Operator", IsActive = true, VisibleForAdmin = true },
+                    new AppUserType { AppUserTypeId = 4, AppUserTypeTitle = "Client", IsActive = true, VisibleForAdmin = false }
                 );
             });
             modelBuilder.Entity<WorkerType>().ToTable("LU_WorkerType");

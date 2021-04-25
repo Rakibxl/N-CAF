@@ -11,6 +11,7 @@ namespace Architecture.BLL.Services.Interfaces.Accounts
        Task<IEnumerable<AccountInfo>> GetAll();
         Task<AccountInfo> GetById(int accountInfoId);
         Task<AccountInfo> AddOrUpdate(AccountInfo accountInfo);
+        Task<string> SyncAccountInfo();
         Task<string> Delete(int accountInfoId);
     }
 }

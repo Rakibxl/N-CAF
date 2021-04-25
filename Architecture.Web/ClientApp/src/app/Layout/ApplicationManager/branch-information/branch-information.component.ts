@@ -46,7 +46,6 @@ export class BranchInformationComponent implements OnInit {
     }
 
     public fnCustomrTrigger(event) {
-        console.log("custom  click: ", event);
         let branchInfoId = event.record && event.record.branchInfoId || 0;
         if (event.action == "new-record") {
             this.router.navigate([`/manager/branch-info/${branchInfoId}`]);

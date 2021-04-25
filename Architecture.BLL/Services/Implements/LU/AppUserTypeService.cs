@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Implements.LU;
+using Architecture.BLL.Services.Interfaces;
 using Architecture.BLL.Services.Interfaces.LU;
+using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.LU;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
@@ -12,15 +14,21 @@ namespace Architecture.BLL.Services.Implements.LU
 
     public class AppUserTypeService : Repository<AppUserType>, IAppUserTypeService
     {
-        public AppUserTypeService(ApplicationDbContext dbContext) : base(dbContext)
+        private ICurrentUserService currentUserService;
+        public AppUserTypeService(ApplicationDbContext dbContext, ICurrentUserService currentUserService) : base(dbContext)
         {
-
+            this.currentUserService = currentUserService;
         }
 
         public async Task<IEnumerable<AppUserType>> GetAll()
         {
+            var appUserType = (int)currentUserService.UserTypeId;
+
             IEnumerable<AppUserType> result;
-            result = await GetAsync(x => x);
+            if(appUserType== (int) EnumApplicationUserType.Admin) 
+                result = await GetAsync(x => x);
+            else
+                result = await GetAsync(x => x,x=>x.VisibleForAdmin==false);
             return result;
         }
 

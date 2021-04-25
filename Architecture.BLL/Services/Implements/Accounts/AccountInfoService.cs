@@ -2,6 +2,7 @@
 using Architecture.BLL.Services.Interfaces.Accounts;
 using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.Accounts;
+using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 using System;
@@ -15,9 +16,11 @@ namespace Architecture.BLL.Services.Implements.Accounts
     {
 
         private readonly ICurrentUserService currentUserService;
-        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService) : base(dbContext)
+        private readonly INotificationService notificationService;
+        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, INotificationService notificationService) : base(dbContext)
         {
             this.currentUserService = currentUserService;
+            this.notificationService = notificationService;
         }
 
         public async Task<IEnumerable<AccountInfo>> GetAll()
@@ -77,15 +80,28 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 {
                     accountInfo.ModifiedBy = currentUserService.UserId;
                     accountInfo.Modified = DateTime.Now;
-                    accountInfo.AccountNumber = $"NC-{new Guid().ToString().Substring(1,6)}";
                     result = await UpdateAsync(accountInfo);
+
+                    await this.notificationService.AddOrUpdate(new NotificationInfo
+                    {
+                        MessageContent = $"Your account has been synchronized successfully at {(DateTime.Now.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
+                       $"<b> A/C Number:  {result.AccountNumber}</b>\n <b> A/C Name:  {result.AccountName}</b>",
+                        MessageFor = result.CreatedBy
+                    });
                 }
                 else
                 {
                     accountInfo.CreatedBy = currentUserService.UserId;
                     accountInfo.Created = DateTime.Now;
                     accountInfo.RecordStatusId = (int)EnumRecordStatus.Active;
+                    accountInfo.AccountNumber = $"NC-{Guid.NewGuid().ToString().Substring(1, 6)}";
                     result = await AddAsync(accountInfo);
+
+                    await this.notificationService.AddOrUpdate(new NotificationInfo { 
+                        MessageContent=$"Your account has been synchronized successfully at {(DateTime.Now.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
+                        $"<b> A/C Number:  {result.AccountNumber}</b>\n <b> A/C Name:  {result.AccountName}</b>",
+                        MessageFor= result.CreatedBy
+                    });
                 }
                 return result;
             }

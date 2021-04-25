@@ -14,7 +14,7 @@
                     <div class="pt-3"></div>
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">Name*</label>
+                            <label class="label">Name <strong class="text-danger">*</strong></label>
                             <input type="text" formControlName="name" autocomplete="off" class="form-control" placeholder="Enter name" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -23,7 +23,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">SurName*</label>
+                            <label class="label">SurName <strong class="text-danger">*</strong></label>
                             <input type="text" formControlName="surName" autocomplete="off" class="form-control" placeholder="Enter surname" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -32,7 +32,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">EmailId*</label>
+                            <label class="label">EmailId <strong class="text-danger">*</strong></label>
                             <input type="text" formControlName="email" [readonly]="appUserForm.get('id').value" autocomplete="off" class="form-control" placeholder="Enter email id" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -41,7 +41,7 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">ContactNumber*</label>
+                            <label class="label">ContactNumber <strong class="text-danger">*</strong></label>
                             <input type="text" formControlName="phoneNumber" [readonly]="appUserForm.get('id').value" autocomplete="off" class="form-control" placeholder="Enter contact number" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -50,7 +50,7 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="appUserForm.get('id').value">
                         <div class="caf-input-group">
-                            <label class="label">Password*</label>
+                            <label class="label">Password <strong class="text-danger">*</strong></label>
                             <input type="password" formControlName="password" [required]="!appUserForm.get('id').value" autocomplete="off" class="form-control" placeholder="Enter password" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -59,7 +59,7 @@
 
                     <div class="col-xl-4 col-md-6" [hidden]="appUserForm.get('id').value">
                         <div class="caf-input-group">
-                            <label class="label">Confirm Password*</label>
+                            <label class="label">Confirm Password <strong class="text-danger">*</strong></label>
                             <input type="password" formControlName="confirmPassword" [required]="!appUserForm.get('id').value" autocomplete="off" class="form-control" placeholder="Enter password" required />
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -68,13 +68,10 @@
 
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
-                            <label class="label">UserType*</label>
+                            <label class="label">UserType <strong class="text-danger">* </strong></label>
                             <select formControlName="appUserTypeId" name="" id="" class="form-control">
                                 <option>Select</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Branch</option>
-                                <option value="3">Operator</option>
-                                <option value="4">Client</option>
+                                <option *ngFor="let userType of applicationUserType" [value]="userType.appUserTypeId">{{userType.appUserTypeTitle}}</option>
                             </select>
                             <p class="text-info d-none">Info message</p>
                             <p class="text-danger d-none">Danger message</p>
@@ -82,9 +79,21 @@
                     </div>
 
                     <div class="col-xl-4 col-md-6" [hidden]="appUserForm.get('appUserTypeId').value != 2">
+                        <div class="caf-input-group d-flex align-items-center">
+                            <label>IsBranchAdmin</label>
+                            <div class="pl-2">
+                                <label class="switch">
+                                    <input type="checkbox" formControlName="isBranchAdmin">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6" [hidden]="appUserForm.get('appUserTypeId').value != 2">
                         <div class="caf-input-group">
-                            <label class="label">BranchName</label>
-                            <select formControlName="branchInfoId" name="" id="" class="form-control">
+                            <label class="label">BranchName <strong class="text-danger">*</strong></label>
+                            <select formControlName="branchInfoId" name="" id="" class="form-control" required>
                                 <option>Select</option>
                                 <option *ngFor="let branch of branchList" [value]="branch.branchInfoId">{{branch.branchLocation}}</option>
                             </select>
@@ -95,7 +104,7 @@
 
                     <div class="col-xl-4 col-md-6 multi-select" [hidden]="appUserForm.get('appUserTypeId').value != 3">
                         <div class="caf-input-group d-flex align-items-center">
-                            <label>Select Branches</label>
+                            <label>SelectBranches <strong class="text-danger">*</strong></label>
                             <div class="pl-2" [ngStyle]="{'width':100+'1%'}">
                                 <ng-select name="operatorBranches" [items]="branchList" bindLabel="branchLocation" bindValue="branchInfoId" [multiple]="true" [dropdownPosition]="'top'" formControlName="operatorBranches">
                                 </ng-select>

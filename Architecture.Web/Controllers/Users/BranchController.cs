@@ -44,12 +44,12 @@ namespace Architecture.Web.Controllers.Users
             {
                 var result = await _branchService.GetAll();
 
-                var AppUserTypeId = GetClaimValue("AppUserTypeId");
-                if (AppUserTypeId == EnumApplicationUserType.Admin.ToString())
+                int AppUserTypeId =Int32.Parse( GetClaimValue("AppUserTypeId"));
+                if (AppUserTypeId ==(int) EnumApplicationUserType.Admin)
                 {
 
                 }
-                else if (AppUserTypeId == EnumApplicationUserType.BranchUser.ToString())
+                else if (AppUserTypeId ==(int) EnumApplicationUserType.BranchUser)
                 {
                     var BranchInfoId = GetClaimValue("BranchInfoId");
                     if (BranchInfoId != null && !string.IsNullOrEmpty(BranchInfoId))
