@@ -35,7 +35,9 @@ export class AccountInfoListComponent implements OnInit {
     }
 
     public fnUpdateYourAccountInfo() {
-        this.accountInfoService.syncYourAccountInformation().subcribe((res) => {
+        this.accountInfoService.syncYourAccountInformation().subscribe((res) => {
+
+            console.log(res);
 
         });
     }
