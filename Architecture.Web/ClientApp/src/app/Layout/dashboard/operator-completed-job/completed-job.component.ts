@@ -21,7 +21,6 @@ export class CompletedJobComponent implements OnInit {
         this.offerService.getOperatorCompletedOffer().subscribe((res: APIResponse) => {
             console.log("Success", res);
             this.myOffers = (res.data || []).filter(r=>r.offerStatusId==5)||[];
-
         }, error => {
             console.log("Error ", error);
         });

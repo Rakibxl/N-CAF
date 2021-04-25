@@ -69,13 +69,7 @@ export class CurrentOfferComponent implements OnInit {
         }, error => {
             console.log("Error ", error);
         });
-    }
-
-     //this.offerService.getMyOffer(this.profileId).subscribe((res: APIResponse) => {
-     //    this.myOffers = res.data || [];
-     //}, error => {
-     //    console.log("Error ", error);
-     //});
+    }   
     
     public ptableSettings: IPTableSetting = {
         tableClass: "table table-border ",
@@ -86,9 +80,8 @@ export class CurrentOfferComponent implements OnInit {
             { headerName: 'Description', width: '25%', internalName: 'description', sort: true, type: "" },
             { headerName: 'End Date', width: '10%', internalName: 'endDate', sort: false, type: "Date", displayType: "datetime" },
             { headerName: 'Video Link', width: '10%', internalName: 'videoLink', sort: true, type: "hyperlink" },
-            { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },           
-            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "button", onClick: 'true', innerBtnIcon: "fa fa-copy" },
-
+            { headerName: 'Document Link', width: '10%', internalName: 'documentLink', sort: true, type: "" },
+            { headerName: 'Details', width: '15%', internalName: 'apply', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-copy", btnTitle:"Apply" }
         ],
         enabledSearch: true,
         enabledSerialNo: true,
