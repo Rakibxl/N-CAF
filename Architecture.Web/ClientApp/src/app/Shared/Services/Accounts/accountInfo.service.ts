@@ -21,6 +21,9 @@ export class AccountInfoService {
     public getAllAccountInfo() {
         return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/GetAllAccountInfo`);
     }
+    public getCurrentUserAccountDetails() {
+        return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/GetCurrentUserAccountDetails`);
+    }
     public syncYourAccountInformation() {
         return this.http.get<APIResponse>(this.baseUrl + `v1/AddressInfo/SyncAccountInfo`);
     }

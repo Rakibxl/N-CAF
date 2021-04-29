@@ -85,7 +85,7 @@ export class RechargeApprovalComponent implements OnInit {
     public pTableSettings: IPTableSetting = {
         tableID: "recharge-approval-table",
         tableClass: "table table-border ",
-        tableName: 'Pending Recharge List',
+        tableName: 'Transaction Request History',
         tableRowIDInternalName: "id",
         tableColDef: [
             { headerName: 'Created By', internalName: 'createdBy', sort: true, type: "" },

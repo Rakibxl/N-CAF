@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
+using Architecture.BLL.Services.Interfaces.Accounts;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.Accounts;
@@ -19,12 +20,14 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
         private readonly ApplicationDbContext _context;
         private readonly ICurrentUserService _currentUserService;
         private readonly INotificationService _notificationService;
+        private readonly IAccountInfoService _accountInfoService;
 
-        public RechargeService(ApplicationDbContext context, ICurrentUserService currentUserService, INotificationService notificationService) : base(context)
+        public RechargeService(ApplicationDbContext context, ICurrentUserService currentUserService, INotificationService notificationService, IAccountInfoService accountInfoService) : base(context)
         {
             _context = context;
             _currentUserService = currentUserService;
             _notificationService = notificationService;
+            _accountInfoService = accountInfoService;
         }
 
         public async Task<TransactionRequest> AddOrUpdateAsync(TransactionRequest transactionRequest)
@@ -58,22 +61,18 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         public async Task<IEnumerable<TransactionDetail>> GetTransactionHistoriesAsync()
         {
-            AccountInfo requestAccountInfo = null;
-
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == _currentUserService.UserId);
-            if (user != null)
-            {
-                if (user.AppUserTypeId == (int)EnumAppUserType.BranchUser)
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.BranchInfoId.ToString());
-
-                else
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.Id.ToString());
+            AccountInfo requestAccountInfo = await _accountInfoService.GetCurrentUserAccountInfo();
+            if (requestAccountInfo==null) {
+                throw new Exception("You account information is not sync. Please sync your account information.");
             }
-
-            return await _context.TransactionDetails.Include(z => z.RecordStatus)
-                     .Where(x => x.CreatedBy.ToString() == requestAccountInfo.MasterId)
+            var transactionHistory= await _context.TransactionDetails
+                .Include(z => z.RecordStatus)
+                //.Include(x=>x.Transaction)
+                     .Where(x => x.AccountInfoId== requestAccountInfo.AccountInfoId)
                      .OrderByDescending(x => x.Created)
                      .ToListAsync();
+
+            return transactionHistory;
         }
 
         public async Task<bool> ApprovePendingRechargeAsync(int transactionRequestId)
@@ -146,18 +145,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             await _context.TransactionDetails.AddAsync(transactionDetailsCreditObj);
 
 
-            AccountInfo requestAccountInfo = null;
-
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == result.RequestBy);
-            if (user != null)
-            {
-                if (user.AppUserTypeId == (int)EnumAppUserType.BranchUser)
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.BranchInfoId.ToString());
-
-                else
-                    requestAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.MasterId == user.Id.ToString());
-            }
-
+            AccountInfo requestAccountInfo = await _accountInfoService.GetAccountInfoByUserId(result.RequestBy);
             var transactionDetailsDebitObj = new TransactionDetail
             {
                 CreatedBy = _currentUserService.UserId,
@@ -165,7 +153,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 RecordStatusId = (int)EnumRecordStatus.Approved,
                 TransactionId = transactionDataInsertResult.Entity.TransactionId,
                 Debit = result.Amount,
-                AccountInfoId = requestAccountInfo?.AccountInfoId
+                AccountInfoId = requestAccountInfo.AccountInfoId
             };
 
             await _context.TransactionDetails.AddAsync(transactionDetailsDebitObj);

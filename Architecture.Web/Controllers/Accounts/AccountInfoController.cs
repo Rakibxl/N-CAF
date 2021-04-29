@@ -59,12 +59,28 @@ namespace Architecture.Web.Controllers.Accounts
                 return ExceptionResult(ex);
             }
         }
+
+
         [HttpGet("SyncAccountInfo")]
         public async Task<IActionResult> SyncAccountInfo(int accountInfoId)
         {
             try
             {
                 var result = await accountInfoService.SyncAccountInfo();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+        
+        [HttpGet("GetCurrentUserAccountDetails")]
+        public async Task<IActionResult> GetCurrentUserAccountDetails()
+        {
+            try
+            {
+                var result = await accountInfoService.GetCurrentUserAccountDetails();
                 return OkResult(result);
             }
             catch (Exception ex)

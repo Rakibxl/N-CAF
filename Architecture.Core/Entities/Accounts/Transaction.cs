@@ -13,5 +13,6 @@ namespace Architecture.Core.Entities.Accounts
         public Guid? ApprovedBy { get; set; }
         public bool IsAutoAccounting { get; set; }
         public Decimal Amount { get; set; }
+        public virtual List<TransactionDetail> TransactionDetail { get; set; }
     }
 }

@@ -8,8 +8,9 @@ export class AccountInfo extends Auditable {
     public accountName: string;    
     public masterId: string
     public appUserTypeId: number;
-    public appUserType :AppUserType;    
-        
+    public appUserType: AppUserType;    
+    public balanceAmount: number;
+    public pendingAmount: number;        
 }
 
 

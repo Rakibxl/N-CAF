@@ -1,12 +1,15 @@
 ﻿using Architecture.BLL.Services.Interfaces;
 using Architecture.BLL.Services.Interfaces.Accounts;
+using Architecture.BLL.Services.Models;
 using Architecture.Core.Common.Enums;
 using Architecture.Core.Entities.Accounts;
 using Architecture.Core.Entities.Notification;
 using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,10 +20,12 @@ namespace Architecture.BLL.Services.Implements.Accounts
 
         private readonly ICurrentUserService currentUserService;
         private readonly INotificationService notificationService;
-        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, INotificationService notificationService) : base(dbContext)
+        private readonly IBranchService branchService;
+        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, INotificationService notificationService, IBranchService branchService) : base(dbContext)
         {
             this.currentUserService = currentUserService;
             this.notificationService = notificationService;
+            this.branchService = branchService;
         }
 
         public async Task<IEnumerable<AccountInfo>> GetAll()
@@ -44,33 +49,164 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 throw new Exception("Information is not availalbe. Please contact with admin.");
             }
         }
-         public async Task<string> SyncAccountInfo()
+
+        public async Task<AccountInfoVM> GetCurrentUserAccountDetails()
+        {
+            var applicationUserType = currentUserService.UserTypeId;
+
+            AccountInfo accountInfo = await this.GetCurrentUserAccountInfo();
+            var currentUserId = currentUserService.UserId.ToString();
+
+            var transactionDetails = _dbContext.TransactionDetails.Include(x=>x.RecordStatus).Where(x => x.AccountInfoId == accountInfo.AccountInfoId && (x.RecordStatusId == (int)EnumRecordStatus.Approved || x.RecordStatusId == (int)EnumRecordStatus.WaitingforApproval))
+                .GroupBy(x => new { x.RecordStatusId }).Select(g =>
+                  new {
+                      RecordStatusId = g.Key.RecordStatusId,
+                      DebitAmount=g.Sum(d=>d.Debit),
+                      CreditAmount=g.Sum(d=>d.Credit),
+                      Amount= g.Sum(d => d.Debit)- g.Sum(d => d.Credit)
+                  }
+                );
+
+            var balanceRecord = transactionDetails.FirstOrDefault(x => x.RecordStatusId == (int)EnumRecordStatus.Approved);
+            var pendingRecord = transactionDetails.FirstOrDefault(x => x.RecordStatusId == (int)EnumRecordStatus.WaitingforApproval);
+
+            var accountInfoDetaiils = new AccountInfoVM
+            {
+                AccountInfoId = accountInfo.AccountInfoId,
+                AccountNumber = accountInfo.AccountNumber,
+                AccountName = accountInfo.AccountName,
+                MasterId = accountInfo.MasterId,
+                AppUserTypeId = accountInfo.AppUserTypeId,
+                AppUserType = accountInfo.AppUserType,
+                BalanceAmount = balanceRecord==null?0: balanceRecord.Amount,
+                ProgressAmount = pendingRecord==null?0: pendingRecord.Amount,
+                Created = accountInfo.Created,
+                CreatedBy = accountInfo.CreatedBy,
+                Modified = accountInfo.Modified,
+                ModifiedBy = accountInfo.ModifiedBy,
+                RecordStatusId = accountInfo.RecordStatusId,
+                RecordStatus = accountInfo.RecordStatus
+            };
+
+            return accountInfoDetaiils;
+
+
+    }
+        public async Task<string> SyncAccountInfo()
         {
             var returnResult = "";
             var applicationUserType = currentUserService.UserTypeId;
-            if (applicationUserType==(int) EnumApplicationUserType.Client|| applicationUserType == (int)EnumApplicationUserType.Operator) {
-                AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId== applicationUserType);
+            if (applicationUserType == (int)EnumApplicationUserType.Client || applicationUserType == (int)EnumApplicationUserType.Operator)
+            {
+                AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId == applicationUserType);
                 if (accountInfo == null)
                 {
                     var newAccountInfo = await AddOrUpdate(new AccountInfo
                     {
                         AccountName = currentUserService.UserName.ToString(),
                         AppUserTypeId = applicationUserType,
-                        MasterId = currentUserService.UserId.ToString(),                        
+                        MasterId = currentUserService.UserId.ToString(),
                     });
                 }
                 else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
                 {
                     returnResult = "Your account information is available but deactive now. Please contact with admin.";
                 }
-                else {
+                else
+                {
                     returnResult = "Your account information synchronized. Thanks for connecting with us.";
                 }
             }
-                return returnResult;           
+            else if (applicationUserType == (int)EnumApplicationUserType.BranchUser)
+            {
+                var branchInfoId = currentUserService.BranchInfoId;
+                if (branchInfoId == null) { returnResult = "Your branch information is not mapped currently. Please try again with proper branch information."; }
+                AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == branchInfoId.ToString() && x.AppUserTypeId == applicationUserType);
+                if (accountInfo == null)
+                {
+                    var branchInfo = await branchService.GetById(Int32.Parse(branchInfoId));
+                    var newAccountInfo = await AddOrUpdate(new AccountInfo
+                    {
+                        AccountName = branchInfo.BranchLocation,
+                        AppUserTypeId = applicationUserType,
+                        MasterId = branchInfoId.ToString(),
+                    });
+                }
+                else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
+                {
+                    returnResult = "Your account information is available but deactive now. Please contact with admin.";
+                }
+                else
+                {
+                    returnResult = "Your account information synchronized. Thanks for connecting with us.";
+                }
+
+            }else if (applicationUserType == (int)EnumApplicationUserType.Admin)
+            {
+                
+                AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.AppUserTypeId == applicationUserType);
+                if (accountInfo == null)
+                {                    
+                    var newAccountInfo = await AddOrUpdate(new AccountInfo
+                    {
+                        AccountName = "N-CAP",
+                        AppUserTypeId = applicationUserType,
+                        MasterId = "0afe6406-257c-4d54-12ea-08d8f6726a",
+                    });
+                }
+                else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
+                {
+                    returnResult = "Your account information is available but deactive now. Please contact with admin.";
+                }
+                else
+                {
+                    returnResult = "Your account information synchronized. Thanks for connecting with us.";
+                }
+
+            }
+
+            return returnResult;           
         }
-        
-        
+
+        public async Task<AccountInfo> GetCurrentUserAccountInfo() {
+            var applicationUserType = currentUserService.UserTypeId;
+            AccountInfo accountInfo = new AccountInfo();
+            if (applicationUserType == (int)EnumApplicationUserType.Client || applicationUserType == (int)EnumApplicationUserType.Operator)
+            {
+                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId == applicationUserType);
+            }
+            else if (applicationUserType == (int)EnumApplicationUserType.BranchUser)
+            {
+                var branchInfoId = currentUserService.BranchInfoId;
+                 accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == branchInfoId.ToString() && x.AppUserTypeId == applicationUserType);
+            }
+            else if (applicationUserType == (int)EnumApplicationUserType.Admin)
+            {
+                 accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.AppUserTypeId == applicationUserType);                
+            }
+            return accountInfo;
+        }
+
+        public async Task<AccountInfo> GetAccountInfoByUserId(Guid? userId)
+        {
+            var userInfo =await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var applicationUserType = userInfo.AppUserTypeId;
+            AccountInfo accountInfo = new AccountInfo();
+            if (applicationUserType == (int)EnumApplicationUserType.Client || applicationUserType == (int)EnumApplicationUserType.Operator)
+            {
+                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId == applicationUserType);
+            }
+            else if (applicationUserType == (int)EnumApplicationUserType.BranchUser)
+            {
+                var branchInfoId = currentUserService.BranchInfoId;
+                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == branchInfoId.ToString() && x.AppUserTypeId == applicationUserType);
+            }
+            else if (applicationUserType == (int)EnumApplicationUserType.Admin)
+            {
+                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.AppUserTypeId == applicationUserType);
+            }
+            return accountInfo;
+        }
         public async Task<AccountInfo> AddOrUpdate(AccountInfo accountInfo)
         {
             try

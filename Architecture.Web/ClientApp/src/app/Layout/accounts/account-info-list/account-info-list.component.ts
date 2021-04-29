@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountInfo } from '../../../Shared/Entity/Accounts/accountsInfo';
+import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { AccountInfoService } from '../../../Shared/Services/Accounts/accountInfo.service';
 
 @Component({
@@ -9,15 +10,24 @@ import { AccountInfoService } from '../../../Shared/Services/Accounts/accountInf
 })
 export class AccountInfoListComponent implements OnInit {
     public accountsInfoList: AccountInfo[] = [];
-    constructor(private accountInfoService: AccountInfoService) { }
+    public accountsInfoDetails: AccountInfo = new AccountInfo();
+    constructor(private accountInfoService: AccountInfoService, private alertService: AlertService) { }
 
     ngOnInit() {
-        this.fnGetAllAccountInfo();
+        this.fnGetAllAccountDetailsInfo();
     }
 
     public fnGetAllAccountInfo() {
         this.accountInfoService.getAllAccountInfo().subscribe((res) => {
             this.accountsInfoList = res.data || [];
+        });
+    }
+
+    public fnGetAllAccountDetailsInfo() {
+        this.accountInfoService.getCurrentUserAccountDetails().subscribe((res) => {
+            //this.accountsInfoList = res.data || [];
+            this.accountsInfoDetails = res.data;
+            console.log("Account details information ::",res.data );
         });
     }
 
@@ -36,9 +46,7 @@ export class AccountInfoListComponent implements OnInit {
 
     public fnUpdateYourAccountInfo() {
         this.accountInfoService.syncYourAccountInformation().subscribe((res) => {
-
-            console.log(res);
-
+            this.alertService.titleTosterWarning(res.data);
         });
     }
     //public ptableSettings: IPTableSetting = {
