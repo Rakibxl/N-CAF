@@ -30,6 +30,10 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
+    public get applicationUserTypeId(): number {
+        return this.currentUserSubject.value.appUserTypeId;
+    }
+
     public get isLoggedIn(): boolean {
         return this.currentUserSubject.value !== null;
     }

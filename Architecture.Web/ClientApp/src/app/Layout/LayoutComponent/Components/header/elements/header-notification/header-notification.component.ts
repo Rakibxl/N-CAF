@@ -32,6 +32,11 @@ export class HeaderNotificationComponent implements OnInit {
         this.messageService.getCurrentUserNotification(1, 100).subscribe(res => {
             this.notificationCollection = res.data || [];
             this.unSeenNotificationCount = this.notificationCollection.filter(x => !x.isSeen).length;
+            if (this.unSeenNotificationCount>0) {
+                this.messageService.seenCurrentUserNotification().subscribe(res => {
+                    console.log("seen result::", res);
+                });
+            }
         })
     }
     private subscribeToEvents(): void {

@@ -72,6 +72,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                      .OrderByDescending(x => x.Created)
                      .ToListAsync();
 
+            //Auto mapper 
             return transactionHistory;
         }
 
@@ -82,15 +83,13 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             if (result != null)
             {
                 await using var transaction = await _context.Database.BeginTransactionAsync();
-
                 var transactionDataInsertResult = await SaveTransactionAsync(result);
+                //await SaveTransactionDetailsAsync(result, transactionDataInsertResult);
 
-                await SaveTransactionDetailsAsync(result, transactionDataInsertResult);
 
                 await UpdateTransactionRequestAsync(result, transactionDataInsertResult);
 
                 await NotifyUserAsync(result);
-
                 await transaction.CommitAsync();
             }
 
@@ -99,16 +98,25 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
 
         private async Task NotifyUserAsync(TransactionRequest request)
         {
-            NotificationInfo notificationInfo = new NotificationInfo
+            try
             {
-                CreatedBy = _currentUserService.UserId,
-                Created = DateTime.UtcNow,
-                RecordStatusId = (int)EnumRecordStatus.Approved,
-                MessageFor = request.CreatedBy,
-                MessageContent = $"Your recharge request has been approved by {_currentUserService.UserName} on {DateTime.UtcNow:f}"
-            };
+                NotificationInfo notificationInfo = new NotificationInfo
+                {
+                    CreatedBy = _currentUserService.UserId,
+                    Created = DateTime.UtcNow,
+                    RecordStatusId = (int)EnumRecordStatus.Active,
+                    MessageFor = request.CreatedBy,
+                    MessageContent = $"Your transaction request has been approved by {_currentUserService.UserName} on {DateTime.UtcNow:f}"
+                };
 
-            await _notificationService.AddOrUpdate(notificationInfo);
+                await _notificationService.AddOrUpdate(notificationInfo);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
         }
 
         private async Task<EntityEntry<Transaction>> SaveTransactionAsync(TransactionRequest result)
@@ -121,14 +129,16 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 ApprovedDate = result.Modified = DateTime.UtcNow,
                 ApprovedBy = _currentUserService.UserId,
                 IsAutoAccounting = true,
-                Amount = result.Amount
+                Amount = result.Amount,
+                TransactionRequestId = result.TransactionRequestId,
+                TransactionDetail = await GetTransactionDetailsAsync(result)
             };
 
             var transactionDataInsertResult = await _context.Transactions.AddAsync(transactionObj);
             return transactionDataInsertResult;
         }
 
-        private async Task SaveTransactionDetailsAsync(TransactionRequest result, EntityEntry<Transaction> transactionDataInsertResult)
+        private async Task<List<TransactionDetail>> GetTransactionDetailsAsync(TransactionRequest result)
         {
             var adminAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.AppUserTypeId == (int)EnumAppUserType.Admin);
 
@@ -137,12 +147,12 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 CreatedBy = _currentUserService.UserId,
                 Created = DateTime.UtcNow,
                 RecordStatusId = (int)EnumRecordStatus.Approved,
-                TransactionId = transactionDataInsertResult.Entity.TransactionId,
+               // TransactionId = transactionDataInsertResult.Entity.TransactionId,
                 Credit = result.Amount,
                 AccountInfoId = adminAccountInfo.AccountInfoId
             };
 
-            await _context.TransactionDetails.AddAsync(transactionDetailsCreditObj);
+           // await _context.TransactionDetails.AddAsync(transactionDetailsCreditObj);
 
 
             AccountInfo requestAccountInfo = await _accountInfoService.GetAccountInfoByUserId(result.RequestBy);
@@ -151,13 +161,17 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 CreatedBy = _currentUserService.UserId,
                 Created = DateTime.UtcNow,
                 RecordStatusId = (int)EnumRecordStatus.Approved,
-                TransactionId = transactionDataInsertResult.Entity.TransactionId,
+                //TransactionId = transactionDataInsertResult.Entity.TransactionId,
                 Debit = result.Amount,
                 AccountInfoId = requestAccountInfo.AccountInfoId
             };
 
-            await _context.TransactionDetails.AddAsync(transactionDetailsDebitObj);
+            List<TransactionDetail> transactionDetails = new List<TransactionDetail>() { transactionDetailsCreditObj, transactionDetailsDebitObj };
+
+            return transactionDetails;
+            //await _context.TransactionDetails.AddAsync(transactionDetailsDebitObj);
         }
+
 
         private async Task UpdateTransactionRequestAsync(TransactionRequest transactionRequest, EntityEntry<Transaction> transactionDataInsertResult)
         {
@@ -165,8 +179,7 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
             transactionRequest.ApprovedDate = transactionRequest.Modified = DateTime.UtcNow;
             transactionRequest.ApprovedBy = _currentUserService.UserId;
             transactionRequest.ModifiedBy = _currentUserService.UserId;
-            transactionRequest.TransactionId = transactionDataInsertResult.Entity.TransactionId;
-
+            //transactionRequest.TransactionId = transactionDataInsertResult.Entity.TransactionId;
             await UpdateAsync(transactionRequest);
         }
 

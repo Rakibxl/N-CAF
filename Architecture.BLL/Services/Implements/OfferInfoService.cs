@@ -14,30 +14,34 @@ using Architecture.Core.Common.Enums;
 using Architecture.BLL.Services.Interfaces.ClientProfile;
 using Microsoft.AspNetCore.SignalR;
 using Architecture.Web.Hubs;
+using Architecture.BLL.Services.Interfaces.Accounts;
+using Architecture.Core.Entities.Accounts;
 
 namespace Architecture.BLL.Services.Implements
 {
     public class OfferInfoService: Repository<OfferInfo>, IOfferInfoService
     {
         private readonly IJobInformationService jobInformationService;
-        private readonly ICurrentUserService CurrentUserService;
+        private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationUserService applicationUserService;
         private readonly IBasicInfoService basicInfoService;
+        private readonly ITransactionService _transactionService;        
         private IHubContext<NotificationHub> notificationHubContext;
-        public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService CurrentUserService,
+        public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService currentUserService, ITransactionService transactionService,
            IApplicationUserService applicationUserService, IBasicInfoService basicInfoService, IHubContext<NotificationHub> notificationHubContext) : base(dbContext)
         {
             this.jobInformationService = jobInformationService;
-            this.CurrentUserService = CurrentUserService;
+            _currentUserService = currentUserService;
             this.applicationUserService = applicationUserService;
             this.basicInfoService = basicInfoService;
             this.notificationHubContext = notificationHubContext;
+            this._transactionService = transactionService;
         }
 
         #region Operator
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorProgressOffer()
         {
-            var UserId = CurrentUserService.UserId.ToString();
+            var UserId = _currentUserService.UserId.ToString();
             var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == (int)EnumOfferStatus.Received || x.OfferStatusId == (int)EnumOfferStatus.DocumentsRequired || x.OfferStatusId == (int)EnumOfferStatus.InformationRequired))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
                          join profile in _dbContext.ProfBasicInfos on of.ProfileId equals profile.ProfileId
@@ -73,7 +77,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorCompletedOffer()
         {
-            var UserId = CurrentUserService.UserId.ToString();
+            var UserId = _currentUserService.UserId.ToString();
 
             var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId && (x.OfferStatusId == (int)EnumOfferStatus.Completed))
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
@@ -109,7 +113,7 @@ namespace Architecture.BLL.Services.Implements
         }
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorPendingOffer()
         {
-            var UserId = CurrentUserService.UserId;
+            var UserId = _currentUserService.UserId;
             var operatorDetails = await applicationUserService.GetByIdAsync(UserId);
 
             List<OfferInfoVM> newOffer = new List<OfferInfoVM>();
@@ -165,7 +169,7 @@ namespace Architecture.BLL.Services.Implements
         {
             try
             {
-                var UserId = CurrentUserService.UserId;
+                var UserId = _currentUserService.UserId;
 
                 var offer = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId);
                 if (offer==null) {
@@ -211,7 +215,7 @@ namespace Architecture.BLL.Services.Implements
         {
             try
             {
-                var UserId = CurrentUserService.UserId;
+                var UserId = _currentUserService.UserId;
 
                 var offer = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId);
                 if (offer == null)
@@ -248,7 +252,7 @@ namespace Architecture.BLL.Services.Implements
         {
             try
             {
-                var UserId = CurrentUserService.UserId;
+                var UserId = _currentUserService.UserId;
 
                 var offer = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId && x.ProfileId==profileId);
                 if (offer == null)
@@ -298,8 +302,8 @@ namespace Architecture.BLL.Services.Implements
         }
         public async Task<IEnumerable<OfferInfoVM>> GetClientProgressOffer(int profileId)
         {
-            var UserId = CurrentUserService.UserId.ToString();
-            var userType = CurrentUserService.UserTypeId;
+            var UserId = _currentUserService.UserId.ToString();
+            var userType = _currentUserService.UserTypeId;
             if (profileId==0 && userType==(int)EnumAppUserType.Client) {
               var profileInfo =await basicInfoService.GetCurrentUserBasicInfo();
                 profileId = profileInfo.ProfileId;
@@ -340,8 +344,8 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<IEnumerable<OfferInfoVM>> GetClientCompletedOffer(int profileId)
         {
-            var UserId = CurrentUserService.UserId.ToString();
-            var userType = CurrentUserService.UserTypeId;
+            var UserId = _currentUserService.UserId.ToString();
+            var userType = _currentUserService.UserTypeId;
             if (profileId == 0 && userType == (int)EnumAppUserType.Client)
             {
                 var profileInfo = await basicInfoService.GetCurrentUserBasicInfo();
@@ -405,17 +409,20 @@ namespace Architecture.BLL.Services.Implements
                 OfferInfo result;
                 if (offerInfo.OfferInfoId > 0)
                 {
-                    offerInfo.Modified = DateTime.Now;
-                    offerInfo.ModifiedBy = CurrentUserService.UserId;
+                    offerInfo.Modified = DateTime.UtcNow;
+                    offerInfo.ModifiedBy = _currentUserService.UserId;
                     result = await UpdateAsync(offerInfo);
                 }
                 else
                 {
-                    offerInfo.Created = DateTime.Now;
-                    offerInfo.CreatedBy = CurrentUserService.UserId;
-                    offerInfo.CurrentUserId = CurrentUserService.UserId;
+                    offerInfo.Created = DateTime.UtcNow;
+                    offerInfo.CreatedBy = _currentUserService.UserId;
+                    offerInfo.CurrentUserId = _currentUserService.UserId;
                     offerInfo.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(offerInfo);
+
+                    // create transaction for submit offer
+                    var transaction = await _transactionService.CreateTransactionForOfferSubmit(result);
                 }
                 return result;
             }
@@ -425,10 +432,18 @@ namespace Architecture.BLL.Services.Implements
             }
         }
 
-        public async Task<int> Delete(int offerInfoId)
+        public async Task<string> Delete(int offerInfoId)
         {
-            var result = await DeleteAsync(x => x.OfferInfoId == offerInfoId);
-            return result;
+            OfferInfo result = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId && x.RecordStatusId != (int)EnumRecordStatus.Deleted);
+            if (result == null)
+            {
+                return "Offer infomration is not available. Please contact with admin.";
+            }
+            result.Modified = DateTime.UtcNow;
+            result.ModifiedBy = _currentUserService.UserId;
+            result.RecordStatusId = (int)EnumRecordStatus.Deleted;
+            await UpdateAsync(result);
+            return "Information deleted successfully.";
         }
         public  dynamic GetCurrentStatusById(int profileId)
         {
@@ -452,7 +467,7 @@ namespace Architecture.BLL.Services.Implements
 
         public async Task<IEnumerable<OfferInfoVM>> GetMyProgressOffer()
         {
-            var UserId = CurrentUserService.UserId.ToString();
+            var UserId = _currentUserService.UserId.ToString();
 
             var result = from of in _dbContext.OfferInfos.Where(x => x.AcceptedOperatorId == UserId)
                          join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId
@@ -488,8 +503,8 @@ namespace Architecture.BLL.Services.Implements
         
         public async Task<IEnumerable<OfferInfoVM>> GetProgressOfferForChatting()
         {
-            var UserId = CurrentUserService.UserId.ToString();
-            var userType=(int) CurrentUserService.UserTypeId;
+            var UserId = _currentUserService.UserId.ToString();
+            var userType=(int)_currentUserService.UserTypeId;
             IEnumerable<OfferInfoVM> result = new List<OfferInfoVM>();
 
             if (userType==(int)EnumApplicationUserType.Operator) { // operator chatting
@@ -533,7 +548,7 @@ namespace Architecture.BLL.Services.Implements
             }
             else if (userType == (int)EnumApplicationUserType.Admin|| userType == (int)EnumApplicationUserType.BranchUser) // operator chatting
             {
-                int branchInfoId =Int32.Parse (CurrentUserService.BranchInfoId.ToString()); 
+                int branchInfoId =Int32.Parse (_currentUserService.BranchInfoId.ToString()); 
                  result = from of in _dbContext.OfferInfos.Where(x => (x.OfferStatusId == (int)EnumOfferStatus.Pending || x.OfferStatusId == (int)EnumOfferStatus.NewOffer || x.OfferStatusId == (int)EnumOfferStatus.Submitted || x.OfferStatusId == (int)EnumOfferStatus.Received || x.OfferStatusId == (int)EnumOfferStatus.DocumentsRequired || x.OfferStatusId == (int)EnumOfferStatus.InformationRequired))
                              join os in _dbContext.OfferStatus on of.OfferStatusId equals os.OfferStatusId 
                              join profile in _dbContext.ProfBasicInfos.Where(x=>x.BranchInfoId==branchInfoId) on of.ProfileId equals profile.ProfileId 

@@ -14,5 +14,7 @@ namespace Architecture.Core.Entities.Accounts
         public string MasterId { get; set; }
         public int? AppUserTypeId { get; set; }
         public virtual AppUserType AppUserType { get; set; }
+        public Guid? NotifyUserId { get; set; }
+
     }
 }

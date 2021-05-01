@@ -15,11 +15,13 @@ export class MessageService {
 
     public baseUrl: string;
     public user: IAuthUser;
+    private notificationHubUrl: string;
     public static notify = new Subject<any>();
     private _hubConnection: HubConnection;
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private authService: AuthService) {
     console.log("baseUrl: ", baseUrl);
-      this.baseUrl = baseUrl + 'api/';
+        this.baseUrl = baseUrl + 'api/';
+        this.notificationHubUrl = baseUrl + 'notificationHub/';
       this.createConnection();
   }
 
@@ -33,7 +35,7 @@ export class MessageService {
 
     public createConnection(): void {
         this._hubConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:44357/notificationHub')
+            .withUrl(this.notificationHubUrl)
             //.withUrl('https://localhost:44357/notification')
             .build();
 
@@ -75,6 +77,9 @@ export class MessageService {
     }
     public getCurrentUserNotification(pageNumber: number, pageSize: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/notification/CurrentUserNotification/${pageNumber}/${pageSize}`);
+    }
+    public seenCurrentUserNotification() {
+        return this.http.get<APIResponse>(this.baseUrl + `v1/notification/SeenUserNotification`);
     }
     //#endregion Notificaiton 
 }

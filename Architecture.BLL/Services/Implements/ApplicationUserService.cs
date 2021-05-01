@@ -114,6 +114,26 @@ namespace Architecture.BLL.Services.Implements
         }
 
 
+        public async Task<ApplicationUser> GetAdminUserAsync(int branchId, bool isAdmin=false)
+        {
+            ApplicationUser user = new ApplicationUser();
+            if (isAdmin)
+            {
+                user = _userManager.Users.FirstOrDefault(x => x.AppUserTypeId == (int)EnumApplicationUserType.Admin);
+            }
+            else
+            {
+                user = _userManager.Users.FirstOrDefault(x => x.BranchInfoId == branchId && x.IsBranchAdmin == true);
+            }
+
+            if (user == null)
+            {
+                throw new Exception("Branch / Admin User Informaiton is not availble");
+            }
+
+            return user;
+        }
+
         #region Helper
         public virtual async Task<IList<TResult>> GetAsync<TResult>(Expression<Func<ApplicationUser, TResult>> selector,
                             Expression<Func<ApplicationUser, bool>> predicate = null,

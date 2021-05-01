@@ -5,6 +5,8 @@ using Architecture.Core.Repository.Context;
 using Architecture.Core.Repository.Core;
 using Architecture.Web.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,12 +51,6 @@ namespace Architecture.BLL.Services.Notification
         {            
                 var result = await GetAsync(x=>x,x=>x.OfferInfoId==offerInfoId);
 
-            //var parameter = Expression.Parameter(typeof());
-            //Expression predicate = Expression.Constant(true);
-            //Expression property = Expression.Property(parameter, nameOfParameter);
-            //Expression equal = Expression.Equal(property, Expression.Constant(valueToCompare));
-            //predicate = Expression.AndAlso(predicate, equal);
-
             return result.ToList();           
         }
         public async Task<List<NotificationInfo>> GetCurrentUserNotification(int pageNumber, int pageSize)
@@ -62,7 +58,7 @@ namespace Architecture.BLL.Services.Notification
             IEnumerable<NotificationInfo> allSection;
             var currentUserId = currentUserService.UserId;
             allSection = await GetAsync(x => x, x=>x.MessageFor==currentUserId, x=>x.OrderByDescending(x=>x.Created));           
-            return allSection.ToList();
+            return allSection.Take(200).ToList();
         }
          public async Task<List<NotificationInfo>> GetByApplicationByAppUserId(Guid? applicationUserId)
         {
@@ -98,7 +94,14 @@ namespace Architecture.BLL.Services.Notification
                 throw ex;
             }
         }
-
+        public async Task<int> SeenUserNotification()
+        {
+            var commandText = "Update Notifications set IsSeen=1 where MessageFor=@userId";
+            var userId = new SqlParameter("@userId", currentUserService.UserId.ToString());
+            _dbContext.Database.ExecuteSqlCommand(commandText, userId);
+            return 1;
+        } 
+        
         public async Task<int> Delete(int notificationId)
         {
             var result = await DeleteAsync(x => x.NotificationInfoId == notificationId);

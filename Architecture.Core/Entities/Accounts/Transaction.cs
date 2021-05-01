@@ -14,5 +14,8 @@ namespace Architecture.Core.Entities.Accounts
         public bool IsAutoAccounting { get; set; }
         public Decimal Amount { get; set; }
         public virtual List<TransactionDetail> TransactionDetail { get; set; }
+        public int? OfferInfoId { get; set; }
+        public int? TransactionRequestId { get; set; }
+
     }
 }

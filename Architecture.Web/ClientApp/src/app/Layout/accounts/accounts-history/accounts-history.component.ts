@@ -58,7 +58,7 @@ export class AccountsHistoryComponent implements OnInit {
     public pTableSettings: IPTableSetting = {
         tableID: "recharge-approval-table",
         tableClass: "table table-border ",
-        tableName: 'Transaction History',
+        tableName: 'Latest Transaction History',
         tableRowIDInternalName: "id",
         tableColDef: [
             { headerName: 'Date Created', internalName: 'created', sort: true, type: "Date", displayType: "datetime" },

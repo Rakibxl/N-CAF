@@ -13,6 +13,6 @@ namespace Architecture.Core.Entities.Accounts
         public decimal Credit { get; set; }
         public int? AccountInfoId { get; set; }
         public virtual AccountInfo AccountInfo { get; set; }
-        public virtual Transaction Transaction { get; set; }
+        //public virtual Transaction Transaction { get; set; }
     }
 }

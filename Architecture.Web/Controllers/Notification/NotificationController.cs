@@ -92,5 +92,20 @@ namespace Architecture.Web.Controllers.Notification
             }
         }
 
+
+        [HttpGet("SeenUserNotification")]
+        public async Task<IActionResult> SeenUserNotification()
+        {
+            try
+            {
+                var result = await notificationService.SeenUserNotification();
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
     }
 }

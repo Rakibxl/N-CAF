@@ -10,6 +10,7 @@ import { APIResponse } from '../../../Shared/Entity/Response/api-response';
 import { AlertService } from '../../../Shared/Modules/alert/alert.service';
 import { OfferInfo } from '../../../Shared/Entity/Dashboard/Offer-Info';
 import { OfferInfoService } from '../../../Shared/Services/Dashboard/offer-info.service';
+import { AuthService } from '../../../Shared/Services/Users/auth.service';
 
 
 @Component({
@@ -25,9 +26,10 @@ export class OfferComponent implements OnInit {
     public offerInfoId: number = 0;
     public occupationInfoList: any[] = [];
     public ptableSettings: IPTableSetting;
+    public applicationUserType: number;
 
     constructor(private router: Router, private clientProfileService: ClientProfileService, private jobInfoService: JobInfoService, private offerInfoService: OfferInfoService,
-        private commonService: CommonService, private route: ActivatedRoute, private alertService: AlertService) { }
+        private commonService: CommonService, private route: ActivatedRoute, private alertService: AlertService, private authService: AuthService) { }
 
     ngOnInit() {
         this.profileId = +this.route.snapshot.paramMap.get("profId") || 0;
@@ -39,6 +41,13 @@ export class OfferComponent implements OnInit {
         this.loadBasicInfo();
     }
 
+    public getPoints() {
+        if (this.authService.applicationUserTypeId==2) {// branch user
+            return this.jobInfo.branchRequiredAmount;
+        } else {// client 
+            return this.jobInfo.clientRequiredAmount;
+        }
+    }
 
     onEditBasicInfo() {
         this.router.navigate([`/client-profile/basic-info/${this.basicInfo.profileId}`]);
@@ -86,7 +95,7 @@ export class OfferComponent implements OnInit {
     }
 
     public fnSubmitOffer() {
-        this.alertService.confirm("Are you confirm, that you will submit this offer for the next level. Before submitting review the documents again",
+        this.alertService.confirm(`Are you confirm, that you will submit this offer for the next level. <i>Need ${this.getPoints()} points to process this offer</i>. Before submitting review the documents again`,
             () => {
                 let offerInfo = new OfferInfo();
                 offerInfo.jobId = this.jobId;

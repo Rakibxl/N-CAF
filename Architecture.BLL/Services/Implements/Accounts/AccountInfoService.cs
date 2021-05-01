@@ -21,11 +21,13 @@ namespace Architecture.BLL.Services.Implements.Accounts
         private readonly ICurrentUserService currentUserService;
         private readonly INotificationService notificationService;
         private readonly IBranchService branchService;
-        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, INotificationService notificationService, IBranchService branchService) : base(dbContext)
+        private readonly IApplicationUserService _userService;
+        public AccountInfoService(ApplicationDbContext dbContext, ICurrentUserService currentUserService, INotificationService notificationService, IBranchService branchService, IApplicationUserService userService) : base(dbContext)
         {
             this.currentUserService = currentUserService;
             this.notificationService = notificationService;
             this.branchService = branchService;
+            this._userService = userService;
         }
 
         public async Task<IEnumerable<AccountInfo>> GetAll()
@@ -106,7 +108,10 @@ namespace Architecture.BLL.Services.Implements.Accounts
                         AccountName = currentUserService.UserName.ToString(),
                         AppUserTypeId = applicationUserType,
                         MasterId = currentUserService.UserId.ToString(),
+                        NotifyUserId= currentUserService.UserId
                     });
+
+                    returnResult = $"Your account information synchronized. Account Number {newAccountInfo.AccountNumber} and Name {newAccountInfo.AccountName} Thanks for connecting with us.";
                 }
                 else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
                 {
@@ -114,6 +119,10 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 }
                 else
                 {
+                    accountInfo.AccountName = currentUserService.UserName.ToString();
+                    accountInfo.NotifyUserId = currentUserService.UserId;
+
+                    var newAccountInfo = await UpdateAsync(accountInfo);
                     returnResult = "Your account information synchronized. Thanks for connecting with us.";
                 }
             }
@@ -122,6 +131,7 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 var branchInfoId = currentUserService.BranchInfoId;
                 if (branchInfoId == null) { returnResult = "Your branch information is not mapped currently. Please try again with proper branch information."; }
                 AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == branchInfoId.ToString() && x.AppUserTypeId == applicationUserType);
+                var branchAdminUser = await _userService.GetAdminUserAsync(Int32.Parse(branchInfoId));
                 if (accountInfo == null)
                 {
                     var branchInfo = await branchService.GetById(Int32.Parse(branchInfoId));
@@ -130,7 +140,10 @@ namespace Architecture.BLL.Services.Implements.Accounts
                         AccountName = branchInfo.BranchLocation,
                         AppUserTypeId = applicationUserType,
                         MasterId = branchInfoId.ToString(),
+                        NotifyUserId= branchAdminUser?.Id
                     });
+
+                    returnResult = $"Your account information synchronized. Account Number {newAccountInfo.AccountNumber} and Name {newAccountInfo.AccountName}. Thanks for connecting with us.";
                 }
                 else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
                 {
@@ -138,6 +151,10 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 }
                 else
                 {
+                    var branchInfo = await branchService.GetById(Int32.Parse(branchInfoId));
+                    accountInfo.NotifyUserId = branchAdminUser?.Id;
+                    accountInfo.AccountName = branchInfo.BranchLocation;
+                    var newAccountInfo = await UpdateAsync(accountInfo);
                     returnResult = "Your account information synchronized. Thanks for connecting with us.";
                 }
 
@@ -146,12 +163,15 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 
                 AccountInfo accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.AppUserTypeId == applicationUserType);
                 if (accountInfo == null)
-                {                    
+                {
+                    var AdminUser = await _userService.GetAdminUserAsync(0, true);
                     var newAccountInfo = await AddOrUpdate(new AccountInfo
                     {
                         AccountName = "N-CAP",
                         AppUserTypeId = applicationUserType,
                         MasterId = "0afe6406-257c-4d54-12ea-08d8f6726a",
+                        NotifyUserId= AdminUser.Id
+
                     });
                 }
                 else if (accountInfo.RecordStatusId != (int)EnumRecordStatus.Active)
@@ -160,6 +180,10 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 }
                 else
                 {
+                    var AdminUser = await _userService.GetAdminUserAsync(0, true);
+                    accountInfo.NotifyUserId = AdminUser.Id;
+
+                    var newAccountInfo = await UpdateAsync(accountInfo);
                     returnResult = "Your account information synchronized. Thanks for connecting with us.";
                 }
 
@@ -194,11 +218,11 @@ namespace Architecture.BLL.Services.Implements.Accounts
             AccountInfo accountInfo = new AccountInfo();
             if (applicationUserType == (int)EnumApplicationUserType.Client || applicationUserType == (int)EnumApplicationUserType.Operator)
             {
-                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == currentUserService.UserId.ToString() && x.AppUserTypeId == applicationUserType);
+                accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == userInfo.Id.ToString() && x.AppUserTypeId == applicationUserType);
             }
             else if (applicationUserType == (int)EnumApplicationUserType.BranchUser)
             {
-                var branchInfoId = currentUserService.BranchInfoId;
+                var branchInfoId = userInfo.BranchInfoId;
                 accountInfo = await GetFirstOrDefaultAsync(x => x, x => x.MasterId == branchInfoId.ToString() && x.AppUserTypeId == applicationUserType);
             }
             else if (applicationUserType == (int)EnumApplicationUserType.Admin)
