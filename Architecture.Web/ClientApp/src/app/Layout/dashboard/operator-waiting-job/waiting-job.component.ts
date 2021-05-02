@@ -18,6 +18,7 @@ import { timer } from 'rxjs';
 export class WaitingJobComponent implements OnInit {
     public myOffers: JobInfo[] = [];
     public waitingJobOffers: OfferInfo[] = [];
+    public timerGetJobSubscribe: any;
     constructor(private router: Router, private offerService: OfferInfoService, private alertService: AlertService, private commonService: CommonService) { }
 
     ngOnInit() {
@@ -30,19 +31,23 @@ export class WaitingJobComponent implements OnInit {
         });
 
       // timer to call the latest data
-        timer(60000000, 60000000).subscribe(x => {
+        this.timerGetJobSubscribe = timer(60000, 60000).subscribe(x => {
             this.fnGetNewOffer();
         });
 
     }
-    onClickGeneratePDF() {
+    public onClickGeneratePDF() {
         const url = this.router.serializeUrl(
             this.router.createUrlTree(['./generate-pdf'])
         );
         window.open(url, '_blank');
     }
 
-    onClickOffer() {
+    public ngOnDestroy() {
+        this.timerGetJobSubscribe.unsubscribe();
+    }
+
+    public onClickOffer() {
         const url = this.router.serializeUrl(
             this.router.createUrlTree(['./show-offer/offer/1/1'])
         );
@@ -77,8 +82,8 @@ export class WaitingJobComponent implements OnInit {
 
 
     public fnGetNewOffer() {
+        console.log("call the new job section::", new Date());
         this.offerService.getOperatorPendingOffer().subscribe((res: APIResponse) => {
-            console.log("oeprator pending job:", res);
             this.waitingJobOffers = res.data || [];           
         }, error => {
             console.log("Error ", error);

@@ -78,7 +78,7 @@ namespace Architecture.BLL.Services.Implements
             //if (isExist)
             //    throw new DuplicationException(nameof(entity.Name));
 
-            entity.Created = _dateTime.Now;
+            entity.Created = DateTime.UtcNow;
             entity.CreatedBy = _currentUserService.UserId;
 
             await _exampleUnitOfWork.ExampleRepository.AddAsync(entity);
@@ -109,7 +109,7 @@ namespace Architecture.BLL.Services.Implements
             existingEntity.IsActive = entity.IsActive;
             existingEntity.ImageUrl = string.IsNullOrWhiteSpace(entity.ImageUrl) ? existingEntity.ImageUrl : entity.ImageUrl;
 
-            existingEntity.Modified = _dateTime.Now;
+            existingEntity.Modified = DateTime.UtcNow;
             existingEntity.ModifiedBy = _currentUserService.UserId;
 
             await _exampleUnitOfWork.ExampleRepository.UpdateAsync(existingEntity);

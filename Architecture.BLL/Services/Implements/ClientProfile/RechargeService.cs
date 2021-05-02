@@ -48,6 +48,17 @@ namespace Architecture.BLL.Services.Implements.ClientProfile
                 result = await AddAsync(transactionRequest);
             }
 
+            var adminAccountInfo = await _context.AccountInfos.FirstOrDefaultAsync(x => x.AppUserTypeId == (int)EnumAppUserType.Admin);
+            NotificationInfo notificationInfo = new NotificationInfo
+            {
+                CreatedBy = _currentUserService.UserId,
+                Created = DateTime.UtcNow,
+                RecordStatusId = (int)EnumRecordStatus.Active,
+                MessageFor = adminAccountInfo.NotifyUserId,
+                MessageContent = $"{result.Amount} point transaction request has been placed for your approval by {_currentUserService.UserName} on {DateTime.UtcNow:f}"
+            };
+
+            await _notificationService.AddOrUpdate(notificationInfo);
             return result;
         }
 

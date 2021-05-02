@@ -98,7 +98,7 @@ namespace Architecture.BLL.Services.Implements
                     }
 
                     //entity.Status = EnumApplicationRoleStatus.GeneralUser;
-                    entity.Created = _dateTime.Now;
+                    entity.Created = DateTime.UtcNow;
                     entity.CreatedBy = _currentUserService.UserId;
 
                     var roleSaveResult = await _roleManager.CreateAsync(entity);
@@ -154,7 +154,7 @@ namespace Architecture.BLL.Services.Implements
 
                     role.Name = entity.Name;
                     role.Status = entity.Status;
-                    role.LastModified = _dateTime.Now;
+                    role.LastModified = DateTime.UtcNow;
                     role.LastModifiedBy = _currentUserService.UserId;
 
                     var roleSaveResult = await this._roleManager.UpdateAsync(role);

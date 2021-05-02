@@ -125,7 +125,7 @@ namespace Architecture.Web.Controllers.Users
                         user.BranchInfoId = model.BranchInfoId;
                         user.OperatorKeywordIds = model.OperatorKeywordIds;
                         user.ModifiedBy = UserId;
-                        user.Modified = DateTime.Now;
+                        user.Modified = DateTime.UtcNow;
                         user.IsBranchAdmin = model.IsBranchAdmin;
 
                         await _userManager.UpdateAsync(user);
@@ -169,7 +169,7 @@ namespace Architecture.Web.Controllers.Users
                         GenderId = model.GenderId,
                         OperatorKeywordIds = model.OperatorKeywordIds,
                         CreatedBy = UserId,
-                        Created = DateTime.Now,
+                        Created = DateTime.UtcNow,
                         IsBranchAdmin = model.IsBranchAdmin
                 };
                     

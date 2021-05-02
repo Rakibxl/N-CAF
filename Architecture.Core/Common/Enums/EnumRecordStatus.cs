@@ -10,6 +10,7 @@ namespace Architecture.Core.Common.Enums
         New=2,
         Deleted=3,
         WaitingforApproval=4,
-        Approved=5
+        Approved=5,
+        Pending=6
     }   
 }

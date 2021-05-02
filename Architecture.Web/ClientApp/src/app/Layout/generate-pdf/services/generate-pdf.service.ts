@@ -19,7 +19,7 @@ export class GeneratePdfService {
     return this.http.get<APIResponse>(`${this.generatePDFEndPoint}`);
     }
 
-    public getGeneratePDF(profileId: number, offerInfoId: number) {
-        return this.http.get<APIResponse>(`${this.baseUrl}api/PDFGenerator/GetGeneratedOfferPDF/${profileId}/${offerInfoId}`);
+    public getGeneratePDF(profileId: number, offerInfoId: number): Promise<APIResponse> {
+        return this.http.get<APIResponse>(`${this.baseUrl}api/PDFGenerator/GetGeneratedOfferPDF/${profileId}/${offerInfoId}`).toPromise();
   }
 }

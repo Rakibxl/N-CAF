@@ -25,16 +25,14 @@ namespace Architecture.BLL.Services.Implements
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationUserService applicationUserService;
         private readonly IBasicInfoService basicInfoService;
-        private readonly ITransactionService _transactionService;        
-        private IHubContext<NotificationHub> notificationHubContext;
+        private readonly ITransactionService _transactionService; 
         public OfferInfoService(ApplicationDbContext dbContext, IJobInformationService jobInformationService, ICurrentUserService currentUserService, ITransactionService transactionService,
-           IApplicationUserService applicationUserService, IBasicInfoService basicInfoService, IHubContext<NotificationHub> notificationHubContext) : base(dbContext)
+           IApplicationUserService applicationUserService, IBasicInfoService basicInfoService) : base(dbContext)
         {
             this.jobInformationService = jobInformationService;
-            _currentUserService = currentUserService;
+            this._currentUserService = currentUserService;
             this.applicationUserService = applicationUserService;
             this.basicInfoService = basicInfoService;
-            this.notificationHubContext = notificationHubContext;
             this._transactionService = transactionService;
         }
 
@@ -69,9 +67,10 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc = of.ReceiptSrc
                          };
-            return result;
+            return result.OrderByDescending(x => x.OfferInfoId);
 
         }
 
@@ -106,9 +105,10 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc=of.ReceiptSrc
                          };
-            return result;
+            return result.OrderByDescending(x=>x.OfferInfoId);
 
         }
         public async Task<IEnumerable<OfferInfoVM>> GetOperatorPendingOffer()
@@ -141,7 +141,8 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc = of.ReceiptSrc
                          };
 
             foreach (var offer in result)
@@ -160,7 +161,7 @@ namespace Architecture.BLL.Services.Implements
                 }
             }
 
-            return newOffer;
+            return newOffer.OrderByDescending(x => x.OfferInfoId);
 
         }
 
@@ -179,11 +180,13 @@ namespace Architecture.BLL.Services.Implements
                 if (offer.OfferStatusId == (int)EnumOfferStatus.NewOffer || offer.OfferStatusId == (int)EnumOfferStatus.Pending)
                 {
                     offer.OfferStatusId = (int)EnumOfferStatus.Received;
-                    offer.OperatorAcceptedDate = DateTime.Now;
+                    offer.OperatorAcceptedDate = DateTime.UtcNow;
                     offer.AcceptedOperatorId = UserId.ToString();
                     offer.CurrentUserId = UserId;
                     offer.ModifiedBy = UserId;
                     var offerUpdate = await AddOrUpdate(offer);
+
+                    await _transactionService.CreateTransactionForAcceptOffer(offerUpdate);
                     return "Request has been accepted successfully.";
 
                 }
@@ -227,11 +230,12 @@ namespace Architecture.BLL.Services.Implements
                 if (offer.AcceptedOperatorId == UserId.ToString())
                 {
                     offer.OfferStatusId = (int)EnumOfferStatus.Pending;
-                    //offer.OperatorAcceptedDate = DateTime.Now;
+                    //offer.OperatorAcceptedDate = DateTime.UtcNow;
                     offer.AcceptedOperatorId = null;
                     offer.CurrentUserId = null;
                     offer.ModifiedBy = UserId;
                     var offerUpdate = await AddOrUpdate(offer);
+                    await _transactionService.DeletedTransactionForRevertOffer(offerUpdate);
                     return "This job is again open for all. Anyone can accept this request and proceed.";
 
                 }
@@ -241,6 +245,45 @@ namespace Architecture.BLL.Services.Implements
                 }
             }
             catch (Exception)
+            {
+
+                throw new Exception("System may have some issues. Contact with admin.");
+            }
+
+        }
+         public async Task<string> CompletedOfferByOperator(int offerInfoId, string docURL)
+        {
+            try
+            {
+                var UserId = _currentUserService.UserId;
+
+                var offer = await GetFirstOrDefaultAsync(x => x, x => x.OfferInfoId == offerInfoId);
+                if (offer == null)
+                {
+                    throw new Exception("This offer is not available. Please try another one.");
+                }
+
+
+                if (offer.AcceptedOperatorId == UserId.ToString())
+                {
+                    offer.OfferStatusId = (int)EnumOfferStatus.Completed;
+                    //offer.OperatorAcceptedDate = DateTime.UtcNow;
+                    offer.Modified = DateTime.UtcNow;
+                    offer.ModifiedBy = _currentUserService.UserId;
+                    offer.ReceiptSrc = docURL;
+                    var offerUpdate = await UpdateAsync(offer);
+
+
+                    await _transactionService.CreateTransactionForCompletedOffer(offerUpdate);
+                    return "This job is again open for all. Anyone can accept this request and proceed.";
+
+                }
+                else
+                {
+                    throw new Exception("The job revert request is not applicable. Please try another one.");
+                }
+            }
+            catch (Exception ex)
             {
 
                 throw new Exception("System may have some issues. Contact with admin.");
@@ -336,9 +379,10 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc = of.ReceiptSrc
                          };
-            return result;
+            return result.OrderByDescending(r=>r.OfferInfoId);
 
         }
 
@@ -379,9 +423,10 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc = of.ReceiptSrc
                          };
-            return result;
+            return result.OrderByDescending(r => r.OfferInfoId); ;
 
         }
 
@@ -495,9 +540,11 @@ namespace Architecture.BLL.Services.Implements
                              Status = of.Status,
                              CurrentUserId = of.CurrentUserId,
                              Created = of.Created,
-                             Modified = of.Modified
+                             Modified = of.Modified,
+                             ReceiptSrc=of.ReceiptSrc
+
                          };
-            return result;
+            return result.OrderByDescending(r => r.OfferInfoId); 
 
         } 
         
@@ -535,10 +582,11 @@ namespace Architecture.BLL.Services.Implements
                                  //Status = of.Status,
                                  CurrentUserId = of.CurrentUserId,
                                  CreatedBy = of.CreatedBy,
+                                 ReceiptSrc = of.ReceiptSrc
                                  //Created = of.Created,
                                  //Modified = of.Modified
                              };
-                return result;
+                return result.OrderByDescending(r => r.OfferInfoId);
 
             }
             else if (userType == (int)EnumApplicationUserType.Client)// client chatting
@@ -576,10 +624,11 @@ namespace Architecture.BLL.Services.Implements
                                  Status = of.Status,
                                  CurrentUserId = of.CurrentUserId,
                                  CreatedBy = of.CreatedBy,
+                                 ReceiptSrc = of.ReceiptSrc
                                  //Created = of.Created,
                                  //Modified = of.Modified
                              };
-                return result.ToList();
+                return result.ToList().OrderByDescending(r => r.OfferInfoId); ;
 
             }
             return result;

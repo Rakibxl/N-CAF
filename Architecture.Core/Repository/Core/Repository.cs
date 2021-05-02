@@ -135,8 +135,8 @@ namespace Architecture.Core.Repository.Core
 
         public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
-           // entity.GetType().GetProperty("CreatedBy") = DateTime.Now;
-            //entity.CreatedBy = DateTime.Now;
+           // entity.GetType().GetProperty("CreatedBy") = DateTime.UtcNow;
+            //entity.CreatedBy = DateTime.UtcNow;
             await _dbSet.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;

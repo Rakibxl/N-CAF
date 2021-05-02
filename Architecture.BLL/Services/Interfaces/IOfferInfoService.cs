@@ -26,6 +26,7 @@ namespace Architecture.BLL.Services.Interfaces
         Task<string> OperatorOfferAcceptRequest(int offerInfoId);
         Task<string> OperatorAcceptedOfferRevertRequest(int offerInfoId);
         Task<OfferInfo> OperatorChangeOfferStatusRequest(int profileId, int offerInfoId, string status);
+        Task<string> CompletedOfferByOperator(int offerInfoId, string docURL);
         #endregion
     }
 }

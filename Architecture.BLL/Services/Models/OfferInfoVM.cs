@@ -27,5 +27,6 @@ namespace Architecture.BLL.Services.Models
         public string Status { get; set; }
         public Guid? CurrentUserId { get; set; }
         public Guid? CreatedBy { get; set; }
+        public string ReceiptSrc { get; set; }
     }
 }

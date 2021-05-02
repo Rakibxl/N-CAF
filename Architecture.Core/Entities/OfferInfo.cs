@@ -22,6 +22,7 @@ namespace Architecture.Core.Entities
         public string Status { get; set; }
         public Guid? CurrentUserId { get; set; }
         public string DocumentSrc { get; set; }
+        public string ReceiptSrc { get; set; }
         public string Code { get { return $"NC-{this.OfferInfoId.ToString("D4")}"; } }
 
     }

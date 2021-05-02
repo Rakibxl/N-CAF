@@ -65,7 +65,7 @@ namespace Architecture.Web.Controllers.ClientProfile
                     string folder = entity.ProfileId.ToString();
                     string fileName = Path.GetFileNameWithoutExtension( files[file_key].FileName);
                         string fileExt = Path.GetExtension(files[file_key].FileName);
-                    string docName = $"{fileName}-{entity.DocumentTypeId}-{DateTime.Now.ToString("yyyyMMddHHmmss")}{fileExt}";
+                    string docName = $"{fileName}-{entity.DocumentTypeId}-{DateTime.UtcNow.ToString("yyyyMMddHHmmss")}{fileExt}";
                     string regex = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
                     Regex reg = new Regex(string.Format("[{0}]", Regex.Escape(regex)));
                     docName = reg.Replace(docName, "-");

@@ -14,13 +14,39 @@
                 <i class="pe-7s-back pr-1"></i>
                 Back
             </button>
-            <button type="button" (click)="fnUpdateOffer()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Update</button>
-            <button type="button" (click)="fnDocumentsRequired()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Documents Required</button>
-            <button type="button" (click)="fnSubmittedOffer()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Submitted Successfully</button>
-            <button type="button" (click)="fnCompletedOffer()" class="caf-btn-primary-outline"><i class="fa fa-save pr-1"></i> Completed</button>
+            <button type="button" (click)="fnUpdateOffer()" class="caf-btn-primary-outline" *ngIf="this.offerInfo.offerStatusId!=5"><i class="fa fa-save pr-1"></i> Update</button>
+            <button type="button" (click)="fnDocumentsRequired()" class="caf-btn-primary-outline" *ngIf="this.offerInfo.offerStatusId!=5"><i class="fa fa-save pr-1"></i> Documents Required</button>
+            <button type="button" (click)="fnSubmittedOffer()" class="caf-btn-primary-outline" *ngIf="this.offerInfo.offerStatusId!=5"><i class="fa fa-save pr-1"></i> Submitted Successfully</button>
+            <button type="button" (click)="fnCompletedOffer()" class="caf-btn-primary-outline" *ngIf="this.offerInfo.offerStatusId!=5"><i class="fa fa-save pr-1"></i> Completed</button>
         </div>
     </div>
 </div>
 <div>
     <app-document-collection [parentProfileId]="profileId"></app-document-collection>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Complete Information of {{this.offerInfo.code}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex col-sm-12 row">
+            <div class="col-xl-4 col-md-6">
+                <div class="row">
+                    <label class="label">Attached Recipt <span class="text-danger">*</span></label>
+                    <input type="file"
+                           id="file"
+                           (change)="handleFileInput($event.target.files)">
+                </div>
+            </div>          
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="caf-btn-primary-outline btn-sm" (click)="fnCompleteTheOffer()">Complete</button>
+        <button type="button" class="caf-btn-primary-outline btn-sm" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

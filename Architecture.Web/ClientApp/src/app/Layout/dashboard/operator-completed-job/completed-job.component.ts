@@ -45,7 +45,19 @@ export class CompletedJobComponent implements OnInit {
         } else if (event.cellName == "view-details") {
             this.router.navigate([`/generate-pdf/completed-offer-pdf/${event.record.profileId}/${event.record.jobId}/${event.record.offerInfoId}`]);
         } else if (event.cellName == "download-recipt") {
-            this.alertService.titleTosterSuccess("Feature will be enable soon. Thanks for clicking.");
+            let fileSrc = event.record.receiptSrc || null;
+            if (fileSrc == null) {
+                this.alertService.titleTosterWarning("File is not available. Please upload the file so that you can download for the next time.");
+                return false;
+            }
+            let fileName = fileSrc.split("/")[fileSrc.split("/").length - 1];
+            const link = document.createElement('a');
+            link.setAttribute('target', '_blank');
+            link.setAttribute('href', event.record.documentSrc);
+            link.setAttribute('download', fileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
         } else if (event.cellName == "view-history") {
             this.selectedOffer = new OfferInfo();
             setTimeout(() => {

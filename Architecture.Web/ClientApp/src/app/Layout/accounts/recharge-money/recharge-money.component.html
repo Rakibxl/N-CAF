@@ -4,7 +4,7 @@
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-12 pb-4 d-flex flex-wrap justify-content-between align-items-center">
-                        <h3><span class="bordered-title">Recharge Money</span></h3>
+                        <h3><span class="bordered-title">Recharge Points</span></h3>
                     </div>
                     <hr>
                     <div class="col-xl-4 col-md-6">
@@ -34,7 +34,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="caf-input-group">
                             <label class="label">
-                                Purpose<strong class="text-danger">*</strong>
+                                Notes<strong class="text-danger">*</strong>
                             </label>
                             <input type="text"
                                    autocomplete="off"
@@ -60,6 +60,6 @@
         </form>
     </div>
     <div class="card-body caf-card card-shadow">
-        <app-recharge-approval></app-recharge-approval>
+        <app-recharge-approval *ngIf="refreshComponent"></app-recharge-approval>
     </div>
 </div>

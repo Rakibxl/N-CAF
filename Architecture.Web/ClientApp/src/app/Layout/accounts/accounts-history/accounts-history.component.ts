@@ -4,8 +4,8 @@ import { take, delay, finalize } from 'rxjs/operators';
 import { CommonService } from 'src/app/Shared/Services/Common/common.service';
 import { IPTableSetting } from 'src/app/Shared/Modules/p-table';
 import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
-import { RechargeService } from "../../../Shared/Services/ClientProfile/recharge.service";
 import { TransactionDetail } from "../../../Shared/Entity/Accounts/transactionDetails";
+import { RechargeService } from '../../../Shared/Services/Accounts/recharge.service';
 
 @Component({
     selector: 'app-accounts-history',

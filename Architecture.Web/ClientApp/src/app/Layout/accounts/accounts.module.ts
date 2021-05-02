@@ -12,6 +12,7 @@ import { RechargeApprovalComponent } from './recharge-approval/recharge-approval
 import { AccountInfoListComponent } from './account-info-list/account-info-list.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedMasterModule } from "../../Shared/Modules/shared-master/shared-master.module";
+import { OperatorAmountApprovalComponent } from './operator-amount-approval/operator-amount-approval.component';
 
 export function httpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -19,7 +20,7 @@ export function httpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-    declarations: [AccountsHistoryComponent, RechargeMoneyComponent, RechargeApprovalComponent, AccountInfoListComponent],
+    declarations: [AccountsHistoryComponent, RechargeMoneyComponent, RechargeApprovalComponent, AccountInfoListComponent, OperatorAmountApprovalComponent],
     imports: [
         CommonModule,
         FormsModule,

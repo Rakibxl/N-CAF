@@ -51,13 +51,13 @@ namespace Architecture.BLL.Services.Implements
                 if (jobInfo.JobInfoId > 0)
                 {
                     jobInfo.CreatedBy = currentUserService.UserId;
-                    jobInfo.Created = DateTime.Now;
+                    jobInfo.Created = DateTime.UtcNow;
                     result = await UpdateAsync(jobInfo);
                 }
                 else
                 {
                     jobInfo.ModifiedBy = currentUserService.UserId;
-                    jobInfo.Modified = DateTime.Now;
+                    jobInfo.Modified = DateTime.UtcNow;
                     jobInfo.RecordStatusId = (int)EnumRecordStatus.Active;
                     result = await AddAsync(jobInfo);
                 }
@@ -75,7 +75,7 @@ namespace Architecture.BLL.Services.Implements
             if (result==null) {
                 return "Job infomration is not available. Please contact with admin.";
             }
-            result.Modified = DateTime.Now;
+            result.Modified = DateTime.UtcNow;
             result.ModifiedBy = currentUserService.UserId;
             result.RecordStatusId = (int)EnumRecordStatus.Deleted;
             await UpdateAsync(result);

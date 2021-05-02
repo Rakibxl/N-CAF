@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ChangePassword, IAuthUser, Login, ResetPassword } from '../../Entity/Users/auth';
@@ -18,7 +18,9 @@ export class AuthService {
     public currentUser: Observable<IAuthUser>;
 
     constructor(private http: HttpClient,
-        private jwtHelper: JwtHelperService, @Inject('BASE_URL') baseUrl: string) {
+        private jwtHelper: JwtHelperService,
+        @Inject('BASE_URL') baseUrl: string,
+    ) {
         this.baseUrl = baseUrl + "api/";
         this.authEndpoint = this.baseUrl + 'v1/auth';
         this.currentUserSubject = new BehaviorSubject<IAuthUser>(JSON.parse(localStorage.getItem('currentUser')));

@@ -6,7 +6,7 @@ import { IPTableSetting } from 'src/app/Shared/Modules/p-table';
 import { AlertService } from 'src/app/Shared/Modules/alert/alert.service';
 import { RolePermissions } from 'src/app/Shared/Constants/user-role-permission';
 import { TransactionRequest } from "../../../Shared/Entity/Accounts/transactionRequest";
-import { RechargeService } from "../../../Shared/Services/ClientProfile/recharge.service";
+import { RechargeService } from '../../../Shared/Services/Accounts/recharge.service';
 
 @Component({
     selector: 'app-recharge-approval',

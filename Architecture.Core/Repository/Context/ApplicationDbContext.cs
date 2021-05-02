@@ -547,7 +547,8 @@ namespace Architecture.Core.Repository.Context
                     new RecordStatus { RecordStatusId = 2, Name = "New", IsActive = true },
                     new RecordStatus { RecordStatusId = 3, Name = "Deleted", IsActive = true },
                     new RecordStatus { RecordStatusId = 4, Name = "Waiting for Approval", IsActive = true },
-                    new RecordStatus { RecordStatusId = 5, Name = "Approved", IsActive = true }
+                    new RecordStatus { RecordStatusId = 5, Name = "Approved", IsActive = true },
+                    new RecordStatus { RecordStatusId = 6, Name = "Pending", IsActive = true }
                 );
             }); 
             

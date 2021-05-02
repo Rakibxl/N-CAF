@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountInfoListComponent } from './account-info-list/account-info-list.component';
 import { AccountsHistoryComponent } from './accounts-history/accounts-history.component';
+import { OperatorAmountApprovalComponent } from './operator-amount-approval/operator-amount-approval.component';
 import { RechargeApprovalComponent } from './recharge-approval/recharge-approval.component';
 import { RechargeMoneyComponent } from './recharge-money/recharge-money.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
             { path: 'accounts-history', component: AccountsHistoryComponent, data: { extraParameter: 'dashboard' } },
             { path: 'recharge-approval', component: RechargeApprovalComponent, data: { extraParameter: 'dashboard' } },
             { path: 'recharge-request', component: RechargeMoneyComponent, data: { extraParameter: 'dashboard' } },
+            { path: 'operator-amount-approval', component: OperatorAmountApprovalComponent, data: { extraParameter: 'dashboard' } },
         ]
     }
 ];

@@ -25,6 +25,9 @@ export class OfferInfoService {
     public getMyOfferByProfileId(profileId: number) {
         return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetMyOffer/' + profileId);
     }
+    public getOfferById(offerInfoId: number): Promise<APIResponse> {
+        return this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/GetById/' + offerInfoId).toPromise();
+    }
 
     public submitOffer(data: OfferInfo) {
         return this.http.post<APIResponse>(this.baseUrl + 'v1/OfferInfo/CreateOrUpdate', data);
@@ -57,8 +60,12 @@ export class OfferInfoService {
         return await this.http.get<APIResponse>(this.baseUrl + 'v1/OfferInfo/OperatorOfferRevertRequest/' + offerInfoId);
     }
 
-    public async operatorOfferStatusChange(profileId: number, offerInfoId: number, status) {
-        return await this.http.get<APIResponse>(this.baseUrl + `v1/OfferInfo/OperatorOfferStatusChange?profileId=${profileId}&offerInfoId=${offerInfoId}&status=${status}`);
+    public async operatorOfferStatusChange(profileId: number, offerInfoId: number, status): Promise<APIResponse>{
+        return await this.http.get<APIResponse>(this.baseUrl + `v1/OfferInfo/OperatorOfferStatusChange?profileId=${profileId}&offerInfoId=${offerInfoId}&status=${status}`).toPromise();
+    }
+
+    public async operatorOfferCompleted(profileId: number, offerInfoId: number, files: any): Promise<APIResponse> {
+        return await this.http.post<APIResponse>(this.baseUrl + `v1/OfferInfo/CompletedOfferByOperator?profileId=${profileId}&offerInfoId=${offerInfoId}`,files).toPromise();
     }
    //#endr operator end
    

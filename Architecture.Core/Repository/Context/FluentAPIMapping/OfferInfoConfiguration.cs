@@ -17,6 +17,7 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
 
             offerInfo.Property(bs => bs.JobId).IsRequired();
             offerInfo.Property(bs => bs.ProfileId).IsRequired();
+            offerInfo.Property(bs => bs.ReceiptSrc).HasMaxLength(200);
             //offerInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
             //offerInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }

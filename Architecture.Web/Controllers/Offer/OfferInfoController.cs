@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Architecture.BLL.Services.Interfaces;
 using Architecture.Core.Entities;
 using Architecture.Web.Controllers.Common;
+using Architecture.Web.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Architecture.Web.Controllers.Offer
@@ -89,7 +92,7 @@ namespace Architecture.Web.Controllers.Offer
             }
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById/{offerInfoId}")]
         public async Task<IActionResult> GetById(int offerInfoId)
         {
             try
@@ -144,6 +147,7 @@ namespace Architecture.Web.Controllers.Offer
             }
         }
 
+       
         [HttpGet("OperatorOfferAcceptRequest/{offerInfoId}")]
         public async Task<IActionResult> OperatorOfferAcceptRequest(int offerInfoId)
         {
@@ -186,6 +190,39 @@ namespace Architecture.Web.Controllers.Offer
             }
         }
 
+        [HttpPost("CompletedOfferByOperator")]
+        public async Task<IActionResult> CompletedOfferByOperator(int profileId, int offerInfoId)
+        {
+            try
+            {
+                var returnRes = "";
+                var file = HttpContext.Request.Form.Files[0];
+                // var result = await OfferInfoService.OperatorChangeOfferStatusRequest(profileId, offerInfoId, status);
+                if (file != null)
+                {
+                    string folder ="CompletedReceipt";
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string fileExt = Path.GetExtension(file.FileName);
+                    string docName = $"{fileName}-{offerInfoId}-{DateTime.UtcNow.ToString("yyyyMMddHHmmss")}{fileExt}";
+                    string regex = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                    Regex reg = new Regex(string.Format("[{0}]", Regex.Escape(regex)));
+                    docName = reg.Replace(docName, "-");
+                    //string folder = entity.ProfileId.ToString() + "/" + entity.DocumentTypeId;
+                    var name = FileHandler.SaveFile(file, folder, docName);
+                    string receiptUrl= $"/assets/documents/{folder}/{docName}";
+
+                 returnRes=   await OfferInfoService.CompletedOfferByOperator(offerInfoId, receiptUrl);
+                }
+                return OkResult(returnRes);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+
+        #endregion Operator
         [HttpPost("CreateOrUpdate")]
         public async Task<IActionResult> CreateOrUpdate([FromBody] OfferInfo model)
         {
@@ -195,13 +232,13 @@ namespace Architecture.Web.Controllers.Offer
             if (model.OfferInfoId > 0)
             {
                 model.ModifiedBy = UserId;
-                model.Modified = DateTime.Now;
+                model.Modified = DateTime.UtcNow;
             }
             else
             {
                 model.CreatedBy = UserId;
-                model.Created = DateTime.Now;
-                model.Modified = DateTime.Now;
+                model.Created = DateTime.UtcNow;
+                model.Modified = DateTime.UtcNow;
             }
 
             return await ModelValidation(async () =>
@@ -210,8 +247,7 @@ namespace Architecture.Web.Controllers.Offer
                 return OkResult(result);
             });
         }
-
-        #endregion operator
+              
 
         [HttpGet("ProgressOfferForChatting")]
         public async Task<IActionResult> GetProgressOfferForChattingAsync()

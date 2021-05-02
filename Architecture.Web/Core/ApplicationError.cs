@@ -29,14 +29,14 @@ namespace Architecture.Web.Core
         public ApplicationError()
         {
             Id = Guid.NewGuid().ToString().ToLower();
-            ErrorTime = DateTime.Now;
+            ErrorTime = DateTime.UtcNow;
         }
 
         public static string GetAllMessage(IEnumerable<ApplicationError> exErrors)
         {
             return exErrors.Aggregate(string.Empty,
                 (current, ex) => current
-                                + (DateTime.Now.ToString("MMM dd, yyyy h:mm tt")
+                                + (DateTime.UtcNow.ToString("MMM dd, yyyy h:mm tt")
                                 + ":: " + ex.FileName
                                 + ":: " + ex.EntityFullName
                                 + ":: " + ex.MethodName
@@ -47,7 +47,7 @@ namespace Architecture.Web.Core
 
         public string Get()
         {
-            return (DateTime.Now.ToString("MMM dd, yyyy h:mm tt")
+            return (DateTime.UtcNow.ToString("MMM dd, yyyy h:mm tt")
                     + ":: " + FileName
                     + ":: " + EntityFullName
                     + ":: " + MethodName

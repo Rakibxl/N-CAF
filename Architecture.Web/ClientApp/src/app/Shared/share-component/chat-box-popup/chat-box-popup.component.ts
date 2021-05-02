@@ -43,10 +43,10 @@ export class ChatBoxPopupComponent implements OnInit {
     }
 
     fnGetProgressOffer() {
-        if (sessionStorage.getItem("applicationOfferData") != null) {
-            this.applicationOfferData = sessionStorage.getItem("applicationOfferData") == null ? [] : JSON.parse(sessionStorage.getItem("applicationOfferData"));
-            return false;
-        }
+        //if (sessionStorage.getItem("applicationOfferData") != null) {
+        //    this.applicationOfferData = sessionStorage.getItem("applicationOfferData") == null ? [] : JSON.parse(sessionStorage.getItem("applicationOfferData"));
+        //    return false;
+        //}
         this.offerInfoService.getProgressOfferForChatting().subscribe((res) => {
             sessionStorage.setItem("applicationOfferData", JSON.stringify(res.data || []));
             this.applicationOfferData = res.data || [];

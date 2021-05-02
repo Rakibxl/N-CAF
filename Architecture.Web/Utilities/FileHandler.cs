@@ -38,6 +38,7 @@ namespace Architecture.Web.Utilities
             }
         }
 
+
         public static void DeleteFile(string path)
         {
             if (Directory.Exists(path))

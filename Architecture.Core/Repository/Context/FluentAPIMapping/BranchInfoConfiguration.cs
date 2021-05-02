@@ -22,8 +22,8 @@ namespace Architecture.Core.Repository.Context.FluentAPIMapping
             //branchInfo.Property(bs => bs.NumberOfUser).HasDefaultValue(false);
             branchInfo.Property(bs => bs.IsLocked).HasDefaultValue(false);
             branchInfo.Property(bs => bs.Note).HasMaxLength(500);
-            branchInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
-            branchInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+            //branchInfo.Property(bs => bs.Modified).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
+            //branchInfo.Property(bs => bs.Created).ValueGeneratedOnAddOrUpdate().HasComputedColumnSql("GetUtcDate()");
         }
     }
 }

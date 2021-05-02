@@ -21,7 +21,7 @@ namespace Architecture.BLL.Services.Extensions
 
         public static void ToTextFileLog(string message, string startupPath, string folderName = "Logs", string fileName = "ErrorLog", string extention = ".txt")
         {
-            var toDay = DateTime.Now.ToString("yyyy-MM-dd");
+            var toDay = DateTime.UtcNow.ToString("yyyy-MM-dd");
             var filePath = startupPath + "\\" + folderName + "\\" + fileName + "_" + toDay + extention;
 
             var msg = message + Environment.NewLine;

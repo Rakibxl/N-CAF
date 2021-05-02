@@ -63,7 +63,7 @@ namespace Architecture.Web.Extensions
 
         public static IEnumerable<ApplicationError> GetAll(this Exception exception)
         {
-            var dateTime = DateTime.Now;
+            var dateTime = DateTime.UtcNow;
             var exceptions = exception.FromHierarchy(ex => ex.InnerException);
 
             var list = from ex in exceptions
@@ -97,7 +97,7 @@ namespace Architecture.Web.Extensions
         public static void ToTextFileLog(this Exception ex, string startupPath, string folderName = "Logs", string fileName = "ErrorLog", string extention = ".txt")
         {
             string message = string.Empty;
-            var toDay = DateTime.Now.ToString("yyyy-MM-dd");
+            var toDay = DateTime.UtcNow.ToString("yyyy-MM-dd");
             var filePath = startupPath + "\\" + folderName + "\\" + fileName + "_" + toDay + extention;
 
             foreach (var item in ex.GetAll())
@@ -106,7 +106,7 @@ namespace Architecture.Web.Extensions
                 var msg = "--------------------------------------------------" + Environment.NewLine;
 
                 msg += "Date: " + toDay + Environment.NewLine
-                        + "Time: " + DateTime.Now.ToString("hh:mm:ss") + Environment.NewLine
+                        + "Time: " + DateTime.UtcNow.ToString("hh:mm:ss") + Environment.NewLine
                         + "File Name: " + item.FileName + Environment.NewLine
                         + "Entity Name: " + item.EntityFullName + Environment.NewLine
                         + "Method Name: " + item.MethodName + Environment.NewLine
@@ -128,8 +128,8 @@ namespace Architecture.Web.Extensions
                 Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path))).Parent.FullName;
 
             var msg = "--------------------------------------------------" + Environment.NewLine;
-            msg += "Date: " + DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine
-                 + "Time: " + DateTime.Now.ToString("hh:mm:ss") + Environment.NewLine;
+            msg += "Date: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + Environment.NewLine
+                 + "Time: " + DateTime.UtcNow.ToString("hh:mm:ss") + Environment.NewLine;
 
             if (!string.IsNullOrWhiteSpace(methodName))
             {

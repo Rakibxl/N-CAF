@@ -57,6 +57,11 @@ namespace Architecture.BLL.Services.Implements.Accounts
             var applicationUserType = currentUserService.UserTypeId;
 
             AccountInfo accountInfo = await this.GetCurrentUserAccountInfo();
+            if (accountInfo==null) {
+                await SyncAccountInfo();
+                accountInfo = await this.GetCurrentUserAccountInfo();
+            }
+
             var currentUserId = currentUserService.UserId.ToString();
 
             var transactionDetails = _dbContext.TransactionDetails.Include(x=>x.RecordStatus).Where(x => x.AccountInfoId == accountInfo.AccountInfoId && (x.RecordStatusId == (int)EnumRecordStatus.Approved || x.RecordStatusId == (int)EnumRecordStatus.WaitingforApproval))
@@ -239,12 +244,12 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 if (accountInfo.AccountInfoId > 0)
                 {
                     accountInfo.ModifiedBy = currentUserService.UserId;
-                    accountInfo.Modified = DateTime.Now;
+                    accountInfo.Modified = DateTime.UtcNow;
                     result = await UpdateAsync(accountInfo);
 
                     await this.notificationService.AddOrUpdate(new NotificationInfo
                     {
-                        MessageContent = $"Your account has been synchronized successfully at {(DateTime.Now.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
+                        MessageContent = $"Your account has been synchronized successfully at {(DateTime.UtcNow.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
                        $"<b> A/C Number:  {result.AccountNumber}</b>\n <b> A/C Name:  {result.AccountName}</b>",
                         MessageFor = result.CreatedBy
                     });
@@ -252,13 +257,13 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 else
                 {
                     accountInfo.CreatedBy = currentUserService.UserId;
-                    accountInfo.Created = DateTime.Now;
+                    accountInfo.Created = DateTime.UtcNow;
                     accountInfo.RecordStatusId = (int)EnumRecordStatus.Active;
                     accountInfo.AccountNumber = $"NC-{Guid.NewGuid().ToString().Substring(1, 6)}";
                     result = await AddAsync(accountInfo);
 
                     await this.notificationService.AddOrUpdate(new NotificationInfo { 
-                        MessageContent=$"Your account has been synchronized successfully at {(DateTime.Now.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
+                        MessageContent=$"Your account has been synchronized successfully at {(DateTime.UtcNow.ToString("dd/mm/yyyy hh:mm:ss tt"))}. \n" +
                         $"<b> A/C Number:  {result.AccountNumber}</b>\n <b> A/C Name:  {result.AccountName}</b>",
                         MessageFor= result.CreatedBy
                     });
@@ -278,7 +283,7 @@ namespace Architecture.BLL.Services.Implements.Accounts
             {
                 return "Accounts infomration is not available. Please contact with admin.";
             }
-            result.Modified = DateTime.Now;
+            result.Modified = DateTime.UtcNow;
             result.ModifiedBy = currentUserService.UserId;
             result.RecordStatusId = (int)EnumRecordStatus.Deleted;
             await UpdateAsync(result);
