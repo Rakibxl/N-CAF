@@ -46,8 +46,19 @@ export class OfferHistoryComponent implements OnInit {
         if (event.cellName == "apply") {
             this.router.navigate([`/show-offer/offer/${event.record.jobInfoId}/0`]);
         } else if (event.cellName == "download-recipt") {
-            this.selectedOffer = event.record;
-            this.alertService.titleTosterSuccess("Feature will be enable soon. Thanks for clicking.");
+            let fileSrc = event.record.receiptSrc || null;
+            if (fileSrc == null) {
+                this.alertService.titleTosterWarning("File is not available. Please upload the file so that you can download for the next time.");
+                return false;
+            }
+            let fileName = fileSrc.split("/")[fileSrc.split("/").length - 1];
+            const link = document.createElement('a');
+            link.setAttribute('target', '_blank');
+            link.setAttribute('href', event.record.documentSrc);
+            link.setAttribute('download', fileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
         } else if (event.cellName == "view-history") {
             this.selectedOffer = new OfferInfo();
             setTimeout(() => {
@@ -72,7 +83,7 @@ export class OfferHistoryComponent implements OnInit {
             { headerName: 'Accepted Date', width: '10%', internalName: 'operatorAcceptedDate', sort: true, type: "Date", displayType: 'datetime' },
             { headerName: 'Completed Date', width: '10%', internalName: 'modified', sort: true, type: "Date", displayType: 'datetime' },
             { headerName: 'Status', width: '10%', internalName: 'offerStatus.offerStatusName', sort: false, type: "custom-badge" },
-            { headerName: 'Details', width: '7%', internalName: 'download-recipt', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'Receipt' },
+            { headerName: 'Details', width: '7%', internalName: 'download-recipt', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-download text-success", btnTitle: 'Receipt' },
             { headerName: 'Details', width: '7%', internalName: 'view-history', sort: true, type: "custom-button", onClick: 'true', innerBtnIcon: "fa fa-eye text-success", btnTitle: 'History' },
 
         ],

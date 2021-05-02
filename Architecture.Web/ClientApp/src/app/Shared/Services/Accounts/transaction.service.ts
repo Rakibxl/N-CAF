@@ -19,12 +19,12 @@ export class TransactionService {
     public getTransactionById(transactionId: number) {
         return this.http.get<APIResponse>(this.baseUrl + `v1/Transaction/GetById/${transactionId}`);
     }
-    public getPendingTransactionInfo(): Promise<APIResponse> {
-        return this.http.get<APIResponse>(this.baseUrl + `v1/Transaction/GetPendingApprovalTransaction`).toPromise();
+    public async getPendingTransactionInfo(): Promise<APIResponse> {
+        return await this.http.get<APIResponse>(this.baseUrl + `v1/Transaction/GetPendingApprovalTransaction`).toPromise();
     }
 
-    public approvalRejectOperatorAmount(transactionId: number, status: string): Promise<APIResponse> {
-        return this.http.get<APIResponse>(this.baseUrl + `v1/Transaction/ApprovalRejectOperatorAmount?transactionId=${transactionId}&status=${status}`).toPromise();
+    public async approvalRejectOperatorAmount(transactionId: number, status: string): Promise<APIResponse> {
+       return await this.http.get<APIResponse>(this.baseUrl + `v1/Transaction/ApprovalRejectOperatorAmount/${transactionId}/${status}`).toPromise();
     }
     public deleteById(transactionId: number) {
         return this.http.delete<APIResponse>(this.baseUrl + `v1/Transaction/DeleteById/${transactionId}`);

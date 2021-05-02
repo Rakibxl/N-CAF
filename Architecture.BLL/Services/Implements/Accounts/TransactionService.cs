@@ -65,14 +65,39 @@ namespace Architecture.BLL.Services.Implements.Accounts
             if (checkVal)
             {
                 var result =await _dbContext.Transactions.Include(x=>x.TransactionDetail).FirstOrDefaultAsync(x=>x.TransactionId== transactionId);
-                result.RecordStatusId = (int)EnumRecordStatus.Approved;
+                result.RecordStatusId = status=="approved"?(int)EnumRecordStatus.Approved: (int)EnumRecordStatus.Rejected;
                 result.ApprovedBy = _currentUserService.UserId;
                 result.ApprovedDate = DateTime.UtcNow;
                 foreach (var obj in result.TransactionDetail) {
-                    obj.RecordStatusId = (int)EnumRecordStatus.Approved;
+                    obj.RecordStatusId = status == "approved" ? (int)EnumRecordStatus.Approved : (int)EnumRecordStatus.Rejected;
                 }
 
-                await AddOrUpdate(result);
+                await UpdateAsync(result);
+
+
+                //operator notification
+                NotificationInfo notificationInfoTransaction = new NotificationInfo
+                {
+                    CreatedBy = _currentUserService.UserId,
+                    Created = DateTime.UtcNow,
+                    RecordStatusId = (int)EnumRecordStatus.Active,
+                    MessageFor = result.CreatedBy,
+                    OfferInfoId= result.OfferInfoId,
+                    MessageContent = $"Great job, {result.Amount} points has {status} successfully by system admin  on {DateTime.UtcNow:f}."
+                };
+                await _notificationService.AddOrUpdate(notificationInfoTransaction);
+
+
+                //admin notificaiton
+                NotificationInfo clientNotificationInfo = new NotificationInfo
+                {
+                    CreatedBy = _currentUserService.UserId,
+                    Created = DateTime.UtcNow,
+                    RecordStatusId = (int)EnumRecordStatus.Active,
+                    MessageFor = _currentUserService.UserId,
+                    //OfferInfoId = offerInfo.OfferInfoId,
+                    MessageContent = $"{result.Amount} point has {status} successfully by admin on {DateTime.UtcNow:f}"
+                };
                 return "Successfully your command executed.";
             }
             else
@@ -356,7 +381,7 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 RecordStatusId = (int)EnumRecordStatus.Active,
                 MessageFor = adminAccountInfo.NotifyUserId,
                 OfferInfoId = offerInfo.OfferInfoId,
-                MessageContent = $"{offerInfo.Code} has completed successfully by operator {_currentUserService.UserName}. Submit a request for payment approval on {DateTime.UtcNow:f}."
+                MessageContent = $"{offerInfo.Code} has completed successfully by operator {_currentUserService.UserName} and Submitted a request for payment approval on {DateTime.UtcNow:f}."
             };
             await _notificationService.AddOrUpdate(clientNotificationInfo);
 

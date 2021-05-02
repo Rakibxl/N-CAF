@@ -11,6 +11,7 @@ namespace Architecture.Core.Common.Enums
         Deleted=3,
         WaitingforApproval=4,
         Approved=5,
-        Pending=6
+        Pending=6,
+        Rejected = 7
     }   
 }

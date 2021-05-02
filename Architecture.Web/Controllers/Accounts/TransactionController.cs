@@ -49,10 +49,11 @@ namespace Architecture.Web.Controllers.Accounts
         } 
         
         [HttpGet("ApprovalRejectOperatorAmount/{transactionId}/{status}")]
-        public async Task<IActionResult> ApprovalRejectOperatorAmount(int transactionId, string status)
+        public async Task<IActionResult> ApprovalRejectOperatorAmount(int transactionId, string status )
         {
             try
             {
+               
                 var result = await _transactionService.ApprovalRejectOperatorAmount(transactionId, status);
                 return OkResult(result);
             }
