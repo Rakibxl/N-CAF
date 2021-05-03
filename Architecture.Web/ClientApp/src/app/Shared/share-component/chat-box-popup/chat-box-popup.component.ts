@@ -76,7 +76,7 @@ export class ChatBoxPopupComponent implements OnInit {
         if ((this.chattingOfferInfoId || null) != null || (this.chattingUserId || null) != null) {
 
             let nofiticationInfo: NotificationInfo = new NotificationInfo();
-            nofiticationInfo.messageContent = this.messageInfo;
+            nofiticationInfo.messageContent = (this.chattingOfferInfoId || null) != null ? `${this.offerCode} - ${this.messageInfo}` : this.messageInfo;
             nofiticationInfo.messageFor = (this.chattingOfferInfoId||null) !=null?this.chattingOfferInfoReceiverId: this.chattingUserId;
             nofiticationInfo.offerInfoId = this.chattingOfferInfoId;
             
@@ -94,14 +94,16 @@ export class ChatBoxPopupComponent implements OnInit {
     public fnChangeApplicationUser() {
         this.fnGetMessage();
     }
-
+    public offerCode: string = "";
     public fnChangeOfferId() {
         if ((this.chattingOfferInfoId || null) != null) {
             this.authService.currentUser.subscribe(user => this.user = user);
             if (this.user.appUserTypeId == 3) {//operator user
                 this.chattingOfferInfoReceiverId = this.applicationOfferData.filter(r => r.offerInfoId == this.chattingOfferInfoId)[0].createdBy;
+                this.offerCode = this.applicationOfferData.filter(r => r.offerInfoId == this.chattingOfferInfoId)[0].code;
             } else {
-                this.chattingOfferInfoReceiverId = this.applicationOfferData.filter(r => r.offerInfoId == this.chattingOfferInfoId)[0].CurrentUserId;
+                this.chattingOfferInfoReceiverId = this.applicationOfferData.filter(r => r.offerInfoId == this.chattingOfferInfoId)[0].currentUserId;
+                this.offerCode = this.applicationOfferData.filter(r => r.offerInfoId == this.chattingOfferInfoId)[0].code;
             }
             this.notificationCollection = [];
             this.fnGetMessageByOfferId();

@@ -383,7 +383,7 @@ namespace Architecture.BLL.Services.Implements.Accounts
                 OfferInfoId = offerInfo.OfferInfoId,
                 MessageContent = $"{offerInfo.Code} has completed successfully by operator {_currentUserService.UserName} and Submitted a request for payment approval on {DateTime.UtcNow:f}."
             };
-            await _notificationService.AddOrUpdate(clientNotificationInfo);
+            await _notificationService.AddOrUpdate(adminNotificationInfo);
 
             return $"{offerInfo.Code} Completed Successfully.";
         }
